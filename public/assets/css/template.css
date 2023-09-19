@@ -1,0 +1,9 @@
+#w-node-e93d0b9b-71e9-4dbd-e250-ce2fc27474eb-b18f5798 {
+    grid-area: 1 / 2 / 2 / 10 !important;
+}
+
+#w-node-e93d0b9b-71e9-4dbd-e250-ce2fc27474eb-b18f5798>.heading-large.margin-bottom-small {
+    /* margin-left: 45px; */
+    text-align: center;
+    width: 85%;
+}
