@@ -70,17 +70,6 @@ class FrontendController extends Controller
         return view('terms-of-services');
     }
 
-    public function jobMarketplace(){
-        return view('jobs-marketplace');
-    }
-
-    public function candidateProfile(){
-        return view('candidate-profile');
-    }
-
-    public function company(){
-        return view('company');
-    }
 
     public function error(){
         return view('layout.404');

@@ -9709,7 +9709,7 @@ body.compensate-for-scrollbar {
 
 .dashboard-body {
   min-height: 100vh;
-  background: #ADD8E6;
+  background: #F0F5F3;
   margin-left: 260px;
   border-radius: 50px 0 0 50px;
   padding: 150px 55px 50px;
@@ -9803,7 +9803,7 @@ body.compensate-for-scrollbar {
   top: 0;
   right: 55px;
   left: 315px;
-  background: 	#ADD8E6;
+  background: #F0F5F3;
   padding: 30px 0;
   z-index: 999;
 }

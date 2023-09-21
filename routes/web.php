@@ -2,7 +2,15 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{ AuthenticationController, FrontendController};
+use App\Http\Controllers\{ 
+    AuthenticationController, 
+    FrontendController,
+    MessageController,
+    JobController,
+    UserController,
+    CandidateController,
+    EmployerController,
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +40,34 @@ Route::get('blog-employer', [FrontendController::class , 'blogEmployer'])->name(
 Route::get('visa-support', [FrontendController::class , 'visaSupport'])->name('visaSupport');
 Route::get('contact', [FrontendController::class , 'contact'])->name('contact');
 Route::get('terms-of-services', [FrontendController::class , 'termsOfServices'])->name('termsOfServices');
-Route::get('job-marketplace' , [FrontendController::class , 'jobMarketplace'])->name('jobMarketplace');
-Route::get('candidate-profile' , [FrontendController::class , 'candidateProfile'])->name('candidateProfile');
-Route::get('company' , [FrontendController::class , 'company'])->name('company');
-Route::get('/{any}' , [FrontendController::class , 'error'])->where('any','.*');
 
 //frontend routes ends here
+
+
+// dashboard routes starts here/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('job-marketplace' , [JobController::class , 'jobMarketplace'])->name('jobMarketplace');
+Route::get('candidate-profile' , [UserController::class , 'candidateProfile'])->name('candidateProfile');
+Route::get('company' , [UserController::class , 'company'])->name('company');
+
+//candidate dashboard route starts here
+Route::prefix("candidate")->group(function(){
+    Route::get('dashboard' , [CandidateController::class , 'getDashboardPage'])->name('getCandidateDashboard');
+    Route::get('profile' , [CandidateController::class , 'getProfilePage'])->name('getCandidateProfile');
+    Route::get('resume' , [CandidateController::class , 'getResumePage'])->name('getResumePage');
+    Route::get('messages' , [MessageController::class, 'getCandidateMessagePage'])->name('getCandidateMessages');
+    Route::get('job-alert' , [JobController::class , 'getJobAlertPage'])->name('getJobAlert');
+    Route::get('save-job' , [JobController::class ,'getSaveJobsPage'])->name('getSaveJob');
+    Route::get('account-settings' , [UserController::class , 'getAccountSettingsPage'])->name('getAccountSetting');
+});
+//candidate dashboard route ends here
+
+
+//employer dashboard route starts here 
+Route::prefix("employer")->group(function(){
+
+});
+//employer dashboard route ends here
+
+//dashborad routes ends here////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/{any}' , [FrontendController::class , 'error'])->where('any','.*');
 
