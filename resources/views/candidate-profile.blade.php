@@ -236,7 +236,7 @@
                                         </div>
                                     </li> -->
                                 </ul>
-                                <a href="#" class="btn-ten fw-500 text-white w-100 text-center tran3s mt-15">Download CV</a>
+                                <a href="#" class="btn-ten fw-500 text-white w-100 text-center tran3s mt-15">Download Profile</a>
                             </div>
                             <!-- /.cadidate-bio -->
                             <h4 class="sidebar-title">Location</h4>

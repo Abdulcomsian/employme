@@ -18,4 +18,12 @@ class UserController extends Controller
     public function getAccountSettingsPage(){
         return view('candidate.account-settings');
     }
+
+    public function candidatesMarketplace(){
+        return view('candidates-marketplace');
+    }
+    public function jobListing(){
+        return view('job-listing');
+    }
+    
 }

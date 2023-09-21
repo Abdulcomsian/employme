@@ -48,6 +48,9 @@ Route::get('terms-of-services', [FrontendController::class , 'termsOfServices'])
 Route::get('job-marketplace' , [JobController::class , 'jobMarketplace'])->name('jobMarketplace');
 Route::get('candidate-profile' , [UserController::class , 'candidateProfile'])->name('candidateProfile');
 Route::get('company' , [UserController::class , 'company'])->name('company');
+Route::get('candidates-marketplace' , [UserController::class , 'candidatesMarketplace'])->name('candidatesMarketplace');
+Route::get('job-listing' , [UserController::class , 'jobListing'])->name('jobListing');
+
 
 //candidate dashboard route starts here
 Route::prefix("candidate")->group(function(){
