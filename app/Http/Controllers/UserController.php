@@ -22,8 +22,10 @@ class UserController extends Controller
     public function candidatesMarketplace(){
         return view('candidates-marketplace');
     }
-    public function jobListing(){
-        return view('job-listing');
+
+    public function getEmployerAccountSettingpage(){
+        return view('employer.employer-dashboard-settings');
     }
+
     
 }

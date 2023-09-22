@@ -65,6 +65,19 @@ Route::prefix("candidate")->group(function(){
 //candidate dashboard route ends here
 
 
+//employer dashboard route starts here
+Route::prefix("employer")->group(function(){
+    Route::get('employer-profile' , [EmployerController::class , 'getEmployerProfilePage'])->name('getEmployerProfile');
+    Route::get('job-listing' , [JobController::class , 'getJobpage'])->name('getJobListing');
+    Route::get('employer-interview-request' , [JobController::class , 'getInterviewpage'])->name('getEmployerInterviewRequest');
+    Route::get('employer-dashboard-message' , [MessageController::class , 'getEmployerMessage'])->name('getEmployerDashboardMessage');
+    Route::get('employer-dashboard-saved-candidate' , [EmployerController::class , 'getEmployerCandidate'])->name('getEmployerDashboardSavedCandidate');
+    Route::get('employer-dashboard-subscription-plan' , [EmployerController::class , 'getEmployerSubscription'])->name('getEmployerSubscriptionPlan');
+    Route::get('employer-dashboard-settings' , [UserController::class , 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
+});
+//employer dashboard route ends here
+
+
 //employer dashboard route starts here 
 Route::prefix("employer")->group(function(){
 
