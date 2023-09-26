@@ -1,10 +1,97 @@
 @extends('components.master')
 
+<style>
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: center;
+  padding: 1% !important ;
+  border: 1px solid #ddd;
+
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+
+.prices {
+    color: #000;
+    margin-bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 2em !important;
+    font-weight: 700;
+    line-height: 1;
+}
+.heading-small {
+    color: #000;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    /* font-family: Switzer, sans-serif; */
+    font-family: Switzer;
+    font-size: 1em !important;
+    font-weight: 500;
+    line-height: 1.25;
+}
+.span-small {
+    color: #a5a5a5;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 24px !important; 
+    font-weight: 400;
+}
+
+
+@media screen and (max-width:1000px) {
+  .prices {
+    font-size: 1.4em !important;
+}
+.span-small{
+  font-size:16px !important;
+}
+}
+@media screen and (max-width:768px) {
+  .heading-small{
+    font-size:0.8em !important;
+  }
+  .prices {
+    font-size: 1em !important;
+}
+.span-small{
+  font-size:14px !important;
+}
+th, td{
+  font-size:14px;
+}
+}
+
+@media screen and (max-width:500px) {
+  .heading-small{
+    font-size:0.8em !important;
+  }
+  .prices {
+    font-size: 1.29em !important;
+}
+.span-small{
+  font-size:8px !important;
+}
+th, td{
+  font-size:8px;
+}
+}
+
+
+
+</style>
+
+
 @section('content')
 
-
-
-
+<!-- 
 <div class="section blog-post">
     <div class="container titles w-container">
       <h1 class="heading-large">Unlock Your Hiring Potential</h1>
@@ -40,8 +127,6 @@
                 </div>
                 <div>Visa application support for 2 teacher hires per year</div>
               </div>
-
-
               <div class="list-flex">
                 <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
                 </div>
@@ -56,7 +141,6 @@
             </div>
           </div>
         </div>
-        <!-- <div id="w-node-eef37878-bfbb-d61f-afae-c7e863fd87b4-273af39c" class="gray-wrapper popular"> -->
         <div id="w-node-eef37878-bfbb-d61f-afae-c7e863fd87b4-273af39c" class="gray-wrapper ">
           <div class="content-wrapper gap">
             <div class="content-wrapper">
@@ -94,8 +178,6 @@
                 </div>
                 <div>Receive interview requests</div>
               </div>
-
-
             </div>
           </div>
         </div>
@@ -150,9 +232,6 @@
             </div>
           </div>
         </div>
-
-
-
         <div id="w-node-ebd09504-cc8b-1fdb-13b9-0328b773d151-273af39c" class="gray-wrapper" style="border: 2px solid hsla(8, 100.00%, 67.86%, 1.00);">
           <div class="content-wrapper gap">
             <div class="content-wrapper">
@@ -162,7 +241,6 @@
                 <div class="p-small text-gray">Pay Per Hire $650 <br>
                   To be paid upon the successful approval of the visa</div>
               </div>
-
             </div>
             <div class="content-wrapper gap">
               <a href="#" class="button-1 plan w-inline-block">
@@ -201,13 +279,9 @@
                 <div>
                   Custom company branding</div>
               </div>
-
-
             </div>
           </div>
         </div>
-
-
         <div id="w-node-ebd09504-cc8b-1fdb-13b9-0328b773d151-273af39c" class="gray-wrapper">
           <div class="content-wrapper gap">
             <div class="content-wrapper">
@@ -268,9 +342,6 @@
             </div>
           </div>
         </div>
-
-
-
         <div id="w-node-ebd09504-cc8b-1fdb-13b9-0328b773d151-273af39c" class="gray-wrapper">
           <div class="content-wrapper gap">
             <div class="content-wrapper">
@@ -332,16 +403,6 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
   <div class="section">
     <div class="container inner-padding-medium w-container">
       <div class="w-layout-grid main-grid">
@@ -466,7 +527,6 @@
       </div>
     </div>
   </div>
-
   <div class="section">
     <div class="container w-container">
       <div class="rounded-block bg-cyan">
@@ -489,12 +549,174 @@
                 <div>Oops! Something went wrong while submitting the form.</div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
+  </div> -->
+
+
+
+
+  <div class="section blog-post">
+    <div class="container titles w-container">
+      <h1 class="heading-large">Unlock Your Hiring Potential</h1>
+    </div>
   </div>
+  <div class="section">
+    <div class="container">
+    <div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th></th>
+
+      <th>
+        <h3 class="heading-small ">Basic Candidate Access</h3>
+        <p class="prices large">$59<span class="span-small">/mo</span></p>
+      </th>
+      <th>
+        <h3 class="heading-small ">Jobs Marketplace Access</h3>
+        <p class="prices large">$69<span class="span-small">/mo</span></p>
+      </th>
+      <th>
+        <h3 class="heading-small ">Flexi Plan <br>
+      <br>
+      </h3>
+        <p class="prices large">$59<span class="span-small">/mo</span></p>
+      </th>
+      <th>
+        <h3 class="heading-small ">Advanced Candidate Access</h3>
+        <p class="prices large">$79<span class="span-small">/mo</span></p>
+      </th>
+      <th>
+        <h3 class="heading-small ">Combined Marketplace Access</h3>
+        <p class="prices large">$129<span class="span-small">/mo</span></p>
+      </th>
+      <th>
+        <h3 class="heading-small ">Enterprise Plan
+          <br> <br>
+        </h3>
+        <p class="prices large">Custom</p>
+      </th>
+
+    </tr>
+
+    <tr>
+      <td>Pay Per Hire Fee </td>
+      <td>$700</td>
+      <td>$800</td>
+      <td>$150</td>
+      <td>$650</td>
+      <td>$600</td>
+      <td>Custom Fee</td>
+    </tr>
+   <tr>
+    <td>Access to the Candidate Marketplace </td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></td>
+      <td> - </td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></td>
+    </tr>
+
+    <tr>
+    <td>Access to the Jobs Marketplace</td>
+      <td> - </td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"> </td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></td>
+      <td> - </td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></td>
+    </tr>
+
+    <tr>
+      <td>Essential customer support</td>
+      <td>  <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"> </td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"> </td>
+      <td> - </td>
+      <td> - </td>
+    </tr>
+
+    <tr>
+      <td> interview requests </td>
+      <td> Send </td>
+      <td> Receive  </td>
+      <td> Receive & send </td>
+      <td> - </td>
+      <td>Receive & send </td>
+      <td> - </td>
+    </tr>
+
+    <tr>
+      <td> Visa application support </td>
+      <td> 2 teacher hires per year </td>
+      <td> Each teacher hire</td>
+      <td> Each teacher hire </td>
+      <td>  3 teacher hires per year </td>
+      <td>5 teacher hires per year </td>
+      <td> Unlimited teacher hires per year</td>
+    </tr>
+    
+    <tr>
+      <td> Substitute teacher assistance </td>
+      <td> -</td>
+      <td>-</td>
+      <td><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"> </td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">  </td>
+      <td><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"> </td>
+      <td>-</td>
+    </tr>
+
+    <tr>
+      <td> Candidate priority access </td>
+      <td> -</td>
+      <td>-</td>
+      <td>- </td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">  </td>
+      <td><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"> </td>
+      <td><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"> </td>
+    </tr>
+
+    <tr>
+      <td> Custom company branding </td>
+      <td> -</td>
+      <td>-</td>
+      <td>- </td>
+      <td> <img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">  </td>
+      <td><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"> </td>
+      <td><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"> </td>
+    </tr>
+
+    <tr>
+      <td> Flexible pricing based on the volume of hires</td>
+      <td> -</td>
+      <td>-</td>
+      <td>- </td>
+      <td> -  </td>
+      <td>- </td>
+      <td><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"> </td>
+    </tr>
+
+    <tr>
+      <td>Website advertising</td>
+      <td> -</td>
+      <td>-</td>
+      <td>- </td>
+      <td> -  </td>
+      <td>- </td>
+      <td><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"> </td>
+    </tr>
+
+  </table>
+</div>
+    </div>
+
+</div>
+
+
 
 
 

@@ -69,6 +69,11 @@ class FrontendController extends Controller
     public function termsOfServices(){
         return view('terms-of-services');
     }
+    
+    
+    public function Services(){
+        return view('services');
+    }
 
 
     public function error(){
