@@ -11118,5 +11118,100 @@ height: 15rem;
 
 
 
+.active {
+  background-color: #04AA6D;
+  color: white;
+}
+.nav-2 {
+  font-size: 12px;
+  background-color: #333;
+  box-shadow: 0 1px 2px rgba(19, 51, 61, 0.5);
+  padding: 0 1em;
+  height: 44px; 
+  overflow: hidden; 
+  padding: 0 2%;
+}
+
+.nav-2 ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  max-height: 88px; 
+  position: relative; 
+}
+
+.nav-2 li {
+  display: inline-block;
+}
+
+.nav-2 a {
+  display: inline-block;
+  padding: 0 1em;
+  color: rgb(236, 236, 236);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 44px; 
+  height: 44px; 
+}
+
+.nav-2 a:hover {
+    color: #D2F34C;
+}
+
+.nav-2 li:last-child { 
+  position: absolute; 
+  right: 0;
+  bottom: 44px; 
+  background-image: linear-gradient(to right, rgba(19, 51, 61, 0) 0, rgba(19, 51, 61, 1) 2em);
+  padding-left: 3em;
+}
+
+.nav-2 li:nth-last-child(2) { 
+  display: none;
+}
+
+.nav-2#menu:target {
+  height: auto;
+  padding: 0;
+}
+
+.nav-2#menu:target ul {
+  max-height: none;
+}
+
+.nav-2#menu:target li {
+  display: block;
+}
+
+.nav-2#menu:target a {
+  display: block;
+  padding: 0 2em;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-2#menu:target a:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav-2#menu:target li:not(:first-child) {
+  margin-top: 2px;
+}
+
+.nav-2#menu:target li:last-child {
+  display: none;
+}
+
+.nav-2#menu:target li:nth-last-child(2) {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  border-left: 2px solid rgb(19, 51, 61);
+}
+
 
 

@@ -48,11 +48,25 @@ Route::get('services', [FrontendController::class , 'Services'])->name('Services
 
 // dashboard routes starts here/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('job-marketplace' , [JobController::class , 'jobMarketplace'])->name('jobMarketplace');
-Route::get('candidate-profile' , [UserController::class , 'candidateProfile'])->name('candidateProfile');
+// Route::get('candidate-profile' , [UserController::class , 'candidateProfile'])->name('candidateProfile');
 Route::get('company' , [UserController::class , 'company'])->name('company');
 Route::get('candidates-marketplace' , [UserController::class , 'candidatesMarketplace'])->name('candidatesMarketplace');
 Route::get('job-listing' , [UserController::class , 'jobListing'])->name('jobListing');
 Route::get('employer-job-listing' , [UserController::class , 'employerjobListing'])->name('employerjobListing');
+Route::get('candidate-profile-new' , [UserController::class , 'candidateProfileNew'])->name('candidateProfileNew');
+Route::get('candidate-profile-document' , [UserController::class , 'candidateProfileDocument'])->name('candidateProfileDocument');
+Route::get('candidate-profile-interview' , [UserController::class , 'candidateProfileInterview'])->name('candidateProfileInterview');
+Route::get('candidate-profile-album' , [UserController::class , 'candidateProfileAlbum'])->name('candidateProfileAlbum');
+Route::get('candidate-profile-comment' , [UserController::class , 'candidateProfileComment'])->name('candidateProfileComment');
+
+Route::get('company-about-us' , [UserController::class , 'companyAboutUs'])->name('companyAboutUs');
+Route::get('company-facilities' , [UserController::class , 'companyFacilities'])->name('companyFacilities');
+Route::get('company-staff' , [UserController::class , 'companyStaff'])->name('companyStaff');
+Route::get('company-programs' , [UserController::class , 'companyPrograms'])->name('companyPrograms');
+Route::get('company-reviews' , [UserController::class , 'companyReviews'])->name('companyReviews');
+Route::get('company-gallery' , [UserController::class , 'companyGallery'])->name('companyGallery');
+Route::get('company-location' , [UserController::class , 'companyLocation'])->name('companyLocation');
+Route::get('company-staff-information' , [UserController::class , 'companyStaffInfo'])->name('companyStaffInfo');
 
 
 

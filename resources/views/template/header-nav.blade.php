@@ -94,8 +94,8 @@
                                     data-bs-auto-close="outside" aria-expanded="false">Dashboard
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="dashboard/candidate-dashboard-index.html" class="dropdown-item" target="_blank"><span>Candidate Dashboard</span></a></li>
-                                    <li><a href="dashboard/employer-dashboard-index.html" class="dropdown-item" target="_blank"><span>Employer Dashboard</span></a></li>
+                                    <li><a href="{{route('getCandidateProfile')}}" class="dropdown-item" target="_blank"><span>Candidate Dashboard</span></a></li>
+                                    <li><a href="{{route('getEmployerProfile')}}" class="dropdown-item" target="_blank"><span>Employer Dashboard</span></a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
