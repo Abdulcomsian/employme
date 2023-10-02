@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-xl-6 m-auto text-center">
                     <div class="title-two">
-                        <h2 class="text-white">Register</h2>
+                        <h2 class="text-white">Candidate Sign Up</h2>
                     </div>
                     <p class="text-lg text-white mt-30 lg-mt-20">Create an account & Start posting or hiring talents</p>
                 </div>
@@ -22,7 +22,7 @@
 
 
 
-<section class="registration-section position-relative pt-100 lg-pt-80 pb-150 lg-pb-80">
+<!-- <section class="registration-section position-relative pt-100 lg-pt-80 pb-150 lg-pb-80">
     <div class="container">
         <div class="user-data-form">
             <div class="text-center">
@@ -83,7 +83,7 @@
                             </div>
                         </form>
                     </div>
-                    <!-- /.tab-pane -->
+             
                     <div class="tab-pane fade" role="tabpanel" id="fc2">
                         <form action="#">
                             <div class="row">
@@ -112,7 +112,7 @@
                                             <input type="checkbox" id="remember">
                                             <label for="remember">By hitting the "Register" button, you agree to the <a href="#">Terms conditions</a> & <a href="#">Privacy Policy</a></label>
                                         </div>
-                                    </div> <!-- /.agreement-checkbox -->
+                               
                                 </div>
                                 <div class="col-12">
                                     <button class="btn-eleven fw-500 tran3s d-block mt-20">Register</button>
@@ -120,7 +120,7 @@
                             </div>
                         </form>
                     </div>
-                    <!-- /.tab-pane -->
+                 
                 </div>
                 
                 <div class="d-flex align-items-center mt-30 mb-10">
@@ -144,11 +144,19 @@
                 </div>
                 <p class="text-center mt-10">Have an account? <a href="#" class="fw-500" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</a></p>
             </div>
-            <!-- /.form-wrapper -->
+         
         </div>
-        <!-- /.user-data-form -->
+     
     </div>
+</section> -->
+
+<section >
+    <iframe src="https://d115so8bpca.typeform.com/to/mqoLnrLt" width="100%" height="500px" frameborder="0">
+    </iframe>
 </section>
+
+
+
 
 
 @endsection

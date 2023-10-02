@@ -10,4 +10,8 @@ class AuthenticationController extends Controller
     {
         return view('signup');
     }
+
+    public function employersignup(){
+        return view('employer-signup');
+    }
 }

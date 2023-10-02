@@ -71,7 +71,7 @@
                     <div>
                       <a href="how-it-works" class="dropdown-link w-dropdown-link">How it
                         Works</a>
-                      <a href="../company-pages/getstarted_candidate.html" class="dropdown-link w-dropdown-link"
+                      <a href="{{route('company')}} " class="dropdown-link w-dropdown-link"
                         class="dropdown-link w-dropdown-link">Jobs Marketplace</a>
                       <a href="find-your-visa" class="dropdown-link w-dropdown-link"
                         class="dropdown-link w-dropdown-link">Find Your Visa</a>
@@ -91,9 +91,8 @@
                 <nav class="dropdown-list w-dropdown-list">
                   <div class="w-layout-grid dropdown-grid">
                     <div>
-                      <a href="how-it-works-employer" class="dropdown-link w-dropdown-link">How it
-                        Works</a>
-                      <a href="" class="dropdown-link w-dropdown-link">Candidates Marketplace</a>
+                      <a href="how-it-works-employer" class="dropdown-link w-dropdown-link">How it Works</a>
+                      <a href="{{route('candidatesMarketplace')}}" class="dropdown-link w-dropdown-link">Candidates Marketplace</a>
                       <a href="pricing" class="dropdown-link w-dropdown-link">Pricing</a>
                       <a href="about-us-employer" class="dropdown-link w-dropdown-link">About Us</a>
                       <a href="blog-employer" class="dropdown-link w-dropdown-link">Blog </a>
@@ -121,7 +120,7 @@
               </div>
             </div>
             <div id="w-node-_9659cfe2-9876-6245-a2f7-ac3989b1b9f8-8118b8ae" class="buttons-nav-wrapper">
-              <a href="https://webflow.com/templates/html/mollie-saas-website-template" target="_blank"
+              <a href="#" target="_blank"
                 class="link-block w-inline-block">
                 <div class="btn-label-wrapper">
                   <div class="label-button">Join Now</div>

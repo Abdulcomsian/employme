@@ -51,11 +51,11 @@
         </div>
       </div>
       <div class="social-icons-wrapper">
-        <a href="http://www.facebook.com" target="_blank" class="link-social w-inline-block"><img src="../images/facebook-icon.svg" loading="lazy" alt="" class="icon-social med"></a>
-        <a href="http://www.instagram.com/joaopaulots" target="_blank" class="link-social w-inline-block"><img src="../images/instagram-icon.svg" loading="lazy" alt="" class="icon-social med"></a>
-        <a href="http://www.linkedin.com" target="_blank" class="link-social w-inline-block"><img src="../images/linkedin-icon.svg" loading="lazy" alt="" class="icon-social med"></a>
-        <a href="http://www.twitter.com" target="_blank" class="link-social w-inline-block"><img src="../images/twitter-icon.svg" loading="lazy" alt="" class="icon-social med"></a>
-        <a href="#" class="link-social w-inline-block"><img src="../images/icon-mail.svg" loading="lazy" alt="" class="icon-social profile"></a>
+        <a href="http://www.facebook.com" target="_blank" class="link-social w-inline-block"><img src="{{asset('assets/images/facebook-icon.svg')}}" loading="lazy" alt="" class="icon-social med"></a>
+        <a href="http://www.instagram.com/joaopaulots" target="_blank" class="link-social w-inline-block"><img src= "{{asset('assets/images/instagram-icon.svg')}}" loading="lazy" alt="" class="icon-social med"></a>
+        <a href="http://www.linkedin.com" target="_blank" class="link-social w-inline-block"><img src="{{asset('assets/images/linkedin-icon.svg')}}" loading="lazy" alt="" class="icon-social med"></a>
+        <a href="http://www.twitter.com" target="_blank" class="link-social w-inline-block"><img src="{{asset('assets/images/twitter-icon.svg')}}"   loading="lazy" alt="" class="icon-social med"></a>
+        <a href="#" class="link-social w-inline-block"><img src="{{asset('assets/images/icon-mail.svg')}}" loading="lazy" alt="" class="icon-social profile"></a>
       </div>
     </div>
   </div>
