@@ -27,7 +27,7 @@ use App\Http\Controllers\{
 //frontend routes starts here
 
 Route::get('signup' , [AuthenticationController::class , 'signup'])->name('signup');
-Route::get('employer-signup' , [AuthenticationController::class , 'employersignup'])->name('employersignup');
+// Route::get('employer-signup' , [AuthenticationController::class , 'employersignup'])->name('employersignup');
 Route::get('/', [FrontendController::class , 'home'])->name('home');
 Route::get('how-it-works', [FrontendController::class , 'howItWorks'])->name('howItWorks');
 Route::get('find-your-visa', [FrontendController::class , 'visa'])->name('visa');

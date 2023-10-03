@@ -1,6 +1,5 @@
 @extends('layout.main')
 
-
 @section('content')
 <div class="inner-banner-one position-relative">
     <div class="container">
@@ -13,7 +12,6 @@
                     <p class="text-lg text-white mt-30 lg-mt-20">Create an account & Start posting or hiring talents</p>
                 </div>
             </div>
-            
         </div>
     </div>
     <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/shape/shape_02.svg')}}" alt="" class="lazy-img shapes shape_01">
@@ -22,7 +20,7 @@
 
 
 
-<!-- <section class="registration-section position-relative pt-100 lg-pt-80 pb-150 lg-pb-80">
+<section class="registration-section position-relative pt-100 lg-pt-80 pb-150 lg-pb-80">
     <div class="container">
         <div class="user-data-form">
             <div class="text-center">
@@ -44,26 +42,26 @@
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-25">
                                         <label>Name*</label>
-                                        <input type="text" placeholder="Rashed Kabir">
+                                        <input type="text" placeholder="Name" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-25">
                                         <label>Email*</label>
-                                        <input type="email" placeholder="rshdkabir@gmail.com">
+                                        <input type="email" placeholder="example@example.com" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-20">
                                         <label>Password*</label>
-                                        <input type="password" placeholder="Enter Password" class="pass_log_id">
+                                        <input type="password" placeholder="Enter Password" class="pass_log_id" required>
                                         <span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-20">
                                         <label>Conform Password*</label>
-                                        <input type="password" placeholder="Enter Password" class="pass_log_id">
+                                        <input type="password" placeholder="Enter Password" class="pass_log_id" required>
                                         <span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
                                     </div>
                                 </div>
@@ -89,20 +87,20 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-25">
-                                        <label>Name two*</label>
-                                        <input type="text" placeholder="Zubayer Hasan">
+                                        <label>Name*</label>
+                                        <input type="text" placeholder="Name" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-25">
                                         <label>Email*</label>
-                                        <input type="email" placeholder="zubayerhasan@gmail.com">
+                                        <input type="email" placeholder="example@example.com" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-20">
                                         <label>Password*</label>
-                                        <input type="password" placeholder="Enter Password" class="pass_log_id">
+                                        <input type="password" placeholder="Enter Password" class="pass_log_id" required>
                                         <span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
                                     </div>
                                 </div>
@@ -148,15 +146,68 @@
         </div>
      
     </div>
-</section> -->
-
-<section >
-    <iframe src="https://d115so8bpca.typeform.com/to/mqoLnrLt" width="100%" height="500px" frameborder="0">
-    </iframe>
 </section>
 
+<!-- <section >
+    <iframe src="https://d115so8bpca.typeform.com/to/mqoLnrLt" width="100%" height="500px" frameborder="0">
+    </iframe>
+</section> -->
+<!-- <div class="sign-up">
+    <div class="form1">
+        <div class="header">
+            <span>
+                1. Basic Registration
+            </span>
+        </div>
+        <div class="form">
+        </div>
+    </div>
+</div> -->
 
+<!-- <form id="stepper-form">
+    <div class="step-container active" id="step1">
+        <h2>Step 1</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button onclick="nextStep()">Next</button>
+    </div>
 
+    <div class="step-container" id="step2">
+        <h2>Step 2</h2>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <button onclick="prevStep()">Previous</button>
+        <button onclick="nextStep()">Next</button>
+    </div>
 
+    <div class="step-container" id="step3">
+        <h2>Step 3</h2>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <button onclick="prevStep()">Previous</button>
+        <button type="submit">Submit</button>
+    </div>
+</form> -->
+
+<script>
+    let currentStep = 0;
+    const stepContainers = document.querySelectorAll('.step-container');
+
+    function nextStep() {
+        if (currentStep < stepContainers.length - 1) {
+            stepContainers[currentStep].classList.remove('active');
+            currentStep++;
+            stepContainers[currentStep].classList.add('active');
+        }
+    }
+
+    function prevStep() {
+        if (currentStep > 0) {
+            stepContainers[currentStep].classList.remove('active');
+            currentStep--;
+            stepContainers[currentStep].classList.add('active');
+        }
+    }
+</script>
 
 @endsection
