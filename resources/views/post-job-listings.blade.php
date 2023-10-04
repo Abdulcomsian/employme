@@ -81,7 +81,7 @@
                                 <div class="col-md-6">
                                     <div class="dash-input-wrapper mb-30">
                                         <label for="">Unique Selling Points:</label>
-                                        <input type="text" name="UniqueSellingPoints" placeholder="Briefly describe the school's ethos, aims, and values.">
+                                        <input type="text" name="UniqueSellingPoints" placeholder="Highlight what sets the school apart.">
                                     </div>
                                 </div>
 
@@ -125,9 +125,35 @@
 									<option>No</option>
 								</select>
 					</div>
-                    <div class="dash-input-wrapper mb-30 col-md-6">
+                    <div class="dash-input-wrapper mb-30 col-md-12">
 								<label for="">Salary Breakdown:</label>
-								<textarea type="text" name="SalaryBreakdown" placeholder="Base pay, allowances, and other incentives. Specify if in KRW or USD. Tax deductions, bonuses, and payday details."></textarea>
+					</div>
+                    <div class="dash-input-wrapper mb-30 col-md-6">
+								<label for="">Base pay:</label>
+								<input type="text" name="Base pay" placeholder=""></input>
+					</div>
+                    <div class="dash-input-wrapper mb-30 col-md-6">
+								<label for="">Allowances and other incentives.</label>
+								<input type="text" name="Base pay" placeholder=""></input>
+					</div>
+                    <div class="dash-input-wrapper mb-30 col-md-6">
+								<label for=""> Specify:</label>
+								<select class="nice-select">
+									<option>KRW </option>
+									<option>USD</option>
+								</select>
+					</div>
+                    <div class="dash-input-wrapper mb-30 col-md-6">
+								<label for="">Tax Deductions</label>
+								<input type="text" name="Tax deductions" placeholder=""></input>
+					</div>
+                    <div class="dash-input-wrapper mb-30 col-md-6">
+								<label for="">Bonuses</label>
+								<input type="text" name="Bonuses" placeholder=""></input>
+					</div>
+                    <div class="dash-input-wrapper mb-30 col-md-6">
+								<label for="">Payday Details:</label>
+								<textarea type="text" name="Bonuses" placeholder=""></textarea>
 					</div>
                     </div>
                         <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
@@ -225,11 +251,11 @@
                     </div>
                     <div class="dash-input-wrapper mb-30 col-md-6">
                         <label for="">Professional Development Opportunities:</label>
-                        <input type="text" name="ProfessionalDevelopmentOpportunities" placeholder="smartboards, projectors">
+                        <input type="text" name="ProfessionalDevelopmentOpportunities" placeholder="">
                     </div>
                     <div class="dash-input-wrapper mb-30 col-md-6">
                         <label for="">Overtime Pay:</label>
-                        <input type="text" name="OvertimePay" placeholder="smartboards, projectors">
+                        <input type="text" name="OvertimePay" placeholder="">
                     </div>
                 </div>
                 <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
@@ -259,7 +285,7 @@
                     </div>
                     <div class="dash-input-wrapper mb-30 col-md-6">
                         <label for="">Health Check Requirements:</label>
-                        <input type="text" name="HealthCheckRequirements" placeholder="prep time, meetings">
+                        <input type="text" name="HealthCheckRequirements" placeholder="">
                     </div>
                     <div class="dash-input-wrapper mb-30 col-md-6">
                         <label for="">Preferred Accent:</label>
