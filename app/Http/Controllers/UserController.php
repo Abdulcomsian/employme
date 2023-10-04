@@ -50,6 +50,8 @@ class UserController extends Controller
         return view('candidate-profile-comment');
     }
 
+    
+
 
 
 

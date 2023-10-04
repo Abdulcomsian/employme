@@ -93,6 +93,7 @@ Route::prefix("employer")->group(function(){
     Route::get('employer-dashboard-saved-candidate' , [EmployerController::class , 'getEmployerCandidate'])->name('getEmployerDashboardSavedCandidate');
     Route::get('employer-dashboard-subscription-plan' , [EmployerController::class , 'getEmployerSubscription'])->name('getEmployerSubscriptionPlan');
     Route::get('employer-dashboard-settings' , [UserController::class , 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
+    Route::get('post-job-listing', [EmployerController::class, 'getPostJob'])->name('postJobs');
 });
 //employer dashboard route ends here
 
@@ -105,4 +106,6 @@ Route::prefix("employer")->group(function(){
 
 //dashborad routes ends here////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/{any}' , [FrontendController::class , 'error'])->where('any','.*');
+
+
 
