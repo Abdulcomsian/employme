@@ -28,16 +28,16 @@ Employer Profile
 
 	.employer-sign-up .stepper>.step {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		gap: 4%;
+		gap: 1rem;
 	}
 
 	.employer-sign-up .stepper>.step>.icon>div {
 		border: 1px solid rgba(0, 0, 0, 0.5);
 		border-radius: 50%;
-		padding: 18%;
+		padding: 15%;
 		width: 30px;
 		height: 30px;
 	}
