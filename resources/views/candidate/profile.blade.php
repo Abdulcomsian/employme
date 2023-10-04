@@ -10,6 +10,7 @@ Candidate Profile
 
     .active {
         display: block;
+        color: rgba(0, 0, 0, 0.7) !important;
     }
 </style>
 @section('content')
@@ -160,7 +161,9 @@ Candidate Profile
                             </div>
                         </div>
 
-                        <button type="button" class="dash-btn-one" onclick="nextStep(1)">Next</button>
+                        <div class="d-flex flex-row justify-content-end gap-3">
+                            <button type="button" class="dash-btn-one" onclick="nextStep(1)">Next</button>
+                        </div>
                     </div>
 
                     <!-- Step 2 -->
@@ -213,8 +216,10 @@ Candidate Profile
                             </div>
                         </div>
 
-                        <button type="button" class="dash-btn-one" onclick="previousStep(2)">Previous</button>
-                        <button type="button" class="dash-btn-one" onclick="nextStep(2)">Next</button>
+                        <div class="d-flex flex-row justify-content-end gap-3">
+                            <button type="button" class="dash-btn-one" onclick="previousStep(2)">Previous</button>
+                            <button type="button" class="dash-btn-one" onclick="nextStep(2)">Next</button>
+                        </div>
                     </div>
 
                     <!-- Step 3 -->
@@ -293,8 +298,10 @@ Candidate Profile
                             </div>
                         </div>
 
-                        <button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
-                        <button type="button" class="dash-btn-one" onclick="nextStep(3)">Next</button>
+                        <div class="d-flex flex-row justify-content-end gap-3">
+                            <button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
+                            <button type="button" class="dash-btn-one" onclick="nextStep(3)">Next</button>
+                        </div>
                     </div>
 
                     <!-- Step 4 -->
@@ -373,8 +380,10 @@ Candidate Profile
                             </div>
                         </div>
 
-                        <button type="button" class="dash-btn-one" onclick="previousStep(4)">Previous</button>
-                        <button type="button" class="dash-btn-one" onclick="nextStep(4)">Next</button>
+                        <div class="d-flex flex-row justify-content-end gap-3">
+                            <button type="button" class="dash-btn-one" onclick="previousStep(4)">Previous</button>
+                            <button type="button" class="dash-btn-one" onclick="nextStep(4)">Next</button>
+                        </div>
                     </div>
 
                     <!-- Step 5 -->
@@ -408,8 +417,10 @@ Candidate Profile
                             </div>
                         </div>
 
-                        <button type="button" class="dash-btn-one" onclick="previousStep(5)">Previous</button>
-                        <button type="button" class="dash-btn-one" onclick="nextStep(5)">Next</button>
+                        <div class="d-flex flex-row justify-content-end gap-3">
+                            <button type="button" class="dash-btn-one" onclick="previousStep(5)">Previous</button>
+                            <button type="button" class="dash-btn-one" onclick="nextStep(5)">Next</button>
+                        </div>
                     </div>
 
                     <!-- Step 6 -->
@@ -440,8 +451,10 @@ Candidate Profile
                             </div>
                         </div>
 
-                        <button type="button" class="dash-btn-one" onclick="previousStep(6)">Previous</button>
-                        <button type="button" class="dash-btn-one" onclick="nextStep(6)">Next</button>
+                        <div class="d-flex flex-row justify-content-end gap-3">
+                            <button type="button" class="dash-btn-one" onclick="previousStep(6)">Previous</button>
+                            <button type="button" class="dash-btn-one" onclick="nextStep(6)">Next</button>
+                        </div>
                     </div>
 
                     <!-- Step 7 -->
@@ -488,8 +501,10 @@ Candidate Profile
                             </div>
                         </div>
 
-                        <button type="button" class="dash-btn-one" onclick="previousStep(7)">Previous</button>
-                        <button type="submit" class="dash-btn-one">Submit</button>
+                        <div class="d-flex flex-row justify-content-end gap-3">
+                            <button type="button" class="dash-btn-one" onclick="previousStep(7)">Previous</button>
+                            <button type="submit" class="dash-btn-one">Submit</button>
+                        </div>
                     </div>
                 </form>
             </div>
