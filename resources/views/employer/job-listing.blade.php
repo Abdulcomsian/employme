@@ -52,7 +52,7 @@
 								</li>
 							</ul>
 						</div>
-						<div><a href="employer-dashboard-submit-job.html" class="job-post-btn tran3s">Post a Job</a></div>
+						<div><a href="{{route('postJobs')}}" class="job-post-btn tran3s">Post a Job</a></div>
 					</div>
 				</header>
 				<!-- End Header -->
