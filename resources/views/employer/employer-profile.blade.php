@@ -12,6 +12,46 @@ Employer Profile
 		display: block;
 		color: rgba(0, 0, 0, 0.7) !important;
 	}
+
+	.employer-sign-up .stepper {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		gap: 1%;
+	}
+
+	.employer-sign-up #multi-step-form {
+		margin-top: 25px;
+	}
+
+	.employer-sign-up .stepper>.step {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		text-align: center;
+		gap: 4%;
+	}
+
+	.employer-sign-up .stepper>.step>.icon>div {
+		border: 1px solid rgba(0, 0, 0, 0.5);
+		border-radius: 50%;
+		padding: 18%;
+		width: 30px;
+		height: 30px;
+	}
+
+	.employer-sign-up .stepper>.step.selected>.icon>div {
+		background: #31795A;
+		color: #fff;
+	}
+
+	.employer-sign-up .stepper>.step>.icon,
+	.employer-sign-up .stepper>.step>.text {
+		font-size: 13px;
+		font-weight: 600;
+	}
 </style>
 @section('content')
 <div class="dashboard-body">
@@ -68,15 +108,66 @@ Employer Profile
 		<h2 class="main-title">Profile</h2>
 
 		<div class="bg-white card-box border-20 mb-40">
-			<div class="candidate-sign-up">
+			<div class="employer-sign-up">
+				<div class="stepper">
+					<div id="tag-step-1" class="step selected">
+						<div class="icon">
+							<div>1</div>
+						</div>
+						<div class="text">Basic Employer Information</div>
+					</div>
+					<div id="tag-step-2" class="step">
+						<div class="icon">
+							<div>2</div>
+						</div>
+						<div class="text">Operational Details</div>
+					</div>
+					<div id="tag-step-3" class="step">
+						<div class="icon">
+							<div>3</div>
+						</div>
+						<div class="text">Subscription Plan Selection</div>
+					</div>
+					<div id="tag-step-4" class="step">
+						<div class="icon">
+							<div>4</div>
+						</div>
+						<div class="text">Eligibility Confirmation and Documentation</div>
+					</div>
+					<div id="tag-step-5" class="step">
+						<div class="icon">
+							<div>5</div>
+						</div>
+						<div class="text">Historical Recruitment Data</div>
+					</div>
+					<div id="tag-step-6" class="step">
+						<div class="icon">
+							<div>6</div>
+						</div>
+						<div class="text">Feedback and Testimonials</div>
+					</div>
+					<div id="tag-step-7" class="step">
+						<div class="icon">
+							<div>7</div>
+						</div>
+						<div class="text">Support and Development Initiatives</div>
+					</div>
+					<div id="tag-step-8" class="step">
+						<div class="icon">
+							<div>8</div>
+						</div>
+						<div class="text">Cultural Integration Programs</div>
+					</div>
+					<div id="tag-step-9" class="step">
+						<div class="icon">
+							<div>9</div>
+						</div>
+						<div class="text">Declaration and Consent</div>
+					</div>
+				</div>
 				<form id="multi-step-form">
 					<!-- Step 1 -->
 					<div class="step active" id="step-1">
-						<div class="header">
-							<div class="container">
-								<span>1. Basic Employer Information</span>
-							</div>
-						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
@@ -195,11 +286,6 @@ Employer Profile
 
 					<!-- Step 2 -->
 					<div class="step" id="step-2">
-						<div class="header">
-							<div class="container">
-								<span>2. Operational Details</span>
-							</div>
-						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
@@ -265,11 +351,6 @@ Employer Profile
 
 					<!-- Step 3 -->
 					<div class="step" id="step-3">
-						<div class="header">
-							<div class="container">
-								<span>3. Subscription Plan Selection</span>
-							</div>
-						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
@@ -297,11 +378,6 @@ Employer Profile
 
 					<!-- Step 4 -->
 					<div class="step" id="step-4">
-						<div class="header">
-							<div class="container">
-								<span>4. Eligibility Confirmation and Documentation</span>
-							</div>
-						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
@@ -369,11 +445,6 @@ Employer Profile
 
 					<!-- Step 5 -->
 					<div class="step" id="step-5">
-						<div class="header">
-							<div class="container">
-								<span>5. Historical Recruitment Data</span>
-							</div>
-						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
@@ -407,12 +478,6 @@ Employer Profile
 
 					<!-- Step 6 -->
 					<div class="step" id="step-6">
-						<div class="header">
-							<div class="container">
-								<span>6. Feedback and Testimonials</span>
-							</div>
-						</div>
-
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
@@ -438,12 +503,6 @@ Employer Profile
 
 					<!-- Step 7 -->
 					<div class="step" id="step-7">
-						<div class="header">
-							<div class="container">
-								<span>7. Support and Development Initiatives</span>
-							</div>
-						</div>
-
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
@@ -494,12 +553,6 @@ Employer Profile
 
 					<!-- Step 8 -->
 					<div class="step" id="step-8">
-						<div class="header">
-							<div class="container">
-								<span>8. Cultural Integration Programs</span>
-							</div>
-						</div>
-
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
@@ -531,12 +584,6 @@ Employer Profile
 
 					<!-- Step 9 -->
 					<div class="step" id="step-9">
-						<div class="header">
-							<div class="container">
-								<span>9. Declaration and Consent</span>
-							</div>
-						</div>
-
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
@@ -897,14 +944,18 @@ Employer Profile
 
 	function nextStep(step) {
 		document.getElementById(`step-${step}`).classList.remove('active');
+		document.getElementById(`tag-step-${step}`).classList.remove('selected');
 		currentStep = step + 1;
 		document.getElementById(`step-${currentStep}`).classList.add('active');
+		document.getElementById(`tag-step-${currentStep}`).classList.add('selected');
 	}
 
 	function previousStep(step) {
 		document.getElementById(`step-${step}`).classList.remove('active');
+		document.getElementById(`tag-step-${step}`).classList.remove('selected');
 		currentStep = step - 1;
 		document.getElementById(`step-${currentStep}`).classList.add('active');
+		document.getElementById(`tag-step-${currentStep}`).classList.add('selected');
 	}
 
 	document.getElementById("multi-step-form").addEventListener("submit", function(event) {
