@@ -178,13 +178,16 @@ Candidate Profile
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="user-avatar-setting d-flex align-items-center">
-                                    <img src="../images/lazy.svg" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
-                                    <div class="upload-btn position-relative tran3s ms-4 me-3">
-                                        Upload profile photo
-                                        <input type="file" id="uploadImg" name="uploadImg" placeholder="">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Profile Photo</label>
+                                    <div class="user-avatar-setting d-flex align-items-center">
+                                        <img src="../images/lazy.svg" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload profile photo
+                                            <input type="file" id="uploadImg" name="uploadImg" placeholder="">
+                                        </div>
+                                        <button class="delete-btn tran3s">Delete</button>
                                     </div>
-                                    <button class="delete-btn tran3s">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -418,17 +421,15 @@ Candidate Profile
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="user-avatar-setting d-flex align-items-center mb-30">
-                                    <label style="display: block;
-											font-size: 15px;
-											font-weight: 500;
-											color: #254035;
-											margin-bottom: 10px;" for="">Teaching Video</label>
-                                    <div class="upload-btn position-relative tran3s ms-4 me-3">
-                                        Upload new video
-                                        <input type="file" id="uploadImg" name="teachingVideo" placeholder="">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Teaching Video</label>
+                                    <div class="user-avatar-setting d-flex align-items-center mb-30">
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload new video
+                                            <input type="file" id="uploadImg" name="teachingVideo" placeholder="">
+                                        </div>
+                                        <button class="delete-btn tran3s">Delete</button>
                                     </div>
-                                    <button class="delete-btn tran3s">Delete</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
