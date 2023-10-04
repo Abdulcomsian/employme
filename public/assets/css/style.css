@@ -8742,6 +8742,7 @@ body.compensate-for-scrollbar {
 .fancybox-stage {
   direction: ltr;
   overflow: visible;
+  transform: translateZ(0);
   -webkit-transform: translateZ(0);
   z-index: 99994;
 }
@@ -11119,7 +11120,7 @@ height: 15rem;
 
 
 .active {
-  background-color: #04AA6D;
+  /* background-color: #04AA6D; */
   color: white;
 }
 .nav-2 {
