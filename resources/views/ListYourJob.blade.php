@@ -309,8 +309,10 @@
                         <div class="dash-input-wrapper mb-30 col-md-6">
                                     <label for=""> Status:</label>
                                     <select class="nice-select">
-                                        <option>Conduct</option>
-                                        <option>Not Conduct</option>
+                                        <option>Conducted</option>
+                                        <option>Not Conducted</option>
+                                        <option>Conducted & Accepted</option>
+                                        <option>Conducted & Rejected</option>
                                     </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
