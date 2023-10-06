@@ -50,11 +50,6 @@ class UserController extends Controller
         return view('candidate-profile-comment');
     }
 
-    
-
-
-
-
     public function companyAboutUs(){
         return view('company-about-us');
     }
