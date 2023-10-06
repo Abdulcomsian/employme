@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    
+
     // public function candidateProfile(){
     //     return view('candidate-profile');
     // }
@@ -15,74 +15,81 @@ class UserController extends Controller
     //     return view('company');
     // }
 
-    public function getAccountSettingsPage(){
+    public function getAccountSettingsPage()
+    {
         return view('candidate.account-settings');
     }
 
-    public function candidatesMarketplace(){
+    public function candidatesMarketplace()
+    {
         return view('candidates-marketplace');
     }
 
-    public function getEmployerAccountSettingpage(){
+    public function getEmployerAccountSettingpage()
+    {
         return view('employer.employer-dashboard-settings');
     }
 
-    public function jobListing(){
+    public function jobListing()
+    {
         return view('job-Listing');
     }
-    public function employerjobListing(){
+    public function employerjobListing()
+    {
         return view('employer-job-Listing');
     }
 
-    public function candidateProfileNew(){
+    public function candidateProfileNew()
+    {
         return view('candidate-profile-new');
     }
-    public function candidateProfileDocument(){
+    public function candidateProfileDocument()
+    {
         return view('candidate-profile-document');
     }
-    public function candidateProfileInterview(){
+    public function candidateProfileInterview()
+    {
         return view('candidate-profile-interview');
     }
-    public function candidateProfileAlbum(){
+    public function candidateProfileAlbum()
+    {
         return view('candidate-profile-album');
     }
-    public function candidateProfileComment(){
+    public function candidateProfileComment()
+    {
         return view('candidate-profile-comment');
     }
 
-    
-
-
-
-
-    public function companyAboutUs(){
+    public function companyAboutUs()
+    {
         return view('company-about-us');
     }
-    public function companyFacilities(){
+    public function companyFacilities()
+    {
         return view('company-facilities');
     }
-    public function companyStaff(){
+    public function companyStaff()
+    {
         return view('company-staff');
     }
-    public function companyPrograms(){
+    public function companyPrograms()
+    {
         return view('company-programs');
     }
-    public function companyReviews(){
+    public function companyReviews()
+    {
         return view('company-reviews');
     }
-    public function companyGallery(){
+    public function companyGallery()
+    {
         return view('company-gallery');
     }
-    public function companyLocation(){
+    public function companyLocation()
+    {
         return view('company-location');
     }
-    public function companyStaffInfo(){
+    public function companyStaffInfo()
+    {
         return view('company-staff-information');
     }
-
-
-
-
-
-    
 }

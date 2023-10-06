@@ -71,7 +71,7 @@
                     <div>
                       <a href="how-it-works" class="dropdown-link w-dropdown-link">How it
                         Works</a>
-                      <a href="{{route('company')}} " class="dropdown-link w-dropdown-link"
+                      <a href="job-marketplace" class="dropdown-link w-dropdown-link"
                         class="dropdown-link w-dropdown-link">Jobs Marketplace</a>
                       <a href="find-your-visa" class="dropdown-link w-dropdown-link"
                         class="dropdown-link w-dropdown-link">Find Your Visa</a>

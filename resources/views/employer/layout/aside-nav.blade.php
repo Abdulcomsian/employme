@@ -32,10 +32,10 @@
 				<!-- /.user-data -->
 				<nav class="dasboard-main-nav">
 					<ul class="style-none">
-						<!-- <li><a href="employer-dashboard-index.html" class="d-flex w-100 align-items-center">
-							<img src="../images/lazy.svg" data-src="images/icon/icon_1.svg" alt="" class="lazy-img">
+						<li><a href="{{route('getEmployerDashboard')}}" class="d-flex w-100 align-items-center {{request()->is('employer/dashboard') ? 'active' : ''}}">
+							<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_1.svg')}}" alt="" class="lazy-img">
 							<span>Dashboard</span>
-						</a></li> -->
+						</a></li>
                         <li><a href="{{route('getEmployerProfile')}}" class="d-flex w-100 align-items-center {{request()->is('employer/employer-profile') ? 'active' : ''}}">
                             <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/employer-profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
                             <span>My Profile</span>

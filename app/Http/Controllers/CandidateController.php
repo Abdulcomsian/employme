@@ -6,16 +6,18 @@ use Illuminate\Http\Request;
 
 class CandidateController extends Controller
 {
-    public function getDashboardPage(){
+    public function getDashboardPage()
+    {
         return view('candidate.dashboard');
     }
 
-    public function getProfilePage(){
+    public function getProfilePage()
+    {
         return view('candidate.profile');
     }
 
-    public function getResumePage(){
+    public function getResumePage()
+    {
         return view('candidate.resume');
     }
-
 }
