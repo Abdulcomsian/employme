@@ -94,6 +94,7 @@ Route::prefix("employer")->group(function(){
     Route::get('employer-dashboard-subscription-plan' , [EmployerController::class , 'getEmployerSubscription'])->name('getEmployerSubscriptionPlan');
     Route::get('employer-dashboard-settings' , [UserController::class , 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
     Route::get('post-job-listing', [EmployerController::class, 'getPostJob'])->name('postJobs');
+    Route::get('List-Your-Job', [EmployerController::class, 'ListYourJob'])->name('List_Your_Job');
 });
 //employer dashboard route ends here
 

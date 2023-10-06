@@ -19,5 +19,8 @@ class EmployerController extends Controller
     public function getPostJob(){
         return view('post-job-listings');
     }
+    public function ListYourJob(){
+        return view('ListYourJob');
+    }
 
 }
