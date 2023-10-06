@@ -183,7 +183,7 @@
                                 </ul> -->
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html" role="button">Contact</a>
+                                <a class="nav-link" href="contact" role="button">Contact</a>
                             </li>
                             <li class="d-md-none"><a href="dashboard/employer-dashboard-submit-job.html" class="job-post-btn tran3s">Post Job</a></li>
                             <li class="d-md-none"><a href="candidates-v1.html" class="btn-one w-100">Hire Top Talents</a></li>
