@@ -382,7 +382,7 @@
                   <a href="../utility/style-guide.html" class="link-footer">Incident report</a>
                 </li>
                 <li>
-                  <a href=".contact" class="link-footer">Contact</a>
+                  <a href="contact" class="link-footer">Contact</a>
                 </li>
               </ul>
             </div>
