@@ -1,7 +1,7 @@
 @extends('candidate.layout.main')
 
-@section('title') 
-    Candidate Profile
+@section('title')
+Candidate Profile
 @endsection
 
 @section('content')
@@ -51,7 +51,7 @@
                         </li>
                     </ul>
                 </div>
-                <div><a href="employer-dashboard-submit-job.html" class="job-post-btn tran3s">Post a Job</a></div>
+                <div><a href="{{route('jobMarketplace')}}" class="job-post-btn tran3s">Job Marketplace</a></div>
             </div>
         </header>
         <!-- End Header -->
@@ -62,7 +62,7 @@
             <h4 class="dash-title-three">Resume Attachment</h4>
             <div class="dash-input-wrapper mb-20">
                 <label for="">CV Attachment*</label>
-                
+
                 <div class="attached-file d-flex align-items-center justify-content-between mb-15">
                     <span>MyCvResume.PDF</span>
                     <a href="#" class="remove-btn"><i class="bi bi-x"></i></a>
@@ -117,9 +117,9 @@
             <div class="accordion dash-accordion-one" id="accordionOne">
                 <div class="accordion-item">
                     <div class="accordion-header" id="headingOne">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                             Add Education*
-                          </button>
+                        </button>
                     </div>
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionOne">
                         <div class="accordion-body">
@@ -208,9 +208,9 @@
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" id="headingTwo">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Add Education*
-                          </button>
+                        </button>
                     </div>
                     <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionOne">
                         <div class="accordion-body">
@@ -332,9 +332,9 @@
             <div class="accordion dash-accordion-one" id="accordionTwo">
                 <div class="accordion-item">
                     <div class="accordion-header" id="headingOneA">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneA" aria-expanded="false" aria-controls="collapseOneA">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneA" aria-expanded="false" aria-controls="collapseOneA">
                             Experience 1*
-                          </button>
+                        </button>
                     </div>
                     <div id="collapseOneA" class="accordion-collapse collapse" aria-labelledby="headingOneA" data-bs-parent="#accordionTwo">
                         <div class="accordion-body">
@@ -423,9 +423,9 @@
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" id="headingTwoA">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwoA" aria-expanded="false" aria-controls="collapseTwoA">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwoA" aria-expanded="false" aria-controls="collapseTwoA">
                             Experience 2*
-                          </button>
+                        </button>
                     </div>
                     <div id="collapseTwoA" class="accordion-collapse collapse show" aria-labelledby="headingTwoA" data-bs-parent="#accordionTwo">
                         <div class="accordion-body">
@@ -564,7 +564,7 @@
         <div class="button-group d-inline-flex align-items-center mt-30">
             <a href="#" class="dash-btn-two tran3s me-3">Save</a>
             <a href="#" class="dash-cancel-btn tran3s">Cancel</a>
-        </div>				
+        </div>
     </div>
 </div>
 @endsection

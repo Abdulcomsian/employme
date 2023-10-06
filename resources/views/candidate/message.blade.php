@@ -1,7 +1,7 @@
 @extends('candidate.layout.main')
 
-@section('title') 
-    Candidate Messages
+@section('title')
+Candidate Messages
 @endsection
 
 @section('content')
@@ -51,7 +51,7 @@
                         </li>
                     </ul>
                 </div>
-                <div><a href="employer-dashboard-submit-job.html" class="job-post-btn tran3s">Post a Job</a></div>
+                <div><a href="{{route('jobMarketplace')}}" class="job-post-btn tran3s">Job Marketplace</a></div>
             </div>
         </header>
         <!-- End Header -->
@@ -145,10 +145,10 @@ Thanks for your invitation for the account manager position for you company. I W
                                             <span></span>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="#">Sent</a></li>
-                                        <li><a class="dropdown-item" href="#">Important</a></li>
-                                        <li><a class="dropdown-item" href="#">Draft</a></li>
-                                        <li><a class="dropdown-item" href="#">Trash</a></li>
+                                            <li><a class="dropdown-item" href="#">Sent</a></li>
+                                            <li><a class="dropdown-item" href="#">Important</a></li>
+                                            <li><a class="dropdown-item" href="#">Draft</a></li>
+                                            <li><a class="dropdown-item" href="#">Trash</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -237,7 +237,7 @@ Thanks for your invitation for the account manager position for you company. I W
                                 <!-- /.email-list-item -->
                             </div>
                             <!-- /.email-read-panel -->
-                            
+
                         </div>
                         <!-- /.message-sidebar -->
                     </div>
@@ -261,10 +261,10 @@ Thanks for your invitation for the account manager position for you company. I W
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                              <li><a class="dropdown-item" href="#">Reply</a></li>
-                                              <li><a class="dropdown-item" href="#">Fowrward</a></li>
-                                              <li><a class="dropdown-item" href="#">Block</a></li>
-                                              <li><a class="dropdown-item" href="#">Delete</a></li>
+                                                <li><a class="dropdown-item" href="#">Reply</a></li>
+                                                <li><a class="dropdown-item" href="#">Fowrward</a></li>
+                                                <li><a class="dropdown-item" href="#">Block</a></li>
+                                                <li><a class="dropdown-item" href="#">Delete</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -374,7 +374,7 @@ Thanks for your invitation for the account manager position for you company. I W
             </div>
             <!-- /.message-wrapper -->
         </div>
-        <!-- /.card-box -->				
+        <!-- /.card-box -->
     </div>
 </div>
 @endsection

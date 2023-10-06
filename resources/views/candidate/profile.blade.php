@@ -22,8 +22,8 @@ Candidate Profile
     }
 
     .candidate-sign-up #multi-step-form {
-		margin-top: 25px;
-	}
+        margin-top: 25px;
+    }
 
     .candidate-sign-up .stepper>.step {
         display: flex;
@@ -100,7 +100,7 @@ Candidate Profile
                         </li>
                     </ul>
                 </div>
-                <div><a href="employer-dashboard-submit-job.html" class="job-post-btn tran3s">Post a Job</a></div>
+                <div><a href="{{route('jobMarketplace')}}" class="job-post-btn tran3s">Job Marketplace</a></div>
             </div>
         </header>
         <!-- End Header -->

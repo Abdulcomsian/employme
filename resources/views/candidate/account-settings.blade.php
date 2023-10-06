@@ -1,7 +1,7 @@
 @extends('candidate.layout.main')
 
-@section('title') 
-    Candidate Job Alert
+@section('title')
+Candidate Job Alert
 @endsection
 
 @section('content')
@@ -51,7 +51,7 @@
                         </li>
                     </ul>
                 </div>
-                <div><a href="employer-dashboard-submit-job.html" class="job-post-btn tran3s">Post a Job</a></div>
+                <div><a href="{{route('jobMarketplace')}}" class="job-post-btn tran3s">Job Marketplace</a></div>
             </div>
         </header>
         <!-- End Header -->
@@ -107,10 +107,10 @@
                 <div class="button-group d-inline-flex align-items-center mt-30">
                     <a href="#" class="dash-btn-two tran3s me-3 rounded-3">Save</a>
                     <a href="#" class="dash-cancel-btn tran3s">Cancel</a>
-                </div>	
+                </div>
             </form>
         </div>
-        <!-- /.card-box -->				
+        <!-- /.card-box -->
     </div>
 </div>
 @endsection
