@@ -12,6 +12,46 @@ Candidate Profile
         display: block;
         color: rgba(0, 0, 0, 0.7) !important;
     }
+
+    .stepper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .candidate-sign-up #multi-step-form {
+		margin-top: 25px;
+	}
+
+    .candidate-sign-up .stepper>.step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .candidate-sign-up .stepper>.step>.icon>div {
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        padding: 15%;
+        width: 30px;
+        height: 30px;
+    }
+
+    .candidate-sign-up .stepper>.step.selected>.icon>div {
+        background: #31795A;
+        color: #fff;
+    }
+
+    .candidate-sign-up .stepper>.step>.icon,
+    .candidate-sign-up .stepper>.step>.text {
+        /* white-space: nowrap; */
+        font-size: 13px;
+        font-weight: 600;
+    }
 </style>
 @section('content')
 <div class="dashboard-body">
@@ -69,14 +109,53 @@ Candidate Profile
 
         <div class="bg-white card-box border-20 mb-40">
             <div class="candidate-sign-up">
+                <div class="stepper">
+                    <div id="tag-step-1" class="step selected">
+                        <div class="icon">
+                            <div>1</div>
+                        </div>
+                        <div class="text">Visa Eligibility Check</div>
+                    </div>
+                    <div id="tag-step-2" class="step">
+                        <div class="icon">
+                            <div>2</div>
+                        </div>
+                        <div class="text">Personal Details</div>
+                    </div>
+                    <div id="tag-step-3" class="step">
+                        <div class="icon">
+                            <div>3</div>
+                        </div>
+                        <div class="text">Educational & Professional Details</div>
+                    </div>
+                    <div id="tag-step-4" class="step">
+                        <div class="icon">
+                            <div>4</div>
+                        </div>
+                        <div class="text">Skills & Preferences</div>
+                    </div>
+                    <div id="tag-step-5" class="step">
+                        <div class="icon">
+                            <div>5</div>
+                        </div>
+                        <div class="text">Introduce Yourself</div>
+                    </div>
+                    <div id="tag-step-6" class="step">
+                        <div class="icon">
+                            <div>6</div>
+                        </div>
+                        <div class="text">Teaching Video & Interview (optional)</div>
+                    </div>
+                    <div id="tag-step-7" class="step">
+                        <div class="icon">
+                            <div>7</div>
+                        </div>
+                        <div class="text">Legal & Verification</div>
+                    </div>
+                </div>
                 <form id="multi-step-form">
                     <!-- Step 1 -->
                     <div class="step active" id="step-1">
-                        <div class="header">
-                            <div class="container">
-                                <span>1. Visa Eligibility Check</span>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
@@ -168,11 +247,6 @@ Candidate Profile
 
                     <!-- Step 2 -->
                     <div class="step" id="step-2">
-                        <div class="header">
-                            <div class="container">
-                                <span>2. Personal Details </span>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
@@ -224,11 +298,6 @@ Candidate Profile
 
                     <!-- Step 3 -->
                     <div class="step" id="step-3">
-                        <div class="header">
-                            <div class="container">
-                                <span>3. Educational & Professional Details</span>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
@@ -306,11 +375,6 @@ Candidate Profile
 
                     <!-- Step 4 -->
                     <div class="step" id="step-4">
-                        <div class="header">
-                            <div class="container">
-                                <span>4. Skills & Preferences </span>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
@@ -388,11 +452,6 @@ Candidate Profile
 
                     <!-- Step 5 -->
                     <div class="step" id="step-5">
-                        <div class="header">
-                            <div class="container">
-                                <span>5. Introduce Yourself</span>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
@@ -425,11 +484,6 @@ Candidate Profile
 
                     <!-- Step 6 -->
                     <div class="step" id="step-6">
-                        <div class="header">
-                            <div class="container">
-                                <span>6. Teaching Video & Interview (optional)</span>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
@@ -459,11 +513,6 @@ Candidate Profile
 
                     <!-- Step 7 -->
                     <div class="step" id="step-7">
-                        <div class="header">
-                            <div class="container">
-                                <span>7. Legal & Verification </span>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
@@ -654,14 +703,18 @@ Candidate Profile
 
     function nextStep(step) {
         document.getElementById(`step-${step}`).classList.remove('active');
+        document.getElementById(`tag-step-${step}`).classList.remove('selected');
         currentStep = step + 1;
         document.getElementById(`step-${currentStep}`).classList.add('active');
+        document.getElementById(`tag-step-${currentStep}`).classList.add('selected');
     }
 
     function previousStep(step) {
         document.getElementById(`step-${step}`).classList.remove('active');
+        document.getElementById(`tag-step-${step}`).classList.remove('selected');
         currentStep = step - 1;
         document.getElementById(`step-${currentStep}`).classList.add('active');
+        document.getElementById(`tag-step-${currentStep}`).classList.add('selected');
     }
 
     document.getElementById("multi-step-form").addEventListener("submit", function(event) {
