@@ -25,7 +25,6 @@ use App\Http\Controllers\{
 
 
 //frontend routes starts here
-
 Route::get('signup' , [AuthenticationController::class , 'signup'])->name('signup');
 // Route::get('employer-signup' , [AuthenticationController::class , 'employersignup'])->name('employersignup');
 Route::get('/', [FrontendController::class , 'home'])->name('home');
@@ -42,9 +41,7 @@ Route::get('visa-support', [FrontendController::class , 'visaSupport'])->name('v
 Route::get('contact', [FrontendController::class , 'contact'])->name('contact');
 Route::get('terms-of-services', [FrontendController::class , 'termsOfServices'])->name('termsOfServices');
 Route::get('services', [FrontendController::class , 'Services'])->name('Services');
-
 //frontend routes ends here
-
 
 // dashboard routes starts here/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('job-marketplace' , [JobController::class , 'jobMarketplace'])->name('jobMarketplace');
@@ -68,9 +65,6 @@ Route::get('company-gallery' , [UserController::class , 'companyGallery'])->name
 Route::get('company-location' , [UserController::class , 'companyLocation'])->name('companyLocation');
 Route::get('company-staff-information' , [UserController::class , 'companyStaffInfo'])->name('companyStaffInfo');
 
-
-
-
 //candidate dashboard route starts here
 Route::prefix("candidate")->group(function(){
     Route::get('dashboard' , [CandidateController::class , 'getDashboardPage'])->name('getCandidateDashboard');
@@ -83,9 +77,9 @@ Route::prefix("candidate")->group(function(){
 });
 //candidate dashboard route ends here
 
-
 //employer dashboard route starts here
 Route::prefix("employer")->group(function(){
+    Route::get('dashboard' , [EmployerController::class , 'getDashboardPage'])->name('getEmployerDashboard');
     Route::get('employer-profile' , [EmployerController::class , 'getEmployerProfilePage'])->name('getEmployerProfile');
     Route::get('job-listing' , [JobController::class , 'getJobpage'])->name('getJobListing');
     Route::get('employer-interview-request' , [JobController::class , 'getInterviewpage'])->name('getEmployerInterviewRequest');
@@ -98,7 +92,6 @@ Route::prefix("employer")->group(function(){
     Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
 });
 //employer dashboard route ends here
-
 
 //employer dashboard route starts here 
 Route::prefix("employer")->group(function(){

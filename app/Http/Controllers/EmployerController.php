@@ -6,23 +6,32 @@ use Illuminate\Http\Request;
 
 class EmployerController extends Controller
 {
-    public function getEmployerProfilePage(){
+
+    public function getDashboardPage()
+    {
+        return view('employer.dashboard');
+    }
+    public function getEmployerProfilePage()
+    {
         return view('employer.employer-profile');
     }
-    public function getEmployerCandidate(){
+    public function getEmployerCandidate()
+    {
         return view('employer.employer-dashboard-saved-candidate');
     }
-    public function getEmployerSubscription(){
+    public function getEmployerSubscription()
+    {
         return view('employer.employer-dashboard-subscription-plan');
     }
 
-    public function getPostJob(){
+    public function getPostJob()
+    {
         return view('post-job-listings');
     }
-    public function ListYourJob(){
+    public function ListYourJob()
+    {
         return view('ListYourJob');
     }
-
     public function JobListingCandidate(){
         return view('JobListingCandidate');
     }
