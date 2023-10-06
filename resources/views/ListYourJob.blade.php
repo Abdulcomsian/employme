@@ -351,7 +351,6 @@
 	}
 
 	function previousStep(step) {
-        console.log("here");
 		document.getElementById(`step${step}`).classList.remove('active');
 		document.getElementById(`tag-step-${step}`).classList.remove('selected');
 		currentStep = step - 1;
