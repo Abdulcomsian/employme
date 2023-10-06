@@ -53,7 +53,40 @@
 		font-size: 13px;
 		font-weight: 600;
 	}
+
+    
+.rating-box {
+  position: relative;
+  background: #fff;
+  padding: 25px 50px 35px;
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+.rating-box header {
+  font-size: 22px;
+  color: #dadada;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.rating-box .stars {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.stars i {
+  color: #e6e6e6;
+  font-size: 35px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.stars i.active {
+  color: #ff9c1a !important;
+}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+   <script src="script.js" defer></script>
+
 <div class="dashboard-body">
 <div class="bg-white card-box border-20 section" >
         <div class="stepper">
@@ -91,7 +124,7 @@
             </div>
         </div>
 
-        <div class="py-4 " id="step2">
+        <div class="py-4 step" id="step2">
         <h4 class="dash-title-three">Schedule Interview</h4>
                    <form>
                         <div class="row">
@@ -259,21 +292,25 @@
                         </div>
         </div>
 
+       
+     
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
+                    <form>
                 <div class="modal-header">
-                    <h5 class="modal-title " id="exampleModalLabel" style="font-family:gordita">Ratting</h5>
+                    <h5 class="modal-title " id="exampleModalLabel" style="font-family:gordita">Rating</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                                    <label for=""> Specify:</label>
+                                    <label for=""> Status:</label>
                                     <select class="nice-select">
-                                        <option>KRW </option>
-                                        <option>USD</option>
+                                        <option>Conduct</option>
+                                        <option>Not Conduct</option>
                                     </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -281,12 +318,23 @@
                             <textarea type="text" name="Work and break hours" placeholder="Comment" ></textarea>
 
                         </div>
+                        <div class=" d-flex justify-content-center">
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <input type="text" name="Rating" hidden value=0 ></input>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="dash-cancel-btn tran3s" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="dash-btn-two tran3s">Save changes</button>
+                    <button type="submit" class="dash-btn-two tran3s">Save changes</button>
                 </div>
+                </form>
                 </div>
             </div>
         </div>
@@ -311,4 +359,39 @@
 		document.getElementById(`tag-step-${currentStep}`).classList.add('selected');
 	}
 </script>
+
+<script>
+const stars = document.querySelectorAll(".stars i");
+
+
+stars.forEach((star, index1) => {
+  star.addEventListener("click", () => {
+    stars.forEach((star, index2) => {
+      index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+    });
+    const rating = document.querySelectorAll(".stars i.active").length;
+    const hiddenInput = modal.querySelector('input[name="Rating"]');
+    hiddenInput.value = rating;
+  });
+});
+
+
+const modal = document.getElementById('exampleModal');
+modal.addEventListener('hidden.bs.modal', function () {
+    // Clear the select element
+    const selectElement = modal.querySelector('select');
+    selectElement.selectedIndex = 0; // Set it to the default option
+
+    // Clear the textarea
+    const textareaElement = modal.querySelector('textarea');
+    textareaElement.value = '';
+
+    const hiddenInput = modal.querySelector('input[name="Rating"]');
+    hiddenInput.value = 0;
+
+    // Clear the star ratings (remove the "active" class)
+    const stars = modal.querySelectorAll('.stars i');
+    stars.forEach(star => star.classList.remove('active'));
+  });
+    </script>
 @endsection
