@@ -32,4 +32,8 @@ class EmployerController extends Controller
     {
         return view('ListYourJob');
     }
+    public function JobListingCandidate(){
+        return view('JobListingCandidate');
+    }
+
 }
