@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>@yield('title')</title>
+	<title>@yield('title')</title>
 	@include('employer.layout.header')
 
 	<!-- Fix Internet Explorer ______________________________________-->
@@ -11,7 +11,7 @@
 			<script src="vendor/html5shiv.js"></script>
 			<script src="vendor/respond.js"></script>
 		<![endif]-->
-        @yield('page-css')
+	@yield('page-css')
 </head>
 
 <body>
@@ -44,22 +44,22 @@
 				Dashboard Aside Menu
 		============================================== 
 		-->
-		
-        @include('employer.layout.aside-nav')
+
+		@include('employer.layout.aside-nav')
 
 		<!-- /.dash-aside-navbar -->
 
 
-        @yield('content')
+		@yield('content')
 
 
 
 		<!-- Modal -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen modal-dialog-centered">
-                <div class="container">
-                    <div class="remove-account-popup text-center modal-content">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-fullscreen modal-dialog-centered">
+				<div class="container">
+					<div class="remove-account-popup text-center modal-content">
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						<img src="../images/lazy.svg" data-src="{{asset('assets/images/dashboard-icon/icon_22.svg')}}" alt="" class="lazy-img m-auto">
 						<h2>Are you sure?</h2>
 						<p>Are you sure to delete your account? All data will be lost.</p>
@@ -67,12 +67,12 @@
 							<a href="#" class="confirm-btn fw-500 tran3s me-3">Yes</a>
 							<button type="button" class="btn-close fw-500 ms-3" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
 						</div>
-                    </div>
-                    <!-- /.remove-account-popup -->
-                </div>
-            </div>
-        </div>
-		
+					</div>
+					<!-- /.remove-account-popup -->
+				</div>
+			</div>
+		</div>
+
 
 
 		<button class="scroll-top">
@@ -86,7 +86,7 @@
 
 		@include('employer.layout.footer')
 
-        @yield('page-script')
+		@yield('page-script')
 
 	</div> <!-- /.main-page-wrapper -->
 </body>

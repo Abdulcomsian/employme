@@ -1,7 +1,7 @@
 @extends('candidate.layout.main')
 
-@section('title') 
-    Candidate Job Alert
+@section('title')
+Candidate Job Alert
 @endsection
 
 @section('content')
@@ -51,7 +51,7 @@
                         </li>
                     </ul>
                 </div>
-                <div><a href="employer-dashboard-submit-job.html" class="job-post-btn tran3s">Post a Job</a></div>
+                <div><a href="{{route('jobMarketplace')}}" class="job-post-btn tran3s">Job Marketplace</a></div>
             </div>
         </header>
         <!-- End Header -->
@@ -80,7 +80,7 @@
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="border-0"> 
+                    <tbody class="border-0">
                         <tr>
                             <td>Product Designer</td>
                             <td>
@@ -96,10 +96,10 @@
                                         <span></span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -119,10 +119,10 @@
                                         <span></span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -142,10 +142,10 @@
                                         <span></span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -165,10 +165,10 @@
                                         <span></span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -188,10 +188,10 @@
                                         <span></span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                      <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -199,7 +199,7 @@
                     </tbody>
                 </table>
                 <!-- /.table job-alert-table -->
-              </div>
+            </div>
         </div>
         <!-- /.card-box -->
 
@@ -213,7 +213,7 @@
                 <li><a href="#">7</a></li>
                 <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
-        </div>			
+        </div>
     </div>
 </div>
 @endsection

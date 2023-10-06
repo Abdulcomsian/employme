@@ -17,10 +17,10 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="candidate-dashboard-profile.html"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>
+                        <a class="dropdown-item d-flex align-items-center" href="{{route('getCandidateProfile')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>
                     </li>
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="candidate-dashboard-settings.html"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_24.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Account Settings</span></a>
+                        <a class="dropdown-item d-flex align-items-center" href="{{route('getAccountSetting')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_24.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Account Settings</span></a>
                     </li>
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_25.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Notification</span></a>
@@ -32,37 +32,37 @@
         <nav class="dasboard-main-nav">
             <ul class="style-none">
                 <li><a href="{{route('getCandidateDashboard')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/dashboard') ? 'active' : ''}}">
-                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/dashboard') ? asset('assets/images/dashboard-icon/icon_1_active.svg') : asset('assets/images/dashboard-icon/icon_1.svg')}}" alt="" class="lazy-img">
-                    <span>Dashboard</span>
-                </a></li>
+                        <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/dashboard') ? asset('assets/images/dashboard-icon/icon_1_active.svg') : asset('assets/images/dashboard-icon/icon_1.svg')}}" alt="" class="lazy-img">
+                        <span>Dashboard</span>
+                    </a></li>
                 <li><a href="{{route('getCandidateProfile')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/profile') ? 'active' : ''}}">
-                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
-                    <span>My Profile</span>
-                </a></li>
+                        <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
+                        <span>My Profile</span>
+                    </a></li>
                 <li><a href="{{route('getResumePage')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/resume') ? 'active' : ''}}">
-                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/resume') ? asset('assets/images/dashboard-icon/icon_3_active.svg') : asset('assets/images/dashboard-icon/icon_3.svg')}}" alt="" class="lazy-img">
-                    <span>Resume</span>
-                </a></li>
+                        <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/resume') ? asset('assets/images/dashboard-icon/icon_3_active.svg') : asset('assets/images/dashboard-icon/icon_3.svg')}}" alt="" class="lazy-img">
+                        <span>Resume</span>
+                    </a></li>
                 <li><a href="{{route('getCandidateMessages')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/messages') ? 'active' : ''}}">
-                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/messages') ? asset('assets/images/dashboard-icon/icon_4_active.svg') : asset('assets/images/dashboard-icon/icon_4.svg')}}" alt="" class="lazy-img">
-                    <span>Messages</span>
-                </a></li>
+                        <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/messages') ? asset('assets/images/dashboard-icon/icon_4_active.svg') : asset('assets/images/dashboard-icon/icon_4.svg')}}" alt="" class="lazy-img">
+                        <span>Messages</span>
+                    </a></li>
                 <li><a href="{{route('getJobAlert')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/job-alert') ? 'active' : ''}}">
-                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/job-alert') ? asset('assets/images/dashboard-icon/icon_5_active.svg') : asset('assets/images/dashboard-icon/icon_5.svg')}}" alt="" class="lazy-img">
-                    <span>Job Alert</span>
-                </a></li>
+                        <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/job-alert') ? asset('assets/images/dashboard-icon/icon_5_active.svg') : asset('assets/images/dashboard-icon/icon_5.svg')}}" alt="" class="lazy-img">
+                        <span>Job Alert</span>
+                    </a></li>
                 <li><a href="{{route('getSaveJob')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/save-job') ? 'active' : ''}}">
-                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/save-job') ? asset('assets/images/dashboard-icon/icon_6_active.svg') : asset('assets/images/dashboard-icon/icon_6.svg')}}" alt="" class="lazy-img">
-                    <span>Saved Job</span>
-                </a></li>
+                        <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/save-job') ? asset('assets/images/dashboard-icon/icon_6_active.svg') : asset('assets/images/dashboard-icon/icon_6.svg')}}" alt="" class="lazy-img">
+                        <span>Saved Job</span>
+                    </a></li>
                 <li><a href="{{route('getAccountSetting')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/account-settings') ? 'active' : ''}}">
-                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/account-settings') ? asset('assets/images/dashboard-icon/icon_7_active.svg') : asset('assets/images/dashboard-icon/icon_7.svg')}}" alt="" class="lazy-img">
-                    <span>Account Settings</span>
-                </a></li>
+                        <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/account-settings') ? asset('assets/images/dashboard-icon/icon_7_active.svg') : asset('assets/images/dashboard-icon/icon_7.svg')}}" alt="" class="lazy-img">
+                        <span>Account Settings</span>
+                    </a></li>
                 <li><a href="#" class="d-flex w-100 align-items-center" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_8.svg')}}" alt="" class="lazy-img">
-                    <span>Delete Account</span>
-                </a></li>
+                        <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_8.svg')}}" alt="" class="lazy-img">
+                        <span>Delete Account</span>
+                    </a></li>
             </ul>
         </nav>
         <!-- /.dasboard-main-nav -->
