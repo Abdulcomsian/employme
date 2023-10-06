@@ -59,7 +59,11 @@
 				<!-- End Header -->
 
 				<div class="d-flex align-items-center justify-content-between mb-40 lg-mb-30">
-                    <h2 class="main-title m0">Candidate</h2>
+                    <div class="d-flex align-items-center">
+                    <!-- <a href="{{ url()->previous() }}" class="pe-2"> <button type="button" class="dash-btn-two tran3s" data-bs-dismiss="modal">Back</button></a> -->
+                        <h2 class="main-title m0">Candidate</h2>
+                    </div>
+                    
                     <div class="short-filter d-flex align-items-center">
                         <div class="text-dark fw-500 me-2">Short by:</div>
                         <select class="nice-select">
@@ -105,7 +109,7 @@
                                     </div>
                                     <div class="col-xl-3 col-md-4">
                                         <div class="d-flex justify-content-md-end align-items-center">
-                                            <a href="#" class="save-btn text-center rounded-circle tran3s mt-10 fw-normal"><i class="bi bi-eye"></i></a>
+                                            <a href="{{route('candidateProfileNew')}}" class="save-btn text-center rounded-circle tran3s mt-10 fw-normal"><i class="bi bi-eye"></i></a>
                                             <div class="action-dots float-end mt-10 ms-2">
                                                 <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     <span></span>
