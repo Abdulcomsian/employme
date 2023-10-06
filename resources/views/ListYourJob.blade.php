@@ -83,6 +83,13 @@
 .stars i.active {
   color: #ff9c1a !important;
 }
+
+@media screen and (min-width: 761px) {
+    .adjust_height
+    {
+        height:45px;
+    }
+}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
    <script src="script.js" defer></script>
@@ -90,27 +97,27 @@
 <div class="dashboard-body">
 <div class="bg-white card-box border-20 section" >
         <div class="stepper">
-            <div id="tag-step-1" class="step selected">
+            <!-- <div id="tag-step-1" class="step selected">
                 <div class="icon">
                     <div>1</div>
                 </div>
                 <div class="text">Pending</div>
+            </div> -->
+            <div id="tag-step-1" class="step selected">
+                <div class="icon">
+                    <div>1</div>
+                </div>
+                <div class="text">Schedule Interview</div>
             </div>
-            <div id="tag-step-2" class="step">
+            <div id="tag-step-2" class="step ">
                 <div class="icon">
                     <div>2</div>
                 </div>
-                <div class="text">Schedule Interview</div>
+                <div class="text">Conditional Offer</div>
             </div>
             <div id="tag-step-3" class="step">
                 <div class="icon">
                     <div>3</div>
-                </div>
-                <div class="text">Conditional Offer</div>
-            </div>
-            <div id="tag-step-4" class="step">
-                <div class="icon">
-                    <div>4</div>
                 </div>
                 <div class="text">Document & Final Offer</div>
             </div>
@@ -118,13 +125,13 @@
                             
         </div>
 
-        <div class="py-4 step active" id="step1">
+        <!-- <div class="py-4 step active" id="step1">
             <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                 <button type="button"  class="dash-btn-two tran3s" onclick="nextStep(1)">Next</button>
             </div>
-        </div>
+        </div> -->
 
-        <div class="py-4 step" id="step2">
+        <div class="py-4 step active" id="step1">
         <h4 class="dash-title-three">Schedule Interview</h4>
                    <form>
                         <div class="row">
@@ -140,8 +147,8 @@
                                             </div>
                         </div>
                         <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
-                        <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="previousStep(2)">Previous</button>
-                                <button type="button"  class="dash-btn-two tran3s" onclick="nextStep(2)">Submit and Next</button>
+                        <!-- <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="previousStep(2)">Previous</button> -->
+                                <button type="button"  class="dash-btn-two tran3s" onclick="nextStep(1)">Schedule Interview</button>
                         </div>
                 </form>
                 <div>
@@ -160,7 +167,7 @@
                                 <td>1</td>
                                 <td>System Architect</td>
                                 <td>10/10/2023 2:05 pm</td>
-                                <td><button type="button" class="dash-btn-two tran3s" data-bs-toggle="modal" data-bs-target="#exampleModal">Acceptted</button></td>
+                                <td><button type="button" class="dash-btn-two tran3s" data-bs-toggle="modal" data-bs-target="#exampleModal">Accepted</button></td>
                             </tr>
                             <tr>
                                 <td>2</td>
@@ -173,54 +180,54 @@
                 </table>
                 </div>
         </div>
-        <div class="py-4 step" id="step3">
+        <div class="py-4 step" id="step2">
                    <h4 class="dash-title-three">Conditional Offer</h4>
                    <form>
                         <div class="row">
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-4">
                                 <label for="">Compensation Amount:</label>
                                 <input type="text" name="Compensation Amount" placeholder="" ></input>
 
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-4">
                                 <label for="">Work and break hours:</label>
                                 <input type="text" name="Work and break hours" placeholder="" ></input>
 
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-4">
                                 <label for="">Holidays:</label>
                                 <input type="text" name="Holidays" placeholder="" ></input>
 
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-4">
                                 <label for="">Accommodation:</label>
                                 <input type="text" name="Accommodation" placeholder="" ></input>
 
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-4">
                                 <label for="">Flights:</label>
                                 <input type="text" name="Flights" placeholder="" ></input>
 
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-4">
                                 <label for="">Insurance:</label>
                                 <input type="text" name="Insurance" placeholder="" ></input>
 
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-4">
                                 <label for="">Training period:</label>
                                 <input type="text" name="Training period " placeholder="" ></input>
 
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-4">
 								<label for="">Start Date:</label>
 								<input type="date" name="startDate" placeholder=""></input>
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-4">
                                         <label for="">End Date:</label>
                                         <input type="date" name="endDate" placeholder=""></input>
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-12">
                                 <label for="">Additional benefits:</label>
                                 <textarea type="text" name="Additional benefits:" placeholder="" ></textarea>
 
@@ -228,19 +235,19 @@
                             <div class="dash-input-wrapper mb-10 col-md-12">
 								<label style="font-size: 20px;font-weight: 600;">Conditions:</label>
 					        </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
-                                        <label for="">Apostille Degree MUST be delivered by:</label>
+                            <div class="dash-input-wrapper mb-30 col-md-3">
+                                        <label for="" class="adjust_height">Apostille Degree MUST be delivered by:</label>
                                         <input type="date" name="endDate" placeholder=""></input>
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-3">
                                         <label for="">Apostilled Criminal Clearance MUST be delivered by:</label>
                                         <input type="date" name="endDate" placeholder=""></input>
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
-                                        <label for="">SAQA Letter MUST be delivered by:</label>
+                            <div class="dash-input-wrapper mb-30 col-md-3">
+                                        <label for=""  class="adjust_height">SAQA Letter MUST be delivered by:</label>
                                         <input type="date" name="endDate" placeholder=""></input>
                             </div>
-                            <div class="dash-input-wrapper mb-30 col-md-6">
+                            <div class="dash-input-wrapper mb-30 col-md-3">
                                         <label for="">Visa Documents and associated items things MUST be delivered by:</label>
                                         <input type="date" name="endDate" placeholder=""></input>
                             </div>
@@ -248,12 +255,12 @@
 
                         </div>
                         <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
-                        <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="previousStep(3)">Previous</button>
-                                <button type="button"  class="dash-btn-two tran3s" onclick="nextStep(3)">Submit and Next</button>
+                        <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="previousStep(2)">Previous</button>
+                                <button type="button"  class="dash-btn-two tran3s" onclick="nextStep(2)">Offer Conditional Job</button>
                         </div>
                 </form>
 </div>
-<div class="py-4 step" id="step4">
+<div class="py-4 step" id="step3">
         <h4 class="dash-title-three">Document & Final Offer</h4>
                 <div>
                 <table id="example" class="table table-striped" style="width:100%">
@@ -287,8 +294,8 @@
                 </table>
                 </div>
                 <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
-                        <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="previousStep(4)">Previous</button>
-                                <button type="button"  class="dash-btn-two tran3s" onclick="nextStep(4)">Submit</button>
+                        <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="previousStep(3)">Previous</button>
+                                <button type="button"  class="dash-btn-two tran3s" onclick="nextStep(3)">Submit</button>
                         </div>
         </div>
 
