@@ -114,7 +114,7 @@
 				<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mt-50">
 					<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto logo">
 					<div class="text-md text-dark text-center mt-15 mb-20">Adobe Inc.</div>
-					<a href="#" class="website-btn tran3s">Visit website</a>
+					<a href="{{route('companyAboutUs')}}" class="website-btn tran3s">About Company</a>
 
 					<div class="border-top mt-40 pt-40">
 						<ul class="job-meta-data row style-none">
