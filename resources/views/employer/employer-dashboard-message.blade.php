@@ -93,18 +93,18 @@ Thanks for your invitation for the account manager position for you company. I W
 					<div class="compose-email-footer d-flex justify-content-between">
 						<div class="d-flex align-items-center">
 							<div class="insert-file position-relative me-3">
-								<img src="../images/lazy.svg" data-src="images/icon/icon_32.svg" alt="" class="lazy-img">
+								<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_32.svg')}}" alt="" class="lazy-img">
 								<input type="file" name="uploadImg" placeholder="" title="Insert File">
 							</div>
-							<button class="insert-emoji me-3"><img src="../images/lazy.svg" data-src="images/icon/icon_33.svg" alt="" class="lazy-img"></button>
+							<button class="insert-emoji me-3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_33.svg')}}" alt="" class="lazy-img"></button>
 							<div class="insert-file position-relative me-3">
-								<img src="../images/lazy.svg" data-src="images/icon/icon_34.svg" alt="" class="lazy-img">
+								<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_34.svg')}}" alt="" class="lazy-img">
 								<input type="file" name="uploadImg" placeholder="" title="Insert Image">
 							</div>
 						</div>
 
 						<div class="d-flex align-items-center">
-							<a href="#" class="delete-mail me-3"><img src="../images/lazy.svg" data-src="images/icon/icon_35.svg" alt="" class="lazy-img"></a>
+							<a href="#" class="delete-mail me-3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_35.svg')}}" alt="" class="lazy-img"></a>
 							<a href="#" class="reply-btn tran3s">Reply</a>
 						</div>
 					</div>
@@ -121,13 +121,13 @@ Thanks for your invitation for the account manager position for you company. I W
 			</div>
 			<div class="col-lg-8">
 				<div class="message-pagination ps-lg-4 ps-xxl-5 d-flex align-items-center justify-content-between md-mt-40">
-					<a href="javascript:void()" class="prev-msg"><img src="../images/lazy.svg" data-src="images/icon/icon_26.svg" alt="" class="lazy-img"></a>
+					<a href="javascript:void()" class="prev-msg"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_26.svg')}}" alt="" class="lazy-img"></a>
 					<div class="d-flex align-items-center">
 						<a href="#"><i class="bi bi-chevron-left"></i></a>
 						<span>1-5 of 120</span>
 						<a href="#"><i class="bi bi-chevron-right"></i></a>
 					</div>
-					<a href="javascript:void()" class="next-msg"><img src="../images/lazy.svg" data-src="images/icon/icon_27.svg" alt="" class="lazy-img"></a>
+					<a href="javascript:void()" class="next-msg"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_27.svg')}}" alt="" class="lazy-img"></a>
 				</div>
 				<!-- /.message-pagination -->
 			</div>
@@ -155,7 +155,7 @@ Thanks for your invitation for the account manager position for you company. I W
 								</div>
 								<form action="#" class="search-form mt-20 mb-20">
 									<input type="text" placeholder="Search contacts">
-									<button><img src="../images/lazy.svg" data-src="images/icon/icon_10.svg" alt="" class="lazy-img m-auto"></button>
+									<button><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_10.svg')}}" alt="" class="lazy-img m-auto"></button>
 								</form>
 
 								<div class="message_filter d-flex align-items-center justify-content-between mb-20" id="module_btns">
@@ -176,7 +176,7 @@ Thanks for your invitation for the account manager position for you company. I W
 										<div class="mail-text">Hello, This is Jenny from google. We’r the largest online platform offer...</div>
 										<div class="attached-file-preview d-flex align-items-center mt-15">
 											<div class="file d-flex align-items-center me-2">
-												<img src="../images/lazy.svg" data-src="images/icon/icon_28.svg" alt="" class="lazy-img me-2">
+												<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_28.svg')}}" alt="" class="lazy-img me-2">
 												<span>details.pdf</span>
 											</div>
 										</div>
@@ -196,11 +196,11 @@ Thanks for your invitation for the account manager position for you company. I W
 										<div class="mail-text">Hello, Greeting from Uber. Hope you doing great. I am approcing to you for..</div>
 										<div class="attached-file-preview d-flex align-items-center mt-15">
 											<div class="file d-flex align-items-center me-2">
-												<img src="../images/lazy.svg" data-src="images/icon/icon_28.svg" alt="" class="lazy-img me-2">
+												<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_28.svg')}}" alt="" class="lazy-img me-2">
 												<span>details.pdf</span>
 											</div>
 											<div class="file d-flex align-items-center me-2">
-												<img src="../images/lazy.svg" data-src="images/icon/icon_28.svg" alt="" class="lazy-img me-2">
+												<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_28.svg')}}" alt="" class="lazy-img me-2">
 												<span>form.pdf</span>
 											</div>
 										</div>
@@ -246,7 +246,7 @@ Thanks for your invitation for the account manager position for you company. I W
 						<div class="open-email-container pb-40">
 							<div class="email-header divider d-flex justify-content-between ps-4 pe-4 ps-xxl-5 pe-xxl-5">
 								<div class="sender-info d-flex align-items-center">
-									<img src="../images/lazy.svg" data-src="images/logo_03.png" alt="" class="lazy-img logo">
+									<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo_03.png')}}images/logo_03.png" alt="" class="lazy-img logo">
 									<div class="ps-3">
 										<div class="sender-name">Rashed Ka</div>
 										<div class="sender-email">kabir999@gmail.com</div>
@@ -255,8 +255,8 @@ Thanks for your invitation for the account manager position for you company. I W
 								<div class="email-info">
 									<div class="time">4:45AM (3 hours ago)</div>
 									<div class="d-flex align-items-center justify-content-end">
-										<button class="delete-email"><img src="../images/lazy.svg" data-src="images/icon/icon_29.svg" alt="" class="lazy-img"></button>
-										<button class="reply-email ms-3 me-3"><img src="../images/lazy.svg" data-src="images/icon/icon_30.svg" alt="" class="lazy-img"></button>
+										<button class="delete-email"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_29.svg')}}" alt="" class="lazy-img"></button>
+										<button class="reply-email ms-3 me-3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_30.svg')}}" alt="" class="lazy-img"></button>
 										<div class="action-dots float-end">
 											<button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 												<span></span>
@@ -297,14 +297,14 @@ Thanks for your invitation for the account manager position for you company. I W
 										</div>
 										<div class="d-flex">
 											<a href="#" class="file tran3s d-flex align-items-center mt-10" download>
-												<div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="../images/lazy.svg" data-src="images/icon/icon_31.svg" alt="" class="lazy-img"></div>
+												<div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_31.svg')}}" alt="" class="lazy-img"></div>
 												<div class="ps-2">
 													<div class="file-name">project-details.pdf</div>
 													<div class="file-size">2.3mb</div>
 												</div>
 											</a>
 											<a href="#" class="file tran3s d-flex align-items-center mt-10" download>
-												<div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="../images/lazy.svg" data-src="images/icon/icon_31.svg" alt="" class="lazy-img"></div>
+												<div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_31.svg')}}" alt="" class="lazy-img"></div>
 												<div class="ps-2">
 													<div class="file-name">form.pdf</div>
 													<div class="file-size">1.3mb</div>
@@ -347,18 +347,18 @@ Thanks for your invitation for the account manager position for you company. I W
 										<div class="compose-email-footer d-flex justify-content-between">
 											<div class="d-flex align-items-center">
 												<div class="insert-file position-relative me-3">
-													<img src="../images/lazy.svg" data-src="images/icon/icon_32.svg" alt="" class="lazy-img">
+													<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_32.svg')}}" alt="" class="lazy-img">
 													<input type="file" name="uploadImg" placeholder="" title="Insert File">
 												</div>
-												<button class="insert-emoji me-3"><img src="../images/lazy.svg" data-src="images/icon/icon_33.svg" alt="" class="lazy-img"></button>
+												<button class="insert-emoji me-3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_33.svg')}}" alt="" class="lazy-img"></button>
 												<div class="insert-file position-relative me-3">
-													<img src="../images/lazy.svg" data-src="images/icon/icon_34.svg" alt="" class="lazy-img">
+													<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_34.svg')}}" alt="" class="lazy-img">
 													<input type="file" name="uploadImg" placeholder="" title="Insert Image">
 												</div>
 											</div>
 
 											<div class="d-flex align-items-center">
-												<a href="#" class="delete-mail me-3"><img src="../images/lazy.svg" data-src="images/icon/icon_35.svg" alt="" class="lazy-img"></a>
+												<a href="#" class="delete-mail me-3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_35.svg')}}" alt="" class="lazy-img"></a>
 												<a href="#" class="reply-btn tran3s">Reply</a>
 											</div>
 										</div>

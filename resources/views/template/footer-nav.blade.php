@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-2 col-md-3 footer-intro mb-15">
                     <div class="logo mb-15">
-                        <a href="index.html" class="d-flex align-items-center">
+                        <a href="/" class="d-flex align-items-center">
                             <img src="{{asset('assets/images/logo/logo_03.png')}} " alt="">
                         </a>
                     </div> 
@@ -15,8 +15,8 @@
                     <h5 class="footer-title">Services​</h5>
                     <ul class="footer-nav-link style-none">
                         <li><a href="{{route('jobMarketplace')}}">Browse Jobs</a></li>
-                        <li><a href="company-v1.html">Companies</a></li>
-                        <li><a href="candidates-v1.html">Candidates</a></li>
+                        <li><a href="/">Companies</a></li>
+                        <li><a href="candidates-marketplace">Candidates</a></li>
                         <li><a href="{{route('pricing')}}">Pricing</a></li>
                     </ul>
                 </div>
@@ -32,10 +32,10 @@
                 <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
                     <h5 class="footer-title">Support</h5>
                     <ul class="footer-nav-link style-none">
-                        <li><a href="contact.html">Terms of use</a></li>
-                        <li><a href="contact.html">Terms & conditions</a></li>
-                        <li><a href="contact.html">Privacy</a></li>
-                        <li><a href="contact.html">Cookie policy</a></li>
+                        <li><a href="/">Terms of use</a></li>
+                        <li><a href="terms-of-services">Terms of service</a></li>
+                        <li><a href="/">Privacy</a></li>
+                        <li><a href="/">Cookie policy</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 mb-20 footer-newsletter">

@@ -3,16 +3,16 @@
         <div class="top-header">
             <div class="d-flex align-items-center">
                 <div class="logo order-lg-0">
-                    <a href="index.html" class="d-flex align-items-center">
+                    <a href="/" class="d-flex align-items-center">
                         <img src="{{asset('assets/images/logo/logo_01.png')}}" alt="">
                     </a>
                 </div>
                 <!-- logo -->
                 <div class="right-widget ms-auto order-lg-3">
                     <ul class="d-flex align-items-center style-none">
-                        <li class="d-none d-md-block"><a href="dashboard/employer-dashboard-submit-job.html" class="job-post-btn tran3s">Post Job</a></li>
+                        <li class="d-none d-md-block"><a href="employer/post-job-listing" class="job-post-btn tran3s">Post Job</a></li>
                         <li><a href="#" class="login-btn-one" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                        <li class="d-none d-md-block ms-4"><a href="candidates-v1.html" class="btn-one">Hire Top Talents</a></li>
+                        <li class="d-none d-md-block ms-4"><a href="candidates-marketplace" class="btn-one">Hire Top Talents</a></li>
                     </ul>
                 </div> <!--/.right-widget-->
                 <nav class="navbar navbar-expand-lg p0 ms-lg-5 ms-3 order-lg-2">
@@ -23,7 +23,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav align-items-lg-center">
-                            <li class="d-block d-lg-none"><div class="logo"><a href="index.html" class="d-block"><img src="images/logo/logo_01.png" alt="" width="100"></a></div></li>
+                            <li class="d-block d-lg-none"><div class="logo"><a href="/" class="d-block"><img src="images/logo/logo_01.png" alt="" width="100"></a></div></li>
                             <li class="nav-item dropdown category-btn mega-dropdown-sm">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-grid-fill"></i> Category</a>
                                 <ul class="dropdown-menu category-dropdown">
@@ -185,8 +185,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="contact" role="button">Contact</a>
                             </li>
-                            <li class="d-md-none"><a href="dashboard/employer-dashboard-submit-job.html" class="job-post-btn tran3s">Post Job</a></li>
-                            <li class="d-md-none"><a href="candidates-v1.html" class="btn-one w-100">Hire Top Talents</a></li>
+                            <li class="d-md-none"><a href="employer/post-job-listing" class="job-post-btn tran3s">Post Job</a></li>
+                            <li class="d-md-none"><a href="candidates-marketplace" class="btn-one w-100">Hire Top Talents</a></li>
                         </ul>
                     </div>
                 </nav>
