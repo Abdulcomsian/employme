@@ -18,9 +18,9 @@ class JobController extends Controller
         return view('candidate.save-job');
     }
 
-    // public function getJobpage(){
-    //     return view('employer.job-listing');
-    // }
+    public function getJobListing(){
+        return view('employer.job-listing');
+    }
 
     public function getInterviewpage(){
         return view('employer.employer-interview-request');
