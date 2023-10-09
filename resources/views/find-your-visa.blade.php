@@ -16,7 +16,7 @@
             <div class="heading-small regular"> Find your visa</div>
           </div>
           <h2 class="heading-xlarge margin-bottom-xsmall" style="padding-left: 70px;">Check to see what <span class="span-scribble-circle">visa</span> <span class="span-scribble">you can get</span></h2>
-          <a href="#" class="link-block yellow w-inline-block">
+          <a href="signup" class="link-block yellow w-inline-block">
             <div class="btn-label-wrapper">
               <div class="label-button">Get started</div>
               <div class="arrow-wrapper"><img src="{{asset('assets/images/cta-arrow-black.svg')}}" loading="lazy" alt="" class="icon-arrow-flip"><img src="../images/cta-arrow-white.svg" loading="lazy" alt="" class="icon-arrow-flip"></div>

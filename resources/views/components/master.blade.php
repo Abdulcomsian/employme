@@ -119,7 +119,7 @@
               </div>
             </div>
             <div id="w-node-_9659cfe2-9876-6245-a2f7-ac3989b1b9f8-8118b8ae" class="buttons-nav-wrapper">
-              <a href="#" target="_blank" class="link-block w-inline-block">
+              <a href="{{route('signup')}}" class="link-block w-inline-block">
                 <div class="btn-label-wrapper">
                   <div class="label-button">Join Now</div>
                   <div class="arrow-wrapper"><img src="{{asset('assets/images/cta-arrow-black.svg')}}" loading="lazy" alt="" class="icon-arrow-flip"><img src="{{asset('assets/images/cta-arrow-white.svg')}}" loading="lazy" alt="" class="icon-arrow-flip"></div>
