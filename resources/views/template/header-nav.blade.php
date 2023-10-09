@@ -10,9 +10,9 @@
                 <!-- logo -->
                 <div class="right-widget ms-auto order-lg-3">
                     <ul class="d-flex align-items-center style-none">
-                        <li class="d-none d-md-block"><a href="dashboard/employer-dashboard-submit-job.html" class="job-post-btn tran3s">Post Job</a></li>
+                        <li class="d-none d-md-block"><a href="employer/post-job-listing" class="job-post-btn tran3s">Post Job</a></li>
                         <li><a href="#" class="login-btn-one" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                        <li class="d-none d-md-block ms-4"><a href="candidates-v1.html" class="btn-one">Hire Top Talents</a></li>
+                        <li class="d-none d-md-block ms-4"><a href="candidates-marketplace" class="btn-one">Hire Top Talents</a></li>
                     </ul>
                 </div> <!--/.right-widget-->
                 <nav class="navbar navbar-expand-lg p0 ms-lg-5 ms-3 order-lg-2">
@@ -185,8 +185,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="contact" role="button">Contact</a>
                             </li>
-                            <li class="d-md-none"><a href="dashboard/employer-dashboard-submit-job.html" class="job-post-btn tran3s">Post Job</a></li>
-                            <li class="d-md-none"><a href="candidates-v1.html" class="btn-one w-100">Hire Top Talents</a></li>
+                            <li class="d-md-none"><a href="employer/post-job-listing" class="job-post-btn tran3s">Post Job</a></li>
+                            <li class="d-md-none"><a href="candidates-marketplace" class="btn-one w-100">Hire Top Talents</a></li>
                         </ul>
                     </div>
                 </nav>
