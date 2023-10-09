@@ -1,7 +1,5 @@
 @extends('layout.main')
-
 @section('content')
-
 <!--
 		=============================================
 			Inner Banner
@@ -62,14 +60,9 @@
 			</div>
 		</div>
 	</div>
-
-
 	<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/shape/shape_02.svg')}}" alt="" class="lazy-img shapes shape_01">
 	<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/shape/shape_03.svg')}}" alt="" class="lazy-img shapes shape_02">
 </div> <!-- /.inner-banner-one -->
-
-
-
 <!-- 
 		=============================================
 			Candidates Profile
@@ -1254,11 +1247,6 @@
 	</div>
 </section>
 <!-- ./candidates-profile -->
-
-
-
-
-
 <!--
 		=====================================================
 			Job Portal Intro
@@ -1277,7 +1265,7 @@
 				<div class="col-lg-5">
 					<ul class="btn-group style-none d-flex flex-wrap justify-content-center justify-content-lg-end">
 						<li class="me-2"><a href="job-marketplace" class="btn-three">Looking for job?</a></li>
-						<li class="ms-2"><a href="employer/post-job-listing" class="btn-four">Post a job</a></li>
+						<li class="ms-2"><a href="employer/post-a-job" class="btn-four">Post a job</a></li>
 					</ul>
 				</div>
 			</div>
