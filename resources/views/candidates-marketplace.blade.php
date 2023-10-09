@@ -1,4 +1,7 @@
 @extends('layout.main')
+@section('title')
+Candidate Marketplace
+@endsection
 @section('content')
 <!--
 		=============================================

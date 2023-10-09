@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-lg-4 order-lg-1 mb-15">
                     <ul class="d-flex style-none bottom-nav justify-content-center justify-content-lg-start">
-                        <li><a href="contact.html">Privacy & Terms.</a></li>
+                        <li><a href="{{route('termsOfServices')}}">Privacy & Terms.</a></li>
                         <li><a href="{{route('contact')}}"> Contact Us</a></li>
                     </ul>
                 </div>

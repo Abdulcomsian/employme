@@ -65,7 +65,7 @@ Route::get('company-staff-information' , [UserController::class , 'companyStaffI
 
 //candidate dashboard route starts here
 Route::prefix("candidate")->group(function(){
-    Route::get('dashboard' , [CandidateController::class , 'getDashboardPage'])->name('getCandidateDashboard');
+    Route::get('dashboard' , [CandidateController::class , 'getCandidateDashboard'])->name('getCandidateDashboard');
     Route::get('profile' , [CandidateController::class , 'getProfilePage'])->name('getCandidateProfile');
     Route::get('resume' , [CandidateController::class , 'getResumePage'])->name('getResumePage');
     Route::get('messages' , [MessageController::class, 'getCandidateMessagePage'])->name('getCandidateMessages');
@@ -77,7 +77,7 @@ Route::prefix("candidate")->group(function(){
 
 //employer dashboard route starts here
 Route::prefix("employer")->group(function(){
-    Route::get('dashboard' , [EmployerController::class , 'getDashboardPage'])->name('getEmployerDashboard');
+    Route::get('dashboard' , [EmployerController::class , 'getEmployerDashboard'])->name('getEmployerDashboard');
     Route::get('employer-profile' , [EmployerController::class , 'getEmployerProfilePage'])->name('getEmployerProfile');
     Route::get('job-listing' , [JobController::class , 'getJobListing'])->name('getJobListing');
     Route::get('employer-interview-request' , [JobController::class , 'getInterviewpage'])->name('getEmployerInterviewRequest');

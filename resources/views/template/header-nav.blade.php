@@ -29,7 +29,7 @@
                                 <ul class="dropdown-menu category-dropdown">
                                     <li class="row gx-0">
                                         <div class="col-lg-6">
-                                            <a href="job-list-v1.html" class="item d-flex align-items-center">
+                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                 <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_63.svg')}}" alt="" class="lazy-img"></div>
                                                 <div class="ps-3 flex-fill">
                                                     <div class="fw-500 text-dark">UI/UX Design</div>
@@ -37,7 +37,7 @@
                                                 </div>
                                             </a>
                                             <!-- /.item -->
-                                            <a href="job-list-v2.html" class="item d-flex align-items-center">
+                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                 <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_64.svg')}}" alt="" class="lazy-img"></div>
                                                 <div class="ps-3 flex-fill">
                                                     <div class="fw-500 text-dark">Development</div>
@@ -45,7 +45,7 @@
                                                 </div>
                                             </a>
                                             <!-- /.item -->
-                                            <a href="job-list-v3.html" class="item d-flex align-items-center">
+                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                 <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_65.svg')}}" alt="" class="lazy-img"></div>
                                                 <div class="ps-3 flex-fill">
                                                     <div class="fw-500 text-dark">Telemarketing</div>
@@ -55,7 +55,7 @@
                                             <!-- /.item -->
                                         </div>
                                         <div class="col-lg-6">
-                                            <a href="job-grid-v1.html" class="item d-flex align-items-center">
+                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                 <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_68.svg')}}" alt="" class="lazy-img"></div>
                                                 <div class="ps-3 flex-fill">
                                                     <div class="fw-500 text-dark">Marketing</div>
@@ -63,7 +63,7 @@
                                                 </div>
                                             </a>
                                             <!-- /.item -->
-                                            <a href="job-grid-v2.html" class="item d-flex align-items-center">
+                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                 <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_66.svg')}}" alt="" class="lazy-img"></div>
                                                 <div class="ps-3 flex-fill">
                                                     <div class="fw-500 text-dark">Editing</div>
@@ -71,7 +71,7 @@
                                                 </div>
                                             </a>
                                             <!-- /.item -->
-                                            <a href="job-grid-v3.html" class="item d-flex align-items-center">
+                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                 <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_67.svg')}}" alt="" class="lazy-img"></div>
                                                 <div class="ps-3 flex-fill">
                                                     <div class="fw-500 text-dark">Finance Accounting</div>
@@ -82,7 +82,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="job-list-v1.html" class="explore-all-btn d-flex align-items-center justify-content-between tran3s">
+                                        <a href="{{route('jobMarketplace')}}" class="explore-all-btn d-flex align-items-center justify-content-between tran3s">
                                             <span class="fw-500">Explore all fields</span>
                                             <span class="icon"><i class="bi bi-chevron-right"></i></span>
                                         </a>
@@ -93,12 +93,12 @@
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Dashboard
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{route('getCandidateProfile')}}" class="dropdown-item" target="_blank"><span>Candidate Dashboard</span></a></li>
-                                    <li><a href="{{route('getEmployerProfile')}}" class="dropdown-item" target="_blank"><span>Employer Dashboard</span></a></li>
+                                    <li><a href="{{route('getCandidateDashboard')}}" class="dropdown-item" target="_blank"><span>Candidate Dashboard</span></a></li>
+                                    <li><a href="{{route('getEmployerDashboard')}}" class="dropdown-item" target="_blank"><span>Employer Dashboard</span></a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Home
+                                <a class="nav-link dropdown-toggle" href="/" role="button">Home
                                 </a>
                                 <!-- <ul class="dropdown-menu">
                                     <li><a href="index.html" class="dropdown-item"><span>Home 01</span></a></li>
@@ -110,10 +110,10 @@
                                     <li><a href="index-7.html" class="dropdown-item"><span>Home 07</span></a></li>
                                 </ul> -->
                             </li>
-                            <li class="nav-item dropdown">
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Job
                                 </a>
-                                <!-- <ul class="dropdown-menu">
+                                <ul class="dropdown-menu">
                                     <li><a href="job-list-v1.html" class="dropdown-item"><span>Job List style -1</span></a></li>
                                     <li><a href="job-list-v2.html" class="dropdown-item"><span>Job List style -2</span></a></li>
                                     <li><a href="job-list-v3.html" class="dropdown-item"><span>Job List style -3</span></a></li>
@@ -122,10 +122,10 @@
                                     <li><a href="job-grid-v3.html" class="dropdown-item"><span>Job Grid style -3</span></a></li>
                                     <li><a href="job-details-v1.html" class="dropdown-item"><span>Job Details v-1</span></a></li>
                                     <li><a href="job-details-v2.html" class="dropdown-item"><span>Job Details v-2</span></a></li>
-                                </ul> -->
-                            </li>
+                                </ul>
+                            </li> -->
                             <li class="nav-item dropdown mega-dropdown-sm">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Explore
+                                <a class="nav-link" href="{{route('jobMarketplace')}}" role="button">Explore
                                 </a>
                                 <!-- <ul class="dropdown-menu">
                                     <li class="row gx-1">
@@ -170,7 +170,7 @@
                                 </ul> -->
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Blog
+                                <a class="nav-link" href="blog" role="button">Blog
                                 </a>
                                 <!-- <ul class="dropdown-menu">
                                     <li><a href="blog-v1.html" class="dropdown-item"><span>Blog Standard</span></a></li>

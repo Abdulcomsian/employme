@@ -1,5 +1,7 @@
 @extends('layout.main')
-
+@section('title')
+Sign Up
+@endsection
 @section('content')
 <div class="inner-banner-one position-relative">
     <div class="container">
