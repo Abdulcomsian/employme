@@ -22,8 +22,6 @@ use App\Http\Controllers\{
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
 //frontend routes starts here
 Route::get('signup' , [AuthenticationController::class , 'signup'])->name('signup');
 // Route::get('employer-signup' , [AuthenticationController::class , 'employersignup'])->name('employersignup');
@@ -48,8 +46,8 @@ Route::get('job-marketplace' , [JobController::class , 'jobMarketplace'])->name(
 // Route::get('candidate-profile' , [UserController::class , 'candidateProfile'])->name('candidateProfile');
 Route::get('company' , [UserController::class , 'company'])->name('company');
 Route::get('candidates-marketplace' , [UserController::class , 'candidatesMarketplace'])->name('candidatesMarketplace');
-Route::get('job-listing' , [UserController::class , 'jobListing'])->name('jobListing');
-Route::get('employer-job-listing' , [UserController::class , 'employerjobListing'])->name('employerjobListing');
+Route::get('job-details' , [UserController::class , 'jobDetails'])->name('jobDetails');
+// Route::get('employer-job-listing' , [UserController::class , 'employerjobListing'])->name('employerjobListing');
 Route::get('candidate-profile-new' , [UserController::class , 'candidateProfileNew'])->name('candidateProfileNew');
 Route::get('candidate-profile-document' , [UserController::class , 'candidateProfileDocument'])->name('candidateProfileDocument');
 Route::get('candidate-profile-interview' , [UserController::class , 'candidateProfileInterview'])->name('candidateProfileInterview');
@@ -81,15 +79,15 @@ Route::prefix("candidate")->group(function(){
 Route::prefix("employer")->group(function(){
     Route::get('dashboard' , [EmployerController::class , 'getDashboardPage'])->name('getEmployerDashboard');
     Route::get('employer-profile' , [EmployerController::class , 'getEmployerProfilePage'])->name('getEmployerProfile');
-    Route::get('job-listing' , [JobController::class , 'getJobpage'])->name('getJobListing');
+    // Route::get('job-listing' , [JobController::class , 'getJobpage'])->name('getJobListing');
     Route::get('employer-interview-request' , [JobController::class , 'getInterviewpage'])->name('getEmployerInterviewRequest');
     Route::get('employer-dashboard-message' , [MessageController::class , 'getEmployerMessage'])->name('getEmployerDashboardMessage');
     Route::get('employer-dashboard-saved-candidate' , [EmployerController::class , 'getEmployerCandidate'])->name('getEmployerDashboardSavedCandidate');
     Route::get('employer-dashboard-subscription-plan' , [EmployerController::class , 'getEmployerSubscription'])->name('getEmployerSubscriptionPlan');
     Route::get('employer-dashboard-settings' , [UserController::class , 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
-    Route::get('List-Your-Job', [EmployerController::class, 'ListYourJob'])->name('ListYourJob');
-    Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
+    // Route::get('List-Your-Job', [EmployerController::class, 'ListYourJob'])->name('ListYourJob');
+    // Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
 });
 //employer dashboard route ends here
 

@@ -497,81 +497,81 @@
 								<div class="row">
 									<div class="col-sm-6 mb-30">
 										<div class="job-list-two style-two position-relative">
-											<a href="job-details-v2.html" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_22.png" alt="" class="lazy-img m-auto"></a>
-											<a href="job-details-v2.html" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-											<div><a href="job-details-v2.html" class="job-duration fw-500">Fulltime</a></div>
-											<div><a href="job-details-v2.html" class="title fw-500 tran3s">Lead designer & expert in maya 3D</a></div>
+											<a href="{{route('jobDetails')}}" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_22.png" alt="" class="lazy-img m-auto"></a>
+											<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+											<div><a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a></div>
+											<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Lead designer & expert in maya 3D</a></div>
 											<div class="job-salary"><span class="fw-500 text-dark">$300-$450</span> / Week</div>
 											<div class="d-flex align-items-center justify-content-between mt-auto">
-												<div class="job-location"><a href="job-details-v2.html">USA, California</a></div>
-												<a href="job-details-v2.html" class="apply-btn text-center tran3s">Interview Request</a>
+												<div class="job-location"><a href="{{route('jobDetails')}}">USA, California</a></div>
+												<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
 											</div>
 										</div> <!-- /.job-list-two -->
 									</div>
 									<div class="col-sm-6 mb-30">
 										<div class="job-list-two style-two position-relative">
-											<a href="job-details-v2.html" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_23.png" alt="" class="lazy-img m-auto"></a>
-											<a href="job-details-v2.html" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-											<div><a href="job-details-v2.html" class="job-duration fw-500 part-time">Part-time</a></div>
-											<div><a href="job-details-v2.html" class="title fw-500 tran3s">Developer & expert in c++ & java.</a></div>
+											<a href="{{route('jobDetails')}}" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_23.png" alt="" class="lazy-img m-auto"></a>
+											<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+											<div><a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a></div>
+											<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Developer & expert in c++ & java.</a></div>
 											<div class="job-salary"><span class="fw-500 text-dark">$10-$15</span> / Hour</div>
 											<div class="d-flex align-items-center justify-content-between mt-auto">
-												<div class="job-location"><a href="job-details-v2.html">USA, Alaska</a></div>
-												<a href="job-details-v2.html" class="apply-btn text-center tran3s">Interview Request</a>
+												<div class="job-location"><a href="{{route('jobDetails')}}">USA, Alaska</a></div>
+												<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
 											</div>
 										</div> <!-- /.job-list-two -->
 									</div>
 									<div class="col-sm-6 mb-30">
 										<div class="job-list-two style-two position-relative">
-											<a href="job-details-v2.html" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_24.png" alt="" class="lazy-img m-auto"></a>
-											<a href="job-details-v2.html" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-											<div><a href="job-details-v2.html" class="job-duration fw-500 part-time">Part-time</a></div>
-											<div><a href="job-details-v2.html" class="title fw-500 tran3s">Marketing specialist in SEO & Affiliate. </a></div>
+											<a href="{{route('jobDetails')}}" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_24.png" alt="" class="lazy-img m-auto"></a>
+											<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+											<div><a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a></div>
+											<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Marketing specialist in SEO & Affiliate. </a></div>
 											<div class="job-salary"><span class="fw-500 text-dark">$40k</span> / Yearly</div>
 											<div class="d-flex align-items-center justify-content-between mt-auto">
-												<div class="job-location"><a href="job-details-v2.html">AUS, Sydney</a></div>
-												<a href="job-details-v2.html" class="apply-btn text-center tran3s">Interview Request</a>
+												<div class="job-location"><a href="{{route('jobDetails')}}">AUS, Sydney</a></div>
+												<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
 											</div>
 										</div> <!-- /.job-list-two -->
 									</div>
 									<div class="col-sm-6 mb-30">
 										<div class="job-list-two style-two position-relative">
-											<a href="job-details-v2.html" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_25.png" alt="" class="lazy-img m-auto"></a>
-											<a href="job-details-v2.html" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-											<div><a href="job-details-v2.html" class="job-duration fw-500">Fulltime</a></div>
-											<div><a href="job-details-v2.html" class="title fw-500 tran3s">Lead & Product & Web Designer.</a></div>
+											<a href="{{route('jobDetails')}}" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_25.png" alt="" class="lazy-img m-auto"></a>
+											<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+											<div><a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a></div>
+											<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Lead & Product & Web Designer.</a></div>
 											<div class="job-salary"><span class="fw-500 text-dark">$2k-3k</span> / Month</div>
 											<div class="d-flex align-items-center justify-content-between mt-auto">
-												<div class="job-location"><a href="job-details-v2.html">UAE, Dubai</a></div>
-												<a href="job-details-v2.html" class="apply-btn text-center tran3s">Interview Request</a>
+												<div class="job-location"><a href="{{route('jobDetails')}}">UAE, Dubai</a></div>
+												<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
 											</div>
 										</div> <!-- /.job-list-two -->
 									</div>
 									
 									<div class="col-sm-6 mb-30">
 										<div class="job-list-two style-two position-relative">
-											<a href="job-details-v2.html" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_34.png" alt="" class="lazy-img m-auto"></a>
-											<a href="job-details-v2.html" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-											<div><a href="job-details-v2.html" class="job-duration fw-500 part-time">Part-time</a></div>
-											<div><a href="job-details-v2.html" class="title fw-500 tran3s">Accountant Bookkeeper Financial Reporting</a></div>
+											<a href="{{route('jobDetails')}}" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_34.png" alt="" class="lazy-img m-auto"></a>
+											<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+											<div><a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a></div>
+											<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Accountant Bookkeeper Financial Reporting</a></div>
 											<div class="job-salary"><span class="fw-500 text-dark">$300-$450</span> / Week</div>
 											<div class="d-flex align-items-center justify-content-between mt-auto">
-												<div class="job-location"><a href="job-details-v2.html">US, Alaska</a></div>
-												<a href="job-details-v2.html" class="apply-btn text-center tran3s">Interview Request</a>
+												<div class="job-location"><a href="{{route('jobDetails')}}">US, Alaska</a></div>
+												<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
 											</div>
 										</div> <!-- /.job-list-two -->
 									</div>
 
 									<div class="col-sm-6 mb-30">
 										<div class="job-list-two style-two position-relative">
-											<a href="job-details-v2.html" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto"></a>
-											<a href="job-details-v2.html" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-											<div><a href="job-details-v2.html" class="job-duration fw-500 part-time">Part-time</a></div>
-											<div><a href="job-details-v2.html" class="title fw-500 tran3s">Amazon Product Research</a></div>
+											<a href="{{route('jobDetails')}}" class="logo"><img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto"></a>
+											<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+											<div><a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a></div>
+											<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Amazon Product Research</a></div>
 											<div class="job-salary"><span class="fw-500 text-dark">$15-$20</span> / Hour</div>
 											<div class="d-flex align-items-center justify-content-between mt-auto">
-												<div class="job-location"><a href="job-details-v2.html">Germany, Hamburg</a></div>
-												<a href="job-details-v2.html" class="apply-btn text-center tran3s">Interview Request</a>
+												<div class="job-location"><a href="{{route('jobDetails')}}">Germany, Hamburg</a></div>
+												<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
 											</div>
 										</div> <!-- /.job-list-two -->
 									</div>
