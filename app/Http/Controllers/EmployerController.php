@@ -28,12 +28,12 @@ class EmployerController extends Controller
     {
         return view('employer.post-a-job');
     }
-    // public function ListYourJob()
-    // {
-    //     return view('ListYourJob');
-    // }
-    // public function JobListingCandidate(){
-    //     return view('JobListingCandidate');
-    // }
+    public function scheduleInterview()
+    {
+        return view('schedule-interview');
+    }
+    public function JobListingCandidate(){
+        return view('JobListingCandidate');
+    }
 
 }

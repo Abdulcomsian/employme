@@ -79,15 +79,15 @@ Route::prefix("candidate")->group(function(){
 Route::prefix("employer")->group(function(){
     Route::get('dashboard' , [EmployerController::class , 'getDashboardPage'])->name('getEmployerDashboard');
     Route::get('employer-profile' , [EmployerController::class , 'getEmployerProfilePage'])->name('getEmployerProfile');
-    // Route::get('job-listing' , [JobController::class , 'getJobpage'])->name('getJobListing');
+    Route::get('job-listing' , [JobController::class , 'getJobListing'])->name('getJobListing');
     Route::get('employer-interview-request' , [JobController::class , 'getInterviewpage'])->name('getEmployerInterviewRequest');
     Route::get('employer-dashboard-message' , [MessageController::class , 'getEmployerMessage'])->name('getEmployerDashboardMessage');
     Route::get('employer-dashboard-saved-candidate' , [EmployerController::class , 'getEmployerCandidate'])->name('getEmployerDashboardSavedCandidate');
     Route::get('employer-dashboard-subscription-plan' , [EmployerController::class , 'getEmployerSubscription'])->name('getEmployerSubscriptionPlan');
     Route::get('employer-dashboard-settings' , [UserController::class , 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
-    // Route::get('List-Your-Job', [EmployerController::class, 'ListYourJob'])->name('ListYourJob');
-    // Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
+    Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
+    Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
 });
 //employer dashboard route ends here
 
