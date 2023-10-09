@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CandidateController extends Controller
 {
-    public function getDashboardPage()
+    public function getCandidateDashboard()
     {
         return view('candidate.dashboard');
     }

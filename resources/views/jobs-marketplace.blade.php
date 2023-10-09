@@ -24,7 +24,7 @@
 						<div class="row">
 							<div class="col-xl-9 col-lg-8 m-auto">
 								<div class="job-search-one position-relative">
-									<form action="job-grid-v1.html">
+									<form action="{{route('jobMarketplace')}}">
 										<div class="row">
 											<div class="col-md-5">
 												<div class="input-box">

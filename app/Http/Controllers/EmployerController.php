@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class EmployerController extends Controller
 {
 
-    public function getDashboardPage()
+    public function getEmployerDashboard()
     {
         return view('employer.dashboard');
     }
