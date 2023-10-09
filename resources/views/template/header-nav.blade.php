@@ -16,14 +16,14 @@
                     </ul>
                 </div> <!--/.right-widget-->
                 <nav class="navbar navbar-expand-lg p0 ms-lg-5 ms-3 order-lg-2">
-                    <button class="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                        aria-label="Toggle navigation">
+                    <button class="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav align-items-lg-center">
-                            <li class="d-block d-lg-none"><div class="logo"><a href="/" class="d-block"><img src="images/logo/logo_01.png" alt="" width="100"></a></div></li>
+                            <li class="d-block d-lg-none">
+                                <div class="logo"><a href="/" class="d-block"><img src="images/logo/logo_01.png" alt="" width="100"></a></div>
+                            </li>
                             <li class="nav-item dropdown category-btn mega-dropdown-sm">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-grid-fill"></i> Category</a>
                                 <ul class="dropdown-menu category-dropdown">
@@ -90,8 +90,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown dashboard-menu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    data-bs-auto-close="outside" aria-expanded="false">Dashboard
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Dashboard
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{route('getCandidateProfile')}}" class="dropdown-item" target="_blank"><span>Candidate Dashboard</span></a></li>
@@ -99,8 +98,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    data-bs-auto-close="outside" aria-expanded="false">Home
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Home
                                 </a>
                                 <!-- <ul class="dropdown-menu">
                                     <li><a href="index.html" class="dropdown-item"><span>Home 01</span></a></li>
@@ -172,8 +170,7 @@
                                 </ul> -->
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    data-bs-auto-close="outside" aria-expanded="false">Blog
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Blog
                                 </a>
                                 <!-- <ul class="dropdown-menu">
                                     <li><a href="blog-v1.html" class="dropdown-item"><span>Blog Standard</span></a></li>

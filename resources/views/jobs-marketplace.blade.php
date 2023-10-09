@@ -617,8 +617,8 @@
 						</div>
 						<div class="col-lg-5">
 							<ul class="btn-group style-none d-flex flex-wrap justify-content-center justify-content-lg-end">
-								<li class="me-2"><a href="job-list-v1.html" class="btn-three">Looking for job?</a></li>
-								<li class="ms-2"><a href="signup.html" class="btn-four">Post a job</a></li>
+								<li class="me-2"><a href="job-marketplace" class="btn-three">Looking for job?</a></li>
+								<li class="ms-2"><a href="employer/post-job-listing" class="btn-four">Post a job</a></li>
 							</ul>
 						</div>
 					</div>

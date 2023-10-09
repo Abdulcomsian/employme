@@ -43,7 +43,7 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						<div class="text-center">
 							<h2>Hi, Welcome Back!</h2>
-							<p>Still don't have an account? <a href="signup.html">Sign up</a></p>
+							<p>Still don't have an account? <a href="signup">Sign up</a></p>
 						</div>
 						<div class="form-wrapper m-auto">
 							<form action="#" class="mt-10">
@@ -94,7 +94,7 @@
 									</a>
 								</div>
 							</div>
-							<p class="text-center mt-10">Don't have an account? <a href="signup.html" class="fw-500">Sign up</a></p>
+							<p class="text-center mt-10">Don't have an account? <a href="signup" class="fw-500">Sign up</a></p>
 						</div>
 						<!-- /.form-wrapper -->
 					</div>
