@@ -30,14 +30,14 @@ class UserController extends Controller
         return view('employer.employer-dashboard-settings');
     }
 
-    public function jobListing()
+    public function jobDetails()
     {
-        return view('job-Listing');
+        return view('job-details');
     }
-    public function employerjobListing()
-    {
-        return view('employer-job-Listing');
-    }
+    // public function employerjobListing()
+    // {
+    //     return view('employer-job-Listing');
+    // }
 
     public function candidateProfileNew()
     {

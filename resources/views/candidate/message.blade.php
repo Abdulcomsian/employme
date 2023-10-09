@@ -1,9 +1,7 @@
 @extends('candidate.layout.main')
-
 @section('title')
-Candidate Messages
+Messages
 @endsection
-
 @section('content')
 <div class="dashboard-body">
     <div class="position-relative">

@@ -1,7 +1,7 @@
 @extends('employer.layout.main')
 
 @section('title')
-Employer Profile
+Profile
 @endsection
 <style>
 	.step {
@@ -100,7 +100,7 @@ Employer Profile
 						</li>
 					</ul>
 				</div>
-				<div><a href="{{route('postJobs')}}" class="job-post-btn tran3s">Post a Job</a></div>
+				<div><a href="{{route('postAJob')}}" class="job-post-btn tran3s">Post a Job</a></div>
 			</div>
 		</header>
 		<!-- End Header -->
@@ -356,7 +356,13 @@ Employer Profile
 								<div class="dash-input-wrapper mb-30">
 									<label for="">Different subscription options with features and price
 										points.</label>
-									<input type="text" name="differentSubscriptionOptions" placeholder="Type your answer here...">
+									<select name="differentSubscriptionOptions" id="differentSubscriptionOptions" class="nice-select">
+										<option value="Basic Candidate Access">Basic Candidate Access - $59/mo</option>
+										<option value="Jobs Marketplace Access">Jobs Marketplace Access - $69/mo</option>
+										<option value="Flexi Plan">Flexi Plan - $39/mo</option>
+										<option value="Advanced Candidate Access">Advanced Candidate Access - $79/mo</option>
+										<option value="Combined Marketplace Access">Combined Marketplace Access - $129/mo</option>
+									</select>
 								</div>
 							</div>
 							<div class="col-md-6">

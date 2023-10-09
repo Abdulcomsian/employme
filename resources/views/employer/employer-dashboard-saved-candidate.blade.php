@@ -1,12 +1,9 @@
 @extends('employer.layout.main')
 
 @section('title')
-Employer Saved Candidate
+Saved Candidate
 @endsection
-
 @section('content')
-
-
 <div class="dashboard-body">
     <div class="position-relative">
         <!-- ************************ Header **************************** -->
@@ -53,7 +50,7 @@ Employer Saved Candidate
                         </li>
                     </ul>
                 </div>
-                <div><a href="{{route('postJobs')}}" class="job-post-btn tran3s">Post a Job</a></div>
+                <div><a href="{{route('postAJob')}}" class="job-post-btn tran3s">Post a Job</a></div>
             </div>
         </header>
         <!-- End Header -->

@@ -1,7 +1,7 @@
 @extends('employer.layout.main')
 
 @section('title')
-Employer Job Listing
+Job Listing
 @endsection
 
 @section('content')
@@ -52,7 +52,7 @@ Employer Job Listing
                         </li>
                     </ul>
                 </div>
-                <div><a href="{{route('postJobs')}}" class="job-post-btn tran3s">Post a Job</a></div>
+                <div><a href="{{route('postAJob')}}" class="job-post-btn tran3s">Post a Job</a></div>
             </div>
         </header>
         <!-- End Header -->

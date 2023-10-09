@@ -1,9 +1,8 @@
 @extends('candidate.layout.main')
 
 @section('title')
-Candidate Profile
+Savced Jobs
 @endsection
-
 @section('content')
 <div class="dashboard-body">
     <div class="position-relative">
@@ -57,7 +56,7 @@ Candidate Profile
         <!-- End Header -->
 
         <div class="d-flex align-items-center justify-content-between mb-40 lg-mb-30">
-            <h2 class="main-title m0">Saved Job</h2>
+            <h2 class="main-title m0">Saved Jobs</h2>
             <div class="short-filter d-flex align-items-center">
                 <div class="text-dark fw-500 me-2">Short by:</div>
                 <select class="nice-select">

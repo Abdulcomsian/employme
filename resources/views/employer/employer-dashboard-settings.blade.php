@@ -1,5 +1,7 @@
 @extends('employer.layout.main')
-
+@section('title')
+Account Settings
+@endsection
 @section('content')
 <div class="dashboard-body">
     <div class="position-relative">
@@ -47,7 +49,7 @@
                         </li>
                     </ul>
                 </div>
-                <div><a href="{{route('postJobs')}}" class="job-post-btn tran3s">Post a Job</a></div>
+                <div><a href="{{route('postAJob')}}" class="job-post-btn tran3s">Post a Job</a></div>
             </div>
         </header>
         <!-- End Header -->

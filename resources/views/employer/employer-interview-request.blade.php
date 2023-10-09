@@ -1,7 +1,7 @@
 @extends('employer.layout.main')
 
 @section('title')
-Employer Interview Request
+Interview Request
 @endsection
 
 @section('content')
@@ -53,7 +53,7 @@ Employer Interview Request
                         </li>
                     </ul>
                 </div>
-                <div><a href="{{route('postJobs')}}" class="job-post-btn tran3s">Post a Job</a></div>
+                <div><a href="{{route('postAJob')}}" class="job-post-btn tran3s">Post a Job</a></div>
             </div>
         </header>
         <!-- End Header -->

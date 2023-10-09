@@ -20,8 +20,6 @@
 	<img src="images/lazy.svg" data-src="images/shape/shape_03.svg" alt="" class="lazy-img shapes shape_02">
 </div>
 
-
-
 <section>
 	<iframe src="https://d115so8bpca.typeform.com/to/zdJe2gXU" width="100%" height="500px" frameborder="0">
 	</iframe>
