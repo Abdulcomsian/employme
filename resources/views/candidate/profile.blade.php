@@ -1,7 +1,7 @@
 @extends('candidate.layout.main')
 
 @section('title')
-Candidate Profile
+Profile
 @endsection
 <style>
     .step {

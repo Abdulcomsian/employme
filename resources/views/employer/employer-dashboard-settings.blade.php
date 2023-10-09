@@ -1,5 +1,7 @@
 @extends('employer.layout.main')
-
+@section('title')
+Account Settings
+@endsection
 @section('content')
 <div class="dashboard-body">
     <div class="position-relative">

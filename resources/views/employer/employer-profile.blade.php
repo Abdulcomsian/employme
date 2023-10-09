@@ -1,7 +1,7 @@
 @extends('employer.layout.main')
 
 @section('title')
-Employer Profile
+Profile
 @endsection
 <style>
 	.step {

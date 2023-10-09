@@ -1,7 +1,7 @@
 @extends('employer.layout.main')
 
 @section('title')
-Employer Subscription Plan
+Subscription Plan
 @endsection
 
 @section('content')

@@ -1,12 +1,9 @@
 @extends('employer.layout.main')
 
 @section('title')
-Employer Saved Candidate
+Saved Candidate
 @endsection
-
 @section('content')
-
-
 <div class="dashboard-body">
     <div class="position-relative">
         <!-- ************************ Header **************************** -->

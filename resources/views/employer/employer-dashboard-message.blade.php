@@ -1,9 +1,8 @@
 @extends('employer.layout.main')
 
 @section('title')
-Employer Messages
+Messages
 @endsection
-
 @section('content')
 
 <div class="dashboard-body">

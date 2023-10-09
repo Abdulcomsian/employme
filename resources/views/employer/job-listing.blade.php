@@ -1,7 +1,7 @@
 @extends('employer.layout.main')
 
 @section('title')
-Employer Job Listing
+Job Listing
 @endsection
 
 @section('content')

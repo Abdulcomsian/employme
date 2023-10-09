@@ -1,7 +1,7 @@
 @extends('employer.layout.main')
 
 @section('title')
-Employer Interview Request
+Interview Request
 @endsection
 
 @section('content')
