@@ -37,7 +37,7 @@ class FrontendController extends Controller
     
     
     public function howItWorksEmployer(){
-        return view('how-it-works-Employer');
+        return view('how-it-works-employer');
     }
     
   
