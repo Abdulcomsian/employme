@@ -32,8 +32,8 @@ class EmployerController extends Controller
     {
         return view('schedule-interview');
     }
-    public function JobListingCandidate(){
+    public function JobListingCandidate()
+    {
         return view('JobListingCandidate');
     }
-
 }

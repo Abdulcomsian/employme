@@ -7,7 +7,7 @@
       <div id="w-node-a233fd52-2690-930e-85b1-731b5b124415-b18f5803" class="center-wrapper">
         <div class="wrapper-heading">
           <h1 class="heading-xxlarge margin-bottom-xsmall">The future<span class="span-smile orange"> </span>of <span class="span-scribble">hiring</span> is here</h1>
-          <a href="#" class="link-block w-inline-block">
+          <a href="#stages" class="link-block w-inline-block">
             <div class="btn-label-wrapper">
               <div class="label-button">Hiring Stages</div>
               <div class="arrow-wrapper"><img src="{{asset('assets/images/cta-arrow-black.svg')}}" loading="lazy" alt="" class="icon-arrow-flip"><img src="{{asset('assets/images/cta-arrow-white.svg')}}" loading="lazy" alt="" class="icon-arrow-flip"></div>
@@ -77,7 +77,7 @@
     </div>
   </div>
 </section>
-<section>
+<section id="stages">
   <div class="container w-container">
     <div class="w-layout-grid main-grid">
       <div data-duration-in="300" data-duration-out="100" id="w-node-e16e6e3b-2052-5535-d0c9-65c34cfe231c-b18f5803" data-current="Tab 1" data-easing="ease" class="tabs-content w-tabs">

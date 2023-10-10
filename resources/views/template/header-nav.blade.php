@@ -95,6 +95,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="{{route('getCandidateDashboard')}}" class="dropdown-item" target="_blank"><span>Candidate Dashboard</span></a></li>
                                     <li><a href="{{route('getEmployerDashboard')}}" class="dropdown-item" target="_blank"><span>Employer Dashboard</span></a></li>
+                                    <li><a href="{{route('getOwnerDashboard')}}" class="dropdown-item" target="_blank"><span>Owner Dashboard</span></a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
