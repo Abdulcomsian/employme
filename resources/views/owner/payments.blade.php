@@ -1,6 +1,6 @@
 @extends('owner.layout.main')
 @section('title')
-Users
+Payments
 @endsection
 @section('content')
 <div class="dashboard-body">
@@ -64,7 +64,7 @@ Users
         </header>
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
-            <h2 class="main-title m0">Users</h2>
+            <h2 class="main-title m0">Payments</h2>
             <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab"

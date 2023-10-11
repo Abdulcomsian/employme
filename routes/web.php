@@ -96,7 +96,8 @@ Route::prefix("employer")->group(function () {
 Route::prefix("owner")->group(function () {
     Route::get('dashboard', [OwnerController::class, 'getOwnerDashboard'])->name('getOwnerDashboard');
     Route::get('profile', [OwnerController::class, 'getOwnerProfile'])->name('getOwnerProfile');
-    Route::get('users', [OwnerController::class, 'getUserProfile'])->name('getUserProfile');
+    Route::get('users', [OwnerController::class, 'getUsersDetails'])->name('getUsersDetails');
+    Route::get('payments', [OwnerController::class, 'getPaymentsDetails'])->name('getPaymentsDetails');
 });
 //owner dashboard route ends here
 

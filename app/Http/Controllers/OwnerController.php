@@ -17,8 +17,13 @@ class OwnerController extends Controller
         return view('owner.profile');
     }
 
-    public function getUserProfile()
+    public function getUsersDetails()
     {
         return view('owner.users');
+    }
+
+    public function getPaymentsDetails()
+    {
+        return view('owner.payments');
     }
 }

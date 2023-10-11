@@ -57,12 +57,20 @@
                         <span>My Profile</span>
                     </a></li>
 
-                <li><a href="{{ route('getUserProfile') }}"
+                <li><a href="{{ route('getUsersDetails') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/users') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
                             data-src="{{ request()->is('owner/users') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
                         <span>Users</span>
+                    </a></li>
+
+                <li><a href="{{ route('getPaymentsDetails') }}"
+                        class="d-flex w-100 align-items-center {{ request()->is('owner/payments') ? 'active' : '' }}">
+                        <img src="{{ asset('assets/images/lazy.svg') }}"
+                            data-src="{{ request()->is('owner/payments') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
+                            alt="" class="lazy-img">
+                        <span>Payments</span>
                     </a></li>
 
                 {{-- <li><a href="{{ route('getJobListing') }}"
