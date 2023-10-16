@@ -23,3 +23,47 @@
 
 <!-- Theme js -->
 <script src="{{asset('assets/js/theme.js')}}"></script>
+
+<script type="text/javascript">
+ 
+  $(function() {
+        
+      /*------------------------------------------
+      --------------------------------------------
+      Submit Event
+      --------------------------------------------
+      --------------------------------------------*/
+      $(document).on("click", "#loginButton", function() {
+        // e.preventDefault();
+        //   var e = this;
+  
+  
+          $.ajax({
+              url: $("#LoginForm").attr('action'),
+              data: {
+                _token:"{{csrf_token()}}",
+                email: $("#LoginForm").find('input[name=email]').val(),
+                password: $("#LoginForm").find('input[name=password]').val(),
+                        },
+              type: "POST",
+              dataType: 'json',
+              success: function (data) {
+    
+                if (data.status) {
+                    window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+  
+          return false;
+      });
+  
+    });
+  
+</script>

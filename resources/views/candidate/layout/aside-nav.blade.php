@@ -13,7 +13,7 @@
             <!-- /.user-avatar -->
             <div class="user-name-data">
                 <button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                    Rashed Kabir
+                {{auth()->user()->name}}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
                     <li>
@@ -75,7 +75,7 @@
         </div>
         <!-- /.profile-complete-status -->
 
-        <a href="#" class="d-flex w-100 align-items-center logout-btn">
+        <a href="{{route('logout')}}" class="d-flex w-100 align-items-center logout-btn">
             <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_9.svg')}}" alt="" class="lazy-img">
             <span>Logout</span>
         </a>

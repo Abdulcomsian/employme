@@ -25,45 +25,72 @@ Sign Up
 <section class="registration-section position-relative pt-100 lg-pt-80 pb-150 lg-pb-80">
     <div class="container">
         <div class="user-data-form">
+                @if(session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    <!-- @if($errors->candidate->any('email'))
+                        <div class="alert alert-danger" >
+                            <strong>{{ $errors->candidate->first('email') }}</strong>
+                        </div>
+                    @endif -->
             <div class="text-center">
                 <h2>Create Account</h2>
             </div>
             <div class="form-wrapper m-auto">
                 <ul class="nav nav-tabs border-0 w-100 mt-30" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#fc1" role="tab">Candidates</button>
+                        <button class="nav-link @if(count($errors->employer) > 0) @else active @endif" data-bs-toggle="tab" data-bs-target="#fc1" role="tab">Candidates</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#fc2" role="tab">Employer</button>
+                        <button class="nav-link @if(count($errors->employer) > 0) active @else  @endif" data-bs-toggle="tab" data-bs-target="#fc2" role="tab">Employer</button>
                     </li>
                 </ul>
                 <div class="tab-content mt-40">
-                    <div class="tab-pane fade show active" role="tabpanel" id="fc1">
+                    <div class="tab-pane fade  @if(count($errors->employer) > 0)  @else show active @endif" role="tabpanel" id="fc1">
+                        {!! Form::open(array('route' => 'candidate_signup.save','method'=>'POST')) !!}
                         <form action="#">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-25">
                                         <label>Name*</label>
-                                        <input type="text" placeholder="Name" required>
+                                        <input type="text" name="name" class="@if($errors->candidate->has('name')) is-invalid @endif"  placeholder="Name" value = "{{ old('name') }}" required>
+                                            @if($errors->candidate->has('name'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->candidate->first('name') }}</strong>
+                                                </span>
+                                            @endif
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-25">
                                         <label>Email*</label>
-                                        <input type="email" placeholder="example@example.com" required>
+                                        <input type="email" name="email" class="@if($errors->candidate->has('email')) is-invalid @endif" placeholder="example@example.com" value = "{{ old('email') }}" required>
+                                            @if($errors->candidate->has('email'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->candidate->first('email') }}</strong>
+                                                </span>
+                                            @endif
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-20">
                                         <label>Password*</label>
-                                        <input type="password" placeholder="Enter Password" class="pass_log_id" required>
+                                        <input type="password" name="password" placeholder="Enter Password" class="pass_log_id @if($errors->candidate->has('password')) is-invalid @endif" required>
                                         <span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
+                                            @if($errors->candidate->has('password'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->candidate->first('password') }}</strong>
+                                                </span>
+                                            @endif
+                                           
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-20">
                                         <label>Conform Password*</label>
-                                        <input type="password" placeholder="Enter Password" class="pass_log_id" required>
+                                        <input type="password" id="password-confirm" name="password_confirmation" placeholder="Enter Password" class="pass_log_id" required>
                                         <span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
                                     </div>
                                 </div>
@@ -72,8 +99,13 @@ Sign Up
                                 <div class="col-12">
                                     <div class="agreement-checkbox d-flex justify-content-between align-items-center">
                                         <div>
-                                            <input type="checkbox" id="remember">
+                                            <input type="checkbox" name= "terms_and_conditions" class="@if($errors->candidate->has('terms_and_conditions')) is-invalid @endif"  id="remember">
                                             <label for="remember">These checks are essential for E2 visa requirements and obtaining teaching positions in South Korea</label>
+                                                @if($errors->candidate->has('terms_and_conditions'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->candidate->first('terms_and_conditions') }}</strong>
+                                                    </span>
+                                                @endif
                                         </div>
                                     </div>
                                 </div>
@@ -82,35 +114,64 @@ Sign Up
                                 </div>
                             </div>
                         </form>
+                            {!! Form::close() !!}
                     </div>
              
-                    <div class="tab-pane fade" role="tabpanel" id="fc2">
+                    <div class="tab-pane fade @if(count($errors->employer) > 0) show active @else  @endif" role="tabpanel" id="fc2">
+                        {!! Form::open(array('route' => 'employer_signup.save','method'=>'POST')) !!}
                         <form action="#">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-25">
                                         <label>Name*</label>
-                                        <input type="text" placeholder="Name" required>
+                                        <input type="text" name="name" class="@if($errors->employer->has('name')) is-invalid @endif" placeholder="Name" value = "{{ old('name') }}" required>
+                                            @if($errors->employer->has('name'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->employer->first('name') }}</strong>
+                                                </span>
+                                            @endif
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-25">
                                         <label>Email*</label>
-                                        <input type="email" placeholder="example@example.com" required>
+                                        <input type="email" name="email" class ="@if($errors->employer->has('email')) is-invalid @endif" placeholder="example@example.com" value = "{{ old('email') }}" required>
+                                            @if($errors->employer->has('email'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->employer->first('email') }}</strong>
+                                                </span>
+                                            @endif
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-20">
                                         <label>Password*</label>
-                                        <input type="password" placeholder="Enter Password" class="pass_log_id" required>
+                                        <input type="password" name="password" placeholder="Enter Password" class="pass_log_id @if($errors->employer->has('password')) is-invalid @endif" required>
+                                        <span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
+                                            @if($errors->employer->has('password'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->employer->first('password') }}</strong>
+                                                </span>
+                                            @endif
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-group-meta position-relative mb-20">
+                                        <label>Conform Password*</label>
+                                        <input type="password" id="password-confirm" name="password_confirmation" placeholder="Enter Password" class="pass_log_id" required>
                                         <span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="agreement-checkbox d-flex justify-content-between align-items-center">
                                         <div>
-                                            <input type="checkbox" id="remember">
-                                            <label for="remember">By hitting the "Register" button, you agree to the <a href="#">Terms conditions</a> & <a href="#">Privacy Policy</a></label>
+                                            <input type="checkbox" name= "terms_and_conditions" id="remember_"  class="@if($errors->employer->has('terms_and_conditions')) is-invalid @endif">
+                                            <label for="remember_">By hitting the "Register" button, you agree to the <a href="#">Terms conditions</a> & <a href="#">Privacy Policy</a></label>
+                                            @if($errors->employer->has('terms_and_conditions'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->employer->first('terms_and_conditions') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                
                                 </div>
@@ -119,7 +180,8 @@ Sign Up
                                 </div>
                             </div>
                         </form>
-                    </div>
+                        {!! Form::close() !!}
+                    </div>s
                  
                 </div>
                 

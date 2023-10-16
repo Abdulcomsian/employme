@@ -46,18 +46,20 @@
 							<p>Still don't have an account? <a href="signup">Sign up</a></p>
 						</div>
 						<div class="form-wrapper m-auto">
-							<form action="#" class="mt-10">
+							<form action="{{route('authLogin')}}" class="mt-10" id = "LoginForm" method = "POST" >
+								@csrf
+							<div id="errors-list"></div>
 								<div class="row">
 									<div class="col-12">
 										<div class="input-group-meta position-relative mb-25">
 											<label>Email*</label>
-											<input type="email" placeholder="rshdkabir@gmail.com">
+											<input type="email" name = "email" placeholder="rshdkabir@gmail.com">
 										</div>
 									</div>
 									<div class="col-12">
 										<div class="input-group-meta position-relative mb-20">
 											<label>Password*</label>
-											<input type="password" placeholder="Enter Password" class="pass_log_id">
+											<input type="password" name = "password" placeholder="Enter Password" class="pass_log_id">
 											<span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
 										</div>
 									</div>
@@ -71,7 +73,7 @@
 										</div> <!-- /.agreement-checkbox -->
 									</div>
 									<div class="col-12">
-										<button class="btn-eleven fw-500 tran3s d-block mt-20">Login</button>
+										<button class="btn-eleven fw-500 tran3s d-block mt-20" type = "button" id="loginButton">Login</button>
 									</div>
 								</div>
 							</form>
