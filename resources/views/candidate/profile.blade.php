@@ -161,11 +161,9 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Nationality</label>
                                     <select name="nationality" id="nationality" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
+                                        <option value="1" selected>Korea</option>
+                                        <option value="2">China</option>
+                                        <option value="3">Taiwan</option>
                                     </select>
                                 </div>
                             </div>
@@ -173,11 +171,9 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Passport</label>
                                     <select name="passport" id="passport" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
+                                        <option value="1" selected>Korea</option>
+                                        <option value="2">China</option>
+                                        <option value="3">Taiwan</option>
                                     </select>
                                 </div>
                             </div>
@@ -187,20 +183,19 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Current Visa Status in South Korea</label>
-                                    <select name="currentVisaStatusinSouthKorea" id="currentVisaStatusinSouthKorea" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
+                                    <select name="current_vist_status" id="current_vist_status" class="nice-select">
+                                        <option value="No Visa" selected>No Visa</option>
+                                        <option value="Tourist Visa">Tourist Visa</option>
+                                        <option value="Student Visa">Student Visa</option>
+                                        <option value="E2 Teaching Visa">E2 Teaching Visa</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Do you have any criminal convictions?</label>
-                                    <select name="criminalRecordDeclaration" id="criminalRecordDeclaration" class="nice-select">
-                                        <option value="Yes">Yes</option>
+                                    <select name="criminal_record" id="criminal_record" class="nice-select">
+                                        <option value="Yes" selected>Yes</option>
                                         <option value="No">No</option>
                                     </select>
                                 </div>
@@ -211,21 +206,18 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Graduated From An Accredited University</label>
-                                    <select name="graduatedFromAnAccreditedUniversity" id="graduatedFromAnAccreditedUniversity" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
+                                    <select name="graduation_from_accredited_university" id="graduation_from_accredited_university" class="nice-select">
+                                        <option value="Yes" selected>Yes</option>
+                                        <option value="Test 1">No</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Health Declaration</label>
-                                    <select name="healthDeclaration1" id="healthDeclaration1" class="nice-select">
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
+                                    <select name="is_healthy" id="is_healthy" class="nice-select">
+                                        <option value="Yes" selected>Yes</option>
+                                        <option value="No" selected>No</option>
                                     </select>
                                 </div>
                             </div>
@@ -241,7 +233,7 @@ Profile
                         </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" onclick="nextStep(1)">Next</button>
+                            <button type="button" class="dash-btn-one" id = "visa_eligibility_check" onclick="nextStep(1)">Next</button>
                         </div>
                     </div>
 
@@ -698,6 +690,7 @@ Profile
         </div>
     </div>
 </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
     let currentStep = 1;
 
@@ -726,5 +719,40 @@ Profile
         });
         console.log(formDataObject);
     });
+    $(document).ready(function() {
+
+    $("#visa_eligibility_check").on("click", function(e) {
+        e.preventDefault();
+          $.ajax({
+            type: "POST",
+              url: "{{route('candidate.profile-1.save')}}",
+              data: {
+                _token:"{{csrf_token()}}",
+                nationality: $("#nationality").val(),
+                passport: $("#passport").val(),
+                current_visa_status: $("#current_visa_status").val(),
+                criminal_record: $("#criminal_record").val(),
+                graduation: $("#graduation_from_accredited_university").val(),
+                is_healthy: $("#is_healthy").val(),
+                note: $("#note").val(),
+                        },
+              dataType: 'json',
+              success: function (data) {
+    
+                if (data.status) {
+                    // window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+  
+          return false;
+      });
+    }); 
 </script>
 @endsection

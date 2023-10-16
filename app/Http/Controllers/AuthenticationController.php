@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\CandidatePersonalDetails;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -41,6 +42,9 @@ class AuthenticationController extends Controller
             // $input['password'] = Hash::make($input['password']);
 
             $user = User::create($input);
+            CandidatePersonalDetails::create(['user_id'=>$user->id]);
+
+            
             $user->assignRole('candidate');
             event(new Registered($user));
 
@@ -121,8 +125,8 @@ class AuthenticationController extends Controller
         // $request->fulfill();
         if(auth()->user()->hasRole('candidate'))
         {
-            return redirect('/candidate/dashboard');
             toastr()->success('Dear Candidate, You account has been verified successfully ');
+            return redirect('/candidate/dashboard');
         }elseif(auth()->user()->hasRole('employer'))
         {
             toastr()->success('Dear Employer, You account has been verified successfully ');

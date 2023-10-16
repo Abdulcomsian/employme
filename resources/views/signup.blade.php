@@ -89,7 +89,7 @@ Sign Up
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-20">
-                                        <label>Conform Password*</label>
+                                        <label>Confirm Password*</label>
                                         <input type="password" id="password-confirm" name="password_confirmation" placeholder="Enter Password" class="pass_log_id" required>
                                         <span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
                                     </div>
@@ -157,7 +157,7 @@ Sign Up
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-20">
-                                        <label>Conform Password*</label>
+                                        <label>Confirm Password*</label>
                                         <input type="password" id="password-confirm" name="password_confirmation" placeholder="Enter Password" class="pass_log_id" required>
                                         <span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
                                     </div>
