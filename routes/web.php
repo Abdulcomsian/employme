@@ -25,7 +25,7 @@ use App\Http\Controllers\{
 |
 */
 //frontend routes starts here
-Route::get('signup', [AuthenticationController::class, 'signup'])->name('signup');
+Route::get('signup', [AuthenticationController::class, 'signup'])->name('signup')->middleware('guest');
 Route::post('candidate-signup-save', [AuthenticationController::class, 'candidate_signup_save'])->name('candidate_signup.save');
 Route::post('employer-signup-save', [AuthenticationController::class, 'employer_signup_save'])->name('employer_signup.save');
 // Route::get('employer-signup' , [AuthenticationController::class , 'employersignup'])->name('employersignup');

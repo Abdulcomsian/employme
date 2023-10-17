@@ -18,10 +18,10 @@ class EmailVerification
     {
         if (\Auth::check() && !auth()->user()->email_verified_at) {
             $request->session()->put(['email_verification' => 'yes']);
-            if (auth()->user()->hasRole('candidate') && $request->route()->getName() !== 'getCandidateDashboard' && $request->route()->getName() !== 'authLogout' && $request->route()->getName() !== 'verification.send' && $request->route()->getName() !== 'verification.verify') {
-                return redirect()->route('getCandidateDashboard');
-            }elseif(auth()->user()->hasRole('employer') && ($request->route()->getName() !== 'getEmployerDashboard' && $request->route()->getName() !== 'authLogout' && $request->route()->getName() !== 'verification.verify')) {
-                return redirect()->route('getEmployerDashboard');
+            if (auth()->user()->hasRole('candidate') && $request->route()->getName() !== 'getCandidateProfile' && $request->route()->getName() !== 'authLogout' && $request->route()->getName() !== 'verification.send' && $request->route()->getName() !== 'verification.verify') {
+                return redirect()->route('getCandidateProfiles');
+            }elseif(auth()->user()->hasRole('employer') && ($request->route()->getName() !== 'getEmployerProfile' && $request->route()->getName() !== 'authLogout' && $request->route()->getName() !== 'verification.verify')) {
+                return redirect()->route('getEmployerProfile');
             }
         } 
         else 
