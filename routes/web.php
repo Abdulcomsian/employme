@@ -68,7 +68,7 @@ Route::get('company-location', [UserController::class, 'companyLocation'])->name
 Route::get('company-staff-information', [UserController::class, 'companyStaffInfo'])->name('companyStaffInfo');
 
 //candidate dashboard route starts here
-Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], function() {
+Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','email_verfication']], function() {
     Route::get('dashboard', [CandidateController::class, 'getCandidateDashboard'])->name('getCandidateDashboard');
     Route::get('profile', [CandidateController::class, 'getProfilePage'])->name('getCandidateProfile');
     Route::get('resume', [CandidateController::class, 'getResumePage'])->name('getResumePage');
@@ -87,7 +87,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
 //candidate dashboard route ends here
 
 //employer dashboard route starts here
-Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {
+Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','email_verfication']], function () {
     Route::get('dashboard', [EmployerController::class, 'getEmployerDashboard'])->name('getEmployerDashboard');
     Route::get('employer-profile', [EmployerController::class, 'getEmployerProfilePage'])->name('getEmployerProfile');
     Route::get('job-listing', [JobController::class, 'getJobListing'])->name('getJobListing');
@@ -110,7 +110,7 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
 });
 //owner dashboard route ends here
 Auth::routes();
-Route::get('logout', [AuthenticationController::class,'logout']);
+Route::get('logout', [AuthenticationController::class,'logout'])->name('authLogout');
 Route::post('authLogin', [AuthenticationController::class,'authLogin'])->name('authLogin');
 
 Route::get('/email/verify', function () {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\CandidatePersonalDetails;
+use App\Models\CandidateEducation;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -43,8 +44,8 @@ class AuthenticationController extends Controller
 
             $user = User::create($input);
             CandidatePersonalDetails::create(['user_id'=>$user->id]);
+            CandidateEducation::create(['user_id'=>$user->id]);
 
-            
             $user->assignRole('candidate');
             event(new Registered($user));
 

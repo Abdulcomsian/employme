@@ -35,6 +35,7 @@
                         <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/dashboard') ? asset('assets/images/dashboard-icon/icon_1_active.svg') : asset('assets/images/dashboard-icon/icon_1.svg')}}" alt="" class="lazy-img">
                         <span>Dashboard</span>
                     </a></li>
+                @if(!session('email_verification'))
                 <li><a href="{{route('getCandidateProfile')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/profile') ? 'active' : ''}}">
                         <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
                         <span>My Profile</span>
@@ -63,6 +64,7 @@
                         <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_8.svg')}}" alt="" class="lazy-img">
                         <span>Delete Account</span>
                     </a></li>
+                @endif
             </ul>
         </nav>
         <!-- /.dasboard-main-nav -->

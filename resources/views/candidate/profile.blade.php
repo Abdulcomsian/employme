@@ -153,7 +153,7 @@ Profile
                         <div class="text">Legal & Verification</div>
                     </div>
                 </div>
-                <form id="multi-step-form">
+                <form id="multi-step-form" enctype = "multipart/form-data">
                     <!-- Step 1 -->
                     <div class="step active" id="step-1">
                         <div class="row">
@@ -161,9 +161,9 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Nationality</label>
                                     <select name="nationality" id="nationality" class="nice-select">
-                                        <option value="1" selected>Korea</option>
-                                        <option value="2">China</option>
-                                        <option value="3">Taiwan</option>
+                                        <option value="1" {{$candidatePersonalDetails->nationality == '1' ? 'selected' : ''}}>Korea</option>
+                                        <option value="2" {{$candidatePersonalDetails->nationality == '2' ? 'selected' : ''}}>China</option>
+                                        <option value="3" {{$candidatePersonalDetails->nationality == '3' ? 'selected' : ''}}>Taiwan</option>
                                     </select>
                                 </div>
                             </div>
@@ -171,9 +171,9 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Passport</label>
                                     <select name="passport" id="passport" class="nice-select">
-                                        <option value="1" selected>Korea</option>
-                                        <option value="2">China</option>
-                                        <option value="3">Taiwan</option>
+                                        <option value="1" {{$candidatePersonalDetails->passport == '1' ? 'selected' : ''}}>Korea</option>
+                                        <option value="2" {{$candidatePersonalDetails->passport == '2' ? 'selected' : ''}}>China</option>
+                                        <option value="3" {{$candidatePersonalDetails->passport == '3' ? 'selected' : ''}}>Taiwan</option>
                                     </select>
                                 </div>
                             </div>
@@ -183,11 +183,11 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Current Visa Status in South Korea</label>
-                                    <select name="current_vist_status" id="current_vist_status" class="nice-select">
-                                        <option value="No Visa" selected>No Visa</option>
-                                        <option value="Tourist Visa">Tourist Visa</option>
-                                        <option value="Student Visa">Student Visa</option>
-                                        <option value="E2 Teaching Visa">E2 Teaching Visa</option>
+                                    <select name="current_visa_status" id="current_visa_status" class="nice-select">
+                                        <option value="No Visa" {{$candidatePersonalDetails->current_visa_status == 'No Visa' ? 'selected' : ''}}>No Visa</option>
+                                        <option value="Tourist Visa" {{$candidatePersonalDetails->current_visa_status == 'Tourist Visa' ? 'selected' : ''}}>Tourist Visa</option>
+                                        <option value="Student Visa" {{$candidatePersonalDetails->current_visa_status == 'Student Visa' ? 'selected' : ''}}>Student Visa</option>
+                                        <option value="E2 Teaching Visa" {{$candidatePersonalDetails->current_visa_status == 'E2 Teaching Visa' ? 'selected' : ''}}>E2 Teaching Visa</option>
                                     </select>
                                 </div>
                             </div>
@@ -195,8 +195,8 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Do you have any criminal convictions?</label>
                                     <select name="criminal_record" id="criminal_record" class="nice-select">
-                                        <option value="Yes" selected>Yes</option>
-                                        <option value="No">No</option>
+                                        <option value="Yes" {{$candidatePersonalDetails->criminal_record == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                        <option value="No" {{$candidatePersonalDetails->criminal_record == 'No' ? 'selected' : ''}}>No</option>
                                     </select>
                                 </div>
                             </div>
@@ -207,8 +207,8 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Graduated From An Accredited University</label>
                                     <select name="graduation_from_accredited_university" id="graduation_from_accredited_university" class="nice-select">
-                                        <option value="Yes" selected>Yes</option>
-                                        <option value="Test 1">No</option>
+                                        <option value="Yes" {{$candidatePersonalDetails->graduation == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                        <option value="No" {{$candidatePersonalDetails->graduation == 'No' ? 'selected' : ''}}>No</option>
                                     </select>
                                 </div>
                             </div>
@@ -216,8 +216,8 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Health Declaration</label>
                                     <select name="is_healthy" id="is_healthy" class="nice-select">
-                                        <option value="Yes" selected>Yes</option>
-                                        <option value="No" selected>No</option>
+                                        <option value="Yes" {{$candidatePersonalDetails->is_healthy == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                        <option value="No" {{$candidatePersonalDetails->is_healthy == 'No' ? 'selected' : ''}}>No</option>
                                     </select>
                                 </div>
                             </div>
@@ -227,7 +227,7 @@ Profile
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Note</label>
-                                    <input type="text" name="note" placeholder="A brief explanation that these checks are essential for E2 visa requirements and obtaining teaching positions in South Korea.">
+                                    <input type="text" name="note" placeholder="A brief explanation that these checks are essential for E2 visa requirements and obtaining teaching positions in South Korea." value="{{$candidatePersonalDetails->note}}">
                                 </div>
                             </div>
                         </div>
@@ -243,17 +243,21 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Full Name</label>
-                                    <input type="text" name="fullName" placeholder="First and last name">
+                                    <input type="text" name="fullName" placeholder="First and last name" value= "{{$candidatePersonalDetails->full_name ?? ''}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Profile Photo</label>
                                     <div class="user-avatar-setting d-flex align-items-center">
-                                        <img src="../images/lazy.svg" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+                                        @if($candidatePersonalDetails->profile_picture)
+                                        <img src="{{asset($candidatePersonalDetails->profile_picture)}}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+                                        @else
+                                        <img src="{../images/lazy.svg}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+                                        @endif
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload profile photo
-                                            <input type="file" id="uploadImg" name="uploadImg" placeholder="">
+                                            <input type="file" id="uploadImg" name="profileImage" placeholder="">
                                         </div>
                                         <button class="delete-btn tran3s">Delete</button>
                                     </div>
@@ -265,18 +269,16 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Date of Birth</label>
-                                    <input type="date" name="dob" placeholder="Date of birth">
+                                    <input type="date" name="dateOfBirth" placeholder="Date of birth" value = "{{$candidatePersonalDetails->date_of_birth ?? ''}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Current Location</label>
                                     <select name="currentLocation" id="currentLocation" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
+                                        <option value="China" {{$candidatePersonalDetails->date_of_birth == 'China' ? 'selected' : ''}}>China</option>
+                                        <option value="Taiwan" {{$candidatePersonalDetails->date_of_birth == 'Taiwan' ? 'selected' : ''}}>Taiwan</option>
+                                        <option value="Korea" {{$candidatePersonalDetails->date_of_birth == 'Korea' ? 'selected' : ''}}>Korea</option>
                                     </select>
                                 </div>
                             </div>
@@ -284,7 +286,7 @@ Profile
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" onclick="previousStep(2)">Previous</button>
-                            <button type="button" class="dash-btn-one" onclick="nextStep(2)">Next</button>
+                            <button type="button"  class="dash-btn-one" id = "candidate-personal-details" onclick="nextStep(2)">Next</button>
                         </div>
                     </div>
 
@@ -294,18 +296,17 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Highest Degree Obtained</label>
-                                    <input type="date" name="highestDegreeObtained" placeholder="Essential for E2 visa – a bachelor's degree or higher is typically required.">
+                                    <input type="text" name="highestDegreeObtained" placeholder="Essential for E2 visa – a bachelor's degree or higher is typically required." value = "{{$candidateEducationalDetails->highest_degree ?? ''}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Field of Study</label>
                                     <select name="fieldOfStudy" id="fieldOfStudy" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
+                                        <option value="Engineering" {{$candidateEducationalDetails->field_of_study == 'Engineering' ? 'selected' : ''}}>Engineering</option>
+                                        <option value="MBBS" {{$candidateEducationalDetails->field_of_study == 'MBBS' ? 'selected' : ''}}>MBBS</option>
+                                        <option value="Business" {{$candidateEducationalDetails->field_of_study == 'Business' ? 'selected' : ''}}>Business</option>
+                                        <option value="Arts" {{$candidateEducationalDetails->field_of_study == 'Arts' ? 'selected' : ''}}>Arts</option>
                                     </select>
                                 </div>
                             </div>
@@ -315,25 +316,14 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">University/College Name & Country</label>
-                                    <select name="universityCollegeNameCountry" id="universityCollegeNameCountry" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                    </select>
+                                    <input type="text" name="universityCollegeNameCountry" placeholder="Name of College or Univesity and Country" value = "{{$candidateEducationalDetails->field_of_study ?? ''}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Years of Teaching Experience</label>
-                                    <select name="yearsOfTeachingExperience" id="yearsOfTeachingExperience" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                    </select>
+                                    <input type="number" name="yearsOfTeachingExperience" placeholder="Name of College or Univesity and Country" value = "{{$candidateEducationalDetails->teaching_experiance ?? ''}}">
+
                                 </div>
                             </div>
                         </div>
@@ -343,8 +333,8 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">TEFL/TESOL Certification</label>
                                     <select name="TEFLTESOLCertification" id="TEFLTESOLCertification" class="nice-select">
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
+                                        <option value="Yes" {{$candidateEducationalDetails->tefl_tesol_clarification == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                        <option value="No" {{$candidateEducationalDetails->tefl_tesol_clarification == 'No' ? 'selected' : ''}}>No</option>
                                     </select>
                                 </div>
                             </div>
@@ -352,8 +342,8 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Previous Teaching in Korea</label>
                                     <select name="previousTeachingInKorea" id="previousTeachingInKorea" class="nice-select">
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
+                                        <option value="Yes" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                        <option value="No" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'No' ? 'selected' : ''}}>No</option>
                                     </select>
                                 </div>
                             </div>
@@ -361,7 +351,7 @@ Profile
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
-                            <button type="button" class="dash-btn-one" onclick="nextStep(3)">Next</button>
+                            <button type="button" class="dash-btn-one" id="candidate-educational-professional-details" onclick="nextStep(3)">Next</button>
                         </div>
                     </div>
 
@@ -728,15 +718,80 @@ Profile
               url: "{{route('candidate.profile-1.save')}}",
               data: {
                 _token:"{{csrf_token()}}",
-                nationality: $("#nationality").val(),
-                passport: $("#passport").val(),
-                current_visa_status: $("#current_visa_status").val(),
-                criminal_record: $("#criminal_record").val(),
-                graduation: $("#graduation_from_accredited_university").val(),
-                is_healthy: $("#is_healthy").val(),
-                note: $("#note").val(),
+                nationality: $("#multi-step-form").find("[name=nationality]").val(),
+                passport: $("#multi-step-form").find("[name=passport]").val(),
+                current_visa_status: $("#multi-step-form").find("[name=current_visa_status]").val(),
+                criminal_record: $("#multi-step-form").find("[name=criminal_record]").val(),
+                graduation: $("#multi-step-form").find("[name=graduation_from_accredited_university]").val(),
+                is_healthy: $("#multi-step-form").find("[name=is_healthy]").val(),
+                note: $("#multi-step-form").find("[name=note]").val(),
                         },
               dataType: 'json',
+              success: function (data) {
+    
+                if (data.status) {
+                    // window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+  
+          return false;
+      });
+
+      $("#candidate-personal-details").on("click", function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        formData.append("full_name", $("#multi-step-form").find("[name=fullName]").val());
+        formData.append("current_location", $("#multi-step-form").find("[name=currentLocation]").val());
+        formData.append("date_of_birth", $("#multi-step-form").find("[name=dateOfBirth]").val());
+        formData.append("profile_picture", $('#uploadImg')[0].files[0]);
+          $.ajax({
+            type: "POST",
+              url: "{{route('candidate.profile-2.save')}}",
+              data: formData,
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              success: function (data) {
+    
+                if (data.status) {
+                    // window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+  
+          return false;
+      });
+      $("#candidate-educational-professional-details").on("click", function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        formData.append('highest_degree',$("#multi-step-form").find('[name=highestDegreeObtained]').val())
+        formData.append('field_of_study',$("#multi-step-form").find('[name=fieldOfStudy]').val())
+        formData.append('institute_name',$("#multi-step-form").find('[name=universityCollegeNameCountry]').val())
+        formData.append('teaching_experiance',$("#multi-step-form").find('[name=yearsOfTeachingExperience]').val())
+        formData.append('tefl_tesol_clarification',$("#multi-step-form").find('[name=TEFLTESOLCertification]').val())
+        formData.append('prevous_teaching_in_korea',$("#multi-step-form").find('[name=previousTeachingInKorea]').val())
+          $.ajax({
+            type: "POST",
+              url: "{{route('candidate.profile-3.save')}}",
+              data: formData,
+              dataType: 'json',
+              contentType: false,
+              processData: false,
               success: function (data) {
     
                 if (data.status) {

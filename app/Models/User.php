@@ -47,4 +47,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function candidatePersonalDetails()
+    {
+        return $this->hasOne(CandidatePersonalDetails::class,'user_id');
+    }
+    public function candidateEducation()
+    {
+        return $this->hasOne(CandidateEducation::class,'user_id');
+    }
 }

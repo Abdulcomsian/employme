@@ -58,7 +58,16 @@ Dashboard
 			</div>
 		</header>
 		<!-- End Header -->
-
+		   @if(session('email_verification'))
+			<div class="alert alert-danger">
+				{{ __('A verification link has been sent to your email account.') }}
+				{{ __('If you did not receive the email') }},
+				<form class="d-inline" method="POST" action="{{ route('verification.send') }}">
+					@csrf
+					<button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to resend link') }}</button>.
+				</form>
+			</div>
+		  @endif
 		<h2 class="main-title">Dashboard</h2>
 		<div class="row">
 			<div class="col-lg-3 col-6">
