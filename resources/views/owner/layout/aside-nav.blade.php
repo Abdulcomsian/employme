@@ -2,7 +2,7 @@
     <div class="position-relative">
         <div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
             <a href="candidate-dashboard-index.html">
-                <img src="images/logo_01.png" alt="">
+                <img src="{{asset('assets/images/logo_01.png')}}" alt="">
             </a>
             <button class="close-btn d-block d-md-none"><i class="bi bi-x-lg"></i></button>
         </div>
@@ -55,7 +55,16 @@
                             data-src="{{ request()->is('owner/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
                         <span>My Profile</span>
-                    </a></li>
+                    </a>
+                </li>
+                <li><a href="{{ route('getProfessionalSkills') }}"
+                        class="d-flex w-100 align-items-center {{ request()->is('owner/professional-skills') ? 'active' : '' }}">
+                        <img src="{{ asset('assets/images/lazy.svg') }}"
+                            data-src="{{ request()->is('owner/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
+                            alt="" class="lazy-img">
+                        <span>Professional Skills</span>
+                    </a>
+                </li>
 
                 <li><a href="{{ route('getUserProfile') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/users') ? 'active' : '' }}">

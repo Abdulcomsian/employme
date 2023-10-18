@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\CandidatePersonalDetails;
 use App\Models\CandidateEducation;
+use App\Models\ProfessionalSkills;
+use App\Models\CandidatePreferences;
+use App\Models\Cities;
+use App\Models\Countries;
 use Illuminate\Support\Facades\Auth;
 class CandidateController extends Controller
 {
@@ -19,7 +23,9 @@ class CandidateController extends Controller
     {
         $candidatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
         $candidateEducationalDetails = CandidateEducation::where('user_id',Auth::id())->first();
-        return view('candidate.profile',compact('candidatePersonalDetails','candidateEducationalDetails'));
+        $professionalSkills = ProfessionalSkills::all();
+        $southKoreaCities = Cities::where('country_id',116)->get();
+        return view('candidate.profile',compact('candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities'));
     }
 
     public function getResumePage()
@@ -47,7 +53,7 @@ class CandidateController extends Controller
         if ($request->file('profile_picture')) {
             $file = $request->file('profile_picture');
             $filePath = candidateProfilePicturePath();
-            $imagename = saveCandidateProfilePicture($updatePersonalDetails->profile_picture, $file, $filePath);
+            $imagename = saveFile($updatePersonalDetails->profile_picture, $file, $filePath);
         }
         // End of saving candidate profile code
 
@@ -70,15 +76,52 @@ class CandidateController extends Controller
     }
     public function saveProfile4(Request $request)
     {
-        dd($request->all());
+        $input = $request->except('_token');
+        $updatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id());
+        $updatePreferencesDetails->update($input);
+         return response()->json([
+                        "status" => true, 
+                        "message" => url("Profile Updade Successfully")
+                    ]);
     }
     public function saveProfile5(Request $request)
     {
-        dd($request->all());
+        $input = $request->except('_token');
+        $updatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id());
+        $updatePersonalDetails->update($input);
+         return response()->json([
+                        "status" => true, 
+                        "message" => url("Profile Updaded Successfully")
+                    ]);
     }
     public function saveProfile6(Request $request)
     {
-        dd($request->all());
+        $updatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
+        // save candidate profile code
+        $video_url = $updatePreferencesDetails->video_url;
+        if ($request->file('video_url')) {
+            $file = $request->file('video_url');
+            $filePath = candidateTeachingVideoPath();
+            $video_url = saveFile($updatePreferencesDetails->video_url, $file, $filePath);
+        }
+        // End of saving candidate profile code
+
+        $input = $request->except('_token','video_url');
+        $updatePreferencesDetails->update(array_merge($input,['video_url'=>$video_url]));
+         return response()->json([
+                        "status" => true, 
+                        "message" => url("Personal Details Updated Successfully")
+                    ]);
+    }
+    public function saveProfile7(Request $request)
+    {
+        $input = $request->except('_token');
+        $updatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id());
+        $updatePersonalDetails->update($input);
+         return response()->json([
+                        "status" => true, 
+                        "message" => url("Profile Updaded Successfully")
+                    ]);
     }
 
 }

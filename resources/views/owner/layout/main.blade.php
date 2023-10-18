@@ -12,6 +12,11 @@
 			<script src="vendor/respond.js"></script>
 		<![endif]-->
 	@yield('page-css')
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
+		<!--  test -->
+		<link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}" media="all">	
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.css')}}" media="all">	
 </head>
 
 <body>
@@ -87,7 +92,7 @@
 		@include('owner.layout.footer')
 
 		@yield('page-script')
-
+	
 	</div> <!-- /.main-page-wrapper -->
 </body>
 

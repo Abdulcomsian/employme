@@ -24,6 +24,9 @@ class CandidatePersonalDetails extends Model
         'language_proficiency',
         'user_id',
         'introduction',
+        'health_declaration',
+        'terms_and_conditions',
+        'criminal_background',
     ];
 
 }

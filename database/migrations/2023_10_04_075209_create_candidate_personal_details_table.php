@@ -25,7 +25,10 @@ return new class extends Migration
             $table->text('current_location')->nullable();
             $table->longText('introduction')->nullable();
             $table->longText('why_interested_teaching_in_korea')->nullable();
-            $table->enum('language_proficiency', ['Native', 'Fluent','Intermediate','Professional'])->default('Native');
+            $table->longText('language_proficiency')->nullable();
+            $table->longText('health_declaration')->nullable();
+            $table->longText('terms_and_conditions')->nullable();
+            $table->longText('criminal_background')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

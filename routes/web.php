@@ -107,6 +107,11 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('dashboard', [OwnerController::class, 'getOwnerDashboard'])->name('getOwnerDashboard');
     Route::get('profile', [OwnerController::class, 'getOwnerProfile'])->name('getOwnerProfile');
     Route::get('users', [OwnerController::class, 'getUserProfile'])->name('getUserProfile');
+    Route::get('professional-skills', [OwnerController::class, 'getProfessionalSkills'])->name('getProfessionalSkills');
+    Route::post('save-professional-skill', [OwnerController::class, 'storeProfessionalSkill'])->name('saveProfessionalSkill');
+    Route::get('edit-professional-skill/{id}', [OwnerController::class, 'editProfessionalSkill'])->name('editProfessionalSkill');
+    Route::put('update-professional-skill/{id}', [OwnerController::class, 'updateProfessionalSkill'])->name('updateProfessionalSkill');
+    Route::get('delete-professional-skill/{id}', [OwnerController::class, 'deleteProfessionalSkill'])->name('deleteProfessionalSkill');
 });
 //owner dashboard route ends here
 Auth::routes();

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('preferred_city_region')->nullable();
             $table->text('school_type')->nullable();
             $table->text('age_group')->nullable();
+            $table->longText('video_url')->nullable();
+            $table->longText('other_platform_video_url')->nullable();
             $table->string('salary_expection')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

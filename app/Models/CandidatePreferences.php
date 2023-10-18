@@ -18,6 +18,7 @@ class CandidatePreferences extends Model
         'clarification_details_if_yes',
         'prevous_teaching_in_korea',
         'experiance_description_if_yes',
+        'video_url',
         'user_id',
         
     ];

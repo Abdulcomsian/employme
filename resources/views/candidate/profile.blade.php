@@ -361,12 +361,13 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Skills</label>
-                                    <select name="skills" id="skills" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
+                                    <select name="professionalSkills" id="professionalSkills" class="nice-select" multiple>
+                                        <option value= "" selected>Select</option>
+                                        @isset($professionalSkills)
+                                        @foreach($professionalSkills as $professionalSkill)
+                                        <option value="{{$professionalSkill->id}}">{{$professionalSkill->name}}</option>
+                                        @endforeach
+                                        @endisset
                                     </select>
                                 </div>
                             </div>
@@ -374,11 +375,12 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Preferred City/Region in South Korea</label>
                                     <select name="preferredCityRegionInSouthKorea" id="preferredCityRegionInSouthKorea" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
+                                        <option value= "" selected>Select</option>
+                                        @isset($southKoreaCities)
+                                        @foreach($southKoreaCities as $southKoreaCity)
+                                        <option value="{{$southKoreaCity->id}}">{{$southKoreaCity->name}}</option>
+                                        @endforeach
+                                        @endisset
                                     </select>
                                 </div>
                             </div>
@@ -389,11 +391,11 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">School Type Preference</label>
                                     <select name="schoolTypePreference" id="schoolTypePreference" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
+                                        <option value= "" selected>Select</option>
+                                        <option value="Public">Public</option>
+                                        <option value="Private">Private</option>
+                                        <option value="Hagwon">Hagwon</option>
+                                        <option value="University">University</option>
                                     </select>
                                 </div>
                             </div>
@@ -401,11 +403,12 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Age Group Preference</label>
                                     <select name="ageGroupPreference" id="ageGroupPreference" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
+                                        <option value= "" selected>Select</option>
+                                        <option value="Kindergarten">Kindergarten</option>
+                                        <option value="Elementary">Elementary</option>
+                                        <option value="Middle School">Middle School</option>
+                                        <option value="High School">High School</option>
+                                        <option value="Adults">Adults</option>
                                     </select>
                                 </div>
                             </div>
@@ -415,12 +418,12 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Salary Expectations</label>
-                                    <select name="salaryExpectations" id="salaryExpectations" class="nice-select">
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 1">Test 1</option>
+                                    <select value= "" name="salaryExpectations" id="salaryExpectations" class="nice-select">
+                                        <option selected>Select</option>
+                                        <option value="10K">10K</option>
+                                        <option value="20K">20K</option>
+                                        <option value="50K+">50K+</option>
+                                        <option value="100K+">100K+</option>
                                     </select>
                                 </div>
                             </div>
@@ -428,7 +431,7 @@ Profile
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" onclick="previousStep(4)">Previous</button>
-                            <button type="button" class="dash-btn-one" onclick="nextStep(4)">Next</button>
+                            <button type="button" class="dash-btn-one" id = "candidate-preferences-details" onclick="nextStep(4)">Next</button>
                         </div>
                     </div>
 
@@ -460,7 +463,7 @@ Profile
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" onclick="previousStep(5)">Previous</button>
-                            <button type="button" class="dash-btn-one" onclick="nextStep(5)">Next</button>
+                            <button type="button" class="dash-btn-one" id= "candidate-introduction-details" onclick="nextStep(5)">Next</button>
                         </div>
                     </div>
 
@@ -473,7 +476,7 @@ Profile
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload new video
-                                            <input type="file" id="uploadImg" name="teachingVideo" placeholder="">
+                                            <input type="file" id="teachingVideo" name="teachingVideo" placeholder="">
                                         </div>
                                         <button class="delete-btn tran3s">Delete</button>
                                     </div>
@@ -489,7 +492,7 @@ Profile
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" onclick="previousStep(6)">Previous</button>
-                            <button type="button" class="dash-btn-one" onclick="nextStep(6)">Next</button>
+                            <button type="button" class="dash-btn-one" id="teaching-video-details" onclick="nextStep(6)">Next</button>
                         </div>
                     </div>
 
@@ -534,7 +537,7 @@ Profile
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" onclick="previousStep(7)">Previous</button>
-                            <button type="submit" class="dash-btn-one">Submit</button>
+                            <button type="submit" class="dash-btn-one" id = "legal-verification-details">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -775,6 +778,8 @@ Profile
   
           return false;
       });
+  
+      // Canidate Educational and Professional Information
       $("#candidate-educational-professional-details").on("click", function(e) {
         e.preventDefault();
         var formData = new FormData();
@@ -788,6 +793,135 @@ Profile
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-3.save')}}",
+              data: formData,
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              success: function (data) {
+    
+                if (data.status) {
+                    // window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+  
+          return false;
+      });
+
+      // Skills and Preferences save data
+      $("#candidate-preferences-details").on("click", function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        formData.append('skills',$("#multi-step-form").find('[name=professionalSkills]').val());
+        formData.append('preferred_city_region',$("#multi-step-form").find('[name=preferredCityRegionInSouthKorea]').val());
+        formData.append('school_type',$("#multi-step-form").find('[name=schoolTypePreference]').val());
+        formData.append('age_group',$("#multi-step-form").find('[name=ageGroupPreference]').val());
+        formData.append('salary_expection',$("#multi-step-form").find('[name=salaryExpectations]').val());
+          $.ajax({
+            type: "POST",
+              url: "{{route('candidate.profile-4.save')}}",
+              data: formData,
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              success: function (data) {
+    
+                if (data.status) {
+                    // window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+  
+          return false;
+      });
+
+      // Candidate Introduction Details
+      $("#candidate-introduction-details").on("click", function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        formData.append('introduction',$("#multi-step-form").find('[name=bioIntroduction]').val());
+        formData.append('why_interested_teaching_in_korea',$("#multi-step-form").find('[name=whyInterestedInTeachingInSouthKorea]').val());
+        formData.append('language_proficiency',$("#multi-step-form").find('[name=languageProficiency]').val());
+          $.ajax({
+            type: "POST",
+              url: "{{route('candidate.profile-5.save')}}",
+              data: formData,
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              success: function (data) {
+    
+                if (data.status) {
+                    // window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+  
+          return false;
+      });
+      //Teaching Video Details Saving
+      
+      $("#teaching-video-details").on("click", function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        formData.append("video_url", $('#teachingVideo')[0].files[0]);
+        formData.append('other_platform_video_url',$("#multi-step-form").find('[name=linkToVideoAsk]').val());
+          $.ajax({
+            type: "POST",
+              url: "{{route('candidate.profile-6.save')}}",
+              data: formData,
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              success: function (data) {
+    
+                if (data.status) {
+                    // window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+  
+          return false;
+      });
+      //Legal Verification
+      $("#legal-verification-details").on("click", function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        formData.append('criminal_background',$("#multi-step-form").find('[name=criminalBackgroundCheck]').val());
+        formData.append('health_declaration',$("#multi-step-form").find('[name=healthDeclaration2]').val());
+        formData.append('terms_and_conditions',$("#multi-step-form").find('[name=TermsAndConditions]').val());
+     
+          $.ajax({
+            type: "POST",
+              url: "{{route('candidate.profile-7.save')}}",
               data: formData,
               dataType: 'json',
               contentType: false,
