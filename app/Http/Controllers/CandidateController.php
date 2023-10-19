@@ -23,9 +23,10 @@ class CandidateController extends Controller
     {
         $candidatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
         $candidateEducationalDetails = CandidateEducation::where('user_id',Auth::id())->first();
+        $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
         $professionalSkills = ProfessionalSkills::all();
         $southKoreaCities = Cities::where('country_id',116)->get();
-        return view('candidate.profile',compact('candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities'));
+        return view('candidate.profile',compact('candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities','candidatePreferencesDetails'));
     }
 
     public function getResumePage()
@@ -38,9 +39,9 @@ class CandidateController extends Controller
         $input = $request->except('_token');
         $updatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id());
         $updatePersonalDetails->update($input);
-         return response()->json([
+        return response()->json([
                         "status" => true, 
-                        "message" => url("Profile Updade Successfully")
+                        "message" => url("Profile Updated Successfully")
                     ]);
                
     }

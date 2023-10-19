@@ -362,10 +362,10 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Skills</label>
                                     <select name="professionalSkills" id="professionalSkills" class="nice-select" multiple>
-                                        <option value= "" selected>Select</option>
+                                        <option value= "" {{$candidatePreferencesDetails->skills == '' ? 'selected' : ''}}>Select</option>
                                         @isset($professionalSkills)
                                         @foreach($professionalSkills as $professionalSkill)
-                                        <option value="{{$professionalSkill->id}}">{{$professionalSkill->name}}</option>
+                                        <option value="{{$professionalSkill->id}}" {{$candidatePreferencesDetails->skills == $southKoreaCity->id ? 'selected' : ''}}>{{$professionalSkill->name}}</option>
                                         @endforeach
                                         @endisset
                                     </select>
@@ -375,10 +375,10 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Preferred City/Region in South Korea</label>
                                     <select name="preferredCityRegionInSouthKorea" id="preferredCityRegionInSouthKorea" class="nice-select">
-                                        <option value= "" selected>Select</option>
+                                        <option value= "" {{$candidatePreferencesDetails->preferred_city_region == '' ? 'selected' : ''}}>Select</option>
                                         @isset($southKoreaCities)
                                         @foreach($southKoreaCities as $southKoreaCity)
-                                        <option value="{{$southKoreaCity->id}}">{{$southKoreaCity->name}}</option>
+                                        <option value="{{$southKoreaCity->id}}" {{$candidatePreferencesDetails->preferred_city_region == $southKoreaCity->id ? 'selected' : ''}}>{{$southKoreaCity->name}}</option>
                                         @endforeach
                                         @endisset
                                     </select>
@@ -391,11 +391,11 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">School Type Preference</label>
                                     <select name="schoolTypePreference" id="schoolTypePreference" class="nice-select">
-                                        <option value= "" selected>Select</option>
-                                        <option value="Public">Public</option>
-                                        <option value="Private">Private</option>
-                                        <option value="Hagwon">Hagwon</option>
-                                        <option value="University">University</option>
+                                        <option value= "" {{$candidatePreferencesDetails->school_type == '' ? 'selected' : ''}}>Select</option>
+                                        <option value="Public"  {{$candidatePreferencesDetails->school_type == 'Public' ? 'selected' : ''}}>Public</option>
+                                        <option value="Private" {{$candidatePreferencesDetails->school_type == 'Private' ? 'selected' : ''}}>Private</option>
+                                        <option value="Hagwon" {{$candidatePreferencesDetails->school_type == 'Hagwon' ? 'selected' : ''}}>Hagwon</option>
+                                        <option value="University" {{$candidatePreferencesDetails->school_type == 'University' ? 'selected' : ''}}>University</option>
                                     </select>
                                 </div>
                             </div>
@@ -403,12 +403,12 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Age Group Preference</label>
                                     <select name="ageGroupPreference" id="ageGroupPreference" class="nice-select">
-                                        <option value= "" selected>Select</option>
-                                        <option value="Kindergarten">Kindergarten</option>
-                                        <option value="Elementary">Elementary</option>
-                                        <option value="Middle School">Middle School</option>
-                                        <option value="High School">High School</option>
-                                        <option value="Adults">Adults</option>
+                                        <option value= "" {{$candidatePreferencesDetails->age_group == '' ? 'selected' : ''}}>Select</option>
+                                        <option value="Kindergarten" {{$candidatePreferencesDetails->age_group == 'Kindergarten' ? 'selected' : ''}}>Kindergarten</option>
+                                        <option value="Elementary" {{$candidatePreferencesDetails->age_group == 'Elementary' ? 'selected' : ''}} >Elementary</option>
+                                        <option value="Middle School" {{$candidatePreferencesDetails->age_group == 'Middle School' ? 'selected' : ''}}>Middle School</option>
+                                        <option value="High School" {{$candidatePreferencesDetails->age_group == 'High School' ? 'selected' : ''}}>High School</option>
+                                        <option value="Adults" {{$candidatePreferencesDetails->age_group == 'Adults' ? 'selected' : ''}}>Adults</option>
                                     </select>
                                 </div>
                             </div>
@@ -419,11 +419,11 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Salary Expectations</label>
                                     <select value= "" name="salaryExpectations" id="salaryExpectations" class="nice-select">
-                                        <option selected>Select</option>
-                                        <option value="10K">10K</option>
-                                        <option value="20K">20K</option>
-                                        <option value="50K+">50K+</option>
-                                        <option value="100K+">100K+</option>
+                                        <option {{$candidatePreferencesDetails->salary_expection == '' ? 'selected' : ''}}>Select</option>
+                                        <option value="10K" {{$candidatePreferencesDetails->salary_expection == '10K' ? 'selected' : ''}}>10K</option>
+                                        <option value="20K" {{$candidatePreferencesDetails->salary_expection == '20K' ? 'selected' : ''}}>20K</option>
+                                        <option value="50K+" {{$candidatePreferencesDetails->salary_expection == '50K+' ? 'selected' : ''}}>50K+</option>
+                                        <option value="100K+" {{$candidatePreferencesDetails->salary_expection == '100K+' ? 'selected' : ''}}>100K+</option>
                                     </select>
                                 </div>
                             </div>
@@ -441,13 +441,13 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Bio/Introduction</label>
-                                    <input type="text" name="bioIntroduction" placeholder="Write a few sentences or a short paragraph about themselves.">
+                                    <input type="text" name="bioIntroduction" placeholder="Write a few sentences or a short paragraph about themselves." value = "{{$candidatePersonalDetails->introduction ?? ''}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Why Interested in Teaching in South Korea</label>
-                                    <input type="text" name="whyInterestedInTeachingInSouthKorea" placeholder="Allows potential employers to gauge enthusiasm and fit.">
+                                    <input type="text" name="whyInterestedInTeachingInSouthKorea" placeholder="Allows potential employers to gauge enthusiasm and fit." value = "{{$candidatePersonalDetails->why_interested_teaching_in_korea ?? ''}}">
                                 </div>
                             </div>
                         </div>
@@ -456,7 +456,7 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Language Proficiency</label>
-                                    <input type="text" name="languageProficiency" placeholder="Specifically their English fluency level, and proficiency in any other languages including Korean.">
+                                    <input type="text" name="languageProficiency" placeholder="Specifically their English fluency level, and proficiency in any other languages including Korean." value= "{{$candidatePersonalDetails->language_proficiency ?? ''}}">
                                 </div>
                             </div>
                         </div>
@@ -478,14 +478,18 @@ Profile
                                             Upload new video
                                             <input type="file" id="teachingVideo" name="teachingVideo" placeholder="">
                                         </div>
+
                                         <button class="delete-btn tran3s">Delete</button>
+                                    </div>
+                                    <div style = "padding-left:20px;">
+                                        <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_url)}}" target = "_blank">File</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Link to VideoAsk</label>
-                                    <input type="text" name="linkToVideoAsk" placeholder="A direct link or button that takes them to the VideoAsk platform to record or upload their video (this is mandatory but can be completed after the sign-up as well)">
+                                    <input type="text" name="linkToVideoAsk" placeholder="A direct link or button that takes them to the VideoAsk platform to record or upload their video (this is mandatory but can be completed after the sign-up as well)" value = "{{$candidatePreferencesDetails->other_platform_video_url ?? ''}}">
                                 </div>
                             </div>
                         </div>
@@ -502,7 +506,7 @@ Profile
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Criminal Background Check</label>
-                                    <input type="text" name="criminalBackgroundCheck" placeholder="A note that this will be required later for the E2 visa, so they should be prepared to provide it upon job offer. The document must be apostilled and no older than 6 months">
+                                    <input type="text" name="criminalBackgroundCheck" value = "{{$candidatePersonalDetails->criminal_background ?? ''}}" placeholder="A note that this will be required later for the E2 visa, so they should be prepared to provide it upon job offer. The document must be apostilled and no older than 6 months">
                                 </div>
                             </div>
                         </div>
@@ -521,7 +525,7 @@ Profile
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Health Declaration</label>
-                                    <input type="text" name="healthDeclaration2" placeholder="A short note or checkbox stating they have no health conditions that would impede teaching or living abroad.">
+                                    <input type="text" name="healthDeclaration2" value = "{{$candidatePersonalDetails->health_declaration ?? ''}}" placeholder="A short note or checkbox stating they have no health conditions that would impede teaching or living abroad.">
                                 </div>
                             </div>
                         </div>
@@ -530,7 +534,7 @@ Profile
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Terms and Conditions</label>
-                                    <input type="text" name="TermsAndConditions" placeholder="Including a privacy clause about how their data will be used.">
+                                    <input type="text" name="TermsAndConditions" value = "{{$candidatePersonalDetails->terms_and_conditions ?? ''}}" placeholder="Including a privacy clause about how their data will be used.">
                                 </div>
                             </div>
                         </div>

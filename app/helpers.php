@@ -98,4 +98,5 @@ function deleteAllCandidateVideo()
     } else {
         return "The specified directory does not exist.";
     }
+    
 }

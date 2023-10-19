@@ -11,7 +11,9 @@
                 <div class="right-widget ms-auto order-lg-3">
                     <ul class="d-flex align-items-center style-none">
                         <li class="d-none d-md-block"><a href="employer/post-a-job" class="job-post-btn tran3s">Post Job</a></li>
+                        @guest
                         <li><a href="#" class="login-btn-one" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
+                        @endguest
                         <li class="d-none d-md-block ms-4"><a href="candidates-marketplace" class="btn-one">Hire Top Talents</a></li>
                     </ul>
                 </div> <!--/.right-widget-->
@@ -89,15 +91,23 @@
                                     </li>
                                 </ul>
                             </li>
+                            @auth
                             <li class="nav-item dropdown dashboard-menu">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Dashboard
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{route('getCandidateDashboard')}}" class="dropdown-item" target="_blank"><span>Candidate Dashboard</span></a></li>
-                                    <li><a href="{{route('getEmployerDashboard')}}" class="dropdown-item" target="_blank"><span>Employer Dashboard</span></a></li>
-                                    <li><a href="{{route('getOwnerDashboard')}}" class="dropdown-item" target="_blank"><span>Owner Dashboard</span></a></li>
+                                    @role('candidate')
+                                    <li><a href="{{route('getCandidateDashboard')}}" class="dropdown-item" ><span>Candidate Dashboard</span></a></li>
+                                    @endrole
+                                    @role('employer')
+                                    <li><a href="{{route('getEmployerDashboard')}}" class="dropdown-item" ><span>Employer Dashboard</span></a></li>
+                                    @endrole
+                                    @role('admin')
+                                    <li><a href="{{route('getOwnerDashboard')}}" class="dropdown-item" ><span>Owner Dashboard</span></a></li>
+                                    @endrole
                                 </ul>
                             </li>
+                            @endauth
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="/" role="button">Home
                                 </a>

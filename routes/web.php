@@ -114,7 +114,7 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('delete-professional-skill/{id}', [OwnerController::class, 'deleteProfessionalSkill'])->name('deleteProfessionalSkill');
 });
 //owner dashboard route ends here
-Auth::routes();
+// Auth::routes();
 Route::get('logout', [AuthenticationController::class,'logout'])->name('authLogout');
 Route::post('authLogin', [AuthenticationController::class,'authLogin'])->name('authLogin');
 

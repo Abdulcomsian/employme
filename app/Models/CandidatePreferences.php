@@ -19,6 +19,7 @@ class CandidatePreferences extends Model
         'prevous_teaching_in_korea',
         'experiance_description_if_yes',
         'video_url',
+        'other_platform_video_url',
         'user_id',
         
     ];

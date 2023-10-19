@@ -89,6 +89,8 @@ class AuthenticationController extends Controller
                 ]);
         } else {
             if (Auth::attempt($request->only(["email", "password"]))) {
+                toastr()->success('Logged In Successfully');
+
                  if(auth()->user()->hasRole('candidate'))
                  {
                     return response()->json([
@@ -142,6 +144,7 @@ class AuthenticationController extends Controller
 
     public function logout(Request $request) {
         Auth::logout();
+        toastr()->success('Logged Out Successfully');
         return redirect()->route('home');
       }
 }
