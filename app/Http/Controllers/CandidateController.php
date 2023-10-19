@@ -54,7 +54,7 @@ class CandidateController extends Controller
         if ($request->file('profile_picture')) {
             $file = $request->file('profile_picture');
             $filePath = candidateProfilePicturePath();
-            $imagename = saveFile($updatePersonalDetails->profile_picture, $file, $filePath);
+            $imagename = saveFile($file, $filePath , $updatePersonalDetails->profile_picture);
         }
         // End of saving candidate profile code
 
@@ -103,7 +103,7 @@ class CandidateController extends Controller
         if ($request->file('video_url')) {
             $file = $request->file('video_url');
             $filePath = candidateTeachingVideoPath();
-            $video_url = saveFile($updatePreferencesDetails->video_url, $file, $filePath);
+            $video_url = saveFile($file, $filePath , $updatePreferencesDetails->video_url);
         }
         // End of saving candidate profile code
 
