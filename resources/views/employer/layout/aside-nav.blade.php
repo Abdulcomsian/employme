@@ -39,7 +39,7 @@
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/employer-profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
 						<span>My Profile</span>
 					</a></li>
-
+					@if(!session('email_verification') && !session('profile_completion'))
 				<li><a href="{{route('getJobListing')}}" class="d-flex w-100 align-items-center {{request()->is('employer/job-listing') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/job-listing') ? asset('assets/images/dashboard-icon/icon_3_active.svg') : asset('assets/images/dashboard-icon/icon_3.svg')}}" alt="" class="lazy-img">
 						<span>Job Listings</span>
@@ -71,8 +71,10 @@
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/employer-dashboard-settings') ? asset('assets/images/dashboard-icon/icon_7_active.svg') : asset('assets/images/dashboard-icon/icon_7.svg')}}" alt="" class="lazy-img">
 						<span>Account Settings</span>
 					</a></li>
+					  @endif
 
-				<!-- <li><a href="#" class="d-flex w-100 align-items-center" data-bs-toggle="modal" data-bs-target="#deleteModal">
+				
+					<!-- <li><a href="#" class="d-flex w-100 align-items-center" data-bs-toggle="modal" data-bs-target="#deleteModal">
 							<img src="../images/lazy.svg" data-src="images/icon/icon_8.svg" alt="" class="lazy-img">
 							<span>Delete Account</span>
 						</a></li>
@@ -86,7 +88,7 @@
 		<div class="profile-complete-status">
 			<div class="progress-value fw-500">{{employeeProfilePercentage()}}%</div>
 			<div class="progress-line position-relative">
-				<div class="inner-line" style="width:80%;"></div>
+				<div class="inner-line" style="width:{{employeeProfilePercentage()}}%;"></div>
 			</div>
 			<p>Profile Complete</p>
 		</div>

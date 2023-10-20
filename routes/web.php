@@ -77,13 +77,6 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     Route::get('messages', [MessageController::class, 'getCandidateMessagePage'])->name('getCandidateMessages');
     Route::get('job-alert', [JobController::class, 'getJobAlertPage'])->name('getJobAlert');
     Route::get('save-job', [JobController::class, 'getSaveJobsPage'])->name('getSaveJob');
-    Route::post('candidate/save-profile-1',[CandidateController::class,'saveProfile1'])->name('candidate.profile-1.save');
-    Route::post('candidate/save-profile-2',[CandidateController::class,'saveProfile2'])->name('candidate.profile-2.save');
-    Route::post('candidate/save-profile-3',[CandidateController::class,'saveProfile3'])->name('candidate.profile-3.save');
-    Route::post('candidate/save-profile-4',[CandidateController::class,'saveProfile4'])->name('candidate.profile-4.save');
-    Route::post('candidate/save-profile-5',[CandidateController::class,'saveProfile5'])->name('candidate.profile-5.save');
-    Route::post('candidate/save-profile-6',[CandidateController::class,'saveProfile6'])->name('candidate.profile-6.save');
-    Route::post('candidate/save-profile-7',[CandidateController::class,'saveProfile7'])->name('candidate.profile-7.save');
     Route::get('account-settings', [UserController::class, 'getAccountSettingsPage'])->name('getAccountSetting');
 });
 Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], function() {

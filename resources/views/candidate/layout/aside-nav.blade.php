@@ -71,7 +71,7 @@
         <div class="profile-complete-status">
             <div class="progress-value fw-500">{{candidateProfilePercentage()}}%</div>
             <div class="progress-line position-relative">
-                <div class="inner-line" style="width:80%;"></div>
+                <div class="inner-line" style="width:{{candidateProfilePercentage()}}%;"></div>
             </div>
             <p>Profile Complete</p>
         </div>
