@@ -237,9 +237,8 @@ Profile
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
 									<label for="">State/Region/Province</label>
-									<select name="state" id="state" class="form-control">
-										<option value = '' selected>Select State</option>
-									</select>								
+									<input type="text" name="state" id="state" placeholder="65 Hansen Way" value="{{$employerDetails->address_line_1 ?? ''}}">
+								
 								</div>
 							</div>
 						</div>
@@ -248,10 +247,8 @@ Profile
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
 									<label for="">City/Town</label>
-									<select name="city" id="city" class="form-control">
-										<option value = '' selected>Select City</option>
-
-									</select>								
+									<input type="text" name="city" id="city" placeholder="65 Hansen Way" value="{{$employerDetails->address_line_1 ?? ''}}">
+								
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -1312,35 +1309,6 @@ Profile
     
 	  
     }); 
-</script>
-<script>
-    $(document).ready(function () {
-		$('#country').change(function () {
-            var countryId = $(this).val();
-            
-            $.get('/get-states/' + countryId, function (data) {
-                $('select[name="state"]').empty();
-                $('select[name="state"]').append('<option value = ""  >Select State</option>');
-                $.each(data, function (key, value) {
-                    $('select[name="state"]').append('<option value="' + key + '">' + value + '</option>');
-                });
-            });
-        });
-		
-
-        $('#state').change(function () {
-            var stateId = $(this).val();
-
-            $.get('/get-cities/' + stateId, function (data) {
-                $('select[name="city"]').empty();
-                $('select[name="city"]').append('<option value = "">Select City</option>');
-                $.each(data, function (key, value) {
-                    $('select[name="city"]').append('<option value="' + key + '">' + value + '</option>');
-                });
-            });
-        });
-    });
-
 </script>
 @push('page-script')
 <script src="{{asset('assets/js/select2-custom.js')}}"></script>

@@ -54,7 +54,7 @@
                     </a></li> 
                 <li><a href="{{route('getSaveJob')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/save-job') ? 'active' : ''}}">
                         <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/save-job') ? asset('assets/images/dashboard-icon/icon_6_active.svg') : asset('assets/images/dashboard-icon/icon_6.svg')}}" alt="" class="lazy-img">
-                        <span>Saved Job</span>
+                        <span>Saved Job</span> 
                     </a></li>
                 <li><a href="{{route('getAccountSetting')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/account-settings') ? 'active' : ''}}">
                         <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/account-settings') ? asset('assets/images/dashboard-icon/icon_7_active.svg') : asset('assets/images/dashboard-icon/icon_7.svg')}}" alt="" class="lazy-img">
