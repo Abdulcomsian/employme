@@ -104,7 +104,20 @@ Profile
             </div>
         </header>
         <!-- End Header -->
-
+        @if(session('email_verification'))
+			<div class="alert alert-danger">
+				{{ __('A verification link has been sent to your email account.') }}
+				{{ __('If you did not receive the email') }},
+				<form class="d-inline" method="POST" action="{{ route('verification.send') }}">
+					@csrf
+					<button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to resend link') }}</button>.
+				</form>
+			</div>
+		  @elseif(session('profile_completion'))
+			<div class="alert alert-danger">
+					{{ __('Dear Candidate, Your profile is not complete, kindly complete your profile.') }}
+				</div>
+		  @endif
         <h2 class="main-title">My Profile</h2>
 
         <div class="bg-white card-box border-20 mb-40">
@@ -935,7 +948,7 @@ Profile
               success: function (data) {
     
                 if (data.status) {
-                    // window.location = data.redirect;
+                    window.location = data.redirect;
                 }else{
                     $(".alert").remove();
                     $.each(data.errors, function (key, val) {

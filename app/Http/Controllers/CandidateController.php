@@ -11,6 +11,7 @@ use App\Models\CandidatePreferences;
 use App\Models\Cities;
 use App\Models\Countries;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 class CandidateController extends Controller
 {
     public function getCandidateDashboard()
@@ -119,10 +120,11 @@ class CandidateController extends Controller
         $input = $request->except('_token');
         $updatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id());
         $updatePersonalDetails->update($input);
-         return response()->json([
-                        "status" => true, 
-                        "message" => url("Profile Updaded Successfully")
-                    ]);
+        toastr()->success('Profile Updated Successfully ');
+        return response()->json([
+            "status" => true, 
+            "redirect" => url("candidate/profile")
+        ]);
     }
 
 }

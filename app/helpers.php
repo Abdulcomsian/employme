@@ -137,3 +137,53 @@ function employeProfilePercentage()
     $percentage = number_format($percentage,0);
     return $percentage;
 }
+
+function employeeProfilePercentage()
+{
+    $attributes = collect(\Schema::getColumnListing('employer_details'))->count();
+    // dd($attributes);
+
+    $employerDetails = \App\Models\EmployerDetails::where('user_id', Auth::id())->first();
+    $recordArray = $employerDetails->toArray(); // Convert the record to an array
+    
+    // Filter out non-null values
+    $filtered = collect($recordArray)->filter(function ($value) {
+        return !is_null($value);
+    })->count();
+    // return ($complete / count($attributes)) * 100;
+    $percentage = ($filtered / $attributes) * 100;
+    $percentage = round($percentage,0);
+    $percentage = number_format($percentage,0);
+    return $percentage;
+}
+function candidateProfilePercentage()
+{
+    $candidatePersonalDetailsAttributes = collect(\Schema::getColumnListing('candidate_personal_details'))->count();
+    $candidatePreferencesAttributes = collect(\Schema::getColumnListing('candidate_preferences'))->count();
+    $candidateEducationAttributes = collect(\Schema::getColumnListing('candidate_education'))->count();
+
+    $candidatePersonalDetails = \App\Models\CandidatePersonalDetails::where('user_id', Auth::id())->first();
+    $candidatePersonalDetails = $candidatePersonalDetails->toArray();
+
+    $candidatePreferences = \App\Models\CandidatePreferences::where('user_id', Auth::id())->first();
+    $candidatePreferences = $candidatePreferences->toArray();
+
+    $candidateEducation = \App\Models\CandidateEducation::where('user_id', Auth::id())->first();
+    $candidateEducation = $candidateEducation->toArray();
+    
+    $totalAttributes = $candidatePersonalDetailsAttributes +  $candidatePreferencesAttributes + $candidateEducationAttributes;
+    $filledPersonalDetails = collect($candidatePersonalDetails)->filter(function ($value) {
+        return !is_null($value);
+    })->count();
+    $filledPreferences = collect($candidatePreferences)->filter(function ($value) {
+        return !is_null($value);
+    })->count();
+    $filledEducation = collect($candidateEducation)->filter(function ($value) {
+        return !is_null($value);
+    })->count();
+    $totalFilledAttributes = $filledPersonalDetails + $filledEducation + $filledEducation;
+    $percentage = ($totalFilledAttributes / $totalAttributes) * 100;
+    $percentage = round($percentage,0);
+    $percentage = number_format($percentage,0);
+    return $percentage;
+}

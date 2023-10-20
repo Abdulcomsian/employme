@@ -70,7 +70,7 @@ Route::get('company-location', [UserController::class, 'companyLocation'])->name
 Route::get('company-staff-information', [UserController::class, 'companyStaffInfo'])->name('companyStaffInfo');
 
 //candidate dashboard route starts here
-Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','email_verfication']], function() {
+Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','email_verfication','profile_completion']], function() {
     Route::get('dashboard', [CandidateController::class, 'getCandidateDashboard'])->name('getCandidateDashboard');
     Route::get('profile', [CandidateController::class, 'getProfilePage'])->name('getCandidateProfile');
     Route::get('resume', [CandidateController::class, 'getResumePage'])->name('getResumePage');
@@ -85,6 +85,15 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     Route::post('candidate/save-profile-6',[CandidateController::class,'saveProfile6'])->name('candidate.profile-6.save');
     Route::post('candidate/save-profile-7',[CandidateController::class,'saveProfile7'])->name('candidate.profile-7.save');
     Route::get('account-settings', [UserController::class, 'getAccountSettingsPage'])->name('getAccountSetting');
+});
+Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], function() {
+    Route::post('candidate/save-profile-1',[CandidateController::class,'saveProfile1'])->name('candidate.profile-1.save');
+    Route::post('candidate/save-profile-2',[CandidateController::class,'saveProfile2'])->name('candidate.profile-2.save');
+    Route::post('candidate/save-profile-3',[CandidateController::class,'saveProfile3'])->name('candidate.profile-3.save');
+    Route::post('candidate/save-profile-4',[CandidateController::class,'saveProfile4'])->name('candidate.profile-4.save');
+    Route::post('candidate/save-profile-5',[CandidateController::class,'saveProfile5'])->name('candidate.profile-5.save');
+    Route::post('candidate/save-profile-6',[CandidateController::class,'saveProfile6'])->name('candidate.profile-6.save');
+    Route::post('candidate/save-profile-7',[CandidateController::class,'saveProfile7'])->name('candidate.profile-7.save');
 });
 //candidate dashboard route ends here
 
@@ -101,6 +110,8 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
     Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
+});
+Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {
     Route::post('employer/save-profile-1',[EmployerController::class,'saveProfile1'])->name('employer.profile-1.save');
     Route::post('employer/save-profile-2',[EmployerController::class,'saveProfile2'])->name('employer.profile-2.save');
     Route::post('employer/save-profile-3',[EmployerController::class,'saveProfile3'])->name('employer.profile-3.save');
