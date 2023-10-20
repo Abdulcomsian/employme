@@ -237,7 +237,7 @@ Profile
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
 									<label for="">State/Region/Province</label>
-									<input type="text" name="state" id="state" placeholder="65 Hansen Way" value="{{$employerDetails->address_line_1 ?? ''}}">
+									<input type="text" name="state" id="state" placeholder="65 Hansen Way" value="{{$employerDetails->state ?? ''}}">
 								
 								</div>
 							</div>
@@ -247,7 +247,7 @@ Profile
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
 									<label for="">City/Town</label>
-									<input type="text" name="city" id="city" placeholder="65 Hansen Way" value="{{$employerDetails->address_line_1 ?? ''}}">
+									<input type="text" name="city" id="city" placeholder="65 Hansen Way" value="{{$employerDetails->city ?? ''}}">
 								
 								</div>
 							</div>
