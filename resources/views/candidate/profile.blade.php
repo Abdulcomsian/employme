@@ -481,9 +481,11 @@ Profile
 
                                         <button class="delete-btn tran3s">Delete</button>
                                     </div>
+                                    @if(isset($candidatePreferencesDetails->video_url) && !empty($candidatePreferencesDetails->video_url))
                                     <div style = "padding-left:20px;">
                                         <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_url)}}" target = "_blank">File</a>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-6">

@@ -67,6 +67,12 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'email_verfication' => \App\Http\Middleware\EmailVerification::class,
+        'profile_completion' => \App\Http\Middleware\ProfileCompletionMiddleware::class,
 
+    ];
+
+    protected $middlewarePriority = [
+        \App\Http\Middleware\EmailVerification::class,       
+        \App\Http\Middleware\ProfileCompletionMiddleware::class,
     ];
 }

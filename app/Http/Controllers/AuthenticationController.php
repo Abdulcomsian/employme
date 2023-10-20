@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\CandidatePersonalDetails;
 use App\Models\CandidateEducation;
+use App\Models\EmployerDetails;
+use App\Models\CandidatePreferences;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -45,6 +47,7 @@ class AuthenticationController extends Controller
             $user = User::create($input);
             CandidatePersonalDetails::create(['user_id'=>$user->id]);
             CandidateEducation::create(['user_id'=>$user->id]);
+            CandidatePreferences::create(['user_id'=>$candidate->id]);
 
             $user->assignRole('candidate');
             event(new Registered($user));
@@ -68,6 +71,7 @@ class AuthenticationController extends Controller
     // $input['password'] = Hash::make($input['password']);
 
         $user = User::create($input);
+        EmployerDetails::create(['user_id'=>$user->id]);
         $user->assignRole('employer');
         event(new Registered($user));
         toastr()->success('Dear Employer, You have successfully registered, A verification link has been sent to your account. kindly verify your account');

@@ -1,5 +1,4 @@
 <?php
-  
 function changeDateFormate($date,$date_format){
     return \Carbon\Carbon::createFromFormat('Y-m-d', $date)->format($date_format);    
 }
@@ -10,7 +9,7 @@ function productImagePath($image_name)
 }
 
 // saving candidate profile picture 
-function saveFile($oldFile = null, $newFile, $filePath)
+function saveFile($filePath, $newFile, $oldFile = null)
 {
     try {
         $public_path = public_path($filePath);
@@ -33,6 +32,25 @@ function  candidateProfilePicturePath($user = null)
         $path = 'uploads/candidate/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/profile_images/';
     } else {
         $path  = 'uploads/candidate/profile_images/';
+    }
+    return $path;
+}
+
+function  employerConfirmationDocumentPath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/employer/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/confirmation_documents/';
+    } else {
+        $path  = 'uploads/employer/confirmation_documents/';
+    }
+    return $path;
+}
+function  employerCertificationtPath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/employer/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/certifications/';
+    } else {
+        $path  = 'uploads/employer/certifications/';
     }
     return $path;
 }
@@ -99,4 +117,23 @@ function deleteAllCandidateVideo()
         return "The specified directory does not exist.";
     }
     
+}
+
+function employeProfilePercentage()
+{
+    $attributes = collect(\Schema::getColumnListing('employer_details'))->count();
+    // dd($attributes);
+
+    $employerDetails = \App\Models\EmployerDetails::where('user_id', Auth::id())->first();
+    $recordArray = $employerDetails->toArray(); // Convert the record to an array
+    
+    // Filter out non-null values
+    $filtered = collect($recordArray)->filter(function ($value) {
+        return !is_null($value);
+    })->count();
+    // return ($complete / count($attributes)) * 100;
+    $percentage = ($filtered / $attributes) * 100;
+    $percentage = round($percentage,0);
+    $percentage = number_format($percentage,0);
+    return $percentage;
 }

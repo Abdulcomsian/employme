@@ -154,7 +154,7 @@
             @endrole
             @role('employer')
             <div id="w-node-_9659cfe2-9876-6245-a2f7-ac3989b1b9f8-8118b8ae" class="buttons-nav-wrapper">
-              <a href="{{route('getEmployerDasbhoard')}}" class="link-block w-inline-block">
+              <a href="{{route('getEmployerDashboard')}}" class="link-block w-inline-block">
                 <div class="btn-label-wrapper">
                   <div class="label-button">Dashboard</div>
                   <div class="arrow-wrapper"><img src="{{asset('assets/images/cta-arrow-black.svg')}}" loading="lazy" alt="" class="icon-arrow-flip"><img src="{{asset('assets/images/cta-arrow-white.svg')}}" loading="lazy" alt="" class="icon-arrow-flip"></div>

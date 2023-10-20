@@ -54,7 +54,7 @@ class CandidateController extends Controller
         if ($request->file('profile_picture')) {
             $file = $request->file('profile_picture');
             $filePath = candidateProfilePicturePath();
-            $imagename = saveFile($updatePersonalDetails->profile_picture, $file, $filePath);
+            $imagename = saveFile($filePath, $file, $updatePersonalDetails->profile_picture);
         }
         // End of saving candidate profile code
 

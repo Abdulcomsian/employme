@@ -21,3 +21,4 @@
 
 <!-- Theme js -->
 <script src="{{asset('assets/js/theme.js')}}"></script>
+

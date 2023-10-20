@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\EmployerDetails;
 
 class EmployerSeeder extends Seeder
 {
@@ -21,5 +22,7 @@ class EmployerSeeder extends Seeder
             'email_verified_at'=>date('Y-m-d H:i:s')
         ]);
         $employer->assignRole('employer');
+        EmployerDetails::create(['user_id'=>$employer->id]);
+
     }
 }

@@ -43,6 +43,8 @@ Route::get('visa-support', [FrontendController::class, 'visaSupport'])->name('vi
 Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
 Route::get('terms-of-services', [FrontendController::class, 'termsOfServices'])->name('termsOfServices');
 Route::get('services', [FrontendController::class, 'Services'])->name('Services');
+Route::get('get-states/{id}', [HomeController::class, 'getStates'])->name('getStates');
+Route::get('get-cities/{id}', [HomeController::class, 'getCities'])->name('getCities');
 //frontend routes ends here
 
 // dashboard routes starts here/////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,7 +89,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
 //candidate dashboard route ends here
 
 //employer dashboard route starts here
-Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','email_verfication']], function () {
+Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','email_verfication','profile_completion']], function () {
     Route::get('dashboard', [EmployerController::class, 'getEmployerDashboard'])->name('getEmployerDashboard');
     Route::get('employer-profile', [EmployerController::class, 'getEmployerProfilePage'])->name('getEmployerProfile');
     Route::get('job-listing', [JobController::class, 'getJobListing'])->name('getJobListing');
@@ -99,6 +101,15 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
     Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
+    Route::post('employer/save-profile-1',[EmployerController::class,'saveProfile1'])->name('employer.profile-1.save');
+    Route::post('employer/save-profile-2',[EmployerController::class,'saveProfile2'])->name('employer.profile-2.save');
+    Route::post('employer/save-profile-3',[EmployerController::class,'saveProfile3'])->name('employer.profile-3.save');
+    Route::post('employer/save-profile-4',[EmployerController::class,'saveProfile4'])->name('employer.profile-4.save');
+    Route::post('employer/save-profile-5',[EmployerController::class,'saveProfile5'])->name('employer.profile-5.save');
+    Route::post('employer/save-profile-6',[EmployerController::class,'saveProfile6'])->name('employer.profile-6.save');
+    Route::post('employer/save-profile-7',[EmployerController::class,'saveProfile7'])->name('employer.profile-7.save');
+    Route::post('employer/save-profile-8',[EmployerController::class,'saveProfile8'])->name('employer.profile-8.save');
+    Route::post('employer/save-profile-9',[EmployerController::class,'saveProfile9'])->name('employer.profile-9.save');
 });
 //employer dashboard route ends here
 
