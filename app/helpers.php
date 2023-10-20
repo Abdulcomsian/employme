@@ -9,7 +9,7 @@ function productImagePath($image_name)
 }
 
 // saving candidate profile picture 
-function saveFile($filePath, $newFile, $oldFile = null)
+function saveFile($oldFile = null, $newFile, $filePath)
 {
     try {
         $public_path = public_path($filePath);
