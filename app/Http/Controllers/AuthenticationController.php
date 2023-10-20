@@ -47,7 +47,7 @@ class AuthenticationController extends Controller
             $user = User::create($input);
             CandidatePersonalDetails::create(['user_id'=>$user->id]);
             CandidateEducation::create(['user_id'=>$user->id]);
-            CandidatePreferences::create(['user_id'=>$candidate->id]);
+            CandidatePreferences::create(['user_id'=>$user->id]);
 
             $user->assignRole('candidate');
             event(new Registered($user));
