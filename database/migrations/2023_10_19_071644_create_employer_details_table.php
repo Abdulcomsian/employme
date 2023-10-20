@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('address_line_1')->nullable();
             $table->text('address_line_2')->nullable();
             $table->unsignedInteger('country_id')->nullable();
-            $table->unsignedInteger('state_id')->nullable();
-            $table->unsignedInteger('city_id')->nullable();
+            $table->text('state')->nullable();
+            $table->text('city')->nullable();
             $table->string('zip_code')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('second_contact_number')->nullable();
