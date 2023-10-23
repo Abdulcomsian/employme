@@ -7,6 +7,7 @@ use App\Models\Countries;
 use App\Models\EmployerDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Plan;
 class EmployerController extends Controller
 {
 
@@ -16,9 +17,11 @@ class EmployerController extends Controller
     }
     public function getEmployerProfilePage()
     {
+        $plans = Plan::get();
         $countries = Countries::all();
+        $intent = auth()->user()->createSetupIntent();
         $employerDetails = EmployerDetails::where('user_id',Auth::id())->first();
-        return view('employer.employer-profile',compact('countries','employerDetails'));
+        return view('employer.employer-profile',compact('countries','employerDetails','plans','intent'));
     }
     public function getEmployerCandidate()
     {

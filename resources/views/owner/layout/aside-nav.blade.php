@@ -65,6 +65,14 @@
                         <span>Professional Skills</span>
                     </a>
                 </li>
+                <li><a href="{{ route('getPlans') }}"
+                        class="d-flex w-100 align-items-center {{ request()->is('owner/plans') ? 'active' : '' }}">
+                        <img src="{{ asset('assets/images/lazy.svg') }}"
+                            data-src="{{ request()->is('owner/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
+                            alt="" class="lazy-img">
+                        <span>Plans</span>
+                    </a>
+                </li>
 
                 <li><a href="{{ route('getUserProfile') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/users') ? 'active' : '' }}">

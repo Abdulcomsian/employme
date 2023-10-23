@@ -389,14 +389,30 @@ Profile
 									<label for="">Different subscription options with features and price
 										points.</label>
 									<select name="differentSubscriptionOptions" id="differentSubscriptionOptions" class="nice-select">
-										<option value="1" {{$employerDetails->subscription_plan_id == '1' ? 'selected' : ''}}>Basic Candidate Access - $59/mo</option>
-										<option value="2" {{$employerDetails->subscription_plan_id == '2' ? 'selected' : ''}}>Jobs Marketplace Access - $69/mo</option>
-										<option value="3" {{$employerDetails->subscription_plan_id == '3' ? 'selected' : ''}}>Flexi Plan - $39/mo</option>
-										<option value="3" {{$employerDetails->subscription_plan_id == '4' ? 'selected' : ''}}>Advanced Candidate Access - $79/mo</option>
-										<option value="4" {{$employerDetails->subscription_plan_id == '5' ? 'selected' : ''}}>Combined Marketplace Access - $129/mo</option>
+										<option value="">Select Plan</option>
+										@isset($plans)
+										@foreach($plans as $plan)
+										<option value="{{$plan->id}}" {{$employerDetails->subscription_plan_id == '1' ? 'selected' : ''}}>{{$plan->name}} - ${{$plan->price}}/mo</option>
+										@endforeach
+										@endisset
 									</select>
 								</div>
 							</div>
+							<div class="col-md-6">
+								<div class="row dash-input-wrapper mb-30">
+									<div class="form-group">
+										<label for="">Card details</label>
+										<div id="card-element"></div>
+									</div>
+								</div>
+								<div class="row">
+								<hr>
+									<button type="submit" class="btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}">Purchase</button>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+						
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
 									<label for="">Acceptance of terms and conditions of the subscription.</label>
@@ -408,9 +424,10 @@ Profile
 							</div>
 						</div>
 
+
 						<div class="d-flex flex-row justify-content-end gap-3">
 							<button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
-							<button type="button" class="dash-btn-one" id="subscription-details" onclick="nextStep(3)">Next</button>
+							<button type="button" class="dash-btn-one" id="subscription-details" onclick="nextStep(3)" disabled>Next</button>
 						</div>
 					</div>
 
@@ -985,6 +1002,71 @@ Profile
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe('{{ env('STRIPE_KEY') }}')
+  
+    const elements = stripe.elements()
+    const cardElement = elements.create('card')
+  
+    cardElement.mount('#card-element')
+  
+    // const form = document.getElementById('payment-form')
+    const cardBtn = document.getElementById('card-button')
+    const cardHolderName = document.getElementById('card-holder-name')
+  
+    cardBtn.addEventListener('click', async (e) => {
+        e.preventDefault()
+  
+        cardBtn.disabled = true
+        const { setupIntent, error } = await stripe.confirmCardSetup(
+            cardBtn.dataset.secret, {
+                payment_method: {
+                    card: cardElement,
+                    billing_details: {
+                        name: cardHolderName.value
+                    }   
+                }
+            }
+        )
+  
+        if(error) {
+            cardBtn.disable = false
+        } else {
+			var formData = new FormData();
+			formData.append("_token", "{{ csrf_token() }}");
+			formData.append('plan',$("#multi-step-form").find('[name=differentSubscriptionOptions]').val())
+            let token = document.createElement('input')
+            token.setAttribute('type', 'hidden')
+            token.setAttribute('name', 'token')
+            token.setAttribute('value', setupIntent.payment_method)
+			console.log(token);
+            // formData.appendChild(token)
+            // form.submit();
+			$.ajax({
+            type: "POST",
+              url: "{{route('subscription.create')}}",
+              data: formData,
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              success: function (data) {
+    
+                if (data.status) {
+                    // window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+        }
+		
+    })
+</script>
 <script>
 	let currentStep = 1;
 
@@ -1016,6 +1098,10 @@ Profile
 </script>
 <script>
     $(document).ready(function() {
+		// const subscriptionButton = document.getElementById('subscription-details');
+		// const customerbillingSubscripton = "{{auth()->user()->stripe_id }}";
+		// if(!customerbillingSubscripton)
+		// 	subscriptionButton.disabled = true
 
     $("#basic-information").on("click", function(e) {
         e.preventDefault();

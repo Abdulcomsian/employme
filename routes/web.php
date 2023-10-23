@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     CandidateController,
     EmployerController,
     OwnerController,
+    SubscriptionController,
 };
 
 /*
@@ -103,6 +104,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
     Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
+    Route::post('subscription', [SubscriptionController::class, 'subscription'])->name("subscription.create");
 });
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {
     Route::post('employer/save-profile-1',[EmployerController::class,'saveProfile1'])->name('employer.profile-1.save');
@@ -127,6 +129,11 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('edit-professional-skill/{id}', [OwnerController::class, 'editProfessionalSkill'])->name('editProfessionalSkill');
     Route::put('update-professional-skill/{id}', [OwnerController::class, 'updateProfessionalSkill'])->name('updateProfessionalSkill');
     Route::get('delete-professional-skill/{id}', [OwnerController::class, 'deleteProfessionalSkill'])->name('deleteProfessionalSkill');
+    Route::get('plans', [SubscriptionController::class, 'index'])->name('getPlans');
+
+    Route::get('plans/{plan}', [SubscriptionController::class, 'show'])->name("plans.show");
+
+   
 });
 //owner dashboard route ends here
 // Auth::routes();
