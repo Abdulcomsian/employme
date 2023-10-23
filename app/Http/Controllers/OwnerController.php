@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProfessionalSkills;
+use App\Models\User;
 class OwnerController extends Controller
 {
 
@@ -63,6 +64,17 @@ class OwnerController extends Controller
     {
         $professionalSkill = ProfessionalSkills::where('id',$id)->delete();
         return  \Response::json(['status' => 'success','msg' => __('Skill Deleted successfully')]);
+    }
+
+    public function getCandidates()
+    {
+           $candidates =User::role('candidate')->get();
+           return view('owner.candidates',compact('candidates'));
+    }
+    public function getEmployers()
+    {
+        $employers =User::role('employer')->get();
+        return view('owner.employers',compact('employers'));
     }
 
 }

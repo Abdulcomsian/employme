@@ -104,7 +104,6 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
     Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
-    Route::post('subscription', [SubscriptionController::class, 'subscription'])->name("subscription.create");
 });
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {
     Route::post('employer/save-profile-1',[EmployerController::class,'saveProfile1'])->name('employer.profile-1.save');
@@ -116,6 +115,9 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], fu
     Route::post('employer/save-profile-7',[EmployerController::class,'saveProfile7'])->name('employer.profile-7.save');
     Route::post('employer/save-profile-8',[EmployerController::class,'saveProfile8'])->name('employer.profile-8.save');
     Route::post('employer/save-profile-9',[EmployerController::class,'saveProfile9'])->name('employer.profile-9.save');
+    Route::post('subscription', [SubscriptionController::class, 'subscription'])->name("subscription.create");
+
+
 });
 //employer dashboard route ends here
 
@@ -124,6 +126,8 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('dashboard', [OwnerController::class, 'getOwnerDashboard'])->name('getOwnerDashboard');
     Route::get('profile', [OwnerController::class, 'getOwnerProfile'])->name('getOwnerProfile');
     Route::get('users', [OwnerController::class, 'getUserProfile'])->name('getUserProfile');
+    Route::get('candidates', [OwnerController::class, 'getCandidates'])->name('getCandidates');
+    Route::get('employers', [OwnerController::class, 'getEmployers'])->name('getEmployers');
     Route::get('professional-skills', [OwnerController::class, 'getProfessionalSkills'])->name('getProfessionalSkills');
     Route::post('save-professional-skill', [OwnerController::class, 'storeProfessionalSkill'])->name('saveProfessionalSkill');
     Route::get('edit-professional-skill/{id}', [OwnerController::class, 'editProfessionalSkill'])->name('editProfessionalSkill');

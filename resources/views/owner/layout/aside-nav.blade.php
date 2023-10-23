@@ -57,6 +57,22 @@
                         <span>My Profile</span>
                     </a>
                 </li>
+                <li><a href="{{ route('getCandidates') }}"
+                        class="d-flex w-100 align-items-center {{ request()->is('owner/candidates') ? 'active' : '' }}">
+                        <img src="{{ asset('assets/images/lazy.svg') }}"
+                            data-src="{{ request()->is('owner/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
+                            alt="" class="lazy-img">
+                        <span>Candidates</span>
+                    </a>
+                </li>
+                <li><a href="{{ route('getEmployers') }}"
+                        class="d-flex w-100 align-items-center {{ request()->is('owner/employers') ? 'active' : '' }}">
+                        <img src="{{ asset('assets/images/lazy.svg') }}"
+                            data-src="{{ request()->is('owner/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
+                            alt="" class="lazy-img">
+                        <span>Employers</span>
+                    </a>
+                </li>
                 <li><a href="{{ route('getProfessionalSkills') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/professional-skills') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
