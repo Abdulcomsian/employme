@@ -174,9 +174,11 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Nationality</label>
                                     <select name="nationality" id="nationality" class="nice-select">
-                                        <option value="1" {{$candidatePersonalDetails->nationality == '1' ? 'selected' : ''}}>Korea</option>
-                                        <option value="2" {{$candidatePersonalDetails->nationality == '2' ? 'selected' : ''}}>China</option>
-                                        <option value="3" {{$candidatePersonalDetails->nationality == '3' ? 'selected' : ''}}>Taiwan</option>
+                                        @isset($countries)
+                                            @foreach($countries as $country)
+                                            <option value="{{$country->id}}" {{$candidatePersonalDetails->nationality == $country->id ? 'selected' : ''}}>{{$country->name}}</option>
+                                            @endforeach
+                                        @endisset
                                     </select>
                                 </div>
                             </div>
@@ -184,9 +186,11 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Passport</label>
                                     <select name="passport" id="passport" class="nice-select">
-                                        <option value="1" {{$candidatePersonalDetails->passport == '1' ? 'selected' : ''}}>Korea</option>
-                                        <option value="2" {{$candidatePersonalDetails->passport == '2' ? 'selected' : ''}}>China</option>
-                                        <option value="3" {{$candidatePersonalDetails->passport == '3' ? 'selected' : ''}}>Taiwan</option>
+                                        @isset($countries)
+                                            @foreach($countries as $country)
+                                            <option value="{{$country->id}}" {{$candidatePersonalDetails->passport == $country->id ? 'selected' : ''}}>{{$country->name}}</option>
+                                            @endforeach
+                                        @endisset
                                     </select>
                                 </div>
                             </div>

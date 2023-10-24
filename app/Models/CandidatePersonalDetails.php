@@ -29,4 +29,13 @@ class CandidatePersonalDetails extends Model
         'criminal_background',
     ];
 
+    public function getNationality()
+    {
+        return $this->belongsTo(Countries::class,'nationality');
+    }
+    public function getPassport()
+    {
+        return $this->belongsTo(Countries::class,'passport');
+    }
+
 }

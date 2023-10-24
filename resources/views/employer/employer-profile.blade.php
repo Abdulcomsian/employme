@@ -382,7 +382,9 @@ Profile
 
 						<div class="d-flex flex-row justify-content-end gap-3">
 							<button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
-							<!-- <button type="button" class="dash-btn-one" id="subscription-details" onclick="nextStep(3)" disabled>Next</button> -->
+							@if(auth()->user()->stripe_id)
+							<button type="button" class="dash-btn-one" id="subscription-details" onclick="nextStep(3)" disabled>Next</button>
+							@endif
 						</div>
 					</div>
 

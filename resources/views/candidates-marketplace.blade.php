@@ -398,12 +398,14 @@ Candidate Marketplace
 
 					<div class="accordion-box grid-style show">
 						<div class="row">
+							@isset($candidates)
+							@foreach($candidates as $candidate)
 							<div class="col-xxl-4 col-sm-6 d-flex">
 								<div class="candidate-profile-card favourite text-center grid-layout mb-25">
 									<a href="{{route('candidateProfileNew')}}" class="save-btn tran3s"><i class="bi bi-heart"></i></a>
 									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew')}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew')}}" class="tran3s">Julia Ark</a></h4>
-									<div class="candidate-post">Graphic Designer</div>
+									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew')}}" class="tran3s">{{$candidate->candidatePersonalDetails->full_name ?? ''}}</a></h4>
+									<!-- <div class="candidate-post">Graphic Designer</div> -->
 									<ul class="cadidate-skills style-none d-flex flex-wrap align-items-center justify-content-center justify-content-md-between pt-30 sm-pt-20 pb-10">
 										<li>Design</li>
 										<li>UI</li>
@@ -415,7 +417,7 @@ Candidate Marketplace
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Salary</span>
-												<div>$30k-$50k/yr</div>
+												<div>{{$candidate->candidatePreferences->salary_expection ?? ''}}</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>
@@ -429,20 +431,20 @@ Candidate Marketplace
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Current Location</span>
-												<div>California, US</div>
+												<div>{{$candidate->candidatePersonalDetails->current_location ?? ''}}</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>
-										<div class="col-md-12">
+										<!-- <div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Start Date</span>
 												<div>30 Aug 2023</div>
 											</div>
-										</div>
+										</div> -->
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Nationality</span>
-												<div>Pakistani</div>
+												<div>{{$candidate->candidatePersonalDetails->getNationality->name ?? ''}}</div>
 											</div>
 										</div>
 
@@ -464,7 +466,9 @@ Candidate Marketplace
 								</div>
 								<!-- /.candidate-profile-card -->
 							</div>
-							<div class="col-xxl-4 col-sm-6 d-flex">
+							@endforeach
+							@endisset
+							<!-- <div class="col-xxl-4 col-sm-6 d-flex">
 								<div class="candidate-profile-card text-center grid-layout mb-25">
 									<a href="{{route('candidateProfileNew')}}" class="save-btn tran3s"><i class="bi bi-heart"></i></a>
 									<div class="cadidate-avatar position-relative d-block m-auto"><a href="{{route('candidateProfileNew')}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_02.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
@@ -476,28 +480,24 @@ Candidate Marketplace
 										<li>code</li>
 										<li class="more">1+</li>
 									</ul>
-									<!-- /.cadidate-skills -->
 									<div class="row gx-1">
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Salary</span>
 												<div>$3k-$5k/m</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span> Document Status</span>
 												<div class="doc-v">Verified</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Current Location</span>
 												<div>California, US</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
@@ -521,13 +521,8 @@ Candidate Marketplace
 											<a href="{{route('candidateProfileNew')}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
 										</div>
 									</div>
-									<!-- <div class="row justify-content-center gx-2 pt-15 sm-pt-10">
-													<div class="col-md-10">
-													<a href="#" class="tran3s w-100 interview ">  Interview Request</a>
-													</div>
-											   </div> -->
+									
 								</div>
-								<!-- /.candidate-profile-card -->
 							</div>
 							<div class="col-xxl-4 col-sm-6 d-flex">
 								<div class="candidate-profile-card favourite text-center grid-layout mb-25">
@@ -540,28 +535,24 @@ Candidate Marketplace
 										<li>UI</li>
 										<li>Brand & Product</li>
 									</ul>
-									<!-- /.cadidate-skills -->
 									<div class="row gx-1">
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Salary</span>
 												<div>$3k-$5k/m</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span> Document Status</span>
 												<div class="doc-u">Unverified</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Current Location</span>
 												<div>UAE</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
@@ -585,13 +576,8 @@ Candidate Marketplace
 											<a href="{{route('candidateProfileNew')}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
 										</div>
 									</div>
-									<!-- <div class="row justify-content-center gx-2 pt-15 sm-pt-10">
-												<div class="col-md-10">
-												<a href="#" class="tran3s w-100 interview ">  Interview Request</a>
-												</div>
-										   </div> -->
+									
 								</div>
-								<!-- /.candidate-profile-card -->
 							</div>
 							<div class="col-xxl-4 col-sm-6 d-flex">
 								<div class="candidate-profile-card text-center grid-layout mb-25">
@@ -605,28 +591,24 @@ Candidate Marketplace
 										<li>Digital</li>
 										<li class="more">2+</li>
 									</ul>
-									<!-- /.cadidate-skills -->
 									<div class="row gx-1">
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Salary</span>
 												<div>$3k-$5k/m</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span> Document Status</span>
 												<div class="doc-u">Unverified</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Current Location</span>
 												<div>New York, US</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
@@ -650,13 +632,7 @@ Candidate Marketplace
 											<a href="{{route('candidateProfileNew')}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
 										</div>
 									</div>
-									<!-- <div class="row justify-content-center gx-2 pt-15 sm-pt-10">
-												<div class="col-md-10">
-												<a href="#" class="tran3s w-100 interview ">  Interview Request</a>
-												</div>
-										   </div> -->
 								</div>
-								<!-- /.candidate-profile-card -->
 							</div>
 							<div class="col-xxl-4 col-sm-6 d-flex">
 								<div class="candidate-profile-card favourite text-center grid-layout mb-25">
@@ -669,28 +645,24 @@ Candidate Marketplace
 										<li>Finance</li>
 										<li>Marketing</li>
 									</ul>
-									<!-- /.cadidate-skills -->
 									<div class="row gx-1">
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Salary</span>
 												<div>$3k-$5k/m</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span> Document Status</span>
 												<div class="doc-v">Verified</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Current Location</span>
 												<div>Milan , Italy</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
@@ -714,13 +686,7 @@ Candidate Marketplace
 											<a href="{{route('candidateProfileNew')}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
 										</div>
 									</div>
-									<!-- <div class="row justify-content-center gx-2 pt-15 sm-pt-10">
-												<div class="col-md-10">
-												<a href="#" class="tran3s w-100 interview ">  Interview Request</a>
-												</div>
-										   </div> -->
 								</div>
-								<!-- /.candidate-profile-card -->
 							</div>
 							<div class="col-xxl-4 col-sm-6 d-flex">
 								<div class="candidate-profile-card text-center grid-layout mb-25">
@@ -733,28 +699,24 @@ Candidate Marketplace
 										<li>Entry</li>
 										<li>Microsoft Excel</li>
 									</ul>
-									<!-- /.cadidate-skills -->
 									<div class="row gx-1">
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Salary</span>
 												<div>$3k-$5k/m</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span> Document Status</span>
 												<div class="doc-v">Verified</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Current Location</span>
 												<div>Bangalore, IN</div>
 											</div>
-											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
@@ -778,17 +740,10 @@ Candidate Marketplace
 											<a href="{{route('candidateProfileNew')}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
 										</div>
 									</div>
-									<!-- <div class="row justify-content-center gx-2 pt-15 sm-pt-10">
-												<div class="col-md-10">
-												<a href="#" class="tran3s w-100 interview ">  Interview Request</a>
-												</div>
-										   </div> -->
 								</div>
-								<!-- /.candidate-profile-card -->
-							</div>
+							</div> -->
 						</div>
 					</div>
-					<!-- /.accordion-box -->
 
 					<div class="accordion-box list-style">
 						<div class="candidate-profile-card favourite list-layout mb-25">

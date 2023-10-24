@@ -27,7 +27,8 @@ class CandidateController extends Controller
         $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
         $professionalSkills = ProfessionalSkills::all();
         $southKoreaCities = Cities::where('country_id',116)->get();
-        return view('candidate.profile',compact('candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities','candidatePreferencesDetails'));
+        $countries = Countries::all();
+        return view('candidate.profile',compact('countries','candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities','candidatePreferencesDetails'));
     }
 
     public function getResumePage()

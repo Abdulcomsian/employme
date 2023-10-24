@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
 class UserController extends Controller
 {
 
@@ -22,7 +22,8 @@ class UserController extends Controller
 
     public function candidatesMarketplace()
     {
-        return view('candidates-marketplace');
+        $candidates = User::role('candidate')->with('candidatePreferences','candidatePersonalDetails','candidatePersonalDetails.getNationality','candidatePersonalDetails.getPassport')->get();
+        return view('candidates-marketplace',compact('candidates'));
     }
 
     public function getEmployerAccountSettingpage()
