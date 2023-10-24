@@ -13,6 +13,7 @@ use App\Http\Controllers\{
     EmployerController,
     OwnerController,
     SubscriptionController,
+    EmployerJobController,
 };
 
 /*
@@ -103,6 +104,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('employer-dashboard-settings', [UserController::class, 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
     Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
+    Route::resource('employer-jobs', EmployerJobController::class);
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
 });
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {

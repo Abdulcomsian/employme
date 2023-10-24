@@ -187,3 +187,16 @@ function candidateProfilePercentage()
     $percentage = number_format($percentage,0);
     return $percentage;
 }
+
+function getActiveJobStatus($status=null)
+{
+    $active_status = '';
+    if($status=='2')
+    $active_status = 'pending';
+    elseif($status=='3')
+    $active_status = 'expired';
+     else
+     $active_status = 'active';
+
+     return $active_status;
+}

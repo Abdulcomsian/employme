@@ -40,7 +40,7 @@
 						<span>My Profile</span>
 					</a></li>
 					@if(!session('email_verification') && !session('profile_completion'))
-				<li><a href="{{route('getJobListing')}}" class="d-flex w-100 align-items-center {{request()->is('employer/job-listing') ? 'active' : ''}}">
+				<li><a href="{{route('employer-jobs.index')}}" class="d-flex w-100 align-items-center {{request()->is('employer/employer-jobs*') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/job-listing') ? asset('assets/images/dashboard-icon/icon_3_active.svg') : asset('assets/images/dashboard-icon/icon_3.svg')}}" alt="" class="lazy-img">
 						<span>Job Listings</span>
 					</a></li>
