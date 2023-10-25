@@ -32,7 +32,7 @@ class EmployerJobController extends Controller
         try {
 
         $input = $request->except('_token');
-        $createJob = EmployerJob::create(array_merge($input.['posted_by'=>Auth::id(),'job_status'=>1]));
+        $createJob = EmployerJob::create(array_merge($input,['posted_by'=>Auth::id(),'job_status'=>1]));
         toastr()->success('Job Created Successfully');
         return redirect()->route('employer-jobs.index');
           
