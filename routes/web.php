@@ -56,7 +56,7 @@ Route::get('company', [UserController::class, 'company'])->name('company');
 Route::get('candidates-marketplace', [UserController::class, 'candidatesMarketplace'])->name('candidatesMarketplace');
 Route::get('job-details', [UserController::class, 'jobDetails'])->name('jobDetails');
 // Route::get('employer-job-listing' , [UserController::class , 'employerjobListing'])->name('employerjobListing');
-Route::get('candidate-profile-new', [UserController::class, 'candidateProfileNew'])->name('candidateProfileNew');
+Route::get('candidate-profile-new/{id}', [UserController::class, 'candidateProfileNew'])->name('candidateProfileNew');
 Route::get('candidate-profile-document', [UserController::class, 'candidateProfileDocument'])->name('candidateProfileDocument');
 Route::get('candidate-profile-interview', [UserController::class, 'candidateProfileInterview'])->name('candidateProfileInterview');
 Route::get('candidate-profile-album', [UserController::class, 'candidateProfileAlbum'])->name('candidateProfileAlbum');

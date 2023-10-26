@@ -64,6 +64,15 @@ function  candidateTeachingVideoPath($user = null)
     }
     return $path;
 }
+function  candidateResumeFilePath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/candidate/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/resume/';
+    } else {
+        $path  = 'uploads/candidate/resume/';
+    }
+    return $path;
+}
 
 function  getPath($image=null)
 {

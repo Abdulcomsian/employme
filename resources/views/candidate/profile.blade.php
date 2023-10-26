@@ -139,29 +139,35 @@ Profile
                         <div class="icon">
                             <div>3</div>
                         </div>
-                        <div class="text">Educational & Professional Details</div>
+                        <div class="text">Education</div>
                     </div>
                     <div id="tag-step-4" class="step">
                         <div class="icon">
                             <div>4</div>
                         </div>
-                        <div class="text">Skills & Preferences</div>
+                        <div class="text">Professional Details</div>
                     </div>
                     <div id="tag-step-5" class="step">
                         <div class="icon">
                             <div>5</div>
                         </div>
-                        <div class="text">Introduce Yourself</div>
+                        <div class="text">Skills & Preferences</div>
                     </div>
                     <div id="tag-step-6" class="step">
                         <div class="icon">
                             <div>6</div>
                         </div>
-                        <div class="text">Teaching Video & Interview (optional)</div>
+                        <div class="text">Introduce Yourself</div>
                     </div>
                     <div id="tag-step-7" class="step">
                         <div class="icon">
                             <div>7</div>
+                        </div>
+                        <div class="text">Teaching Video & Interview (optional)</div>
+                    </div>
+                    <div id="tag-step-8" class="step">
+                        <div class="icon">
+                            <div>8</div>
                         </div>
                         <div class="text">Legal & Verification</div>
                     </div>
@@ -265,19 +271,11 @@ Profile
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Profile Photo</label>
-                                    <div class="user-avatar-setting d-flex align-items-center">
-                                        @if($candidatePersonalDetails->profile_picture)
-                                        <img src="{{asset($candidatePersonalDetails->profile_picture)}}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
-                                        @else
-                                        <img src="{../images/lazy.svg}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
-                                        @endif
-                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
-                                            Upload profile photo
-                                            <input type="file" id="uploadImg" name="profileImage" placeholder="">
-                                        </div>
-                                        <button class="delete-btn tran3s">Delete</button>
-                                    </div>
+                                    <label for="">Gender</label>
+                                    <select name="gender" id="gender" class="nice-select">
+                                        <option value="Male" {{$candidatePersonalDetails->gender == 'Male' ? 'selected' : ''}}>Male</option>
+                                        <option value="Female" {{$candidatePersonalDetails->gender == 'Female' ? 'selected' : ''}}>Female</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -300,6 +298,52 @@ Profile
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Designation</label>
+                                    <input type="text" name="candidateDesignation" id="candidateDesignation" placeholder="Designation" value = "{{$candidatePersonalDetails->date_of_birth ?? ''}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Profile Photo</label>
+                                    <div class="user-avatar-setting d-flex align-items-center">
+                                        @if($candidatePersonalDetails->profile_picture)
+                                        <img src="{{asset($candidatePersonalDetails->profile_picture)}}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+                                        @else
+                                        <img src="{../images/lazy.svg}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+                                        @endif
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload profile photo
+                                            <input type="file" id="uploadImg" name="profileImage" placeholder="">
+                                        </div>
+                                        <button class="delete-btn tran3s">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Resume</label>
+                                    <div class="user-avatar-setting d-flex align-items-center mb-30">
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload Resume
+                                            <input type="file" id="candidate_resume" name="candidate_resume" placeholder="">
+                                        </div>
+
+                                        <button class="delete-btn tran3s">Delete</button>
+                                    </div>
+                                    @if(isset($candidatePersonalDetails->candidate_resume) && !empty($candidatePersonalDetails->candidate_resume))
+                                    <div style = "padding-left:20px;">
+                                        <a class="btn btn-primary" href = "{{asset($candidatePersonalDetails->candidate_resume)}}" target = "_blank">File</a>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" onclick="previousStep(2)">Previous</button>
@@ -345,7 +389,7 @@ Profile
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">TEFL/TESOL Certification</label>
@@ -365,45 +409,253 @@ Profile
                                 </div>
                             </div>
                         </div>
+                        @if(isset($candidateEducationalDetails->educational_details))
+                        @foreach($candidateEducationalDetails->educational_details as $index=>$educational_detail)
+                          @if($index == 0)
+                        <div  id="candidate-education">
+                                <center><h3>Educational Details</h3></center>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Degree</label>
+                                        <input type="text" name="education[{{$index}}][degree]" placeholder="" value = "{{$educational_detail['degree'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Institution</label>
+                                        <input type="text" name="education[{{$index}}][institution]" placeholder="" value = "{{$educational_detail['institution'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Description</label>
+                                        <input type="text" name="education[{{$index}}][description]" placeholder="" value = "{{$educational_detail['description'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        @else
+                        <div  class="educational-details-row">
+                                <center><h3>Educational Details</h3></center>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Degree</label>
+                                        <input type="text" name="education[{{$index}}][degree]" placeholder="" value = "{{$educational_detail['degree'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Institution</label>
+                                        <input type="text" name="education[{{$index}}][institution]" placeholder="" value = "{{$educational_detail['institution'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Description</label>
+                                        <input type="text" name="education[{{$index}}][description]" placeholder="" value = "{{$educational_detail['description'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2 pt-4">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Description</label>
+                                        <button type="button" class="btn btn-danger remove-tr" >Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        @endif
+                        @endforeach
+                        @else
+                        <div  id="candidate-education">
+                                <center><h3>Educational Details</h3></center>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Degree</label>
+                                        <input type="text" name="education[0][degree]" placeholder="" value = "">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Institution</label>
+                                        <input type="text" name="education[0][institution]" placeholder="" value = "">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Description</label>
+                                        <input type="text" name="education[0][description]" placeholder="" value = "">
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        @endif
+                        <div class="d-flex flex-row justify-content-start gap-3">
+                                <button type="button" class="dash-btn-one" id="add-more-education" >add more</button>
+                        </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
-                            <button type="button" class="dash-btn-one" id="candidate-educational-professional-details" onclick="nextStep(3)">Next</button>
+                            <button type="button" class="dash-btn-one" id="candidate-educational-details" onclick="nextStep(3)">Next</button>
                         </div>
                     </div>
 
                     <!-- Step 4 -->
                     <div class="step" id="step-4">
+                        @if(isset($candidateEducationalDetails->professional_details))
+                        @foreach($candidateEducationalDetails->professional_details as $index=>$professional_details)
+                         @if($index==0)
+                        <div class="candidate-experiance" id="add-candidate-experience">
+                                <center><h3>Experience Details</h3></center>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Role</label>
+                                        <input type="text" name="experience[{{$index}}][role]" placeholder="" value = "{{$professional_details['role'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Employer Name</label>
+                                        <input type="text" name="experience[{{$index}}][employer_name]" placeholder="" value = "{{$professional_details['role'] ?? 'employer_name'}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Date From</label>
+                                        <input type="date" name="experience[{{$index}}][date_from]" placeholder="" value = "{{($professional_details['date_from']) ?? ''}}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Date To</label>
+                                        <input type="date" name="experience[{{$index}}][date_to]" placeholder="" value = "{{$professional_details['date_to'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Description</label>
+                                        <input type="text" name="experience[{{$index}}][description]" placeholder="" value = "{{$professional_details['description'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        @else
+                        <div class="canidate-experience-details" id="add-candidate-experience">
+                                <center><h3>Experience Details</h3></center>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Role</label>
+                                        <input type="text" name="experience[{{$index}}][role]" placeholder="" value = "{{$professional_details['role'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Employer Name</label>
+                                        <input type="text" name="experience[{{$index}}][employer_name]" placeholder="" value = "{{$professional_details['role'] ?? 'employer_name'}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Date From</label>
+                                        <input type="date" name="experience[{{$index}}][date_from]" placeholder="" value = "{{($professional_details['date_from']) ?? ''}}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Date To</label>
+                                        <input type="date" name="experience[{{$index}}][date_to]" placeholder="" value = "{{$professional_details['date_to'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Description</label>
+                                        <input type="text" name="experience[{{$index}}][description]" placeholder="" value = "{{$professional_details['description'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2 pt-4">
+                                    <div class="dash-input-wrapper mb-30">
+                                    <button type="button" class="btn btn-danger remove-tr" >Remove</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        @endif
+                        @endforeach
+                        @endif
+                            <div class="d-flex flex-row justify-content-start gap-3">
+                                <button type="button" class="dash-btn-one" id="add-more-experience" >add more</button>
+                            </div>
+                        <div class="d-flex flex-row justify-content-end gap-3">
+                            <button type="button" class="dash-btn-one" onclick="previousStep(4)">Previous</button>
+                            <button type="button" class="dash-btn-one" id="candidate-professional-details" onclick="nextStep(4)">Next</button>
+                        </div>
+                    </div>
+                    <!-- Step 5 -->
+                    <div class="step" id="step-5">
+                           
                         <div class="row">
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Skills</label>
                                     <select name="professionalSkills" id="professionalSkills" class="nice-select" multiple>
                                         <option value= "" {{$candidatePreferencesDetails->skills == '' ? 'selected' : ''}}>Select</option>
                                         @isset($professionalSkills)
                                         @foreach($professionalSkills as $professionalSkill)
-                                        <option value="{{$professionalSkill->id}}" {{$candidatePreferencesDetails->skills == $southKoreaCity->id ? 'selected' : ''}}>{{$professionalSkill->name}}</option>
+                                        <option value="{{$professionalSkill->id}}" {{$candidatePreferencesDetails->skills == $professionalSkill->id ? 'selected' : ''}}>{{$professionalSkill->name}}</option>
                                         @endforeach
                                         @endisset
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Preferred City/Region in South Korea</label>
-                                    <select name="preferredCityRegionInSouthKorea" id="preferredCityRegionInSouthKorea" class="nice-select">
-                                        <option value= "" {{$candidatePreferencesDetails->preferred_city_region == '' ? 'selected' : ''}}>Select</option>
-                                        @isset($southKoreaCities)
-                                        @foreach($southKoreaCities as $southKoreaCity)
-                                        <option value="{{$southKoreaCity->id}}" {{$candidatePreferencesDetails->preferred_city_region == $southKoreaCity->id ? 'selected' : ''}}>{{$southKoreaCity->name}}</option>
-                                        @endforeach
-                                        @endisset
-                                    </select>
+                                    <input type="text" name="preferredCityRegionInSouthKorea" id="preferredCityRegionInSouthKorea" placeholder="Preferred City/Region in South Korea" value = "{{$candidatePersonalDetails->preferred_city_region ?? ''}}">
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">School Type Preference</label>
@@ -416,6 +668,10 @@ Profile
                                     </select>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
+                         
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Age Group Preference</label>
@@ -429,31 +685,76 @@ Profile
                                     </select>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Salary Expectations</label>
                                     <select value= "" name="salaryExpectations" id="salaryExpectations" class="nice-select">
-                                        <option {{$candidatePreferencesDetails->salary_expection == '' ? 'selected' : ''}}>Select</option>
-                                        <option value="10K" {{$candidatePreferencesDetails->salary_expection == '10K' ? 'selected' : ''}}>10K</option>
-                                        <option value="20K" {{$candidatePreferencesDetails->salary_expection == '20K' ? 'selected' : ''}}>20K</option>
-                                        <option value="50K+" {{$candidatePreferencesDetails->salary_expection == '50K+' ? 'selected' : ''}}>50K+</option>
-                                        <option value="100K+" {{$candidatePreferencesDetails->salary_expection == '100K+' ? 'selected' : ''}}>100K+</option>
+                                        <option value="$0K-$10K" {{$candidatePreferencesDetails->salary_expection == '$0K-$10K' ? 'selected' : ''}}>$0K-$10K</option>
+                                        <option value="$20K-$50K" {{$candidatePreferencesDetails->salary_expection == '$20K-$50K' ? 'selected' : ''}}>$10K-$20K</option>
+                                        <option value="$20K-$50K" {{$candidatePreferencesDetails->salary_expection == '$20K-$50K' ? 'selected' : ''}}>$20K-$50K</option>
+                                        <option value="$50K-$100K" {{$candidatePreferencesDetails->salary_expection == '$50K-$100K' ? 'selected' : ''}}>$50K-$100K</option>
+                                        <option value="$100K-$200K" {{$candidatePreferencesDetails->salary_expection == '$100K-$200K' ? 'selected' : ''}}>$100K-$200K</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
+                        <div class="row " id="add-skill-field">
+                             @if(isset($candidatePreferencesDetails->skills))
+                             @foreach($candidatePreferencesDetails->skills as $index=>$skill)
+                              @if($index==0)
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Skills</label>
+                                            <input type="text" name="skill[]" id="professionalSkills" placeholder="Add Skill" value = "{{$skill ?? ''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                @else
+                                <div class="row skill-field-row">
+                                    <div class="col-md-6">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <input type="text" name="skill[]"  placeholder="Add Skill" value = "{{$skill ?? ''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <button type="button" class="btn btn-danger remove-tr">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                                @endforeach
+                               @else
+                               <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Skills</label>
+                                            <input type="text" name="skill[]" id="professionalSkills" placeholder="Add Skill" value = "{{$candidatePersonalDetails->preferred_city_region ?? ''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
+                                        </div>
+                                    </div>
+                                </div>
+                               @endif
+                            </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" onclick="previousStep(4)">Previous</button>
-                            <button type="button" class="dash-btn-one" id = "candidate-preferences-details" onclick="nextStep(4)">Next</button>
+                            <button type="button" class="dash-btn-one" onclick="previousStep(5)">Previous</button>
+                            <button type="button" class="dash-btn-one" id = "candidate-preferences-details" onclick="nextStep(5)">Next</button>
                         </div>
                     </div>
 
-                    <!-- Step 5 -->
-                    <div class="step" id="step-5">
+                    <!-- Step 6 -->
+                    <div class="step" id="step-6">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
@@ -479,13 +780,13 @@ Profile
                         </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" onclick="previousStep(5)">Previous</button>
-                            <button type="button" class="dash-btn-one" id= "candidate-introduction-details" onclick="nextStep(5)">Next</button>
+                            <button type="button" class="dash-btn-one" onclick="previousStep(6)">Previous</button>
+                            <button type="button" class="dash-btn-one" id= "candidate-introduction-details" onclick="nextStep(6)">Next</button>
                         </div>
                     </div>
 
-                    <!-- Step 6 -->
-                    <div class="step" id="step-6">
+                    <!-- Step 7 -->
+                    <div class="step" id="step-7">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
@@ -514,13 +815,13 @@ Profile
                         </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" onclick="previousStep(6)">Previous</button>
-                            <button type="button" class="dash-btn-one" id="teaching-video-details" onclick="nextStep(6)">Next</button>
+                            <button type="button" class="dash-btn-one" onclick="previousStep(7)">Previous</button>
+                            <button type="button" class="dash-btn-one" id="teaching-video-details" onclick="nextStep(7)">Next</button>
                         </div>
                     </div>
 
-                    <!-- Step 7 -->
-                    <div class="step" id="step-7">
+                    <!-- Step 8 -->
+                    <div class="step" id="step-8">
                         <div class="row">
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
@@ -775,9 +1076,12 @@ Profile
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
         formData.append("full_name", $("#multi-step-form").find("[name=fullName]").val());
+        formData.append("designation", $("#multi-step-form").find("[name=candidateDesignation]").val());
+        formData.append("gender", $("#multi-step-form").find("[name=gender]").val());
         formData.append("current_location", $("#multi-step-form").find("[name=currentLocation]").val());
         formData.append("date_of_birth", $("#multi-step-form").find("[name=dateOfBirth]").val());
         formData.append("profile_picture", $('#uploadImg')[0].files[0]);
+        formData.append("candidate_resume", $('#candidate_resume')[0].files[0]);
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-2.save')}}",
@@ -803,10 +1107,50 @@ Profile
       });
   
       // Canidate Educational and Professional Information
-      $("#candidate-educational-professional-details").on("click", function(e) {
+      $("#candidate-educational-details").on("click", function(e) {
         e.preventDefault();
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
+        // var experienceData = [];
+    
+        //     for (var i = 0; ; i++) {
+        //     var role = $("input[name='experience[" + i + "][role]']").val();
+        //     if (role === undefined) {
+        //         break;
+        //     }
+            
+        //     var employerName = $("input[name='experience[" + i + "][employer_name]']").val();
+        //     var dataFrom = $("input[name='experience[" + i + "][date_from]']").val();
+        //     var dataTo = $("input[name='experience[" + i + "][date_to]']").val();
+        //     var description = $("input[name='experience[" + i + "][description]']").val();
+            
+        //     experienceData.push({
+        //         role: role,
+        //         employer_name: employerName,
+        //         data_from: dataFrom,
+        //         data_to: dataTo,
+        //         description: description
+        //     });
+        //     }
+                    var educationData = [];
+    
+                    for (var j = 0; ; j++) {
+                    var degree = $("input[name='education[" + j + "][degree]']").val();
+                   
+                    var institution = $("input[name='education[" + j + "][institution]']").val();
+                    var description = $("input[name='education[" + j + "][description]']").val();
+                    if (degree === undefined && institution === undefined && description === undefined ) {
+                            break;
+                        }
+                                educationData.push({
+                        degree: degree,
+                        institution: institution,
+                        description: description,
+                    });
+                    }
+        var educationData = JSON.stringify(educationData);
+
+        formData.append('educational_details',educationData)
         formData.append('highest_degree',$("#multi-step-form").find('[name=highestDegreeObtained]').val())
         formData.append('field_of_study',$("#multi-step-form").find('[name=fieldOfStudy]').val())
         formData.append('institute_name',$("#multi-step-form").find('[name=universityCollegeNameCountry]').val())
@@ -837,12 +1181,70 @@ Profile
           return false;
       });
 
+       // Canidate  Professional Information
+      $("#candidate-professional-details").on("click", function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        var experienceData = [];
+    
+            for (var i = 0; ; i++) {
+            var role = $("input[name='experience[" + i + "][role]']").val();
+            if (role === undefined) {
+                break;
+            }
+            
+            var employerName = $("input[name='experience[" + i + "][employer_name]']").val();
+            var dataFrom = $("input[name='experience[" + i + "][date_from]']").val();
+            var dataTo = $("input[name='experience[" + i + "][date_to]']").val();
+            var description = $("input[name='experience[" + i + "][description]']").val();
+            
+            experienceData.push({
+                role: role,
+                employer_name: employerName,
+                date_from: dataFrom,
+                date_to: dataTo,
+                description: description
+            });
+            }
+    
+        var experienceData = JSON.stringify(experienceData);
+        formData.append('professional_details',experienceData)
+
+          $.ajax({
+            type: "POST",
+              url: "{{route('candidate.profile-3.save')}}",
+              data: formData,
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              success: function (data) {
+    
+                if (data.status) {
+                    // window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+  
+          return false;
+      });
       // Skills and Preferences save data
       $("#candidate-preferences-details").on("click", function(e) {
         e.preventDefault();
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
-        formData.append('skills',$("#multi-step-form").find('[name=professionalSkills]').val());
+        var skillInput = $('input[name="skill[]"]');
+
+// Loop through each input element and append it to the FormData
+        skillInput.each(function(index, element) {
+        formData.append('skills[]', element.value);
+        });
         formData.append('preferred_city_region',$("#multi-step-form").find('[name=preferredCityRegionInSouthKorea]').val());
         formData.append('school_type',$("#multi-step-form").find('[name=schoolTypePreference]').val());
         formData.append('age_group',$("#multi-step-form").find('[name=ageGroupPreference]').val());
@@ -966,5 +1368,132 @@ Profile
           return false;
       });
     }); 
+</script>
+<script>
+     var i = 0;
+       
+       $("#add").click(function(){
+      
+           ++i;
+      
+        //    $("#add-skill-field").append('<tr><td><input type="text" name="addmore['+i+'][name]" placeholder="Enter your Name" class="form-control" /></td><td><input type="text" name="addmore['+i+'][qty]" placeholder="Enter your Qty" class="form-control" /></td><td><input type="text" name="addmore['+i+'][price]" placeholder="Enter your Price" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
+           $("#add-skill-field").append('<div class="row skill-field-row"><div class="col-md-6"><div class="dash-input-wrapper mb-30"><input type="text" name="skill[]"  placeholder="Add Skill" value = "{{$candidatePersonalDetails->preferred_city_region ?? ''}}"></div></div><div class="col-md-6"><div class="dash-input-wrapper mb-30"><button type="button" class="btn btn-danger remove-tr">Remove</button></div></div>')
+       });
+      
+       $(document).on('click', '.remove-tr', function(){  
+            $(this).parents('.skill-field-row').remove();
+       });
+       
+       //adding more experience details fields
+
+// The length property of the jQuery object gives you the count of matched elements
+const experienceFormFields = document.getElementById('multi-step-form');
+const experienceArr = Array.from(experienceFormFields.getElementsByTagName('input')).map(input => input.name);
+const experienceArrLength = experienceArr.filter(name => /experience\[\d+\]\[role\]/.test(name)).length;
+      
+       var j = experienceArrLength-1;
+       $("#add-more-experience").click(function(){
+           ++j;
+      
+        //    $("#add-skill-field").append('<tr><td><input type="text" name="addmore['+i+'][name]" placeholder="Enter your Name" class="form-control" /></td><td><input type="text" name="addmore['+i+'][qty]" placeholder="Enter your Qty" class="form-control" /></td><td><input type="text" name="addmore['+i+'][price]" placeholder="Enter your Price" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
+           $("#add-candidate-experience").append('<div class="canidate-experience-details"><center><h3>Experience '+(j+1)+'</h3></center><div class="row ">'+
+                                '<div class="col-md-6">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Role</label>'+
+                                        '<input type="text" name="experience['+j+'][role]" placeholder="" value = "">'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Employer Name</label>'+
+                                        '<input type="text" name="experience['+j+'][employer_name]" placeholder="" value = "">'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                                '<div class="col-md-6">'+
+                                   ' <div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Date From</label>'+
+                                       ' <input type="date" name="experience['+j+'][date_from]" placeholder="" value = "">'+
+                                   ' </div>'+
+                               ' </div>'+
+                                '<div class="col-md-6">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Date To</label>'+
+                                        '<input type="date" name="experience['+j+'][date_to]" placeholder="" value = "">'+
+                                    '</div>'+
+                                '</div>'+
+                           ' </div>'+
+                            '<div class="row">'+
+                               ' <div class="col-md-8">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Description</label>'+
+                                        '<input type="text" name="experience['+j+'][description]" placeholder="" value = "">'+
+                                    '</div>'+
+                                '</div>'+
+                                ' <div class="col-md-2 pt-4">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<button type="button" class="btn btn-danger remove-tr" >Remove</button>'+
+                                    '</div>'+
+                                '</div>'+
+                                '</div>'+
+                            '</div>'
+                            
+                            )
+       });
+       $(document).on('click', '.remove-tr', function(){  
+            $(this).parents('.canidate-experience-details').remove();
+       });
+        //End of adding more experience details fields 
+
+        //adding more experience educational fields 
+       var k = 0;
+       const form = document.getElementById('multi-step-form');
+const inputNames = Array.from(form.getElementsByTagName('input')).map(input => input.name);
+const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.test(name)).length;
+        k=educationCount-1;
+// console.log(`Number of objects in the 'education' array: ${objectCount}`);
+       $("#add-more-education").click(function(){
+
+
+           ++k;
+      
+        //    $("#add-skill-field").append('<tr><td><input type="text" name="addmore['+i+'][name]" placeholder="Enter your Name" class="form-control" /></td><td><input type="text" name="addmore['+i+'][qty]" placeholder="Enter your Qty" class="form-control" /></td><td><input type="text" name="addmore['+i+'][price]" placeholder="Enter your Price" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
+           $("#candidate-education").append('<div class="educational-details-row"><center><h3>Educational Details</h3></center><div class="row ">'+
+                                '<div class="col-md-6">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Degree</label>'+
+                                        '<input type="text" name="education['+k+'][degree]" placeholder="" value = "">'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Institution</label>'+
+                                        '<input type="text" name="education['+k+'][institution]" placeholder="" value = "">'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                               ' <div class="col-md-8">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Description</label>'+
+                                        '<input type="text" name="education['+k+'][description]" placeholder="" value = "">'+
+                                    '</div>'+
+                                '</div>'+
+                                ' <div class="col-md-2 pt-4">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<button type="button" class="btn btn-danger remove-tr" >Remove</button>'+
+                                    '</div>'+
+                                '</div>'+
+                                '</div>'+
+                            '</div>'
+                            
+                            )
+       });
+       $(document).on('click', '.remove-tr', function(){  
+            $(this).parents('.educational-details-row').remove();
+       });
+        //End of adding more educational details fields 
+
 </script>
 @endsection

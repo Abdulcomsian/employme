@@ -21,30 +21,38 @@
                             <div class="row gx-1 align-items-center">
                                 <div class="col-xl-2 order-xl-0">
                                     <div class="position-relative">
-                                        <h4 class="candidate-name text-white mb-0">Rashed Kabir</h4>
-                                        <div class="candidate-post">UI Designer</div>
+                                        <h4 class="candidate-name text-white mb-0">{{$candidateDetails->candidatePersonalDetails->full_name ?? ''}}</h4>
+                                        <div class="candidate-post">{{$candidateDetails->candidatePersonalDetails->designation ?? ''}}</div>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 order-xl-3">
-                                    <ul class="cadidate-skills style-none d-flex flex-wrap align-items-center">
-                                        <li>Design</li>
-                                        <li>UI</li>
-                                        <li>Digital</li>
-                                        <li class="more">2+</li>
+                                    <ul class="cadidate-skills style-none d-flex flex-wrap align-items-center"> 
+                                        @if(isset($candidateDetails->candidatePreferences->skills) && !empty($candidateDetails->candidatePreferences->skills))
+										@foreach($candidateDetails->candidatePreferences->skills as $index=>$skill)
+										@if($index < 3)
+										<li>{{$skill}}</li>
+										@endif
+										@endforeach
+										@endif                                    
+                                        @if(isset($candidateDetails->candidatePreferences->skills) && !empty($candidateDetails->candidatePreferences->skills))
+                                        @if(count($candidateDetails->candidatePreferences->skills) > 3)
+										<li class="more">+{{{count($candidateDetails->candidatePreferences->skills)-3}}}</li>
+										@endif
+										@endif
                                     </ul>
                                     <!-- /.cadidate-skills -->
                                 </div>
                                 <div class="col-xl-2 col-md-4 order-xl-1">
                                     <div class="candidate-info">
                                         <span>Location</span>
-                                        <div>New York, US</div>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->current_location ?? ''}}</div>
                                     </div>
                                     <!-- /.candidate-info -->
                                 </div>
                                 <div class="col-xl-2 col-md-4 order-xl-2">
                                     <div class="candidate-info">
                                         <span>Salary</span>
-                                        <div>$30k-$50k/yr</div>
+                                        <div>{{$candidateDetails->candidatePreferences->salary_expection ?? ''}}</div>
                                     </div>
                                     <!-- /.candidate-info -->
                                 </div>
@@ -69,7 +77,7 @@
         
         <nav class="nav-2" id="menu">
             <ul id="menu-closed">
-                <li><a href=" {{route('candidateProfileNew')}}" class="active">Overview</a></li>
+                <li><a href=" {{route('candidateProfileNew',\Crypt::encryptString(1))}}" class="active">Overview</a></li>
                 <li><a href="{{route('candidateProfileDocument')}}">Documents</a></li>
                 <li> <a href="{{route('candidateProfileInterview')}}">Interview</a></li>
                 <li><a href="{{route('candidateProfileAlbum')}}"> Album</a></li>
@@ -92,16 +100,7 @@
                         <div class="candidates-profile-details me-xxl-5 pe-xxl-4">
                             <div class="inner-card mb-65 lg-mb-40">
                                 <h3 class="title">Overview</h3>
-                                <p>Hello my name is Ariana Gande Connor and I’m a Financial Supervisor from Netherlands,
-                                    Rotterdam. In pharetra orci dignissim, blandit mi semper, ultricies diam.
-                                    Suspendisse malesuada suscipit nunc non volutpat. Sed porta nulla id orci laoreet
-                                    tempor non consequat enim. Sed vitae aliquam velit. Aliquam Integer vehicula rhoncus
-                                    molestie. Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus.
-                                    Suspendisse condimentum lorem ut elementum aliquam. </p> <br>
-                                <p>Mauris nec erat ut libero vulputate pulvinar. Aliquam ante erat, blandit at pretium
-                                    et, accumsan ac est. Integer vehicula rhoncus molestie. Morbi ornare ipsum sed sem
-                                    condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum
-                                    aliquam. Mauris nec.</p>
+                                <p>{{$candidateDetails->candidatePersonalDetails->introduction ?? ''}}</p>
                             </div>
                             <!-- /.inner-card -->
                             <h3 class="title">Interview</h3>
@@ -115,17 +114,21 @@
                             <div class="inner-card mb-75 lg-mb-50">
                                 <h3 class="title">Education</h3>
                                 <div class="time-line-data position-relative pt-15">
+                                @if(isset($candidateDetails->candidateEducation->educational_details) && !empty($candidateDetails->candidateEducation->educational_details))
+                                @foreach($candidateDetails->candidateEducation->educational_details as $index=>$educational_detail)
                                     <div class="info position-relative">
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
-                                            1</div>
-                                        <div class="text_1 fw-500">University of Boston</div>
-                                        <h4>Bachelor Degree of Design</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
-                                            tellus. Interdum primis</p>
+                                            {{$index+1}}</div>
+                                        <div class="text_1 fw-500">{{$educational_detail['institution'] ?? ''}}</div>
+                                        <h4>{{$educational_detail['degree'] ?? ''}}</h4>
+                                        <p>{{$educational_detail['description'] ?? ''}}</p>
                                     </div>
+                                    @endforeach
+										@endif 
+                                    
                                     <!-- ./info -->
-                                    <div class="info position-relative">
+                                    <!-- <div class="info position-relative">
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
                                             2</div>
@@ -133,7 +136,7 @@
                                         <h4>UI/UX Design Course</h4>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
                                             tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                    </div>
+                                    </div> -->
                                     <!-- ./info -->
                                 </div>
                                 <!-- /.time-line-data -->
@@ -142,33 +145,38 @@
                             <div class="inner-card mb-75 lg-mb-50">
                                 <h3 class="title">Skills</h3>
                                 <ul class="style-none skill-tags d-flex flex-wrap pb-25">
-                                    <li>Figma</li>
-                                    <li>HTML5</li>
-                                    <li>Illustrator</li>
-                                    <li>Adobe Photoshop</li>
-                                    <li>WordPress</li>
-                                    <li>jQuery</li>
-                                    <li>Web Design</li>
-                                    <li>Adobe XD</li>
-                                    <li>CSS</li>
-                                    <li class="more">3+</li>
+                                    @if(isset($candidateDetails->candidatePreferences->skills) && !empty($candidateDetails->candidatePreferences->skills))
+										@foreach($candidateDetails->candidatePreferences->skills as $index=>$skill)
+										@if($index < 8)
+										<li>{{$skill}}</li>
+										@endif
+										@endforeach
+										@endif 
+                                        @if(isset($candidateDetails->candidatePreferences->skills) && !empty($candidateDetails->candidatePreferences->skills))
+                                        @if(count($candidateDetails->candidatePreferences->skills) > 8)
+										<li class="more">+{{{count($candidateDetails->candidatePreferences->skills)-8}}}</li>
+										@endif
+										@endif
                                 </ul>
                             </div>
                             <!-- /.inner-card -->
                             <div class="inner-card mb-60 lg-mb-50">
                                 <h3 class="title">Work Experience</h3>
                                 <div class="time-line-data position-relative pt-15">
+                                @if(isset($candidateDetails->candidateEducation->professional_details) && !empty($candidateDetails->candidateEducation->professional_details))
+                                @foreach($candidateDetails->candidateEducation->professional_details as $index=>$professional_details)
                                     <div class="info position-relative">
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
-                                            1</div>
-                                        <div class="text_1 fw-500">02/03/18 - 13/05/20</div>
-                                        <h4>Product Designer (Google)</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
-                                            tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                                            {{$index+1}}</div>
+                                        <div class="text_1 fw-500">{{$professional_details['date_from']}} - {{$professional_details['date_to']}}</div>
+                                        <h4>{{$professional_details['role']}} ({{$professional_details['employer_name']}})</h4>
+                                        <p>{{$professional_details['description']}}</p>
                                     </div>
+                                @endforeach
+                                @endif
                                     <!-- ./info -->
-                                    <div class="info position-relative">
+                                    <!-- <div class="info position-relative">
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
                                             2</div>
@@ -176,7 +184,7 @@
                                         <h4>UI/UX Engineer (Adobe)</h4>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
                                             tellus. Interdum primis</p>
-                                    </div>
+                                    </div> -->
                                     <!-- ./info -->
                                 </div>
                                 <!-- /.time-line-data -->
@@ -192,35 +200,35 @@
 
 									         <li class="border-0">
                                         <span>Name: </span>
-                                        <div>Muhammad</div>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->full_name ?? ''}}</div>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <span>Age: </span>
                                         <div>28</div>
-                                    </li>
+                                    </li> -->
 									         <li >
                                         <span>Location: </span>
-                                        <div>Spain, Barcelona </div>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->current_location ?? ''}}</div>
                                     </li>
 									<li>
                                         <span>Expected Salary: </span>
-                                        <div>$3k-$4k/month</div>
+                                        <div>{{$candidateDetails->candidatePreferences->salary_expection ?? ''}}</div>
                                     </li>
-									<li>
+									<!-- <li>
                                         <span>Intended Start Date: </span>
                                         <div>14 August 2024</div>
                                     </li>
 									<li>
                                         <span>Country of Origin: </span>
                                         <div>Pakistan</div>
-                                    </li>
+                                    </li> -->
 									<li>
                                         <span>Apostille Status: </span>
                                         <div>Verified</div>
                                     </li>
 									<li>
                                         <span> Teaching Experience: </span>
-                                        <div>2 Years</div>
+                                        <div>{{$candidateDetails->candidateEducation->teaching_experiance ?? ''}}</div>
                                     </li>
 
                                 </ul>

@@ -22,6 +22,8 @@ return new class extends Migration
             $table->text('clarification_details_if_yes')->nullable();
             $table->enum('prevous_teaching_in_korea',['Yes','No'])->default('No');
             $table->text('experiance_description_if_yes')->nullable();
+            $table->json('educational_details')->nullable();
+            $table->json('professional_details')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

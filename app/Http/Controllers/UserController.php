@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
 class UserController extends Controller
 {
 
@@ -40,9 +41,11 @@ class UserController extends Controller
     //     return view('employer-job-Listing');
     // }
 
-    public function candidateProfileNew()
+    public function candidateProfileNew($id)
     {
-        return view('candidate-profile-new');
+        $candidateId = Crypt::decryptString($id);
+        $candidateDetails = User::role('candidate')->with('candidatePreferences','candidateEducation','candidatePersonalDetails','candidatePersonalDetails.getNationality','candidatePersonalDetails.getPassport')->find($candidateId);
+        return view('candidate-profile-new',compact('candidateDetails'));
     }
     public function candidateProfileDocument()
     {

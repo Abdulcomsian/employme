@@ -10,13 +10,17 @@ class CandidatePersonalDetails extends Model
     use HasFactory;
     protected $fillable = [
         'nationality',
+        'full_name',
+        'designation',
         'passport',
+        'gender',
         'current_visa_status',
         'criminal_record',
         'is_healthy',
         'graduation',
         'note',
         'profile_picture',
+        'candidate_resume',
         'date_of_birth',
         'current_location',
         'introduction',

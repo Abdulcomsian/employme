@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('candidate_personal_details', function (Blueprint $table) {
             $table->id();
+            $table->string('full_name')->nullable();
+            $table->string('designation')->nullable();
             $table->unsignedBigInteger('nationality')->nullable();
             $table->unsignedBigInteger('passport')->nullable();
             $table->enum('current_visa_status', ['No Visa', 'Tourist Visa', 'Student Visa','E2 Teaching Visa'])->default('No Visa');
             $table->enum('criminal_record', ['Yes', 'No'])->default('No');
             $table->enum('is_healthy', ['Yes', 'No'])->default('Yes');
+            $table->text('gender')->nullable();
             $table->text('graduation')->nullable();
             $table->longText('note')->nullable();
             $table->longText('profile_picture')->nullable();
+            $table->longText('candidate_resume')->nullable();
             $table->longText('date_of_birth')->nullable();
             $table->text('current_location')->nullable();
             $table->longText('introduction')->nullable();

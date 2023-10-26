@@ -28,6 +28,7 @@ class CandidateController extends Controller
         $professionalSkills = ProfessionalSkills::all();
         $southKoreaCities = Cities::where('country_id',116)->get();
         $countries = Countries::all();
+        // dd($candidatePreferencesDetails->skills);
         return view('candidate.profile',compact('countries','candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities','candidatePreferencesDetails'));
     }
 
@@ -58,10 +59,17 @@ class CandidateController extends Controller
             $filePath = candidateProfilePicturePath();
             $imagename = saveFile($filePath, $file, $updatePersonalDetails->profile_picture);
         }
+        // save candidate resume code
+        $imagename1 = $updatePersonalDetails->candidate_resume;
+        if ($request->file('candidate_resume')) {
+            $file = $request->file('candidate_resume');
+            $filePath = candidateResumeFilePath();
+            $imagename1 = saveFile($filePath, $file, $updatePersonalDetails->candidate_resume);
+        }
         // End of saving candidate profile code
 
         $input = $request->except('_token','profile_picture');
-        $updatePersonalDetails->update(array_merge($input,['profile_picture'=>$imagename]));
+        $updatePersonalDetails->update(array_merge($input,['profile_picture'=>$imagename,'candidate_resume'=>$imagename1,]));
          return response()->json([
                         "status" => true, 
                         "message" => url("Personal Details Updated Successfully")
@@ -69,6 +77,7 @@ class CandidateController extends Controller
     }
     public function saveProfile3(Request $request)
     {
+        // dd($request->all());
         $input = $request->except('_token');
         $updateEducationalDetails = CandidateEducation::where('user_id',Auth::id());
         $updateEducationalDetails->update($input);
@@ -79,7 +88,12 @@ class CandidateController extends Controller
     }
     public function saveProfile4(Request $request)
     {
+        // $skills = implode(',', $request->skills);
+        // $skills = json_decode($request->skills);
+        // $skills = implode(',', $request->skills);
         $input = $request->except('_token');
+        // dd($request->skills);
+        // dd($commaSeparatedString);
         $updatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id());
         $updatePreferencesDetails->update($input);
          return response()->json([

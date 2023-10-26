@@ -23,4 +23,7 @@ class CandidatePreferences extends Model
         'user_id',
         
     ];
+    protected $casts = [
+        'skills' => 'array',
+      ];
 }
