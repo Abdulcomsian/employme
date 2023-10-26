@@ -419,7 +419,9 @@ Candidate Marketplace
 										@endforeach
 										@endif
 										@if(isset($candidate->candidatePreferences->skills) && !empty($candidate->candidatePreferences->skills))
+										@if(count($candidate->candidatePreferences->skills) > 3)
 										<li class="more">+{{{count($candidate->candidatePreferences->skills)-3}}}</li>
+										@endif
 										@endif
 									</ul>
 									<!-- /.cadidate-skills -->
