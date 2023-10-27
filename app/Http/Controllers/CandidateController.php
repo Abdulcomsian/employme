@@ -68,7 +68,7 @@ class CandidateController extends Controller
         }
         // End of saving candidate profile code
 
-        $input = $request->except('_token','profile_picture');
+        $input = $request->except('_token','profile_picture','candidate_resume');
         $updatePersonalDetails->update(array_merge($input,['profile_picture'=>$imagename,'candidate_resume'=>$imagename1,]));
          return response()->json([
                         "status" => true, 

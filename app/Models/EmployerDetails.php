@@ -11,11 +11,13 @@ class EmployerDetails extends Model
     protected $fillable = [
         'institution',
         'institution_type',
+        'institution_logo',
+        'employer_details',
         'address_line_1',
         'address_line_2',
         'country_id',
-        'state_id',
-        'city_id',
+        'state',
+        'city',
         'zip_code',
         'phone_number',
         'second_contact_number',
@@ -50,4 +52,9 @@ class EmployerDetails extends Model
         'user_id',
 
     ];
+
+    public function employerCountry()
+    {
+        return $this->belongsTo(Countries::class,'country_id');
+    }
 }

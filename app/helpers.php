@@ -54,6 +54,15 @@ function  employerCertificationtPath($user = null)
     }
     return $path;
 }
+function  employerInstitutionLogoPath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/employer/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/instituion-logo/';
+    } else {
+        $path  = 'uploads/employer/instituion-logo/';
+    }
+    return $path;
+}
 
 function  candidateTeachingVideoPath($user = null)
 {
@@ -208,4 +217,10 @@ function getActiveJobStatus($status=null)
      $active_status = 'active';
 
      return $active_status;
+}
+
+function employerSubscription()
+{
+    $getSubscription = \App\Models\Subscription::with('employerSubscriptionItems')->where('user_id',Auth::id())->first();
+    return isset($getSubscription->employerSubscriptionItems) ? 1 : 0;
 }

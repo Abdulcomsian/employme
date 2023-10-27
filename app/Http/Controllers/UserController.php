@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\EmployerJob;
+use App\Models\EmployerDetails;
 class UserController extends Controller
 {
 
@@ -32,9 +34,11 @@ class UserController extends Controller
         return view('employer.employer-dashboard-settings');
     }
 
-    public function jobDetails()
+    public function jobDetails($id)
     {
-        return view('job-details');
+        $jobId = Crypt::decryptString($id);
+        $jobDetails = EmployerJob::with('employerDetails')->find($jobId);
+        return view('job-details',compact('jobDetails'));
     }
     // public function employerjobListing()
     // {
@@ -64,36 +68,52 @@ class UserController extends Controller
         return view('candidate-profile-comment');
     }
 
-    public function companyAboutUs()
+    public function companyAboutUs($id)
     {
-        return view('company-about-us');
+        $id = Crypt::decryptString($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        return view('company-about-us',compact('employerDetails'));
     }
-    public function companyFacilities()
+    public function companyFacilities($id)
     {
-        return view('company-facilities');
+        $id = Crypt::decryptString($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        return view('company-facilities',compact('employerDetails'));
     }
-    public function companyStaff()
+    public function companyStaff($id)
     {
-        return view('company-staff');
+        $id = Crypt::decryptString($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        return view('company-staff',compact('employerDetails'));
     }
-    public function companyPrograms()
+    public function companyPrograms($id)
     {
-        return view('company-programs');
+        $id = Crypt::decryptString($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        return view('company-programs',compact('employerDetails'));
     }
-    public function companyReviews()
+    public function companyReviews($id)
     {
-        return view('company-reviews');
+        $id = Crypt::decryptString($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        return view('company-reviews',compact('employerDetails'));
     }
-    public function companyGallery()
+    public function companyGallery($id)
     {
-        return view('company-gallery');
+        $id = Crypt::decryptString($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        return view('company-gallery',compact('employerDetails'));
     }
-    public function companyLocation()
+    public function companyLocation($id)
     {
-        return view('company-location');
+        $id = Crypt::decryptString($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        return view('company-location',compact('employerDetails'));
     }
-    public function companyStaffInfo()
+    public function companyStaffInfo($id)
     {
-        return view('company-staff-information');
+        $id = Crypt::decryptString($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        return view('company-staff-information',compact('employerDetails'));
     }
 }

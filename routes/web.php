@@ -54,7 +54,7 @@ Route::get('job-marketplace', [JobController::class, 'jobMarketplace'])->name('j
 // Route::get('candidate-profile' , [UserController::class , 'candidateProfile'])->name('candidateProfile');
 Route::get('company', [UserController::class, 'company'])->name('company');
 Route::get('candidates-marketplace', [UserController::class, 'candidatesMarketplace'])->name('candidatesMarketplace');
-Route::get('job-details', [UserController::class, 'jobDetails'])->name('jobDetails');
+Route::get('job-details/{id}', [UserController::class, 'jobDetails'])->name('jobDetails');
 // Route::get('employer-job-listing' , [UserController::class , 'employerjobListing'])->name('employerjobListing');
 Route::get('candidate-profile-new/{id}', [UserController::class, 'candidateProfileNew'])->name('candidateProfileNew');
 Route::get('candidate-profile-document', [UserController::class, 'candidateProfileDocument'])->name('candidateProfileDocument');
@@ -62,14 +62,14 @@ Route::get('candidate-profile-interview', [UserController::class, 'candidateProf
 Route::get('candidate-profile-album', [UserController::class, 'candidateProfileAlbum'])->name('candidateProfileAlbum');
 Route::get('candidate-profile-comment', [UserController::class, 'candidateProfileComment'])->name('candidateProfileComment');
 
-Route::get('company-about-us', [UserController::class, 'companyAboutUs'])->name('companyAboutUs');
-Route::get('company-facilities', [UserController::class, 'companyFacilities'])->name('companyFacilities');
-Route::get('company-staff', [UserController::class, 'companyStaff'])->name('companyStaff');
-Route::get('company-programs', [UserController::class, 'companyPrograms'])->name('companyPrograms');
-Route::get('company-reviews', [UserController::class, 'companyReviews'])->name('companyReviews');
-Route::get('company-gallery', [UserController::class, 'companyGallery'])->name('companyGallery');
-Route::get('company-location', [UserController::class, 'companyLocation'])->name('companyLocation');
-Route::get('company-staff-information', [UserController::class, 'companyStaffInfo'])->name('companyStaffInfo');
+Route::get('company-about-us/{id}', [UserController::class, 'companyAboutUs'])->name('companyAboutUs');
+Route::get('company-facilities/{id}', [UserController::class, 'companyFacilities'])->name('companyFacilities');
+Route::get('company-staff/{id}', [UserController::class, 'companyStaff'])->name('companyStaff');
+Route::get('company-programs/{id}', [UserController::class, 'companyPrograms'])->name('companyPrograms');
+Route::get('company-reviews/{id}', [UserController::class, 'companyReviews'])->name('companyReviews');
+Route::get('company-gallery/{id}', [UserController::class, 'companyGallery'])->name('companyGallery');
+Route::get('company-location/{id}', [UserController::class, 'companyLocation'])->name('companyLocation');
+Route::get('company-staff-information/{id}', [UserController::class, 'companyStaffInfo'])->name('companyStaffInfo');
 
 //candidate dashboard route starts here
 Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','email_verfication','profile_completion']], function() {

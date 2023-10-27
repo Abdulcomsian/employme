@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('school_vision')->nullable();
             $table->text('unique_selling_point')->nullable();
+            $table->text('job_description')->nullable();
             $table->text('ideal_candidate_profile')->nullable();
             $table->longText('job_title')->nullable();
             $table->string('contract_duration')->nullable();

@@ -259,23 +259,23 @@ Job Marketplace
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
-										<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto"></a>
+										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto"></a>
 										<div class="split-box1">
-											<a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a>
-											<a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Animator & 3D Artist.</a>
+											<a href="javascript;;" class="job-duration fw-500">Fulltime</a>
+											<a href="javascript;;" class="title fw-500 tran3s">Animator & 3D Artist.</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="{{route('jobDetails')}}">Spain, Bercelona</a>
+										<a href="javascript;;">Spain, Bercelona</a>
 									</div>
 									<div class="job-salary"><span class="fw-500 text-dark">$30-$50</span> / hour . Intermediate</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-										<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+										<a href="javascript;;" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+										<a href="javascript;;" class="apply-btn text-center tran3s">APPLY</a>
 									</div>
 								</div>
 							</div>
@@ -285,23 +285,23 @@ Job Marketplace
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
-										<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img m-auto"></a>
+										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img m-auto"></a>
 										<div class="split-box1">
-											<a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a>
-											<a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Marketing Specialist.</a>
+											<a href="javascript;;" class="job-duration fw-500">Fulltime</a>
+											<a href="javascript;;" class="title fw-500 tran3s">Marketing Specialist.</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="{{route('jobDetails')}}">US, New York</a>
+										<a href="javascript;;">US, New York</a>
 									</div>
 									<div class="job-salary"><span class="fw-500 text-dark">$22k-$30k</span> / year . Expert</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-										<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+										<a href="javascript;;" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+										<a href="javascript;;" class="apply-btn text-center tran3s">APPLY</a>
 									</div>
 								</div>
 							</div>
@@ -311,23 +311,23 @@ Job Marketplace
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
-										<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_24.png')}}" alt="" class="lazy-img m-auto"></a>
+										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_24.png')}}" alt="" class="lazy-img m-auto"></a>
 										<div class="split-box1">
-											<a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a>
-											<a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Web Desginer.</a>
+											<a href="javascript;;" class="job-duration fw-500 part-time">Part-time</a>
+											<a href="javascript;;" class="title fw-500 tran3s">Web Desginer.</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="{{route('jobDetails')}}">Rome, Italy</a>
+										<a href="javascript;;">Rome, Italy</a>
 									</div>
 									<div class="job-salary"><span class="fw-500 text-dark">$400-$550</span> / week . Expert</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-										<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+										<a href="javascript;;" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+										<a href="javascript;;" class="apply-btn text-center tran3s">APPLY</a>
 									</div>
 								</div>
 							</div>
@@ -337,23 +337,23 @@ Job Marketplace
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
-										<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_25.png')}}" alt="" class="lazy-img m-auto"></a>
+										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_25.png')}}" alt="" class="lazy-img m-auto"></a>
 										<div class="split-box1">
-											<a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a>
-											<a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Javascript Developer</a>
+											<a href="javascript;;" class="job-duration fw-500">Fulltime</a>
+											<a href="javascript;;" class="title fw-500 tran3s">Javascript Developer</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="{{route('jobDetails')}}">Milan, Italy</a>
+										<a href="javascript;;">Milan, Italy</a>
 									</div>
 									<div class="job-salary"><span class="fw-500 text-dark">$35k-$40k</span> / year . Beginner</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-										<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+										<a href="javascript;;" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+										<a href="javascript;;" class="apply-btn text-center tran3s">APPLY</a>
 									</div>
 								</div>
 							</div>
@@ -363,23 +363,23 @@ Job Marketplace
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
-										<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_26.png')}}" alt="" class="lazy-img m-auto"></a>
+										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_26.png')}}" alt="" class="lazy-img m-auto"></a>
 										<div class="split-box1">
-											<a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a>
-											<a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Inbound Call service.</a>
+											<a href="javascript;;" class="job-duration fw-500">Fulltime</a>
+											<a href="javascript;;" class="title fw-500 tran3s">Inbound Call service.</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="{{route('jobDetails')}}">UK, London</a>
+										<a href="javascript;;">UK, London</a>
 									</div>
 									<div class="job-salary"><span class="fw-500 text-dark">$30-$50</span> / hour . Intermediate</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-										<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+										<a href="javascript;;" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+										<a href="javascript;;" class="apply-btn text-center tran3s">APPLY</a>
 									</div>
 								</div>
 							</div>
@@ -389,23 +389,23 @@ Job Marketplace
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
-										<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_33.png')}}" alt="" class="lazy-img m-auto"></a>
+										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_33.png')}}" alt="" class="lazy-img m-auto"></a>
 										<div class="split-box1">
-											<a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a>
-											<a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Document Typing.</a>
+											<a href="javascript;;" class="job-duration fw-500 part-time">Part-time</a>
+											<a href="javascript;;" class="title fw-500 tran3s">Document Typing.</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="{{route('jobDetails')}}">UAE, Dubai</a>
+										<a href="javascript;;">UAE, Dubai</a>
 									</div>
 									<div class="job-salary"><span class="fw-500 text-dark">$3k-$4k</span> / month . Expert</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-										<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+										<a href="javascript;;" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+										<a href="javascript;;" class="apply-btn text-center tran3s">APPLY</a>
 									</div>
 								</div>
 							</div>
@@ -415,23 +415,23 @@ Job Marketplace
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
-										<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_34.png')}}" alt="" class="lazy-img m-auto"></a>
+										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_34.png')}}" alt="" class="lazy-img m-auto"></a>
 										<div class="split-box1">
-											<a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a>
-											<a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Hotel Manager</a>
+											<a href="javascript;;" class="job-duration fw-500 part-time">Part-time</a>
+											<a href="javascript;;" class="title fw-500 tran3s">Hotel Manager</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="{{route('jobDetails')}}">AUS, Sydney</a>
+										<a href="javascript;;">AUS, Sydney</a>
 									</div>
 									<div class="job-salary"><span class="fw-500 text-dark">$30-$50</span> / hour . Intermediate</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-										<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+										<a href="javascript;;" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+										<a href="javascript;;" class="apply-btn text-center tran3s">APPLY</a>
 									</div>
 								</div>
 							</div>
@@ -441,23 +441,23 @@ Job Marketplace
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
-										<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_35.png')}}" alt="" class="lazy-img m-auto"></a>
+										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_35.png')}}" alt="" class="lazy-img m-auto"></a>
 										<div class="split-box1">
-											<a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a>
-											<a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Personal Assistant (HR)</a>
+											<a href="javascript;;" class="job-duration fw-500">Fulltime</a>
+											<a href="javascript;;" class="title fw-500 tran3s">Personal Assistant (HR)</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="{{route('jobDetails')}}">USA, Alaska</a>
+										<a href="javascript;;">USA, Alaska</a>
 									</div>
 									<div class="job-salary"><span class="fw-500 text-dark">$20-$25</span> / hour . Intermediate</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-										<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+										<a href="javascript;;" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+										<a href="javascript;;" class="apply-btn text-center tran3s">APPLY</a>
 									</div>
 								</div>
 							</div>
@@ -467,23 +467,23 @@ Job Marketplace
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
-										<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_36.png')}}" alt="" class="lazy-img m-auto"></a>
+										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_36.png')}}" alt="" class="lazy-img m-auto"></a>
 										<div class="split-box1">
-											<a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a>
-											<a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Interactive Designer.</a>
+											<a href="javascript;;" class="job-duration fw-500">Fulltime</a>
+											<a href="javascript;;" class="title fw-500 tran3s">Interactive Designer.</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="{{route('jobDetails')}}">USA, California</a>
+										<a href="javascript;;">USA, California</a>
 									</div>
 									<div class="job-salary"><span class="fw-500 text-dark">$250-$300</span> / week . Expert</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-										<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+										<a href="javascript;;" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+										<a href="javascript;;" class="apply-btn text-center tran3s">APPLY</a>
 									</div>
 								</div>
 							</div>
@@ -494,86 +494,92 @@ Job Marketplace
 
 					<div class="accordion-box grid-style show">
 						<div class="row">
+						@isset($allJobs)
+						@foreach($allJobs as $index=>$job)
+
 							<div class="col-sm-6 mb-30">
 								<div class="job-list-two style-two position-relative">
-									<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto"></a>
-									<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a></div>
-									<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Lead designer & expert in maya 3D</a></div>
-									<div class="job-salary"><span class="fw-500 text-dark">$300-$450</span> / Week</div>
+									<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto"></a>
+									<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+									<div><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="job-duration fw-500">Fulltime</a></div>
+									<div><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="title fw-500 tran3s">{{$job->job_title}}</a></div>
+									<!-- <div class="job-salary"><span class="fw-500 text-dark">$300-$450</span> / Week</div> -->
+									<div class="job-salary"><span class="fw-500 text-dark">{{$job->monthly_salary ?? ''}}</span></div>
 									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="{{route('jobDetails')}}">USA, California</a></div>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
+										<div class="job-location"><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}">{{$job->city_town}}</a></div>
+										<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="apply-btn text-center tran3s">Interview Request</a>
 									</div>
 								</div> <!-- /.job-list-two -->
 							</div>
-							<div class="col-sm-6 mb-30">
+							@endforeach
+						@endisset
+							<!-- <div class="col-sm-6 mb-30">
 								<div class="job-list-two style-two position-relative">
-									<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img m-auto"></a>
-									<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a></div>
-									<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Developer & expert in c++ & java.</a></div>
+									<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img m-auto"></a>
+									<a href="javascript;;" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+									<div><a href="javascript;;" class="job-duration fw-500 part-time">Part-time</a></div>
+									<div><a href="javascript;;" class="title fw-500 tran3s">Developer & expert in c++ & java.</a></div>
 									<div class="job-salary"><span class="fw-500 text-dark">$10-$15</span> / Hour</div>
 									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="{{route('jobDetails')}}">USA, Alaska</a></div>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
+										<div class="job-location"><a href="javascript;;">USA, Alaska</a></div>
+										<a href="javascript;;" class="apply-btn text-center tran3s">Interview Request</a>
 									</div>
-								</div> <!-- /.job-list-two -->
+								</div> 
 							</div>
 							<div class="col-sm-6 mb-30">
 								<div class="job-list-two style-two position-relative">
-									<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_24.png')}}" alt="" class="lazy-img m-auto"></a>
-									<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a></div>
-									<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Marketing specialist in SEO & Affiliate. </a></div>
+									<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_24.png')}}" alt="" class="lazy-img m-auto"></a>
+									<a href="javascript;;" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+									<div><a href="javascript;;" class="job-duration fw-500 part-time">Part-time</a></div>
+									<div><a href="javascript;;" class="title fw-500 tran3s">Marketing specialist in SEO & Affiliate. </a></div>
 									<div class="job-salary"><span class="fw-500 text-dark">$40k</span> / Yearly</div>
 									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="{{route('jobDetails')}}">AUS, Sydney</a></div>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
+										<div class="job-location"><a href="javascript;;">AUS, Sydney</a></div>
+										<a href="javascript;;" class="apply-btn text-center tran3s">Interview Request</a>
 									</div>
-								</div> <!-- /.job-list-two -->
+								</div>
 							</div>
 							<div class="col-sm-6 mb-30">
 								<div class="job-list-two style-two position-relative">
-									<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_25.png')}}" alt="" class="lazy-img m-auto"></a>
-									<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a></div>
-									<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Lead & Product & Web Designer.</a></div>
+									<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_25.png')}}" alt="" class="lazy-img m-auto"></a>
+									<a href="javascript;;" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+									<div><a href="javascript;;" class="job-duration fw-500">Fulltime</a></div>
+									<div><a href="javascript;;" class="title fw-500 tran3s">Lead & Product & Web Designer.</a></div>
 									<div class="job-salary"><span class="fw-500 text-dark">$2k-3k</span> / Month</div>
 									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="{{route('jobDetails')}}">UAE, Dubai</a></div>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
+										<div class="job-location"><a href="javascript;;">UAE, Dubai</a></div>
+										<a href="javascript;;" class="apply-btn text-center tran3s">Interview Request</a>
 									</div>
-								</div> <!-- /.job-list-two -->
+								</div> 
 							</div>
 
 							<div class="col-sm-6 mb-30">
 								<div class="job-list-two style-two position-relative">
-									<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_34.png')}}" alt="" class="lazy-img m-auto"></a>
-									<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a></div>
-									<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Accountant Bookkeeper Financial Reporting</a></div>
+									<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_34.png')}}" alt="" class="lazy-img m-auto"></a>
+									<a href="javascript;;" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+									<div><a href="javascript;;" class="job-duration fw-500 part-time">Part-time</a></div>
+									<div><a href="javascript;;" class="title fw-500 tran3s">Accountant Bookkeeper Financial Reporting</a></div>
 									<div class="job-salary"><span class="fw-500 text-dark">$300-$450</span> / Week</div>
 									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="{{route('jobDetails')}}">US, Alaska</a></div>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
+										<div class="job-location"><a href="javascript;;">US, Alaska</a></div>
+										<a href="javascript;;" class="apply-btn text-center tran3s">Interview Request</a>
 									</div>
-								</div> <!-- /.job-list-two -->
+								</div> 
 							</div>
 
 							<div class="col-sm-6 mb-30">
 								<div class="job-list-two style-two position-relative">
-									<a href="{{route('jobDetails')}}" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto"></a>
-									<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a></div>
-									<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Amazon Product Research</a></div>
+									<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto"></a>
+									<a href="javascript;;" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+									<div><a href="javascript;;" class="job-duration fw-500 part-time">Part-time</a></div>
+									<div><a href="javascript;;" class="title fw-500 tran3s">Amazon Product Research</a></div>
 									<div class="job-salary"><span class="fw-500 text-dark">$15-$20</span> / Hour</div>
 									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="{{route('jobDetails')}}">Germany, Hamburg</a></div>
-										<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">Interview Request</a>
+										<div class="job-location"><a href="javascript;;">Germany, Hamburg</a></div>
+										<a href="javascript;;" class="apply-btn text-center tran3s">Interview Request</a>
 									</div>
-								</div> <!-- /.job-list-two -->
-							</div>
+								</div> 
+							</div> -->
 						</div>
 					</div>
 					<!-- /.accordion-box -->

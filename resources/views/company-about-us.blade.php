@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="col-xl-6 m-auto text-center">
 					<div class="title-two">
-						<h2 class="text-white"> School Name</h2>
+						<h2 class="text-white"> {{$employerDetails->institution ?? ''}}</h2>
 					</div>
 					<div class="logo mt-10">
 						<img src="images/logo_01.png" data-src="images/logo/logo_01.png" alt="" class="lazy-img m-auto">
@@ -34,14 +34,14 @@
 </div> <!-- /.inner-banner-one -->
 <nav class="nav-2" id="menu">
 	<ul id="menu-closed">
-		<li><a href="{{route('companyAboutUs')}}" class="active"> About Us</a></li>
-		<li> <a href="{{route('companyFacilities')}}"> School Facilities</a></li>
-		<li><a href="{{route('companyStaff')}}">Staff and Community</a></li>
-		<li><a href="{{route('companyPrograms')}}">Programs and Curriculum</a></li>
-		<li> <a href="{{route('companyReviews')}}">Reviews and Testimonials</a></li>
-		<li><a href="{{route('companyGallery')}}">Gallery</a></li>
-		<li><a href="{{route('companyLocation')}}">Location and Accessibility</a></li>
-		<li><a href="{{route('companyStaffInfo')}}"> Current Staff Information</a></li>
+	<li><a href="{{route('companyAboutUs', \Crypt::encryptString($employerDetails->id))}}"> About Us</a></li>
+		<li>	<a href="{{route('companyFacilities', \Crypt::encryptString($employerDetails->id))}}"  class="active"> School Facilities</a></li>
+		<li><a href="{{route('companyStaff', \Crypt::encryptString($employerDetails->id))}}">Staff and Community</a></li>
+		<li><a href="{{route('companyPrograms', \Crypt::encryptString($employerDetails->id))}}">Programs and Curriculum</a></li>
+		<li>	<a href="{{route('companyReviews', \Crypt::encryptString($employerDetails->id))}}">Reviews and Testimonials</a></li>
+		<li><a href="{{route('companyGallery', \Crypt::encryptString($employerDetails->id))}}">Gallery</a></li>
+		<li><a href="{{route('companyLocation', \Crypt::encryptString($employerDetails->id))}}">Location and Accessibility</a></li>
+		<li><a href="{{route('companyStaffInfo', \Crypt::encryptString($employerDetails->id))}}" > Current Staff Information</a></li>
 		<li><a href="#menu-closed">&#215; </a></li>
 		<li><a href="#menu">&#9776; more</a></li>
 	</ul>
@@ -52,7 +52,7 @@
 			<div class="col-xxl-3 col-xl-4 order-xl-last">
 				<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mb-50">
 					<!-- <img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto logo"> -->
-					<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">School Name</div>
+					<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">{{$employerDetails->institution ?? ''}}</div>
 					<div class="text-center"><a href="#" class="website-btn-two tran3s" target="_blank">Visit
 							our website</a></div>
 
@@ -60,15 +60,15 @@
 						<ul class="job-meta-data row style-none">
 							<li class="col-12">
 								<span>Establishment Year:</span>
-								<div>13 Jan, 1997</div>
+								<div>{{date('d M, Y',strtotime($employerDetails->established_date)) ?? ''}}</div>
 							</li>
 							<li class="col-12">
 								<span>Number of Students:</span>
-								<div>7000-8000, Worldwide</div>
+								<div>{{$employerDetails->number_of_students ?? ''}}</div>
 							</li>
 							<li class="col-12">
 								<span>Number of Faculty:</span>
-								<div>500</div>
+								<div>{{$employerDetails->number_of_administrative_staff ?? ''}}</div>
 							</li>
 
 							<!-- <li class="col-12">
@@ -77,11 +77,11 @@
 									</li> -->
 							<li class="col-12">
 								<span>Email: </span>
-								<div><a href="#">company@inquery.com</a></div>
+								<div><a href="#">{{$employerDetails->email ?? ''}}</a></div>
 							</li>
 							<li class="col-12">
 								<span>Location: </span>
-								<div>Spain, Barcelona </div>
+								<div>{{$employerDetails->city ?? ''}} {{$employerDetails->state ?? ''}}, {{$employerDetails->employerCountry->name ?? ''}} </div>
 							</li>
 							<!-- <li class="col-12">
 										<span>Founded: </span>

@@ -260,6 +260,35 @@ Profile
 								</div>
 							</div>
 						</div>
+						<div class="row">
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Logo</label>
+                                    <div class="user-avatar-setting d-flex align-items-center">
+                                        @if(!empty($employerDetails->institution_logo))
+                                        <img src="{{asset($employerDetails->institution_logo)}}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+                                        @else
+                                        <img src="{../images/lazy.svg}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+                                        @endif
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload Logo
+                                            <input type="file" id="institution_logo" name="institution_logo" placeholder="">
+                                        </div>
+                                        <button class="delete-btn tran3s">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="row">
+                            <div class="col-md-12">
+								<div class="dash-input-wrapper">
+									<label for="">Employer Details</label>
+									<textarea class="size-lg" placeholder="Write something interesting about you...." name="detailsDescription">{{$employerDetails->employer_details ?? ''}}</textarea>
+									<div class="alert-text">Brief description for your profile. URLs are hyperlinked.</div>
+								</div>
+											
+							</div>
+                        </div>
 
 						<div class="d-flex flex-row justify-content-end gap-3">
 							<button type="button" class="dash-btn-one" id="basic-information" onclick="nextStep(1)">Next</button>
@@ -382,9 +411,7 @@ Profile
 
 						<div class="d-flex flex-row justify-content-end gap-3">
 							<button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
-							@if(auth()->user()->stripe_id)
-							<button type="button" class="dash-btn-one" id="subscription-details" onclick="nextStep(3)" disabled>Next</button>
-							@endif
+							<button type="button" class="dash-btn-one" id="subscription-details" onclick="nextStep(3)">Next</button>
 						</div>
 					</div>
 
@@ -685,6 +712,7 @@ Profile
 			var formData = new FormData();
 			formData.append("_token", "{{ csrf_token() }}");
 			formData.append('plan',$("#multi-step-form").find('[name=differentSubscriptionOptions]').val())
+			formData.append('terms_and_conditions_acceptance',$("#multi-step-form").find('[name=acceptanceOfTermsAndConditions]').val())
 			formData.append('token',token.value)
             // form.submit();
 			$.ajax({
@@ -746,31 +774,43 @@ Profile
 		// const customerbillingSubscripton = "{{auth()->user()->stripe_id }}";
 		// if(!customerbillingSubscripton)
 		// 	subscriptionButton.disabled = true
+		// const step3NextBtn = document.getElementById('subscription-details')
+		// var subscriptionStatus  =  "{{employerSubscription()}}";
+		// console.log("subscription status is " + subscriptionStatus);
+		// if(subscriptionStatus === 1)
+		// step3NextBtn.disabled = false
+	    //     else
+		// 	step3NextBtn.disabled = true
+
 
     $("#basic-information").on("click", function(e) {
         e.preventDefault();
+		var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        formData.append("institution", $("#multi-step-form").find("[name=legalNameOfSchool]").val());
+        formData.append("institution_type", $("#multi-step-form").find("[name=typeOfSchool]").val());
+        formData.append("address_line_1", $("#multi-step-form").find("[name=addressLine1]").val());
+        formData.append("address_line_2", $("#multi-step-form").find("[name=addressLine2]").val());
+        formData.append("country_id", $("#multi-step-form").find("[name=country]").val());
+        formData.append("state", $("#multi-step-form").find("[name=state]").val());
+        formData.append("city", $("#multi-step-form").find("[name=city]").val());
+        formData.append("zip_code", $("#multi-step-form").find("[name=zipPostCode]").val());
+        formData.append("phone_number", $("#multi-step-form").find("[name=phoneNumber]").val());
+        formData.append("email", $("#multi-step-form").find("[name=email]").val());
+        formData.append("number_of_students", $("#multi-step-form").find("[name=numberOfStudents]").val());
+        formData.append("number_of_teachers", $("#multi-step-form").find("[name=numberOfTeachers]").val());
+        formData.append("number_of_administrative_staff", $("#multi-step-form").find("[name=numberOfAdministrativeStaff]").val());
+        formData.append("established_date", $("#multi-step-form").find("[name=yearOfEstablished]").val());
+        formData.append("institution_logo", $('#institution_logo')[0].files[0]);
+		formData.append("employer_details", $("#multi-step-form").find("[name=detailsDescription]").val());
+
           $.ajax({
             type: "POST",
               url: "{{route('employer.profile-1.save')}}",
-              data: {
-                _token:"{{csrf_token()}}",
-                institution: $("#multi-step-form").find("[name=legalNameOfSchool]").val(),
-                institution_type: $("#multi-step-form").find("[name=typeOfSchool]").val(),
-                address_line_1: $("#multi-step-form").find("[name=addressLine1]").val(),
-                address_line_2: $("#multi-step-form").find("[name=addressLine2]").val(),
-                country_id: $("#multi-step-form").find("[name=country]").val(),
-                state: $("#multi-step-form").find("[name=state]").val(),
-                city: $("#multi-step-form").find("[name=city]").val(),
-                zip_code: $("#multi-step-form").find("[name=zipPostCode]").val(),
-                phone_number: $("#multi-step-form").find("[name=phoneNumber]").val(),
-                email: $("#multi-step-form").find("[name=email]").val(),
-                number_of_students: $("#multi-step-form").find("[name=numberOfStudents]").val(), 
-                number_of_teachers: $("#multi-step-form").find("[name=numberOfTeachers]").val(),
-                number_of_administrative_staff: $("#multi-step-form").find("[name=numberOfAdministrativeStaff]").val(),
-                established_date: $("#multi-step-form").find("[name=yearOfEstablished]").val(),
-                        },
-				
+              data: formData ,
               dataType: 'json',
+			  contentType: false,
+              processData: false,
               success: function (data) {
     
                 if (data.status) {
@@ -824,35 +864,35 @@ Profile
       });
 	
       // Canidate Educational and Professional Information
-      $("#subscription-details").on("click", function(e) {
-        e.preventDefault();
-        var formData = new FormData();
-        formData.append("_token", "{{ csrf_token() }}");
-        formData.append('subscription_plan_id',$("#multi-step-form").find('[name=differentSubscriptionOptions]').val())
-        formData.append('terms_and_conditions_acceptance',$("#multi-step-form").find('[name=acceptanceOfTermsAndConditions]').val())
-          $.ajax({
-            type: "POST",
-              url: "{{route('employer.profile-3.save')}}",
-              data: formData,
-              dataType: 'json',
-              contentType: false,
-              processData: false,
-              success: function (data) {
+    //   $("#subscription-details").on("click", function(e) {
+    //     e.preventDefault();
+    //     var formData = new FormData();
+    //     formData.append("_token", "{{ csrf_token() }}");
+    //     formData.append('subscription_plan_id',$("#multi-step-form").find('[name=differentSubscriptionOptions]').val())
+    //     formData.append('terms_and_conditions_acceptance',$("#multi-step-form").find('[name=acceptanceOfTermsAndConditions]').val())
+    //       $.ajax({
+    //         type: "POST",
+    //           url: "{{route('employer.profile-3.save')}}",
+    //           data: formData,
+    //           dataType: 'json',
+    //           contentType: false,
+    //           processData: false,
+    //           success: function (data) {
     
-                if (data.status) {
-                    // window.location = data.redirect;
-                }else{
-                    $(".alert").remove();
-                    $.each(data.errors, function (key, val) {
-                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
-                    });
-                }
+    //             if (data.status) {
+    //                 // window.location = data.redirect;
+    //             }else{
+    //                 $(".alert").remove();
+    //                 $.each(data.errors, function (key, val) {
+    //                     $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+    //                 });
+    //             }
                
-              }
-          });
+    //           }
+    //       });
   
-          return false;
-      });
+    //       return false;
+    //   });
 
 	 // Historical Recruitment Details
 	  $("#eligibility-confirmation-details").on("click", function(e) {

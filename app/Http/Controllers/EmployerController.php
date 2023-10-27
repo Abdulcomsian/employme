@@ -8,6 +8,8 @@ use App\Models\EmployerDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Plan;
+use App\Models\SubscriptionItem;
+use App\Models\Subscription;
 class EmployerController extends Controller
 {
 
@@ -47,9 +49,18 @@ class EmployerController extends Controller
     
     public function saveProfile1(Request $request)
     {
-        $input = $request->except('_token');
-        $updateDetails = EmployerDetails::where('user_id',Auth::id());
-        $updateDetails->update($input);
+        // dd($request->all());
+        $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
+
+          // save employer Company Logo  code
+          $imagename = $updateEmployerDetails->institution_logo;
+          if ($request->file('institution_logo')) {
+              $file = $request->file('institution_logo');
+              $filePath = employerInstitutionLogoPath();
+              $imagename = saveFile($filePath, $file, $updateEmployerDetails->institution_logo);
+          }
+        $input = $request->except('_token','institution_logo');
+        $updateEmployerDetails->update(array_merge($input,['institution_logo'=>$imagename]));
         return response()->json([
                         "status" => true, 
                         "message" => url("Employer Details Updated Successfully")

@@ -31,8 +31,8 @@
 		<div class="row">
 			<div class="col-xxl-8 col-xl-8">
 				<div class="details-post-data me-xxl-5 pe-xxl-4">
-					<div class="post-date">18 Jul 2022 by <a href="#" class="fw-500 text-dark">Adobe</a></div>
-					<h3 class="post-title">Senior Product & Brand Design</h3>
+					<div class="post-date">{{date('d M Y',strtotime($jobDetails->created_at))}} by <a href="#" class="fw-500 text-dark">{{$jobDetails->employerDetails->institution ?? ''}}</a></div>
+					<h3 class="post-title">{{$jobDetails->job_title ?? ''}}</h3>
 					<ul class="share-buttons d-flex flex-wrap style-none">
 						<li><a href="#" class="d-flex align-items-center justify-content-center">
 								<i class="bi bi-facebook"></i>
@@ -113,18 +113,18 @@
 			<div class="col-xxl-4 col-xl-4">
 				<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mt-50">
 					<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto logo">
-					<div class="text-md text-dark text-center mt-15 mb-20">Adobe Inc.</div>
-					<a href="{{route('companyAboutUs')}}" class="website-btn tran3s">About Company</a>
+					<div class="text-md text-dark text-center mt-15 mb-20">{{$jobDetails->employerDetails->institution ?? ''}}</div>
+					<a href="{{route('companyAboutUs', \Crypt::encryptString($jobDetails->employerDetails->id))}}" class="website-btn tran3s">About Company</a>
 
 					<div class="border-top mt-40 pt-40">
 						<ul class="job-meta-data row style-none">
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Salary</span>
-								<div>50k-60k/year</div>
+								<div>{{$jobDetails->monthly_salary ?? ''}}</div>
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Start Date</span>
-								<div>12 jun, 2022 </div>
+								<div>{{date('d M, Y',strtotime($jobDetails->start_date)) ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
 
@@ -133,7 +133,7 @@
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Location</span>
-								<div>UAE</div>
+								<div>{{$jobDetails->city_town ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Classes</span>
@@ -141,7 +141,7 @@
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Working Hours</span>
-								<div>7 hours</div>
+								<div>{{$jobDetails->hours_per_week ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Housing and Insurances</span>
@@ -149,7 +149,7 @@
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Flights</span>
-								<div>yes</div>
+								<div>{{$jobDetails->airfare ?? ''}}</div>
 							</li>
 
 
@@ -159,7 +159,7 @@
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Airport Assistance</span>
-								<div>no</div>
+								<div>{{$jobDetails->arrival_assitance ?? ''}}</div>
 							</li>
 						</ul>
 
@@ -193,53 +193,53 @@
 			<div class="related-job-slider">
 				<div class="item">
 					<div class="job-list-two style-two position-relative">
-						<a href="{{route('jobDetails')}}" class="logo"><img src="images/logo/media_22.png" alt="" class="m-auto"></a>
-						<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-						<div><a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a></div>
-						<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Lead designer & expert in maya 3D</a></div>
+						<a href="{{route('jobDetails',$jobDetails->id)}}" class="logo"><img src="images/logo/media_22.png" alt="" class="m-auto"></a>
+						<a href="{{route('jobDetails',$jobDetails->id)}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+						<div><a href="{{route('jobDetails',$jobDetails->id)}}" class="job-duration fw-500">Fulltime</a></div>
+						<div><a href="{{route('jobDetails',$jobDetails->id)}}" class="title fw-500 tran3s">Lead designer & expert in maya 3D</a></div>
 						<div class="job-salary"><span class="fw-500 text-dark">$300-$450</span> / Week</div>
 						<div class="d-flex align-items-center justify-content-between mt-auto">
-							<div class="job-location"><a href="{{route('jobDetails')}}">USA, California</a></div>
-							<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+							<div class="job-location"><a href="{{route('jobDetails',$jobDetails->id)}}">USA, California</a></div>
+							<a href="{{route('jobDetails',$jobDetails->id)}}" class="apply-btn text-center tran3s">APPLY</a>
 						</div>
 					</div> <!-- /.job-list-two -->
 				</div>
 				<div class="item">
 					<div class="job-list-two style-two position-relative">
-						<a href="{{route('jobDetails')}}" class="logo"><img src="images/logo/media_23.png" alt="" class="m-auto"></a>
-						<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-						<div><a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a></div>
-						<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Developer & expert in c++ & java.</a></div>
+						<a href="{{route('jobDetails',$jobDetails->id)}}" class="logo"><img src="images/logo/media_23.png" alt="" class="m-auto"></a>
+						<a href="{{route('jobDetails',$jobDetails->id)}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+						<div><a href="{{route('jobDetails',$jobDetails->id)}}" class="job-duration fw-500 part-time">Part-time</a></div>
+						<div><a href="{{route('jobDetails',$jobDetails->id)}}" class="title fw-500 tran3s">Developer & expert in c++ & java.</a></div>
 						<div class="job-salary"><span class="fw-500 text-dark">$10-$15</span> / Hour</div>
 						<div class="d-flex align-items-center justify-content-between mt-auto">
-							<div class="job-location"><a href="{{route('jobDetails')}}">USA, Alaska</a></div>
-							<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+							<div class="job-location"><a href="{{route('jobDetails',$jobDetails->id)}}">USA, Alaska</a></div>
+							<a href="{{route('jobDetails',$jobDetails->id)}}" class="apply-btn text-center tran3s">APPLY</a>
 						</div>
 					</div> <!-- /.job-list-two -->
 				</div>
 				<div class="item">
 					<div class="job-list-two style-two position-relative">
-						<a href="{{route('jobDetails')}}" class="logo"><img src="images/logo/media_24.png" alt="" class="m-auto"></a>
-						<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-						<div><a href="{{route('jobDetails')}}" class="job-duration fw-500 part-time">Part-time</a></div>
-						<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Marketing specialist in SEO & Affiliate. </a></div>
+						<a href="{{route('jobDetails',$jobDetails->id)}}" class="logo"><img src="images/logo/media_24.png" alt="" class="m-auto"></a>
+						<a href="{{route('jobDetails',$jobDetails->id)}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+						<div><a href="{{route('jobDetails',$jobDetails->id)}}" class="job-duration fw-500 part-time">Part-time</a></div>
+						<div><a href="{{route('jobDetails',$jobDetails->id)}}" class="title fw-500 tran3s">Marketing specialist in SEO & Affiliate. </a></div>
 						<div class="job-salary"><span class="fw-500 text-dark">$40k</span> / Yearly</div>
 						<div class="d-flex align-items-center justify-content-between mt-auto">
-							<div class="job-location"><a href="{{route('jobDetails')}}">AUS, Sydney</a></div>
-							<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+							<div class="job-location"><a href="{{route('jobDetails',$jobDetails->id)}}">AUS, Sydney</a></div>
+							<a href="{{route('jobDetails',$jobDetails->id)}}" class="apply-btn text-center tran3s">APPLY</a>
 						</div>
 					</div> <!-- /.job-list-two -->
 				</div>
 				<div class="item">
 					<div class="job-list-two style-two position-relative">
-						<a href="{{route('jobDetails')}}" class="logo"><img src="images/logo/media_25.png" alt="" class="m-auto"></a>
-						<a href="{{route('jobDetails')}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-						<div><a href="{{route('jobDetails')}}" class="job-duration fw-500">Fulltime</a></div>
-						<div><a href="{{route('jobDetails')}}" class="title fw-500 tran3s">Lead & Product & Web Designer.</a></div>
+						<a href="{{route('jobDetails',$jobDetails->id)}}" class="logo"><img src="images/logo/media_25.png" alt="" class="m-auto"></a>
+						<a href="{{route('jobDetails',$jobDetails->id)}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+						<div><a href="{{route('jobDetails',$jobDetails->id)}}" class="job-duration fw-500">Fulltime</a></div>
+						<div><a href="{{route('jobDetails',$jobDetails->id)}}" class="title fw-500 tran3s">Lead & Product & Web Designer.</a></div>
 						<div class="job-salary"><span class="fw-500 text-dark">$2k-3k</span> / Month</div>
 						<div class="d-flex align-items-center justify-content-between mt-auto">
-							<div class="job-location"><a href="{{route('jobDetails')}}">UAE, Dubai</a></div>
-							<a href="{{route('jobDetails')}}" class="apply-btn text-center tran3s">APPLY</a>
+							<div class="job-location"><a href="{{route('jobDetails',$jobDetails->id)}}">UAE, Dubai</a></div>
+							<a href="{{route('jobDetails',$jobDetails->id)}}" class="apply-btn text-center tran3s">APPLY</a>
 						</div>
 					</div> <!-- /.job-list-two -->
 				</div>

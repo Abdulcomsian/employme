@@ -44,16 +44,16 @@
 
 		  <nav class="nav-2" id="menu">
 			<ul id="menu-closed">
-                <li><a href="{{route('companyAboutUs')}}"> About Us</a></li>
-			  <li>	<a href="{{route('companyFacilities')}}" > School Facilities</a></li>
-			  <li><a href="{{route('companyStaff')}}">Staff and Community</a></li>
-			  <li><a href="{{route('companyPrograms')}}">Programs and Curriculum</a></li>
-			  <li>	<a href="{{route('companyReviews')}}" >Reviews and Testimonials</a></li>
-			  <li><a href="{{route('companyGallery')}}">Gallery</a></li>
-			  <li><a href="{{route('companyLocation')}}" class="active">Location and Accessibility</a></li>
-			  <li><a href="{{route('companyStaffInfo')}}" > Current Staff Information</a></li>
-			  <li><a href="#menu-closed">&#215; </a></li>
-			  <li><a href="#menu">&#9776; more</a></li>
+				<li><a href="{{route('companyAboutUs', \Crypt::encryptString($employerDetails->id))}}"> About Us</a></li>
+				<li>	<a href="{{route('companyFacilities', \Crypt::encryptString($employerDetails->id))}}"  class="active"> School Facilities</a></li>
+				<li><a href="{{route('companyStaff', \Crypt::encryptString($employerDetails->id))}}">Staff and Community</a></li>
+				<li><a href="{{route('companyPrograms', \Crypt::encryptString($employerDetails->id))}}">Programs and Curriculum</a></li>
+				<li>	<a href="{{route('companyReviews', \Crypt::encryptString($employerDetails->id))}}">Reviews and Testimonials</a></li>
+				<li><a href="{{route('companyGallery', \Crypt::encryptString($employerDetails->id))}}">Gallery</a></li>
+				<li><a href="{{route('companyLocation', \Crypt::encryptString($employerDetails->id))}}">Location and Accessibility</a></li>
+				<li><a href="{{route('companyStaffInfo', \Crypt::encryptString($employerDetails->id))}}" > Current Staff Information</a></li>
+				<li><a href="#menu-closed">&#215; </a></li>
+				<li><a href="#menu">&#9776; more</a></li>
 			</ul>
 		  </nav>
 
@@ -66,7 +66,7 @@
 				<div class="col-xxl-3 col-xl-4 order-xl-last">
 					<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mb-50">
 						<!-- <img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto logo"> -->
-						<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">School Name</div>
+						<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">{{$employerDetails->institution ?? ''}}</div>
 						<div class="text-center"><a href="#" class="website-btn-two tran3s" target="_blank">Visit
 								our website</a></div>
 
@@ -74,41 +74,41 @@
 							<ul class="job-meta-data row style-none">
 								<li class="col-12">
 									<span>Establishment Year:</span>
-									<div>13 Jan, 1997</div>
+									<div>{{date('d M, Y',strtotime($employerDetails->established_date)) ?? ''}}</div>
 								</li>
 								<li class="col-12">
 									<span>Number of Students:</span>
-									<div>7000-8000, Worldwide</div>
+									<div>{{$employerDetails->number_of_students ?? ''}}</div>
 								</li>
 								<li class="col-12">
 									<span>Number of Faculty:</span>
-									<div>500</div>
+									<div>{{$employerDetails->number_of_administrative_staff ?? ''}}</div>
 								</li>
 
 								<!-- <li class="col-12">
-									<span>Size:</span>
-									<div>7000-8000, Worldwide</div>
-								</li> -->
+											<span>Size:</span>
+											<div>7000-8000, Worldwide</div>
+										</li> -->
 								<li class="col-12">
 									<span>Email: </span>
-									<div><a href="#">company@inquery.com</a></div>
+									<div><a href="#">{{$employerDetails->email ?? ''}}</a></div>
 								</li>
 								<li class="col-12">
 									<span>Location: </span>
-									<div>Spain, Barcelona </div>
+									<div>{{$employerDetails->city ?? ''}} {{$employerDetails->state ?? ''}}, {{$employerDetails->employerCountry->name ?? ''}} </div>
 								</li>
 								<!-- <li class="col-12">
-									<span>Founded: </span>
-									<div>13 Jan, 1997</div>
-								</li> -->
+											<span>Founded: </span>
+											<div>13 Jan, 1997</div>
+										</li> -->
 								<!-- <li class="col-12">
-									<span>Phone:</span>
-									<div><a href="#">(990) 234 112 779,</a> <a href="#">+770 723801870</a></div>
-								</li> -->
+											<span>Phone:</span>
+											<div><a href="#">(990) 234 112 779,</a> <a href="#">+770 723801870</a></div>
+										</li> -->
 								<!-- <li class="col-12">
-									<span>Category: </span>
-									<div>Technology, Product,  Agency</div>
-								</li> -->
+											<span>Category: </span>
+											<div>Technology, Product,  Agency</div>
+										</li> -->
 								<li class="col-12">
 									<span>Social: </span>
 									<div>

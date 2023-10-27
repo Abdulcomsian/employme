@@ -84,4 +84,9 @@ class EmployerJob extends Model
         'job_status',
         'posted_by',
     ];
+
+    public function employerDetails()
+    {
+        return $this->belongsTo(EmployerDetails::class,'posted_by','user_id');
+    }
 }

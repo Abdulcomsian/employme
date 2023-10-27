@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
+use App\Models\EmployerJob;
 class JobController extends Controller
 {
     public function jobMarketplace(){
-        return view('jobs-marketplace');
+        $allJobs = EmployerJob::all();
+        return view('jobs-marketplace',compact('allJobs'));
     }
 
     public function getJobAlertPage(){

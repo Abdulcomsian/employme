@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('employer_details', function (Blueprint $table) {
             $table->id();
             $table->text('institution')->nullable();
+            $table->longText('institution_logo')->nullable();
+            $table->longText('employer_details')->nullable();
             $table->text('institution_type')->nullable();
             $table->text('address_line_1')->nullable();
             $table->text('address_line_2')->nullable();
@@ -53,7 +55,8 @@ return new class extends Migration
             $table->text('languages_resources_foreign_staff')->nullable();
             $table->text('agreement_period_checks_updates')->nullable();
             $table->text('storage_processing_consent')->nullable();
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
