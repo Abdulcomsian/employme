@@ -47,101 +47,262 @@
 								<span>Copy</span>
 							</a></li>
 					</ul>
-
-					<div class="post-block border-style mt-50 lg-mt-30">
-						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">1</div>
-							<h4 class="block-title">About Employer</h4>
-						</div>
-						<p>When team members told us they needed more flexibility around where and how they worked, we acted, creating two options to accommodate two different styles of work. One non-negotiable principle along the way? We had to retain our deep culture of collaboration, both among ourselves and with our clients. Introducing Work From Near and Work From Anywhere at WillowTree. <a href="#">Learn more here</a>. Please indicate which location(s) you're interested.</p>
-					</div>
 					<div class="post-block border-style mt-30">
 						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">2</div>
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">1</div>
 							<h4 class="block-title">Job Description</h4>
 						</div>
-						<p>As a <a href="#">Product Designer</a> at WillowTree, you’ll give form to ideas by being the voice and owner of product decisions. You’ll drive the design direction, and then make it happen!</p>
-						<p>We understand our responsibility to create a diverse, equitable, and inclusive place within the tech industry, while pushing to make our industry more representative. </p>
+						<!-- <p>As a <a href="#">Product Designer</a> at WillowTree, you’ll give form to ideas by being the voice and owner of product decisions. You’ll drive the design direction, and then make it happen!</p> -->
+						<p>{{$jobDetails->job_description ?? ''}}</p>
 					</div>
+					<div class="post-block border-style mt-50 lg-mt-30">
+						<div class="d-flex align-items-center">
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">2</div>
+							<h4 class="block-title">About Employer</h4>
+						</div>
+						<p>{!! $jobDetails->employerDetails->employer_details ?? '' !!}</p>
+					</div>
+							<!---- Requirements and Qualifications ---->
 					<div class="post-block border-style mt-40 lg-mt-30">
 						<div class="d-flex align-items-center">
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">3</div>
-							<h4 class="block-title">Responsibilities</h4>
+							<h4 class="block-title">Requirements and Qualifications</h4>
 						</div>
 						<ul class="list-type-one style-none mb-15">
-							<li>Collaborate daily with a multidisciplinary team of Software Engineers, Researchers, Strategists, and Project Managers.</li>
-							<li>Co-lead ideation sessions, workshops, demos, and presentations with clients on-site</li>
-							<li>Push for and create inclusive, accessible design for all</li>
-							<li>Maintain quality of the design process and ensure that when designs are translated into code they accurately reflect the design specifications.</li>
-							<li>Sketch, wireframe, build IA, motion design, and run usability tests</li>
-							<li>Design pixel perfect responsive UI’s and understand that adopting common interface pattern is better for UX than reinventing the wheel</li>
-							<li>Ensure content strategy and design are perfectly in-sync</li>
-							<li>Give and receive design critique to help constantly refine and push our work</li>
+							@if($jobDetails->education)
+							<li>{{$jobDetails->education ?? ''}}</li>
+							@endif
+							@if($jobDetails->teaching_certificate)
+							<li>{{$jobDetails->teaching_certificate ?? ''}}</li>
+							@endif
+							@if($jobDetails->experience)
+							<li>{{$jobDetails->experience ?? ''}}</li>
+							@endif
+							@if($jobDetails->background_check)
+							<li>{{$jobDetails->background_check ?? ''}}</li>
+							@endif
+							@if($jobDetails->health_check_requirement)
+							<li>{{$jobDetails->health_check_requirement ?? ''}}</li>
+							@endif
+							@if($jobDetails->preferred_accent)
+							<li>{{$jobDetails->preferred_accent ?? ''}}</li>
+							@endif
+							@if($jobDetails->visa_type)
+							<li>{{$jobDetails->visa_type ?? ''}}</li>
+							@endif
+							@if($jobDetails->language_proficiency)
+							<li>{{$jobDetails->language_proficiency ?? ''}}</li>
+							@endif
 						</ul>
 					</div>
+							<!---- Position Overview ---->
 					<div class="post-block border-style mt-40 lg-mt-30">
 						<div class="d-flex align-items-center">
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">4</div>
-							<h4 class="block-title">Required Skills:</h4>
+							<h4 class="block-title">Position Overview:</h4>
 						</div>
 						<ul class="list-type-two style-none mb-15">
-							<li>You’ve been designing digital products for 2+ years.</li>
-							<li>A portfolio that exemplifies strong visual design and a focus on defining the user experience.</li>
-							<li>You’ve proudly shipped and launched several products.</li>
-							<li>You have some past experience working in an agile environment – Think two-week sprints.</li>
-							<li>Experience effectively presenting and communicating your design decisions to clients and team members</li>
-							<li>Up-to-date knowledge of design software like Figma, Sketch etc.</li>
+							@if($jobDetails->school_vision)
+							<li>{{$jobDetails->school_vision ?? ''}}</li>
+							@endif
+							@if($jobDetails->unique_selling_point)
+							<li>{{$jobDetails->unique_selling_point ?? ''}}</li>
+							@endif
+							@if($jobDetails->ideal_candidate_profile)
+							<li>{{$jobDetails->ideal_candidate_profile ?? ''}}</li>
+							@endif
 						</ul>
 					</div>
+							<!---- Onboarding Process ---->
 					<div class="post-block border-style mt-40 lg-mt-30">
 						<div class="d-flex align-items-center">
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">5</div>
-							<h4 class="block-title">Benefits:</h4>
+							<h4 class="block-title">Onboarding Process</h4>
 						</div>
-						<ul class="list-type-two style-none mb-15">
-							<li>We are a remote-first company.</li>
-							<li>100% company-paid health insurance premiums for you & your dependents</li>
-							<li>Vacation stipend</li>
-							<li>Unlimited paid vacation and paid company holidays</li>
-							<li>Monthly wellness/gym stipend</li>
+						<ul class="list-type-one style-none mb-15">
+							@if($jobDetails->arrival_assitance)
+							<li>{{$jobDetails->arrival_assitance ?? ''}}</li>
+							@endif
+							@if($jobDetails->initial_accomodation)
+							<li>{{$jobDetails->initial_accomodation ?? ''}}</li>
+							@endif
+							@if($jobDetails->first_week_structure)
+							<li>{{$jobDetails->first_week_structure ?? ''}}</li>
+							@endif
+							@if($jobDetails->induction_programs)
+							<li>{{$jobDetails->induction_programs ?? ''}}</li>
+							@endif
+							@if($jobDetails->mentorship)
+							<li>{{$jobDetails->mentorship ?? ''}}</li>
+							@endif
 						</ul>
 					</div>
+						<!----Location & Environment ---->
+					<div class="post-block border-style mt-40 lg-mt-30">
+						<div class="d-flex align-items-center">
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">6</div>
+							<h4 class="block-title">Location & Environment</h4>
+						</div>
+						<ul class="list-type-one style-none mb-15">
+							@if($jobDetails->city_town)
+							<li>{{$jobDetails->city_town ?? ''}}</li>
+							@endif
+							@if($jobDetails->neighbourhood_description)
+							<li>{{$jobDetails->neighbourhood_description ?? ''}}</li>
+							@endif
+							@if($jobDetails->proximity_to_landmarks)
+							<li>{{$jobDetails->proximity_to_landmarks ?? ''}}</li>
+							@endif
+							@if($jobDetails->local_amenities)
+							<li>{{$jobDetails->local_amenities ?? ''}}</li>
+							@endif
+							@if($jobDetails->school_facilities)
+							<li>{{$jobDetails->school_facilities ?? ''}}</li>
+							@endif
+							@if($jobDetails->public_transport_options)
+							<li>{{$jobDetails->public_transport_options ?? ''}}</li>
+							@endif
+							@if($jobDetails->work_enviroment_and_culture)
+							<li>{{$jobDetails->work_enviroment_and_culture ?? ''}}</li>
+							@endif
+							@if($jobDetails->co_assistant_teachers_availability)
+							<li>{{$jobDetails->co_assistant_teachers_availability ?? ''}}</li>
+							@endif
+						</ul>
+					</div>
+						<!---- Support for Foreign Teachers -!---->
+					<div class="post-block border-style mt-40 lg-mt-30">
+						<div class="d-flex align-items-center">
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">7</div>
+							<h4 class="block-title">Support for Foreign Teachers:</h4>
+						</div>
+						<ul class="list-type-two style-none mb-15">
+							@if($jobDetails->orientation_and_training)
+							<li>{{$jobDetails->orientation_and_training ?? ''}}</li>
+							@endif
+							@if($jobDetails->culture_assimilation_program)
+							<li>{{$jobDetails->culture_assimilation_program ?? ''}}</li>
+							@endif	
+							@if($jobDetails->language_courses_or_asistance)
+							<li>{{$jobDetails->language_courses_or_asistance ?? ''}}</li>
+							@endif	
+							@if($jobDetails->local_bank_account_assistance)
+							<li>{{$jobDetails->local_bank_account_assistance ?? ''}}</li>
+							@endif	
+							@if($jobDetails->emergency_contacts_and_support)
+							<li>{{$jobDetails->emergency_contacts_and_support ?? ''}}</li>
+							@endif								
+						</ul>
+					</div>
+						<!---- Application & Recruitment Process -!---->
+					<div class="post-block border-style mt-40 lg-mt-30">
+						<div class="d-flex align-items-center">
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">8</div>
+							<h4 class="block-title">Application & Recruitment Process</h4>
+						</div>
+						<ul class="list-type-one style-none mb-15">
+							@if($jobDetails->required_documents)
+							<li>{{$jobDetails->required_documents ?? ''}}</li>
+							@endif
+							@if($jobDetails->interview_process)
+							<li>{{$jobDetails->interview_process ?? ''}}</li>
+							@endif
+							@if($jobDetails->application_deadline)
+							<li>{{$jobDetails->application_deadline ?? ''}}</li>
+							@endif
+							@if($jobDetails->contact_review_process)
+							<li>{{$jobDetails->contact_review_process ?? ''}}</li>
+							@endif
+							@if($jobDetails->decision_deadline)
+							<li>{{$jobDetails->decision_deadline ?? ''}}</li>
+							@endif
+						</ul>
+					</div>
+						<!---- Application & Recruitment Process -!---->
+					<div class="post-block border-style mt-40 lg-mt-30">
+						<div class="d-flex align-items-center">
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">9</div>
+							<h4 class="block-title">Additional Information:</h4>
+						</div>
+						<ul class="list-type-two style-none mb-15">
+							@if($jobDetails->orientation_and_training)
+							<li>{{$jobDetails->orientation_and_training ?? ''}}</li>
+							@endif
+							@if($jobDetails->culture_assimilation_program)
+							<li>{{$jobDetails->culture_assimilation_program ?? ''}}</li>
+							@endif	
+							@if($jobDetails->language_courses_or_asistance)
+							<li>{{$jobDetails->language_courses_or_asistance ?? ''}}</li>
+							@endif	
+							@if($jobDetails->local_bank_account_assistance)
+							<li>{{$jobDetails->local_bank_account_assistance ?? ''}}</li>
+							@endif	
+							@if($jobDetails->emergency_contacts_and_support)
+							<li>{{$jobDetails->emergency_contacts_and_support ?? ''}}</li>
+							@endif								
+						</ul>
+					</div>
+					
 				</div>
 				<!-- /.details-post-data -->
 			</div>
 
 			<div class="col-xxl-4 col-xl-4">
 				<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mt-50">
-					<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto logo">
+						@if(isset($jobDetails->employerDetails->institution_logo))
+						<img src="{{asset($jobDetails->employerDetails->institution_logo)}}" data-src="{{asset($jobDetails->employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto logo">
+						@else
+						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto logo">
+						@endif
 					<div class="text-md text-dark text-center mt-15 mb-20">{{$jobDetails->employerDetails->institution ?? ''}}</div>
 					<a href="{{route('companyAboutUs', \Crypt::encryptString($jobDetails->employerDetails->id))}}" class="website-btn tran3s">About Company</a>
 
 					<div class="border-top mt-40 pt-40">
 						<ul class="job-meta-data row style-none">
 							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Salary</span>
-								<div>{{$jobDetails->monthly_salary ?? ''}}</div>
+								<span>Job Title</span>
+								<div>{{$jobDetails->job_title ?? ''}}</div>
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Contract Duration</span>
+								<div>{{$jobDetails->contract_duration ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Start Date</span>
 								<div>{{date('d M, Y',strtotime($jobDetails->start_date)) ?? ''}}</div>
 							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>End Date</span>
+								<div>{{date('d M, Y',strtotime($jobDetails->end_date)) ?? ''}}</div>
+							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Renewal Possiblities</span>
+								<div>{{$jobDetails->renewal_possibilities ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Base Pay</span>
+								<div>{{$jobDetails->base_pay ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Allowances & Other Incentives</span>
+								<div>{{$jobDetails->allownces_other_incentives ?? ''}}</div>
+							</li>
+							<!-- <li class="col-xl-7 col-md-4 col-sm-6">
 
 								<span>Education Grade</span>
 								<div>B+</div>
-							</li>
+							</li> -->
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Location</span>
 								<div>{{$jobDetails->city_town ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Classes</span>
-								<div>OnCampus </div>
+								<span>Specification</span>
+								<div>{{$jobDetails->specify ?? ''}} </div>
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
-								<span>Working Hours</span>
-								<div>{{$jobDetails->hours_per_week ?? ''}}</div>
+								<span>Tax Deductions</span>
+								<div>{{$jobDetails->tax_deductions ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Housing and Insurances</span>
@@ -161,15 +322,148 @@
 								<span>Airport Assistance</span>
 								<div>{{$jobDetails->arrival_assitance ?? ''}}</div>
 							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Bonuses</span>
+								<div>{{$jobDetails->bonuses ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Tax Deductions</span>
+								<div>{{$jobDetails->tax_deductions ?? ''}}</div>
+							</li>
+							<li class="col-xl-12 col-md-4 col-sm-6">
+								<span>Payday Details:</span>
+								<div>{{$jobDetails->payday_details ?? ''}}</div>
+							</li>
+						
 						</ul>
 
-						<div class="job-tags d-flex flex-wrap pt-15">
+						<!-- <div class="job-tags d-flex flex-wrap pt-15">
 							<a href="#">Design</a>
 							<a href="#">Product Design</a>
 							<a href="#">Brands</a>
 							<a href="#">Application</a>
 							<a href="#">UI/UX</a>
-						</div>
+						</div> -->
+						<a href="#" class="btn-one w-100 mt-25">Request An Interview </a>
+					</div>
+				</div>
+				   	 <!---- Class Information ---->
+				<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mt-50 mt-20">
+					<div class="text-md text-dark text-center mt-15 mb-20">Class Information</div>
+					<div class="border-top mt-20 pt-40">
+						<ul class="job-meta-data row style-none">
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Student Age Group</span>
+								<div>{{$jobDetails->student_age_group ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Class Size</span>
+								<div>{{$jobDetails->class_size ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Hours/Week</span>
+								<div>{{$jobDetails->hours_per_week ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Teaching Hrs/Day</span>
+								<div>{{$jobDetails->teaching_hours_per_day ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Non-Teaching Hrs/Day</span>
+								<div>{{$jobDetails->non_teaching_hours_per_day ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Break Times</span>
+								<div>{{$jobDetails->break_times ?? ''}}</div>
+							</li>
+							<li class="col-xl-12 col-md-4 col-sm-6">
+								<span>Curriculum Overview</span>
+								<div>{{$jobDetails->curriculum_overview ?? ''}}</div>
+							</li>
+							<!-- <li class="col-xl-7 col-md-4 col-sm-6">
+
+								<span>Education Grade</span>
+								<div>B+</div>
+							</li> -->
+							<li class="col-xl-12 col-md-4 col-sm-6">
+								<span>Materials & Resources Available</span>
+								<div>{{$jobDetails->material_resources_available ?? ''}}</div>
+							</li>
+							<li class="col-xl-12 col-md-4 col-sm-6">
+								<span>Teaching Aids</span>
+								<div>{{$jobDetails->teaching_aids ?? ''}} </div>
+							</li>
+						</ul>
+
+						<!-- <div class="job-tags d-flex flex-wrap pt-15">
+							<a href="#">Design</a>
+							<a href="#">Product Design</a>
+							<a href="#">Brands</a>
+							<a href="#">Application</a>
+							<a href="#">UI/UX</a>
+						</div> -->
+						<a href="#" class="btn-one w-100 mt-25">Request An Interview </a>
+					</div>
+				</div>
+					<!---- Compensations & Benefits ---->
+				<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mt-50 mt-20">
+					<div class="text-md text-dark text-center mt-15 mb-20">Compensation & Benefits</div>
+					<div class="border-top mt-20 pt-40">
+						<ul class="job-meta-data row style-none">
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Monthly Salary</span>
+								<div>{{$jobDetails->monthly_salary ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Relocation Allowance</span>
+								<div>{{$jobDetails->relocation_allowance ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Health & Dental Insurance</span>
+								<div>{{$jobDetails->health_dental_insurance ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Airfare</span>
+								<div>{{$jobDetails->airfare ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Vacation & Sick Leave</span>
+								<div>{{$jobDetails->vacation_sick_leave ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Pension</span>
+								<div>{{$jobDetails->pension ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>National Holidays</span>
+								<div>{{$jobDetails->national_holidays ?? ''}}</div>
+							</li>
+							<!-- <li class="col-xl-7 col-md-4 col-sm-6">
+
+								<span>Education Grade</span>
+								<div>B+</div>
+							</li> -->
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Overtime Pay</span>
+								<div>{{$jobDetails->overtime_pay ?? ''}}</div>
+							</li>
+							<li class="col-xl-12 col-md-4 col-sm-6">
+								<span>Professional Development Opportunities</span>
+								<div>{{$jobDetails->professional_development_opportunities ?? ''}} </div>
+							</li>
+							<li class="col-xl-12 col-md-4 col-sm-6">
+								<span>Housing Details</span>
+								<div>{{$jobDetails->housing_details ?? ''}}</div>
+							</li>
+						</ul>
+
+						<!-- <div class="job-tags d-flex flex-wrap pt-15">
+							<a href="#">Design</a>
+							<a href="#">Product Design</a>
+							<a href="#">Brands</a>
+							<a href="#">Application</a>
+							<a href="#">UI/UX</a>
+						</div> -->
 						<a href="#" class="btn-one w-100 mt-25">Request An Interview </a>
 					</div>
 				</div>

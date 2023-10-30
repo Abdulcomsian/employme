@@ -19,7 +19,7 @@ class EmployerController extends Controller
     }
     public function getEmployerProfilePage()
     {
-        $plans = Plan::get();
+       $plans = Plan::get();
         $countries = Countries::all();
         $intent = auth()->user()->createSetupIntent();
         $employerDetails = EmployerDetails::where('user_id',Auth::id())->first();

@@ -7,9 +7,16 @@
 			<button class="close-btn d-block d-md-none"><i class="bi bi-x-lg"></i></button>
 		</div>
 		<div class="user-data">
+			@if(isset(auth()->user()->employerDetails->institution_logo))
 			<div class="user-avatar online position-relative rounded-circle">
+				<img src="{{asset(auth()->user()->employerDetails->institution_logo)}}" data-src="{{asset(auth()->user()->employerDetails->institution_logo)}}"" alt="" class="lazy-img">
+			</div>
+            @else
+            <div class="user-avatar online position-relative rounded-circle">
 				<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/avatar_03.jpg')}}" alt="" class="lazy-img">
 			</div>
+            @endif
+			
 			<!-- /.user-avatar -->
 			<div class="user-name-data">
 				<button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">

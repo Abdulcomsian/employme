@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('job_description')->nullable();
             $table->text('ideal_candidate_profile')->nullable();
             $table->longText('job_title')->nullable();
+            $table->text('job_type')->nullable();
             $table->string('contract_duration')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();

@@ -47,6 +47,19 @@ Post A Job
                                 <input type="text" name="ideal_candidate_profile" placeholder="Outline qualities the school is particularly looking for.">
                             </div>
                         </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Job Type:</label>
+                            <select class="nice-select" name="job_type">
+                                <option value="Fixed-Price" selected>Fixed-Price</option>
+                                <option value="Full-Time">Full-Time</option>
+                                <option value="Part-Time">Part-Time</option>
+                                <option value="Freelance">Freelance</option>
+                            </select>
+                        </div>
+                        <div class="dash-input-wrapper mb-30 col-md-12">
+                            <label for="">Description:</label>
+                            <textarea class="size-lg" name="job_description" placeholder="Write about the job in details..."></textarea>
+                        </div>
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                         <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>

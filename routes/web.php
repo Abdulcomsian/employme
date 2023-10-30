@@ -51,6 +51,7 @@ Route::get('get-cities/{id}', [HomeController::class, 'getCities'])->name('getCi
 
 // dashboard routes starts here/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('job-marketplace', [JobController::class, 'jobMarketplace'])->name('jobMarketplace');
+Route::get('search/job-marketplace', [JobController::class, 'SearchjobMarketplace'])->name('SearchjobMarketplace');
 // Route::get('candidate-profile' , [UserController::class , 'candidateProfile'])->name('candidateProfile');
 Route::get('company', [UserController::class, 'company'])->name('company');
 Route::get('candidates-marketplace', [UserController::class, 'candidatesMarketplace'])->name('candidatesMarketplace');

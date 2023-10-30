@@ -47,6 +47,19 @@ Post A Job
                                 <input type="text" name="ideal_candidate_profile" placeholder="Outline qualities the school is particularly looking for." value="{{$employerJob->ideal_candidate_profile ?? ''}}">
                             </div>
                         </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Job Type:</label>
+                            <select class="nice-select" name="job_type">
+                                <option value="Fixed-Price" {{$employerJob->job_type == 'Fixed-Price' ? 'selected' : ''}}>Fixed-Price</option>
+                                <option value="Full-Time" {{$employerJob->job_type == 'Full-Time' ? 'selected' : ''}}>Full-Time</option>
+                                <option value="Part-Time" {{$employerJob->job_type == 'Part-Time' ? 'selected' : ''}}>Part-Time</option>
+                                <option value="Freelance" {{$employerJob->job_type == 'Freelance' ? 'selected' : ''}}>Freelance</option>
+                            </select>
+                        </div>
+                        <div class="dash-input-wrapper mb-30 col-md-12">
+                            <label for="">Description:</label>
+                            <textarea class="size-lg" name="job_description" placeholder="Write about the job in details...">{{$employerJob->job_description ?? ''}}</textarea>
+                        </div>
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;" >
                         <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
@@ -301,23 +314,23 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Neighborhood Description:</label>
-                            <input type="text" name="neighbourhood_description" placeholder="" value="{{$employerJob->mentorship ?? ''}}"></input>
+                            <input type="text" name="neighbourhood_description" placeholder="" value="{{$employerJob->neighbourhood_description ?? ''}}"></input>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Proximity to Landmarks:</label>
-                            <input type="text" name="proximity_to_landmarks" placeholder="" value="{{$employerJob->mentorship ?? ''}}"></input>
+                            <input type="text" name="proximity_to_landmarks" placeholder="" value="{{$employerJob->proximity_to_landmarks ?? ''}}"></input>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Local Amenities:</label>
-                            <input type="text" name="local_amenities" placeholder="" value="{{$employerJob->mentorship ?? ''}}">
+                            <input type="text" name="local_amenities" placeholder="" value="{{$employerJob->local_amenities ?? ''}}">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">School Facilities:</label>
-                            <input type="text" name="school_facilities" placeholder="" value="{{$employerJob->mentorship ?? ''}}">
+                            <input type="text" name="school_facilities" placeholder="" value="{{$employerJob->school_facilities ?? ''}}">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Public Transport Options:</label>
-                            <input type="text" name="public_transport_options" placeholder="" value="{{$employerJob->mentorship ?? ''}}">
+                            <input type="text" name="public_transport_options" placeholder="" value="{{$employerJob->public_transport_options ?? ''}}">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Work Environment & Culture:</label>
