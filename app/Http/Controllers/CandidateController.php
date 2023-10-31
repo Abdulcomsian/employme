@@ -10,6 +10,7 @@ use App\Models\ProfessionalSkills;
 use App\Models\CandidatePreferences;
 use App\Models\Cities;
 use App\Models\Countries;
+use App\Models\EmployerJob;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 class CandidateController extends Controller
@@ -140,6 +141,12 @@ class CandidateController extends Controller
             "status" => true, 
             "redirect" => url("candidate/profile")
         ]);
+    }
+
+    public function candidateJobApplications()
+    {
+        $candidateJobApplication = User::with('jobCandidates')->find(Auth::id());
+        return view('candidate.job-applications.index',compact('candidateJobApplication'));
     }
 
 }

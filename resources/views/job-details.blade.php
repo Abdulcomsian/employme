@@ -1,5 +1,6 @@
 @extends('layout.main')
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <!-- 
 		=============================================
 			Inner Banner
@@ -31,7 +32,37 @@
 		<div class="row">
 			<div class="col-xxl-8 col-xl-8">
 				<div class="details-post-data me-xxl-5 pe-xxl-4">
-					<div class="post-date">{{date('d M Y',strtotime($jobDetails->created_at))}} by <a href="#" class="fw-500 text-dark">{{$jobDetails->employerDetails->institution ?? ''}}</a></div>
+					<!-- <div class="post-date">{{date('d M Y',strtotime($jobDetails->created_at))}} by <a href="#" class="fw-500 text-dark">{{$jobDetails->employerDetails->institution ?? ''}}</a></div> -->
+					<div class="post-date d-flex justify-content-between">
+						<div>
+							{{date('d M Y',strtotime($jobDetails->created_at))}} by
+							<a href="#" class="fw-500 text-dark">{{$jobDetails->employerDetails->institution ?? ''}}</a>
+						</div>
+						@if(\Auth::check())
+						   @role('admin')
+						   	<button class="btn-one NonCandidateButton" >Apply For This Job</button>
+						   @endrole
+						   @role('employer')
+						   <button class="btn-one NonCandidateButton" >Apply For This Job</button>
+						   @endrole
+						   @role('candidate')
+						   @if(jobApplicationStatus($jobDetails->id) == 1)
+						   		<button class="btn-one">Applied Already</button>
+							@else
+								<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
+								<button class="btn-one" data-bs-toggle="modal" data-bs-target="#JobApplicationModal">Apply For This Job</button>
+						   @endif
+						   @endrole
+						@else
+							<button class="btn-one PleaseLoginButton" >Apply For This Job</button>
+						      <!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
+						@endif
+							<!-- <form id="job-application-form" action="{{ route('jobApplicationRequest') }}" method="POST" style="display: none;">
+                              @csrf
+							  <input type = "hidden" name = "job_id" value = "{{$jobDetails->id}}">
+							</form> -->
+						
+					</div>
 					<h3 class="post-title">{{$jobDetails->job_title ?? ''}}</h3>
 					<ul class="share-buttons d-flex flex-wrap style-none">
 						<li><a href="#" class="d-flex align-items-center justify-content-center">
@@ -47,25 +78,42 @@
 								<span>Copy</span>
 							</a></li>
 					</ul>
+					 @php $sectionNumber = 0; @endphp
+					 @if($jobDetails->job_description !='')
+					  @php $sectionNumber++; @endphp
 					<div class="post-block border-style mt-30">
 						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">1</div>
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Job Description</h4>
 						</div>
 						<!-- <p>As a <a href="#">Product Designer</a> at WillowTree, you’ll give form to ideas by being the voice and owner of product decisions. You’ll drive the design direction, and then make it happen!</p> -->
 						<p>{{$jobDetails->job_description ?? ''}}</p>
 					</div>
+					 @endif
+					  @if(isset($jobDetails->employerDetails->employer_details) && $jobDetails->employerDetails->employer_details !='')
+					   @php $sectionNumber++; @endphp
 					<div class="post-block border-style mt-50 lg-mt-30">
 						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">2</div>
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">About Employer</h4>
 						</div>
 						<p>{!! $jobDetails->employerDetails->employer_details ?? '' !!}</p>
 					</div>
+					 @endif
 							<!---- Requirements and Qualifications ---->
+							@if($jobDetails->education !='' ||
+								$jobDetails->teaching_certificate !='' ||       
+								$jobDetails->experience !='' ||       
+								$jobDetails->background_check !='' ||       
+								$jobDetails->health_check_requirement !='' ||       
+								$jobDetails->preferred_accent !='' ||       
+								$jobDetails->visa_type !='' ||       
+								$jobDetails->language_proficiency !=''     
+								)
+								@php $sectionNumber++; @endphp
 					<div class="post-block border-style mt-40 lg-mt-30">
 						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">3</div>
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Requirements and Qualifications</h4>
 						</div>
 						<ul class="list-type-one style-none mb-15">
@@ -95,10 +143,16 @@
 							@endif
 						</ul>
 					</div>
+					 @endif
 							<!---- Position Overview ---->
+						@if($jobDetails->school_vision !='' ||
+							$jobDetails->unique_selling_point !='' ||       
+							$jobDetails->ideal_candidate_profile !=''     
+							)
+							@php $sectionNumber++; @endphp
 					<div class="post-block border-style mt-40 lg-mt-30">
 						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">4</div>
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Position Overview:</h4>
 						</div>
 						<ul class="list-type-two style-none mb-15">
@@ -113,10 +167,18 @@
 							@endif
 						</ul>
 					</div>
+					  @endif
 							<!---- Onboarding Process ---->
+						@if($jobDetails->arrival_assitance !='' ||
+							$jobDetails->initial_accomodation !='' ||       
+							$jobDetails->first_week_structure !='' ||       
+							$jobDetails->induction_programs !='' ||       
+							$jobDetails->mentorship !=''      
+							)
+							@php $sectionNumber++; @endphp
 					<div class="post-block border-style mt-40 lg-mt-30">
 						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">5</div>
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Onboarding Process</h4>
 						</div>
 						<ul class="list-type-one style-none mb-15">
@@ -137,10 +199,20 @@
 							@endif
 						</ul>
 					</div>
+					  @endif
 						<!----Location & Environment ---->
+						@if($jobDetails->city_town !='' ||
+							$jobDetails->neighbourhood_description !='' ||       
+							$jobDetails->proximity_to_landmarks !='' ||       
+							$jobDetails->local_amenities !='' ||       
+							$jobDetails->school_facilities !='' || 
+							$jobDetails->work_enviroment_and_culture !='' ||       
+							$jobDetails->co_assistant_teachers_availability !=''       
+							)
+							@php $sectionNumber++; @endphp
 					<div class="post-block border-style mt-40 lg-mt-30">
 						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">6</div>
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Location & Environment</h4>
 						</div>
 						<ul class="list-type-one style-none mb-15">
@@ -170,10 +242,18 @@
 							@endif
 						</ul>
 					</div>
+					 @endif
 						<!---- Support for Foreign Teachers -!---->
+						@if($jobDetails->orientation_and_training !='' ||
+							$jobDetails->culture_assimilation_program !='' ||       
+							$jobDetails->language_courses_or_asistance !='' ||       
+							$jobDetails->local_bank_account_assistance !='' ||       
+							$jobDetails->emergency_contacts_and_support !=''       
+							)
+							@php $sectionNumber++; @endphp
 					<div class="post-block border-style mt-40 lg-mt-30">
 						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">7</div>
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Support for Foreign Teachers:</h4>
 						</div>
 						<ul class="list-type-two style-none mb-15">
@@ -194,10 +274,18 @@
 							@endif								
 						</ul>
 					</div>
+					 @endif
 						<!---- Application & Recruitment Process -!---->
+						@if($jobDetails->required_documents !='' ||
+							$jobDetails->interview_process !='' ||       
+							$jobDetails->application_deadline !='' ||       
+							$jobDetails->contact_review_process !='' ||       
+							$jobDetails->decision_deadline !=''       
+							)
+							@php $sectionNumber++; @endphp
 					<div class="post-block border-style mt-40 lg-mt-30">
 						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">8</div>
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Application & Recruitment Process</h4>
 						</div>
 						<ul class="list-type-one style-none mb-15">
@@ -218,10 +306,18 @@
 							@endif
 						</ul>
 					</div>
+					 @endif
 						<!---- Application & Recruitment Process -!---->
+					  @if($jobDetails->orientation_and_training !='' ||
+					    $jobDetails->culture_assimilation_program !='' ||       
+					    $jobDetails->language_courses_or_asistance !='' ||       
+					    $jobDetails->local_bank_account_assistance !='' ||       
+					    $jobDetails->emergency_contacts_and_support !=''       
+					 		)
+							@php $sectionNumber++; @endphp
 					<div class="post-block border-style mt-40 lg-mt-30">
 						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">9</div>
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Additional Information:</h4>
 						</div>
 						<ul class="list-type-two style-none mb-15">
@@ -241,7 +337,8 @@
 							<li>{{$jobDetails->emergency_contacts_and_support ?? ''}}</li>
 							@endif								
 						</ul>
-					</div>
+					</div> :
+					@endif
 					
 				</div>
 				<!-- /.details-post-data -->
@@ -344,7 +441,7 @@
 							<a href="#">Application</a>
 							<a href="#">UI/UX</a>
 						</div> -->
-						<a href="#" class="btn-one w-100 mt-25">Request An Interview </a>
+						<!-- <a href="#" class="btn-one w-100 mt-25">Request An Interview </a> -->
 					</div>
 				</div>
 				   	 <!---- Class Information ---->
@@ -402,7 +499,7 @@
 							<a href="#">Application</a>
 							<a href="#">UI/UX</a>
 						</div> -->
-						<a href="#" class="btn-one w-100 mt-25">Request An Interview </a>
+						<!-- <a href="#" class="btn-one w-100 mt-25">Request An Interview </a> -->
 					</div>
 				</div>
 					<!---- Compensations & Benefits ---->
@@ -464,7 +561,7 @@
 							<a href="#">Application</a>
 							<a href="#">UI/UX</a>
 						</div> -->
-						<a href="#" class="btn-one w-100 mt-25">Request An Interview </a>
+						<!-- <a href="#" class="btn-one w-100 mt-25">Request An Interview </a> -->
 					</div>
 				</div>
 				<!-- /.job-company-info -->
@@ -572,4 +669,75 @@
 	</div>
 </section>
 <!-- /.job-portal-intro -->
+<div class="modal fade" id="JobApplicationModal" tabindex="-1" role="dialog" aria-labelledby="Edit User"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="User-Edit-Modal">{{__('Job Application')}}</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id='Job-Application-Form' method="POST" class="clearfix" enctype="multipart/form-data">
+					<input type = "hidden" name = "job_id" value = "{{$jobDetails->id}}">
+					<div id="errors-list"></div>
+                    <div class="mb-3">
+                        <label class="col-form-label" for="Major Name">{{__('Cover Letter')}}</label>
+                        <textarea class="form-control"  name="cover_letter" id="cover_letter"
+                            placeholder="{{__('Job Application Cover Letter')}}" rows="5" autocomplete="off"></textarea>
+                    </div>
+             
+            </div>
+            <div class="modal-footer">
+                <button class="btn-one" type="button" data-bs-dismiss="modal">
+					Close
+                </button>
+                <button class="btn-one" type="submit" name="submit">
+                    Apply
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+	$(".PleaseLoginButton").on('click',function(){
+        toastr.warning("Please Login First to Apply for this Job");
+	});
+	$(".NonCandidateButton").on('click',function(){
+        toastr.warning("Only Candidate can apply for the Job");
+	});
+	$(document).on("submit", "#Job-Application-Form", function() {
+        // e.preventDefault();
+        //   var e = this;
+  
+  
+          $.ajax({
+              url: '{{route("jobApplicationRequest")}}',
+              data: {
+                _token:"{{csrf_token()}}",
+                job_id: $("#Job-Application-Form").find('input[name=job_id]').val(),
+                cover_letter: $("#Job-Application-Form").find('textarea[name=cover_letter]').val(),
+                        },
+              type: "POST",
+              dataType: 'json',
+              success: function (data) {
+    
+                if (data.status) {
+                    window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+  
+          return false;
+      });
+  
+</script>
 @endsection

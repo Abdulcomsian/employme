@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\EmployerJob;
+use App\Models\JobApplication;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 class JobController extends Controller
 {
     public function jobMarketplace(Request $request){
@@ -60,6 +64,62 @@ class JobController extends Controller
     public function SearchjobMarketplace(Request $request)
     {
         dd('shakir');
+    }
+
+    public function jobApplicationRequest(Request $request)
+    {
+       $validator = Validator::make($request->all(), [
+        'cover_letter' => 'required',
+    ]);
+    if ($validator->fails()){
+        return response()->json([
+                "status" => false,
+                "errors" => $validator->errors()
+            ]);
+    }
+        $checkExistingApplication = JobApplication::where('candidate_id',Auth::id())->where('employer_job_id',$request->job_id)->first();
+        if($checkExistingApplication)
+        {
+            // toastr()->info('You have already Applied for this Job');
+            // return redirect()->back();
+            return response()->json([
+                "status" => false,
+                "errors" => ["You Already Applied for this Job"]
+            ]);
+          
+        }
+        else
+        {
+            if(auth()->user()->hasRole('admin'))
+            {
+                return response()->json([
+                    "status" => false,
+                    "errors" => ["Only Candidate can Apply for Job"]
+                ]);
+            }
+            elseif(auth()->user()->hasRole('employer')){
+                return response()->json([
+                    "status" => false,
+                    "errors" => ["Only Candidate can Apply for Job"]
+                ]);
+            }else{
+                $applyForJob = JobApplication::create([
+                    'candidate_id'=>Auth::id(),
+                    'employer_job_id'=>$request->job_id,
+                    'cover_letter'=>$request->cover_letter,
+                    'application_status'=>0,
+                    'application_date'=>date('ymdhis')
+                ]);
+                toastr()->success('You have successfully Applied for this Job');
+                // return redirect()->back();
+                return response()->json([
+                    "status" => true, 
+                    "redirect" => url("job-details/". \Crypt::encryptString($request->job_id))
+                ]);
+
+            }
+        }
+ 
     }
 
 }

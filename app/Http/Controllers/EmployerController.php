@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\Plan;
 use App\Models\SubscriptionItem;
 use App\Models\Subscription;
+use App\Models\EmployerJob;
 class EmployerController extends Controller
 {
 
@@ -164,5 +165,12 @@ class EmployerController extends Controller
             "status" => true, 
             "redirect" => url("employer/employer-profile")
         ]);
+    }
+
+    public function employerJobApplications()
+    {
+        $employerJobApplications = EmployerJob::with('jobCandidates')->where('posted_by',Auth::id())->first();
+        dd($employerJobApplications);
+        return view('employer.job-applications.index',compact('employerJobApplications'));
     }
 }

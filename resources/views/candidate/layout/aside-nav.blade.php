@@ -40,6 +40,10 @@
                         <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
                         <span>My Profile</span>
                     </a></li>
+                <li><a href="{{route('candidateJobApplications')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/job-applications') ? 'active' : ''}}">
+                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/job-applications') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
+                    <span>My Applications</span>
+                </a></li>
                 <li><a href="{{route('getResumePage')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/resume') ? 'active' : ''}}">
                         <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/resume') ? asset('assets/images/dashboard-icon/icon_3_active.svg') : asset('assets/images/dashboard-icon/icon_3.svg')}}" alt="" class="lazy-img">
                         <span>Resume</span>

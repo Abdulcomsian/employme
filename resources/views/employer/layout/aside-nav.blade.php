@@ -51,7 +51,10 @@
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/job-listing') ? asset('assets/images/dashboard-icon/icon_3_active.svg') : asset('assets/images/dashboard-icon/icon_3.svg')}}" alt="" class="lazy-img">
 						<span>Job Listings</span>
 					</a></li>
-
+				<li><a href="{{route('employerJobApplications')}}" class="d-flex w-100 align-items-center {{request()->is('employer/job-applications') ? 'active' : ''}}">
+						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/job-applications') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
+						<span>My Applications</span>
+					</a></li>
 				<li><a href="{{route('getEmployerInterviewRequest')}}" class="d-flex w-100 align-items-center {{request()->is('employer/employer-interview-request') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/employer-interview-request') ? asset('assets/images/dashboard-icon/icon_40_active.svg') : asset('assets/images/dashboard-icon/icon_40.svg')}}" alt="" class="lazy-img">
 						<span>Interview Request</span>

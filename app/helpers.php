@@ -224,3 +224,9 @@ function employerSubscription()
     $getSubscription = \App\Models\Subscription::with('employerSubscriptionItems')->where('user_id',Auth::id())->first();
     return isset($getSubscription->employerSubscriptionItems) ? 1 : 0;
 }
+
+function jobApplicationStatus($employer_job_id=null)
+{
+    $checkApplication = \App\Models\JobApplication::where('candidate_id',\Auth::id())->where('employer_job_id',$employer_job_id)->first();
+    return !empty($checkApplication) ? 1 : 0;
+}

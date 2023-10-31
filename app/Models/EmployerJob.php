@@ -91,4 +91,9 @@ class EmployerJob extends Model
     {
         return $this->belongsTo(EmployerDetails::class,'posted_by','user_id');
     }
+
+    public function jobCandidates()
+    {
+        return $this->belongsToMany(User::class, 'job_applications','posted_by');
+    }
 }

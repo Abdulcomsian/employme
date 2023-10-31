@@ -52,6 +52,7 @@ Route::get('get-cities/{id}', [HomeController::class, 'getCities'])->name('getCi
 // dashboard routes starts here/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('job-marketplace', [JobController::class, 'jobMarketplace'])->name('jobMarketplace');
 Route::get('search/job-marketplace', [JobController::class, 'SearchjobMarketplace'])->name('SearchjobMarketplace');
+Route::post('job/apply', [JobController::class, 'jobApplicationRequest'])->name('jobApplicationRequest')->middleware('auth');
 // Route::get('candidate-profile' , [UserController::class , 'candidateProfile'])->name('candidateProfile');
 Route::get('company', [UserController::class, 'company'])->name('company');
 Route::get('candidates-marketplace', [UserController::class, 'candidatesMarketplace'])->name('candidatesMarketplace');
@@ -81,6 +82,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     Route::get('job-alert', [JobController::class, 'getJobAlertPage'])->name('getJobAlert');
     Route::get('save-job', [JobController::class, 'getSaveJobsPage'])->name('getSaveJob');
     Route::get('account-settings', [UserController::class, 'getAccountSettingsPage'])->name('getAccountSetting');
+    Route::get('job-applications', [CandidateController::class, 'candidateJobApplications'])->name('candidateJobApplications');
 });
 Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], function() {
     Route::post('candidate/save-profile-1',[CandidateController::class,'saveProfile1'])->name('candidate.profile-1.save');
@@ -107,6 +109,8 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
     Route::resource('employer-jobs', EmployerJobController::class);
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
+    Route::get('job-applications', [EmployerController::class, 'employerJobApplications'])->name('employerJobApplications');
+
 });
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {
     Route::post('employer/save-profile-1',[EmployerController::class,'saveProfile1'])->name('employer.profile-1.save');
