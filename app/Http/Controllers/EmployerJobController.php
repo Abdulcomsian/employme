@@ -12,7 +12,7 @@ class EmployerJobController extends Controller
      */
     public function index()
     {
-        $employerJobs = EmployerJob::all();
+        $employerJobs = EmployerJob::where('posted_by',Auth::id())->get();
         return view('employer.jobs.index',get_defined_vars());
     }
 
