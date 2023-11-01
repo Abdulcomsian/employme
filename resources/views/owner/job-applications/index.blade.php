@@ -108,18 +108,18 @@ Jobs Applications
                                 </tr>
                             </thead>
                             <tbody class="border-0">
-                                @isset($jobApplications->jobApplicants)
-                                @foreach($jobApplications->jobApplicants as $index=>$jobApplicant)
-                                <tr class="{{getActiveJobStatus($employerJobApplications->job_status)}}">
+                                @foreach($employerJobApplications as $jobApplication)
+                                @isset($jobApplication->jobApplicants)
+                                @foreach($jobApplication->jobApplicants as $index=>$jobApplicant)
+                                <tr class="{{getActiveJobStatus($jobApplication->job_status)}}">
                                     <td>
                                         <div class="job-name fw-500">{{$jobApplicant->name}}</div>
                                     </td>
                                     <td>
-                                        <div class="job-name fw-500">{{$employerJobApplications->job_title}}</div>
-                                        <div class="info1">{{$employerJobApplications->city_town}}</div>
+                                        <div class="job-name fw-500">{{$jobApplication->job_title}}</div>
+                                        <div class="info1">{{$jobApplication->city_town}}</div>
                                     </td>
-                                    <!-- <td>{{date('d M, Y',strtotime($employerJobApplications->created_at))}}</td> -->
-                                    <!-- <td>130 Applications</td> -->
+                                    <td>{{totalApplicants($jobApplication->id)}} Applications</td>
                                     <td>
                                         <div class="job-status">Active</div>
                                     </td>
@@ -145,6 +145,8 @@ Jobs Applications
                                 </tr>
                                 @endforeach
                                 @endisset
+
+                                @endforeach
                                 <!-- <tr class="pending">
                                     <td>
                                         <div class="job-name fw-500">Marketing Specialist</div>

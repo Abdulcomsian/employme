@@ -87,8 +87,8 @@ class OwnerController extends Controller
 
     public function getJobApplications()
     {
-        $jobApplications = EmployerJob::with('jobApplicants')->get();
-        return view('owner.job-applications.index',compact('jobApplications'));
+        $employerJobApplications = EmployerJob::with('jobApplicants')->get();
+        return view('owner.job-applications.index',compact('employerJobApplications'));
     }
 
 }
