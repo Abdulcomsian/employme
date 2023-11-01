@@ -145,7 +145,7 @@ class CandidateController extends Controller
 
     public function candidateJobApplications()
     {
-        $candidateJobApplication = User::with('jobCandidates')->find(Auth::id());
+        $candidateJobApplication = User::with('jobsApplied')->find(Auth::id());
         return view('candidate.job-applications.index',compact('candidateJobApplication'));
     }
 

@@ -135,6 +135,8 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('users', [OwnerController::class, 'getUserProfile'])->name('getUserProfile');
     Route::get('candidates', [OwnerController::class, 'getCandidates'])->name('getCandidates');
     Route::get('employers', [OwnerController::class, 'getEmployers'])->name('getEmployers');
+    Route::get('employers-jobs', [OwnerController::class, 'getEmployersJobs'])->name('admin.getEmployersJobs');
+    Route::get('job-applications', [OwnerController::class, 'getJobApplications'])->name('admin.getJobApplications');
     Route::get('professional-skills', [OwnerController::class, 'getProfessionalSkills'])->name('getProfessionalSkills');
     Route::post('save-professional-skill', [OwnerController::class, 'storeProfessionalSkill'])->name('saveProfessionalSkill');
     Route::get('edit-professional-skill/{id}', [OwnerController::class, 'editProfessionalSkill'])->name('editProfessionalSkill');

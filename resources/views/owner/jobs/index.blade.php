@@ -1,8 +1,8 @@
-@extends('employer.layout.main')
-
+@extends('owner.layout.main')
 @section('title')
 Job Listing
 @endsection
+@section('content')
 <style>
    .create-job-btn{
     font-weight: 500;
@@ -49,7 +49,6 @@ Job Listing
         </div>
 
         <div class="bg-white card-box border-20">
-                <div><a href="{{route('employer-jobs.create')}}" class="create-job-btn">Post a Job</a></div>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="a1" role="tabpanel">
                     <div class="table-responsive">
@@ -59,6 +58,7 @@ Job Listing
                                     <th scope="col">Title</th>
                                     <th scope="col">Job Created</th>
                                     <th scope="col">Applicants</th>
+                                    <th scope="col">Posted by</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -72,6 +72,7 @@ Job Listing
                                         <div class="info1">{{$employerJob->city_town}}</div>
                                     </td>
                                     <td>{{date('d M, Y',strtotime($employerJob->created_at))}}</td>
+                                    <td>{{$employerJob->employerDetails->institution ?? ''}}</td>
                                     <td>{{totalApplicants($employerJob->id) ?? ''}} Applications</td>
                                     <td>
                                         <div class="job-status">Active</div>

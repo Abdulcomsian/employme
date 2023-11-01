@@ -76,7 +76,7 @@ Job Listing
         <!-- End Header -->
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
-            <h2 class="main-title m0">My Jobs</h2>
+            <h2 class="main-title m0">Job Applications</h2>
             <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab" aria-selected="true">All</button>
@@ -100,23 +100,26 @@ Job Listing
                         <table class="table job-alert-table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Title</th>
+                                    <th scope="col">Applicant Name</th>
                                     <th scope="col">Job Created</th>
-                                    <th scope="col">Applicants</th>
+                                    <!-- <th scope="col">Applicants</th> -->
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="border-0">
-                                @isset($candidateJobApplication->jobsApplied)
-                                @foreach($candidateJobApplication->jobsApplied as $jobApplication)
-                                <tr class="{{getActiveJobStatus($jobApplication->job_status)}}">
+                                @isset($employerJobApplications->jobApplicants)
+                                @foreach($employerJobApplications->jobApplicants as $index=>$jobApplicant)
+                                <tr class="{{getActiveJobStatus($employerJobApplications->job_status)}}">
                                     <td>
-                                        <div class="job-name fw-500">{{$jobApplication->job_title}}</div>
-                                        <div class="info1">{{$jobApplication->city_town}}</div>
+                                        <div class="job-name fw-500">{{$jobApplicant->name}}</div>
                                     </td>
-                                    <td>{{date('d M, Y',strtotime($jobApplication->created_at))}}</td>
-                                    <td>130 Applications</td>
+                                    <td>
+                                        <div class="job-name fw-500">{{$employerJobApplications->job_title}}</div>
+                                        <div class="info1">{{$employerJobApplications->city_town}}</div>
+                                    </td>
+                                    <!-- <td>{{date('d M, Y',strtotime($employerJobApplications->created_at))}}</td> -->
+                                    <!-- <td>130 Applications</td> -->
                                     <td>
                                         <div class="job-status">Active</div>
                                     </td>

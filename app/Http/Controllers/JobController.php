@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\EmployerJob;
+use App\Models\EmployerDetails;
+use App\Models\CandidatePersonalDetails;
+use App\Models\User;
 use App\Models\JobApplication;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Notification;
+use App\Notifications\JobApplicationNotification;
 class JobController extends Controller
 {
     public function jobMarketplace(Request $request){
@@ -110,6 +115,27 @@ class JobController extends Controller
                     'application_status'=>0,
                     'application_date'=>date('ymdhis')
                 ]);
+                $jobDetails = EmployerJob::find($request->job_id);
+                $candidateDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
+                $employerDetails = User::find($jobDetails->posted_by);
+                $subject = 'Job Application';
+                $text = '';
+                $employer_notify_message = [
+                    'greeting' => 'Job Appication Alert',
+                    'subject' => $subject,
+                    'body' => [
+                        'text' => $text,
+                        'links' =>  '',
+                        'candidate_full_name'=>$candidateDetails->full_name,
+                        'candidate_email'=>auth()->user()->email,
+                        'job_title'=>$jobDetails->job_title,
+                        'city_town'=>$jobDetails->city_town,
+                    ],
+                    'thanks_text' => 'Thanks For Using our site',
+                    'action_text' => '',
+                    'action_url' => '',
+                ];
+                Notification::route('mail',  $employerDetails->email ?? '')->notify(new JobApplicationNotification($employer_notify_message));
                 toastr()->success('You have successfully Applied for this Job');
                 // return redirect()->back();
                 return response()->json([

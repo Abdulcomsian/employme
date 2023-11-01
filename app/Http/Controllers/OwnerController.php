@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ProfessionalSkills;
 use App\Models\User;
+use App\Models\EmployerJob;
+
 class OwnerController extends Controller
 {
 
@@ -75,6 +77,18 @@ class OwnerController extends Controller
     {
         $employers =User::role('employer')->get();
         return view('owner.employers',compact('employers'));
+    }
+
+    public function getEmployersJobs()
+    {
+        $employerJobs = EmployerJob::with('employerDetails','employerInfo')->get();
+        return view('owner.jobs.index',get_defined_vars());
+    }
+
+    public function getJobApplications()
+    {
+        $jobApplications = EmployerJob::with('jobApplicants')->get();
+        return view('owner.job-applications.index',compact('jobApplications'));
     }
 
 }

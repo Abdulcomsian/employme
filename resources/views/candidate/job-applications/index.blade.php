@@ -116,7 +116,7 @@ Dashboard
                                         <div class="info1">{{$jobApplication->city_town}}</div>
                                     </td>
                                     <td>{{date('d M, Y',strtotime($jobApplication->created_at))}}</td>
-                                    <td>130 Applications</td>
+                                    <td>{{totalApplicants($jobApplication->id)}} Applications</td>
                                     <td>
                                         <div class="job-status">Active</div>
                                     </td>

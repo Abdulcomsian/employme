@@ -1,8 +1,8 @@
-@extends('employer.layout.main')
-
+@extends('owner.layout.main')
 @section('title')
-Job Listing
+Jobs Applications
 @endsection
+@section('content')
 <style>
    .create-job-btn{
     font-weight: 500;
@@ -27,11 +27,56 @@ Job Listing
 <div class="dashboard-body">
     <div class="position-relative">
          <!-- ************************ Header **************************** -->
-            @include('employer.layout.header_menu')
+        <header class="dashboard-header">
+            <div class="d-flex align-items-center justify-content-end">
+                <button class="dash-mobile-nav-toggler d-block d-md-none me-auto">
+                    <span></span>
+                </button>
+                <form action="#" class="search-form">
+                    <input type="text" placeholder="Search here..">
+                    <button><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_10.svg')}}" alt="" class="lazy-img m-auto"></button>
+                </form>
+                <div class="profile-notification ms-2 ms-md-5 me-4">
+                    <button class="noti-btn dropdown-toggle" type="button" id="notification-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                        <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_11.svg')}}" alt="" class="lazy-img">
+                        <div class="badge-pill"></div>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="notification-dropdown">
+                        <li>
+                            <h4>Notification</h4>
+                            <ul class="style-none notify-list">
+                                <li class="d-flex align-items-center unread">
+                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_36.svg')}}" alt="" class="lazy-img icon">
+                                    <div class="flex-fill ps-2">
+                                        <h6>You have 3 new mails</h6>
+                                        <span class="time">3 hours ago</span>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_37.svg')}}" alt="" class="lazy-img icon">
+                                    <div class="flex-fill ps-2">
+                                        <h6>Your job post has been approved</h6>
+                                        <span class="time">1 day ago</span>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-center unread">
+                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_38.svg')}}" alt="" class="lazy-img icon">
+                                    <div class="flex-fill ps-2">
+                                        <h6>Your meeting is cancelled</h6>
+                                        <span class="time">3 days ago</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div><a href="{{route('jobMarketplace')}}" class="job-post-btn tran3s">Job Marketplace</a></div>
+            </div>
+        </header>
         <!-- End Header -->
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
-            <h2 class="main-title m0">My Jobs</h2>
+            <h2 class="main-title m0">Job Applications</h2>
             <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab" aria-selected="true">All</button>
@@ -49,7 +94,6 @@ Job Listing
         </div>
 
         <div class="bg-white card-box border-20">
-                <div><a href="{{route('employer-jobs.create')}}" class="create-job-btn">Post a Job</a></div>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="a1" role="tabpanel">
                     <div class="table-responsive">
@@ -64,15 +108,18 @@ Job Listing
                                 </tr>
                             </thead>
                             <tbody class="border-0">
-                                @isset($employerJobs)
-                                @foreach($employerJobs as $employerJob)
-                                <tr class="{{getActiveJobStatus($employerJob->job_status)}}">
+                                @isset($jobApplications->jobApplicants)
+                                @foreach($jobApplications->jobApplicants as $index=>$jobApplicant)
+                                <tr class="{{getActiveJobStatus($employerJobApplications->job_status)}}">
                                     <td>
-                                        <div class="job-name fw-500">{{$employerJob->job_title}}</div>
-                                        <div class="info1">{{$employerJob->city_town}}</div>
+                                        <div class="job-name fw-500">{{$jobApplicant->name}}</div>
                                     </td>
-                                    <td>{{date('d M, Y',strtotime($employerJob->created_at))}}</td>
-                                    <td>{{totalApplicants($employerJob->id) ?? ''}} Applications</td>
+                                    <td>
+                                        <div class="job-name fw-500">{{$employerJobApplications->job_title}}</div>
+                                        <div class="info1">{{$employerJobApplications->city_town}}</div>
+                                    </td>
+                                    <!-- <td>{{date('d M, Y',strtotime($employerJobApplications->created_at))}}</td> -->
+                                    <!-- <td>130 Applications</td> -->
                                     <td>
                                         <div class="job-status">Active</div>
                                     </td>
@@ -82,14 +129,14 @@ Job Listing
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="{{route('JobListingCandidate')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
+                                                <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
                                                 <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="{{route('employer-jobs.edit',$employerJob->id)}}"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
+                                                <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                                 document.getElementById('destroy-form').submit();"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
                                             </ul>
                                         </div>
-                                        <form id="destroy-form" action="{{ route('employer-jobs.destroy', $employerJob->id) }}" method="POST" style="display: none;">
+                                        <form id="destroy-form" action="#" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
 
@@ -308,5 +355,4 @@ Job Listing
         </div>
     </div>
 </div>
-
 @endsection

@@ -169,8 +169,7 @@ class EmployerController extends Controller
 
     public function employerJobApplications()
     {
-        $employerJobApplications = EmployerJob::with('jobCandidates')->where('posted_by',Auth::id())->first();
-        dd($employerJobApplications);
+        $employerJobApplications = EmployerJob::with('jobApplicants')->where('posted_by',Auth::id())->get();
         return view('employer.job-applications.index',compact('employerJobApplications'));
     }
 }

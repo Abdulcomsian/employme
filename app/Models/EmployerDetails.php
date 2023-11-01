@@ -57,4 +57,5 @@ class EmployerDetails extends Model
     {
         return $this->belongsTo(Countries::class,'country_id');
     }
+    
 }

@@ -72,6 +72,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function jobsApplied()
     {
-        return $this->belongsToMany(EmployerJob::class, 'job_applications','candidate_id');
+        return $this->belongsToMany(EmployerJob::class, 'job_applications','candidate_id','employer_job_id');
+    }
+  
+    public function totalApplicants($job_id)
+    {
+       return \DB::table('job_applications')->where('employer_job_id',$job_id)->count();
     }
 }
