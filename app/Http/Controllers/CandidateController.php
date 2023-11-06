@@ -10,6 +10,7 @@ use App\Models\ProfessionalSkills;
 use App\Models\CandidatePreferences;
 use App\Models\Cities;
 use App\Models\Countries;
+use App\Models\SavedJob;
 use App\Models\EmployerJob;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
@@ -147,6 +148,22 @@ class CandidateController extends Controller
     {
         $candidateJobApplication = User::with('jobsApplied')->find(Auth::id());
         return view('candidate.job-applications.index',compact('candidateJobApplication'));
+    }
+
+    public function candidateSavedJobs()
+    {
+        $candidateSavedJobs = User::with('savedJobs')->find(Auth::id());
+        return view('candidate.saved-jobs.index',compact('candidateSavedJobs'));
+    }
+
+    public function removeSavedJob($id)
+    {
+        $deleteSavedJob = SavedJob::where(['employer_job_id'=>$id,'user_id'=>Auth::id()])->first();
+        if($deleteSavedJob->delete())
+        {
+            toastr()->success('Job Successfully Removed');
+            return redirect()->back();
+        }
     }
 
 }

@@ -1,6 +1,5 @@
 @extends('layout.main')
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <!-- 
 		=============================================
 			Inner Banner
@@ -700,7 +699,6 @@
     </div>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
 	$(".PleaseLoginButton").on('click',function(){
         toastr.warning("Please Login First to Apply for this Job");

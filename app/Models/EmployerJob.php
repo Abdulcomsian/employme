@@ -99,6 +99,10 @@ class EmployerJob extends Model
     {
         return $this->belongsToMany(User::class, 'job_applications', 'employer_job_id', 'candidate_id');
     }
+    public function savedJobs()
+    {
+        return $this->belongsToMany(User::class, 'saved_jobs', 'employer_job_id', 'user_id');
+    }
 
 
 }

@@ -53,6 +53,7 @@ Route::get('get-cities/{id}', [HomeController::class, 'getCities'])->name('getCi
 Route::get('job-marketplace', [JobController::class, 'jobMarketplace'])->name('jobMarketplace');
 Route::get('search/job-marketplace', [JobController::class, 'SearchjobMarketplace'])->name('SearchjobMarketplace');
 Route::post('job/apply', [JobController::class, 'jobApplicationRequest'])->name('jobApplicationRequest')->middleware('auth');
+Route::post('save-job', [JobController::class, 'saveJob'])->name('saveJob')->middleware(['auth','role:candidate']);
 // Route::get('candidate-profile' , [UserController::class , 'candidateProfile'])->name('candidateProfile');
 Route::get('company', [UserController::class, 'company'])->name('company');
 Route::get('candidates-marketplace', [UserController::class, 'candidatesMarketplace'])->name('candidatesMarketplace');
@@ -80,9 +81,11 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     Route::get('resume', [CandidateController::class, 'getResumePage'])->name('getResumePage');
     Route::get('messages', [MessageController::class, 'getCandidateMessagePage'])->name('getCandidateMessages');
     Route::get('job-alert', [JobController::class, 'getJobAlertPage'])->name('getJobAlert');
-    Route::get('save-job', [JobController::class, 'getSaveJobsPage'])->name('getSaveJob');
+    // Route::get('save-job', [JobController::class, 'getSaveJobsPage'])->name('getSaveJob');
     Route::get('account-settings', [UserController::class, 'getAccountSettingsPage'])->name('getAccountSetting');
     Route::get('job-applications', [CandidateController::class, 'candidateJobApplications'])->name('candidateJobApplications');
+    Route::get('saved-jobs', [CandidateController::class, 'candidateSavedJobs'])->name('candidateSavedJobs');
+    Route::delete('removed-job/{id}', [CandidateController::class, 'removeSavedJob'])->name('removeSavedJob');
 });
 Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], function() {
     Route::post('candidate/save-profile-1',[CandidateController::class,'saveProfile1'])->name('candidate.profile-1.save');

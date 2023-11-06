@@ -25,3 +25,6 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}" media="all">
 <!-- responsive style sheet -->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}" media="all">
+
+<!-- Toastr -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">

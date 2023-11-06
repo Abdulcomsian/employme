@@ -914,7 +914,7 @@ Profile
             </div>
         </div>
 
-        <div class="bg-white card-box border-20">
+        <!-- <div class="bg-white card-box border-20">
             <div class="user-avatar-setting d-flex align-items-center mb-30">
                 <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/avatar_02.jpg')}}" alt="" class="lazy-img user-img">
                 <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -923,39 +923,32 @@ Profile
                 </div>
                 <button class="delete-btn tran3s">Delete</button>
             </div>
-            <!-- /.user-avatar-setting -->
             <div class="dash-input-wrapper mb-30">
                 <label for="">Full Name*</label>
                 <input type="text" placeholder="Md Rashed Kabir">
             </div>
-            <!-- /.dash-input-wrapper -->
             <div class="dash-input-wrapper">
                 <label for="">Bio*</label>
                 <textarea class="size-lg" placeholder="Write something interesting about you...."></textarea>
                 <div class="alert-text">Brief description for your profile. URLs are hyperlinked.</div>
             </div>
-            <!-- /.dash-input-wrapper -->
-        </div>
-        <!-- /.card-box -->
+        </div> -->
 
-        <div class="bg-white card-box border-20 mt-40">
+        <!-- <div class="bg-white card-box border-20 mt-40">
             <h4 class="dash-title-three">Social Media</h4>
 
             <div class="dash-input-wrapper mb-20">
                 <label for="">Network 1</label>
                 <input type="text" placeholder="https://www.facebook.com/zubayer0145">
             </div>
-            <!-- /.dash-input-wrapper -->
             <div class="dash-input-wrapper mb-20">
                 <label for="">Network 2</label>
                 <input type="text" placeholder="https://twitter.com/FIFAcom">
             </div>
-            <!-- /.dash-input-wrapper -->
             <a href="#" class="dash-btn-one"><i class="bi bi-plus"></i> Add more link</a>
-        </div>
-        <!-- /.card-box -->
+        </div> -->
 
-        <div class="bg-white card-box border-20 mt-40">
+        <!-- <div class="bg-white card-box border-20 mt-40">
             <h4 class="dash-title-three">Address & Location</h4>
             <div class="row">
                 <div class="col-12">
@@ -963,7 +956,6 @@ Profile
                         <label for="">Address*</label>
                         <input type="text" placeholder="Cowrasta, Chandana, Gazipur Sadar">
                     </div>
-                    <!-- /.dash-input-wrapper -->
                 </div>
                 <div class="col-lg-3">
                     <div class="dash-input-wrapper mb-25">
@@ -991,7 +983,6 @@ Profile
                             <option>Bhutan</option>
                         </select>
                     </div>
-                    <!-- /.dash-input-wrapper -->
                 </div>
                 <div class="col-lg-3">
                     <div class="dash-input-wrapper mb-25">
@@ -1005,14 +996,12 @@ Profile
                             <option>Bangalore</option>
                         </select>
                     </div>
-                    <!-- /.dash-input-wrapper -->
                 </div>
                 <div class="col-lg-3">
                     <div class="dash-input-wrapper mb-25">
                         <label for="">Zip Code*</label>
                         <input type="number" placeholder="1708">
                     </div>
-                    <!-- /.dash-input-wrapper -->
                 </div>
                 <div class="col-lg-3">
                     <div class="dash-input-wrapper mb-25">
@@ -1026,7 +1015,6 @@ Profile
                             <option>Bangalore</option>
                         </select>
                     </div>
-                    <!-- /.dash-input-wrapper -->
                 </div>
                 <div class="col-12">
                     <div class="dash-input-wrapper mb-25">
@@ -1041,16 +1029,14 @@ Profile
                             </div>
                         </div>
                     </div>
-                    <!-- /.dash-input-wrapper -->
                 </div>
             </div>
-        </div>
-        <!-- /.card-box -->
+        </div> -->
 
-        <div class="button-group d-inline-flex align-items-center mt-30">
+        <!-- <div class="button-group d-inline-flex align-items-center mt-30">
             <a href="#" class="dash-btn-two tran3s me-3">Save</a>
             <a href="#" class="dash-cancel-btn tran3s">Cancel</a>
-        </div>
+        </div> -->
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>

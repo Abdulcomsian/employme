@@ -230,8 +230,13 @@ function jobApplicationStatus($employer_job_id=null)
     $checkApplication = \App\Models\JobApplication::where('candidate_id',\Auth::id())->where('employer_job_id',$employer_job_id)->first();
     return !empty($checkApplication) ? 1 : 0;
 }
+function savedJob($employer_job_id=null)
+{
+    $checkApplication = \App\Models\SavedJob::where('user_id',\Auth::id())->where('employer_job_id',$employer_job_id)->first();
+    return !empty($checkApplication) ? 1 : 0;
+}
 
-    function totalApplicants($job_id)
-    {
-       return \DB::table('job_applications')->where('employer_job_id',$job_id)->count();
-    }
+function totalApplicants($job_id)
+{
+    return \DB::table('job_applications')->where('employer_job_id',$job_id)->count();
+}

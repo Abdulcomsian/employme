@@ -24,6 +24,9 @@
 <!-- Theme js -->
 <script src="{{asset('assets/js/theme.js')}}"></script>
 
+<!--- Toastr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 <script type="text/javascript">
  
   $(function() {
@@ -64,6 +67,48 @@
           return false;
       });
   
+      $(".save_job").click(function(){
+            var _token = "{{ csrf_token() }}";
+            var job_id = $(this).attr("id");
+            var that = this;
+            
+              $.post("{{ url('save-job')}}", {_token:_token,job_id:job_id}).done( function(response){
+                var result = JSON.parse(response);
+                  if (result.status === "added") {
+                    console.log('job added');
+                    $(that).addClass("bg-black");
+                  } else if (result.status === "removed") {
+                    console.log('job removed');
+                    $(that).removeClass("bg-black");
+                  }
+              }).fail(function(xhr, error, message){
+                    // console.log(xhr)
+                    //  toastr.error(message);
+                        if(xhr.status === 401)
+                        {
+                        toastr.error("You are not Logged In, Please Login");
+                      }
+                        else if(xhr.status === 403)
+                       {
+                          toastr.error(" Only Canidate can save the Job");
+                       }
+              });
+          
+        });
     });
+    $(window).ready(function() { 
+        $("#LoginForm").on("keypress", function (event) { 
+            // console.log("aaya"); 
+            var keyPressed = event.keyCode || event.which; 
+            if (keyPressed === 13) { 
+                // alert("You pressed the Enter key!!"); 
+                event.preventDefault(); 
+		        $("#loginButton").trigger("click");
+			
+
+                // return false; 
+            } 
+        }); 
+        }); 
   
 </script>

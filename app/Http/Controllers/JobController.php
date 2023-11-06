@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Notification;
 use App\Notifications\JobApplicationNotification;
+use App\Models\SavedJob;
 class JobController extends Controller
 {
     public function jobMarketplace(Request $request){
@@ -146,6 +147,33 @@ class JobController extends Controller
             }
         }
  
+    }
+
+    public function saveJob()
+    {
+        if(isset($_POST['job_id'])){
+            $job_id = base64_decode($_POST['job_id']);
+                 $saved_already = SavedJob::where('user_id', Auth::id())->where('employer_job_id', $job_id)->get();
+                 if($saved_already->count() > 0){
+                    if(SavedJob::where('user_id', Auth::id())->where('employer_job_id', $job_id)->delete()){
+                        $response = array("status"=>"removed","message"=>"Job removed");
+                    }else{
+                        $response = array("status"=>"error");
+                    }
+                    
+                 }else{
+                    // add into saved_jobs table
+                    $add = new SavedJob;
+                    $add->employer_job_id = $job_id;
+                    $add->user_id = Auth::id();
+                    if($add->save()){
+                        $response = array("status"=>"added","message"=>"Job Saved");
+                    }else{
+                        $response = array("status"=>"error");
+                    }
+                 }
+                 echo json_encode($response); die;
+        }
     }
 
 }
