@@ -598,12 +598,12 @@ Job Marketplace
 					<div class="pt-30 lg-pt-20 d-sm-flex align-items-center justify-content-between">
 						<p class="m0 order-sm-last text-center text-sm-start xs-pb-20">Showing <span class="text-dark fw-500">1 to 20</span> of <span class="text-dark fw-500">7,096</span></p>
 						<ul class="pagination-one d-flex align-items-center justify-content-center justify-content-sm-start style-none">
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
+							<!-- <li class="active"><a href="#">1</a></li> -->
+							<li><a href="#">{{ $allJobs->links() }}</a></li>
+							<!-- <li><a href="#">3</a></li>
 							<li><a href="#">4</a></li>
 							<li>....</li>
-							<li class="ms-2"><a href="#" class="d-flex align-items-center">Last <img src="images/icon/icon_50.svg" alt="" class="ms-2"></a></li>
+							<li class="ms-2"><a href="#" class="d-flex align-items-center">Last <img src="images/icon/icon_50.svg" alt="" class="ms-2"></a></li> -->
 						</ul>
 					</div>
 				</div>

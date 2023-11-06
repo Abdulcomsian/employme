@@ -47,7 +47,7 @@ class JobController extends Controller
         }
         
 
-        $allJobs = $allJobs->get();
+        $allJobs = $allJobs->paginate(3);
         return view('jobs-marketplace',compact('allJobs'));
     }
 
