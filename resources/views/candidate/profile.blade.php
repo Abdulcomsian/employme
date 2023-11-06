@@ -525,7 +525,7 @@ Profile
                         @if(isset($candidateEducationalDetails->professional_details))
                         @foreach($candidateEducationalDetails->professional_details as $index=>$professional_details)
                          @if($index==0)
-                        <div class="candidate-experiance" id="add-candidate-experience">
+                        <div id="candidate-experience" >
                                 <center><h3>Experience Details</h3></center>
                             <div class="row">
                                 <div class="col-md-6">
@@ -571,7 +571,7 @@ Profile
                             
                         </div>
                         @else
-                        <div class="canidate-experience-details" id="add-candidate-experience">
+                        <div class="candidate-experience-details">
                                 <center><h3>Experience Details</h3></center>
                             <div class="row">
                                 <div class="col-md-6">
@@ -624,6 +624,52 @@ Profile
                         </div>
                         @endif
                         @endforeach
+                        @else
+                        <div id="candidate-experience" >
+                                <center><h3>Experience Details</h3></center>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Role</label>
+                                        <input type="text" name="experience[0][role]" placeholder="" value = "{{$professional_details['role'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Employer Name</label>
+                                        <input type="text" name="experience[0][employer_name]" placeholder="" value = "{{$professional_details['role'] ?? 'employer_name'}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Date From</label>
+                                        <input type="date" name="experience[0][date_from]" placeholder="" value = "{{($professional_details['date_from']) ?? ''}}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Date To</label>
+                                        <input type="date" name="experience[0][date_to]" placeholder="" value = "{{$professional_details['date_to'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Description</label>
+                                        <input type="text" name="experience[0][description]" placeholder="" value = "{{$professional_details['description'] ?? ''}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
                         @endif
                             <div class="d-flex flex-row justify-content-start gap-3">
                                 <button type="button" class="dash-btn-one" id="add-more-experience" >add more</button>
@@ -1394,9 +1440,9 @@ const experienceArrLength = experienceArr.filter(name => /experience\[\d+\]\[rol
        var j = experienceArrLength-1;
        $("#add-more-experience").click(function(){
            ++j;
-      
+           console.log(j);
         //    $("#add-skill-field").append('<tr><td><input type="text" name="addmore['+i+'][name]" placeholder="Enter your Name" class="form-control" /></td><td><input type="text" name="addmore['+i+'][qty]" placeholder="Enter your Qty" class="form-control" /></td><td><input type="text" name="addmore['+i+'][price]" placeholder="Enter your Price" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
-           $("#add-candidate-experience").append('<div class="canidate-experience-details"><center><h3>Experience '+(j+1)+'</h3></center><div class="row ">'+
+           $("#candidate-experience").append('<div class="candidate-experience-details"><center><h3>Experience '+(j+1)+'</h3></center><div class="row ">'+
                                 '<div class="col-md-6">'+
                                     '<div class="dash-input-wrapper mb-30">'+
                                         '<label for="">Role</label>'+
@@ -1442,7 +1488,7 @@ const experienceArrLength = experienceArr.filter(name => /experience\[\d+\]\[rol
                             )
        });
        $(document).on('click', '.remove-tr', function(){  
-            $(this).parents('.canidate-experience-details').remove();
+            $(this).parents('.candidate-experience-details').remove();
        });
         //End of adding more experience details fields 
 

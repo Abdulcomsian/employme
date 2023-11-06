@@ -25,4 +25,3 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}" media="all">
 <!-- responsive style sheet -->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}" media="all">
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
