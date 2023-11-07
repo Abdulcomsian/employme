@@ -244,7 +244,7 @@ Job Marketplace
 			<div class="col-xl-9 col-lg-8">
 				<div class="job-post-item-wrapper ms-xxl-5 ms-xl-3">
 					<div class="upper-filter d-flex justify-content-between align-items-center mb-20">
-						<div class="total-job-found">All <span class="text-dark">@isset($allJobs){{ $allJobs->count()}}@endisset</span> jobs found</div>
+						<div class="total-job-found">All <span class="text-dark">@isset($allJobs){{ $allJobs->total()}}@endisset</span> jobs found</div>
 						<div class="d-flex align-items-center">
 							<div class="short-filter d-flex align-items-center">
 								<div class="text-dark fw-500 me-2">Short:</div>
@@ -595,17 +595,8 @@ Job Marketplace
 					</div>
 					<!-- /.accordion-box -->
 
-					<div class="pt-30 lg-pt-20 d-sm-flex align-items-center justify-content-between">
-						<p class="m0 order-sm-last text-center text-sm-start xs-pb-20">Showing <span class="text-dark fw-500">1 to 20</span> of <span class="text-dark fw-500">7,096</span></p>
-						<ul class="pagination-one d-flex align-items-center justify-content-center justify-content-sm-start style-none">
-							<!-- <li class="active"><a href="#">1</a></li> -->
-							<li><a href="#">{{ $allJobs->links() }}</a></li>
-							<!-- <li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li>....</li>
-							<li class="ms-2"><a href="#" class="d-flex align-items-center">Last <img src="images/icon/icon_50.svg" alt="" class="ms-2"></a></li> -->
-						</ul>
-					</div>
+					{{ $allJobs->onEachSide(2)->links('vendor.pagination.custom-pagination') }}
+
 				</div>
 				<!-- /.job-post-item-wrapper -->
 			</div>

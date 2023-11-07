@@ -58,6 +58,7 @@ Route::post('save-job', [JobController::class, 'saveJob'])->name('saveJob')->mid
 Route::get('company', [UserController::class, 'company'])->name('company');
 Route::get('candidates-marketplace', [UserController::class, 'candidatesMarketplace'])->name('candidatesMarketplace');
 Route::get('job-details/{id}', [UserController::class, 'jobDetails'])->name('jobDetails');
+Route::post('save-candidate', [UserController::class, 'saveCandidate'])->name('saveCandidate')->middleware(['auth','role:employer']);
 // Route::get('employer-job-listing' , [UserController::class , 'employerjobListing'])->name('employerjobListing');
 Route::get('candidate-profile-new/{id}', [UserController::class, 'candidateProfileNew'])->name('candidateProfileNew');
 Route::get('candidate-profile-document', [UserController::class, 'candidateProfileDocument'])->name('candidateProfileDocument');
@@ -84,8 +85,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     // Route::get('save-job', [JobController::class, 'getSaveJobsPage'])->name('getSaveJob');
     Route::get('account-settings', [UserController::class, 'getAccountSettingsPage'])->name('getAccountSetting');
     Route::get('job-applications', [CandidateController::class, 'candidateJobApplications'])->name('candidateJobApplications');
-    Route::get('saved-jobs', [CandidateController::class, 'candidateSavedJobs'])->name('candidateSavedJobs');
-    Route::delete('removed-job/{id}', [CandidateController::class, 'removeSavedJob'])->name('removeSavedJob');
+  
 });
 Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], function() {
     Route::post('candidate/save-profile-1',[CandidateController::class,'saveProfile1'])->name('candidate.profile-1.save');
@@ -95,6 +95,8 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
     Route::post('candidate/save-profile-5',[CandidateController::class,'saveProfile5'])->name('candidate.profile-5.save');
     Route::post('candidate/save-profile-6',[CandidateController::class,'saveProfile6'])->name('candidate.profile-6.save');
     Route::post('candidate/save-profile-7',[CandidateController::class,'saveProfile7'])->name('candidate.profile-7.save');
+    Route::get('saved-jobs', [CandidateController::class, 'candidateSavedJobs'])->name('candidateSavedJobs');
+    Route::delete('removed-job/{id}', [CandidateController::class, 'removeSavedJob'])->name('removeSavedJob');
 });
 //candidate dashboard route ends here
 
@@ -113,6 +115,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::resource('employer-jobs', EmployerJobController::class);
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
     Route::get('job-applications', [EmployerController::class, 'employerJobApplications'])->name('employerJobApplications');
+   
 
 });
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {
@@ -126,6 +129,8 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], fu
     Route::post('employer/save-profile-8',[EmployerController::class,'saveProfile8'])->name('employer.profile-8.save');
     Route::post('employer/save-profile-9',[EmployerController::class,'saveProfile9'])->name('employer.profile-9.save');
     Route::post('subscription', [SubscriptionController::class, 'subscription'])->name("subscription.create");
+    Route::get('saved-candidates', [EmployerController::class, 'employerSavedCandidates'])->name('employerSavedCandidates');
+    Route::delete('removed-candidate/{id}', [EmployerController::class, 'removeSavedCandidate'])->name('removeSavedCandidate');
 
 
 });

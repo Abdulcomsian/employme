@@ -65,7 +65,7 @@
 						<span>Messages</span>
 					</a></li>
 
-				<li><a href="{{route('getEmployerDashboardSavedCandidate')}}" class="d-flex w-100 align-items-center {{request()->is('employer/employer-dashboard-saved-candidate') ? 'active' : ''}}">
+				<li><a href="{{route('employerSavedCandidates')}}" class="d-flex w-100 align-items-center {{request()->is('employer/saved-candidates') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/employer-dashboard-saved-candidate') ? asset('assets/images/dashboard-icon/icon_6_active.svg') : asset('assets/images/dashboard-icon/icon_6.svg')}}" alt="" class="lazy-img">
 						<span>Saved Candidate</span>
 					</a></li>

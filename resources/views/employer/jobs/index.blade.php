@@ -21,6 +21,11 @@ Job Listing
     /* background-color: #04AA6D; */
     color: black !important;
 }
+.text-muted {
+    --bs-text-opacity: 1;
+    color: #6c757d!important;
+    padding: 13px 23px 1px 5px;
+}
 </style>
 @section('content')
 
@@ -296,16 +301,8 @@ Job Listing
         <!-- /.card-box -->
 
 
-        <div class="dash-pagination d-flex justify-content-end mt-30">
-            <ul class="style-none d-flex align-items-center">
-                <li><a href="#" class="active">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li>..</li>
-                <li><a href="#">7</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-            </ul>
-        </div>
+        {{ $employerJobs->links('vendor.pagination.custom-pagination-2') }}
+
     </div>
 </div>
 

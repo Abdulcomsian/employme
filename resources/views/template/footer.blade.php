@@ -75,10 +75,10 @@
               $.post("{{ url('save-job')}}", {_token:_token,job_id:job_id}).done( function(response){
                 var result = JSON.parse(response);
                   if (result.status === "added") {
-                    console.log('job added');
+                    // console.log('job added');
                     $(that).addClass("bg-black");
                   } else if (result.status === "removed") {
-                    console.log('job removed');
+                    // console.log('job removed');
                     $(that).removeClass("bg-black");
                   }
               }).fail(function(xhr, error, message){
@@ -91,6 +91,36 @@
                         else if(xhr.status === 403)
                        {
                           toastr.error(" Only Canidate can save the Job");
+                       }
+              });
+          
+        });
+
+        /* Save Candidate */
+        $(".save_candidate").click(function(){
+            var _token = "{{ csrf_token() }}";
+            var candidate_id = $(this).attr("id");
+            var that = this;
+            
+              $.post("{{ url('save-candidate')}}", {_token:_token,candidate_id:candidate_id}).done( function(response){
+                var result = JSON.parse(response);
+                  if (result.status === "added") {
+                    // console.log('job added');
+                    $(that).css("color","red");
+                  } else if (result.status === "removed") {
+                    // console.log('job removed');
+                    $(that).css("color","");
+                  }
+              }).fail(function(xhr, error, message){
+                    // console.log(xhr)
+                    //  toastr.error(message);
+                        if(xhr.status === 401)
+                        {
+                        toastr.error("You are not Logged In, Please Login");
+                      }
+                        else if(xhr.status === 403)
+                       {
+                          toastr.error(" Only Employer can save the Candidate");
                        }
               });
           

@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\EmployerJob;
 use App\Models\EmployerDetails;
+use App\Models\SavedCandidate;
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
@@ -115,5 +117,32 @@ class UserController extends Controller
         $id = Crypt::decryptString($id);
         $employerDetails = EmployerDetails::with('employerCountry')->find($id);
         return view('company-staff-information',compact('employerDetails'));
+    }
+    
+    public function saveCandidate()
+    {
+        if(isset($_POST['candidate_id'])){
+            $candidate_id = base64_decode($_POST['candidate_id']);
+                 $saved_already = SavedCandidate::where('user_id', Auth::id())->where('candidate_id', $candidate_id)->get();
+                 if($saved_already->count() > 0){
+                    if(SavedCandidate::where('user_id', Auth::id())->where('candidate_id', $candidate_id)->delete()){
+                        $response = array("status"=>"removed","message"=>"Canidate removed");
+                    }else{
+                        $response = array("status"=>"error");
+                    }
+                    
+                 }else{
+                    // add into saved_jobs table
+                    $add = new SavedCandidate;
+                    $add->candidate_id = $candidate_id;
+                    $add->user_id = Auth::id();
+                    if($add->save()){
+                        $response = array("status"=>"added","message"=>"Canidate Saved");
+                    }else{
+                        $response = array("status"=>"error");
+                    }
+                 }
+                 echo json_encode($response); die;
+        }
     }
 }

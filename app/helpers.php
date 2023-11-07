@@ -235,6 +235,11 @@ function savedJob($employer_job_id=null)
     $checkApplication = \App\Models\SavedJob::where('user_id',\Auth::id())->where('employer_job_id',$employer_job_id)->first();
     return !empty($checkApplication) ? 1 : 0;
 }
+function savedCandidate($candidate_id=null)
+{
+    $checkCandidate = \App\Models\SavedCandidate::where('user_id',\Auth::id())->where('candidate_id',$candidate_id)->first();
+    return !empty($checkCandidate) ? 1 : 0;
+}
 
 function totalApplicants($job_id)
 {

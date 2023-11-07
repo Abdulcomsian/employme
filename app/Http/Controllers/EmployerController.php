@@ -8,9 +8,11 @@ use App\Models\EmployerDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Plan;
+use App\Models\User;
 use App\Models\SubscriptionItem;
 use App\Models\Subscription;
 use App\Models\EmployerJob;
+use App\Models\SavedCandidate;
 class EmployerController extends Controller
 {
 
@@ -171,5 +173,20 @@ class EmployerController extends Controller
     {
         $employerJobApplications = EmployerJob::with('jobApplicants')->where('posted_by',Auth::id())->get();
         return view('employer.job-applications.index',compact('employerJobApplications'));
+    }
+    
+    public function employerSavedCandidates()
+    {
+        $employerSavedCandidates = User::with('savedCandidates')->find(Auth::id());
+        return view('employer.saved-candidates.index',compact('employerSavedCandidates'));
+    }
+    public function removeSavedCandidate($id)
+    {
+        $deleteSavedCandidate = SavedCandidate::where(['candidate_id'=>$id,'user_id'=>Auth::id()])->first();
+        if($deleteSavedCandidate->delete())
+        {
+            toastr()->success('Candidate Successfully Removed');
+            return redirect()->back();
+        }
     }
 }

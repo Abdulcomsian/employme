@@ -4055,10 +4055,10 @@ iframe {
   background: #31795A;
   color: #fff;
 }
-.pagination-one li:last-child a {
+/* .pagination-one li:last-child a {
   width: auto;
   height: auto;
-}
+} */
 
 .pagination-two {
   border: 1px solid #31795A;
@@ -10550,7 +10550,7 @@ body.compensate-for-scrollbar {
   background: #31795A;
   color: #fff;
 }
-.dashboard-body .dash-pagination li:nth-child(1) a, .dashboard-body .dash-pagination li:nth-child(5) a {
+/* .dashboard-body .dash-pagination li:nth-child(1) a, .dashboard-body .dash-pagination li:nth-child(5) a {
   border-radius: 5px 0 0 5px;
 }
 .dashboard-body .dash-pagination li:nth-child(3) a, .dashboard-body .dash-pagination li:nth-child(6) a {
@@ -10559,7 +10559,7 @@ body.compensate-for-scrollbar {
 }
 .dashboard-body .dash-pagination li:nth-child(4) {
   margin: 0 10px;
-}
+} */
 .dashboard-body .new-message-compose {
   width: 45px;
   line-height: 45px;

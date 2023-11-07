@@ -3,6 +3,11 @@
 Candidate Marketplace
 @endsection
 @section('content')
+<style>
+	.red-heart{
+		color:red;
+	}
+</style>
 <!--
 		=============================================
 			Inner Banner
@@ -402,7 +407,7 @@ Candidate Marketplace
 							@foreach($candidates as $candidate)
 							<div class="col-xxl-4 col-sm-6 d-flex">
 								<div class="candidate-profile-card favourite text-center grid-layout mb-25">
-									<a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="save-btn tran3s"><i class="bi bi-heart"></i></a>
+									<a  class="save-btn tran3s save_candidate  save_candidate{{base64_encode($candidate->id)}}" id="{{base64_encode($candidate->id)}}" style="color:{{(savedCandidate($candidate->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
 									@if(isset($candidate->candidatePersonalDetails->profile_picture) && !empty($candidate->candidatePersonalDetails->profile_picture))
 									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
 									@else
