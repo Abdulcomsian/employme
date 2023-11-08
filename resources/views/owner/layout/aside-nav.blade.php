@@ -1,3 +1,18 @@
+<style>
+    .dropdown-container{
+        height: 0px;
+        padding-left: 42px;
+        overflow:hidden;
+  
+    }
+    .collpased{
+        height: auto
+    }
+    .fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+</style>
 <aside class="dash-aside-navbar">
     <div class="position-relative">
         <div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
@@ -89,14 +104,28 @@
                         <span>Job Applications</span>
                     </a>
                 </li>
-                <li><a href="{{ route('getProfessionalSkills') }}"
+                <li class="dropdown-btn"><a>
+                        <span>Selection Modules</span>
+                    <i class="bi bi-caret-down"></i></a>    
+                </li>
+                <li>
+                    <ul class="dropdown-container ">
+                        <li>
+                            <a href="{{route('modules.index')}}" class="d-flex w-100 align-items-center {{ request()->is('owner/modules') ? 'active' : '' }}">Manage</a>
+                        </li>
+                        <li>
+                            <a href="" class="d-flex w-100 align-items-center">Manage Items</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- <li><a href="{{ route('getProfessionalSkills') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/professional-skills') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
                             data-src="{{ request()->is('owner/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
                         <span>Professional Skills</span>
                     </a>
-                </li>
+                </li> -->
                 <li><a href="{{ route('getPlans') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/plans') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
@@ -191,3 +220,14 @@
         </a>
     </div>
 </aside>
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.querySelector(".dropdown-btn");
+const dropDownContiner = document.querySelector('.dropdown-container ')
+
+
+  dropdown.addEventListener("click", function(e) {
+    console.log(e.target)
+    dropDownContiner.classList.toggle('collpased')
+  });
+</script>

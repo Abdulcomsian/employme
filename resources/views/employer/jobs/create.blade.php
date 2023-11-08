@@ -188,21 +188,36 @@ Post A Job
                             <input type="text" name="monthly_salary" placeholder="">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Housing Details:</label>
-                            <textarea type="text" name="housing_details" placeholder="Size, type, furnished/unfurnished, utilities covered, etc."></textarea>
+                            <label for="">Housing Included:</label>
+                            <select class="nice-select" name="housing_included">
+                                <option value="Yes" selected>Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Insurance Included:</label>
+                            <select class="nice-select" name="Insurance_included">
+                                <option value="Yes" selected>Yes</option>
+                                <option value="No">No</option>
+                            </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Relocation Allowance:</label>
                             <input type="text" name="relocation_allowance" placeholder=""></input>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Airfare: </label>
-                            <input type="text" name="airfare" placeholder="">
+                            <label for="">Housing Details:</label>
+                            <textarea type="text" name="housing_details" placeholder="Size, type, furnished/unfurnished, utilities covered, etc."></textarea>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Health & Dental Insurance:</label>
-                            <input type="text" name="health_dental_insurance" placeholder="prep time, meetings">
+                            <textarea type="text" name="health_dental_insurance" placeholder="Insurance Details"></textarea>
                         </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Airfare: </label>
+                            <input type="text" name="airfare" placeholder="">
+                        </div>
+                        
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Pension:</label>
                             <input type="text" name="pension" placeholder="">
@@ -245,7 +260,17 @@ Post A Job
                             <input type="text" name="teaching_certificate" placeholder=""></input>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Experience:</label>
+                            <label for="">Experience Level:</label>
+                            <select class="nice-select" name="experience_level">
+                                <option value="Fresher" selected>Fresher</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="No-Experience">No-Experience</option>
+                                <option value="Expert">Expert</option>
+                                <option value="Internship">Internship</option>
+                            </select>
+                        </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Experience Details:</label>
                             <input type="text" name="experience" placeholder=""></input>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">

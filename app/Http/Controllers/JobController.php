@@ -25,6 +25,18 @@ class JobController extends Controller
         {
             $allJobs = $allJobs->where('job_type',$request->SearchJobType);
         }
+        if(isset($request->SearchHousingIncluded) && $request->SearchHousingIncluded !='')
+        {
+            $allJobs = $allJobs->where('housing_included',$request->SearchHousingIncluded);
+        }
+        if(isset($request->SearchHousingIncluded) && $request->SearchHousingIncluded !='')
+        {
+            $allJobs = $allJobs->where('housing_included',$request->SearchHousingIncluded);
+        }
+        if(isset($request->SearchInsuranceIncluded) && $request->SearchInsuranceIncluded !='')
+        {
+            $allJobs = $allJobs->where('Insurance_included',$request->SearchInsuranceIncluded);
+        }
         if(isset($request->SearchExperience) && $request->SearchExperience !='')
         {
             $allJobs = $allJobs->where('experience',$request->SearchExperience);
@@ -44,6 +56,26 @@ class JobController extends Controller
         if(isset($request->SearchInsuranceIncluded) && $request->SearchInsuranceIncluded !='')
         {
             $allJobs = $allJobs->where('health_dental_insurance',$request->SearchInsuranceIncluded);
+        }
+        if(isset($request->SearchExperience1) && $request->SearchExperience1 !='')
+        {
+            $allJobs = $allJobs->where('experience_level',$request->SearchExperience1);
+        }
+        if(isset($request->SearchExperience2) && $request->SearchExperience2 !='')
+        {
+            $allJobs = $allJobs->where('experience_level',$request->SearchExperience2);
+        }
+        if(isset($request->SearchExperience3) && $request->SearchExperience3 !='')
+        {
+            $allJobs = $allJobs->where('experience_level',$request->SearchExperience3);
+        }
+        if(isset($request->SearchExperience4) && $request->SearchExperience4 !='')
+        {
+            $allJobs = $allJobs->where('experience_level',$request->SearchExperience4);
+        }
+        if(isset($request->SearchExperience5) && $request->SearchExperience5 !='')
+        {
+            $allJobs = $allJobs->where('experience_level',$request->SearchExperience5);
         }
         
 

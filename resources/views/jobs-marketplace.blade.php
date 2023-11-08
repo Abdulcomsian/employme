@@ -134,23 +134,23 @@ Job Marketplace
 										<div class="main-body">
 											<ul class="style-none filter-input">
 												<li>
-													<input type="checkbox" name="SearchExperience" value="01">
+													<input type="checkbox" name="SearchExperience1" value="Fresher">
 													<label>Fresher <span>5</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchExperience" value="02">
+													<input type="checkbox" name="SearchExperience2" value="Intermediate">
 													<label>Intermediate <span>3</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchExperience" value="03">
+													<input type="checkbox" name="SearchExperience3" value="No-Experienc">
 													<label>No-Experience <span>1</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchExperience" value="04">
+													<input type="checkbox" name="SearchExperience4" value="Internship">
 													<label>Internship <span>12</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchExperience" value="05">
+													<input type="checkbox" name="SearchExperience4" value="Expert">
 													<label>Expert <span>17</span></label>
 												</li>
 											</ul>

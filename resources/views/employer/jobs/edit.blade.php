@@ -188,21 +188,37 @@ Post A Job
                             <input type="text" name="monthly_salary" placeholder="" value="{{$employerJob->monthly_salary ?? ''}}">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Housing Details:</label>
-                            <textarea type="text" name="housing_details" placeholder="Size, type, furnished/unfurnished, utilities covered, etc.">{{$employerJob->housing_details ?? ''}}</textarea>
+                            <label for="">Housing Included:</label>
+                            <select class="nice-select" name="housing_included">
+                                <option value="Yes" selected>Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Insurance Included:</label>
+                            <select class="nice-select" name="Insurance_included">
+                                <option value="Yes" selected>Yes</option>
+                                <option value="No">No</option>
+                            </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Relocation Allowance:</label>
                             <input type="text" name="relocation_allowance" placeholder="" value="{{$employerJob->relocation_allowance ?? ''}}"></input>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Airfare: </label>
-                            <input type="text" name="airfare" placeholder="" value="{{$employerJob->airfare ?? ''}}">
+                            <label for="">Housing Details:</label>
+                            <textarea type="text" name="housing_details" placeholder="Size, type, furnished/unfurnished, utilities covered, etc.">{{$employerJob->housing_details ?? ''}}</textarea>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Health & Dental Insurance:</label>
-                            <input type="text" name="health_dental_insurance" placeholder="prep time, meetings" value="{{$employerJob->health_dental_insurance ?? ''}}">
+                            <textarea type="text" name="health_dental_insurance" placeholder="Size, type, furnished/unfurnished, utilities covered, etc.">{{$employerJob->health_dental_insurance ?? ''}}</textarea>
                         </div>
+                     
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Airfare: </label>
+                            <input type="text" name="airfare" placeholder="" value="{{$employerJob->airfare ?? ''}}">
+                        </div>
+                       
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Pension:</label>
                             <input type="text" name="pension" placeholder="" value="{{$employerJob->pension ?? ''}}">
@@ -245,7 +261,17 @@ Post A Job
                             <input type="text" name="teaching_certificate" placeholder="" value="{{$employerJob->teaching_certificate ?? ''}}"></input>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Experience:</label>
+                            <label for="">Experience Level:</label>
+                            <select class="nice-select" name="experience_level">
+                                <option value="Fresher" {{$employerJob->experience_level == 'Fresher' ? 'selected' : ''}}>Fresher</option>
+                                <option value="Intermediate" {{$employerJob->experience_level == 'Intermediate' ? 'selected' : ''}}>Intermediate</option>
+                                <option value="No-Experience" {{$employerJob->experience_level == 'No-Experience' ? 'selected' : ''}}>No-Experience</option>
+                                <option value="Expert" {{$employerJob->experience_level == 'Expert' ? 'selected' : ''}}>Expert</option>
+                                <option value="Internship" {{$employerJob->experience_level == 'Internship' ? 'selected' : ''}}>Internship</option>
+                            </select>
+                        </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Experience Details:</label>
                             <input type="text" name="experience" placeholder="" value="{{$employerJob->experience ?? ''}}"></input>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
