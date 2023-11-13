@@ -99,8 +99,8 @@ Sign Up
                                 <div class="col-12">
                                     <div class="agreement-checkbox d-flex justify-content-between align-items-center">
                                         <div>
-                                            <input type="checkbox" name= "terms_and_conditions" class="@if($errors->candidate->has('terms_and_conditions')) is-invalid @endif"  id="remember">
-                                            <label for="remember">These checks are essential for E2 visa requirements and obtaining teaching positions in South Korea</label>
+                                            <input type="checkbox" name= "terms_and_conditions" class="@if($errors->candidate->has('terms_and_conditions')) is-invalid @endif"  id="remember_candidate">
+                                            <label for="remember_candidate">These checks are essential for E2 visa requirements and obtaining teaching positions in South Korea</label>
                                                 @if($errors->candidate->has('terms_and_conditions'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->candidate->first('terms_and_conditions') }}</strong>
@@ -165,8 +165,8 @@ Sign Up
                                 <div class="col-12">
                                     <div class="agreement-checkbox d-flex justify-content-between align-items-center">
                                         <div>
-                                            <input type="checkbox" name= "terms_and_conditions" id="remember_"  class="@if($errors->employer->has('terms_and_conditions')) is-invalid @endif">
-                                            <label for="remember_">By hitting the "Register" button, you agree to the <a href="#">Terms conditions</a> & <a href="#">Privacy Policy</a></label>
+                                            <input type="checkbox" name= "terms_and_conditions" id="remember_employer"  class="@if($errors->employer->has('terms_and_conditions')) is-invalid @endif">
+                                            <label for="remember_employer">By hitting the "Register" button, you agree to the <a href="#">Terms conditions</a> & <a href="#">Privacy Policy</a></label>
                                             @if($errors->employer->has('terms_and_conditions'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->employer->first('terms_and_conditions') }}</strong>

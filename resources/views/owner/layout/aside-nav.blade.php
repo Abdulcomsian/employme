@@ -1,4 +1,5 @@
-<style>
+<!-- Module drop dwon Styles !-->
+<!-- <style>
     .dropdown-container{
         height: 0px;
         padding-left: 42px;
@@ -12,7 +13,8 @@
   float: right;
   padding-right: 8px;
 }
-</style>
+</style> -->
+<!-- End of Module drop dwon Styles !-->
 <aside class="dash-aside-navbar">
     <div class="position-relative">
         <div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
@@ -104,7 +106,9 @@
                         <span>Job Applications</span>
                     </a>
                 </li>
-                <li class="dropdown-btn"><a>
+                
+                <!--- Moduels Code -->
+                <!-- <li class="dropdown-btn"><a>
                         <span>Selection Modules</span>
                     <i class="bi bi-caret-down"></i></a>    
                 </li>
@@ -117,7 +121,7 @@
                             <a href="" class="d-flex w-100 align-items-center">Manage Items</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <!-- <li><a href="{{ route('getProfessionalSkills') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/professional-skills') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
@@ -126,6 +130,9 @@
                         <span>Professional Skills</span>
                     </a>
                 </li> -->
+
+                 <!--- End of Moduels Code -->
+                 
                 <li><a href="{{ route('getPlans') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/plans') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
@@ -220,7 +227,9 @@
         </a>
     </div>
 </aside>
-<script>
+
+<!-- Module drop dwon Javascript !-->
+<!-- <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.querySelector(".dropdown-btn");
 const dropDownContiner = document.querySelector('.dropdown-container ')
@@ -230,4 +239,5 @@ const dropDownContiner = document.querySelector('.dropdown-container ')
     console.log(e.target)
     dropDownContiner.classList.toggle('collpased')
   });
-</script>
+</script> -->
+<!-- End of Module drop dwon Javascript !-->
