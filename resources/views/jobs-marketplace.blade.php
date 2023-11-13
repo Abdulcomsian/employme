@@ -22,22 +22,16 @@ Job Marketplace
 			<div class="position-relative">
 				<div class="row">
 					<div class="col-xl-9 col-lg-8 m-auto">
-						<div class="job-search-one position-relative">
+						<div class="job-search-one position-relative" method="get">
 							<form action="{{route('jobMarketplace')}}">
 								<div class="row">
-									<div class="col-md-5">
+									<div class="col-md-9">
 										<div class="input-box">
 											<div class="label">What are you looking for?</div>
-											<select class="nice-select lg">
-												<option value="1">UI Designer</option>
-												<option value="2">Content creator</option>
-												<option value="3">Web Developer</option>
-												<option value="4">SEO Guru</option>
-												<option value="5">Digital marketer</option>
-											</select>
+											<input type="text" class="form-control form-control-lg" name="SearchJobTitle" placeholder = "Search a Job"/>
 										</div>
 									</div>
-									<div class="col-md-4">
+									<!-- <div class="col-md-4">
 										<div class="input-box border-left">
 											<div class="label">Category</div>
 											<select class="nice-select lg">
@@ -50,7 +44,7 @@ Job Marketplace
 												<option value="7">Music & Audio</option>
 											</select>
 										</div>
-									</div>
+									</div> -->
 									<div class="col-md-3">
 										<button class="fw-500 text-uppercase h-100 tran3s search-btn">Search</button>
 									</div>
@@ -85,7 +79,10 @@ Job Marketplace
 						</button>
 						<div class="filter-area-tab offcanvas offcanvas-start" id="filteroffcanvas">
 							<button type="button" class="btn-close text-reset d-lg-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-							<div class="main-title fw-500 text-dark">Filter By</div>
+							<div class="main-title fw-500 text-dark d-flex justify-content-between">
+								<div>Filter By</div>
+								<div ><a class="btn-one" href="{{route('jobMarketplace')}}" title="Refresh Filter"><i class="bi bi-arrow-clockwise"></i></a></div>
+							</div>
 							<div class="light-bg border-20 ps-4 pe-4 pt-25 pb-30 mt-20">
 								<div class="filter-block bottom-line pb-25">
 									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false">Location</a>
@@ -109,19 +106,19 @@ Job Marketplace
 											<ul class="style-none filter-input">
 												<li>
 													<input type="checkbox" name="SearchJobType" value="Fixed-Price">
-													<label>Fixed-Price <span>7</span></label>
+													<label>Fixed-Price <span>{{jobTypeCount('Fixed-Price')}}</span></label>
 												</li>
 												<li>
 													<input type="checkbox" name="SearchJobType" value="Full-Time">
-													<label>Full-Time <span>3</span></label>
+													<label>Full-Time <span>{{jobTypeCount('Full-Time')}}</span></label>
 												</li>
 												<li>
 													<input type="checkbox" name="SearchJobType" value="Part-time">
-													<label>Part-time<span>0</span></label>
+													<label>Part-time<span>{{jobTypeCount('Part-time')}}</span></label>
 												</li>
 												<li>
 													<input type="checkbox" name="SearchJobType" value="Freelance">
-													<label>Freelance <span>4</span></label>
+													<label>Freelance <span>{{jobTypeCount('Freelance')}}</span></label>
 												</li>
 											</ul>
 										</div>
@@ -135,23 +132,23 @@ Job Marketplace
 											<ul class="style-none filter-input">
 												<li>
 													<input type="checkbox" name="SearchExperience1" value="Fresher">
-													<label>Fresher <span>5</span></label>
+													<label>Fresher <span>{{jobTypeCount('Fresher')}}</span></label>
 												</li>
 												<li>
 													<input type="checkbox" name="SearchExperience2" value="Intermediate">
-													<label>Intermediate <span>3</span></label>
+													<label>Intermediate <span>{{jobTypeCount('Intermediate')}}</span></label>
 												</li>
 												<li>
 													<input type="checkbox" name="SearchExperience3" value="No-Experienc">
-													<label>No-Experience <span>1</span></label>
+													<label>No-Experience <span>{{jobTypeCount('No-Experience')}}</span></label>
 												</li>
 												<li>
 													<input type="checkbox" name="SearchExperience4" value="Internship">
-													<label>Internship <span>12</span></label>
+													<label>Internship <span>{{jobTypeCount('Internship')}}</span></label>
 												</li>
 												<li>
 													<input type="checkbox" name="SearchExperience4" value="Expert">
-													<label>Expert <span>17</span></label>
+													<label>Expert <span>{{jobTypeCount('Expert')}}</span></label>
 												</li>
 											</ul>
 										</div>
@@ -260,59 +257,39 @@ Job Marketplace
 					</div>
 					<!-- /.upper-filter -->
 					<div class="accordion-box list-style">
-						<div class="job-list-one style-two position-relative border-style mb-20">
-							<div class="row justify-content-between align-items-center">
-								<div class="col-md-5">
-									<div class="job-title d-flex align-items-center">
-										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto"></a>
-										<div class="split-box1">
-											<a href="javascript;;" class="job-duration fw-500">Fulltime</a>
-											<a href="javascript;;" class="title fw-500 tran3s">Animator & 3D Artist.</a>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-4 col-sm-6">
-									<div class="job-location">
-										<a href="javascript;;">Spain, Bercelona</a>
-									</div>
-									<div class="job-salary"><span class="fw-500 text-dark">$30-$50</span> / hour . Intermediate</div>
-								</div>
-								<div class="col-md-3 col-sm-6">
-									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-										<a href="javascript;;" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-										<a href="javascript;;" class="apply-btn text-center tran3s">APPLY</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /.job-list-one -->
+						
+						<!-- /Grid Job Listings -->
+						@isset($allJobs)
+						@foreach($allJobs as $index=>$job)
 						<div class="job-list-one style-two position-relative border-style mb-20">
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
 										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img m-auto"></a>
 										<div class="split-box1">
-											<a href="javascript;;" class="job-duration fw-500">Fulltime</a>
-											<a href="javascript;;" class="title fw-500 tran3s">Marketing Specialist.</a>
+											<a href="javascript;;" class="job-duration fw-500">{{$job->job_type}}</a>
+											<a href="javascript;;" class="title fw-500 tran3s">{{$job->job_title}}</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="javascript;;">US, New York</a>
+										<a href="javascript;;">{{$job->city_town}}</a>
 									</div>
-									<div class="job-salary"><span class="fw-500 text-dark">$22k-$30k</span> / year . Expert</div>
+									<div class="job-salary"><span class="fw-500 text-dark">{{$job->monthly_salary ?? ''}}</span> / month . {{$job->experience_level ?? ''}}</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-										<a href="javascript;;" class="save-btn text-center rounded-circle tran3s me-3" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-										<a href="javascript;;" class="apply-btn text-center tran3s">APPLY</a>
+										<a  class="save-btn text-center rounded-circle tran3s {{(savedJob($job->id) == 1 ? 'bg-black' : '')}} save_job save_job{{base64_encode($job->id)}}" id="{{base64_encode($job->id)}}" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+										<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="apply-btn text-center tran3s">APPLY</a>
 									</div>
 								</div>
 							</div>
 						</div>
+						@endforeach
+						@endisset
 						<!-- /.job-list-one -->
-						<div class="job-list-one style-two position-relative border-style mb-20">
+						<!-- <div class="job-list-one style-two position-relative border-style mb-20">
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
@@ -336,9 +313,9 @@ Job Marketplace
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- /.job-list-one -->
-						<div class="job-list-one style-two position-relative border-style mb-20">
+						<!-- <div class="job-list-one style-two position-relative border-style mb-20">
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
@@ -362,9 +339,9 @@ Job Marketplace
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- /.job-list-one -->
-						<div class="job-list-one style-two position-relative border-style mb-20">
+						<!-- <div class="job-list-one style-two position-relative border-style mb-20">
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
@@ -388,9 +365,9 @@ Job Marketplace
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- /.job-list-one -->
-						<div class="job-list-one style-two position-relative border-style mb-20">
+						<!-- <div class="job-list-one style-two position-relative border-style mb-20">
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
@@ -414,9 +391,9 @@ Job Marketplace
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- /.job-list-one -->
-						<div class="job-list-one style-two position-relative border-style mb-20">
+						<!-- <div class="job-list-one style-two position-relative border-style mb-20">
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
@@ -440,9 +417,9 @@ Job Marketplace
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- /.job-list-one -->
-						<div class="job-list-one style-two position-relative border-style mb-20">
+						<!-- <div class="job-list-one style-two position-relative border-style mb-20">
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
@@ -466,9 +443,9 @@ Job Marketplace
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- /.job-list-one -->
-						<div class="job-list-one style-two position-relative border-style mb-30">
+						<!-- <div class="job-list-one style-two position-relative border-style mb-30">
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
 									<div class="job-title d-flex align-items-center">
@@ -492,7 +469,7 @@ Job Marketplace
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- /.job-list-one -->
 					</div>
 
@@ -512,7 +489,7 @@ Job Marketplace
 										@endif
 									</a>
 									<a  class="save-btn text-center rounded-circle tran3s {{(savedJob($job->id) == 1 ? 'bg-black' : '')}} save_job save_job{{base64_encode($job->id)}}" id="{{base64_encode($job->id)}}" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="job-duration fw-500">Fulltime</a></div>
+									<div><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="job-duration fw-500">{{$job->job_type}}</a></div>
 									<div><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="title fw-500 tran3s">{{$job->job_title}}</a></div>
 									<!-- <div class="job-salary"><span class="fw-500 text-dark">$300-$450</span> / Week</div> -->
 									<div class="job-salary"><span class="fw-500 text-dark">{{$job->monthly_salary ?? ''}}</span></div>

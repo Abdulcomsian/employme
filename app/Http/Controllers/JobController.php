@@ -17,6 +17,10 @@ class JobController extends Controller
 {
     public function jobMarketplace(Request $request){
         $allJobs = EmployerJob::with('employerDetails');
+        if(isset($request->SearchJobTitle) && $request->SearchJobTitle !='')
+        {
+            $allJobs = $allJobs->where('job_title','like','%'.$request->SearchJobTitle.'%');
+        }
         if(isset($request->SearchLocation) && $request->SearchLocation !='')
         {
             $allJobs = $allJobs->where('city_town',$request->SearchLocation);

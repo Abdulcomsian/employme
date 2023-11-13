@@ -245,3 +245,15 @@ function totalApplicants($job_id)
 {
     return \DB::table('job_applications')->where('employer_job_id',$job_id)->count();
 }
+
+function jobTypeCount($jot_type=null)
+{
+    $countTypeBasedJob = \DB::table('employer_jobs')->where('job_type',$jot_type)->count();
+    return isset($countTypeBasedJob) ? $countTypeBasedJob : 0;
+}
+function jobExperienceCount($experience_level=null)
+{
+    $countEpxerienceBasedJob= \DB::table('employer_jobs')->where('experience_level',$experience_level)->count();
+    return isset($countEpxerienceBasedJob) ? $countEpxerienceBasedJob : 0;
+
+}

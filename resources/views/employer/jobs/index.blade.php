@@ -54,7 +54,7 @@ Job Listing
         </div>
 
         <div class="bg-white card-box border-20">
-                <div><a href="{{route('employer-jobs.create')}}" class="create-job-btn">Post a Job</a></div>
+                <!-- <div><a href="{{route('employer-jobs.create')}}" class="create-job-btn">Post a Job</a></div> -->
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="a1" role="tabpanel">
                     <div class="table-responsive">
