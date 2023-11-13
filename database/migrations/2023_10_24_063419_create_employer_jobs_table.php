@@ -16,6 +16,9 @@ return new class extends Migration
             $table->text('school_vision')->nullable();
             $table->text('unique_selling_point')->nullable();
             $table->text('job_description')->nullable();
+            $table->enum('experience_level',['Fresher','Intermediate','No-Experience','Expert','Internship'])->nullable();
+            $table->enum('housing_included',['Yes','No'])->nullable();
+            $table->enum('Insurance_included',['Yes','No'])->nullable();
             $table->text('ideal_candidate_profile')->nullable();
             $table->longText('job_title')->nullable();
             $table->text('job_type')->nullable();

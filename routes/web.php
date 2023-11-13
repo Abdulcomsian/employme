@@ -14,6 +14,7 @@ use App\Http\Controllers\{
     OwnerController,
     SubscriptionController,
     EmployerJobController,
+    ModulesController
 };
 
 /*
@@ -153,6 +154,8 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('plans', [SubscriptionController::class, 'index'])->name('getPlans');
 
     Route::get('plans/{plan}', [SubscriptionController::class, 'show'])->name("plans.show");
+    Route::resource('modules', ModulesController::class);
+
 
    
 });
