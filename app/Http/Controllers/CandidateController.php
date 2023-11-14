@@ -53,6 +53,7 @@ class CandidateController extends Controller
     public function saveProfile2(Request $request)
     {
         $updatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
+        $updatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
 
         // save candidate profile code
         $imagename = $updatePersonalDetails->profile_picture;
@@ -70,8 +71,12 @@ class CandidateController extends Controller
         }
         // End of saving candidate profile code
 
-        $input = $request->except('_token','profile_picture','candidate_resume');
+        $input = $request->except('_token','profile_picture','candidate_resume','experience_level');
         $updatePersonalDetails->update(array_merge($input,['profile_picture'=>$imagename,'candidate_resume'=>$imagename1,]));
+
+        //Saving Candidate Experience Level to Candidate Preferences Table
+        $updatePreferencesDetails->update(['experience_level'=>$request->experience_level]);
+
          return response()->json([
                         "status" => true, 
                         "message" => url("Personal Details Updated Successfully")
@@ -96,8 +101,9 @@ class CandidateController extends Controller
         $input = $request->except('_token');
         // dd($request->skills);
         // dd($commaSeparatedString);
+        $data = salaryRanges($request->expected_salary);
         $updatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id());
-        $updatePreferencesDetails->update($input);
+        $updatePreferencesDetails->update(array_merge($input,$data));
          return response()->json([
                         "status" => true, 
                         "message" => url("Profile Updade Successfully")

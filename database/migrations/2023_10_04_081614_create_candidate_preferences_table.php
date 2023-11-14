@@ -19,7 +19,10 @@ return new class extends Migration
             $table->text('age_group')->nullable();
             $table->longText('video_url')->nullable();
             $table->longText('other_platform_video_url')->nullable();
-            $table->string('salary_expection')->nullable();
+            $table->string('expected_salary')->nullable();
+            $table->integer('minimum_salary')->nullable();
+            $table->integer('maximum_salary')->nullable();
+            $table->enum('experience_level',['Fresher','Intermediate','No-Experience','Expert','Internship'])->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

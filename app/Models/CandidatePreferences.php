@@ -9,19 +9,17 @@ class CandidatePreferences extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'highest_degree',
-        'field_of_study',
-        'teaching_experiance',
-        'institute_name',
-        'institute_place',
-        'tefl_tesol_clarification',
-        'clarification_details_if_yes',
-        'prevous_teaching_in_korea',
-        'experiance_description_if_yes',
+        'skills',
+        'preferred_city_region',
+        'school_type',
+        'age_group',
         'video_url',
+        'minimum_salary',
+        'maximum_salary',
+        'experience_level',
         'other_platform_video_url',
-        'user_id',
-        
+        'expected_salary',
+        'user_id'
     ];
     protected $casts = [
         'skills' => 'array',

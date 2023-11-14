@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\EmployerJob;
@@ -25,9 +26,142 @@ class UserController extends Controller
         return view('candidate.account-settings');
     }
 
-    public function candidatesMarketplace()
+    public function candidatesMarketplace(Request $request)
     {
-        $candidates = User::role('candidate')->with('candidatePreferences','candidatePersonalDetails','candidatePersonalDetails.getNationality','candidatePersonalDetails.getPassport')->get();
+        // dd($request->all());
+        $candidates = User::role('candidate')->with('candidatePreferences','candidateEducation','candidatePersonalDetails','candidatePersonalDetails.getNationality','candidatePersonalDetails.getPassport');
+
+        //Search Candidate on  Location Based
+        if(isset($request->SearchCandidateLocation) && $request->SearchCandidateLocation !='')
+        {
+            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
+                $query->where('current_location',$request->SearchCandidateLocation);
+            });
+        }
+
+        //Search Candidate on  Minimum Salary Based
+        if(isset($request->SearchCanidateMinSalary) && $request->SearchCanidateMinSalary !='')
+        {
+            $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($request){
+                $query->where('minimum_salary','<=',$request->SearchCanidateMinSalary);
+            });
+        }
+
+        //Search Candidate on  Maixmum Salary Based
+        if(isset($request->SearchCanidateMaxSalary) && $request->SearchCanidateMaxSalary !='')
+        {
+            $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($request){
+                $query->where('maximum_salary','>=',$request->SearchCanidateMaxSalary);
+            });      
+         }
+
+          //Search Candidate on  Intermediate Experience Based
+        if(isset($request->SearchIntermediateExperience) && $request->SearchIntermediateExperience !='')
+        {
+            $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($request){
+                $query->where('experience_level',$request->SearchIntermediateExperience);
+            });      
+         }
+
+          //Search Candidate with No Experience
+          if(isset($request->SearchNoExperience) && $request->SearchNoExperience !='')
+        {
+            $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($request){
+                $query->where('experience_level',$request->SearchNoExperience);
+            });      
+         }
+
+          //Search Candidate on  Intership Experience Based
+          if(isset($request->SearcInternship) && $request->SearcInternship !='')
+        {
+            $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($request){
+                $query->where('experience_level',$request->SearcInternship);
+            });      
+         }
+
+          //Search Candidate on  Expert Experience Based
+          if(isset($request->SearchExpert) && $request->SearchExpert !='')
+        {
+            $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($request){
+                $query->where('experience_level',$request->SearchExpert);
+            });      
+         }
+
+        //Search Canidate on No Visa Based
+        if(isset($request->SearchNoVisa) && $request->SearchNoVisa !='')
+        {
+            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
+                $query->where('current_visa_status',$request->SearchNoVisa);
+            });         
+        }
+
+        //Search Canidate on Student Visa Based
+        if(isset($request->SearchStudentVisa) && $request->SearchStudentVisa !='')
+        {
+            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
+                $query->where('current_visa_status',$request->SearchStudentVisa);
+            });         
+        }
+
+        //Search Canidate on Tourist Visa Based
+        if(isset($request->SearchTouristVisa) && $request->SearchTouristVisa !='')
+        {
+            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
+                $query->where('current_visa_status',$request->SearchTouristVisa);
+            });          
+        }
+
+        //Search Canidate on E2 Teaching Visa Based
+        if(isset($request->SearchE2TeachingVisa) && $request->SearchE2TeachingVisa !='')
+        {
+            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
+                $query->where('current_visa_status',$request->SearchE2TeachingVisa);
+            });         
+        }
+        
+        //Search Canidate on Male Gender Based
+         if(isset($request->SearchMaleGender) && $request->SearchMaleGender !='')
+         {
+             $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
+                $query->where('gender',$request->SearchMaleGender);
+            }); 
+         }
+
+         //Search Canidate on Female Gender Based
+         if(isset($request->SearchFemaleGender) && $request->SearchFemaleGender !='')
+         {
+            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
+                $query->where('gender',$request->SearchFemaleGender);
+            }); 
+        }
+
+        //Search Canidate on Bachelor Degree Based
+        if(isset($request->SearchBachelorQualification) && $request->SearchBachelorQualification !='')
+        {
+            $candidates = $candidates->whereHas('candidateEducation',function (Builder $query) use ($request){
+                $query->where('highest_degree',$request->SearchBachelorQualification);
+            }); 
+        }
+
+        //Search Canidate on Master Degree Based
+        if(isset($request->SearchMasterQualification) && $request->SearchMasterQualification !='')
+        {
+            $candidates = $candidates->whereHas('candidateEducation',function (Builder $query) use ($request){
+                $query->where('highest_degree',$request->SearchMasterQualification);
+            }); 
+                
+        }
+
+        //Search Canidate on Doctorate Degree Based
+        if(isset($request->SearchDoctorateQualification) && $request->SearchDoctorateQualification !='')
+        {
+            $candidates = $candidates->whereHas('candidateEducation',function (Builder $query) use ($request){
+                $query->where('highest_degree',$request->SearchDoctorateQualification);
+            });         
+        }
+
+        $candidates = $candidates->paginate(2);
+
         return view('candidates-marketplace',compact('candidates'));
     }
 

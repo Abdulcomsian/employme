@@ -7,6 +7,17 @@ Candidate Marketplace
 	.red-heart{
 		color:red;
 	}
+	.filter-area-tab .salary-slider .price-input input {
+    width: 110px;
+    height: 20px;
+    outline: none;
+    font-size: 11px;
+    text-align: center;
+    color: #000;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+}
 </style>
 <!--
 		=============================================
@@ -86,297 +97,311 @@ Candidate Marketplace
 				</button>
 				<div class="filter-area-tab offcanvas offcanvas-start" id="filteroffcanvas">
 					<button type="button" class="btn-close text-reset d-lg-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-					<div class="main-title fw-500 text-dark">Filter By</div>
-					<div class="light-bg border-20 ps-4 pe-4 pt-25 pb-30 mt-20">
-						<!-- <div class="filter-block bottom-line pb-25">
-                                    <a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseSemploye" role="button" aria-expanded="false">Name or Keyword</a>
-                                    <div class="collapse show" id="collapseSemploye">
-                                        <div class="main-body">
-                                            <form action="#" class="input-box position-relative">
-                                                <input type="text" placeholder="Name or keyword">
-                                                <button><i class="bi bi-search"></i></button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div> -->
-						<!-- /.filter-block -->
-						<!-- <div class="filter-block bottom-line pb-25 mt-25">
-                                    <a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseCategory" role="button" aria-expanded="false">Category</a>
-                                    <div class="collapse show" id="collapseCategory">
-                                        <div class="main-body">
-											<select class="nice-select">
-                                                <option value="0">Web Design</option>
-                                                <option value="1">Design & Creative </option>
-                                                <option value="2">It & Development</option>
-                                                <option value="3">Web & Mobile Dev</option>
-                                                <option value="4">Writing</option>
-                                                <option value="5">Sales & Marketing</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div> -->
-						<!-- /.filter-block -->
-						<div class="filter-block bottom-line pb-25 mt-25">
-							<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false">Location</a>
-							<div class="collapse show" id="collapseLocation">
-								<div class="main-body">
-									<select class="nice-select bg-white">
-										<option value="0">All Location</option>
-										<option value="1">California, CA</option>
-										<option value="2">New York</option>
-										<option value="3">Miami</option>
-									</select>
-									<div class="loccation-range-select mt-5">
-										<div class="d-flex align-items-center">
-											<span>Radius: &nbsp;</span>
-											<div id="rangeValue">50</div>
-											<span>&nbsp;miles</span>
-										</div>
-										<input type="range" id="locationRange" value="50" max="100">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="filter-block bottom-line pb-25 mt-25">
-							<a class="filter-title fw-500 text-dark " data-bs-toggle="collapse" href="#collapseSalary" role="button" aria-expanded="false">Salary Range</a>
-							<div class="collapse show" id="collapseSalary">
-								<div class="main-body">
-									<div class="salary-slider">
-										<div class="price-input d-flex align-items-center pt-5">
-											<div class="field d-flex align-items-center">
-												<input type="number" class="input-min" value="0" readonly>
-											</div>
-											<div class="pe-1 ps-1">-</div>
-											<div class="field d-flex align-items-center">
-												<input type="number" class="input-max" value="300" readonly>
-											</div>
-											<div class="currency ps-1">USD</div>
-										</div>
-										<div class="slider">
-											<div class="progress"></div>
-										</div>
-										<div class="range-input mb-10">
-											<input type="range" class="range-min" min="0" max="950" value="0" step="10">
-											<input type="range" class="range-max" min="0" max="1000" value="300" step="10">
-										</div>
-									</div>
-									<ul class="style-none d-flex flex-wrap justify-content-between radio-filter mb-5">
-										<li>
-											<input type="radio" name="jobDuration" value="01">
-											<label>Weekly</label>
-										</li>
-										<li>
-											<input type="radio" name="jobDuration" value="02">
-											<label>Monthly</label>
-										</li>
-										<li>
-											<input type="radio" name="jobDuration" value="03">
-											<label>Hourly</label>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-
-						<div class="filter-block bottom-line pb-25  mt-25">
-							<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#EDUg" role="button" aria-expanded="false">Education Grade</a>
-							<div class="collapse" id="EDUg">
-								<div class="main-body">
-									<select class="nice-select bg-white">
-										<option value="0">A</option>
-										<option value="1">B</option>
-										<option value="2">C</option>
-									</select>
-
-								</div>
-							</div>
-						</div>
-						<!-- /.filter-block -->
-						<!-- <div class="filter-block bottom-line pb-25 mt-25">
-                                    <a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp" role="button" aria-expanded="false">Expert Level</a>
-                                    <div class="collapse" id="collapseExp">
-                                        <div class="main-body">
-											<ul class="style-none filter-input">
-												<li>
-													<input type="checkbox" name="Experience" value="02">
-													<label>Intermediate</label>
-												</li>
-												<li>
-													<input type="checkbox" name="Experience" value="03">
-													<label>No-Experience</label>
-												</li>
-												<li>
-													<input type="checkbox" name="Experience" value="04">
-													<label>Internship</label>
-												</li>
-												<li>
-													<input type="checkbox" name="Experience" value="05">
-													<label>Expert</label>
-												</li>
-											</ul>
-                                        </div>
-                                    </div>
-                                </div> -->
-						<div class="filter-block bottom-line pb-25 mt-25">
-							<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp" role="button" aria-expanded="false">Visa Type</a>
-							<div class="collapse" id="collapseExp">
-								<div class="main-body">
-									<ul class="style-none filter-input">
-										<li>
-											<input type="checkbox" name="Experience" value="02">
-											<label>C-4</label>
-										</li>
-										<li>
-											<input type="checkbox" name="Experience" value="03">
-											<label>D-10-1</label>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="filter-block bottom-line pb-25 mt-25">
-							<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseG" role="button" aria-expanded="false">Gender</a>
-							<div class="collapse" id="collapseG">
-								<div class="main-body">
-									<ul class="style-none filter-input">
-										<li>
-											<input type="checkbox" name="Experience" value="02">
-											<label>Male</label>
-										</li>
-										<li>
-											<input type="checkbox" name="Experience" value="03">
-											<label>Female</label>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="filter-block bottom-line pb-25 mt-25">
-							<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp1" role="button" aria-expanded="false">Experience Level</a>
-							<div class="collapse" id="collapseExp1">
-								<div class="main-body">
-									<ul class="style-none filter-input">
-										<li>
-											<input type="checkbox" name="Experience" value="02">
-											<label>Intermediate</label>
-										</li>
-										<li>
-											<input type="checkbox" name="Experience" value="03">
-											<label>No-Experience</label>
-										</li>
-										<li>
-											<input type="checkbox" name="Experience" value="04">
-											<label>Internship</label>
-										</li>
-										<li>
-											<input type="checkbox" name="Experience" value="05">
-											<label>Expert</label>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<!-- /.filter-block -->
-						<div class="filter-block bottom-line pb-25 mt-25">
-							<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseQualification" role="button" aria-expanded="false">Qualification</a>
-							<div class="collapse" id="collapseQualification">
-								<div class="main-body">
-									<ul class="style-none filter-input">
-										<li>
-											<input type="checkbox" name="Qualification" value="01">
-											<label>Master’s Degree</label>
-										</li>
-										<li>
-											<input type="checkbox" name="Qualification" value="02">
-											<label>Bachelor Degree</label>
-										</li>
-										<li>
-											<input type="checkbox" name="Qualification" value="03">
-											<label>None</label>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<!-- /.filter-block -->
-						<!-- <div class="filter-block bottom-line pb-25 mt-25">
-                                    <a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseCType" role="button" aria-expanded="false">Candidate Type</a>
-                                    <div class="collapse" id="collapseCType">
-                                        <div class="main-body">
-											<ul class="style-none filter-input">
-												<li>
-													<input type="checkbox" name="Gender" value="01">
-													<label>Male</label>
-												</li>
-												<li>
-													<input type="checkbox" name="Gender" value="02">
-													<label>Female</label>
-												</li>
-											</ul>
-                                        </div>
-                                    </div>
-                                </div> -->
-						<!-- /.filter-block -->
-
-						<!-- <div class="filter-block bottom-line pb-25 mt-25">
-                                    <a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseSalary" role="button" aria-expanded="false">Salary Range</a>
-                                    <div class="collapse" id="collapseSalary">
-                                        <div class="main-body">
-											<div class="salary-slider">
-												<div class="price-input d-flex align-items-center pt-5">
-													<div class="field d-flex align-items-center">
-														<input type="number" class="input-min" value="0" readonly>
-													</div>
-													<div class="pe-1 ps-1">-</div>
-													<div class="field d-flex align-items-center">
-														<input type="number" class="input-max" value="300" readonly>
-													</div>
-													<div class="currency ps-1">USD</div>
-												</div>
-												<div class="slider">
-													<div class="progress"></div>
-												</div>
-												<div class="range-input mb-10">
-													<input type="range" class="range-min" min="0" max="950" value="0" step="10">
-													<input type="range" class="range-max" min="0" max="1000" value="300" step="10">
-												</div>
-											</div>
-											<ul class="style-none d-flex flex-wrap justify-content-between radio-filter mb-5">
-												<li>
-													<input type="radio" name="jobDuration" value="01">
-													<label>Weekly</label>
-												</li>
-												<li>
-													<input type="radio" name="jobDuration" value="02">
-													<label>Monthly</label>
-												</li>
-												<li>
-													<input type="radio" name="jobDuration" value="03">
-													<label>Hourly</label>
-												</li>
-											</ul>
-                                        </div>
-                                    </div>
-                                </div> -->
-						<!-- /.filter-block -->
-
-						<!-- <div class="filter-block bottom-line pb-25 mt-25">
-                                    <a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseFluency" role="button" aria-expanded="false">English Fluency</a>
-                                    <div class="collapse" id="collapseFluency">
-                                        <div class="main-body">
-											<select class="nice-select">
-                                                <option value="0">Basic</option>
-                                                <option value="1">Conversational</option>
-                                                <option value="2" selected>Fluent</option>
-                                                <option value="3">Native/Bilingual</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div> -->
-						<!-- /.filter-block -->
-
-						<a href="#" class="btn-ten fw-500 text-white w-100 text-center tran3s mt-30">Apply Filter</a>
+					<div class="main-title fw-500 text-dark d-flex justify-content-between">
+						<div>Filter By</div>
+						<div ><a class="btn-one" href="{{route('candidatesMarketplace')}}" title="Refresh Filter"><i class="bi bi-arrow-clockwise"></i></a></div>
 					</div>
+					<form action="{{route('candidatesMarketplace')}}" method="get">
+						<div class="light-bg border-20 ps-4 pe-4 pt-25 pb-30 mt-20">
+							<!-- <div class="filter-block bottom-line pb-25">
+										<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseSemploye" role="button" aria-expanded="false">Name or Keyword</a>
+										<div class="collapse show" id="collapseSemploye">
+											<div class="main-body">
+												<form action="#" class="input-box position-relative">
+													<input type="text" placeholder="Name or keyword">
+													<button><i class="bi bi-search"></i></button>
+												</form>
+											</div>
+										</div>
+									</div> -->
+							<!-- /.filter-block -->
+							<!-- <div class="filter-block bottom-line pb-25 mt-25">
+										<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseCategory" role="button" aria-expanded="false">Category</a>
+										<div class="collapse show" id="collapseCategory">
+											<div class="main-body">
+												<select class="nice-select">
+													<option value="0">Web Design</option>
+													<option value="1">Design & Creative </option>
+													<option value="2">It & Development</option>
+													<option value="3">Web & Mobile Dev</option>
+													<option value="4">Writing</option>
+													<option value="5">Sales & Marketing</option>
+												</select>
+											</div>
+										</div>
+									</div> -->
+							<!-- /.filter-block -->
+							<div class="filter-block bottom-line pb-25 mt-25">
+								<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false">Location</a>
+								<div class="collapse show" id="collapseLocation">
+									<div class="main-body">
+										<select class="nice-select bg-white" name="SearchCandidateLocation">
+											<option value="">Select</option>
+											<option value="All Location">All Location</option>
+											<option value="California, CA">California, CA</option>
+											<option value="New York">New York</option>
+											<option value="Miami">Miami</option>
+										</select>
+										<!-- <div class="loccation-range-select mt-5">
+											<div class="d-flex align-items-center">
+												<span>Radius: &nbsp;</span>
+												<div id="rangeValue">50</div>
+												<span>&nbsp;miles</span>
+											</div>
+											<input type="range" id="locationRange" value="50" max="100">
+										</div> -->
+									</div>
+								</div>
+							</div>
+							<div class="filter-block bottom-line pb-25 mt-25">
+								<a class="filter-title fw-500 text-dark " data-bs-toggle="collapse" href="#collapseSalary" role="button" aria-expanded="false">Salary Range</a>
+								<div class="collapse show" id="collapseSalary">
+									<div class="main-body">
+										<div class="salary-slider">
+											<div class="price-input d-flex align-items-center pt-5">
+												<div class="field d-flex align-items-center">
+													<input type="number" name="SearchCanidateMinSalary" class="input-min" value="0" readonly>
+												</div>
+												<div class="pe-1 ps-1">-</div>
+												<div class="field d-flex align-items-center">
+													<input type="number" name="SearchCanidateMaxSalary" class="input-max" value="30000" readonly>
+												</div>
+												<div class="currency ps-1">USD</div>
+											</div>
+											<div class="slider">
+												<div class="progress"></div>
+											</div>
+											<div class="range-input mb-10">
+												<input type="range" class="range-min" min="0" max="50000" value="0" step="10">
+												<input type="range" class="range-max" min="0" max="100000" value="30000" step="10">
+											</div>
+										</div>
+										<!-- <ul class="style-none d-flex flex-wrap justify-content-between radio-filter mb-5">
+											<li>
+												<input type="radio" name="jobDuration" value="01">
+												<label>Weekly</label>
+											</li>
+											<li>
+												<input type="radio" name="jobDuration" value="02">
+												<label>Monthly</label>
+											</li>
+											<li>
+												<input type="radio" name="jobDuration" value="03">
+												<label>Hourly</label>
+											</li>
+										</ul> -->
+									</div>
+								</div>
+							</div>
+
+							<!-- <div class="filter-block bottom-line pb-25  mt-25">
+								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#EDUg" role="button" aria-expanded="false">Education Grade</a>
+								<div class="collapse" id="EDUg">
+									<div class="main-body">
+										<select class="nice-select bg-white">
+											<option value="0">A</option>
+											<option value="1">B</option>
+											<option value="2">C</option>
+										</select>
+
+									</div>
+								</div>
+							</div> -->
+							<!-- /.filter-block -->
+							<!-- <div class="filter-block bottom-line pb-25 mt-25">
+										<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp" role="button" aria-expanded="false">Expert Level</a>
+										<div class="collapse" id="collapseExp">
+											<div class="main-body">
+												<ul class="style-none filter-input">
+													<li>
+														<input type="checkbox" name="Experience" value="02">
+														<label>Intermediate</label>
+													</li>
+													<li>
+														<input type="checkbox" name="Experience" value="03">
+														<label>No-Experience</label>
+													</li>
+													<li>
+														<input type="checkbox" name="Experience" value="04">
+														<label>Internship</label>
+													</li>
+													<li>
+														<input type="checkbox" name="Experience" value="05">
+														<label>Expert</label>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div> -->
+							<div class="filter-block bottom-line pb-25 mt-25">
+								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp" role="button" aria-expanded="false">Visa Type</a>
+								<div class="collapse" id="collapseExp">
+									<div class="main-body">
+										<ul class="style-none filter-input">
+											<li>
+												<input type="checkbox" name="SearchNoVisa" value="No Visa">
+												<label>No Visa</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchTouristVisa" value="Tourist Visa">
+												<label>Tourist Visa</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchStudentVisa" value="Student Visa">
+												<label>Student Visa</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchE2TeachingVisa" value="E2 Teaching Visa">
+												<label>E2 Teaching Visa</label>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="filter-block bottom-line pb-25 mt-25">
+								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseG" role="button" aria-expanded="false">Gender</a>
+								<div class="collapse" id="collapseG">
+									<div class="main-body">
+										<ul class="style-none filter-input">
+											<li>
+												<input type="checkbox" name="SearchMaleGender" value="Male">
+												<label>Male</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchFemaleGender" value="Female">
+												<label>Female</label>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="filter-block bottom-line pb-25 mt-25">
+								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp1" role="button" aria-expanded="false">Experience Level</a>
+								<div class="collapse" id="collapseExp1">
+									<div class="main-body">
+										<ul class="style-none filter-input">
+											<li>
+												<input type="checkbox" name="SearchIntermediateExperience" value="Intermediate">
+												<label>Intermediate</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchNoExperience" value="No-Experience">
+												<label>No-Experience</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearcInternship" value="04">
+												<label>Internship</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchExpert" value="05">
+												<label>Expert</label>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- /.filter-block -->
+							<div class="filter-block bottom-line pb-25 mt-25">
+								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseQualification" role="button" aria-expanded="false">Qualification</a>
+								<div class="collapse" id="collapseQualification">
+									<div class="main-body">
+										<ul class="style-none filter-input">
+											<li>
+												<input type="checkbox" name="SearchBachelorQualification" value="Bachelor">
+												<label>Bachelor</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchMasterQualification" value="Master">
+												<label>Master</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchDoctorateQualification" value="Doctorate">
+												<label>Doctorate</label>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- /.filter-block -->
+							<!-- <div class="filter-block bottom-line pb-25 mt-25">
+										<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseCType" role="button" aria-expanded="false">Candidate Type</a>
+										<div class="collapse" id="collapseCType">
+											<div class="main-body">
+												<ul class="style-none filter-input">
+													<li>
+														<input type="checkbox" name="Gender" value="01">
+														<label>Male</label>
+													</li>
+													<li>
+														<input type="checkbox" name="Gender" value="02">
+														<label>Female</label>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div> -->
+							<!-- /.filter-block -->
+
+							<!-- <div class="filter-block bottom-line pb-25 mt-25">
+										<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseSalary" role="button" aria-expanded="false">Salary Range</a>
+										<div class="collapse" id="collapseSalary">
+											<div class="main-body">
+												<div class="salary-slider">
+													<div class="price-input d-flex align-items-center pt-5">
+														<div class="field d-flex align-items-center">
+															<input type="number" class="input-min" value="0" readonly>
+														</div>
+														<div class="pe-1 ps-1">-</div>
+														<div class="field d-flex align-items-center">
+															<input type="number" class="input-max" value="300" readonly>
+														</div>
+														<div class="currency ps-1">USD</div>
+													</div>
+													<div class="slider">
+														<div class="progress"></div>
+													</div>
+													<div class="range-input mb-10">
+														<input type="range" class="range-min" min="0" max="950" value="0" step="10">
+														<input type="range" class="range-max" min="0" max="1000" value="300" step="10">
+													</div>
+												</div>
+												<ul class="style-none d-flex flex-wrap justify-content-between radio-filter mb-5">
+													<li>
+														<input type="radio" name="jobDuration" value="01">
+														<label>Weekly</label>
+													</li>
+													<li>
+														<input type="radio" name="jobDuration" value="02">
+														<label>Monthly</label>
+													</li>
+													<li>
+														<input type="radio" name="jobDuration" value="03">
+														<label>Hourly</label>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div> -->
+							<!-- /.filter-block -->
+
+							<!-- <div class="filter-block bottom-line pb-25 mt-25">
+										<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseFluency" role="button" aria-expanded="false">English Fluency</a>
+										<div class="collapse" id="collapseFluency">
+											<div class="main-body">
+												<select class="nice-select">
+													<option value="0">Basic</option>
+													<option value="1">Conversational</option>
+													<option value="2" selected>Fluent</option>
+													<option value="3">Native/Bilingual</option>
+												</select>
+											</div>
+										</div>
+									</div> -->
+							<!-- /.filter-block -->
+
+							<button type="submit" class="btn-ten fw-500 text-white w-100 text-center tran3s mt-30">Apply Filter</button>
+						</div>
+					</form>
 				</div>
 				<!-- /.filter-area-tab -->
 			</div>
@@ -385,7 +410,7 @@ Candidate Marketplace
 			<div class="col-xl-9 col-lg-8">
 				<div class="ms-xxl-5 ms-xl-3">
 					<div class="upper-filter d-flex justify-content-between align-items-center mb-20">
-						<div class="total-job-found">All <span class="text-dark fw-500">1,270</span> candidates found</div>
+						<div class="total-job-found">All <span class="text-dark fw-500">@isset($candidates){{ $candidates->total()}}@endisset</span> candidates found</div>
 						<div class="d-flex align-items-center">
 							<div class="short-filter d-flex align-items-center">
 								<div class="text-dark fw-500 me-2">Short:</div>
@@ -434,7 +459,7 @@ Candidate Marketplace
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Salary</span>
-												<div>{{$candidate->candidatePreferences->salary_expection ?? ''}}</div>
+												<div>{{$candidate->candidatePreferences->expected_salary ?? ''}}</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>
@@ -1197,17 +1222,7 @@ Candidate Marketplace
 					<!-- /.accordion-box -->
 
 
-					<div class="pt-20 d-sm-flex align-items-center justify-content-between">
-						<p class="m0 order-sm-last text-center text-sm-start xs-pb-20">Showing <span class="text-dark fw-500">1 to 20</span> of <span class="text-dark fw-500">1,270</span></p>
-						<div class="d-flex justify-content-center">
-							<ul class="pagination-two d-flex align-items-center style-none">
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-							</ul>
-						</div>
-					</div>
+					{{$candidates->links('vendor.pagination.custom-pagination-3')}}
 				</div>
 				<!-- /.-->
 			</div>

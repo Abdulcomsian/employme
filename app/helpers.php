@@ -257,3 +257,21 @@ function jobExperienceCount($experience_level=null)
     return isset($countEpxerienceBasedJob) ? $countEpxerienceBasedJob : 0;
 
 }
+function salaryRanges($range=null)
+{
+    $numericRange = preg_replace('/[^0-9-]/', '', $range);
+
+    // Split the numeric range into an array
+    list($min, $max) = array_map('intval', explode('-', $numericRange));
+
+    // Validate the range
+    // if ($min > $max) {
+        // Swap values if necessary
+        list($min, $max) = array($max, $min);
+    // }
+
+    $data['minimum_salary'] = $min * 1000;
+    $data['maximum_salary'] = $max * 1000;
+
+    return $data;
+}

@@ -52,7 +52,7 @@
                                 <div class="col-xl-2 col-md-4 order-xl-2">
                                     <div class="candidate-info">
                                         <span>Salary</span>
-                                        <div>{{$candidateDetails->candidatePreferences->salary_expection ?? ''}}</div>
+                                        <div>{{$candidateDetails->candidatePreferences->expected_salary ?? ''}}</div>
                                     </div>
                                     <!-- /.candidate-info -->
                                 </div>
@@ -212,7 +212,7 @@
                                     </li>
 									<li>
                                         <span>Expected Salary: </span>
-                                        <div>{{$candidateDetails->candidatePreferences->salary_expection ?? ''}}</div>
+                                        <div>{{$candidateDetails->candidatePreferences->expected_salary ?? ''}}</div>
                                     </li>
 									<!-- <li>
                                         <span>Intended Start Date: </span>

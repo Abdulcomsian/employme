@@ -291,9 +291,9 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Current Location</label>
                                     <select name="currentLocation" id="currentLocation" class="nice-select">
-                                        <option value="China" {{$candidatePersonalDetails->date_of_birth == 'China' ? 'selected' : ''}}>China</option>
-                                        <option value="Taiwan" {{$candidatePersonalDetails->date_of_birth == 'Taiwan' ? 'selected' : ''}}>Taiwan</option>
-                                        <option value="Korea" {{$candidatePersonalDetails->date_of_birth == 'Korea' ? 'selected' : ''}}>Korea</option>
+                                        <option value="California, CA" {{$candidatePersonalDetails->date_of_birth == 'California, CA' ? 'selected' : ''}}>California, CA</option>
+                                        <option value="New York" {{$candidatePersonalDetails->date_of_birth == 'New York' ? 'selected' : ''}}>New York</option>
+                                        <option value="Miami" {{$candidatePersonalDetails->date_of_birth == 'Miami' ? 'selected' : ''}}>Miami</option>
                                     </select>
                                 </div>
                             </div>
@@ -305,6 +305,21 @@ Profile
                                     <input type="text" name="candidateDesignation" id="candidateDesignation" placeholder="Designation" value = "{{$candidatePersonalDetails->date_of_birth ?? ''}}">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Experience Level</label>
+                                    <select name="ExperienceLevel" id="ExperienceLevel" class="nice-select">
+                                        <option value="Fresher" {{$candidatePreferencesDetails->experience_level == 'Fresher' ? 'selected' : ''}}>Fresher</option>
+                                        <option value="Intermediate" {{$candidatePreferencesDetails->experience_level == 'Intermediate' ? 'selected' : ''}}>Intermediate</option>
+                                        <option value="No-Experience" {{$candidatePreferencesDetails->experience_level == 'No-Experience' ? 'selected' : ''}}>No-Experience</option>
+                                        <option value="Expert" {{$candidatePreferencesDetails->experience_level == 'Expert' ? 'selected' : ''}}>Expert</option>
+                                        <option value="Internship" {{$candidatePreferencesDetails->experience_level == 'Internship' ? 'selected' : ''}}>Internship</option>
+                                    </select>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Profile Photo</label>
@@ -322,8 +337,6 @@ Profile
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Resume</label>
@@ -357,7 +370,11 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Highest Degree Obtained</label>
-                                    <input type="text" name="highestDegreeObtained" placeholder="Essential for E2 visa – a bachelor's degree or higher is typically required." value = "{{$candidateEducationalDetails->highest_degree ?? ''}}">
+                                    <select name="highestDegreeObtained" id="highestDegreeObtained" class="nice-select">
+                                        <option value="Bachelor" {{$candidateEducationalDetails->highestDegreeObtained == 'Bachelor' ? 'selected' : ''}}>Bachelor</option>
+                                        <option value="Master" {{$candidateEducationalDetails->highestDegreeObtained == 'Master' ? 'selected' : ''}}>Master</option>
+                                        <option value="Doctorate" {{$candidateEducationalDetails->highestDegreeObtained == 'Doctorate' ? 'selected' : ''}}>Doctorate</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -735,11 +752,10 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Salary Expectations</label>
                                     <select value= "" name="salaryExpectations" id="salaryExpectations" class="nice-select">
-                                        <option value="$0K-$10K" {{$candidatePreferencesDetails->salary_expection == '$0K-$10K' ? 'selected' : ''}}>$0K-$10K</option>
-                                        <option value="$20K-$50K" {{$candidatePreferencesDetails->salary_expection == '$20K-$50K' ? 'selected' : ''}}>$10K-$20K</option>
-                                        <option value="$20K-$50K" {{$candidatePreferencesDetails->salary_expection == '$20K-$50K' ? 'selected' : ''}}>$20K-$50K</option>
-                                        <option value="$50K-$100K" {{$candidatePreferencesDetails->salary_expection == '$50K-$100K' ? 'selected' : ''}}>$50K-$100K</option>
-                                        <option value="$100K-$200K" {{$candidatePreferencesDetails->salary_expection == '$100K-$200K' ? 'selected' : ''}}>$100K-$200K</option>
+                                        <option value="$0K-$10K" {{$candidatePreferencesDetails->expected_salary == '$0K-$10K' ? 'selected' : ''}}>$0K-$10K</option>
+                                        <option value="$20K-$50K" {{$candidatePreferencesDetails->expected_salary == '$20K-$50K' ? 'selected' : ''}}>$10K-$20K</option>
+                                        <option value="$20K-$50K" {{$candidatePreferencesDetails->expected_salary == '$20K-$50K' ? 'selected' : ''}}>$20K-$50K</option>
+                                        <option value="$50K-$100K" {{$candidatePreferencesDetails->expected_salary == '$50K-$100K' ? 'selected' : ''}}>$50K-$100K</option>
                                     </select>
                                 </div>
                             </div>
@@ -802,25 +818,27 @@ Profile
                     <!-- Step 6 -->
                     <div class="step" id="step-6">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Bio/Introduction</label>
-                                    <input type="text" name="bioIntroduction" placeholder="Write a few sentences or a short paragraph about themselves." value = "{{$candidatePersonalDetails->introduction ?? ''}}">
+                                    <textarea  name="bioIntroduction"  >{{$candidatePersonalDetails->introduction ?? ''}}</textarea>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Why Interested in Teaching in South Korea</label>
-                                    <input type="text" name="whyInterestedInTeachingInSouthKorea" placeholder="Allows potential employers to gauge enthusiasm and fit." value = "{{$candidatePersonalDetails->why_interested_teaching_in_korea ?? ''}}">
+                                    <textarea  name="whyInterestedInTeachingInSouthKorea"  >{{$candidatePersonalDetails->whyInterestedInTeachingInSouthKorea ?? ''}}</textarea>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Language Proficiency</label>
-                                    <input type="text" name="languageProficiency" placeholder="Specifically their English fluency level, and proficiency in any other languages including Korean." value= "{{$candidatePersonalDetails->language_proficiency ?? ''}}">
+                                    <textarea  name="languageProficiency"  >{{$candidatePersonalDetails->languageProficiency ?? ''}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -1109,6 +1127,7 @@ Profile
         formData.append("_token", "{{ csrf_token() }}");
         formData.append("full_name", $("#multi-step-form").find("[name=fullName]").val());
         formData.append("designation", $("#multi-step-form").find("[name=candidateDesignation]").val());
+        formData.append("experience_level", $("#multi-step-form").find("[name=ExperienceLevel]").val());
         formData.append("gender", $("#multi-step-form").find("[name=gender]").val());
         formData.append("current_location", $("#multi-step-form").find("[name=currentLocation]").val());
         formData.append("date_of_birth", $("#multi-step-form").find("[name=dateOfBirth]").val());
@@ -1280,7 +1299,7 @@ Profile
         formData.append('preferred_city_region',$("#multi-step-form").find('[name=preferredCityRegionInSouthKorea]').val());
         formData.append('school_type',$("#multi-step-form").find('[name=schoolTypePreference]').val());
         formData.append('age_group',$("#multi-step-form").find('[name=ageGroupPreference]').val());
-        formData.append('salary_expection',$("#multi-step-form").find('[name=salaryExpectations]').val());
+        formData.append('expected_salary',$("#multi-step-form").find('[name=salaryExpectations]').val());
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-4.save')}}",
