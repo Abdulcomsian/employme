@@ -137,10 +137,9 @@ Candidate Marketplace
 									<div class="main-body">
 										<select class="nice-select bg-white" name="SearchCandidateLocation">
 											<option value="">Select</option>
-											<option value="All Location">All Location</option>
-											<option value="California, CA">California, CA</option>
-											<option value="New York">New York</option>
-											<option value="Miami">Miami</option>
+											<option value="California, CA" {{(isset($_GET['SearchCandidateLocation']) && $_GET['SearchCandidateLocation'] =='California, CA') ? 'selected' : ''}}>California, CA</option>
+											<option value="New York" {{(isset($_GET['SearchCandidateLocation']) && $_GET['SearchCandidateLocation'] =='New York') ? 'selected' : ''}}>New York</option>
+											<option value="Miami" {{(isset($_GET['SearchCandidateLocation']) && $_GET['SearchCandidateLocation'] =='Miami') ? 'selected' : ''}}>Miami</option>
 										</select>
 										<!-- <div class="loccation-range-select mt-5">
 											<div class="d-flex align-items-center">
@@ -235,23 +234,23 @@ Candidate Marketplace
 									</div> -->
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp" role="button" aria-expanded="false">Visa Type</a>
-								<div class="collapse" id="collapseExp">
+								<div class="collapse {{(isset($_GET['SearchNoVisa']) || isset($_GET['SearchTouristVisa']) || isset($_GET['SearchStudentVisa']) || isset($_GET['SearchE2TeachingVisa'])) ? 'show' : ''}}" id="collapseExp">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchNoVisa" value="No Visa">
+												<input type="checkbox" name="SearchNoVisa" value="No Visa" {{isset($_GET['SearchNoVisa']) ? 'checked' : ''}}>
 												<label>No Visa</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchTouristVisa" value="Tourist Visa">
+												<input type="checkbox" name="SearchTouristVisa" value="Tourist Visa" {{isset($_GET['SearchTouristVisa']) ? 'checked' : ''}}>
 												<label>Tourist Visa</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchStudentVisa" value="Student Visa">
+												<input type="checkbox" name="SearchStudentVisa" value="Student Visa" {{isset($_GET['SearchStudentVisa']) ? 'checked' : ''}}>
 												<label>Student Visa</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchE2TeachingVisa" value="E2 Teaching Visa">
+												<input type="checkbox" name="SearchE2TeachingVisa" value="E2 Teaching Visa" {{isset($_GET['SearchE2TeachingVisa']) ? 'checked' : ''}}>
 												<label>E2 Teaching Visa</label>
 											</li>
 										</ul>
@@ -260,15 +259,15 @@ Candidate Marketplace
 							</div>
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseG" role="button" aria-expanded="false">Gender</a>
-								<div class="collapse" id="collapseG">
+								<div class="collapse {{(isset($_GET['SearchMaleGender']) || isset($_GET['SearchFemaleGender'])) ? 'show' : ''}}" id="collapseG">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchMaleGender" value="Male">
+												<input type="checkbox" name="SearchMaleGender" value="Male" {{isset($_GET['SearchMaleGender']) ? 'checked' : ''}}>
 												<label>Male</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchFemaleGender" value="Female">
+												<input type="checkbox" name="SearchFemaleGender" value="Female" {{isset($_GET['SearchFemaleGender']) ? 'checked' : ''}}>
 												<label>Female</label>
 											</li>
 										</ul>
@@ -277,23 +276,27 @@ Candidate Marketplace
 							</div>
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp1" role="button" aria-expanded="false">Experience Level</a>
-								<div class="collapse" id="collapseExp1">
+								<div class="collapse {{(isset($_GET['SearchIntermediateExperience']) || isset($_GET['SearchFresher']) || isset($_GET['SearchNoExperience']) || isset($_GET['SearcInternship']) || isset($_GET['SearchExpert'])) ? 'show' : ''}}" id="collapseExp1">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchIntermediateExperience" value="Intermediate">
+												<input type="checkbox" name="SearchFresher" value="Fresher" {{isset($_GET['SearchFresher']) ? 'checked' : ''}}>
+												<label>Fresher</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchIntermediateExperience" value="Intermediate" {{isset($_GET['SearchIntermediateExperience']) ? 'checked' : ''}}>
 												<label>Intermediate</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchNoExperience" value="No-Experience">
+												<input type="checkbox" name="SearchNoExperience" value="No-Experience" {{isset($_GET['SearchNoExperience']) ? 'checked' : ''}}>
 												<label>No-Experience</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearcInternship" value="04">
+												<input type="checkbox" name="SearcInternship" value="Internship" {{isset($_GET['SearcInternship']) ? 'checked' : ''}}>
 												<label>Internship</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchExpert" value="05">
+												<input type="checkbox" name="SearchExpert" value="Expert" {{isset($_GET['SearchExpert']) ? 'checked' : ''}}>
 												<label>Expert</label>
 											</li>
 										</ul>
@@ -303,19 +306,19 @@ Candidate Marketplace
 							<!-- /.filter-block -->
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseQualification" role="button" aria-expanded="false">Qualification</a>
-								<div class="collapse" id="collapseQualification">
+								<div class="collapse {{(isset($_GET['SearchBachelorQualification']) || isset($_GET['SearchMasterQualification']) || isset($_GET['SearchDoctorateQualification'])) ? 'show' : ''}}" id="collapseQualification">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchBachelorQualification" value="Bachelor">
+												<input type="checkbox" name="SearchBachelorQualification" value="Bachelor" {{isset($_GET['SearchBachelorQualification']) ? 'checked' : ''}}>
 												<label>Bachelor</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchMasterQualification" value="Master">
+												<input type="checkbox" name="SearchMasterQualification" value="Master" {{isset($_GET['SearchMasterQualification']) ? 'checked' : ''}}>
 												<label>Master</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchDoctorateQualification" value="Doctorate">
+												<input type="checkbox" name="SearchDoctorateQualification" value="Doctorate" {{isset($_GET['SearchDoctorateQualification']) ? 'checked' : ''}}>
 												<label>Doctorate</label>
 											</li>
 										</ul>
@@ -565,243 +568,40 @@ Candidate Marketplace
 									</div>
 									
 								</div>
-							</div>
-							<div class="col-xxl-4 col-sm-6 d-flex">
-								<div class="candidate-profile-card favourite text-center grid-layout mb-25">
-									<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn tran3s"><i class="bi bi-heart"></i></a>
-									<div class="cadidate-avatar position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_03.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Rashed ka</a></h4>
-									<div class="candidate-post">UI/UX Designer</div>
-									<ul class="cadidate-skills style-none d-flex flex-wrap align-items-center justify-content-center justify-content-md-between pt-30 sm-pt-20 pb-10">
-										<li>Design</li>
-										<li>UI</li>
-										<li>Brand & Product</li>
-									</ul>
-									<div class="row gx-1">
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Salary</span>
-												<div>$3k-$5k/m</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span> Document Status</span>
-												<div class="doc-u">Unverified</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Current Location</span>
-												<div>UAE</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Start Date</span>
-												<div>30 Aug 2023</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Nationality</span>
-												<div>UAE</div>
-											</div>
-										</div>
-
-									</div>
-									<div class="row gx-2 pt-25 sm-pt-10">
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s w-100 mt-5">View Profile</a>
-										</div>
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
-										</div>
-									</div>
-									
-								</div>
-							</div>
-							<div class="col-xxl-4 col-sm-6 d-flex">
-								<div class="candidate-profile-card text-center grid-layout mb-25">
-									<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn tran3s"><i class="bi bi-heart"></i></a>
-									<div class="cadidate-avatar position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_04.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Julia Ark</a></h4>
-									<div class="candidate-post">Graphic Designer</div>
-									<ul class="cadidate-skills style-none d-flex flex-wrap align-items-center justify-content-center justify-content-md-between pt-30 sm-pt-20 pb-10">
-										<li>Design</li>
-										<li>UI</li>
-										<li>Digital</li>
-										<li class="more">2+</li>
-									</ul>
-									<div class="row gx-1">
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Salary</span>
-												<div>$3k-$5k/m</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span> Document Status</span>
-												<div class="doc-u">Unverified</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Current Location</span>
-												<div>New York, US</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Start Date</span>
-												<div>30 Aug 2023</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Nationality</span>
-												<div>US</div>
-											</div>
-										</div>
-
-									</div>
-									<div class="row gx-2 pt-25 sm-pt-10">
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s w-100 mt-5">View Profile</a>
-										</div>
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xxl-4 col-sm-6 d-flex">
-								<div class="candidate-profile-card favourite text-center grid-layout mb-25">
-									<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn tran3s"><i class="bi bi-heart"></i></a>
-									<div class="cadidate-avatar position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_02.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Juan Marko</a></h4>
-									<div class="candidate-post">Marketing Expert</div>
-									<ul class="cadidate-skills style-none d-flex flex-wrap align-items-center justify-content-center justify-content-md-between pt-30 sm-pt-20 pb-10">
-										<li>Account</li>
-										<li>Finance</li>
-										<li>Marketing</li>
-									</ul>
-									<div class="row gx-1">
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Salary</span>
-												<div>$3k-$5k/m</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span> Document Status</span>
-												<div class="doc-v">Verified</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Current Location</span>
-												<div>Milan , Italy</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Start Date</span>
-												<div>30 Aug 2023</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Nationality</span>
-												<div>Italy</div>
-											</div>
-										</div>
-
-									</div>
-									<div class="row gx-2 pt-25 sm-pt-10">
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s w-100 mt-5">View Profile</a>
-										</div>
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xxl-4 col-sm-6 d-flex">
-								<div class="candidate-profile-card text-center grid-layout mb-25">
-									<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn tran3s"><i class="bi bi-heart"></i></a>
-									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_05.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Juliana Shofie</a></h4>
-									<div class="candidate-post">Data Entry</div>
-									<ul class="cadidate-skills style-none d-flex flex-wrap align-items-center justify-content-center justify-content-md-between pt-30 sm-pt-20 pb-10">
-										<li>Data</li>
-										<li>Entry</li>
-										<li>Microsoft Excel</li>
-									</ul>
-									<div class="row gx-1">
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Salary</span>
-												<div>$3k-$5k/m</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span> Document Status</span>
-												<div class="doc-v">Verified</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Current Location</span>
-												<div>Bangalore, IN</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Start Date</span>
-												<div>30 Aug 2023</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Nationality</span>
-												<div>Indian</div>
-											</div>
-										</div>
-
-									</div>
-									<div class="row gx-2 pt-25 sm-pt-10">
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s w-100 mt-5">View Profile</a>
-										</div>
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
-										</div>
-									</div>
-								</div>
 							</div> -->
 						</div>
 					</div>
 
 					<div class="accordion-box list-style">
+						@isset($candidates)
+						@foreach($candidates as $candidate)
 						<div class="candidate-profile-card favourite list-layout mb-25">
 							<div class="d-flex">
-								<div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
+								@if(isset($candidate->candidatePersonalDetails->profile_picture) && !empty($candidate->candidatePersonalDetails->profile_picture))
+								<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
+								@else
+								<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
+								@endif
+								<!-- <div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div> -->
 								<div class="right-side">
 									<div class="row gx-1 align-items-center">
 										<div class="col-xl-3">
 											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Julia Ark</a></h4>
-												<div class="candidate-post">Graphic Designer</div>
+												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">{{$candidate->candidatePersonalDetails->full_name ?? ''}}</a></h4>
+												<div class="candidate-post">{{$candidate->candidatePersonalDetails->designation ?? ''}}</div>
 												<ul class="cadidate-skills style-none d-flex align-items-center">
-													<li>Design</li>
-													<li>UI</li>
-													<li>Digital</li>
-													<li class="more">2+</li>
+													@if(isset($candidate->candidatePreferences->skills) && !empty($candidate->candidatePreferences->skills))
+													@foreach($candidate->candidatePreferences->skills as $index=>$skill)
+													@if($index < 3)
+													<li>{{$skill}}</li>
+													@endif
+													@endforeach
+													@endif
+													@if(isset($candidate->candidatePreferences->skills) && !empty($candidate->candidatePreferences->skills))
+													@if(count($candidate->candidatePreferences->skills) > 3)
+													<li class="more">+{{{count($candidate->candidatePreferences->skills)-3}}}</li>
+													@endif
+													@endif
 												</ul>
 												<!-- /.cadidate-skills -->
 											</div>
@@ -809,29 +609,31 @@ Candidate Marketplace
 										<div class="col-xl-3 col-md-4 col-sm-6">
 											<div class="candidate-info">
 												<span>Salary</span>
-												<div>$30k-$50k/yr</div>
+												<div>{{$candidate->candidatePreferences->expected_salary ?? ''}}</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>
 										<div class="col-xl-3 col-md-4 col-sm-6">
 											<div class="candidate-info">
 												<span>Location</span>
-												<div>California, US</div>
+												<div>{{$candidate->candidatePersonalDetails->current_location ?? ''}}</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>
 										<div class="col-xl-3 col-md-4">
 											<div class="d-flex justify-content-lg-end">
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn text-center rounded-circle tran3s mt-10"><i class="bi bi-heart"></i></a>
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
+												<a  class="save-btn text-center rounded-circle tran3s mt-10 save_candidate  save_candidate{{base64_encode($candidate->id)}}" id="{{base64_encode($candidate->id)}}" style="color:{{(savedCandidate($candidate->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
+												<a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						@endforeach
+						@endisset
 						<!-- /.candidate-profile-card -->
-						<div class="candidate-profile-card favourite list-layout mb-25">
+						<!-- <div class="candidate-profile-card favourite list-layout mb-25">
 							<div class="d-flex">
 								<div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_03.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
 								<div class="right-side">
@@ -846,7 +648,7 @@ Candidate Marketplace
 													<li>Digital</li>
 													<li class="more">2+</li>
 												</ul>
-												<!-- /.cadidate-skills -->
+												{{-- candidate skills--}}
 											</div>
 										</div>
 										<div class="col-xl-3 col-md-4 col-sm-6">
@@ -854,14 +656,14 @@ Candidate Marketplace
 												<span>Salary</span>
 												<div>$30k-$50k/yr</div>
 											</div>
-											<!-- /.candidate-info -->
+											{{-- candidate-info --}}
 										</div>
 										<div class="col-xl-3 col-md-4 col-sm-6">
 											<div class="candidate-info">
 												<span>Location</span>
 												<div>New York, US</div>
 											</div>
-											<!-- /.candidate-info -->
+											{{-- candidate-info --}}
 										</div>
 										<div class="col-xl-3 col-md-4">
 											<div class="d-flex justify-content-lg-end">
@@ -872,352 +674,7 @@ Candidate Marketplace
 									</div>
 								</div>
 							</div>
-						</div>
-						<!-- /.candidate-profile-card -->
-						<div class="candidate-profile-card list-layout mb-25">
-							<div class="d-flex">
-								<div class="cadidate-avatar position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_02.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-								<div class="right-side">
-									<div class="row gx-1 align-items-center">
-										<div class="col-xl-3">
-											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Riad Mahfuz</a></h4>
-												<div class="candidate-post">Telemarketing & Sales</div>
-												<ul class="cadidate-skills style-none d-flex align-items-center">
-													<li>Design</li>
-													<li>UI</li>
-													<li>Digital</li>
-													<li class="more">2+</li>
-												</ul>
-												<!-- /.cadidate-skills -->
-											</div>
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Salary</span>
-												<div>$30k-$50k/yr</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Location</span>
-												<div>Manchester, UK</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4">
-											<div class="d-flex justify-content-lg-end">
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn text-center rounded-circle tran3s mt-10"><i class="bi bi-heart"></i></a>
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /.candidate-profile-card -->
-						<div class="candidate-profile-card favourite list-layout mb-25">
-							<div class="d-flex">
-								<div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_03.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-								<div class="right-side">
-									<div class="row gx-1 align-items-center">
-										<div class="col-xl-3">
-											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Julia Ark</a></h4>
-												<div class="candidate-post">Graphic Designer</div>
-												<ul class="cadidate-skills style-none d-flex align-items-center">
-													<li>Design</li>
-													<li>UI</li>
-													<li>Digital</li>
-													<li class="more">2+</li>
-												</ul>
-												<!-- /.cadidate-skills -->
-											</div>
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Salary</span>
-												<div>$30k-$50k/yr</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Location</span>
-												<div>Milan, Italy</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4">
-											<div class="d-flex justify-content-lg-end">
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn text-center rounded-circle tran3s mt-10"><i class="bi bi-heart"></i></a>
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /.candidate-profile-card -->
-						<div class="candidate-profile-card list-layout mb-25">
-							<div class="d-flex">
-								<div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_04.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-								<div class="right-side">
-									<div class="row gx-1 align-items-center">
-										<div class="col-xl-3">
-											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Jannat Ka</a></h4>
-												<div class="candidate-post">Marketing Expert</div>
-												<ul class="cadidate-skills style-none d-flex align-items-center">
-													<li>Design</li>
-													<li>UI</li>
-													<li>Digital</li>
-													<li class="more">2+</li>
-												</ul>
-												<!-- /.cadidate-skills -->
-											</div>
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Salary</span>
-												<div>$30k-$50k/yr</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Location</span>
-												<div>California, US</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4">
-											<div class="d-flex justify-content-lg-end">
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn text-center rounded-circle tran3s mt-10"><i class="bi bi-heart"></i></a>
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /.candidate-profile-card -->
-						<div class="candidate-profile-card favourite list-layout mb-25">
-							<div class="d-flex">
-								<div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_05.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-								<div class="right-side">
-									<div class="row gx-1 align-items-center">
-										<div class="col-xl-3">
-											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Mahmud Amin</a></h4>
-												<div class="candidate-post">App Designer</div>
-												<ul class="cadidate-skills style-none d-flex align-items-center">
-													<li>Design</li>
-													<li>UI</li>
-													<li>Digital</li>
-													<li class="more">2+</li>
-												</ul>
-												<!-- /.cadidate-skills -->
-											</div>
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Salary</span>
-												<div>$30k-$50k/yr</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Location</span>
-												<div>Bangalore, IN</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4">
-											<div class="d-flex justify-content-lg-end">
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn text-center rounded-circle tran3s mt-10"><i class="bi bi-heart"></i></a>
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /.candidate-profile-card -->
-						<div class="candidate-profile-card favourite list-layout mb-25">
-							<div class="d-flex">
-								<div class="cadidate-avatar position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}} " data-src="images/candidates/img_06.jpg" alt="" class="lazy-img rounded-circle"></a></div>
-								<div class="right-side">
-									<div class="row gx-1 align-items-center">
-										<div class="col-xl-3">
-											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Zubayer Hasan</a></h4>
-												<div class="candidate-post">Graphic Designer</div>
-												<ul class="cadidate-skills style-none d-flex align-items-center">
-													<li>Design</li>
-													<li>UI</li>
-													<li>Digital</li>
-													<li class="more">2+</li>
-												</ul>
-												<!-- /.cadidate-skills -->
-											</div>
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Salary</span>
-												<div>$30k-$50k/yr</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Location</span>
-												<div>London, UK</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4">
-											<div class="d-flex justify-content-lg-end">
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn text-center rounded-circle tran3s mt-10"><i class="bi bi-heart"></i></a>
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /.candidate-profile-card -->
-						<div class="candidate-profile-card list-layout mb-25">
-							<div class="d-flex">
-								<div class="cadidate-avatar position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}} " data-src="{{asset('assets/ images/candidates/img_07.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-								<div class="right-side">
-									<div class="row gx-1 align-items-center">
-										<div class="col-xl-3">
-											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Maria Henna</a></h4>
-												<div class="candidate-post">Designer</div>
-												<ul class="cadidate-skills style-none d-flex align-items-center">
-													<li>Design</li>
-													<li>UI</li>
-													<li>Digital</li>
-													<li class="more">2+</li>
-												</ul>
-												<!-- /.cadidate-skills -->
-											</div>
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Salary</span>
-												<div>$30k-$50k/yr</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Location</span>
-												<div>Washington, US</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4">
-											<div class="d-flex justify-content-lg-end">
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn text-center rounded-circle tran3s mt-10"><i class="bi bi-heart"></i></a>
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /.candidate-profile-card -->
-						<div class="candidate-profile-card favourite list-layout mb-25">
-							<div class="d-flex">
-								<div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_08.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-								<div class="right-side">
-									<div class="row gx-1 align-items-center">
-										<div class="col-xl-3">
-											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Sakil Islam</a></h4>
-												<div class="candidate-post">Marketing Expert</div>
-												<ul class="cadidate-skills style-none d-flex align-items-center">
-													<li>Design</li>
-													<li>UI</li>
-													<li>Digital</li>
-													<li class="more">2+</li>
-												</ul>
-												<!-- /.cadidate-skills -->
-											</div>
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Salary</span>
-												<div>$30k-$50k/yr</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Location</span>
-												<div>Dubai, UAE</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4">
-											<div class="d-flex justify-content-lg-end">
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn text-center rounded-circle tran3s mt-10"><i class="bi bi-heart"></i></a>
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /.candidate-profile-card -->
-						<div class="candidate-profile-card list-layout mb-25">
-							<div class="d-flex">
-								<div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_09.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-								<div class="right-side">
-									<div class="row gx-1 align-items-center">
-										<div class="col-xl-3">
-											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Shofie Elina</a></h4>
-												<div class="candidate-post">IT Specialist</div>
-												<ul class="cadidate-skills style-none d-flex align-items-center">
-													<li>Design</li>
-													<li>UI</li>
-													<li>Digital</li>
-													<li class="more">2+</li>
-												</ul>
-												<!-- /.cadidate-skills -->
-											</div>
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Salary</span>
-												<div>$250-$300/week</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4 col-sm-6">
-											<div class="candidate-info">
-												<span>Location</span>
-												<div>California, US</div>
-											</div>
-											<!-- /.candidate-info -->
-										</div>
-										<div class="col-xl-3 col-md-4">
-											<div class="d-flex justify-content-lg-end">
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn text-center rounded-circle tran3s mt-10"><i class="bi bi-heart"></i></a>
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /.candidate-profile-card -->
+						</div> -->
 					</div>
 					<!-- /.accordion-box -->
 

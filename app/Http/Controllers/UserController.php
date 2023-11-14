@@ -55,7 +55,15 @@ class UserController extends Controller
             });      
          }
 
-          //Search Candidate on  Intermediate Experience Based
+          //Search Fresh Candidate
+        if(isset($request->SearchFresher) && $request->SearchFresher !='')
+        {
+            $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($request){
+                $query->where('experience_level',$request->SearchFresher);
+            });      
+         }
+
+        //Search Candidate on  Intermediate Experience Based
         if(isset($request->SearchIntermediateExperience) && $request->SearchIntermediateExperience !='')
         {
             $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($request){
