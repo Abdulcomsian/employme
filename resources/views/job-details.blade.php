@@ -372,12 +372,28 @@
 								<div>{{date('d M, Y',strtotime($jobDetails->end_date)) ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Experience Level</span>
+								<div>{{$jobDetails->experience_level ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Job Type</span>
+								<div>{{$jobDetails->job_type ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Renewal Possiblities</span>
 								<div>{{$jobDetails->renewal_possibilities ?? ''}}</div>
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Base Pay</span>
 								<div>{{$jobDetails->base_pay ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Housing Included</span>
+								<div>{{$jobDetails->housing_included ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Insurance Included</span>
+								<div>{{$jobDetails->Insurance_included ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Allowances & Other Incentives</span>

@@ -10,6 +10,8 @@ use App\Models\EmployerJob;
 use App\Models\EmployerDetails;
 use App\Models\SavedCandidate;
 use Illuminate\Support\Facades\Auth;
+use File;
+use Response;
 class UserController extends Controller
 {
 
@@ -285,6 +287,37 @@ class UserController extends Controller
                     }
                  }
                  echo json_encode($response); die;
+        }
+    }
+
+    public function downloadResume()
+    {
+        if (isset($_POST['candidate_id'])) {
+            $candidate_id = base64_decode($_POST['candidate_id']);
+            $candidateDetails = User::with('candidatePersonalDetails')->find($candidate_id);
+            $filepath = public_path($candidateDetails->candidatePersonalDetails->candidate_resume);
+            $filename = $candidateDetails->candidatePersonalDetails->full_name;
+            // Get the original file name without the extension
+            $originalFileName = pathinfo($filepath, PATHINFO_FILENAME);
+            // Sanitize the name by replacing special characters with hyphens
+            $filename = preg_replace('/[^A-Za-z0-9\-]/', '-', $filename);
+            // Specify the desired file name and extension
+            $filename = $filename . '.' . pathinfo($filepath, PATHINFO_EXTENSION);
+            if(\Auth::check())
+            {
+               if(auth()->user()->hasRole('employer'))
+               {
+                 return response()->download($filepath,$filename);
+               }
+               else{
+                 toastr()->warning('Only Employer Can Download Resume');
+                 return redirect()->back();
+               }
+            }
+            else{
+                toastr()->warning('You are not Logged In, Please Login');
+                return redirect()->back();
+              }
         }
     }
 }

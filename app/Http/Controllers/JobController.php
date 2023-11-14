@@ -25,26 +25,60 @@ class JobController extends Controller
         {
             $allJobs = $allJobs->where('city_town',$request->SearchLocation);
         }
-        if(isset($request->SearchJobType) && $request->SearchJobType !='')
+
+         /* Search Job on Type Based */
+        if(isset($request->SearchFixedPriceJob) && $request->SearchFixedPriceJob !='')
         {
-            $allJobs = $allJobs->where('job_type',$request->SearchJobType);
+            $allJobs = $allJobs->where('job_type',$request->SearchFixedPriceJob);
         }
+        if(isset($request->SearchFullTimeJob) && $request->SearchFullTimeJob !='')
+        {
+            $allJobs = $allJobs->where('job_type',$request->SearchFullTimeJob);
+        }
+        if(isset($request->SearchPartTimeJob) && $request->SearchPartTimeJob !='')
+        {
+            $allJobs = $allJobs->where('job_type',$request->SearchPartTimeJob);
+        }
+        if(isset($request->SearchFreelanceJob) && $request->SearchFreelanceJob !='')
+        {
+            $allJobs = $allJobs->where('job_type',$request->SearchFreelanceJob);
+        }
+
+        /* Search Job on Accomodation Based */
         if(isset($request->SearchHousingIncluded) && $request->SearchHousingIncluded !='')
         {
             $allJobs = $allJobs->where('housing_included',$request->SearchHousingIncluded);
         }
-        if(isset($request->SearchHousingIncluded) && $request->SearchHousingIncluded !='')
-        {
-            $allJobs = $allJobs->where('housing_included',$request->SearchHousingIncluded);
-        }
+
+        /* Search Job on insurance Based */
         if(isset($request->SearchInsuranceIncluded) && $request->SearchInsuranceIncluded !='')
         {
             $allJobs = $allJobs->where('Insurance_included',$request->SearchInsuranceIncluded);
         }
-        if(isset($request->SearchExperience) && $request->SearchExperience !='')
+
+        /* Search Jobs on Fresher, Intermediate, Intership, No Experience and Expert Based */
+        if(isset($request->SearchFresher) && $request->SearchFresher !='')
         {
-            $allJobs = $allJobs->where('experience',$request->SearchExperience);
+            $allJobs = $allJobs->where('experience',$request->SearchFresher);
         }
+        if(isset($request->SearchIntermediate) && $request->SearchIntermediate !='')
+        {
+            $allJobs = $allJobs->where('experience',$request->SearchIntermediate);
+        }
+        if(isset($request->SearchInternship) && $request->SearchInternship !='')
+        {
+            $allJobs = $allJobs->where('experience',$request->SearchInternship);
+        }
+        if(isset($request->SearchExpert) && $request->SearchExpert !='')
+        {
+            $allJobs = $allJobs->where('experience',$request->SearchExpert);
+        }
+        if(isset($request->SearchNoExperience) && $request->SearchNoExperience !='')
+        {
+            $allJobs = $allJobs->where('experience',$request->SearchNoExperience);
+        }
+
+        /* Search Jobs on Salary Range Based */
         if(isset($request->SearchRangeMin) && $request->SearchRangeMin !='0')
         {
             $allJobs = $allJobs->where('monthly_salary', '>',$request->SearchRangeMin);
@@ -53,36 +87,7 @@ class JobController extends Controller
         {
             $allJobs = $allJobs->where('monthly_salary', '<', $request->SearchRangeMax);
         }
-        if(isset($request->SearchHousingIncluded) && $request->SearchHousingIncluded !='')
-        {
-            $allJobs = $allJobs->where('housing_details',$request->SearchHousingIncluded);
-        }
-        if(isset($request->SearchInsuranceIncluded) && $request->SearchInsuranceIncluded !='')
-        {
-            $allJobs = $allJobs->where('health_dental_insurance',$request->SearchInsuranceIncluded);
-        }
-        if(isset($request->SearchExperience1) && $request->SearchExperience1 !='')
-        {
-            $allJobs = $allJobs->where('experience_level',$request->SearchExperience1);
-        }
-        if(isset($request->SearchExperience2) && $request->SearchExperience2 !='')
-        {
-            $allJobs = $allJobs->where('experience_level',$request->SearchExperience2);
-        }
-        if(isset($request->SearchExperience3) && $request->SearchExperience3 !='')
-        {
-            $allJobs = $allJobs->where('experience_level',$request->SearchExperience3);
-        }
-        if(isset($request->SearchExperience4) && $request->SearchExperience4 !='')
-        {
-            $allJobs = $allJobs->where('experience_level',$request->SearchExperience4);
-        }
-        if(isset($request->SearchExperience5) && $request->SearchExperience5 !='')
-        {
-            $allJobs = $allJobs->where('experience_level',$request->SearchExperience5);
-        }
         
-
         $allJobs = $allJobs->paginate(2);
         return view('jobs-marketplace',compact('allJobs'));
     }

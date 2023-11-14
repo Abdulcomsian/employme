@@ -58,10 +58,9 @@
                                 </div>
                                 <div class="col-xl-3 col-md-4 order-xl-4">
                                     <div class="d-flex justify-content-md-end">
-                                        <a href="#" class="save-btn text-center rounded-circle tran3s"><i
-                                                class="bi bi-heart"></i></a>
-                                        <a href="#" class="cv-download-btn fw-500 tran3s ms-md-3 sm-mt-20">Download
-                                            CV</a>
+									<a  class="save-btn text-center rounded-circle tran3s save_candidate  save_candidate{{base64_encode($candidateDetails->id)}}" id="{{base64_encode($candidateDetails->id)}}" style="color:{{(savedCandidate($candidateDetails->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
+                                        <button class="cv-download-btn fw-500 tran3s ms-md-3 sm-mt-20" id="{{base64_encode($candidateDetails->id)}}">Download
+                                            CV</button>
                                     </div>
                                 </div>
                             </div>
@@ -271,6 +270,43 @@
             </div>
         </section>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
+        <script type="text/javascript">
+ 
+ $(document).ready(function() {
+       
+       /* Donwload Resume */
+       $(".cv-download-btn").click(function(){
+           var _token = "{{ csrf_token() }}";
+           var candidate_id = $(this).attr("id");
+           // Create a hidden form
+        var form = $('<form>', {
+            'action': "{{ url('download-resume') }}",
+            'method': 'post',
+        });
 
+        // Add necessary input fields
+        form.append($('<input>', {
+            'type': 'hidden',
+            'name': '_token',
+            'value': "{{ csrf_token() }}"
+        }));
+
+        form.append($('<input>', {
+            'type': 'hidden',
+            'name': 'candidate_id',
+            'value': candidate_id
+        }));
+
+        // Append the form to the body and submit it
+        $('body').append(form);
+        form.submit();
+
+        // Remove the form after submission
+        form.remove();
+         
+       });
+   });
+</script>
 @endsection

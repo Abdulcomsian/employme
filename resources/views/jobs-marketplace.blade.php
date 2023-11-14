@@ -90,10 +90,10 @@ Job Marketplace
 										<div class="main-body">
 											<select class="nice-select bg-white" name="SearchLocation">
 												<option value="">Select</option>
-												<option value="0">Washington DC</option>
-												<option value="1">California, CA</option>
-												<option value="2">New York</option>
-												<option value="3">Miami</option>
+												<option value="Washington DC" {{(isset($_GET['SearchLocation']) && $_GET['SearchLocation'] =='Washington DC') ? 'selected' : ''}}>Washington DC</option>
+												<option value="California, CA" {{(isset($_GET['SearchLocation']) && $_GET['SearchLocation'] =='California, CA') ? 'selected' : ''}}>California, CA</option>
+												<option value="New York" {{(isset($_GET['SearchLocation']) && $_GET['SearchLocation'] =='New York') ? 'selected' : ''}}>New York</option>
+												<option value="Miami" {{(isset($_GET['SearchLocation']) && $_GET['SearchLocation'] =='Miami') ? 'selected' : ''}}>Miami</option>
 											</select>
 										</div>
 									</div>
@@ -101,23 +101,23 @@ Job Marketplace
 								<!-- /.filter-block -->
 								<div class="filter-block bottom-line pb-25 mt-25">
 									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseJobType" role="button" aria-expanded="false">Job Type</a>
-									<div class="collapse show" id="collapseJobType">
+									<div class="collapse {{(isset($_GET['SearchFixedPriceJob']) || isset($_GET['SearchFullTimeJob']) || isset($_GET['SearchPartTimeJob']) || isset($_GET['SearchFreelanceJob'])) ? 'show' : ''}}" id="collapseJobType">
 										<div class="main-body">
 											<ul class="style-none filter-input">
 												<li>
-													<input type="checkbox" name="SearchJobType" value="Fixed-Price">
+													<input type="checkbox" name="SearchFixedPriceJob" value="Fixed-Price" {{isset($_GET['SearchFixedPriceJob']) ? 'checked' : ''}}>
 													<label>Fixed-Price <span>{{jobTypeCount('Fixed-Price')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchJobType" value="Full-Time">
+													<input type="checkbox" name="SearchFullTimeJob" value="Full-Time" {{isset($_GET['SearchFullTimeJob']) ? 'checked' : ''}}>
 													<label>Full-Time <span>{{jobTypeCount('Full-Time')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchJobType" value="Part-time">
+													<input type="checkbox" name="SearchPartTimeJob" value="Part-time" {{isset($_GET['SearchPartTimeJob']) ? 'checked' : ''}}>
 													<label>Part-time<span>{{jobTypeCount('Part-time')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchJobType" value="Freelance">
+													<input type="checkbox" name="SearchFreelanceJob" value="Freelance" {{isset($_GET['SearchFreelanceJob']) ? 'checked' : ''}}>
 													<label>Freelance <span>{{jobTypeCount('Freelance')}}</span></label>
 												</li>
 											</ul>
@@ -127,27 +127,27 @@ Job Marketplace
 								<!-- /.filter-block -->
 								<div class="filter-block bottom-line pb-25 mt-25">
 									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseExp" role="button" aria-expanded="false">Experience</a>
-									<div class="collapse show" id="collapseExp">
+									<div class="collapse {{(isset($_GET['SearchFresher']) || isset($_GET['SearchIntermediate']) || isset($_GET['SearchNoExperience']) || isset($_GET['SearchExpert']) || isset($_GET['SearchExperience5'])) ? 'show' : ''}}" id="collapseExp">
 										<div class="main-body">
 											<ul class="style-none filter-input">
 												<li>
-													<input type="checkbox" name="SearchExperience1" value="Fresher">
+													<input type="checkbox" name="SearchFresher" value="Fresher" {{isset($_GET['SearchFresher']) ? 'checked' : ''}}>
 													<label>Fresher <span>{{jobTypeCount('Fresher')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchExperience2" value="Intermediate">
+													<input type="checkbox" name="SearchIntermediate" value="Intermediate" {{isset($_GET['SearchIntermediate']) ? 'checked' : ''}}>
 													<label>Intermediate <span>{{jobTypeCount('Intermediate')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchExperience3" value="No-Experienc">
+													<input type="checkbox" name="SearchNoExperience" value="No-Experience" {{isset($_GET['SearchNoExperience']) ? 'checked' : ''}}>
 													<label>No-Experience <span>{{jobTypeCount('No-Experience')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchExperience4" value="Internship">
+													<input type="checkbox" name="SearchInternship" value="Internship" {{isset($_GET['SearchInternship']) ? 'checked' : ''}}>
 													<label>Internship <span>{{jobTypeCount('Internship')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchExperience4" value="Expert">
+													<input type="checkbox" name="SearchExpert" value="Expert" {{isset($_GET['SearchExpert']) ? 'checked' : ''}}>
 													<label>Expert <span>{{jobTypeCount('Expert')}}</span></label>
 												</li>
 											</ul>
@@ -157,7 +157,7 @@ Job Marketplace
 								<!-- /.filter-block -->
 								<div class="filter-block bottom-line pb-25 mt-25">
 									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseSalary" role="button" aria-expanded="false">Salary </a>
-									<div class="collapse show" id="collapseSalary">
+									<div class="collapse {{(isset($_GET['SearchRangeMin']) || isset($_GET['SearchRangeMax'])) ? 'show' : ''}}" id="collapseSalary">
 										<div class="main-body">
 											<div class="salary-slider">
 												<div class="price-input d-flex align-items-center pt-5">
@@ -200,12 +200,12 @@ Job Marketplace
 								<!-- house included demand of client -->
 								<div class="filter-block bottom-line pb-25 mt-25">
 									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false">Housing Included</a>
-									<div class="collapse show" id="collapseLocation">
+									<div class="collapse {{isset($_GET['SearchHousingIncluded']) ? 'show' : ''}}" id="collapseLocation">
 										<div class="main-body">
 											<select class="nice-select bg-white" name="SearchHousingIncluded">
 												<option value="">Select</option>
-												<option value="Yes">Yes</option>
-												<option value="No">No</option>
+												<option value="Yes" {{(isset($_GET['SearchHousingIncluded']) && $_GET['SearchHousingIncluded'] == 'Yes') ? 'selected' : ''}}>Yes</option>
+												<option value="No" {{(isset($_GET['SearchHousingIncluded']) && $_GET['SearchHousingIncluded'] == 'No') ? 'selected' : ''}}>No</option>
 											</select>
 										</div>
 									</div>
@@ -215,12 +215,12 @@ Job Marketplace
 								<!--  Insurances Included demand of client -->
 								<div class="filter-block bottom-line pb-25 mt-25">
 									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false"> Insurances Included </a>
-									<div class="collapse show" id="collapseLocation">
+									<div class="collapse {{isset($_GET['SearchInsuranceIncluded']) ? 'show' : ''}}" id="collapseLocation">
 										<div class="main-body">
 											<select class="nice-select bg-white" name="SearchInsuranceIncluded">
 												<option value="">Select</option>
-												<option value="Yes">Yes</option>
-												<option value="No">No</option>
+												<option value="Yes" {{(isset($_GET['SearchInsuranceIncluded']) && $_GET['SearchInsuranceIncluded'] == 'Yes') ? 'selected' : ''}}>Yes</option>
+												<option value="No" {{(isset($_GET['SearchInsuranceIncluded']) && $_GET['SearchInsuranceIncluded'] == 'No') ? 'selected' : ''}}>No</option>
 											</select>
 										</div>
 									</div>
