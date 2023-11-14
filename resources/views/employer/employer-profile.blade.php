@@ -348,12 +348,11 @@ Profile
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
-									<label for="">Technical resources available for teachingThis question is
-										required.</label>
+									<label for="">Technical resources available for teaching (This question is required)</label>
 									<select name="technicalResources" id="technicalResources" class="nice-select">
-										<option value="smart classrooms" {{$employerDetails->terms_and_conditions_acceptance == 'smart classrooms' ? 'selected' : ''}}>Smart Classrooms</option>
-										<option value="Teaching Software" {{$employerDetails->terms_and_conditions_acceptance == 'Teaching Software' ? 'selected' : ''}}>Teaching Software</option>
-										<option value="Other" {{$employerDetails->terms_and_conditions_acceptance == 'Other' ? 'selected' : ''}}>Other</option>
+										<option value="smart classrooms" {{$employerDetails->available_technical_resources == 'smart classrooms' ? 'selected' : ''}}>Smart Classrooms</option>
+										<option value="Teaching Software" {{$employerDetails->available_technical_resources == 'Teaching Software' ? 'selected' : ''}}>Teaching Software</option>
+										<option value="Other" {{$employerDetails->available_technical_resources == 'Other' ? 'selected' : ''}}>Other</option>
 									</select>
 								</div>
 							</div>
@@ -375,7 +374,7 @@ Profile
 									<select name="differentSubscriptionOptions" id="differentSubscriptionOptions" class="nice-select">
 										@isset($plans)
 										@foreach($plans as $plan)
-										<option value="{{$plan->id}}" {{$employerDetails->subscription_plan_id == '1' ? 'selected' : ''}}>{{$plan->name}} - ${{$plan->price}}/mo</option>
+										<option value="{{$plan->id}}" {{$employerDetails->subscription_plan_id == $plan->id ? 'selected' : ''}}>{{$plan->name}} - ${{$plan->price}}/mo</option>
 										@endforeach
 										@endisset
 									</select>
