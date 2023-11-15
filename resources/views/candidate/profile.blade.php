@@ -291,9 +291,9 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Current Location</label>
                                     <select name="currentLocation" id="currentLocation" class="nice-select">
-                                        <option value="California, CA" {{$candidatePersonalDetails->date_of_birth == 'California, CA' ? 'selected' : ''}}>California, CA</option>
-                                        <option value="New York" {{$candidatePersonalDetails->date_of_birth == 'New York' ? 'selected' : ''}}>New York</option>
-                                        <option value="Miami" {{$candidatePersonalDetails->date_of_birth == 'Miami' ? 'selected' : ''}}>Miami</option>
+                                        <option value="California, CA" {{$candidatePersonalDetails->current_location == 'California, CA' ? 'selected' : ''}}>California, CA</option>
+                                        <option value="New York" {{$candidatePersonalDetails->current_location == 'New York' ? 'selected' : ''}}>New York</option>
+                                        <option value="Miami" {{$candidatePersonalDetails->current_location == 'Miami' ? 'selected' : ''}}>Miami</option>
                                     </select>
                                 </div>
                             </div>
@@ -302,7 +302,7 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Designation</label>
-                                    <input type="text" name="candidateDesignation" id="candidateDesignation" placeholder="Designation" value = "{{$candidatePersonalDetails->date_of_birth ?? ''}}">
+                                    <input type="text" name="candidateDesignation" id="candidateDesignation" placeholder="Designation" value = "{{$candidatePersonalDetails->designation ?? ''}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -342,8 +342,8 @@ Profile
                                     <label for="">Resume</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
-                                            Upload Resume
-                                            <input type="file" id="candidate_resume" name="candidate_resume" placeholder="">
+                                            Upload Resume PDF
+                                            <input type="file" id="candidate_resume" name="candidate_resume" placeholder="" accept="application/pdf">
                                         </div>
 
                                         <button class="delete-btn tran3s">Delete</button>
