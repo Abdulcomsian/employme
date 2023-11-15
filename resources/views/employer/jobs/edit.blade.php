@@ -190,15 +190,15 @@ Post A Job
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Housing Included:</label>
                             <select class="nice-select" name="housing_included">
-                                <option value="Yes" selected>Yes</option>
-                                <option value="No">No</option>
+                                <option value="Yes" {{$employerJob->housing_included == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                <option value="No" {{$employerJob->housing_included == 'No' ? 'selected' : ''}}>No</option>
                             </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Insurance Included:</label>
                             <select class="nice-select" name="Insurance_included">
-                                <option value="Yes" selected>Yes</option>
-                                <option value="No">No</option>
+                                <option value="Yes" {{$employerJob->Insurance_included == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                <option value="No" {{$employerJob->Insurance_included == 'No' ? 'selected' : ''}}>No</option>
                             </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
