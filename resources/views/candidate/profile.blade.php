@@ -924,7 +924,7 @@ Profile
                         </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" onclick="previousStep(7)">Previous</button>
+                            <button type="button" class="dash-btn-one" onclick="previousStep(8)">Previous</button>
                             <button type="submit" class="dash-btn-one" id = "legal-verification-details">Submit</button>
                         </div>
                     </div>
