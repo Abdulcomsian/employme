@@ -86,7 +86,7 @@
 
 		@include('employer.layout.footer')
 
-		@yield('page-script')
+		@stack('page-script')
 
 	</div> <!-- /.main-page-wrapper -->
 </body>

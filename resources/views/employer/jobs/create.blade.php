@@ -489,7 +489,10 @@ Post A Job
 
         </form>
     </div>
-    <script>
+  
+
+   @push('page-script')
+   <script>
         var currentSection = 1;
 
         var sections = document.querySelectorAll('.section');
@@ -519,27 +522,27 @@ Post A Job
 
         }
     </script>
-    <script>
-       
-    $(document).ready(function() {
-        alert(8723547)
-        $('.number-input').on('keydown', function(e) {
-            // Allow digits (0-9), backspace, and the currency symbols
-            if (
-                (e.key >= '0' && e.key <= '9') || // Digits
-                e.key === 'Backspace' // Backspace
-                // e.key === '$' ||
-                // e.key === '.' || // Dollar sign
-                // e.key === '£' // Pound sign
-            ) {
-                return true; // Allow the keypress
-            } else {
-                e.preventDefault(); // Prevent input of other characters
-                return false;
-            }
+   <script>
+        $(document).ready(function() {
+            $('.number-input').on('keydown', function(e) {
+                // Allow digits (0-9), backspace, and the currency symbols
+                if (
+                    (e.key >= '0' && e.key <= '9') || // Digits
+                    e.key === 'Backspace' // Backspace
+                    // e.key === '$' ||
+                    // e.key === '.' || // Dollar sign
+                    // e.key === '£' // Pound sign
+                ) {
+                    return true; // Allow the keypress
+                } else {
+                    e.preventDefault(); // Prevent input of other characters
+                    return false;
+                }
+            });
         });
-    });
-</script>
+    </script>
+   @endpush
+
     <!-- <script>
     document.getElementById("myForm").addEventListener("submit", function(event) {
         event.preventDefault();
