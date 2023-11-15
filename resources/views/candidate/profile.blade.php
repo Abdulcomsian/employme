@@ -371,9 +371,9 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Highest Degree Obtained</label>
                                     <select name="highestDegreeObtained" id="highestDegreeObtained" class="nice-select">
-                                        <option value="Bachelor" {{$candidateEducationalDetails->highestDegreeObtained == 'Bachelor' ? 'selected' : ''}}>Bachelor</option>
-                                        <option value="Master" {{$candidateEducationalDetails->highestDegreeObtained == 'Master' ? 'selected' : ''}}>Master</option>
-                                        <option value="Doctorate" {{$candidateEducationalDetails->highestDegreeObtained == 'Doctorate' ? 'selected' : ''}}>Doctorate</option>
+                                        <option value="Bachelor" {{$candidateEducationalDetails->highest_degree == 'Bachelor' ? 'selected' : ''}}>Bachelor</option>
+                                        <option value="Master" {{$candidateEducationalDetails->highest_degree == 'Master' ? 'selected' : ''}}>Master</option>
+                                        <option value="Doctorate" {{$candidateEducationalDetails->highest_degree == 'Doctorate' ? 'selected' : ''}}>Doctorate</option>
                                     </select>
                                 </div>
                             </div>
@@ -394,13 +394,13 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">University/College Name & Country</label>
-                                    <input type="text" name="universityCollegeNameCountry" placeholder="Name of College or Univesity and Country" value = "{{$candidateEducationalDetails->field_of_study ?? ''}}">
+                                    <input type="text" name="universityCollegeNameCountry" placeholder="Name of College or Univesity and Country" value = "{{$candidateEducationalDetails->institute_name ?? ''}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Years of Teaching Experience</label>
-                                    <input type="number" name="yearsOfTeachingExperience" placeholder="Name of College or Univesity and Country" value = "{{$candidateEducationalDetails->teaching_experiance ?? ''}}">
+                                    <input type="number" name="yearsOfTeachingExperience" class="number-input" placeholder="Name of College or Univesity and Country" value = "{{$candidateEducationalDetails->teaching_experiance ?? ''}}">
 
                                 </div>
                             </div>
@@ -1546,5 +1546,25 @@ const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.te
        });
         //End of adding more educational details fields 
 
+</script>
+<!-- Validation to Input Field exluding '-' input -->
+<script>
+    $(document).ready(function() {
+        $('.number-input').on('keydown', function(e) {
+            // Allow digits (0-9), backspace, and the currency symbols
+            if (
+                (e.key >= '0' && e.key <= '9') || // Digits
+                e.key === 'Backspace' // Backspace
+                // e.key === '$' ||
+                // e.key === '.' || // Dollar sign
+                // e.key === '£' // Pound sign
+            ) {
+                return true; // Allow the keypress
+            } else {
+                e.preventDefault(); // Prevent input of other characters
+                return false;
+            }
+        });
+    });
 </script>
 @endsection

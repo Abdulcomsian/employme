@@ -219,7 +219,7 @@ Profile
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
 									<label for="">Phone number</label>
-									<input type="number" name="phoneNumber" placeholder="(201) 555-0123" value="{{$employerDetails->phone_number ?? ''}}">
+									<input type="number" class="number-input" name="phoneNumber" placeholder="(201) 555-0123" value="{{$employerDetails->phone_number ?? ''}}">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -234,13 +234,13 @@ Profile
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
 									<label for="">Number of Students</label>
-									<input type="number" name="numberOfStudents" placeholder="4935" value="{{$employerDetails->number_of_students ?? ''}}">
+									<input type="number" class="number-input" name="numberOfStudents" placeholder="4935" value="{{$employerDetails->number_of_students ?? ''}}">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
 									<label for="">Number of Teachers</label>
-									<input type="number" name="numberOfTeachers" placeholder="215" value="{{$employerDetails->number_of_teachers ?? ''}}">
+									<input type="number" class="number-input" name="numberOfTeachers" placeholder="215" value="{{$employerDetails->number_of_teachers ?? ''}}">
 								</div>
 							</div>
 						</div>
@@ -250,7 +250,7 @@ Profile
 								<div class="dash-input-wrapper mb-30">
 									<label for="">
 										Number of Administrative Staff</label>
-									<input type="number" name="numberOfAdministrativeStaff" placeholder="215" value="{{$employerDetails->number_of_administrative_staff ?? ''}}">
+									<input type="number" class="number-input" name="numberOfAdministrativeStaff" placeholder="215" value="{{$employerDetails->number_of_administrative_staff ?? ''}}">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -493,7 +493,7 @@ Profile
 								<div class="dash-input-wrapper mb-30">
 									<label for="">Number of foreign teachers recruited in the past 3
 										years</label>
-									<input type="number" name="numberOfForeignTeachersRecruited" placeholder="Type your answer here..." value="{{$employerDetails->foreign_teachers_in_3_years ?? ''}}">
+									<input type="number" class="number-input" name="numberOfForeignTeachersRecruited" placeholder="Type your answer here..." value="{{$employerDetails->foreign_teachers_in_3_years ?? ''}}">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -1078,9 +1078,26 @@ Profile
     
 	  
     }); 
+	
 </script>
-@push('page-script')
-<script src="{{asset('assets/js/select2-custom.js')}}"></script>
-<script src="{{asset('assets/js/select2.full.js')}}"></script>
-@endpush
+<!-- Validation to Input Field exluding '-' input -->
+<script>
+    $(document).ready(function() {
+        $('.number-input').on('keydown', function(e) {
+            // Allow digits (0-9), backspace, and the currency symbols
+            if (
+                (e.key >= '0' && e.key <= '9') || // Digits
+                e.key === 'Backspace' // Backspace
+                // e.key === '$' ||
+                // e.key === '.' || // Dollar sign
+                // e.key === '£' // Pound sign
+            ) {
+                return true; // Allow the keypress
+            } else {
+                e.preventDefault(); // Prevent input of other characters
+                return false;
+            }
+        });
+    });
+</script>
 @endsection

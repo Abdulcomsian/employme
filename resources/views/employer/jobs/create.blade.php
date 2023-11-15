@@ -145,15 +145,15 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Hours/Week:</label>
-                            <input type="number" name="hours_per_week" placeholder="">
+                            <input type="number" class="number-input" name="hours_per_week" placeholder="">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Teaching Hours/Day:</label>
-                            <input type="number" name="teaching_hours_per_day" placeholder="">
+                            <input type="number" class="number-input" name="teaching_hours_per_day" placeholder="">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Non-Teaching Hours/Day:</label>
-                            <input type="number" name="non_teaching_hours_per_day" placeholder="prep time, meetings">
+                            <input type="number" class="number-input" name="non_teaching_hours_per_day" placeholder="prep time, meetings">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Break times</label>
@@ -519,6 +519,27 @@ Post A Job
 
         }
     </script>
+    <script>
+       
+    $(document).ready(function() {
+        alert(8723547)
+        $('.number-input').on('keydown', function(e) {
+            // Allow digits (0-9), backspace, and the currency symbols
+            if (
+                (e.key >= '0' && e.key <= '9') || // Digits
+                e.key === 'Backspace' // Backspace
+                // e.key === '$' ||
+                // e.key === '.' || // Dollar sign
+                // e.key === '£' // Pound sign
+            ) {
+                return true; // Allow the keypress
+            } else {
+                e.preventDefault(); // Prevent input of other characters
+                return false;
+            }
+        });
+    });
+</script>
     <!-- <script>
     document.getElementById("myForm").addEventListener("submit", function(event) {
         event.preventDefault();

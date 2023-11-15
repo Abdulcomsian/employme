@@ -72,7 +72,7 @@ class CandidateController extends Controller
         // End of saving candidate profile code
 
         $input = $request->except('_token','profile_picture','candidate_resume','experience_level');
-        $updatePersonalDetails->update(array_merge($input,['profile_picture'=>$imagename,'candidate_resume'=>$imagename1,]));
+        $updatePersonalDetails->update(array_merge($input,['profile_picture'=>$imagename,'candidate_resume'=>$imagename1]));
 
         //Saving Candidate Experience Level to Candidate Preferences Table
         $updatePreferencesDetails->update(['experience_level'=>$request->experience_level]);
