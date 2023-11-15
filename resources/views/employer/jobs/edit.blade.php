@@ -145,15 +145,15 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Hours/Week:</label>
-                            <input type="number" name="hours_per_week" placeholder="" value="{{$employerJob->hours_per_week ?? ''}}">
+                            <input type="number" class="number-input" name="hours_per_week" placeholder="" value="{{$employerJob->hours_per_week ?? ''}}">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Teaching Hours/Day:</label>
-                            <input type="number" name="teaching_hours_per_day" placeholder="" value="{{$employerJob->teaching_hours_per_day ?? ''}}">
+                            <input type="number" class="number-input" name="teaching_hours_per_day" placeholder="" value="{{$employerJob->teaching_hours_per_day ?? ''}}">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Non-Teaching Hours/Day:</label>
-                            <input type="number" name="non_teaching_hours_per_day" placeholder="prep time, meetings" value="{{$employerJob->non_teaching_hours_per_day ?? ''}}">
+                            <input type="number" class="number-input" name="non_teaching_hours_per_day" placeholder="prep time, meetings" value="{{$employerJob->non_teaching_hours_per_day ?? ''}}">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Break times</label>
@@ -490,6 +490,8 @@ Post A Job
 
         </form>
     </div>
+
+    @push('page-script')
     <script>
         var currentSection = 1;
 
@@ -520,6 +522,26 @@ Post A Job
 
         }
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.number-input').on('keydown', function(e) {
+                // Allow digits (0-9), backspace, and the currency symbols
+                if (
+                    (e.key >= '0' && e.key <= '9') || // Digits
+                    e.key === 'Backspace' // Backspace
+                    // e.key === '$' ||
+                    // e.key === '.' || // Dollar sign
+                    // e.key === '£' // Pound sign
+                ) {
+                    return true; // Allow the keypress
+                } else {
+                    e.preventDefault(); // Prevent input of other characters
+                    return false;
+                }
+            });
+        });
+    </script>
+    @endpush
     <!-- <script>
     document.getElementById("myForm").addEventListener("submit", function(event) {
         event.preventDefault();
