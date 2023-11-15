@@ -13,7 +13,7 @@
 <script src="{{asset('assets/vendor/jquery.lazy.min.js')}}"></script>
 <!-- js Counter -->
 <script src="{{asset('assets/vendor/jquery.counterup.min.js')}}"></script>
-<script src="../vendor/jquery.waypoints.min.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery.waypoints.min.js')}}"></script>
 <!-- Nice Select -->
 <script src="{{asset('assets/vendor/nice-select/jquery.nice-select.min.js')}}"></script>
 <!-- validator js -->

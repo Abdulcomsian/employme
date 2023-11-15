@@ -3,6 +3,8 @@
 @section('title')
 Profile
 @endsection
+@push('page-css')
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.css')}}" media="all">	
 <style>
 	.step {
 		display: none;
@@ -53,8 +55,7 @@ Profile
 		font-weight: 600;
 	}
 </style>
-@push('page-css')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.css')}}" media="all">	
+
 @endpush
 @section('content')
 <div class="dashboard-body">
@@ -668,8 +669,8 @@ Profile
 		</div> -->
 	</div>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+@push('page-script')
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
@@ -1100,4 +1101,5 @@ Profile
         });
     });
 </script>
+@endpush
 @endsection

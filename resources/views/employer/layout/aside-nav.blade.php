@@ -2,7 +2,7 @@
 	<div class="position-relative">
 		<div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
 			<a href="candidate-dashboard-index.html">
-				<img src="images/logo_01.png" alt="">
+				<img src="{{asset('assets/images/logo_01.png')}}" alt="">
 			</a>
 			<button class="close-btn d-block d-md-none"><i class="bi bi-x-lg"></i></button>
 		</div>
@@ -85,11 +85,11 @@
 
 				
 					<!-- <li><a href="#" class="d-flex w-100 align-items-center" data-bs-toggle="modal" data-bs-target="#deleteModal">
-							<img src="../images/lazy.svg" data-src="images/icon/icon_8.svg" alt="" class="lazy-img">
+							<img src="{{asset('assets/images/lazy.svg')}}" data-src="images/icon/icon_8.svg" alt="" class="lazy-img">
 							<span>Delete Account</span>
 						</a></li>
 						<li><a href="employer-dashboard-company-page.html" class="d-flex w-100 align-items-center">
-							<img src="../images/lazy.svg" data-src="images/icon/icon_40.svg" alt="" class="lazy-img">
+							<img src="{{asset('assets/images/lazy.svg')}}" data-src="images/icon/icon_40.svg" alt="" class="lazy-img">
 							<span>Company Page</span>
 						</a></li> -->
 			</ul>
