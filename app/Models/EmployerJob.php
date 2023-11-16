@@ -18,6 +18,7 @@ class EmployerJob extends Model
         'housing_included',
         'Insurance_included',
         'job_title',
+        'job_category_id',
         'job_type',
         'contract_duration',
         'start_date',

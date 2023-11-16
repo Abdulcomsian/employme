@@ -113,29 +113,29 @@ function deleteAllCandidateProfileImages()
     }
 }
 
-function deleteAllCandidateVideo()
-{
-    // Define the directory path (in this case, 'public/images')
-    $directory = public_path(candidateProfilePicturePath());
+// function deleteAllCandidateVideo()
+// {
+//     // Define the directory path (in this case, 'public/images')
+//     $directory = public_path(candidateTeachingVideoPath());
 
-    if (File::isDirectory($directory)) {
-        // Get a list of all files in the directory
-        $files = File::files($directory);
+//     if (File::isDirectory($directory)) {
+//         // Get a list of all files in the directory
+//         $files = File::files($directory);
 
-        foreach ($files as $file) {
-            // Check if the file is an image (you can add more checks here)
-            if (str_contains($file->getMimeType(), 'image')) {
-                // Unlink (delete) the image file
-                File::delete($file);
-            }
-        }
+//         foreach ($files as $file) {
+//             // Check if the file is an image (you can add more checks here)
+//             if (str_contains($file->getMimeType(), 'video')) {
+//                 // Unlink (delete) the image file
+//                 File::delete($file);
+//             }
+//         }
 
-        return "All images in the 'images' directory have been deleted.";
-    } else {
-        return "The specified directory does not exist.";
-    }
+//         return "All images in the 'images' directory have been deleted.";
+//     } else {
+//         return "The specified directory does not exist.";
+//     }
     
-}
+// }
 
 function employeProfilePercentage()
 {

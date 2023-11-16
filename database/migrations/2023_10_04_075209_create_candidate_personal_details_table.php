@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('full_name')->nullable();
             $table->string('designation')->nullable();
+            $table->unsignedBigInteger('job_category_id')->nullable();
             $table->unsignedBigInteger('nationality')->nullable();
             $table->unsignedBigInteger('passport')->nullable();
             $table->enum('current_visa_status', ['No Visa', 'Tourist Visa', 'Student Visa','E2 Teaching Visa'])->default('No Visa');

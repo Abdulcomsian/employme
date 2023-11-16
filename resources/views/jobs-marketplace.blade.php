@@ -25,10 +25,22 @@ Job Marketplace
 						<div class="job-search-one position-relative" method="get">
 							<form action="{{route('jobMarketplace')}}">
 								<div class="row">
-									<div class="col-md-9">
+									<div class="col-md-5">
 										<div class="input-box">
 											<div class="label">What are you looking for?</div>
 											<input type="text" class="form-control form-control-lg" name="SearchJobTitle" placeholder = "Search a Job"/>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="input-box border-left">
+											<div class="label">Category</div>
+											<select name="SearchJobCategory" class="nice-select lg">
+												@isset($jobCategories)
+												@foreach($jobCategories as $jobCategory)
+												<option value="{{$jobCategory->id}}">{{$jobCategory->name}}</option>
+												@endforeach
+												@endisset
+											</select>
 										</div>
 									</div>
 									<!-- <div class="col-md-4">

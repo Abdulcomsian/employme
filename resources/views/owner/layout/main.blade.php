@@ -11,7 +11,7 @@
 			<script src="vendor/html5shiv.js"></script>
 			<script src="vendor/respond.js"></script>
 		<![endif]-->
-	@yield('page-css')
+	@stack('page-css')
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<!--  test -->
@@ -91,7 +91,7 @@
 
 		@include('owner.layout.footer')
 
-		@yield('page-script')
+		@stack('page-script')
 	
 	</div> <!-- /.main-page-wrapper -->
 </body>

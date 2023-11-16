@@ -12,6 +12,7 @@ use App\Models\Cities;
 use App\Models\Countries;
 use App\Models\SavedJob;
 use App\Models\EmployerJob;
+use App\Models\JobCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 class CandidateController extends Controller
@@ -30,8 +31,9 @@ class CandidateController extends Controller
         $professionalSkills = ProfessionalSkills::all();
         $southKoreaCities = Cities::where('country_id',116)->get();
         $countries = Countries::all();
+        $jobCategories = JobCategory::all();
         // dd($candidatePreferencesDetails->skills);
-        return view('candidate.profile',compact('countries','candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities','candidatePreferencesDetails'));
+        return view('candidate.profile',compact('countries','candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities','candidatePreferencesDetails','jobCategories'));
     }
 
     public function getResumePage()

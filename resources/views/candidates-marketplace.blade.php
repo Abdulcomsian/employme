@@ -44,26 +44,18 @@ Candidate Marketplace
 									<div class="col-md-5">
 										<div class="input-box">
 											<div class="label">What are you looking for?</div>
-											<select class="nice-select lg">
-												<option value="1">UI Designer</option>
-												<option value="2">Content creator</option>
-												<option value="3">Web Developer</option>
-												<option value="4">SEO Guru</option>
-												<option value="5">Digital marketer</option>
-											</select>
+											<input type="text" class="form-control form-control-lg" name="SearchJobTitle" placeholder = "Search Candidate"/>
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="input-box border-left">
 											<div class="label">Category</div>
-											<select class="nice-select lg">
-												<option value="1">Web Design</option>
-												<option value="2">Design & Creative</option>
-												<option value="3">It & Development</option>
-												<option value="4">Web & Mobile Dev</option>
-												<option value="5">Writing</option>
-												<option value="6">Sales & Marketing</option>
-												<option value="7">Music & Audio</option>
+											<select name="SearchJobCategory" class="nice-select lg">
+												@isset($jobCategories)
+												@foreach($jobCategories as $jobCategory)
+												<option value="{{$jobCategory->id}}">{{$jobCategory->name}}</option>
+												@endforeach
+												@endisset
 											</select>
 										</div>
 									</div>

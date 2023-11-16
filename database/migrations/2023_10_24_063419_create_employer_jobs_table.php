@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('Insurance_included',['Yes','No'])->nullable();
             $table->text('ideal_candidate_profile')->nullable();
             $table->longText('job_title')->nullable();
+            $table->unsignedInteger('job_category_id')->nullable();
             $table->text('job_type')->nullable();
             $table->string('contract_duration')->nullable();
             $table->date('start_date')->nullable();

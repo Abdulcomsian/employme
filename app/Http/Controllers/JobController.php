@@ -6,6 +6,7 @@ use App\Models\EmployerJob;
 use App\Models\EmployerDetails;
 use App\Models\CandidatePersonalDetails;
 use App\Models\User;
+use App\Models\JobCategory;
 use App\Models\JobApplication;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -15,11 +16,17 @@ use App\Notifications\JobApplicationNotification;
 use App\Models\SavedJob;
 class JobController extends Controller
 {
+
     public function jobMarketplace(Request $request){
         $allJobs = EmployerJob::with('employerDetails');
+        $jobCategories = JobCategory::all();
         if(isset($request->SearchJobTitle) && $request->SearchJobTitle !='')
         {
             $allJobs = $allJobs->where('job_title','like','%'.$request->SearchJobTitle.'%');
+        }
+        if(isset($request->SearchJobCategory) && $request->SearchJobCategory !='')
+        {
+            $allJobs = $allJobs->where('job_category_id', $request->SearchJobCategory);
         }
         if(isset($request->SearchLocation) && $request->SearchLocation !='')
         {
@@ -89,7 +96,7 @@ class JobController extends Controller
         }
         
         $allJobs = $allJobs->paginate(2);
-        return view('jobs-marketplace',compact('allJobs'));
+        return view('jobs-marketplace',compact('allJobs','jobCategories'));
     }
 
     public function getJobAlertPage(){

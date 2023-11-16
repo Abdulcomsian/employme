@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('manages', function (Blueprint $table) {
+        Schema::create('job_categories', function (Blueprint $table) {
             $table->id();
             $table->text('name')->nullable();
-            $table->unsignedBigInteger('module_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('manages');
+        Schema::dropIfExists('job_categories');
     }
 };

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\EmployerJob;
+use App\Models\JobCategory;
 use Illuminate\Support\Facades\Auth;
 class EmployerJobController extends Controller
 {
@@ -21,6 +22,7 @@ class EmployerJobController extends Controller
      */
     public function create()
     {
+        $jobCategories = JobCategory::all();
         return view('employer.jobs.create',get_defined_vars());
     }
 
@@ -56,6 +58,7 @@ class EmployerJobController extends Controller
      */
     public function edit(string $id)
     {
+        $jobCategories = JobCategory::all();
         $employerJob = EmployerJob::find($id);
         return view('employer.jobs.edit',get_defined_vars());
     }

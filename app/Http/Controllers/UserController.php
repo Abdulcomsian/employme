@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\Models\EmployerJob;
 use App\Models\EmployerDetails;
 use App\Models\SavedCandidate;
+use App\Models\JobCategory;
 use Illuminate\Support\Facades\Auth;
 use File;
 use Response;
@@ -32,7 +33,7 @@ class UserController extends Controller
     {
         // dd($request->all());
         $candidates = User::role('candidate')->with('candidatePreferences','candidateEducation','candidatePersonalDetails','candidatePersonalDetails.getNationality','candidatePersonalDetails.getPassport');
-
+        $jobCategories = JobCategory::all();
         //Search Candidate on  Location Based
         if(isset($request->SearchCandidateLocation) && $request->SearchCandidateLocation !='')
         {
@@ -40,7 +41,12 @@ class UserController extends Controller
                 $query->where('current_location',$request->SearchCandidateLocation);
             });
         }
-
+        if(isset($request->SearchJobCategory) && $request->SearchJobCategory !='')
+        {
+            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
+                $query->where('job_category_id',$request->SearchJobCategory);
+            });
+        }
         //Search Candidate on  Minimum Salary Based
         if(isset($request->SearchCanidateMinSalary) && $request->SearchCanidateMinSalary !='')
         {
@@ -172,7 +178,7 @@ class UserController extends Controller
 
         $candidates = $candidates->paginate(2);
 
-        return view('candidates-marketplace',compact('candidates'));
+        return view('candidates-marketplace',compact('candidates','jobCategories'));
     }
 
     public function getEmployerAccountSettingpage()

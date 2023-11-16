@@ -307,6 +307,21 @@ Profile
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
+                                    <label for="">Type</label>
+                                    <select name="designationType" id="designationType" class="nice-select">
+                                        @isset($jobCategories)
+                                        @foreach($jobCategories as $jobCategory)
+                                        <option value="{{$jobCategory->id}}" {{$candidatePersonalDetails->job_category_id == $jobCategory->id ? 'selected' : ''}}>{{$jobCategory->name}}</option>
+                                        @endforeach
+                                        @endisset
+                                    </select>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
                                     <label for="">Experience Level</label>
                                     <select name="ExperienceLevel" id="ExperienceLevel" class="nice-select">
                                         <option value="Fresher" {{$candidatePreferencesDetails->experience_level == 'Fresher' ? 'selected' : ''}}>Fresher</option>
@@ -325,13 +340,13 @@ Profile
                                     <label for="">Profile Photo</label>
                                     <div class="user-avatar-setting d-flex align-items-center">
                                         @if($candidatePersonalDetails->profile_picture)
-                                        <img src="{{asset($candidatePersonalDetails->profile_picture)}}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+                                        <img src="{{asset($candidatePersonalDetails->profile_picture)}}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img" >
                                         @else
                                         <img src="{../images/lazy.svg}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
                                         @endif
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload profile photo
-                                            <input type="file" id="uploadImg" name="profileImage" placeholder="">
+                                            <input type="file" id="uploadImg" name="profileImage" placeholder="" accept="image/png, image/jpeg">
                                         </div>
                                         <button class="delete-btn tran3s">Delete</button>
                                     </div>
@@ -716,7 +731,7 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Preferred City/Region in South Korea</label>
-                                    <input type="text" name="preferredCityRegionInSouthKorea" id="preferredCityRegionInSouthKorea" placeholder="Preferred City/Region in South Korea" value = "{{$candidatePersonalDetails->preferred_city_region ?? ''}}">
+                                    <input type="text" name="preferredCityRegionInSouthKorea" id="preferredCityRegionInSouthKorea" placeholder="Preferred City/Region in South Korea" value = "{{$candidatePreferencesDetails->preferred_city_region ?? ''}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -828,8 +843,8 @@ Profile
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Why Interested in Teaching in South Korea</label>
-                                    <textarea  name="whyInterestedInTeachingInSouthKorea"  >{{$candidatePersonalDetails->whyInterestedInTeachingInSouthKorea ?? ''}}</textarea>
+                                    <label for="">Why Interested Teaching in South Korea</label>
+                                    <textarea  name="whyInterestedInTeachingInSouthKorea"  >{{$candidatePersonalDetails->why_interested_teaching_in_korea ?? ''}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -838,7 +853,7 @@ Profile
                             <div class="col-md-12">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Language Proficiency</label>
-                                    <textarea  name="languageProficiency"  >{{$candidatePersonalDetails->languageProficiency ?? ''}}</textarea>
+                                    <textarea  name="languageProficiency"  >{{$candidatePersonalDetails->language_proficiency ?? ''}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -858,7 +873,7 @@ Profile
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload new video
-                                            <input type="file" id="teachingVideo" name="teachingVideo" placeholder="">
+                                            <input type="file" id="teachingVideo" name="teachingVideo" placeholder="" accept="video/mp4">
                                         </div>
 
                                         <button class="delete-btn tran3s">Delete</button>
@@ -875,6 +890,11 @@ Profile
                                     <label for="">Link to VideoAsk</label>
                                     <input type="text" name="linkToVideoAsk" placeholder="A direct link or button that takes them to the VideoAsk platform to record or upload their video (this is mandatory but can be completed after the sign-up as well)" value = "{{$candidatePreferencesDetails->other_platform_video_url ?? ''}}">
                                 </div>
+                                    @if(isset($candidatePreferencesDetails->other_platform_video_url) && !empty($candidatePreferencesDetails->other_platform_video_url))
+                                    <div style = "padding-left:20px;">
+                                        <a class="btn btn-primary" href = "{{$candidatePreferencesDetails->other_platform_video_url}}" target = "_blank">Link</a>
+                                    </div>
+                                    @endif
                             </div>
                         </div>
 
@@ -1127,6 +1147,7 @@ Profile
         formData.append("_token", "{{ csrf_token() }}");
         formData.append("full_name", $("#multi-step-form").find("[name=fullName]").val());
         formData.append("designation", $("#multi-step-form").find("[name=candidateDesignation]").val());
+        formData.append("job_category_id", $("#multi-step-form").find("[name=designationType]").val());
         formData.append("experience_level", $("#multi-step-form").find("[name=ExperienceLevel]").val());
         formData.append("gender", $("#multi-step-form").find("[name=gender]").val());
         formData.append("current_location", $("#multi-step-form").find("[name=currentLocation]").val());

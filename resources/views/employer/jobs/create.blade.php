@@ -68,10 +68,28 @@ Post A Job
                 <div class="bg-white card-box border-20 hide section" id="step2">
                     <h4 class="dash-title-three">Position Details</h4>
                     <div class="row">
-
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Job Category:</label>
+                            <select name="job_category_id" id="job_category_id" class="nice-select">
+                                @isset($jobCategories)
+                                @foreach($jobCategories as $jobCategory)
+                                <option value="{{$jobCategory->id}}">{{$jobCategory->name}}</option>
+                                @endforeach
+                                @endisset
+                            </select>
+                        </div>
+                        <!-- /.dash-input-wrapper -->
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Job Title:</label>
                             <input type="text" name="job_title" placeholder="e.g., ESL Instructor, Children’s English Teacher">
+                        </div>
+                    
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Renewal Possibilities:</label>
+                            <select class="nice-select" name="renewal_possibilities">
+                                <option value="Yes" selected>Yes</option>
+                                <option value="No">No</option>
+                            </select>
                         </div>
                         <!-- /.dash-input-wrapper -->
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -86,13 +104,6 @@ Post A Job
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">End Date:</label>
                             <input type="date" name="end_date" placeholder=""></input>
-                        </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Renewal Possibilities:</label>
-                            <select class="nice-select" name="renewal_possibilities">
-                                <option value="Yes" selected>Yes</option>
-                                <option value="No">No</option>
-                            </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-12">
                             <label for="">Salary Breakdown:</label>

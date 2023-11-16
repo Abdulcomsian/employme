@@ -1,19 +1,3 @@
-<!-- Module drop dwon Styles !-->
-<!-- <style>
-    .dropdown-container{
-        height: 0px;
-        padding-left: 42px;
-        overflow:hidden;
-  
-    }
-    .collpased{
-        height: auto
-    }
-    .fa-caret-down {
-  float: right;
-  padding-right: 8px;
-}
-</style> -->
 <!-- End of Module drop dwon Styles !-->
 <aside class="dash-aside-navbar">
     <div class="position-relative">
@@ -115,7 +99,7 @@
                 <li>
                     <ul class="dropdown-container ">
                         <li>
-                            <a href="{{route('modules.index')}}" class="d-flex w-100 align-items-center {{ request()->is('owner/modules') ? 'active' : '' }}">Manage</a>
+                            <a href="#" class="d-flex w-100 align-items-center ">Manage</a>
                         </li>
                         <li>
                             <a href="" class="d-flex w-100 align-items-center">Manage Items</a>
@@ -132,7 +116,16 @@
                 </li> -->
 
                  <!--- End of Moduels Code -->
-                 
+                <li>
+                <a class="d-flex w-100 align-items-center" data-bs-toggle="collapse" href="#collapseJobType" role="button" aria-expanded="false">Manage Modules</a>
+                    <div class="collapse " id="collapseJobType">
+                        <div class="main-body">
+                            <ul class="style-none filter-input">
+                            <li><a href="{{route('job-categories.index')}}" class="d-flex w-100 align-items-center"> <img src="{{ asset('assets/images/lazy.svg') }}" data-src="" alt="" class="lazy-img"><span>Job Category</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li> 
                 <li><a href="{{ route('getPlans') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/plans') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
@@ -227,17 +220,3 @@
         </a>
     </div>
 </aside>
-
-<!-- Module drop dwon Javascript !-->
-<!-- <script>
-/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-var dropdown = document.querySelector(".dropdown-btn");
-const dropDownContiner = document.querySelector('.dropdown-container ')
-
-
-  dropdown.addEventListener("click", function(e) {
-    console.log(e.target)
-    dropDownContiner.classList.toggle('collpased')
-  });
-</script> -->
-<!-- End of Module drop dwon Javascript !-->

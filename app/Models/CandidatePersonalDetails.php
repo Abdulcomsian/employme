@@ -12,6 +12,7 @@ class CandidatePersonalDetails extends Model
         'nationality',
         'full_name',
         'designation',
+        'job_category_id',
         'passport',
         'gender',
         'current_visa_status',
