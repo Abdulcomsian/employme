@@ -98,6 +98,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
     Route::post('save-profile-6',[CandidateController::class,'saveProfile6'])->name('candidate.profile-6.save');
     Route::post('save-profile-7',[CandidateController::class,'saveProfile7'])->name('candidate.profile-7.save');
     Route::get('saved-jobs', [CandidateController::class, 'candidateSavedJobs'])->name('candidateSavedJobs');
+    Route::post('update-account-settings', [UserController::class, 'updateCandidateAccountSettingpage'])->name('candidate.updateAccountSettingpage');
     Route::delete('removed-job/{id}', [CandidateController::class, 'removeSavedJob'])->name('removeSavedJob');
 });
 //candidate dashboard route ends here
@@ -111,7 +112,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('employer-dashboard-message', [MessageController::class, 'getEmployerMessage'])->name('getEmployerDashboardMessage');
     Route::get('employer-dashboard-saved-candidate', [EmployerController::class, 'getEmployerCandidate'])->name('getEmployerDashboardSavedCandidate');
     Route::get('employer-dashboard-subscription-plan', [EmployerController::class, 'getEmployerSubscription'])->name('getEmployerSubscriptionPlan');
-    Route::get('employer-dashboard-settings', [UserController::class, 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
+    Route::get('employer-account-settings', [UserController::class, 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
     Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
     Route::resource('employer-jobs', EmployerJobController::class);
@@ -131,6 +132,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], fu
     Route::post('employer/save-profile-8',[EmployerController::class,'saveProfile8'])->name('employer.profile-8.save');
     Route::post('employer/save-profile-9',[EmployerController::class,'saveProfile9'])->name('employer.profile-9.save');
     Route::post('subscription', [SubscriptionController::class, 'subscription'])->name("subscription.create");
+    Route::post('update-account-settings', [UserController::class, 'updateEmployerAccountSettingpage'])->name('employer.updateAccountSettingpage');
     Route::get('saved-candidates', [EmployerController::class, 'employerSavedCandidates'])->name('employerSavedCandidates');
     Route::delete('removed-candidate/{id}', [EmployerController::class, 'removeSavedCandidate'])->name('removeSavedCandidate');
 

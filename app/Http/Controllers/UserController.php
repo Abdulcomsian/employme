@@ -8,11 +8,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\EmployerJob;
 use App\Models\EmployerDetails;
+use App\Models\CandidatePersonalDetails;
 use App\Models\SavedCandidate;
 use App\Models\JobCategory;
 use Illuminate\Support\Facades\Auth;
 use File;
 use Response;
+use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
 
@@ -26,9 +28,40 @@ class UserController extends Controller
 
     public function getAccountSettingsPage()
     {
-        return view('candidate.account-settings');
+        $candidateDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
+        return view('candidate.account-settings',compact('candidateDetails'));
     }
+   public function updateCandidateAccountSettingpage(Request $request)
+   {
+    $request->validate([
+        'email' => [
+            'required',
+            'email',
+            Rule::unique('users')->ignore(Auth::id()),
+        ],
+        'password' => 'nullable|min:8', // Allow nullable for password field
+    ]);
+    $user = User::find(Auth::id());
 
+    // Update email
+    $user->update([
+        'email' => $request->email,
+    ]);
+    
+    // Update password only if it's not empty
+    if (!empty($request->password)) {
+        $user->update([
+            'password' => $request->password,
+        ]);
+    }
+    
+    // Update EmployerDetails
+    CandidatePersonalDetails::where('user_id', Auth::id())->update([
+        'full_name' => $request->full_name,
+    ]);
+    
+    return redirect()->back()->with('status','Account Settings Updated Successfully');
+   }
     public function candidatesMarketplace(Request $request)
     {
         // dd($request->all());
@@ -183,9 +216,41 @@ class UserController extends Controller
 
     public function getEmployerAccountSettingpage()
     {
-        return view('employer.employer-dashboard-settings');
+        $employerDetails = EmployerDetails::where('user_id',Auth::id())->first();
+        return view('employer.employer-dashboard-settings',compact('employerDetails'));
     }
+    public function updateEmployerAccountSettingpage(Request $request)
+    {
+        $request->validate([
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore(Auth::id()),
+            ],
+            'password' => 'nullable|min:8', // Allow nullable for password field
+        ]);
+        $user = User::find(Auth::id());
 
+        // Update email
+        $user->update([
+            'email' => $request->email,
+        ]);
+        
+        // Update password only if it's not empty
+        if (!empty($request->password)) {
+            $user->update([
+                'password' => $request->password,
+            ]);
+        }
+        
+        // Update EmployerDetails
+        EmployerDetails::where('user_id', Auth::id())->update([
+            'institution' => $request->institution,
+            'phone_number' => $request->phone_number,
+        ]);
+        
+        return redirect()->back()->with('status','Account Settings Updated Successfully');
+    }
     public function jobDetails($id)
     {
         $jobId = Crypt::decryptString($id);

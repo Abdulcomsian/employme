@@ -20,8 +20,11 @@
 			<!-- /.user-avatar -->
 			<div class="user-name-data">
 				<button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-				{{auth()->user()->name}}
-				</button>
+				@if(isset(auth()->user()->employerDetails->institution))
+                 {{auth()->user()->employerDetails->institution}}
+                 @else
+                 {{auth()->user()->name}}
+                 @endif				</button>
 				<ul class="dropdown-menu" aria-labelledby="profile-dropdown">
 					<li>
 						<a class="dropdown-item d-flex align-items-center" href="{{route('getEmployerProfile')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>

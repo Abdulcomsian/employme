@@ -19,7 +19,11 @@
             <!-- /.user-avatar -->
             <div class="user-name-data">
                 <button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                {{auth()->user()->name}}
+                @if(isset(auth()->user()->candidatePersonalDetails->full_name))
+                 {{auth()->user()->candidatePersonalDetails->full_name}}
+                 @else
+                 {{auth()->user()->name}}
+                 @endif
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
                     <li>

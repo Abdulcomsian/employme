@@ -147,7 +147,7 @@ Reset Password
                         </a>
                     </div>
                 </div> -->
-                <p class="text-center mt-10">Have an account? <a href="#" class="fw-500" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</a></p>
+                <!-- <p class="text-center mt-10">Have an account? <a href="#" class="fw-500" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</a></p> -->
             </div>
          
         </div>
