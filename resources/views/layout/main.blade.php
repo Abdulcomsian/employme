@@ -69,7 +69,7 @@
 												<input type="checkbox" id="remember">
 												<label for="remember">Keep me logged in</label>
 											</div>
-											<a href="#">Forget Password?</a>
+											<a href="{{asset('/forgot-password')}}">Forget Password?</a>
 										</div> <!-- /.agreement-checkbox -->
 									</div>
 									<div class="col-12">

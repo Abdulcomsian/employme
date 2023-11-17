@@ -129,7 +129,7 @@ class CandidateController extends Controller
         if ($request->file('video_url')) {
             $file = $request->file('video_url');
             $filePath = candidateTeachingVideoPath();
-            $video_url = saveFile($file, $filePath , $updatePreferencesDetails->video_url);
+            $video_url = saveFile($filePath, $file, $updatePreferencesDetails->video_url);
         }
         // End of saving candidate profile code
 
