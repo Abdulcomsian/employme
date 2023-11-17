@@ -84,7 +84,9 @@ Reset Password
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-25">
                                         <label>{{ __('Password') }}</label>
-                                        <input id="password" type="password" name="password" class="@error('password') is-invalid @enderror" placeholder="Password" required autocomplete="new-password">
+                                        <input id="password" type="password" name="password" class="@error('password') is-invalid @enderror pass_log_id" placeholder="Password" required autocomplete="new-password">
+                                        <span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
+
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -95,7 +97,8 @@ Reset Password
                                 <div class="col-12">
                                     <div class="input-group-meta position-relative mb-25">
                                         <label>{{ __('Confirm Password') }}</label>
-                                        <input id="password-confirm" type="password" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
+                                        <input id="password-confirm" type="password" name="password_confirmation" class="pass_log_id" placeholder="Confirm Password" required autocomplete="new-password">
+                                        <span class="placeholder_icon"><span class="passVicon"><img src="{{asset('assets/images/icon/icon_60.svg')}}" alt=""></span></span>
                                     </div>
                                 </div>
                                 
