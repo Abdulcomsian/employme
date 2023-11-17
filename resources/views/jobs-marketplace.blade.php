@@ -28,18 +28,20 @@ Job Marketplace
 									<div class="col-md-5">
 										<div class="input-box">
 											<div class="label">What are you looking for?</div>
-											<input type="text" class="form-control form-control-lg" name="SearchJobTitle" placeholder = "Search a Job"/>
+											<input type="text" class="form-control form-control-lg" name="SearchJobTitle" placeholder = "Search a Job" value="{{ isset($_GET['SearchJobTitle']) ? $_GET['SearchJobTitle'] : ''}}"/>
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="input-box border-left">
 											<div class="label">Category</div>
 											<select name="SearchJobCategory" class="nice-select lg">
-												@isset($jobCategories)
-												@foreach($jobCategories as $jobCategory)
-												<option value="{{$jobCategory->id}}">{{$jobCategory->name}}</option>
-												@endforeach
-												@endisset
+													@if(!$jobCategories->isEmpty())
+														@foreach($jobCategories as $jobCategory)
+														<option value="{{$jobCategory->id}}" {{(isset($_GET['SearchJobCategory']) && $_GET['SearchJobCategory'] == $jobCategory->id) ? 'selected' : ''}}>{{$jobCategory->name}}</option>
+														@endforeach
+													@else
+													<option value="" selected>Select All</option>
+													@endif
 											</select>
 										</div>
 									</div>
@@ -178,7 +180,7 @@ Job Marketplace
 													</div>
 													<div class="pe-1 ps-1">-</div>
 													<div class="field d-flex align-items-center">
-														<input type="number" class="input-max" value="300" readonly>
+														<input type="number" class="input-max" value="30000" readonly>
 													</div>
 													<div class="currency ps-1">USD</div>
 												</div>
@@ -186,8 +188,8 @@ Job Marketplace
 													<div class="progress"></div>
 												</div>
 												<div class="range-input mb-10">
-													<input type="range" name="SearchRangeMin" class="range-min" min="0" max="950" value="0" step="10">
-													<input type="range" name="SearchRangeMax" class="range-max" min="0" max="1000" value="300" step="10">
+													<input type="range" name="SearchRangeMin" class="range-min" min="0" max="50000" value="0" step="10">
+													<input type="range" name="SearchRangeMax" class="range-max" min="0" max="100000" value="30000" step="10">
 												</div>
 											</div>
 											<!-- <ul class="style-none d-flex flex-wrap justify-content-between radio-filter mb-5">

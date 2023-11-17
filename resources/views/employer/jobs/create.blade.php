@@ -71,11 +71,13 @@ Post A Job
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Job Category:</label>
                             <select name="job_category_id" id="job_category_id" class="nice-select">
-                                @isset($jobCategories)
-                                @foreach($jobCategories as $jobCategory)
-                                <option value="{{$jobCategory->id}}">{{$jobCategory->name}}</option>
-                                @endforeach
-                                @endisset
+                                    @if(!$jobCategories->isEmpty())
+                                    @foreach($jobCategories as $jobCategory)
+                                    <option value="{{$jobCategory->id}}">{{$jobCategory->name}}</option>
+                                    @endforeach
+                                    @else
+                                    <option value="" selected>Select</option>
+                                    @endif
                             </select>
                         </div>
                         <!-- /.dash-input-wrapper -->

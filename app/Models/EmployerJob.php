@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EmployerJob extends Model
 {
-    use SoftDeletes , HasFactory;
+    use  HasFactory;
+    // use SoftDeletes , HasFactory;
     protected $fillable =
     [
         'school_vision',

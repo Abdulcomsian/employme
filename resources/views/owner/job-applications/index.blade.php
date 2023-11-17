@@ -345,7 +345,7 @@ Jobs Applications
         <!-- /.card-box -->
 
 
-        <div class="dash-pagination d-flex justify-content-end mt-30">
+        <!-- <div class="dash-pagination d-flex justify-content-end mt-30">
             <ul class="style-none d-flex align-items-center">
                 <li><a href="#" class="active">1</a></li>
                 <li><a href="#">2</a></li>
@@ -354,7 +354,7 @@ Jobs Applications
                 <li><a href="#">7</a></li>
                 <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
-        </div>
+        </div> -->
     </div>
 </div>
 @endsection

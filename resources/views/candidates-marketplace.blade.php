@@ -39,23 +39,25 @@ Candidate Marketplace
 				<div class="row">
 					<div class="col-xl-9 col-lg-8 m-auto">
 						<div class="job-search-one position-relative">
-							<form action="job-grid-v1.html">
+							<form action="{{route('candidatesMarketplace')}}" method="GET">
 								<div class="row">
 									<div class="col-md-5">
 										<div class="input-box">
 											<div class="label">What are you looking for?</div>
-											<input type="text" class="form-control form-control-lg" name="SearchJobTitle" placeholder = "Search Candidate"/>
+											<input type="text" class="form-control form-control-lg" name="SearchProfileTitle" placeholder = "Search Candidate" value="{{ isset($_GET['SearchProfileTitle']) ? $_GET['SearchProfileTitle'] : ''}}"/>
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="input-box border-left">
 											<div class="label">Category</div>
 											<select name="SearchJobCategory" class="nice-select lg">
-												@isset($jobCategories)
-												@foreach($jobCategories as $jobCategory)
-												<option value="{{$jobCategory->id}}">{{$jobCategory->name}}</option>
-												@endforeach
-												@endisset
+													@if(!$jobCategories->isEmpty())
+														@foreach($jobCategories as $jobCategory)
+														<option value="{{$jobCategory->id}}" {{(isset($_GET['SearchJobCategory']) && $_GET['SearchJobCategory'] == $jobCategory->id) ? 'selected' : ''}}>{{$jobCategory->name}}</option>
+														@endforeach
+													@else
+													<option value="" selected>Select All</option>
+													@endif
 											</select>
 										</div>
 									</div>

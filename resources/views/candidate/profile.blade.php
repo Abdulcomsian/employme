@@ -309,11 +309,15 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Type</label>
                                     <select name="designationType" id="designationType" class="nice-select">
-                                        @isset($jobCategories)
-                                        @foreach($jobCategories as $jobCategory)
-                                        <option value="{{$jobCategory->id}}" {{$candidatePersonalDetails->job_category_id == $jobCategory->id ? 'selected' : ''}}>{{$jobCategory->name}}</option>
-                                        @endforeach
-                                        @endisset
+                                       
+                                        @if(!$jobCategories->isEmpty())
+                                            @foreach($jobCategories as $jobCategory)
+                                            <option value="{{$jobCategory->id}}" {{$candidatePersonalDetails->job_category_id == $jobCategory->id ? 'selected' : ''}}>{{$jobCategory->name}}</option>
+                                            @endforeach
+                                        @else
+                                        <option value="" selected>Select</option>
+                                        @endif
+                                     
                                     </select>
                                 </div>
                             </div>
@@ -570,7 +574,7 @@ Profile
                                 <div class="col-md-6">
                                     <div class="dash-input-wrapper mb-30">
                                         <label for="">Employer Name</label>
-                                        <input type="text" name="experience[{{$index}}][employer_name]" placeholder="" value = "{{$professional_details['role'] ?? 'employer_name'}}">
+                                        <input type="text" name="experience[{{$index}}][employer_name]" placeholder="" value = "{{$professional_details['employer_name'] ?? ''}}">
 
                                     </div>
                                 </div>
@@ -616,7 +620,7 @@ Profile
                                 <div class="col-md-6">
                                     <div class="dash-input-wrapper mb-30">
                                         <label for="">Employer Name</label>
-                                        <input type="text" name="experience[{{$index}}][employer_name]" placeholder="" value = "{{$professional_details['role'] ?? 'employer_name'}}">
+                                        <input type="text" name="experience[{{$index}}][employer_name]" placeholder="" value = "{{$professional_details['employer_name'] ?? ''}}">
 
                                     </div>
                                 </div>

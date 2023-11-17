@@ -74,6 +74,12 @@ class UserController extends Controller
                 $query->where('current_location',$request->SearchCandidateLocation);
             });
         }
+        if(isset($request->SearchProfileTitle) && $request->SearchProfileTitle !='')
+        {
+            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
+                $query->where('full_name','like','%'.$request->SearchProfileTitle.'%');
+            });
+        }
         if(isset($request->SearchJobCategory) && $request->SearchJobCategory !='')
         {
             $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
@@ -254,6 +260,7 @@ class UserController extends Controller
     public function jobDetails($id)
     {
         $jobId = Crypt::decryptString($id);
+        dd($jobId);
         $jobDetails = EmployerJob::with('employerDetails')->find($jobId);
         return view('job-details',compact('jobDetails'));
     }

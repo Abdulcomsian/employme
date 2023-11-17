@@ -88,11 +88,11 @@ class JobController extends Controller
         /* Search Jobs on Salary Range Based */
         if(isset($request->SearchRangeMin) && $request->SearchRangeMin !='0')
         {
-            $allJobs = $allJobs->where('monthly_salary', '>',$request->SearchRangeMin);
+            $allJobs = $allJobs->where('monthly_salary', '<=',$request->SearchRangeMin);
         }
         if(isset($request->SearchRangeMax) && $request->SearchRangeMax !='0')
         {
-            $allJobs = $allJobs->where('monthly_salary', '<', $request->SearchRangeMax);
+            $allJobs = $allJobs->where('monthly_salary', '>=', $request->SearchRangeMax);
         }
         
         $allJobs = $allJobs->paginate(2);
