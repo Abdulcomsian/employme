@@ -42,7 +42,7 @@ return new class extends Migration
             $table->text('curriculum_overview')->nullable();
             $table->text('material_resources_available')->nullable();
             $table->text('teaching_aids')->nullable();
-            $table->string('monthly_salary')->nullable();
+            $table->integer('monthly_salary')->nullable();
             $table->text('housing_details')->nullable();
             $table->string('relocation_allowance')->nullable();
             $table->text('health_dental_insurance')->nullable();

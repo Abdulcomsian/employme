@@ -76,11 +76,11 @@
         
         <nav class="nav-2" id="menu">
             <ul id="menu-closed">
-                <li><a href=" {{route('candidateProfileNew',\Crypt::encryptString(1))}}" class="active">Overview</a></li>
-                <li><a href="{{route('candidateProfileDocument')}}">Documents</a></li>
+                <li><a href="#" class="active">Overview</a></li>
+                <!-- <li><a href="{{route('candidateProfileDocument')}}">Documents</a></li>
                 <li> <a href="{{route('candidateProfileInterview')}}">Interview</a></li>
                 <li><a href="{{route('candidateProfileAlbum')}}"> Album</a></li>
-                <li><a href="{{route('candidateProfileComment')}}">Comment box</a></li>
+                <li><a href="{{route('candidateProfileComment')}}">Comment box</a></li> -->
                 <li><a href="#menu-closed">&#215; </a></li>
                 <li><a href="#menu">&#9776; more</a></li>
             </ul>

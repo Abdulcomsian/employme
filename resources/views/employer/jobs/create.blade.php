@@ -197,8 +197,8 @@ Post A Job
                     <h4 class="dash-title-three">Compensation & Benefits</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Monthly Salary:</label>
-                            <input type="text" name="monthly_salary" placeholder="">
+                            <label for="">Monthly Salary (USD):</label>
+                            <input type="number" name="monthly_salary" placeholder="">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Housing Included:</label>

@@ -63,7 +63,7 @@ Account Settings
                         </div>
                     @endif
             <h4 class="dash-title-three">Edit & Update</h4>
-            <form action="{{route('employer.updateEmployerAccountSettingpage')}}" method="POST">
+            <form action="{{route('employer.updateAccountSettingpage')}}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-lg-6">

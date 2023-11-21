@@ -260,7 +260,6 @@ class UserController extends Controller
     public function jobDetails($id)
     {
         $jobId = Crypt::decryptString($id);
-        dd($jobId);
         $jobDetails = EmployerJob::with('employerDetails')->find($jobId);
         return view('job-details',compact('jobDetails'));
     }
