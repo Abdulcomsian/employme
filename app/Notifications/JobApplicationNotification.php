@@ -15,10 +15,10 @@ class JobApplicationNotification extends Notification
      * Create a new notification instance.
      */
     private $email;
-    private $applicationData;
-    public function __construct($applicationData)
+    private $jobApplicationDetails;
+    public function __construct($jobApplicationDetails)
     {
-        $this->applicationData = $applicationData;
+        $this->jobApplicationDetails = $jobApplicationDetails;
     }
 
     /**
@@ -37,9 +37,12 @@ class JobApplicationNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $send_email = (new MailMessage)
-        ->greeting($this->applicationData['greeting'])
-        ->subject($this->applicationData['subject'])
-        ->view('mails.job-application', ['details' => $this->applicationData]);
+        // ->greeting($this->jobApplicationDetails['greeting'])
+        // ->subject($this->jobApplicationDetails['subject'])
+        // ->view('mails.job-application', ['details' => $this->jobApplicationDetails]);
+        ->line($this->jobApplicationDetails['body']['candidate_full_name'].' with email '.$this->jobApplicationDetails['body']['candidate_email'].' has successfully applied for your job '.$this->jobApplicationDetails['body']['job_title']);
+        // ->action('Notification Action', url('/'))
+        // ->line('Thank you for using our application!');
         return $send_email;
     }
 

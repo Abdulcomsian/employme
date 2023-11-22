@@ -3,6 +3,7 @@
 Dashboard
 @endsection
 @section('content')
+@push('page-css')
 <style>
    .create-job-btn{
     font-weight: 500;
@@ -21,7 +22,17 @@ Dashboard
     /* background-color: #04AA6D; */
     color: black !important;
 }
+.job-title, .job-application  {
+    color: #00BF58 !important;
+    
+ }
+ .job-title a:hover{
+    color: #D2F34C !important;
+    
+    /* color: #244034; */
+ }
 </style>
+@endpush
 @section('content')
 
 <div class="dashboard-body">
@@ -108,11 +119,11 @@ Dashboard
                                 </tr>
                             </thead>
                             <tbody class="border-0">
-                                @isset($candidateJobApplication->jobsApplied)
-                                @foreach($candidateJobApplication->jobsApplied as $jobApplication)
+                                @isset($candidateJobApplications)
+                                @foreach($candidateJobApplications as $jobApplication)
                                 <tr class="{{getActiveJobStatus($jobApplication->job_status)}}">
                                     <td>
-                                        <div class="job-name fw-500">{{$jobApplication->job_title}}</div>
+                                        <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($jobApplication->id))}}">{{$jobApplication->job_title}}</a></div>
                                         <div class="info1">{{$jobApplication->city_town}}</div>
                                     </td>
                                     <td>{{date('d M, Y',strtotime($jobApplication->created_at))}}</td>
@@ -126,14 +137,14 @@ Dashboard
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
+                                                <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($jobApplication->id))}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
                                                 <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
                                                 <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                                 document.getElementById('destroy-form').submit();"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
                                             </ul>
                                         </div>
-                                        <form id="destroy-form" action="#" method="POST" style="display: none;">
+                                        <form id="destroy-form" action="{{route('candidate.delete-application',$jobApplication->id)}}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
 
@@ -350,6 +361,8 @@ Dashboard
                 <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
         </div> -->
+        {{ $candidateJobApplications->links('vendor.pagination.custom-pagination-2') }}
+
     </div>
 </div>
 @endsection

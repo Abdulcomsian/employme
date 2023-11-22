@@ -154,13 +154,19 @@ class CandidateController extends Controller
 
     public function candidateJobApplications()
     {
-        $candidateJobApplication = User::with('jobsApplied')->find(Auth::id());
-        return view('candidate.job-applications.index',compact('candidateJobApplication'));
+        $candidateJobApplications = User::find(Auth::id())->jobsApplied()->paginate(10);
+        return view('candidate.job-applications.index',compact('candidateJobApplications'));
     }
+    public function deleteApplication($id)
+    {
+        $deleteJobApplication = User::find(Auth::id())->jobsApplied()->detach(2);
+        toastr()->warning('Application Deleted Successfully ');
+        return redirect()->back();
 
+    } 
     public function candidateSavedJobs()
     {
-        $candidateSavedJobs = User::with('savedJobs')->find(Auth::id());
+        $candidateSavedJobs = User::find(Auth::id())->savedJobs()->paginate(10);
         return view('candidate.saved-jobs.index',compact('candidateSavedJobs'));
     }
 

@@ -3,6 +3,19 @@
 @section('title')
 Savced Jobs
 @endsection
+@push('page-css')
+<style>
+    .job-title, .job-application  {
+    color: #00BF58 !important;
+    
+ }
+ .job-title a:hover{
+    color: #D2F34C !important;
+    
+    /* color: #244034; */
+ }
+</style>
+@endpush
 @section('content')
 <div class="dashboard-body">
     <div class="position-relative">
@@ -68,8 +81,8 @@ Savced Jobs
         </div>
 
         <div class="wrapper">
-            @isset($candidateSavedJobs->savedJobs)
-            @foreach($candidateSavedJobs->savedJobs as $index=>$savedJob)
+            @if(!$candidateSavedJobs->isEmpty())
+            @foreach($candidateSavedJobs as $index=>$savedJob)
             <div class="job-list-one style-two position-relative mb-20">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-xxl-3 col-lg-4">
@@ -80,20 +93,20 @@ Savced Jobs
                                 @else
                                 <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto"></a>
                                 @endif
-                            <a href="#" class="title fw-500 tran3s">{{$savedJob->job_title ?? ''}}</a>
+                            <a href="{{route('jobDetails',\Crypt::encryptString($savedJob->id))}}" class="title fw-500 tran3s job-title">{{$savedJob->job_title ?? ''}}</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 ms-auto">
-                        <a href="#" class="job-duration fw-500">{{$savedJob->job_type ?? ''}}</a>
-                        <div class="job-salary"><span class="fw-500 text-dark">{{$savedJob->monthly_salary ?? ''}}</span> / Month . Expert</div>
+                        <a href="{{route('jobDetails',\Crypt::encryptString($savedJob->id))}}" class="job-duration fw-500">{{$savedJob->job_type ?? ''}}</a>
+                        <div class="job-salary"><span class="fw-500 text-dark">{{$savedJob->monthly_salary ?? ''}}</span> / Month . {{$savedJob->experience_level ?? ''}}</div>
                     </div>
                     <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6 ms-auto xs-mt-10">
                         <div class="job-location">
                             <a href="#">{{$savedJob->city_town ?? ''}}</a>
                         </div>
                         <div class="job-category">
-                            <a href="#">Developer,</a>
-                            <a href="#">Coder</a>
+                            <a href="#">@isset($savedJob->jobCategory) {{$savedJob->jobCategory->name ?? ''}} @endisset</a>
+                            <!-- <a href="#">Coder</a> -->
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-4">
@@ -102,7 +115,7 @@ Savced Jobs
                                 <span></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
+                                <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($savedJob->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
                                 <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
                                 <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
@@ -119,7 +132,11 @@ Savced Jobs
                 </div>
             </div>
             @endforeach
-            @endisset
+            @else
+            <div class="job-list-one style-two position-relative mb-20">
+                <div class="row justify-content-between align-items-center">
+                    <center><b>No Job Found</b></center>
+            @endif
             <!-- /.job-list-one -->
             <!-- <div class="job-list-one style-two position-relative mb-20">
                 <div class="row justify-content-between align-items-center">
@@ -245,6 +262,7 @@ Savced Jobs
                 <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
         </div> -->
+        {{ $candidateSavedJobs->links('vendor.pagination.custom-pagination-2') }}
     </div>
 </div>
 @endsection

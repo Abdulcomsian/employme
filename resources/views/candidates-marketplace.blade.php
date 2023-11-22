@@ -456,7 +456,7 @@ Candidate Marketplace
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span>Salary</span>
-												<div>{{$candidate->candidatePreferences->expected_salary ?? ''}}</div>
+												<div>{{$candidate->candidatePreferences->expected_salary ?? ''}}{{!empty($candidate->candidatePreferences->expected_salary) ? '/mo' : ''}}</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>

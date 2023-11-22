@@ -87,6 +87,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     // Route::get('save-job', [JobController::class, 'getSaveJobsPage'])->name('getSaveJob');
     Route::get('account-settings', [UserController::class, 'getAccountSettingsPage'])->name('getAccountSetting');
     Route::get('job-applications', [CandidateController::class, 'candidateJobApplications'])->name('candidateJobApplications');
+    Route::delete('job-applications/delete/{id}', [CandidateController::class, 'deleteApplication'])->name('candidate.delete-application');
   
 });
 Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], function() {
@@ -114,7 +115,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('employer-dashboard-subscription-plan', [EmployerController::class, 'getEmployerSubscription'])->name('getEmployerSubscriptionPlan');
     Route::get('employer-account-settings', [UserController::class, 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
-    Route::get('Job-listing-candidate', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
+    Route::get('Job-listing-candidate/{id}', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
     Route::resource('employer-jobs', EmployerJobController::class);
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
     Route::get('job-applications', [EmployerController::class, 'employerJobApplications'])->name('employerJobApplications');

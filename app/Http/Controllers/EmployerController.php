@@ -45,9 +45,10 @@ class EmployerController extends Controller
     {
         return view('schedule-interview');
     }
-    public function JobListingCandidate()
+    public function JobListingCandidate($id)
     {
-        return view('JobListingCandidate');
+        $jobApplicants= EmployerJob::where('posted_by',Auth::id())->find($id)->jobApplicants()->paginate(10);
+        return view('employer.job-candidates.index',compact('jobApplicants'));
     }
     
     public function saveProfile1(Request $request)

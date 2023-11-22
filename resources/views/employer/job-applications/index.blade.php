@@ -3,7 +3,23 @@
 @section('title')
 Job Listing
 @endsection
-
+@push('page-css')
+<style>
+    .active {
+    /* background-color: #04AA6D; */
+    color: black !important;
+}
+.job-title, .job-application, .candidate-profile  {
+    color: #00BF58 !important;
+    
+ }
+ .job-title a:hover{
+    color: #D2F34C !important;
+    
+    /* color: #244034; */
+ }
+</style>
+@endpush
 @section('content')
 
 <div class="dashboard-body">
@@ -50,10 +66,10 @@ Job Listing
                                 @foreach($jobApplication->jobApplicants as $index=>$jobApplicant)
                                 <tr class="{{getActiveJobStatus($jobApplication->job_status)}}">
                                     <td>
-                                        <div class="job-name fw-500">{{$jobApplicant->name}}</div>
+                                        <div class="job-name fw-500 candidate-profile"><a href="{{route('candidateProfileNew',\Crypt::encryptString($jobApplicant->id))}}">{{$jobApplicant->name}}</a></div>
                                     </td>
                                     <td>
-                                        <div class="job-name fw-500">{{$jobApplication->job_title}}</div>
+                                        <div class="job-name fw-500 job-title"><a href="{{route('jobDetails',\Crypt::encryptString($jobApplication->id))}}">{{$jobApplication->job_title}}</a></div>
                                         <div class="info1">{{$jobApplication->city_town}}</div>
                                     </td>
                                     <td>{{totalApplicants($jobApplication->id)}} Applications</td>
@@ -66,7 +82,7 @@ Job Listing
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
+                                                <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($jobApplication->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
                                                 <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
                                                 <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();

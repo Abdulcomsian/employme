@@ -102,11 +102,15 @@ class EmployerJob extends Model
     }
     public function jobApplicants()
     {
-        return $this->belongsToMany(User::class, 'job_applications', 'employer_job_id', 'candidate_id');
+        return $this->belongsToMany(User::class, 'job_applications', 'employer_job_id', 'candidate_id')->with('candidatePersonalDetails','candidateEducation','candidatePreferences');
     }
     public function savedJobs()
     {
         return $this->belongsToMany(User::class, 'saved_jobs', 'employer_job_id', 'user_id');
+    }
+    public function jobCategory()
+    {
+        return $this->belongsTo(JobCategory::class);
     }
 
 

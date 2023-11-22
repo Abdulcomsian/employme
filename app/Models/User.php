@@ -77,7 +77,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     }
     public function savedJobs()
     {
-        return $this->belongsToMany(EmployerJob::class, 'saved_jobs','user_id','employer_job_id')->with('employerDetails');
+        return $this->belongsToMany(EmployerJob::class, 'saved_jobs','user_id','employer_job_id')->with('employerDetails','jobCategory');
     }
     public function savedCandidates()
     {
