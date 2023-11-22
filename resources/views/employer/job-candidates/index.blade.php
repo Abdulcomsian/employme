@@ -75,6 +75,7 @@ Employer Saved Candidate
         </div>
 
         <div class="wrapper">
+            @if(!$jobApplicants->isEmpty() )
             @foreach($jobApplicants as $index=>$jobApplicant)
             <div class="candidate-profile-card list-layout border-0 mb-25">
                 <div class="d-flex">
@@ -142,6 +143,11 @@ Employer Saved Candidate
                 </div>
             </div>
             @endforeach
+            @else
+            <div class="candidate-profile-card list-layout border-0 mb-25">
+                <div class="d-flex">
+                    <center>No Applicant Found</center>
+            @endif
             <!-- /.candidate-profile-card -->
             <!-- <div class="candidate-profile-card list-layout border-0 mb-25">
                 <div class="d-flex">
