@@ -3,7 +3,13 @@
 @section('title')
 Employer Saved Candidate
 @endsection
-
+@push('page-css')
+<style>
+    .remove-account-popup .confirm-btn:hover {
+    background: #D2F34C;
+}
+</style>
+@endpush
 @section('content')
 
 
@@ -79,7 +85,10 @@ Employer Saved Candidate
                             </div>
                             <div class="col-xl-3 col-md-4">
                                 <div class="d-flex justify-content-md-end align-items-center">
-                                    <a href="{{route('candidateProfileNew',\Crypt::encryptString($jobApplicant->id))}}" class="save-btn text-center rounded-circle tran3s mt-10 fw-normal"><i class="bi bi-eye"></i></a>
+                                    <a href="#" class="save-btn text-center rounded-circle tran3s mt-10 fw-normal cover-letter-button" id="{{$index}}" data-bs-toggle="modal" data-bs-target="#coverLetterModal"><i class="bi bi-eye"></i></a>
+                                        <div id="cover-letter-{{$index}}" class="d-none">
+                                            <p>{{$jobApplicant->pivot->cover_letter}}</p>
+                                        </div>
                                     <div class="action-dots float-end mt-10 ms-2">
                                         <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span></span>
@@ -178,4 +187,44 @@ Employer Saved Candidate
 </div>
 
 
+		<!-- Modal -->
+		<div class="modal fade" id="coverLetterModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-fullscreen modal-dialog-centered">
+				<div class="container">
+					<div class="remove-account-popup text-center modal-content">
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						<!-- <img src="../images/lazy.svg" data-src="{{asset('assets/images/dashboard-icon/icon_22.svg')}}" alt="" class="lazy-img m-auto"> -->
+						<h3>Cover Letter</h3>
+						<!-- <p class="mt-3">Are you sure to delete your account? All data will be lost.</p> -->
+                        <div id="applicantData"></div>
+
+						<div class="button-group d-inline-flex justify-content-center align-items-center pt-15">
+							<a href="#" class="confirm-btn fw-500 tran3s me-3" data-bs-dismiss="modal" aria-label="Close">Ok</a>
+							<!-- <button type="button" class="btn-close fw-500 ms-3" data-bs-dismiss="modal" aria-label="Close">Cancel</button> -->
+						</div>
+					</div>
+					<!-- /.remove-account-popup -->
+				</div>
+			</div>
+		</div>
+
+        @push('page-script')
+        <script>
+            $(document).ready(function () {
+                $('.cover-letter-button').click(function () {
+                // Get the applicant ID from the data attribute
+                var applicantId = $(this).attr('id')
+
+                // Get the cover letter content based on the applicant ID
+                var coverLetterContent = $('#cover-letter-' + applicantId).html();
+
+                // Update the modal body with the cover letter content
+                $('#applicantData').html(coverLetterContent);
+
+                // Show the modal
+                // $('#coverLetterModal').modal('show');
+                });
+            });
+        </script>
+        @endpush
 @endsection

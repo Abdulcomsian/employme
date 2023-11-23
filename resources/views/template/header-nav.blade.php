@@ -194,7 +194,7 @@
                                 </ul> -->
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="blog" role="button">Blog
+                                <a class="nav-link" href="{{route('blog')}}" role="button">Blog
                                 </a>
                                 <!-- <ul class="dropdown-menu">
                                     <li><a href="blog-v1.html" class="dropdown-item"><span>Blog Standard</span></a></li>
@@ -204,7 +204,7 @@
                                 </ul> -->
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact" role="button">Contact</a>
+                                <a class="nav-link" href="{{route('contact')}}" role="button">Contact</a>
                             </li>
                             <li class="d-md-none"><a href="employer/post-a-job" class="job-post-btn tran3s">Post Job</a></li>
                             <li class="d-md-none"><a href="candidates-marketplace" class="btn-one w-100">Hire Top Talents</a></li>
