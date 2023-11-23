@@ -206,8 +206,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('contact')}}" role="button">Contact</a>
                             </li>
-                            <li class="d-md-none"><a href="employer/post-a-job" class="job-post-btn tran3s">Post Job</a></li>
-                            <li class="d-md-none"><a href="candidates-marketplace" class="btn-one w-100">Hire Top Talents</a></li>
+                            @auth
+                            @role('employer')
+                            <li class="d-md-none"><a href="{{route('employer-jobs.create')}}" class="job-post-btn tran3s">Post Job</a></li>
+                            <li class="d-md-none"><a href="{{route('candidatesMarketplace')}}" class="btn-one w-100">Hire Top Talents</a></li>
+                            @endrole
+                            @endauth
                         </ul>
                     </div>
                 </nav>

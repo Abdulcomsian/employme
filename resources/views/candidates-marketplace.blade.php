@@ -699,8 +699,12 @@ Candidate Marketplace
 				</div>
 				<div class="col-lg-5">
 					<ul class="btn-group style-none d-flex flex-wrap justify-content-center justify-content-lg-end">
-						<li class="me-2"><a href="job-marketplace" class="btn-three">Looking for job?</a></li>
-						<li class="ms-2"><a href="employer/post-a-job" class="btn-four">Post a job</a></li>
+						@auth
+						@role('employer')
+						<li class="me-2"><a href="{{route('candidatesMarketplace')}}" class="btn-three">Looking for job?</a></li>
+						<li class="ms-2"><a href="{{route('candidatesMarketplace')}}" class="btn-four">Post a job</a></li>
+						@endrole
+						@endauth
 					</ul>
 				</div>
 			</div>
