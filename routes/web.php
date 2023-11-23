@@ -14,7 +14,8 @@ use App\Http\Controllers\{
     OwnerController,
     SubscriptionController,
     EmployerJobController,
-    JobCategoryController
+    JobCategoryController,
+    WebhookController
 };
 
 /*
@@ -115,7 +116,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('employer-dashboard-subscription-plan', [EmployerController::class, 'getEmployerSubscription'])->name('getEmployerSubscriptionPlan');
     Route::get('employer-account-settings', [UserController::class, 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
-    Route::get('Job-listing-candidate/{id}', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
+    Route::get('employer-jobs/Job-listing-candidate/{id}', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
     Route::resource('employer-jobs', EmployerJobController::class);
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
     Route::get('job-applications', [EmployerController::class, 'employerJobApplications'])->name('employerJobApplications');
@@ -185,3 +186,7 @@ Route::get('/forgot-password', [AuthenticationController::class,'forgotPassword'
 Route::post('/forgot-password', [AuthenticationController::class,'sendResetPasswordLInk'])->middleware('guest')->name('password.email');
 Route::get('/reset-password/{token}', [AuthenticationController::class,'resetPassword'])->middleware('guest')->name('password.reset');
 Route::post('/reset-password', [AuthenticationController::class,'udpateResetPassword'])->middleware('guest')->name('password.update');
+Route::post(
+    'stripe/webhook',
+    '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
+);

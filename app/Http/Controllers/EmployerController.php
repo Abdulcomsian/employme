@@ -178,7 +178,7 @@ class EmployerController extends Controller
     
     public function employerSavedCandidates()
     {
-        $employerSavedCandidates = User::with('savedCandidates')->find(Auth::id());
+        $employerSavedCandidates = User::find(Auth::id())->savedCandidates()->paginate(10);
         return view('employer.saved-candidates.index',compact('employerSavedCandidates'));
     }
     public function removeSavedCandidate($id)

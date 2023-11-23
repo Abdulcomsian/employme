@@ -23,22 +23,35 @@ Saved Candidate
         </div>
 
         <div class="wrapper">
-        @isset($employerSavedCandidates->savedCandidates)
-            @foreach($employerSavedCandidates->savedCandidates as $index=>$savedCandidate)
+        @if(!$employerSavedCandidates->isEmpty())
+            @foreach($employerSavedCandidates as $index=>$savedCandidate)
             <div class="candidate-profile-card list-layout border-0 mb-25">
                 <div class="d-flex">
-                    <div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="#" class="rounded-circle"><img src="../images/lazy.svg" data-src="../images/candidates/img_03.jpg" alt="" class="lazy-img rounded-circle"></a></div>
+                    <!-- <div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="#" class="rounded-circle"><img src="../images/lazy.svg" data-src="../images/candidates/img_03.jpg" alt="" class="lazy-img rounded-circle"></a></div> -->
+                    @if(isset($savedCandidate->candidatePersonalDetails->profile_picture) && !empty($savedCandidate->candidatePersonalDetails->profile_picture))
+                    <div class="cadidate-avatar online position-relative me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($savedCandidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($savedCandidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
+                    @else
+                    <div class="cadidate-avatar online position-relative me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($savedCandidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
+                    @endif
                     <div class="right-side">
                         <div class="row gx-1 align-items-center">
                             <div class="col-xl-3">
                                 <div class="position-relative">
-                                    <h4 class="candidate-name mb-0"><a href="#" class="tran3s">{{$savedCandidate->candidatePersonalDetails->full_name}}</a></h4>
+                                    <h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString($savedCandidate->id))}}" class="tran3s">{{$savedCandidate->candidatePersonalDetails->full_name}}</a></h4>
                                     <div class="candidate-post">Artist</div>
                                     <ul class="cadidate-skills style-none d-flex align-items-center">
-                                        <li>Design</li>
-                                        <li>UI</li>
-                                        <li>Digital</li>
-                                        <li class="more">2+</li>
+                                        @if(isset($savedCandidate->candidatePreferences->skills) && !empty($savedCandidate->candidatePreferences->skills))
+										@foreach($savedCandidate->candidatePreferences->skills as $index=>$skill)
+										@if($index < 3)
+										<li>{{$skill}}</li>
+										@endif
+										@endforeach
+										@endif
+										@if(isset($savedCandidate->candidatePreferences->skills) && !empty($savedCandidate->candidatePreferences->skills))
+										@if(count($savedCandidate->candidatePreferences->skills) > 3)
+										<li class="more">+{{{count($savedCandidate->candidatePreferences->skills)-3}}}</li>
+										@endif
+										@endif
                                     </ul>
                                     <!-- /.cadidate-skills -->
                                 </div>
@@ -46,7 +59,7 @@ Saved Candidate
                             <div class="col-xl-3 col-md-4 col-sm-6">
                                 <div class="candidate-info">
                                     <span>Salary</span>
-                                    <div>{{$savedCandidate->candidatePreferences->salary_expection}}/month</div>
+                                    <div>{{$savedCandidate->candidatePreferences->expected_salary}}{{!empty($savedCandidate->candidatePreferences->expected_salary) ? '/month' : ''}}</div>
                                 </div>
                                 <!-- /.candidate-info -->
                             </div>
@@ -85,7 +98,11 @@ Saved Candidate
                 </div>
             </div>
             @endforeach
-            @endisset
+            @else
+            <div class="candidate-profile-card list-layout border-0 mb-25">
+                <div class="d-flex">
+                    <center><b>No Candidate Found</b></center>
+            @endif
             <!-- /.candidate-profile-card -->
             <!-- <div class="candidate-profile-card list-layout border-0 mb-25">
                 <div class="d-flex">
@@ -260,6 +277,7 @@ Saved Candidate
                 <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
         </div> -->
+        {{ $employerSavedCandidates->links('vendor.pagination.custom-pagination-2') }}
     </div>
 </div>
 

@@ -589,7 +589,7 @@
 			Related Job Slider
 		=====================================================
 		-->
-<section class="related-job-section pt-90 lg-pt-70 pb-120 lg-pb-70">
+<!-- <section class="related-job-section pt-90 lg-pt-70 pb-120 lg-pb-70">
 	<div class="container">
 		<div class="position-relative">
 			<div class="title-three text-center text-md-start mb-55 lg-mb-40">
@@ -608,7 +608,7 @@
 							<div class="job-location"><a href="{{route('jobDetails',$jobDetails->id)}}">USA, California</a></div>
 							<a href="{{route('jobDetails',$jobDetails->id)}}" class="apply-btn text-center tran3s">APPLY</a>
 						</div>
-					</div> <!-- /.job-list-two -->
+					</div> {{--job-list-two--}}
 				</div>
 				<div class="item">
 					<div class="job-list-two style-two position-relative">
@@ -621,7 +621,7 @@
 							<div class="job-location"><a href="{{route('jobDetails',$jobDetails->id)}}">USA, Alaska</a></div>
 							<a href="{{route('jobDetails',$jobDetails->id)}}" class="apply-btn text-center tran3s">APPLY</a>
 						</div>
-					</div> <!-- /.job-list-two -->
+					</div> {{--job-list-two--}}
 				</div>
 				<div class="item">
 					<div class="job-list-two style-two position-relative">
@@ -634,7 +634,7 @@
 							<div class="job-location"><a href="{{route('jobDetails',$jobDetails->id)}}">AUS, Sydney</a></div>
 							<a href="{{route('jobDetails',$jobDetails->id)}}" class="apply-btn text-center tran3s">APPLY</a>
 						</div>
-					</div> <!-- /.job-list-two -->
+					</div> {{--job-list-two--}}
 				</div>
 				<div class="item">
 					<div class="job-list-two style-two position-relative">
@@ -647,7 +647,7 @@
 							<div class="job-location"><a href="{{route('jobDetails',$jobDetails->id)}}">UAE, Dubai</a></div>
 							<a href="{{route('jobDetails',$jobDetails->id)}}" class="apply-btn text-center tran3s">APPLY</a>
 						</div>
-					</div> <!-- /.job-list-two -->
+					</div> {{--job-list-two--}}
 				</div>
 			</div>
 
@@ -657,7 +657,7 @@
 			</ul>
 		</div>
 	</div>
-</section>
+</section> -->
 <!--
 		=====================================================
 			Job Portal Intro

@@ -8,15 +8,28 @@
                     </a>
                 </div>
                 <!-- logo -->
+                
                 <div class="right-widget ms-auto order-lg-3">
                     <ul class="d-flex align-items-center style-none">
-                        <li class="d-none d-md-block"><a href="employer/post-a-job" class="job-post-btn tran3s">Post Job</a></li>
+                         @auth
+                            @role('employer')
+                            <li class="d-none d-md-block"><a href="{{route('employer-jobs.create')}}" class="job-post-btn tran3s">Post Job</a></li>
+                            @endrole
+                         @endauth
                         @guest
-                        <li><a href="#" class="login-btn-one" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
+                        <li class="d-none d-md-block ms-4"><a href="#" class="btn-one" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
                         @endguest
-                        <li class="d-none d-md-block ms-4"><a href="candidates-marketplace" class="btn-one">Hire Top Talents</a></li>
+                        @auth
+                            @role('employer')
+                            <li class="d-none d-md-block ms-4"><a href="{{route('candidatesMarketplace')}}" class="btn-one">Hire Top Talents</a></li>
+                            @endrole
+                        @endauth
+                        @auth
+                        <li class="d-none d-md-block ms-4"><a href="{{route('authLogout')}}" class="btn-one">Sign Out</a></li>
+                        @endauth
                     </ul>
                 </div> <!--/.right-widget-->
+              
                 <nav class="navbar navbar-expand-lg p0 ms-lg-5 ms-3 order-lg-2">
                     <button class="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span></span>
