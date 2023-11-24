@@ -22,6 +22,7 @@ class EmployerController extends Controller
     }
     public function getEmployerProfilePage()
     {
+
        $plans = Plan::get();
         $countries = Countries::all();
         $intent = auth()->user()->createSetupIntent();
@@ -190,4 +191,36 @@ class EmployerController extends Controller
             return redirect()->back();
         }
     }
+    
+    public function employerSubscriptions()
+    {
+        $user = User::find(Auth::id()); // Replace $userId with the actual user ID
+        $subscriptions = $user->subscriptions;
+        if(isset($subscriptions))
+        {
+            foreach($subscriptions as $subscription)
+            {
+                $planDetails =\App\Models\Plan::where('stripe_plan',$subscription->stripe_price)->first();
+                $subscription->plan = $planDetails;
+            }
+        }
+        return view('employer.subscription.index',compact('subscriptions'));
+    }
+    public function cancelSubscription(Request $request)
+    {
+        $user = User::find(Auth::id());;
+        $subscriptionId =$request->subscription_id;
+        // Find the subscription you want to cancel (replace $subscriptionId with the actual subscription ID)
+        $subscriptions = $user->subscriptions($subscriptionId)->first();        
+        try {
+            $subscriptions->cancel();
+            toastr()->success('You have successfully Subscribed');
+        return redirect()->back();
+            // Additional logic after canceling the subscription
+        } catch (\Exception $e) {
+            // Handle the exception (e.g., subscription not found, cancellation failed)
+            dd($e->getMessage());
+        }
+    }
+    
 }

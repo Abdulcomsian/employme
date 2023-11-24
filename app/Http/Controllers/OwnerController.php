@@ -98,5 +98,6 @@ class OwnerController extends Controller
         $employerJobApplications = EmployerJob::with('jobApplicants')->get();
         return view('owner.job-applications.index',compact('employerJobApplications'));
     }
+    
 
 }

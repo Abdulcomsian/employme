@@ -113,6 +113,8 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('employer-interview-request', [JobController::class, 'getInterviewpage'])->name('getEmployerInterviewRequest');
     Route::get('employer-dashboard-message', [MessageController::class, 'getEmployerMessage'])->name('getEmployerDashboardMessage');
     Route::get('employer-dashboard-saved-candidate', [EmployerController::class, 'getEmployerCandidate'])->name('getEmployerDashboardSavedCandidate');
+    Route::get('subscriptions', [EmployerController::class, 'employerSubscriptions'])->name('employerSubscriptions');
+    Route::post('cancel-subscription', [EmployerController::class, 'cancelSubscription'])->name('cancelSubscription');
     Route::get('employer-dashboard-subscription-plan', [EmployerController::class, 'getEmployerSubscription'])->name('getEmployerSubscriptionPlan');
     Route::get('employer-account-settings', [UserController::class, 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');

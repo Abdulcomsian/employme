@@ -87,5 +87,6 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     {
        return \DB::table('job_applications')->where('employer_job_id',$job_id)->count();
     }
+
     
 }
