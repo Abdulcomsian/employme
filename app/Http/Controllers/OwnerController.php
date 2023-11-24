@@ -70,19 +70,27 @@ class OwnerController extends Controller
 
     public function getCandidates()
     {
-           $candidates =User::role('candidate')->get();
+           $candidates =User::with('candidatePersonalDetails')->role('candidate')->paginate(10);
            return view('owner.candidates',compact('candidates'));
     }
     public function getEmployers()
     {
-        $employers =User::role('employer')->get();
+        $employers =User::with('employerDetails')->role('employer')->paginate(10);
         return view('owner.employers',compact('employers'));
     }
-
+    public function getEmployerDetails()
+    {
+        return view('owner.employer-details');
+    }
     public function getEmployersJobs()
     {
-        $employerJobs = EmployerJob::with('employerDetails','employerInfo')->get();
+        $employerJobs = EmployerJob::with('employerDetails','employerInfo')->paginate(10);
         return view('owner.jobs.index',get_defined_vars());
+    }
+    public function JobListingCandidate($id)
+    {
+        $jobApplicants= EmployerJob::find($id)->jobApplicants()->paginate(10);
+        return view('owner.job-candidates.index',compact('jobApplicants'));
     }
 
     public function getJobApplications()

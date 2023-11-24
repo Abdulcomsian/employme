@@ -93,7 +93,7 @@ Job Listing
                                         <div class="info1">{{$employerJob->city_town}}</div>
                                     </td>
                                     <td>{{date('d M, Y',strtotime($employerJob->created_at))}}</td>
-                                    <td><div class="job-application"><a href="{{route('JobListingCandidate', ['id'=>$employerJob->id])}}">{{totalApplicants($employerJob->id)}} Applications</a><div></td>
+                                    <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$employerJob->id])}}">{{totalApplicants($employerJob->id)}} Applications</a><div></td>
                                     <td>
                                         <div class="job-status">Active</div>
                                     </td>

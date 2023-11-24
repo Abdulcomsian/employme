@@ -2,6 +2,23 @@
 @section('title')
 Users
 @endsection
+@push('page-css')
+<style>
+     .employer-name  {
+    color: #00BF58 !important;
+    
+ }
+ .employer-name a:hover{
+    color: #D2F34C !important;
+    
+    /* color: #244034; */
+ }
+ .active {
+    /* background-color: #04AA6D; */
+    color: black !important;
+}
+</style>
+@endpush
 @section('content')
 <div class="dashboard-body">
     <div class="position-relative">
@@ -91,10 +108,10 @@ Users
                         <tr class="active">
                         <td>{{$index+1}}</td>
                             <td>
-                                <div class="job-name " style = "color:black">{{$employer->name}}</div>
+                                <div class="job-name employer-name" ><a href="{{route('getEmployerDetails')}}"> {{$employer->name}}</a></div>
                                 <!-- <div class="info1">Fulltime . Spain</div> -->
                             </td>
-                            <td style = "color:black">{{$employer->email}}</td>
+                            <td >{{$employer->email}}</td>
                             @if($employer->email_verified_at)
                             <td>
                                 <div class="job-status"  >Verified</div>
@@ -110,7 +127,7 @@ Users
                                         <span></span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="{{route('JobListingCandidate')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
+                                        <li><a class="dropdown-item" href="{{route('getEmployerDetails')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
                                         <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
                                         <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
                                         <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
@@ -125,7 +142,7 @@ Users
                 <!-- /.table job-alert-table -->
             </div>
         </div>
-        <div class="dash-pagination d-flex justify-content-end mt-30">
+        <!-- <div class="dash-pagination d-flex justify-content-end mt-30">
             <ul class="style-none d-flex align-items-center">
                 <li><a href="#" class="active">1</a></li>
                 <li><a href="#">2</a></li>
@@ -134,7 +151,9 @@ Users
                 <li><a href="#">7</a></li>
                 <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
-        </div>
+        </div> -->
+        {{ $employers->links('vendor.pagination.custom-pagination-2') }}
+
     </div>
 </div>
 @endsection

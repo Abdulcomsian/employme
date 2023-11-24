@@ -82,14 +82,14 @@
                         <span>Employers Jobs</span>
                     </a>
                 </li>
-                <li><a href="{{ route('admin.getJobApplications') }}"
+                <!-- <li><a href="{{ route('admin.getJobApplications') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/job-applications') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
                             data-src="{{ request()->is('owner/job-applications') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
                         <span>Job Applications</span>
                     </a>
-                </li>
+                </li> -->
                 
                 <!--- Moduels Code -->
                 <!-- <li class="dropdown-btn"><a>

@@ -116,7 +116,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('employer-dashboard-subscription-plan', [EmployerController::class, 'getEmployerSubscription'])->name('getEmployerSubscriptionPlan');
     Route::get('employer-account-settings', [UserController::class, 'getEmployerAccountSettingpage'])->name('getEmployerDashboardSettings');
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
-    Route::get('employer-jobs/Job-listing-candidate/{id}', [EmployerController::class, 'JobListingCandidate'])->name('JobListingCandidate');
+    Route::get('employer-jobs/Job-listing-candidate/{id}', [EmployerController::class, 'JobListingCandidate'])->name('employer.JobListingCandidate');
     Route::resource('employer-jobs', EmployerJobController::class);
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
     Route::get('job-applications', [EmployerController::class, 'employerJobApplications'])->name('employerJobApplications');
@@ -149,12 +149,14 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('users', [OwnerController::class, 'getUserProfile'])->name('getUserProfile');
     Route::get('candidates', [OwnerController::class, 'getCandidates'])->name('getCandidates');
     Route::get('employers', [OwnerController::class, 'getEmployers'])->name('getEmployers');
+    Route::get('employers/employer-details', [OwnerController::class, 'getEmployerDetails'])->name('getEmployerDetails');
     Route::get('employers-jobs', [OwnerController::class, 'getEmployersJobs'])->name('admin.getEmployersJobs');
     Route::get('job-applications', [OwnerController::class, 'getJobApplications'])->name('admin.getJobApplications');
     Route::get('professional-skills', [OwnerController::class, 'getProfessionalSkills'])->name('getProfessionalSkills');
     Route::post('save-professional-skill', [OwnerController::class, 'storeProfessionalSkill'])->name('saveProfessionalSkill');
     Route::get('edit-professional-skill/{id}', [OwnerController::class, 'editProfessionalSkill'])->name('editProfessionalSkill');
     Route::put('update-professional-skill/{id}', [OwnerController::class, 'updateProfessionalSkill'])->name('updateProfessionalSkill');
+    Route::get('employer-jobs/Job-listing-candidate/{id}', [OwnerController::class, 'JobListingCandidate'])->name('owner.JobListingCandidate');
     Route::get('delete-professional-skill/{id}', [OwnerController::class, 'deleteProfessionalSkill'])->name('deleteProfessionalSkill');
     Route::get('plans', [SubscriptionController::class, 'index'])->name('getPlans');
 
