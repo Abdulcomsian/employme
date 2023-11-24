@@ -79,7 +79,7 @@
                         <img src="{{ asset('assets/images/lazy.svg') }}"
                             data-src="{{ request()->is('owner/employers-jobs') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
-                        <span>Employers Jobs</span>
+                        <span>Jobs</span>
                     </a>
                 </li>
                 <!-- <li><a href="{{ route('admin.getJobApplications') }}"

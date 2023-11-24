@@ -1,6 +1,6 @@
 @extends('owner.layout.main')
 @section('title')
-Users
+Employers
 @endsection
 @push('page-css')
 <style>
@@ -71,7 +71,7 @@ Users
         </header>
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
-            <h2 class="main-title m0">Plans</h2>
+            <h2 class="main-title m0">Employers</h2>
             <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab" aria-selected="true">All</button>
@@ -98,7 +98,7 @@ Users
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
-                            <th scope="col">PHone</th>
+                            <th scope="col">Phone</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
