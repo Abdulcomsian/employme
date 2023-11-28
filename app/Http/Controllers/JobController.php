@@ -30,7 +30,7 @@ class JobController extends Controller
         }
         if(isset($request->SearchLocation) && $request->SearchLocation !='')
         {
-            $allJobs = $allJobs->where('city_town',$request->SearchLocation);
+            $allJobs = $allJobs->where('city_town','like','%'.$request->SearchLocation.'%');
         }
 
          /* Search Job on Type Based */
@@ -88,11 +88,11 @@ class JobController extends Controller
         /* Search Jobs on Salary Range Based */
         if(isset($request->SearchRangeMin) && $request->SearchRangeMin !='')
         {
-            $allJobs = $allJobs->where('monthly_salary', '<=',$request->SearchRangeMin);
+            $allJobs = $allJobs->where('monthly_salary', '>=',$request->SearchRangeMin);
         }
         if(isset($request->SearchRangeMax) && $request->SearchRangeMax !='')
         {
-            $allJobs = $allJobs->where('monthly_salary', '>=', $request->SearchRangeMax);
+            $allJobs = $allJobs->where('monthly_salary', '<=', $request->SearchRangeMax);
         }
         
         $allJobs = $allJobs->paginate(2);

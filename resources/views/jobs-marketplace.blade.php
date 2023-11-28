@@ -100,15 +100,16 @@ Job Marketplace
 							<div class="light-bg border-20 ps-4 pe-4 pt-25 pb-30 mt-20">
 								<div class="filter-block bottom-line pb-25">
 									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false">Location</a>
-									<div class="collapse show" id="collapseLocation">
+									<div class="collapse {{(isset($_GET['SearchLocation']) && $_GET['SearchLocation'] !='') ? 'show' : ''}}" id="collapseLocation">
 										<div class="main-body">
-											<select class="nice-select bg-white" name="SearchLocation">
+											<!-- <select class="nice-select bg-white" name="SearchLocation">
 												<option value="">Select</option>
 												<option value="Washington DC" {{(isset($_GET['SearchLocation']) && $_GET['SearchLocation'] =='Washington DC') ? 'selected' : ''}}>Washington DC</option>
 												<option value="California, CA" {{(isset($_GET['SearchLocation']) && $_GET['SearchLocation'] =='California, CA') ? 'selected' : ''}}>California, CA</option>
 												<option value="New York" {{(isset($_GET['SearchLocation']) && $_GET['SearchLocation'] =='New York') ? 'selected' : ''}}>New York</option>
 												<option value="Miami" {{(isset($_GET['SearchLocation']) && $_GET['SearchLocation'] =='Miami') ? 'selected' : ''}}>Miami</option>
-											</select>
+											</select> -->
+											<input type="text" name="SearchLocation" placeholder = "" value="{{ isset($_GET['SearchLocation']) ? $_GET['SearchLocation'] : ''}}"/>
 										</div>
 									</div>
 								</div>
@@ -146,23 +147,23 @@ Job Marketplace
 											<ul class="style-none filter-input">
 												<li>
 													<input type="checkbox" name="SearchFresher" value="Fresher" {{isset($_GET['SearchFresher']) ? 'checked' : ''}}>
-													<label>Fresher <span>{{jobTypeCount('Fresher')}}</span></label>
+													<label>Fresher <span>{{jobExperienceCount('Fresher')}}</span></label>
 												</li>
 												<li>
 													<input type="checkbox" name="SearchIntermediate" value="Intermediate" {{isset($_GET['SearchIntermediate']) ? 'checked' : ''}}>
-													<label>Intermediate <span>{{jobTypeCount('Intermediate')}}</span></label>
+													<label>Intermediate <span>{{jobExperienceCount('Intermediate')}}</span></label>
 												</li>
 												<li>
 													<input type="checkbox" name="SearchNoExperience" value="No-Experience" {{isset($_GET['SearchNoExperience']) ? 'checked' : ''}}>
-													<label>No-Experience <span>{{jobTypeCount('No-Experience')}}</span></label>
+													<label>No-Experience <span>{{jobExperienceCount('No-Experience')}}</span></label>
 												</li>
 												<li>
 													<input type="checkbox" name="SearchInternship" value="Internship" {{isset($_GET['SearchInternship']) ? 'checked' : ''}}>
-													<label>Internship <span>{{jobTypeCount('Internship')}}</span></label>
+													<label>Internship <span>{{jobExperienceCount('Internship')}}</span></label>
 												</li>
 												<li>
 													<input type="checkbox" name="SearchExpert" value="Expert" {{isset($_GET['SearchExpert']) ? 'checked' : ''}}>
-													<label>Expert <span>{{jobTypeCount('Expert')}}</span></label>
+													<label>Expert <span>{{jobExperienceCount('Expert')}}</span></label>
 												</li>
 											</ul>
 										</div>
@@ -171,16 +172,16 @@ Job Marketplace
 								<!-- /.filter-block -->
 								<div class="filter-block bottom-line pb-25 mt-25">
 									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseSalary" role="button" aria-expanded="false">Salary </a>
-									<div class="collapse {{(isset($_GET['SearchRangeMin']) || isset($_GET['SearchRangeMax'])) ? 'show' : ''}}" id="collapseSalary">
+									<div class="collapse {{((isset($_GET['SearchRangeMin']) && $_GET['SearchRangeMin'] !='') || (isset($_GET['SearchRangeMax']) && $_GET['SearchRangeMax'] !='')) ? 'show' : ''}}" id="collapseSalary">
 										<div class="main-body">
 											<div class="salary-slider">
 												<div class="price-input d-flex align-items-center pt-5">
 													<div class="field d-flex align-items-center">
-														<input type="number" class="input-min" value="0" readonly>
+														<input type="number" name="SearchRangeMin" class="input-min" value="{{isset($_GET['SearchRangeMin']) ? $_GET['SearchRangeMin'] : ''}}" readonly>
 													</div>
 													<div class="pe-1 ps-1">-</div>
 													<div class="field d-flex align-items-center">
-														<input type="number" class="input-max" value="30000" readonly>
+														<input type="number" name= "SearchRangeMax" class="input-max" value="{{isset($_GET['SearchRangeMax']) ? $_GET['SearchRangeMax'] : ''}}" readonly>
 													</div>
 													<div class="currency ps-1">USD</div>
 												</div>
@@ -188,8 +189,8 @@ Job Marketplace
 													<div class="progress"></div>
 												</div>
 												<div class="range-input mb-10">
-													<input type="range" name="SearchRangeMin" class="range-min" min="0" max="50000" value="0" step="10">
-													<input type="range" name="SearchRangeMax" class="range-max" min="0" max="100000" value="30000" step="10">
+													<input type="range"  class="range-min" min="0" max="50000" value="0" step="10">
+													<input type="range"  class="range-max" min="0" max="100000" value="30000" step="10">
 												</div>
 											</div>
 											<!-- <ul class="style-none d-flex flex-wrap justify-content-between radio-filter mb-5">
@@ -213,8 +214,8 @@ Job Marketplace
 
 								<!-- house included demand of client -->
 								<div class="filter-block bottom-line pb-25 mt-25">
-									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false">Housing Included</a>
-									<div class="collapse {{isset($_GET['SearchHousingIncluded']) ? 'show' : ''}}" id="collapseLocation">
+									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseHousingIncluded" role="button" aria-expanded="false">Housing Included</a>
+									<div class="collapse {{(isset($_GET['SearchHousingIncluded']) && $_GET['SearchHousingIncluded'] !='') ? 'show' : ''}}" id="collapseHousingIncluded">
 										<div class="main-body">
 											<select class="nice-select bg-white" name="SearchHousingIncluded">
 												<option value="">Select</option>
@@ -228,8 +229,8 @@ Job Marketplace
 
 								<!--  Insurances Included demand of client -->
 								<div class="filter-block bottom-line pb-25 mt-25">
-									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false"> Insurances Included </a>
-									<div class="collapse {{isset($_GET['SearchInsuranceIncluded']) ? 'show' : ''}}" id="collapseLocation">
+									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseInsuranceIncluded" role="button" aria-expanded="false"> Insurances Included </a>
+									<div class="collapse {{(isset($_GET['SearchInsuranceIncluded']) && $_GET['SearchInsuranceIncluded'] !='') ? 'show' : ''}}" id="collapseInsuranceIncluded">
 										<div class="main-body">
 											<select class="nice-select bg-white" name="SearchInsuranceIncluded">
 												<option value="">Select</option>
