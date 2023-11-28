@@ -20,6 +20,7 @@ class JobController extends Controller
     public function jobMarketplace(Request $request){
         $allJobs = EmployerJob::with('employerDetails');
         $jobCategories = JobCategory::all();
+       
         if(isset($request->SearchJobTitle) && $request->SearchJobTitle !='')
         {
             $allJobs = $allJobs->where('job_title','like','%'.$request->SearchJobTitle.'%');
@@ -34,21 +35,22 @@ class JobController extends Controller
         }
 
          /* Search Job on Type Based */
-        if(isset($request->SearchFixedPriceJob) && $request->SearchFixedPriceJob !='')
-        {
-            $allJobs = $allJobs->where('job_type',$request->SearchFixedPriceJob);
-        }
-        if(isset($request->SearchFullTimeJob) && $request->SearchFullTimeJob !='')
-        {
-            $allJobs = $allJobs->where('job_type',$request->SearchFullTimeJob);
-        }
-        if(isset($request->SearchPartTimeJob) && $request->SearchPartTimeJob !='')
-        {
-            $allJobs = $allJobs->where('job_type',$request->SearchPartTimeJob);
-        }
-        if(isset($request->SearchFreelanceJob) && $request->SearchFreelanceJob !='')
-        {
-            $allJobs = $allJobs->where('job_type',$request->SearchFreelanceJob);
+         $jobTypes = [];
+         if(isset($request->SearchFixedPriceJob) && $request->SearchFixedPriceJob !='') {
+             $jobTypes[] = $request->SearchFixedPriceJob;
+         }
+         if(isset($request->SearchFullTimeJob) && $request->SearchFullTimeJob !='') {
+             $jobTypes[] = $request->SearchFullTimeJob;
+         }
+         if(isset($request->SearchPartTimeJob) && $request->SearchPartTimeJob !='') {
+             $jobTypes[] = $request->SearchPartTimeJob;
+         }
+         if(isset($request->SearchFreelanceJob) && $request->SearchFreelanceJob !='') {
+             $jobTypes[] = $request->SearchFreelanceJob;
+         }
+      
+        if (!empty($jobTypes)) {
+            $allJobs = $allJobs->whereIn('job_type', $jobTypes);
         }
 
         /* Search Job on Accomodation Based */
@@ -64,26 +66,27 @@ class JobController extends Controller
         }
 
         /* Search Jobs on Fresher, Intermediate, Intership, No Experience and Expert Based */
-        if(isset($request->SearchFresher) && $request->SearchFresher !='')
-        {
-            $allJobs = $allJobs->where('experience',$request->SearchFresher);
+        $jobExperiences = [];
+         if(isset($request->SearchFresher) && $request->SearchFresher !='') {
+             $jobExperiences[] = $request->SearchFresher;
+         }
+         if(isset($request->SearchIntermediate) && $request->SearchIntermediate !='') {
+             $jobExperiences[] = $request->SearchIntermediate;
+         }
+         if(isset($request->SearchInternship) && $request->SearchInternship !='') {
+             $jobExperiences[] = $request->SearchInternship;
+         }
+         if(isset($request->SearchExpert) && $request->SearchExpert !='') {
+             $jobExperiences[] = $request->SearchExpert;
+         }
+         if(isset($request->SearchNoExperience) && $request->SearchNoExperience !='') {
+            $jobExperiences[] = $request->SearchNoExperience;
         }
-        if(isset($request->SearchIntermediate) && $request->SearchIntermediate !='')
+        if (!empty($jobExperiences))
         {
-            $allJobs = $allJobs->where('experience',$request->SearchIntermediate);
+            $allJobs = $allJobs->whereIn('experience_level',$jobExperiences);
         }
-        if(isset($request->SearchInternship) && $request->SearchInternship !='')
-        {
-            $allJobs = $allJobs->where('experience',$request->SearchInternship);
-        }
-        if(isset($request->SearchExpert) && $request->SearchExpert !='')
-        {
-            $allJobs = $allJobs->where('experience',$request->SearchExpert);
-        }
-        if(isset($request->SearchNoExperience) && $request->SearchNoExperience !='')
-        {
-            $allJobs = $allJobs->where('experience',$request->SearchNoExperience);
-        }
+   
          
         /* Search Jobs on Salary Range Based */
         if(isset($request->SearchRangeMin) && $request->SearchRangeMin !='')

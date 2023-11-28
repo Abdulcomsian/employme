@@ -96,7 +96,7 @@
 									</a>
 								</div>
 							</div>
-							<p class="text-center mt-10">Don't have an account? <a href="signup" class="fw-500">Sign up</a></p>
+							<p class="text-center mt-10">Don't have an account? <a href="{{route('signup')}}" class="fw-500">Sign up</a></p>
 						</div>
 						<!-- /.form-wrapper -->
 					</div>

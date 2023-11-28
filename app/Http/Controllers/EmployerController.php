@@ -43,7 +43,9 @@ class EmployerController extends Controller
         // } else {
         //    dd('Un Subscribed');
         // }
-        $userSubscription = User::find(Auth::id())->subscriptions()->where('stripe_status','active')->latest()->first();
+        // $subscription=User::find(Auth::id())->subscriptions('default')->first();
+        // $subscription->swap('price_1O45OVIWh0YxdiV2lbhYthVN');
+        $userSubscription = User::find(Auth::id())->subscriptions('default')->first();
         $stripeSubscription = $userSubscription->asStripeSubscription();
 
         // Get the renewal timestamp from the Stripe subscription
@@ -233,13 +235,14 @@ class EmployerController extends Controller
     }
     public function cancelSubscription(Request $request)
     {
-        $user = User::find(Auth::id());;
-        $subscriptionId =$request->subscription_id;
+        $user = User::find(Auth::id());
+        // $subscriptionId =$request->subscription_id;
         // Find the subscription you want to cancel (replace $subscriptionId with the actual subscription ID)
-        $subscriptions = $user->subscriptions($subscriptionId)->first();        
+        // $subscriptions = $user->subscriptions($subscriptionId)->first();        
+        $subscriptions = User::find(Auth::id())->subscriptions('default')->first();        
         try {
             $subscriptions->cancelNow();
-            toastr()->success('You have successfully Subscribed');
+            toastr()->success('You have successfully canceled the subscription Subscribed');
         return redirect()->back();
             // Additional logic after canceling the subscription
         } catch (\Exception $e) {

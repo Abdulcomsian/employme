@@ -32,9 +32,18 @@ class SubscriptionController extends Controller
     public function subscription(Request $request)
     {
         $plan = Plan::find($request->plan);
-  
-        $subscription = $request->user()->newSubscription($request->plan, $plan->stripe_plan)
-                        ->create($request->token);
+        $userSubscription = User::find(Auth::id())->subscriptions('default')->first();
+        if(!empty($userSubscription))
+        {
+            if($userSubscription->stripe_price != $plan->stripe_plan)
+            {
+                $subscription->swap($plan->stripe_plan);
+            }
+        }else{
+            $subscription = $request->user()->newSubscription($request->plan, $plan->stripe_plan)
+            ->create($request->token);
+        }
+        
   
         // return view("subscription_success");
         // toastr()->success('Your have successfully Subscribed the Plan');
