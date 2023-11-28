@@ -15,7 +15,7 @@ use App\Http\Controllers\{
     SubscriptionController,
     EmployerJobController,
     JobCategoryController,
-    WebhookController
+    StripeWebhookController
 };
 
 /*
@@ -194,3 +194,4 @@ Route::post(
     'stripe/webhook',
     '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
 );
+// Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);

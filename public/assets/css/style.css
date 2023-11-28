@@ -2274,7 +2274,7 @@ iframe {
   background: rgba(0, 191, 88, 0.06);
 }
 
-.dashboard-menu .nav-link::before {
+/* .dashboard-menu .nav-link::before {
   content: "New";
   font-size: 9px;
   letter-spacing: 0.5px;
@@ -2284,7 +2284,7 @@ iframe {
   padding: 1px 3px;
   right: -18px;
   top: 7px;
-}
+} */
 
 .menu-style-one.theme-main-menu.fixed {
   background: #244034;

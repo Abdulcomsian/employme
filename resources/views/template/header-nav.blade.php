@@ -105,7 +105,25 @@
                                 </ul>
                             </li>
                             @auth
+                            @role('candidate')
                             <li class="nav-item dropdown dashboard-menu">
+                                <a class="nav-link" href="{{route('getCandidateDashboard')}}" role="button"  aria-expanded="false">Dashboard
+                                </a>
+                            </li>
+                            @endrole
+                            @role('employer')
+                            <li class="nav-item dropdown dashboard-menu">
+                                <a class="nav-link" href="{{route('getEmployerDashboard')}}" role="button"  aria-expanded="false">Dashboard
+                                </a>
+                            </li>
+                            @endrole
+                            @role('admin')
+                            <li class="nav-item dropdown dashboard-menu">
+                                <a class="nav-link" href="{{route('getOwnerDashboard')}}" role="button"  aria-expanded="false">Dashboard
+                                </a>
+                            </li>
+                            @endrole
+                            <!-- <li class="nav-item dropdown dashboard-menu">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Dashboard
                                 </a>
                                 <ul class="dropdown-menu">
@@ -119,7 +137,7 @@
                                     <li><a href="{{route('getOwnerDashboard')}}" class="dropdown-item" ><span>Owner Dashboard</span></a></li>
                                     @endrole
                                 </ul>
-                            </li>
+                            </li> -->
                             @endauth
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="/" role="button">Home

@@ -275,3 +275,17 @@ function salaryRanges($range=null)
 
     return $data;
 }
+function employerSpentAmount()
+{
+        $user = \App\Models\User::find(Auth::id()); // Replace $userId with the actual user ID
+        $subscriptions = $user->subscriptions;
+        $totalAmountSpent = 0;
+         
+        foreach ($subscriptions as $subscription) {
+            foreach ($subscription->invoices() as $invoice) {
+                $totalAmountSpent += $invoice->total;
+            }
+        }
+        $totalAmountSpent = number_format($totalAmountSpent/100, 2);
+        return $totalAmountSpent;
+}

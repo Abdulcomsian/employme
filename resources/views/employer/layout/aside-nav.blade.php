@@ -58,10 +58,10 @@
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/employer-dashboard-saved-candidate') ? asset('assets/images/dashboard-icon/icon_6_active.svg') : asset('assets/images/dashboard-icon/icon_6.svg')}}" alt="" class="lazy-img">
 						<span>Saved Candidate</span>
 					</a></li>
-					<!-- <li><a href="{{route('employerSubscriptions')}}" class="d-flex w-100 align-items-center {{request()->is('employer/subscriptions') ? 'active' : ''}}">
+					<li><a href="{{route('employerSubscriptions')}}" class="d-flex w-100 align-items-center {{request()->is('employer/subscriptions') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/subscriptions') ? asset('assets/images/dashboard-icon/icon_6_active.svg') : asset('assets/images/dashboard-icon/icon_6.svg')}}" alt="" class="lazy-img">
 						<span>Subscription</span>
-					</a></li> -->
+					</a></li>
 				<!-- <li><a href="{{route('employerJobApplications')}}" class="d-flex w-100 align-items-center {{request()->is('employer/job-applications') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/job-applications') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
 						<span>Job Applications</span>

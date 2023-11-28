@@ -57,6 +57,7 @@ Job Listing
                                     <th scope="col">Plan</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Subscription Date</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -71,10 +72,11 @@ Job Listing
                                         <div class="job-name fw-500 job-title"><a href="">{{$subscription->plan->name}}</a></div>
                                         <div class="info1">{{$subscription->plan->price}}</div>
                                     </td>
-                                    <td>{{$subscription->plan->price}} Applications</td>
+                                    <td>{{$subscription->plan->price}} USD</td>
                                     <td>
                                         <div class="job-status">{{$subscription->stripe_status}}</div>
                                     </td>
+                                    <td>{{date('d M, Y',strtotime($subscription->created_at))}}</td>
                                     <td>
                                         <div class="action-dots float-end">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -85,7 +87,7 @@ Job Listing
                                                 <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
                                                 <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('destroy-form').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                                                document.getElementById('destroy-form').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Cancel</a></li>
                                             </ul>
                                         </div>
                                         <form id="destroy-form" action="{{route('cancelSubscription')}}" method="POST" style="display: none;">

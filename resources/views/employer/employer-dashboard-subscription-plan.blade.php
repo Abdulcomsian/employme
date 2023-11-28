@@ -13,28 +13,35 @@ Subscription Plan
         <!-- End Header -->
 
         <h2 class="main-title">Membership</h2>
-
+        <span><b>Total Spent: </b></span><spa>{{employerSpentAmount()}} USD</span>
         <div class="membership-plan-wrapper mb-20">
+            @if($userSubscription)
             <div class="row gx-0">
                 <div class="col-xxl-7 col-lg-6 d-flex flex-column">
                     <div class="column w-100 h-100">
-                        <h4>Current Plan (Gold)</h4>
+                        <h4>Current Plan ({{$userSubscription->plan->name}})</h4>
                         <p>Unlimited access to our legal document library and online rental application tool, billed monthly.</p>
                     </div>
                 </div>
                 <div class="col-xxl-5 col-lg-6 d-flex flex-column">
                     <div class="column border-left w-100 h-100">
                         <div class="d-flex">
-                            <h3 class="price m0">$29</h3>
+                            <h3 class="price m0">${{$userSubscription->plan->price}}</h3>
                             <div class="ps-4 flex-fill">
                                 <h6>Monthly Plan</h6>
-                                <span class="text1 d-block">Your subscription renews <span class="fw-500">July 12th, 2023</span></span>
-                                <a href="#" class="cancel-plan tran3s">Cancel Current Plan</a>
+                                <span class="text1 d-block">Your subscription renews <span class="fw-500">{{$userSubscription->renewal_date}}</span></span>
+                                <a href="#" onclick="event.preventDefault();
+                                                                document.getElementById('destroy-form').submit();" class="cancel-plan tran3s">Cancel Current Plan</a>
                             </div>
+                            <form id="destroy-form" action="{{route('cancelSubscription')}}" method="POST" style="display: none;">
+                                    @csrf
+                                <input type="hidden" name="subscription_id" value="{{$userSubscription->id}}">
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+            @endif
         </div>
         <!-- /.membership-plan-wrapper -->
 

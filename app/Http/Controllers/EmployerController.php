@@ -13,6 +13,7 @@ use App\Models\SubscriptionItem;
 use App\Models\Subscription;
 use App\Models\EmployerJob;
 use App\Models\SavedCandidate;
+use Illuminate\Support\Carbon;
 class EmployerController extends Controller
 {
 
@@ -35,7 +36,31 @@ class EmployerController extends Controller
     }
     public function getEmployerSubscription()
     {
-        return view('employer.employer-dashboard-subscription-plan');
+        // $user = User::find(Auth::id());
+        // if ($user->subscribed('prod_Or5sOemrKGQMth')) { // Replace with the actual plan name
+        //     dd('Subscribed');
+
+        // } else {
+        //    dd('Un Subscribed');
+        // }
+        $userSubscription = User::find(Auth::id())->subscriptions()->where('stripe_status','active')->latest()->first();
+        $stripeSubscription = $userSubscription->asStripeSubscription();
+
+        // Get the renewal timestamp from the Stripe subscription
+        $renewalTimestamp = $stripeSubscription->current_period_end;
+        // Convert the timestamp to a Carbon instance
+        $carbonDate = Carbon::createFromTimestamp($renewalTimestamp);
+        // Format the Carbon instance as a string (e.g., 'Y-m-d H:i:s')
+        $formattedDate = $carbonDate->format('d M, Y');
+
+        // dd("Subscription renews on ". $formattedDate);
+        if($userSubscription)
+        {
+            $planDetails =\App\Models\Plan::where('stripe_plan',$userSubscription->stripe_price)->first();
+                $userSubscription->plan = $planDetails;
+                $userSubscription->renewal_date =  $formattedDate;
+        }
+        return view('employer.employer-dashboard-subscription-plan',compact('userSubscription'));
     }
 
     public function postAJob()
@@ -213,7 +238,7 @@ class EmployerController extends Controller
         // Find the subscription you want to cancel (replace $subscriptionId with the actual subscription ID)
         $subscriptions = $user->subscriptions($subscriptionId)->first();        
         try {
-            $subscriptions->cancel();
+            $subscriptions->cancelNow();
             toastr()->success('You have successfully Subscribed');
         return redirect()->back();
             // Additional logic after canceling the subscription

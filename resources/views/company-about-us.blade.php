@@ -149,9 +149,9 @@
 
 					<div class="container">
 						<h2>About Us</h2>
-						<p>School's Mission & Vision: (Brief overview of the school's guiding principles and aspirations)</p>
-						<p>History: (A short description of the hagwon's history and evolution)</p>
-						<p>Teaching Philosophy: (Details about the school's pedagogic beliefs and methods)</p>
+						<p><b>School's Mission & Vision:</b> {{$employerDetails->school_vision_and_mission}}</p>
+						<p><b>History:</b> {!! $employerDetails->employer_details ?? '' !!}</p>
+						<!-- <p><b>Teaching Philosophy:</b> (Details about the school's pedagogic beliefs and methods)</p> -->
 					</div>
 				</div>
 			</div>
