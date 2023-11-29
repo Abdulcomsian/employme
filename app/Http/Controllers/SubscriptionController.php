@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Plan;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Models\EmployerDetails;
+use Illuminate\Support\Facades\Validator;
 class SubscriptionController extends Controller
 {
     public function index()
@@ -31,17 +35,30 @@ class SubscriptionController extends Controller
      */
     public function subscription(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'terms_and_conditions_acceptance' => 'required|in:I Accept',
+        ]);
+  
+        if ($validator->fails()){
+            return response()->json([
+                    "status" => false,
+                    "errors" => $validator->errors()
+                ]);
+        }
         $plan = Plan::find($request->plan);
         $userSubscription = User::find(Auth::id())->subscriptions('default')->first();
+        $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
         if(!empty($userSubscription))
         {
             if($userSubscription->stripe_price != $plan->stripe_plan)
             {
-                $subscription->swap($plan->stripe_plan);
+                $userSubscription->swap($plan->stripe_plan);
+                $updateEmployerDetails->update(['subscription_plan_id'=>$request->plan]);
             }
         }else{
             $subscription = $request->user()->newSubscription($request->plan, $plan->stripe_plan)
             ->create($request->token);
+            $updateEmployerDetails->update(['subscription_plan_id'=>$request->plan]);
         }
         
   

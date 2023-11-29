@@ -404,6 +404,7 @@ Profile
 										<option value="I Accept" {{$employerDetails->terms_and_conditions_acceptance == 'I Accept' ? 'selected' : ''}}>I Accept</option>
 										<option value="I do not Accept" {{$employerDetails->terms_and_conditions_acceptance == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
 									</select>
+									<div id="subscription-terms-condiditions-acceptance"></div>
 								</div>
 							</div>
 						</div>
@@ -729,7 +730,7 @@ Profile
 				 }else{
                     $(".alert").remove();
                     $.each(data.errors, function (key, val) {
-                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                        $("#subscription-terms-condiditions-acceptance").append("<div class='alert alert-danger'>" + val + "</div>");
                     });
                 }
                
