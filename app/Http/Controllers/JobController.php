@@ -98,7 +98,7 @@ class JobController extends Controller
             $allJobs = $allJobs->where('monthly_salary', '<=', $request->SearchRangeMax);
         }
         
-        $allJobs = $allJobs->paginate(2);
+        $allJobs = $allJobs->paginate(10);
         return view('jobs-marketplace',compact('allJobs','jobCategories'));
     }
 

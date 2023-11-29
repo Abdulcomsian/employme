@@ -35,13 +35,13 @@
 <nav class="nav-2" id="menu">
 	<ul id="menu-closed">
 	<li><a href="{{route('companyAboutUs', \Crypt::encryptString($employerDetails->id))}}"> About Us</a></li>
-		<li>	<a href="{{route('companyFacilities', \Crypt::encryptString($employerDetails->id))}}"  class="active"> School Facilities</a></li>
+		<!-- <li>	<a href="{{route('companyFacilities', \Crypt::encryptString($employerDetails->id))}}"  class="active"> School Facilities</a></li>
 		<li><a href="{{route('companyStaff', \Crypt::encryptString($employerDetails->id))}}">Staff and Community</a></li>
 		<li><a href="{{route('companyPrograms', \Crypt::encryptString($employerDetails->id))}}">Programs and Curriculum</a></li>
 		<li>	<a href="{{route('companyReviews', \Crypt::encryptString($employerDetails->id))}}">Reviews and Testimonials</a></li>
 		<li><a href="{{route('companyGallery', \Crypt::encryptString($employerDetails->id))}}">Gallery</a></li>
 		<li><a href="{{route('companyLocation', \Crypt::encryptString($employerDetails->id))}}">Location and Accessibility</a></li>
-		<li><a href="{{route('companyStaffInfo', \Crypt::encryptString($employerDetails->id))}}" > Current Staff Information</a></li>
+		<li><a href="{{route('companyStaffInfo', \Crypt::encryptString($employerDetails->id))}}" > Current Staff Information</a></li> -->
 		<li><a href="#menu-closed">&#215; </a></li>
 		<li><a href="#menu">&#9776; more</a></li>
 	</ul>
@@ -118,10 +118,10 @@
 					</div>
 				</div>
 				<!-- /.job-company-info -->
-				<div class="job-company-info mt-100 ms-xl-5 ms-xxl-0 lg-mb-50">
-					<!-- <img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto logo"> -->
+				<!-- <div class="job-company-info mt-100 ms-xl-5 ms-xxl-0 lg-mb-50">
+					{{-- <img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto logo"> --}}
 					<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">Location</div>
-					<!-- <div class="text-center"><a href="#" class="website-btn-two tran3s" target="_blank">Visit our website</a></div> -->
+					{{-- <div class="text-center"><a href="#" class="website-btn-two tran3s" target="_blank">Visit our website</a></div> --}}
 
 					<div class="border-top mt-35 lg-mt-20 pt-25">
 						<ul class="job-meta-data row style-none">
@@ -137,7 +137,7 @@
 						</ul>
 
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="col-xxl-9 col-xl-8 order-xl-first">
 				<div class="details-post-data me-xxl-5 pe-xxl-4">
