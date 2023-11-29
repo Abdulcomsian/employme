@@ -19,8 +19,8 @@ class CandidateController extends Controller
 {
     public function getCandidateDashboard()
     {
-       
-        return view('candidate.dashboard');
+        $totalJobApplications = User::find(Auth::id())->jobsApplied()->count();
+        return view('candidate.dashboard',get_defined_vars());
     }
 
     public function getProfilePage()

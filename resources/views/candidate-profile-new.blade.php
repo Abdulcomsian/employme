@@ -231,16 +231,16 @@
                                     </li>
 
                                 </ul>
-                                <a href="#" class="btn-ten fw-500 text-white w-100 text-center tran3s mt-15">Download CV</a>
+                                <a href="#" class="btn-ten cv-download-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download CV</a>
                             </div>
                             <!-- /.cadidate-bio -->
-                            <h4 class="sidebar-title">Location</h4>
+                            <!-- <h4 class="sidebar-title">Location</h4>
                             <div class="map-area mb-60 md-mb-40">
                                 <div class="gmap_canvas h-100 w-100">
                                     <iframe class="gmap_iframe h-100 w-100" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=dhaka collage&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
                                 </div>
-                            </div>
-                            <h4 class="sidebar-title">Email Rashed Kabir.</h4>
+                            </div> -->
+                            <!-- <h4 class="sidebar-title">Email Rashed Kabir.</h4>
                             <div class="email-form bg-wrapper">
                                 <p>Your email address & profile will be shown to the recipient.</p>
                                 <form action="#">
@@ -261,7 +261,7 @@
                                         <button class="btn-ten fw-500 text-white flex-fill text-center tran3s">Send </button>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                         </div> 
                         <!-- /.cadidate-profile-sidebar -->
                     </div>

@@ -19,7 +19,10 @@ class EmployerController extends Controller
 
     public function getEmployerDashboard()
     {
-        return view('employer.dashboard');
+        $totalJobsPosted = EmployerJob::where('posted_by',Auth::id())->count();
+        $totalSavedCandidate = User::find(Auth::id())->savedCandidates()->count();
+        $totalEmployerJobApplications = EmployerJob::with('jobApplicants')->where('posted_by',Auth::id())->count();
+        return view('employer.dashboard',get_defined_vars());
     }
     public function getEmployerProfilePage()
     {

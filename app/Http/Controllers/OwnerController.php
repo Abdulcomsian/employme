@@ -12,7 +12,8 @@ class OwnerController extends Controller
 
     public function getOwnerDashboard()
     {
-        return view('owner.dashboard');
+        $totalJobApplications = EmployerJob::with('jobApplicants')->count();
+        return view('owner.dashboard',get_defined_vars());
     }
 
     public function getOwnerProfile()

@@ -102,7 +102,7 @@ Dashboard
 					<div class="d-sm-flex align-items-center justify-content-between">
 						<div class="icon rounded-circle d-flex align-items-center justify-content-center order-sm-1"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_15.svg')}}" alt="" class="lazy-img"></div>
 						<div class="order-sm-0">
-							<div class="value fw-500">07</div>
+							<div class="value fw-500">{{$totalJobApplications ?? '0'}}</div>
 							<span>Applied Job</span>
 						</div>
 					</div>
