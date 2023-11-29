@@ -54,15 +54,15 @@ class EmployerController extends Controller
         {
             $planDetails =\App\Models\Plan::where('stripe_plan',$userSubscription->stripe_price)->first();
                 $userSubscription->plan = $planDetails;
-                $userSubscription->renewal_date =  $formattedDate;
 
                 // Get the renewal timestamp from the Stripe subscription
-                $renewalTimestamp = $stripeSubscription->current_period_end;
                 $stripeSubscription = $userSubscription->asStripeSubscription();
+                $renewalTimestamp = $stripeSubscription->current_period_end;
                 // Convert the timestamp to a Carbon instance
                 $carbonDate = Carbon::createFromTimestamp($renewalTimestamp);
                 // Format the Carbon instance as a string (e.g., 'Y-m-d H:i:s')
                 $formattedDate = $carbonDate->format('d M, Y');
+                $userSubscription->renewal_date =  $formattedDate;
         }
         return view('employer.employer-dashboard-subscription-plan',compact('userSubscription'));
     }
