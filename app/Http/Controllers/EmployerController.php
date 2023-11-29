@@ -46,21 +46,23 @@ class EmployerController extends Controller
         // $subscription=User::find(Auth::id())->subscriptions('default')->first();
         // $subscription->swap('price_1O45OVIWh0YxdiV2lbhYthVN');
         $userSubscription = User::find(Auth::id())->subscriptions('default')->first();
-        $stripeSubscription = $userSubscription->asStripeSubscription();
-
-        // Get the renewal timestamp from the Stripe subscription
-        $renewalTimestamp = $stripeSubscription->current_period_end;
-        // Convert the timestamp to a Carbon instance
-        $carbonDate = Carbon::createFromTimestamp($renewalTimestamp);
-        // Format the Carbon instance as a string (e.g., 'Y-m-d H:i:s')
-        $formattedDate = $carbonDate->format('d M, Y');
-
+        
+        $renewalTimestamp=null;
+        $planDetails=null;
         // dd("Subscription renews on ". $formattedDate);
         if($userSubscription)
         {
             $planDetails =\App\Models\Plan::where('stripe_plan',$userSubscription->stripe_price)->first();
                 $userSubscription->plan = $planDetails;
                 $userSubscription->renewal_date =  $formattedDate;
+
+                // Get the renewal timestamp from the Stripe subscription
+                $renewalTimestamp = $stripeSubscription->current_period_end;
+                $stripeSubscription = $userSubscription->asStripeSubscription();
+                // Convert the timestamp to a Carbon instance
+                $carbonDate = Carbon::createFromTimestamp($renewalTimestamp);
+                // Format the Carbon instance as a string (e.g., 'Y-m-d H:i:s')
+                $formattedDate = $carbonDate->format('d M, Y');
         }
         return view('employer.employer-dashboard-subscription-plan',compact('userSubscription'));
     }

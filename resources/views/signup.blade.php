@@ -190,7 +190,7 @@ Sign Up
                  
                 </div>
                 
-                <div class="d-flex align-items-center mt-30 mb-10">
+                <!-- <div class="d-flex align-items-center mt-30 mb-10">
                     <div class="line"></div>
                     <span class="pe-3 ps-3">OR</span>
                     <div class="line"></div>
@@ -208,7 +208,7 @@ Sign Up
                             <span class="ps-2">Signup with Facebook</span>
                         </a>
                     </div>
-                </div>
+                </div> -->
                 <p class="text-center mt-10">Have an account? <a href="#" class="fw-500" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</a></p>
             </div>
          

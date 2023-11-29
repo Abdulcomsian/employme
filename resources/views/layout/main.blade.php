@@ -77,7 +77,7 @@
 									</div>
 								</div>
 							</form>
-							<div class="d-flex align-items-center mt-30 mb-10">
+							<!-- <div class="d-flex align-items-center mt-30 mb-10">
 								<div class="line"></div>
 								<span class="pe-3 ps-3">OR</span>
 								<div class="line"></div>
@@ -95,7 +95,7 @@
 										<span class="ps-2">Login with Facebook</span>
 									</a>
 								</div>
-							</div>
+							</div> -->
 							<p class="text-center mt-10">Don't have an account? <a href="{{route('signup')}}" class="fw-500">Sign up</a></p>
 						</div>
 						<!-- /.form-wrapper -->
