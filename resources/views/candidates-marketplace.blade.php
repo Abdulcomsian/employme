@@ -129,12 +129,12 @@ Candidate Marketplace
 								<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false">Location</a>
 								<div class="collapse show" id="collapseLocation">
 									<div class="main-body">
-										<select class="nice-select bg-white" name="SearchCandidateLocation">
+										<!-- <select class="nice-select bg-white" name="SearchCandidateLocation">
 											<option value="">Select</option>
 											<option value="California, CA" {{(isset($_GET['SearchCandidateLocation']) && $_GET['SearchCandidateLocation'] =='California, CA') ? 'selected' : ''}}>California, CA</option>
 											<option value="New York" {{(isset($_GET['SearchCandidateLocation']) && $_GET['SearchCandidateLocation'] =='New York') ? 'selected' : ''}}>New York</option>
 											<option value="Miami" {{(isset($_GET['SearchCandidateLocation']) && $_GET['SearchCandidateLocation'] =='Miami') ? 'selected' : ''}}>Miami</option>
-										</select>
+										</select> -->
 										<!-- <div class="loccation-range-select mt-5">
 											<div class="d-flex align-items-center">
 												<span>Radius: &nbsp;</span>
@@ -143,6 +143,7 @@ Candidate Marketplace
 											</div>
 											<input type="range" id="locationRange" value="50" max="100">
 										</div> -->
+										<input type="text" name="SearchCandidateLocation" placeholder = "" value="{{ isset($_GET['SearchCandidateLocation']) ? $_GET['SearchCandidateLocation'] : ''}}"/>
 									</div>
 								</div>
 							</div>

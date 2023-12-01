@@ -1,7 +1,7 @@
 <aside class="dash-aside-navbar">
     <div class="position-relative">
         <div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
-            <a href="candidate-dashboard-index.html">
+            <a href="{{route('getCandidateDashboard')}}">
                 <img src="{{asset('assets/images/logo_01.png')}}" alt="">
             </a>
             <button class="close-btn d-block d-md-none"><i class="bi bi-x-lg"></i></button>

@@ -71,7 +71,7 @@ class UserController extends Controller
         if(isset($request->SearchCandidateLocation) && $request->SearchCandidateLocation !='')
         {
             $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
-                $query->where('current_location',$request->SearchCandidateLocation);
+                $query->where('current_location','like','%'.$request->SearchCandidateLocation.'%');
             });
         }
         if(isset($request->SearchProfileTitle) && $request->SearchProfileTitle !='')
