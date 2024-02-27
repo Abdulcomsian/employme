@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\EmployerJob;
-use App\Models\EmployerDetails;
-use App\Models\CandidatePersonalDetails;
-use App\Models\User;
-use App\Models\JobCategory;
-use App\Models\JobApplication;
+use App\Models\{ EmployerJob, EmployerDetails, CandidatePersonalDetails, User, JobCategory, JobApplication, JobInterview };
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -115,7 +110,8 @@ class JobController extends Controller
     }
 
     public function getInterviewpage(){
-        return view('employer.employer-interview-request');
+        $allInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())->get();
+        return view('employer.employer-interview-request',compact('allInterviews'));
     }
 
     public function SearchjobMarketplace(Request $request)

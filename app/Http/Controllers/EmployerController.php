@@ -7,13 +7,13 @@ use App\Models\Countries;
 use App\Models\EmployerDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Plan;
-use App\Models\User;
-use App\Models\SubscriptionItem;
-use App\Models\Subscription;
-use App\Models\EmployerJob;
-use App\Models\SavedCandidate;
+use App\Models\{Plan, User, SubscriptionItem, Subscription, EmployerJob, SavedCandidate, JobInterview};
 use Illuminate\Support\Carbon;
+use Illuminate\Validation\Rule;
+use App\Rules\ValidateJobLink;
+use Notification;
+use Illuminate\Support\Facades\Validator;
+use App\Notifications\InterviewRequestNotification;
 class EmployerController extends Controller
 {
 
@@ -254,6 +254,48 @@ class EmployerController extends Controller
             // Handle the exception (e.g., subscription not found, cancellation failed)
             dd($e->getMessage());
         }
+    }
+
+    public function jobInterviewRequest(Request $request)
+    {
+       
+        $validator = Validator::make($request->all(), [
+            'meeting_media'=>'required',
+            'interview_date'=>'required',
+            'interview_time'=>'required',
+            'job_link'=>['required', new ValidateJobLink($request->candidate_id)]
+        ]);
+  
+        if ($validator->fails()){
+            return response()->json([
+                    "status" => false,
+                    "errors" => $validator->errors()
+                ]);
+            }
+            
+        $urlParts = explode('/', $request->job_link);
+        $jobId = end($urlParts);
+        $jobId = \Crypt::decryptString($jobId);
+        $candidateDetails = User::with('candidatePersonalDetails')->find($request->candidate_id);
+        $employerDetails = User::with('employerDetails')->find(Auth::id());
+        $jobDetails = EmployerJob::find($jobId);
+        $createRequest = JobInterview::create([
+            'job_link' => $request->job_link,
+            'requested_to'=>$request->candidate_id,
+            'requested_from'=>Auth::id(),
+            'interview_date'=>$request->interview_date,
+            'interview_time'=>$request->interview_time,
+            'meeting_media'=>$request->meeting_media,
+            'status'=>0,
+            'employer_job_id'=>$jobId
+
+        ]);
+        Notification::route('mail',  $candidateDetails->email ?? '')->notify(new InterviewRequestNotification($candidateDetails,$employerDetails,$jobDetails));
+        return response()->json([
+            "status" => true, 
+            "message" => 'Request Sent Successfully',
+            "redirect" => url("candidates-marketplace")
+        ]);
     }
     
 }

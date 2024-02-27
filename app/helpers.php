@@ -230,6 +230,11 @@ function jobApplicationStatus($employer_job_id=null)
     $checkApplication = \App\Models\JobApplication::where('candidate_id',\Auth::id())->where('employer_job_id',$employer_job_id)->first();
     return !empty($checkApplication) ? 1 : 0;
 }
+function jobInterviewStatus($candidate_id=null,$employer_job_id=null)
+{
+    $checkInterviewStatus = \App\Models\JobInterview::where(['requested_to'=>$candidate_id,'employer_job_id'=>$employer_job_id,'requested_from'=>\Auth::id()])->first();
+    return !empty($checkInterviewStatus) ? 1 : 0;
+}
 function savedJob($employer_job_id=null)
 {
     $checkApplication = \App\Models\SavedJob::where('user_id',\Auth::id())->where('employer_job_id',$employer_job_id)->first();

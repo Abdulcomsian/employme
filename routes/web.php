@@ -88,6 +88,9 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     // Route::get('save-job', [JobController::class, 'getSaveJobsPage'])->name('getSaveJob');
     Route::get('account-settings', [UserController::class, 'getAccountSettingsPage'])->name('getAccountSetting');
     Route::get('job-applications', [CandidateController::class, 'candidateJobApplications'])->name('candidateJobApplications');
+    Route::get('interview-requests', [CandidateController::class, 'candidateInterviewRequests'])->name('candidateInterviewRequests');
+    Route::post('accept-interview/{id}',[CandidateController::class,'acceptInterview'])->name('candidate.acceptInterview');
+    Route::post('reject-interview/{id}',[CandidateController::class,'rejectInterview'])->name('candidate.rejectInterview');
     Route::delete('job-applications/delete/{id}', [CandidateController::class, 'deleteApplication'])->name('candidate.delete-application');
   
 });
@@ -139,6 +142,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], fu
     Route::post('update-account-settings', [UserController::class, 'updateEmployerAccountSettingpage'])->name('employer.updateAccountSettingpage');
     Route::get('saved-candidates', [EmployerController::class, 'employerSavedCandidates'])->name('employerSavedCandidates');
     Route::delete('removed-candidate/{id}', [EmployerController::class, 'removeSavedCandidate'])->name('removeSavedCandidate');
+    Route::post('request-job-interview',[EmployerController::class,'jobInterviewRequest'])->name('employer.job_interview_request');
 
 
 });

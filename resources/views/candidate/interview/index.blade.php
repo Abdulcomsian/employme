@@ -1,4 +1,4 @@
-@extends('employer.layout.main')
+@extends('candidate.layout.main')
 
 @section('title')
 Interview Request
@@ -31,11 +31,11 @@ Interview Request
 <div class="dashboard-body">
     <div class="position-relative">
         <!-- ************************ Header **************************** -->
-		 	@include('employer.layout.header_menu')
+		 	@include('candidate.layout.header_menu')
         <!-- End Header -->
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
-            <h2 class="main-title m0">My Jobs</h2>
+            <h2 class="main-title m0">Interview Requests</h2>
             <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab" aria-selected="true">All</button>
@@ -60,12 +60,13 @@ Interview Request
                             <thead>
                                 <tr>
                                     <th scope="col">Title</th>
+                                    <th scope="col">Instituition</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Time</th>
                                     <th scope="col">Meeting Media</th>
                                     <th scope="col">Applicants</th>
                                     <th scope="col">Status</th>
-                                    {{--<th scope="col">Action</th>--}}
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="border-0">
@@ -89,28 +90,37 @@ Interview Request
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
                                         <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>
                                     </td>
+                                    <td>{{$interview->employer->employerDetails->institution ?? ''}} </td>
                                     <td>{{date('d M, Y',strtotime($interview->interview_date))}}</td>
-                                    <td>{{date('H:i A',strtotime($interview->interview_time))}}</td>
+                                    <td>{{date('h:i A',strtotime($interview->interview_time))}}</td>
                                     <td>{{$interview->meeting_media}}</td>
                                     <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$interview->jobDetails->id])}}">{{totalApplicants($interview->jobDetails->id)}} Applications</a><div></td>
                                     <td>
                                         <div class="job-status">{{$message}}</div>
                                     </td>
-                                {{--
+                                
                                     <td>
                                         <div class="action-dots float-end">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> Accept</a></li>
+                                                <form id="accept-form-{{$interview->id}}" action="{{ route('candidate.acceptInterview', $interview->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                </form>
+                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Reject</a></li>
+                                                <form id="reject-form-{{$interview->id}}" action="{{ route('candidate.rejectInterview', $interview->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                </form>
+                                                {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
+                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>--}}
                                             </ul>
                                         </div>
                                     </td>
-                                      --}}
+                                      
                                 </tr>
                                 @endforeach
                                 @endisset

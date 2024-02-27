@@ -18,6 +18,39 @@ Candidate Marketplace
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 2px;
 }
+.btn-submit {
+    height: 46px;
+    border-radius: 7px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.88px;
+    color: #fff;
+    background: #31795A;
+    width: auto;
+    padding: 14px;
+}
+#submitButton {
+    position: relative;
+    padding: 10px 20px;
+    background-color: #007bff; /* Your button background color */
+    color: #fff; /* Your button text color */
+    border: none;
+    border-radius: 5px;
+}
+
+#loadingIcon {
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+	
+}
+
+#loadingIcon img {
+    width: 20px; /* Adjust as needed */
+    height: 20px; /* Adjust as needed */
+}
+
 </style>
 <!--
 		=============================================
@@ -494,7 +527,27 @@ Candidate Marketplace
 											<a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="profile-btn tran3s w-100 mt-5">View Profile</a>
 										</div>
 										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
+										@if(\Auth::check())
+											@role('admin')
+												<button class="msg-btn tran3s w-100 mt-5 NonEmployerButton" >Request Interview</button>
+											@endrole
+											@role('candidate')
+											<button class="msg-btn tran3s w-100 mt-5 NonEmployerButton" >Request Interview</button>
+											@endrole
+											@role('employer')
+									{{--		@if(jobApplicationStatus($jobDetails->id) == 1)
+													<button class="btn-one">Requested</button>
+												@else
+													<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
+													<button class=" msg-btn tran3s w-100 mt-5" data-bs-toggle="modal" data-bs-target="#InterviewRequestModal">Request Interview</button>
+											@endif --}}
+											<button class=" msg-btn tran3s w-100 mt-5 Interview-Modal-Button" data-bs-toggle="modal" data-bs-target="#InterviewRequestModal" value = "{{$candidate->id}}">Request Interview</button>
+
+											@endrole
+											@else
+												<button class=" msg-btn tran3s w-100 mt-5 PleaseLoginButton" >Request Interview</button>
+												<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
+											@endif
 										</div>
 
 									</div>
@@ -712,6 +765,136 @@ Candidate Marketplace
 		</div>
 	</div>
 </section>
-<!-- /.job-portal-intro -->
 
+<div class="modal fade" id="InterviewRequestModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-fullscreen modal-dialog-centered">
+				<div class="container">
+					<div class="user-data-form modal-content">
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						<div class="text-center">
+							<h3>Request Form</h3>
+						</div>
+						<div class="form-wrapper m-auto">
+							<form  id = "Interview-Request-Form">
+								<div id="interview-request-errors-list"></div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="input-group-meta position-relative mb-25">
+											<label>Date*</label>
+											<input type="date" name = "interview_date" placeholder="" required>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="input-group-meta position-relative mb-20" required>
+											<label>Time*</label>
+											<input type="time" name = "interview_time" placeholder="Enter Password" class="pass_log_id" required>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="input-group-meta position-relative mb-20">
+											<label>Job Link*</label>
+											<input type="text" name = "job_link" placeholder="https://job.pk/job/1" class="pass_log_id">
+										</div>
+									</div>
+									<div class="col-md-12">
+									<div class="input-group-meta position-relative mb-20">
+										<label for="">Select Meeting Media</label>
+										<select name="meeting_media" id="meeting_media" class="nice-select">
+											<option value="Skype" >Skype</option>
+											<option value="Google Meet" >Google Meet</option>
+											<option value="Zoom">Zoom</option>
+										</select>
+								</div>
+									</div>
+								
+									<div class="col-md-6">
+										<button class="btn-submit fw-500 tran3s d-block mt-20" type = "submit" >
+											<span id="buttonText">Submit</span>
+											<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
+										</button>
+									</div>
+								</div>
+							</form>
+							<!-- <div class="d-flex align-items-center mt-30 mb-10">
+								<div class="line"></div>
+								<span class="pe-3 ps-3">OR</span>
+								<div class="line"></div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<a href="#" class="social-use-btn d-flex align-items-center justify-content-center tran3s w-100 mt-10">
+										<img src="{{asset('assets/images/icon/google.png')}}" alt="">
+										<span class="ps-2">Login with Google</span>
+									</a>
+								</div>
+								<div class="col-md-6">
+									<a href="#" class="social-use-btn d-flex align-items-center justify-content-center tran3s w-100 mt-10">
+										<img src="{{asset('assets/images/icon/facebook.png')}}" alt="">
+										<span class="ps-2">Login with Facebook</span>
+									</a>
+								</div>
+							</div> -->
+						</div>
+						<!-- /.form-wrapper -->
+					</div>
+					<!-- /.user-data-form -->
+				</div>
+			</div>
+		</div>
+<!-- /.job-portal-intro -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+	$(".PleaseLoginButton").on('click',function(){
+        toastr.warning("Please Login First to send request Request");
+	});
+	$(".NonEmployerButton").on('click',function(){
+        toastr.warning("Only Employer can send Interview Request");
+	});
+	let candidate_id = '';
+	$(document).on("click", ".Interview-Modal-Button", function() {
+	candidate_id = 	this.value;
+
+	});
+	$(document).on("submit", "#Interview-Request-Form", function() {
+        // e.preventDefault();
+        //   var e = this;
+		$('#buttonText').hide();
+        $('#loadingIcon').removeClass("d-none");
+        $(".btn-submit").prop('disabled',true);
+          $.ajax({
+              url: '{{route("employer.job_interview_request")}}',
+              data: {
+                _token:"{{csrf_token()}}",
+                interview_date: $("#Interview-Request-Form").find('input[name=interview_date]').val(),
+                interview_time: $("#Interview-Request-Form").find('input[name=interview_time]').val(),
+                meeting_media: $("#Interview-Request-Form").find('select[name=meeting_media]').val(),
+                job_link: $("#Interview-Request-Form").find('input[name=job_link]').val(),
+				candidate_id : candidate_id
+                        },
+              type: "POST",
+              dataType: 'json',
+              success: function (data) {
+    
+                if (data.status) {
+                    window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#interview-request-errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              },
+			  complete: function(){
+                $('#loadingIcon').addClass("d-none");
+                $('#buttonText').show();
+				$(".btn-submit").attr('disabled',false);
+
+            }
+          });
+  
+          return false;
+      });
+  
+</script>
 @endsection

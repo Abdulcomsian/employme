@@ -3,18 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\CandidatePersonalDetails;
-use App\Models\CandidateEducation;
-use App\Models\ProfessionalSkills;
-use App\Models\CandidatePreferences;
-use App\Models\Cities;
-use App\Models\Countries;
-use App\Models\SavedJob;
-use App\Models\EmployerJob;
-use App\Models\JobCategory;
+use App\Models\{User,
+    CandidatePersonalDetails, CandidateEducation, ProfessionalSkills, CandidatePreferences, Cities, Countries, SavedJob, EmployerJob, JobCategory, JobInterview};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
+use Notification;
+use App\Notifications\InterviewRequestNotification;
 class CandidateController extends Controller
 {
     public function getCandidateDashboard()
@@ -177,6 +171,41 @@ class CandidateController extends Controller
         {
             toastr()->success('Job Successfully Removed');
             return redirect()->back();
+        }
+    }
+
+    public function candidateInterviewRequests()
+    {
+        $allInterviews = JobInterview::with('jobDetails','employer','employer.employerDetails')->where('requested_to',Auth::id())->get();
+        return view('candidate.interview.index',compact('allInterviews'));
+    }
+
+    public function acceptInterview($id)
+    {
+        $updateInterview = JobInterview::where('id',$id)->first();
+          $candidateDetails = User::with('candidatePersonalDetails')->find($updateInterview->requested_to);
+          $employerDetails = User::with('employerDetails')->find($updateInterview->requested_from);
+            $jobDetails = EmployerJob::find($updateInterview->employer_job_id);
+            $updateInterview->status = 1;
+          if($updateInterview->save())
+          {
+            toastr()->success('Interview Accepted Successfully');
+            Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRequestNotification($candidateDetails,$employerDetails,$jobDetails,$type=1,$interviewStatus=1));
+            return redirect()->back();
+          }
+    }
+    public function rejectInterview($id)
+    {
+        $updateInterview = JobInterview::where('id',$id)->first();
+        $candidateDetails = User::with('candidatePersonalDetails')->find($updateInterview->requested_to);
+        $employerDetails = User::with('employerDetails')->find($updateInterview->requested_from);
+          $jobDetails = EmployerJob::find($updateInterview->employer_job_id);
+          $updateInterview->status = 2;
+        if($updateInterview->save())
+        {
+          toastr()->success('Interview Rejected Successfully');
+          Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRequestNotification($candidateDetails,$employerDetails,$jobDetails,$type=1,$interviewStatus=2));
+          return redirect()->back();
         }
     }
 
