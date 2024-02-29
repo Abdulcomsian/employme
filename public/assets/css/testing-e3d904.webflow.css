@@ -1992,7 +1992,7 @@ figcaption {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #ff715b;
+  background-color: #244034;
   border-radius: 100px;
   justify-content: center;
   align-items: center;
@@ -2017,7 +2017,7 @@ figcaption {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #ff715b;
+  background-color: #244034;
   border-radius: 100px;
   justify-content: center;
   align-items: center;
@@ -2265,7 +2265,7 @@ figcaption {
 
 .gray-wrapper.selected-plan.pricing {
   background-color: #eef9ff;
-  border-color: #ff715b;
+  border-color: #244034;
 }
 
 .gray-wrapper.inner-form {
@@ -2290,7 +2290,7 @@ figcaption {
 }
 
 .gray-wrapper.popular {
-  border: 2px solid #ff715b;
+  border: 2px solid #244034;
 }
 
 .icon-wrap {
@@ -2532,7 +2532,7 @@ figcaption {
 }
 
 .plan-column.recommended {
-  border: 2px solid #ff715b;
+  border: 2px solid #244034;
 }
 
 .form-wrapper {
@@ -3060,7 +3060,7 @@ figcaption {
   width: 1.8em;
   height: 1.8em;
   opacity: .7;
-  background-color: #ff715b;
+  background-color: #244034;
   border-radius: 100px;
   margin-right: 12px;
   padding: 6px 6px 6px 9px;
@@ -4834,7 +4834,7 @@ figcaption {
   height: 7em; */
   width: 8em;
   height: 8em;
-  background-color: #ff715b;
+  background-color: #244034;
   border-radius: 100%;
   flex: none;
   justify-content: center;
@@ -5058,7 +5058,7 @@ figcaption {
 .button-circle-small {
   width: 3.2em;
   height: 3.2em;
-  background-color: #ff715b;
+  background-color: #244034;
   background-image: url('../images/cta-arrow-white.svg');
   background-position: 50%;
   background-repeat: no-repeat;
@@ -5255,7 +5255,7 @@ figcaption {
 .button-circle-medium {
   width: 5.2em;
   height: 5.2em;
-  background-color: #ff715b;
+  background-color: #244034;
   background-image: url('../images/cta-arrow-white.svg');
   background-position: 50%;
   background-repeat: no-repeat;
@@ -6207,7 +6207,7 @@ figcaption {
 }
 
 .box-wrapper-copy.pop-up.popular {
-  border: 2px solid #ff715b;
+  border: 2px solid #244034;
 }
 
 .ui-wrapper {
@@ -6341,7 +6341,7 @@ figcaption {
 .most-popular {
   color: #fff;
   text-transform: uppercase;
-  background-color: #ff715b;
+  background-color: #244034;
   border-radius: 5px;
   padding: 5px 10px 4px;
   font-size: 11px;
@@ -7043,7 +7043,7 @@ figcaption {
   }
 
   .button.small:hover {
-    background-color: #ff715b;
+    background-color: #244034;
     background-position: 50%;
   }
 
@@ -14275,7 +14275,7 @@ input[type="file"] {
 }
 
 .bg-remove-hover:hover {
-  background-color: #ff715b;
+  background-color: #244034;
 }
 
 .no-hover:hover {
