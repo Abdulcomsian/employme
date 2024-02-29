@@ -210,7 +210,7 @@ Profile
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
 									<label for="">Zip/Post code</label>
-									<input type="text" name="zipPostCode" placeholder="94304" value="{{$employerDetails->zip_code ?? ''}}">
+									<input type="number" name="zipPostCode" placeholder="94304" value="{{$employerDetails->zip_code ?? ''}}">
 								</div>
 							</div>
 							
