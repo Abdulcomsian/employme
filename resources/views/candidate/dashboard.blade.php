@@ -33,7 +33,7 @@ Dashboard
 					<div class="d-sm-flex align-items-center justify-content-between">
 						<div class="icon rounded-circle d-flex align-items-center justify-content-center order-sm-1"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_13.svg')}}" alt="" class="lazy-img"></div>
 						<div class="order-sm-0">
-							<div class="value fw-500">03</div>
+							<div class="value fw-500">{{$shortlistsCount ?? ''}}</div>
 							<span>Shortlisted</span>
 						</div>
 					</div>
@@ -77,95 +77,112 @@ Dashboard
 				<div class="recent-job-tab bg-white border-20 mt-30 w-100">
 					<h4 class="dash-title-two">Recent Applied Job</h4>
 					<div class="wrapper">
+						@isset($candidateJobApplications)
+						 @foreach( $candidateJobApplications as $index=>$jobApplication)
 						<div class="job-item-list d-flex align-items-center">
-							<div><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img logo"></div>
+							<div>
+								@if(isset($jobApplication->employerDetails->institution_logo))
+                                <img src="{{asset($jobApplication->employerDetails->institution_logo)}}" data-src="{{asset($jobApplication->employerDetails->institution_logo)}}" alt="" class="lazy-img logo"></a>
+                                @else
+                                <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img logo"></a>
+                                @endif							</div>
 							<div class="job-title">
-								<h6 class="mb-5"><a href="#">Web & Mobile Prototype</a></h6>
-								<div class="meta"><span>Fulltime</span> . <span>Spain</span></div>
+								<h6 class="mb-5"><a href="{{route('jobDetails',\Crypt::encryptString($jobApplication->id))}}">{{$jobApplication->job_title}}</a></h6>
+								<div class="meta"><span>{{$jobApplication->job_type ?? ''}}</span> . <span>{{$jobApplication->city_town}}</span></div>
 							</div>
 							<div class="job-action">
 								<button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<span></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">View Job</a></li>
+									<li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($jobApplication->id))}}">View Job</a></li>
 									<li><a class="dropdown-item" href="#">Archive</a></li>
-									<li><a class="dropdown-item" href="#">Delete</a></li>
+									<li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                document.getElementById('destroy-form-{{$jobApplication->id}}').submit();">Delete</a></li>
 								</ul>
+								<form id="destroy-form-{{$jobApplication->id}}" action="{{route('candidate.delete-application',$jobApplication->id)}}" method="POST" style="display: none;">
+										@csrf
+										@method('DELETE')
+
+								</form>
 							</div>
 						</div>
-						<!-- /.job-item-list -->
-						<div class="job-item-list d-flex align-items-center">
-							<div><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img logo"></div>
-							<div class="job-title">
-								<h6 class="mb-5"><a href="#">Document Writer</a></h6>
-								<div class="meta"><span>Part-time</span> . <span>Italy</span></div>
+						@endforeach
+						@endisset
+						{{--
+							<!-- /.job-item-list -->
+							<div class="job-item-list d-flex align-items-center">
+								<div><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img logo"></div>
+								<div class="job-title">
+									<h6 class="mb-5"><a href="#">Document Writer</a></h6>
+									<div class="meta"><span>Part-time</span> . <span>Italy</span></div>
+								</div>
+								<div class="job-action">
+									<button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+										<span></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">View Job</a></li>
+										<li><a class="dropdown-item" href="#">Archive</a></li>
+										<li><a class="dropdown-item" href="#">Delete</a></li>
+									</ul>
+								</div>
 							</div>
-							<div class="job-action">
-								<button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<span></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">View Job</a></li>
-									<li><a class="dropdown-item" href="#">Archive</a></li>
-									<li><a class="dropdown-item" href="#">Delete</a></li>
-								</ul>
+							<!-- /.job-item-list -->
+							<div class="job-item-list d-flex align-items-center">
+								<div><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_24.png')}}" alt="" class="lazy-img logo"></div>
+								<div class="job-title">
+									<h6 class="mb-5"><a href="#">Outbound Call Service</a></h6>
+									<div class="meta"><span>Fulltime</span> . <span>USA</span></div>
+								</div>
+								<div class="job-action">
+									<button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+										<span></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">View Job</a></li>
+										<li><a class="dropdown-item" href="#">Archive</a></li>
+										<li><a class="dropdown-item" href="#">Delete</a></li>
+									</ul>
+								</div>
 							</div>
-						</div>
-						<!-- /.job-item-list -->
-						<div class="job-item-list d-flex align-items-center">
-							<div><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_24.png')}}" alt="" class="lazy-img logo"></div>
-							<div class="job-title">
-								<h6 class="mb-5"><a href="#">Outbound Call Service</a></h6>
-								<div class="meta"><span>Fulltime</span> . <span>USA</span></div>
+							<!-- /.job-item-list -->
+							<div class="job-item-list d-flex align-items-center">
+								<div><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_25.png')}}" alt="" class="lazy-img logo"></div>
+								<div class="job-title">
+									<h6 class="mb-5"><a href="#">Product Designer</a></h6>
+									<div class="meta"><span>Part-time</span> . <span>Dubai</span></div>
+								</div>
+								<div class="job-action">
+									<button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+										<span></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">View Job</a></li>
+										<li><a class="dropdown-item" href="#">Archive</a></li>
+										<li><a class="dropdown-item" href="#">Delete</a></li>
+									</ul>
+								</div>
 							</div>
-							<div class="job-action">
-								<button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<span></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">View Job</a></li>
-									<li><a class="dropdown-item" href="#">Archive</a></li>
-									<li><a class="dropdown-item" href="#">Delete</a></li>
-								</ul>
+							<!-- /.job-item-list -->
+							<div class="job-item-list d-flex align-items-center">
+								<div><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_26.png')}}" alt="" class="lazy-img logo"></div>
+								<div class="job-title">
+									<h6 class="mb-5"><a href="#">Marketing Specialist</a></h6>
+									<div class="meta"><span>Part-time</span> . <span>UK</span></div>
+								</div>
+								<div class="job-action">
+									<button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+										<span></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">View Job</a></li>
+										<li><a class="dropdown-item" href="#">Archive</a></li>
+										<li><a class="dropdown-item" href="#">Delete</a></li>
+									</ul>
+								</div>
 							</div>
-						</div>
-						<!-- /.job-item-list -->
-						<div class="job-item-list d-flex align-items-center">
-							<div><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_25.png')}}" alt="" class="lazy-img logo"></div>
-							<div class="job-title">
-								<h6 class="mb-5"><a href="#">Product Designer</a></h6>
-								<div class="meta"><span>Part-time</span> . <span>Dubai</span></div>
-							</div>
-							<div class="job-action">
-								<button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<span></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">View Job</a></li>
-									<li><a class="dropdown-item" href="#">Archive</a></li>
-									<li><a class="dropdown-item" href="#">Delete</a></li>
-								</ul>
-							</div>
-						</div>
-						<!-- /.job-item-list -->
-						<div class="job-item-list d-flex align-items-center">
-							<div><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_26.png')}}" alt="" class="lazy-img logo"></div>
-							<div class="job-title">
-								<h6 class="mb-5"><a href="#">Marketing Specialist</a></h6>
-								<div class="meta"><span>Part-time</span> . <span>UK</span></div>
-							</div>
-							<div class="job-action">
-								<button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<span></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">View Job</a></li>
-									<li><a class="dropdown-item" href="#">Archive</a></li>
-									<li><a class="dropdown-item" href="#">Delete</a></li>
-								</ul>
-							</div>
-						</div>
+								--}}
 						<!-- /.job-item-list -->
 					</div>
 				</div>

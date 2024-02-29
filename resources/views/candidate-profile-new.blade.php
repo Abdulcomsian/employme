@@ -2,7 +2,14 @@
 
 
 @section('content')
-
+<style>
+    .candidates-profile-details .video-post {
+    background: url("{{asset('/'.$candidateDetails->candidatePreferences->video_thumbnail)}}") no-repeat center;
+    background-size: cover;
+    height: 430px;
+    border-radius: 15px;
+}
+</style>
 
         <!-- 
 		=============================================
@@ -103,13 +110,26 @@
                             </div>
                             <!-- /.inner-card -->
                             <h3 class="title">Interview</h3>
+                            @if(isset($candidateDetails->candidatePreferences->video_url) || isset($candidateDetails->candidatePreferences->other_platform_video_url))
+                            @if(!empty($candidateDetails->candidatePreferences->video_url))
                             <div
                                 class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
                                 <a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
-                                    href="https://www.youtube.com/embed/aXFSJTjVjw0">
+                                    href="{{asset($candidateDetails->candidatePreferences->video_url)}}">
                                     <i class="bi bi-play"></i>
                                 </a>
                             </div>
+                            @elseif(!empty($candidateDetails->candidatePreferences->other_platform_video_url))
+                            <div
+                                class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
+                                <a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
+                                    href="{{$candidateDetails->candidatePreferences->other_platform_video_url}}">
+                                    <i class="bi bi-play"></i>
+                                </a>
+                                
+                            </div>
+                            @endif
+                            @endif
                             <div class="inner-card mb-75 lg-mb-50">
                                 <h3 class="title">Education</h3>
                                 <div class="time-line-data position-relative pt-15">

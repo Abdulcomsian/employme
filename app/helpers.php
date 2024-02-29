@@ -73,6 +73,15 @@ function  candidateTeachingVideoPath($user = null)
     }
     return $path;
 }
+function  candidateTeachingVideoThumbnailPath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/candidate/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/thumbnails/';
+    } else {
+        $path  = 'uploads/candidate/thumbnails/';
+    }
+    return $path;
+}
 function  candidateResumeFilePath($user = null)
 {
     if ($user) {

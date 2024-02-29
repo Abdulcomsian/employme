@@ -96,10 +96,10 @@ Dashboard
                                                 <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
                                                 <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('destroy-form').submit();"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
+                                                                document.getElementById('destroy-form-{{$jobApplication->id}}').submit();"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
                                             </ul>
                                         </div>
-                                        <form id="destroy-form" action="{{route('candidate.delete-application',$jobApplication->id)}}" method="POST" style="display: none;">
+                                        <form id="destroy-form-{{$jobApplication->id}}" action="{{route('candidate.delete-application',$jobApplication->id)}}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
 

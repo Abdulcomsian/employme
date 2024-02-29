@@ -852,6 +852,26 @@ Profile
                                     @endif
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Video Thumbnail Image</label>
+                                    <div class="user-avatar-setting d-flex align-items-center mb-30">
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload Thumbnail
+                                            <input type="file" id="videoThumbnail" name="videoThumbnail" placeholder="" accept="image/jpeg,image/png">
+                                        </div>
+
+                                        <button class="delete-btn tran3s">Delete</button>
+                                    </div>
+                                    @if(isset($candidatePreferencesDetails->video_thumbnail) && !empty($candidatePreferencesDetails->video_thumbnail))
+                                    <div style = "padding-left:20px;">
+                                        <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" onclick="previousStep(7)">Previous</button>
@@ -1338,6 +1358,7 @@ Profile
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
         formData.append("video_url", $('#teachingVideo')[0].files[0]);
+        formData.append("video_thumbnail", $('#videoThumbnail')[0].files[0]);
         formData.append('other_platform_video_url',$("#multi-step-form").find('[name=linkToVideoAsk]').val());
           $.ajax({
             type: "POST",

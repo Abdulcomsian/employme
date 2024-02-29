@@ -9,12 +9,24 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Notification;
 use App\Notifications\InterviewRequestNotification;
+use Carbon\Carbon;
 class CandidateController extends Controller
 {
     public function getCandidateDashboard()
     {
+        $dt = Carbon::now();
+        $dt2 = $dt->copy()->subWeek();                          // 7
+
         $totalJobApplications = User::find(Auth::id())->jobsApplied()->count();
-        return view('candidate.dashboard',get_defined_vars());
+        $shortlistsCount = JobInterview::with('jobDetails','employer','employer.employerDetails')->where('requested_to',Auth::id())->count();
+
+        $candidateJobApplications = User::find(Auth::id())
+        ->jobsApplied()
+        ->where('job_applications.created_at', '>=', $dt2->copy()->startOfDay())
+        ->where('job_applications.created_at', '<=', $dt->copy()->endOfDay())
+        ->limit(6)
+        ->get();
+            return view('candidate.dashboard',get_defined_vars());
     }
 
     public function getProfilePage()
@@ -125,10 +137,15 @@ class CandidateController extends Controller
             $filePath = candidateTeachingVideoPath();
             $video_url = saveFile($filePath, $file, $updatePreferencesDetails->video_url);
         }
+        if ($request->file('video_thumbnail')) {
+            $file = $request->file('video_thumbnail');
+            $filePath = candidateTeachingVideoThumbnailPath();
+            $thumbnailPath = saveFile($filePath, $file, $updatePreferencesDetails->video_thumbnail);
+        }
         // End of saving candidate profile code
 
         $input = $request->except('_token','video_url');
-        $updatePreferencesDetails->update(array_merge($input,['video_url'=>$video_url]));
+        $updatePreferencesDetails->update(array_merge($input,['video_url'=>$video_url,'video_thumbnail'=>$thumbnailPath]));
          return response()->json([
                         "status" => true, 
                         "message" => url("Personal Details Updated Successfully")
@@ -153,8 +170,8 @@ class CandidateController extends Controller
     }
     public function deleteApplication($id)
     {
-        $deleteJobApplication = User::find(Auth::id())->jobsApplied()->detach(2);
-        toastr()->warning('Application Deleted Successfully ');
+        $deleteJobApplication = User::find(Auth::id())->jobsApplied()->detach($id);
+        toastr()->success('Application Deleted Successfully ');
         return redirect()->back();
 
     } 
@@ -176,8 +193,14 @@ class CandidateController extends Controller
 
     public function candidateInterviewRequests()
     {
-        $allInterviews = JobInterview::with('jobDetails','employer','employer.employerDetails')->where('requested_to',Auth::id())->get();
-        return view('candidate.interview.index',compact('allInterviews'));
+        $dt = Carbon::now();
+        $dt2 = $dt->copy()->subWeek();   // or whatever you're using to set it
+        $allInterviews = JobInterview::with('jobDetails','employer','employer.employerDetails')->where('requested_to',Auth::id())->paginate(5);
+        $latestInterviews = JobInterview::with('jobDetails','employer','employer.employerDetails')->where('requested_to',Auth::id())
+        ->where('created_at','>=',$dt2->copy()->startOfDay())
+        ->where('created_at','<=',$dt->copy()->endOfDay())
+        ->paginate(5);
+        return view('candidate.interview.index',compact('allInterviews','latestInterviews'));
     }
 
     public function acceptInterview($id)

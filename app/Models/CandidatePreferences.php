@@ -19,7 +19,8 @@ class CandidatePreferences extends Model
         'experience_level',
         'other_platform_video_url',
         'expected_salary',
-        'user_id'
+        'user_id',
+        'video_thumbnail'
     ];
     protected $casts = [
         'skills' => 'array',
