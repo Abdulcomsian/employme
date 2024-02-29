@@ -9653,11 +9653,14 @@ body.compensate-for-scrollbar {
   padding-left: 10px;
 }
 .dash-aside-navbar .dasboard-main-nav li a:hover {
-  color: #3c8968;
+  color: #b1b0eb;
 }
 .dash-aside-navbar .dasboard-main-nav li a.active {
-  background: #3F634D;
+  background: #ff715b;
   color: #fff;
+}
+.scroll-top{
+  background: #ff715b;
 }
 .dash-aside-navbar .dasboard-main-nav li a img {
   max-width: 20px;
@@ -9671,7 +9674,7 @@ body.compensate-for-scrollbar {
 .dash-aside-navbar .profile-complete-status .progress-line {
   height: 5px;
   border-radius: 10px;
-  background: #3F634D;
+  background: #b1b0eb;
   overflow: hidden;
   margin: 9px 0 3px;
 }
@@ -9680,7 +9683,7 @@ body.compensate-for-scrollbar {
   height: 100%;
   left: 0;
   top: 0;
-  background: #D3FA38;
+  background: #ff715b;
 }
 .dash-aside-navbar .profile-complete-status p {
   font-size: 11px;
@@ -9751,13 +9754,13 @@ body.compensate-for-scrollbar {
   font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.15px;
-  color: #31795A;
+  color: #fff;
   border-radius: 7px;
   line-height: 40px;
   padding: 0 15px;
   min-width: 135px;
   text-align: center;
-  background: rgba(63, 99, 77, 0.2);
+  background: #ff715b;
   transition: all 0.2s ease-in-out 0s;
 }
 .dashboard-body .dash-btn-one i {
@@ -9767,7 +9770,7 @@ body.compensate-for-scrollbar {
   margin-right: 2px;
 }
 .dashboard-body .dash-btn-one:hover {
-  background: #31795A;
+  background: #b1b0eb;
   color: #fff;
 }
 .dashboard-body .dash-btn-one input[type=file] {
@@ -9903,10 +9906,10 @@ body.compensate-for-scrollbar {
   width: 200px;
   line-height: 45px;
   border-radius: 50px;
-  background: #244034;
+  background: #ff715b;
 }
 .dashboard-body .dashboard-header .job-post-btn:hover {
-  background: #D2F34C;
+  background: #b1b0eb;
   color: #244034;
 }
 .dashboard-body .dashboard-header .dash-mobile-nav-toggler {
@@ -9971,7 +9974,7 @@ body.compensate-for-scrollbar {
 .dashboard-body .dash-card-one .icon {
   width: 65px;
   height: 65px;
-  background: #D2F34C;
+  background: #b1b0eb;
 }
 .dashboard-body .dash-card-one .value {
   font-size: 36px;
@@ -10036,7 +10039,7 @@ body.compensate-for-scrollbar {
 }
 .dashboard-body .recent-job-tab .wrapper .job-item-list .job-title h6 a:hover {
   text-decoration: underline;
-  color: #31795A;
+  color: #b1b0eb;
 }
 .dashboard-body .recent-job-tab .wrapper .job-item-list .job-title .meta {
   font-size: 14px;
@@ -10097,10 +10100,10 @@ body.compensate-for-scrollbar {
   display: none;
 }
 .dashboard-body .recent-job-tab .wrapper .job-item-list .job-action .action-btn:hover span {
-  background: #00BF58;
+  background: #b1b0eb;
 }
 .dashboard-body .recent-job-tab .wrapper .job-item-list .job-action .action-btn:hover span:before, .dashboard-body .recent-job-tab .wrapper .job-item-list .job-action .action-btn:hover span:after {
-  background: #00BF58;
+  background: #b1b0eb;
 }
 .dashboard-body .user-avatar-setting .user-img {
   width: 68px;
@@ -10116,12 +10119,12 @@ body.compensate-for-scrollbar {
   height: 40px;
   text-align: center;
   border-radius: 7px;
-  color: #244034;
-  background: #D2F34C;
+  color: #fff;
+  background: #ff715b;
   cursor: pointer;
 }
 .dashboard-body .user-avatar-setting .upload-btn:hover {
-  background: #31795A;
+  background: #b1b0eb;
   color: #fff;
 }
 .dashboard-body .user-avatar-setting .upload-btn input {
@@ -10382,7 +10385,10 @@ body.compensate-for-scrollbar {
   color: #254035;
 }
 .dashboard-body .tab-filter-btn .nav-link.active {
-  background: #D2F34C;
+  background: #b1b0eb;
+}
+.nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus{
+  color: #ff715b;
 }
 .dashboard-body .short-filter {
   font-size: 15px;
@@ -10542,13 +10548,16 @@ body.compensate-for-scrollbar {
   color: #000;
   text-align: center;
   line-height: 38px;
-  border: 1px solid #626262;
-  border-right: none;
+  border: 1px solid #ff715b;
+  margin: 0 5px;
   transition: all 0.2s ease-in-out 0s;
 }
 .dashboard-body .dash-pagination li a:hover, .dashboard-body .dash-pagination li a.active {
-  background: #31795A;
-  color: #fff;
+  background: #ff715b;
+  color: #fff !important;
+}
+.dash-pagination ul{
+  margin-right: 20px;
 }
 /* .dashboard-body .dash-pagination li:nth-child(1) a, .dashboard-body .dash-pagination li:nth-child(5) a {
   border-radius: 5px 0 0 5px;

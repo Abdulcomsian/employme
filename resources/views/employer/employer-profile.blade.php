@@ -37,7 +37,7 @@ Profile
 	}
 
 	.employer-sign-up .stepper>.step>.icon>div {
-		border: 1px solid rgba(0, 0, 0, 0.5);
+		border: 1px solid #b1b0eb;
 		border-radius: 50%;
 		padding: 15%;
 		width: 30px;
@@ -45,7 +45,7 @@ Profile
 	}
 
 	.employer-sign-up .stepper>.step.selected>.icon>div {
-		background: #31795A;
+		background: #ff715b	;
 		color: #fff;
 	}
 
