@@ -2,7 +2,8 @@
     <div class="position-relative">
         <div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
             <a href="{{route('getCandidateDashboard')}}">
-                <img src="{{asset('assets/images/logo_01.png')}}" alt="">
+               
+					<span style="font-size: 25px;font-weight: bold;">EmployMe</span>
             </a>
             <button class="close-btn d-block d-md-none"><i class="bi bi-x-lg"></i></button>
         </div>

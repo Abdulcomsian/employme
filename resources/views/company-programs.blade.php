@@ -21,8 +21,8 @@
 								<h2 class="text-white"> School Name</h2>
 							</div>
 							<div class="logo mt-10">
-								<img src="images/logo_01.png" data-src="images/logo/logo_01.png" alt=""
-									class="lazy-img m-auto">
+								
+					<span style="font-size: 25px;font-weight: bold;">EmployMe</span>
 							</div>
 							<!-- <p class="text-lg text-white mt-10 lg-mt-20">Find company details here</p> -->
 						</div>
