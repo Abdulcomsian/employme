@@ -15,7 +15,7 @@ return new class extends Migration
             $table->datetime('reschedule_date')->nullable();
             $table->time('reschedule_time')->nullable();
             $table->longText('reschedule_meeting')->nullable();
-            $table->time('reschedule_status')->default(0);
+            $table->integer('reschedule_status')->default(0);
         });
     }
 
