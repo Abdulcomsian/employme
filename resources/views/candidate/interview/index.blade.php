@@ -105,9 +105,16 @@ Interview Request
                                         <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>
                                     </td>
                                     <td>{{$interview->employer->employerDetails->institution ?? ''}} </td>
+                                    @if($interview->reschedule_status =1 & $interview->status == 0)
+                                    <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}</td>
+                                    <td>{{date('h:i A',strtotime($interview->reschedule_time))}}</td>
+                                    <td>{{$interview->reschedule_meeting}}</td>
+                                    @else
                                     <td>{{date('d M, Y',strtotime($interview->interview_date))}}</td>
                                     <td>{{date('h:i A',strtotime($interview->interview_time))}}</td>
                                     <td>{{$interview->meeting_media}}</td>
+                                    @endif
+                                    
                                     <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$interview->jobDetails->id])}}">{{totalApplicants($interview->jobDetails->id)}} Applications</a><div></td>
                                     <td>
                                         <div class="job-status">{{$message}}</div>
@@ -407,7 +414,7 @@ Interview Request
                             <div class="col-md-12">
                             <div class="input-group-meta position-relative mb-20">
                                 <label for="">Select Meeting Media</label>
-                                <select name="meeting_media" id="reschedule_meeting" class="nice-select">
+                                <select name="reschedule_meeting" id="reschedule_meeting" class="nice-select">
                                     <option value="Skype" >Skype</option>
                                     <option value="Google Meet" >Google Meet</option>
                                     <option value="Zoom">Zoom</option>

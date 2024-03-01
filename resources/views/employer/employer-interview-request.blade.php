@@ -65,7 +65,7 @@ Interview Request
                                     <th scope="col">Meeting Media</th>
                                     <th scope="col">Applicants</th>
                                     <th scope="col">Status</th>
-                                    {{--<th scope="col">Action</th>--}}
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="border-0">
@@ -96,21 +96,21 @@ Interview Request
                                     <td>
                                         <div class="job-status">{{$message}}</div>
                                     </td>
-                                {{--
+                                    @if($interview->reschedule_status ==1 & $interview->status ==0)
                                     <td>
                                         <div class="action-dots float-end">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> Reject</a></li>
+                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Accept</a></li>
+                                               {{-- <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
+                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>--}}
                                             </ul>
                                         </div>
                                     </td>
-                                      --}}
+                                     @endif
                                 </tr>
                                 @endforeach
                                 @endisset

@@ -126,7 +126,8 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::resource('employer-jobs', EmployerJobController::class);
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
     Route::get('job-applications', [EmployerController::class, 'employerJobApplications'])->name('employerJobApplications');
-   
+    Route::post('accept-reschedule-request/{id}',[CandidateController::class,'acceptRescheduleRequest'])->name('candidate.accept_reschedule_request');
+    Route::post('reject-reschedule-request/{id}',[CandidateController::class,'rejectRescheduleRequest'])->name('candidate.reject_reschedule_request');
 
 });
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {
