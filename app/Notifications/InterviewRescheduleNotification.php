@@ -43,8 +43,21 @@ class InterviewRescheduleNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        if($this->type == 1)
+        {
+            $status = '';
+            if($this->interviewStatus == 1)
+            {
+                $status = 'accepted';
+            }elseif($this->interviewStatus == 2){
+                $status = 'rejected';
+            }
+            $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->full_name;
+            $message = $this->employerDetails->employerDetails->institution.' has '.$status.' your request to reschedule the interview for the position of '.$this->jobDetails->job_title;
+        }else{
         $greetings = 'Dear '.$this->employerDetails->employerDetails->institution;
         $message = 'Candidate '.$this->candidateDetails->candidatePersonalDetails->full_name.' has requested to reschedule the interview for the position of  '.$this->jobDetails->job_title;
+        }
         return (new MailMessage)
                     ->greeting($greetings)
                     ->line($message)

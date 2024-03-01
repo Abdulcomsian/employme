@@ -114,7 +114,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('dashboard', [EmployerController::class, 'getEmployerDashboard'])->name('getEmployerDashboard');
     Route::get('employer-profile', [EmployerController::class, 'getEmployerProfilePage'])->name('getEmployerProfile');
     Route::get('job-listing', [JobController::class, 'getJobListing'])->name('getJobListing');
-    Route::get('employer-interview-request', [JobController::class, 'getInterviewpage'])->name('getEmployerInterviewRequest');
+    Route::get('interview-requests', [JobController::class, 'getInterviewpage'])->name('getEmployerInterviewRequest');
     Route::get('employer-dashboard-message', [MessageController::class, 'getEmployerMessage'])->name('getEmployerDashboardMessage');
     Route::get('employer-dashboard-saved-candidate', [EmployerController::class, 'getEmployerCandidate'])->name('getEmployerDashboardSavedCandidate');
     Route::get('subscriptions', [EmployerController::class, 'employerSubscriptions'])->name('employerSubscriptions');
@@ -125,9 +125,10 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('employer-jobs/Job-listing-candidate/{id}', [EmployerController::class, 'JobListingCandidate'])->name('employer.JobListingCandidate');
     Route::resource('employer-jobs', EmployerJobController::class);
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
+    Route::get('reschedule-inteview-requests', [EmployerController::class, 'rescheduleRequests'])->name('employer.reschedule_requests');
     Route::get('job-applications', [EmployerController::class, 'employerJobApplications'])->name('employerJobApplications');
-    Route::post('accept-reschedule-request/{id}',[CandidateController::class,'acceptRescheduleRequest'])->name('candidate.accept_reschedule_request');
-    Route::post('reject-reschedule-request/{id}',[CandidateController::class,'rejectRescheduleRequest'])->name('candidate.reject_reschedule_request');
+    Route::post('accept-reschedule-request/{id}',[EmployerController::class,'acceptRescheduleRequest'])->name('employer.accept_reschedule_request');
+    Route::post('reject-reschedule-request/{id}',[EmployerController::class,'rejectRescheduleRequest'])->name('employer.reject_reschedule_request');
 
 });
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {

@@ -110,7 +110,7 @@ class JobController extends Controller
     }
 
     public function getInterviewpage(){
-        $allInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())->get();
+        $allInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())->where('reschedule_status',0)->get();
         return view('employer.employer-interview-request',compact('allInterviews'));
     }
 

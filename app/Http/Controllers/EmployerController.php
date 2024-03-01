@@ -13,7 +13,7 @@ use Illuminate\Validation\Rule;
 use App\Rules\ValidateJobLink;
 use Notification;
 use Illuminate\Support\Facades\Validator;
-use App\Notifications\InterviewRequestNotification;
+use App\Notifications\{InterviewRequestNotification,InterviewRescheduleNotification};
 class EmployerController extends Controller
 {
 
@@ -296,6 +296,46 @@ class EmployerController extends Controller
             "message" => 'Request Sent Successfully',
             "redirect" => url("candidates-marketplace")
         ]);
+    }
+
+    public function rescheduleRequests(){
+        $allInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())->where('reschedule_status',1)->get();
+        return view('employer.reschedule-interview-requests',compact('allInterviews'));
+    }
+
+    public function acceptRescheduleRequest($id)
+    {
+        $acceptRescheduleRequest = JobInterview::with('jobDetails')->find($id);
+        $candidateDetails = User::with('candidatePersonalDetails')->find($acceptRescheduleRequest->requested_to);
+        $employerDetails = User::with('employerDetails')->find($acceptRescheduleRequest->requested_from);
+        $jobDetails = EmployerJob::find($acceptRescheduleRequest->employer_job_id);
+        $acceptRescheduleRequest->interview_date = $acceptRescheduleRequest->reschedule_date;
+        $acceptRescheduleRequest->interview_time = $acceptRescheduleRequest->reschedule_time;
+        $acceptRescheduleRequest->meeting_media = $acceptRescheduleRequest->reschedule_meeting;
+        $acceptRescheduleRequest->status = 1;
+        $acceptRescheduleRequest->reschedule_status = 0;
+        if($acceptRescheduleRequest->save())
+        {
+            Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRescheduleNotification($candidateDetails,$employerDetails,$jobDetails,$type=1,$interviewStatus=1));
+            toastr()->success('Request Accepted Successfully');
+            return redirect()->back();
+        }
+    }
+
+    public function rejectRescheduleRequest($id)
+    {
+        $acceptRescheduleRequest = JobInterview::with('jobDetails')->find($id);
+        $candidateDetails = User::with('candidatePersonalDetails')->find($acceptRescheduleRequest->requested_to);
+        $employerDetails = User::with('employerDetails')->find($acceptRescheduleRequest->requested_from);
+        $jobDetails = EmployerJob::find($acceptRescheduleRequest->employer_job_id);
+        $acceptRescheduleRequest->status = 1;
+        $acceptRescheduleRequest->reschedule_status = 0;
+        if($acceptRescheduleRequest->save())
+        {
+            Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRescheduleNotification($candidateDetails,$employerDetails,$jobDetails,$type=1,$interviewStatus=2));
+            toastr()->success('Request Rejected Successfully');
+            return redirect()->back();
+        }    
     }
     
 }

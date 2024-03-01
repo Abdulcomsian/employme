@@ -105,7 +105,7 @@ Interview Request
                                         <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>
                                     </td>
                                     <td>{{$interview->employer->employerDetails->institution ?? ''}} </td>
-                                    @if($interview->reschedule_status =1 & $interview->status == 0)
+                                    @if($interview->reschedule_status ==1 && $interview->status == 0)
                                     <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}</td>
                                     <td>{{date('h:i A',strtotime($interview->reschedule_time))}}</td>
                                     <td>{{$interview->reschedule_meeting}}</td>
@@ -115,11 +115,11 @@ Interview Request
                                     <td>{{$interview->meeting_media}}</td>
                                     @endif
                                     
-                                    <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$interview->jobDetails->id])}}">{{totalApplicants($interview->jobDetails->id)}} Applications</a><div></td>
+                                    <td><div class="job-application">{{totalApplicants($interview->jobDetails->id)}} Applications<div></td>
                                     <td>
                                         <div class="job-status">{{$message}}</div>
                                     </td>
-                                  @if($interview->reschedule_status !=1 & $interview->status ==0)
+                                  @if($interview->reschedule_status != 1 && $interview->status == 0)
                                     <td>
                                         <div class="action-dots float-end">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

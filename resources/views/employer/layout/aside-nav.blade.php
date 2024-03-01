@@ -67,10 +67,14 @@
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/job-applications') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
 						<span>Job Applications</span>
 					</a></li> -->
-				<li><a href="{{route('getEmployerInterviewRequest')}}" class="d-flex w-100 align-items-center {{request()->is('employer/employer-interview-request') ? 'active' : ''}}">
-						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/employer-interview-request') ? asset('assets/images/dashboard-icon/icon_40_active.svg') : asset('assets/images/dashboard-icon/icon_40.svg')}}" alt="" class="lazy-img">
+				<li><a href="{{route('getEmployerInterviewRequest')}}" class="d-flex w-100 align-items-center {{request()->is('employer/interview-requests') ? 'active' : ''}}">
+						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/interview-requests') ? asset('assets/images/dashboard-icon/icon_40_active.svg') : asset('assets/images/dashboard-icon/icon_40.svg')}}" alt="" class="lazy-img">
 						<span>Interview Request</span>
 					</a></li>
+				<li><a href="{{route('employer.reschedule_requests')}}" class="d-flex w-100 align-items-center {{request()->is('employer/reschedule-inteview-requests') ? 'active' : ''}}">
+					<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/reschedule-inteview-requests') ? asset('assets/images/dashboard-icon/icon_40_active.svg') : asset('assets/images/dashboard-icon/icon_40.svg')}}" alt="" class="lazy-img">
+					<span>Reschedule Request</span>
+				</a></li>
 
 				<li><a href="{{route('getEmployerDashboardMessage')}}" class="d-flex w-100 align-items-center {{request()->is('employer/employer-dashboard-message') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/employer-dashboard-message') ? asset('assets/images/dashboard-icon/icon_4_active.svg') : asset('assets/images/dashboard-icon/icon_4.svg')}}" alt="" class="lazy-img">
