@@ -4588,19 +4588,20 @@ iframe {
   overflow: hidden;
   text-align: center;
   background: #fff;
-  border: 1px solid #244034;
+  border: 1px solid #000;
   border-radius: 30px;
   padding: 38px 20px 38px;
 }
 .pricing-card-one .pack-name {
   font-size: 17px;
-  color: rgba(0, 0, 0, 0.35);
+  color: #000;
+  font-weight: 600;
 }
 .pricing-card-one .price {
   font-family: "EB Garamond", serif;
   font-size: 72px;
   letter-spacing: -1px;
-  color: #31795A;
+  color: #ff715b;
   line-height: initial;
   margin: -4px 0 36px;
 }
@@ -4614,12 +4615,12 @@ iframe {
 }
 .pricing-card-one ul li {
   font-size: 18px;
-  color: #31795A;
+  color: #000;
   margin-bottom: 17px;
 }
 .pricing-card-one .get-plan-btn {
   line-height: 54px;
-  background: #31795A;
+  background: #ff715b;
   border-radius: 30px;
   font-weight: 500;
   letter-spacing: -0.36px;
@@ -4627,8 +4628,8 @@ iframe {
   max-width: 270px;
 }
 .pricing-card-one .get-plan-btn:hover {
-  background: #D2F34C;
-  color: #31795A;
+  background: #ff715b;
+  color: #fff;
 }
 .pricing-card-one .popular-badge {
   position: absolute;
@@ -4677,14 +4678,14 @@ iframe {
   border-color: #31795A;
 }
 .pricing-card-one.popular-two .get-plan-btn {
-  background: #D2F34C;
-  color: #31795A;
+  background: #b1b0eb;
+  color: #000;
 }
 .pricing-card-one.popular-two .popular-badge {
   color: #fff;
 }
 .pricing-card-one.popular-two .popular-badge:before, .pricing-card-one.popular-two .popular-badge:after {
-  background: #31795A;
+  background: #ff715b;
 }
 
 .accordion-box {
@@ -9789,18 +9790,18 @@ body.compensate-for-scrollbar {
   padding: 0 15px;
   line-height: 45px;
   border-radius: 50px;
-  background: #244034;
+  background: #ff715b;
 }
 .dashboard-body .dash-btn-two:hover {
-  background: #D2F34C;
-  color: #244034;
+  background: #b1b0eb;
+  color: #000;
 }
 .dashboard-body .dash-cancel-btn {
   font-weight: 500;
   color: #31795A;
 }
 .dashboard-body .dash-cancel-btn:hover {
-  color: #244034;
+  color: #000;
 }
 .dashboard-body .dashboard-header {
   position: fixed;
@@ -10265,13 +10266,13 @@ body.compensate-for-scrollbar {
   color: rgba(0, 0, 0, 0.5);
 }
 .dashboard-body .dash-input-wrapper .info-text p a {
-  color: #31795A;
+  color: #ff715b;
 }
 .dashboard-body .dash-input-wrapper .info-text p a:hover {
   text-decoration: underline;
 }
 .dashboard-body .dash-input-wrapper .info-text .chng-pass {
-  color: #31795A;
+  color: #ff715b;
   text-decoration: underline;
 }
 .dashboard-body .dash-input-wrapper .skill-input-data {
@@ -10574,8 +10575,8 @@ body.compensate-for-scrollbar {
   line-height: 45px;
   text-align: center;
   font-size: 28px;
-  color: #3F634D;
-  background: #D3FA38;
+  color: #000;
+  background: #b1b0eb;
 }
 .dashboard-body .message-pagination a {
   color: #000;
@@ -10644,7 +10645,7 @@ body.compensate-for-scrollbar {
   top: 10px;
 }
 .dashboard-body .message-wrapper .message-sidebar .message_filter button.active {
-  background: #31795A;
+  background: #ff715b;
   color: #fff;
 }
 .dashboard-body .message-wrapper .message-sidebar .message_filter button.active span {

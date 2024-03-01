@@ -4,7 +4,8 @@
             <div class="d-flex align-items-center">
                 <div class="logo order-lg-0">
                     <a href="/" class="d-flex align-items-center">
-                        <img src="{{asset('assets/images/logo/logo_01.png')}}" alt="">
+                        
+					<span style="font-size: 25px;font-weight: bold;">EmployMe</span>
                     </a>
                 </div>
                 <!-- logo -->
@@ -37,7 +38,8 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav align-items-lg-center">
                             <li class="d-block d-lg-none">
-                                <div class="logo"><a href="/" class="d-block"><img src="images/logo/logo_01.png" alt="" width="100"></a></div>
+                                <div class="logo"><a href="/" class="d-block">
+					<span style="font-size: 25px;font-weight: bold;">EmployMe</span></a></div>
                             </li>
                             <li class="nav-item dropdown category-btn mega-dropdown-sm">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-grid-fill"></i> Category</a>
