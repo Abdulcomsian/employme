@@ -8,7 +8,7 @@ use App\Models\{User,
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Notification;
-use App\Notifications\InterviewRequestNotification;
+use App\Notifications\{InterviewRequestNotification, InterviewRescheduleNotification};
 use Carbon\Carbon;
 class CandidateController extends Controller
 {
@@ -231,5 +231,27 @@ class CandidateController extends Controller
           return redirect()->back();
         }
     }
+
+   public function rescheduleInterview(Request $request)
+   {
+        $rescheduleInterview = JobInterview::find($request->reschedule_interview_id);
+        $candidateDetails = User::with('candidatePersonalDetails')->find($rescheduleInterview->requested_to);
+        $employerDetails = User::with('employerDetails')->find($rescheduleInterview->requested_from);
+        $jobDetails = EmployerJob::find($rescheduleInterview->employer_job_id);
+
+        $rescheduleInterview->reschedule_date = $request->reschedule_date;
+        $rescheduleInterview->reschedule_time = $request->reschedule_time;
+        $rescheduleInterview->reschedule_meeting = $request->reschedule_meeting;
+        $rescheduleInterview->status = 0;
+        $rescheduleInterview->reschedule_status = 1;
+        if($rescheduleInterview->save())
+        {
+            Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRescheduleNotification($candidateDetails,$employerDetails,$jobDetails,$type=1,$interviewStatus=2));
+            toastr()->success('Request Sent Successfully');
+            return redirect()->back();
+
+        }
+        
+   }
 
 }

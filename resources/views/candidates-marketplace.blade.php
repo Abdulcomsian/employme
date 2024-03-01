@@ -767,80 +767,62 @@ Candidate Marketplace
 </section>
 
 <div class="modal fade" id="InterviewRequestModal" tabindex="-1" aria-hidden="true">
-			<div class="modal-dialog modal-fullscreen modal-dialog-centered">
-				<div class="container">
-					<div class="user-data-form modal-content">
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						<div class="text-center">
-							<h3>Request Form</h3>
-						</div>
-						<div class="form-wrapper m-auto">
-							<form  id = "Interview-Request-Form">
-								<div id="interview-request-errors-list"></div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="input-group-meta position-relative mb-25">
-											<label>Date*</label>
-											<input type="date" name = "interview_date" placeholder="" required>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="input-group-meta position-relative mb-20" required>
-											<label>Time*</label>
-											<input type="time" name = "interview_time" placeholder="Enter Password" class="pass_log_id" required>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="input-group-meta position-relative mb-20">
-											<label>Job Link*</label>
-											<input type="text" name = "job_link" placeholder="https://job.pk/job/1" class="pass_log_id">
-										</div>
-									</div>
-									<div class="col-md-12">
-									<div class="input-group-meta position-relative mb-20">
-										<label for="">Select Meeting Media</label>
-										<select name="meeting_media" id="meeting_media" class="nice-select">
-											<option value="Skype" >Skype</option>
-											<option value="Google Meet" >Google Meet</option>
-											<option value="Zoom">Zoom</option>
-										</select>
-								</div>
-									</div>
-								
-									<div class="col-md-6">
-										<button class="btn-submit fw-500 tran3s d-block mt-20" type = "submit" >
-											<span id="buttonText">Submit</span>
-											<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
-										</button>
-									</div>
-								</div>
-							</form>
-							<!-- <div class="d-flex align-items-center mt-30 mb-10">
-								<div class="line"></div>
-								<span class="pe-3 ps-3">OR</span>
-								<div class="line"></div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<a href="#" class="social-use-btn d-flex align-items-center justify-content-center tran3s w-100 mt-10">
-										<img src="{{asset('assets/images/icon/google.png')}}" alt="">
-										<span class="ps-2">Login with Google</span>
-									</a>
-								</div>
-								<div class="col-md-6">
-									<a href="#" class="social-use-btn d-flex align-items-center justify-content-center tran3s w-100 mt-10">
-										<img src="{{asset('assets/images/icon/facebook.png')}}" alt="">
-										<span class="ps-2">Login with Facebook</span>
-									</a>
-								</div>
-							</div> -->
-						</div>
-						<!-- /.form-wrapper -->
-					</div>
-					<!-- /.user-data-form -->
+	<div class="modal-dialog modal-fullscreen modal-dialog-centered">
+		<div class="container">
+			<div class="user-data-form modal-content">
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<div class="text-center">
+					<h3>Request Form</h3>
 				</div>
+				<div class="form-wrapper m-auto">
+					<form  id = "Interview-Request-Form">
+						<div id="interview-request-errors-list"></div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="input-group-meta position-relative mb-25">
+									<label>Date*</label>
+									<input type="date" name = "interview_date" placeholder="" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="input-group-meta position-relative mb-20" required>
+									<label>Time*</label>
+									<input type="time" name = "interview_time" placeholder="Enter Password" class="pass_log_id" required>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="input-group-meta position-relative mb-20">
+									<label>Job Link*</label>
+									<input type="text" name = "job_link" placeholder="https://job.pk/job/1" class="pass_log_id">
+								</div>
+							</div>
+							<div class="col-md-12">
+							<div class="input-group-meta position-relative mb-20">
+								<label for="">Select Meeting Media</label>
+								<select name="meeting_media" id="meeting_media" class="nice-select">
+									<option value="Skype" >Skype</option>
+									<option value="Google Meet" >Google Meet</option>
+									<option value="Zoom">Zoom</option>
+								</select>
+						</div>
+							</div>
+						
+							<div class="col-md-6">
+								<button class="btn-submit fw-500 tran3s d-block mt-20" type = "submit" >
+									<span id="buttonText">Submit</span>
+									<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
+								</button>
+							</div>
+						</div>
+					</form>
+				
+				</div>
+				<!-- /.form-wrapper -->
 			</div>
+			<!-- /.user-data-form -->
 		</div>
+	</div>
+</div>
 <!-- /.job-portal-intro -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>

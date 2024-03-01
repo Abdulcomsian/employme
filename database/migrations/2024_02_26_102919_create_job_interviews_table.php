@@ -17,6 +17,10 @@ return new class extends Migration
             $table->longText('job_link')->nullable();
             $table->datetime('interview_date')->nullable();
             $table->time('interview_time')->nullable();
+            $table->datetime('reschedule_date')->nullable();
+            $table->time('reschedule_time')->nullable();
+            $table->longText('reschedule_meeting')->nullable();
+            $table->integer('reschedule_status')->default(0);
             $table->longText('meeting_media')->nullable();
             $table->foreign('employer_job_id')->references('id')->on('employer_jobs')->cascadeOnDelete();
             $table->unsignedBigInteger('requested_from');

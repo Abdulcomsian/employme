@@ -14,14 +14,20 @@ class JobInterview extends Model
         'job_link',
         'interview_date',
         'interview_time',
+        'reschedule_date',
+        'reschedule_time',
+        'reschedule_meeting',
         'meeting_media',
         'requested_from',
+        'reschedule_status',
         'requested_to',
         'status'
     ];
     protected $casts = [
-        'interview_data'=> 'datetime',
-        'interview_time'=>'datetime:H:i'
+        'interview_date'=> 'datetime',
+        'interview_time'=>'datetime:H:i',
+        'reschedule_date'=> 'datetime',
+        'reschedule_time'=>'datetime:H:i'
     ];
 
     public function jobDetails()

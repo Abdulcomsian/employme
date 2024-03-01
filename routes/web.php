@@ -91,6 +91,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     Route::get('interview-requests', [CandidateController::class, 'candidateInterviewRequests'])->name('candidateInterviewRequests');
     Route::post('accept-interview/{id}',[CandidateController::class,'acceptInterview'])->name('candidate.acceptInterview');
     Route::post('reject-interview/{id}',[CandidateController::class,'rejectInterview'])->name('candidate.rejectInterview');
+    Route::post('reschedule-interview',[CandidateController::class,'rescheduleInterview'])->name('candidate.reschedule_interview');
     Route::delete('job-applications/delete/{id}', [CandidateController::class, 'deleteApplication'])->name('candidate.delete-application');
   
 });

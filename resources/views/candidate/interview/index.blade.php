@@ -25,6 +25,20 @@ Interview Request
     /* background-color: #04AA6D; */
     color: black !important;
 }
+.btn-submit {
+    height: 46px;
+    border-radius: 7px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.88px;
+    color: #fff;
+    background: #ff715b;
+    width: auto;
+    padding: 14px;
+}
+.btn-submit:hover {
+    background:#b1b0eb;
+}
 </style>
 @endpush
 
@@ -98,7 +112,7 @@ Interview Request
                                     <td>
                                         <div class="job-status">{{$message}}</div>
                                     </td>
-                                
+                                  @if($interview->reschedule_status !=1 & $interview->status ==0)
                                     <td>
                                         <div class="action-dots float-end">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -115,12 +129,12 @@ Interview Request
                                                 <form id="reject-form-{{$interview->id}}" action="{{ route('candidate.rejectInterview', $interview->id) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 </form>
-                                                {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>--}}
+                                                <li><a class="dropdown-item Reschedule-Request-Button" href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" id = "{{$interview->id}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
+                                                {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>--}}
                                             </ul>
                                         </div>
                                     </td>
-                                      
+                                  @endif 
                                 </tr>
                                 @endforeach
                                 @endisset
@@ -364,5 +378,64 @@ Interview Request
     </div>
 </div>
 
+<div class="modal fade" id="RescheduleRequestModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+        <div class="container">
+            <div class="user-data-form modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center">
+                    <h3>Reschedule Form</h3>
+                </div>
+                <div class="form-wrapper m-auto">
+                    <form  id = "Interview-Request-Form" action = "{{route('candidate.reschedule_interview')}}" method = "POST">
+                        @csrf
+                        <input type = "hidden" name = "reschedule_interview_id" value = "">
+                        <div id="interview-request-errors-list"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group-meta position-relative mb-25">
+                                    <label>Date*</label>
+                                    <input type="date" name = "reschedule_date" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group-meta position-relative mb-20" required>
+                                    <label>Time*</label>
+                                    <input type="time" name = "reschedule_time" placeholder="Enter Password" class="pass_log_id" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                            <div class="input-group-meta position-relative mb-20">
+                                <label for="">Select Meeting Media</label>
+                                <select name="meeting_media" id="reschedule_meeting" class="nice-select">
+                                    <option value="Skype" >Skype</option>
+                                    <option value="Google Meet" >Google Meet</option>
+                                    <option value="Zoom">Zoom</option>
+                                </select>
+                        </div>
+                            </div>
+                        
+                            <div class="col-md-6">
+                                <button class="btn-submit fw-500 tran3s d-block mt-20" type = "submit" >
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                
+                </div>
+                <!-- /.form-wrapper -->
+            </div>
+            <!-- /.user-data-form -->
+        </div>
+    </div>
+</div>
 
+@push('page-script')
+<script>
+    document.querySelector('.Reschedule-Request-Button').addEventListener('click',function(){
+          document.querySelector('input[name=reschedule_interview_id]').value = this.id;
+    });
+</script>
+@endpush
 @endsection
