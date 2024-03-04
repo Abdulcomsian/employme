@@ -41,6 +41,6 @@
                         </li>
                     </ul>
                 </div>
-                <div><a href="{{route('employer-jobs.create')}}" class="job-post-btn tran3s">Post a Job</a></div>
+                <div><a href="{{route('candidatesMarketplace')}}" class="job-post-btn tran3s">Candidate Marketplace</a></div>
             </div>
         </header>

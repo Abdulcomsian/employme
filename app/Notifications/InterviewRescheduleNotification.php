@@ -56,7 +56,7 @@ class InterviewRescheduleNotification extends Notification
             $message = $this->employerDetails->employerDetails->institution.' has '.$status.' your request to reschedule the interview for the position of '.$this->jobDetails->job_title;
         }else{
         $greetings = 'Dear '.$this->employerDetails->employerDetails->institution;
-        $message = 'Candidate '.$this->candidateDetails->candidatePersonalDetails->full_name.' has requested to reschedule the interview for the position of  '.$this->jobDetails->job_title;
+        $message = $this->candidateDetails->candidatePersonalDetails->full_name.' has requested to reschedule the interview for the position of  '.$this->jobDetails->job_title;
         }
         return (new MailMessage)
                     ->greeting($greetings)

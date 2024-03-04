@@ -5,6 +5,14 @@
 			Inner Banner
 		============================================== 
 		-->
+
+<style>
+	#loadingIcon img {
+    width: 20px; /* Adjust as needed */
+    height: 20px; /* Adjust as needed */
+}
+
+</style>
 <div class="inner-banner-one position-relative">
 	<div class="container">
 		<div class="position-relative">
@@ -711,8 +719,10 @@
                 <button class="btn-one" type="button" data-bs-dismiss="modal">
 					Close
                 </button>
-                <button class="btn-one" type="submit" name="submit">
-                    Apply
+                <button class=" btn-submit btn-one" type="submit" name="submit">
+					<span id="buttonText">Appy</span>
+					<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
+				</button>
             </div>
             </form>
         </div>
@@ -729,7 +739,9 @@
 	$(document).on("submit", "#Job-Application-Form", function() {
         // e.preventDefault();
         //   var e = this;
-  
+		$('#buttonText').hide();
+        $('#loadingIcon').removeClass("d-none");
+        $(".btn-submit").prop('disabled',true);
   
           $.ajax({
               url: '{{route("jobApplicationRequest")}}',
@@ -751,7 +763,13 @@
                     });
                 }
                
-              }
+              },
+			  complete: function(){
+                $('#loadingIcon').addClass("d-none");
+                $('#buttonText').show();
+				$(".btn-submit").attr('disabled',false);
+
+            }
           });
   
           return false;

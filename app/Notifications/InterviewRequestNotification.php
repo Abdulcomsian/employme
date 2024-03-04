@@ -56,7 +56,7 @@ class InterviewRequestNotification extends Notification
             $message = $this->candidateDetails->candidatePersonalDetails->full_name.' has '.$status.' an interview request for the position of '.$this->jobDetails->job_title;
         }else{
             $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->full_name;
-            $message = 'Employer'.$this->employerDetails->employerDetails->institution.' sent you an interview request for the position of '.$this->jobDetails->job_title;
+            $message = $this->employerDetails->employerDetails->institution.' sent you an interview request for the position of '.$this->jobDetails->job_title;
         }
         return (new MailMessage)
                     ->greeting($greetings)

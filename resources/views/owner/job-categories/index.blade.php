@@ -84,6 +84,7 @@ Job Categories
                     <thead>
                         <tr>
                             <th scope="col" style="text-align:left">#</th>
+                            <th scope="col" style="text-align:left">Icon</th>
                             <th scope="col" style="text-align:left">Name</th>
                             <th scope="col" style="text-align:left">Action</th>
                             <!-- <th scope="col">Status</th>
@@ -130,6 +131,11 @@ Job Categories
                         <input class="form-control" type="text" value="" name="name" id="name"
                             placeholder="{{__('Name')}}" autocomplete="off">
                     </div>
+                    <div class="mb-3">
+                        <label class="col-form-label" for="Major Name">{{__('Category Icon')}}</label>
+                        <input class="form-control" type="file" value="" name="category_icon" id="category_icon" accept="image/jpeg, image/png"
+                            placeholder="{{__('Name')}}" autocomplete="off">
+                    </div>
              
             </div>
             <div class="modal-footer">
@@ -164,6 +170,11 @@ Job Categories
                         <input class="form-control" type="text" value="" name="name" id="name"
                             placeholder="{{__('Name')}}" autocomplete="off">
                     </div>
+                    <div class="mb-3">
+                        <label class="col-form-label" for="Major Name">{{__('Category Icon')}}</label>
+                        <input class="form-control" type="file" value="" name="category_icon" id="category_icon" accept="image/jpeg, image/png"
+                            placeholder="{{__('Name')}}" autocomplete="off">
+                    </div>
                 
                     <input type="hidden" name="id" id="id">
             </div>
@@ -191,6 +202,9 @@ Job Categories
             "data": "id" , 'width':"30%"
             },
             {
+            "data": "categoryIcon" , 'width':"30%"
+            },
+            {
             "data": "name" , 'width':"30%"
             },
             {
@@ -211,12 +225,16 @@ Job Categories
             $('#Add-Job-Category-Form').find($('#error-message')).empty();
             $('#Add-Job-Category-Form').find($('#alert-error')).css('display', 'none');
             var url = "{{route('job-categories.store')}}";
-            $.ajax({
+            var formData = new FormData();
+            formData.append("_token", "{{ csrf_token() }}");
+            formData.append("name", $("#Add-Job-Category-Form").find("[name=name]").val());
+            formData.append("category_icon", $("#Add-Job-Category-Form").find("[name=category_icon]")[0].files[0]);            $.ajax({
             type: 'POST',
             url: url,
-            data: $(this).serialize(),
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: formData ,
             dataType: 'json',
+            contentType: false,
+            processData: false,
             success: function(res) {
             if (res.status == 'success') {
             $('#Add-Job-Category-Modal').modal('hide');
@@ -251,12 +269,19 @@ Job Categories
             var jobCategoryId = $('#Edit-Job-Category-Form').find('[name="id"]').val();
             var url = "{{route('job-categories.update',':id')}}";
             url = url.replace(':id',jobCategoryId);
+
+            var formData = new FormData();
+            formData.append("_token", "{{ csrf_token() }}");
+            formData.append("_method", "PUT");
+            formData.append("name", $("#Edit-Job-Category-Form").find("[name=name]").val());
+            formData.append("category_icon", $("#Edit-Job-Category-Form").find("[name=category_icon]")[0].files[0]); 
             $.ajax({
-            type: 'PUT',
+            type: 'POST',
             url: url,
-            data: $(this).serialize(),
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: formData ,
             dataType: 'json',
+            contentType: false,
+            processData: false,
             success: function(res) {
             if (res.status == 'success') {
             $('#Edit-Job-Category-Modal').modal('hide');

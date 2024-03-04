@@ -13,6 +13,8 @@ use Illuminate\Validation\Rule;
 use App\Rules\ValidateJobLink;
 use Notification;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 use App\Notifications\{InterviewRequestNotification,InterviewRescheduleNotification};
 class EmployerController extends Controller
 {
@@ -258,24 +260,33 @@ class EmployerController extends Controller
 
     public function jobInterviewRequest(Request $request)
     {
-       
+        if (\App::environment('local')) {
+            $regexPattern = '/\b(?:(?:http?|ftp):\/\/|www\.)((localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})|[-a-z0-9+&@#\/%?=~_|!:,.;])*[-a-z0-9+&@#\/%=~_|]/i';
+        } else {
+            $regexPattern = '/\b(?:(?:http?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i';
+        }
         $validator = Validator::make($request->all(), [
             'meeting_media'=>'required',
             'interview_date'=>'required',
             'interview_time'=>'required',
-            'job_link'=>['required', new ValidateJobLink($request->candidate_id)]
+            'job_link' => ['required', new ValidateJobLink($request->candidate_id)],
+            'job_link' => ['required', 'regex:'.$regexPattern]
         ]);
-  
         if ($validator->fails()){
             return response()->json([
                     "status" => false,
                     "errors" => $validator->errors()
                 ]);
             }
-            
+           
+
         $urlParts = explode('/', $request->job_link);
         $jobId = end($urlParts);
-        $jobId = \Crypt::decryptString($jobId);
+        try {
+            $jobId = Crypt::decryptString($urlParts);
+        } catch (DecryptException $e) {
+            dd($e);
+        }
         $candidateDetails = User::with('candidatePersonalDetails')->find($request->candidate_id);
         $employerDetails = User::with('employerDetails')->find(Auth::id());
         $jobDetails = EmployerJob::find($jobId);

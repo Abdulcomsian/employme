@@ -7,6 +7,19 @@ Employer Saved Candidate
 <style>
     .remove-account-popup .confirm-btn:hover {
     background: #D2F34C;
+        }
+        .job-post-btn {
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    width: 200px;
+    line-height: 45px;
+    border-radius: 50px;
+    background: #ff715b;
+}
+.job-post-btn:hover {
+    background: #b1b0eb;
+    color: #244034;
 }
 </style>
 @endpush
@@ -95,7 +108,7 @@ Employer Saved Candidate
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
-                                            <li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
+                                            <li><a class="dropdown-item Interview-Modal-Button" href="#" data-bs-toggle="modal" data-bs-target="#InterviewModal" id = "{{$jobApplicant->pivot->employer_job_id ?? ''}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Interview</a></li>
                                             <li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
                                             <li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
                                         </ul>
@@ -208,8 +221,66 @@ Employer Saved Candidate
 			</div>
 		</div>
 
+<div class="modal fade" id="InterviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+        <div class="container">
+            <div class="user-data-form modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center">
+                    <h3>Reschedule Form</h3>
+                </div>
+                <div class="form-wrapper m-auto">
+                    <form  id = "Interview-Invitation-Form" action = "{{route('employer.interviewInvitation')}}" method = "POST">
+                        @csrf
+                        <input type = "hidden" name = "employer_job_id" value = "">
+                        <div id="interview-request-errors-list"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group-meta position-relative mb-25">
+                                    <label>Date*</label>
+                                    <input type="date" name = "interview_date" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group-meta position-relative mb-20" required>
+                                    <label>Time*</label>
+                                    <input type="time" name = "interview_time" placeholder="Enter Password" class="pass_log_id" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                            <div class="input-group-meta position-relative mb-20">
+                                <label for="">Select Meeting Media</label>
+                                <select name="reschedule_meeting" id="interview_meeting" class="nice-select">
+                                    <option value="Skype" >Skype</option>
+                                    <option value="Google Meet" >Google Meet</option>
+                                    <option value="Zoom">Zoom</option>
+                                </select>
+                        </div>
+                            </div>
+                        
+                            <div class="col-md-6">
+                                <button class="job-post-btn fw-500 tran3s d-block mt-20" type = "submit" >
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                
+                </div>
+                <!-- /.form-wrapper -->
+            </div>
+            <!-- /.user-data-form -->
+        </div>
+    </div>
+</div>
         @push('page-script')
         <script>
+         document.querySelector('.Interview-Modal-Button').addEventListener('click',function(){
+            document.querySelector('input[name=employer_job_id]').value = this.id;
+        });
+    </script>
+        <script>
+            
             $(document).ready(function () {
                 $('.cover-letter-button').click(function () {
                 // Get the applicant ID from the data attribute

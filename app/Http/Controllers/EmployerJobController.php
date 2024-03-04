@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\EmployerJob;
-use App\Models\JobCategory;
+use App\Models\{JobCategory, JobApplication,User, JobInterview};
 use Illuminate\Support\Facades\Auth;
+use Notification;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
+use App\Notifications\{InterviewRequestNotification,InterviewRescheduleNotification};
 class EmployerJobController extends Controller
 {
     /**
@@ -107,5 +112,41 @@ class EmployerJobController extends Controller
              dd($e->getMessage());
         }  
         
+    }
+
+    public function interviewInvitation(Request $request)
+    {
+        $jobApplicationDetails = JobApplication::where('employer_job_id',$request->employer_job_id)->first();
+
+        $candidateDetails = User::with('candidatePersonalDetails')->find($jobApplicationDetails->candidate_id);
+        $employerDetails = User::with('employerDetails')->find(Auth::id());
+        $jobDetails = EmployerJob::find($request->employer_job_id);
+        $interviewRequestExists = JobInterview::where(['employer_job_id'=>$request->employer_job_id,'requested_from'=>$jobApplicationDetails->employer_id,'requested_to'=>$jobApplicationDetails->candidate_id]);
+
+        if($interviewRequestExists->exists())
+        {
+            toastr()->warning('Already Interviewed');
+            return redirect()->back();        
+        }
+        else
+        {
+            $createRequest = JobInterview::create([
+                'job_link' => $request->job_link,
+                'requested_to'=>$jobApplicationDetails->candidate_id,
+                'requested_from'=>$jobApplicationDetails->employer_id,
+                'interview_date'=>$request->interview_date,
+                'interview_time'=>$request->interview_time,
+                'meeting_media'=>$request->meeting_media,
+                'status'=>0,
+                'employer_job_id'=>$request->employer_job_id
+    
+            ]);    
+            if($createRequest)
+            {
+                Notification::route('mail',  $candidateDetails->email ?? '')->notify(new InterviewRequestNotification($candidateDetails,$employerDetails,$jobDetails));
+                toastr('Interview Request Sent Successfully');
+                return redirect()->back();
+            }
+        }
     }
 }

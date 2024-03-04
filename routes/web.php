@@ -124,6 +124,8 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('post-a-job', [EmployerController::class, 'postAJob'])->name('postAJob');
     Route::get('employer-jobs/Job-listing-candidate/{id}', [EmployerController::class, 'JobListingCandidate'])->name('employer.JobListingCandidate');
     Route::resource('employer-jobs', EmployerJobController::class);
+    Route::post('interview-invitation', [EmployerJobController::class, 'interviewInvitation'])->name('employer.interviewInvitation');
+
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
     Route::get('reschedule-inteview-requests', [EmployerController::class, 'rescheduleRequests'])->name('employer.reschedule_requests');
     Route::get('job-applications', [EmployerController::class, 'employerJobApplications'])->name('employerJobApplications');

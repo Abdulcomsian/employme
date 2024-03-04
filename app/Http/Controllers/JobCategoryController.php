@@ -18,6 +18,7 @@ class JobCategoryController extends Controller
             $jobCategories = JobCategory::all();
             foreach ($jobCategories as $jobCategory) {
                 $jobCategory->Options = '<button class="btn btn-primary Edit-Job-Category-Button m-1"   type="button" type="button" data-bs-toggle="modal" data-bs-target="#Edit-Job-Category-Modal"><i class="bi bi-pen"></i></button><button class="btn btn-danger Delete-Job-Category-Button"   type="button" type="button" ><i class="bi bi-trash"></i></button>';
+                $jobCategory->categoryIcon = '<img src="' . asset($jobCategory->category_icon) . '" alt="Category Icon" width = "20" height = "20">';
             }
             $output = array(
                     "recordsTotal" => count($jobCategories),
@@ -42,8 +43,14 @@ class JobCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $createJobCategory = JobCategory::create(array_merge($input,['user_id'=>Auth::id()]));
+        $input = $request->except('token','category_icon');
+        $imagename = '';
+        if ($request->file('category_icon')) {
+            $file = $request->file('category_icon');
+            $filePath = categoryIconPath();
+            $imagename = saveFile($filePath, $file);
+        }
+        $createJobCategory = JobCategory::create(array_merge($input,['category_icon'=>$imagename,'user_id'=>Auth::id()]));
 
         return  \Response::json(['status' => 'success','msg' => __('Job Category Added successfully')]);
     }
@@ -69,8 +76,17 @@ class JobCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $input = $request->except('id');
-        $updateJobCategory = JobCategory::where('id',$id)->update($input);
+        
+        $updateJobCategory = JobCategory::where('id',$id)->first();
+        $input = $request->except('token','category_icon','_method');
+        $imagename = $updateJobCategory->category_icon;
+        if ($request->file('category_icon')) {
+            $file = $request->file('category_icon');
+            $filePath = categoryIconPath();
+            $imagename = saveFile($filePath, $file,$updateJobCategory->category_icon);
+        }
+        $updateJobCategory->update(array_merge($input,['category_icon'=>$imagename]));
+
         return  \Response::json(['status' => 'success','msg' => __('Job Category Updated successfully')]);
     }
 

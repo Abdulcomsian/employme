@@ -156,8 +156,10 @@ class JobController extends Controller
                     "errors" => ["Only Candidate can Apply for Job"]
                 ]);
             }else{
+                $jobDetails = EmployerJob::find($request->job_id);
                 $applyForJob = JobApplication::create([
                     'candidate_id'=>Auth::id(),
+                    'employer_id'=>$jobDetails->posted_by,
                     'employer_job_id'=>$request->job_id,
                     'cover_letter'=>$request->cover_letter,
                     'application_status'=>0,

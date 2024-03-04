@@ -41,6 +41,20 @@ Job Listing
     color: #6c757d!important;
     padding: 13px 23px 1px 5px;
 } */
+
+.job-post-btn {
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    width: 200px;
+    line-height: 45px;
+    border-radius: 50px;
+    background: #ff715b;
+}
+.job-post-btn:hover {
+    background: #b1b0eb;
+    color: #244034;
+}
 </style>
 @endpush
 @section('content')
@@ -70,7 +84,7 @@ Job Listing
         </div>
 
         <div class="bg-white card-box border-20">
-                <!-- <div><a href="{{route('employer-jobs.create')}}" class="create-job-btn">Post a Job</a></div> -->
+                <div><a href="{{route('employer-jobs.create')}}" class="job-post-btn create-job-btn">Post a Job</a></div>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="a1" role="tabpanel">
                     <div class="table-responsive">
@@ -104,7 +118,7 @@ Job Listing
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
+                                                {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>--}}
                                                 <li><a class="dropdown-item" href="{{route('employer-jobs.edit',$employerJob->id)}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                                 document.getElementById('destroy-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>

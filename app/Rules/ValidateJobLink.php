@@ -5,6 +5,8 @@ namespace App\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use App\Models\{EmployerJob, JobInterview};
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 class ValidateJobLink implements ValidationRule
 {
    
@@ -22,8 +24,7 @@ class ValidateJobLink implements ValidationRule
     {
         $urlParts = explode('/', $value);
         $jobId = end($urlParts);
-        $jobId = \Crypt::decryptString($jobId);
-
+       
         $employerJob = EmployerJob::where('id', $jobId)
             ->where('posted_by', auth()->id());
 
@@ -32,7 +33,7 @@ class ValidateJobLink implements ValidationRule
 
        if(!$employerJob->exists())
        {
-            $fail("Invalid Job Url");
+            $fail("The Job doesn't exist on the Provided Url");
        }
        if($interviewRequestExists->exists())
        {
