@@ -143,10 +143,28 @@ class EmployerJobController extends Controller
             ]);    
             if($createRequest)
             {
+                $jobApplicationDetails->application_status = 1;
+                $jobApplicationDetails->save();
                 Notification::route('mail',  $candidateDetails->email ?? '')->notify(new InterviewRequestNotification($candidateDetails,$employerDetails,$jobDetails));
                 toastr('Interview Request Sent Successfully');
                 return redirect()->back();
             }
         }
+    }
+
+    public function rejectApplication($id)
+    {
+        $jobApplicationDetails = JobApplication::find($id);
+        $candidateDetails = User::with('candidatePersonalDetails')->find($jobApplicationDetails->candidate_id);
+        $employerDetails = User::with('employerDetails')->find(Auth::id());
+        $jobDetails = EmployerJob::find($jobApplicationDetails->employer_job_id);
+        $jobApplicationDetails= $jobApplicationDetails->update(['application_status'=>2]);
+        if($jobApplicationDetails){
+            Notification::route('mail',  $candidateDetails->email ?? '')->notify(new InterviewRequestNotification($candidateDetails,$employerDetails,$jobDetails,$type=2));
+            toastr('Application Rejected Successfully');
+            return redirect()->back();
+        }
+
+
     }
 }

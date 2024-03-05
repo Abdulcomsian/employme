@@ -30,7 +30,7 @@
                         @endauth
                     </ul>
                 </div> <!--/.right-widget-->
-              
+              @php $jobCatgegories = \DB::table('job_categories')->limit(6)->get(); @endphp
                 <nav class="navbar navbar-expand-lg p0 ms-lg-5 ms-3 order-lg-2">
                     <button class="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span></span>
@@ -45,58 +45,67 @@
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-grid-fill"></i> Category</a>
                                 <ul class="dropdown-menu category-dropdown">
                                     <li class="row gx-0">
+                                        
                                         <div class="col-lg-6">
+                                            @isset($jobCatgegories)
+                                            @foreach($jobCatgegories as $index=>$jobCategory)
                                             <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
-                                                <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_63.svg')}}" alt="" class="lazy-img"></div>
+                                                <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($jobCategory->category_icon)}}" alt="" class="lazy-img"></div>
                                                 <div class="ps-3 flex-fill">
-                                                    <div class="fw-500 text-dark">UI/UX Design</div>
+                                                    <div class="fw-500 text-dark">{{$jobCategory->name}}</div>
                                                     <div class="job-count">12k+ Jobs</div>
                                                 </div>
                                             </a>
-                                            <!-- /.item -->
-                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
-                                                <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_64.svg')}}" alt="" class="lazy-img"></div>
-                                                <div class="ps-3 flex-fill">
-                                                    <div class="fw-500 text-dark">Development</div>
-                                                    <div class="job-count">7k+ Jobs</div>
-                                                </div>
-                                            </a>
-                                            <!-- /.item -->
-                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
-                                                <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_65.svg')}}" alt="" class="lazy-img"></div>
-                                                <div class="ps-3 flex-fill">
-                                                    <div class="fw-500 text-dark">Telemarketing</div>
-                                                    <div class="job-count">310+ Jobs</div>
-                                                </div>
-                                            </a>
-                                            <!-- /.item -->
+                                            @endforeach
+                                            @endisset
+                                            {{--
+                                                <!-- /.item -->
+                                                <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
+                                                    <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_64.svg')}}" alt="" class="lazy-img"></div>
+                                                    <div class="ps-3 flex-fill">
+                                                        <div class="fw-500 text-dark">Development</div>
+                                                        <div class="job-count">7k+ Jobs</div>
+                                                    </div>
+                                                </a>
+                                                <!-- /.item -->
+                                                <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
+                                                    <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_65.svg')}}" alt="" class="lazy-img"></div>
+                                                    <div class="ps-3 flex-fill">
+                                                        <div class="fw-500 text-dark">Telemarketing</div>
+                                                        <div class="job-count">310+ Jobs</div>
+                                                    </div>
+                                                </a>
+                                                <!-- /.item -->
+                                                --}}
                                         </div>
-                                        <div class="col-lg-6">
-                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
-                                                <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_68.svg')}}" alt="" class="lazy-img"></div>
-                                                <div class="ps-3 flex-fill">
-                                                    <div class="fw-500 text-dark">Marketing</div>
-                                                    <div class="job-count">420+ Jobs</div>
-                                                </div>
-                                            </a>
-                                            <!-- /.item -->
-                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
-                                                <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_66.svg')}}" alt="" class="lazy-img"></div>
-                                                <div class="ps-3 flex-fill">
-                                                    <div class="fw-500 text-dark">Editing</div>
-                                                    <div class="job-count">3k+ Jobs</div>
-                                                </div>
-                                            </a>
-                                            <!-- /.item -->
-                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
-                                                <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_67.svg')}}" alt="" class="lazy-img"></div>
-                                                <div class="ps-3 flex-fill">
-                                                    <div class="fw-500 text-dark">Finance Accounting</div>
-                                                    <div class="job-count">150+ Jobs</div>
-                                                </div>
-                                            </a>
-                                            <!-- /.item -->
-                                        </div>
+                                        {{--
+                                            <div class="col-lg-6">
+                                                <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
+                                                    <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_68.svg')}}" alt="" class="lazy-img"></div>
+                                                    <div class="ps-3 flex-fill">
+                                                        <div class="fw-500 text-dark">Marketing</div>
+                                                        <div class="job-count">420+ Jobs</div>
+                                                    </div>
+                                                </a>
+                                                <!-- /.item -->
+                                                <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
+                                                    <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_66.svg')}}" alt="" class="lazy-img"></div>
+                                                    <div class="ps-3 flex-fill">
+                                                        <div class="fw-500 text-dark">Editing</div>
+                                                        <div class="job-count">3k+ Jobs</div>
+                                                    </div>
+                                                </a>
+                                                <!-- /.item -->
+                                                <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
+                                                    <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_67.svg')}}" alt="" class="lazy-img"></div>
+                                                    <div class="ps-3 flex-fill">
+                                                        <div class="fw-500 text-dark">Finance Accounting</div>
+                                                        <div class="job-count">150+ Jobs</div>
+                                                    </div>
+                                                </a>
+                                                <!-- /.item -->
+                                            </div>
+                                                --}}
                                     </li>
                                     <li>
                                         <a href="{{route('jobMarketplace')}}" class="explore-all-btn d-flex align-items-center justify-content-between tran3s">

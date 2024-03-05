@@ -65,7 +65,7 @@ Interview Request
                                     <th scope="col">Meeting Media</th>
                                     <th scope="col">Applicants</th>
                                     <th scope="col">Status</th>
-                                    {{--<th scope="col">Action</th>--}}
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="border-0">
@@ -74,14 +74,21 @@ Interview Request
                                 @php 
                                      $status = 'pending';
                                      $message = 'Pending';
-                                     if($interview->status == 1)
+                                     if($interview->reschedule_status == 0)
                                      {
-                                        $status = 'active';
-                                        $message = 'Scheduled';
-                                     }elseif($interview->status == 2)
+                                            if($interview->status == 1)
+                                        {
+                                            $status = 'active';
+                                            $message = 'Scheduled';
+                                        }elseif($interview->status == 2)
+                                        {
+                                            $status = 'expired';
+                                            $message = 'Rejected';
+                                        }
+                                     }else
                                      {
-                                        $status = 'expired';
-                                        $message = 'Rejected';
+                                        $status = 'pending';
+                                            $message = 'Reschedule Request';
                                      }
                                 @endphp
                                 <tr class="{{$status}}">
@@ -89,28 +96,45 @@ Interview Request
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
                                         <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>
                                     </td>
+                                    @if($interview->reschedule_status ==1 && $interview->status == 0)
+                                    <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}</td>
+                                    <td>{{date('h:i A',strtotime($interview->reschedule_time))}}</td>
+                                    <td>{{$interview->reschedule_meeting}}</tdjo>
+                                    @else
                                     <td>{{date('d M, Y',strtotime($interview->interview_date))}}</td>
-                                    <td>{{date('H:i A',strtotime($interview->interview_time))}}</td>
+                                    <td>{{date('h:i A',strtotime($interview->interview_time))}}</td>
                                     <td>{{$interview->meeting_media}}</td>
+                                    @endif
                                     <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$interview->jobDetails->id])}}">{{totalApplicants($interview->jobDetails->id)}} Applications</a><div></td>
                                     <td>
                                         <div class="job-status">{{$message}}</div>
                                     </td>
-                                {{--
+                                    @if($interview->reschedule_status == 1 && $interview->status == 0)
                                     <td>
                                         <div class="action-dots float-end">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                document.getElementById('accept-form-{{$interview->id}}').submit();">
+                                                <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> Accept</a>
+                                            </li>                                                
+                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                document.getElementById('reject-form-{{$interview->id}}').submit();">
+                                                <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Reject</a>
+                                            </li>                                                
+                                            <form id="accept-form-{{$interview->id}}" action="{{ route('employer.accept_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            </form>
+                                            <form id="reject-form-{{$interview->id}}" action="{{ route('employer.reject_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            </form>
+                                               
                                             </ul>
                                         </div>
                                     </td>
-                                      --}}
+                                   @endif
                                 </tr>
                                 @endforeach
                                 @endisset
@@ -201,7 +225,9 @@ Interview Request
                             <thead>
                                 <tr>
                                     <th scope="col">Title</th>
-                                    <th scope="col">Job Created</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Meeting Media</th>
                                     <th scope="col">Applicants</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
@@ -211,16 +237,23 @@ Interview Request
                                 @isset($latestInterviews)
                                 @foreach($latestInterviews as $interview)
                                 @php 
-                                     $status = 'pending';
+                                $status = 'pending';
                                      $message = 'Pending';
-                                     if($interview->status == 1)
+                                     if($interview->reschedule_status == 0)
                                      {
-                                        $status = 'active';
-                                        $message = 'Scheduled';
-                                     }elseif($interview->status == 2)
+                                            if($interview->status == 1)
+                                        {
+                                            $status = 'active';
+                                            $message = 'Scheduled';
+                                        }elseif($interview->status == 2)
+                                        {
+                                            $status = 'expired';
+                                            $message = 'Rejected';
+                                        }
+                                     }else
                                      {
-                                        $status = 'expired';
-                                        $message = 'Rejected';
+                                        $status = 'pending';
+                                            $message = 'Reschedule Request';
                                      }
                                 @endphp
                                 <tr class="{{$status}}">
@@ -228,28 +261,45 @@ Interview Request
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
                                         <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>
                                     </td>
+                                    @if($interview->reschedule_status ==1 && $interview->status == 0)
+                                    <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}</td>
+                                    <td>{{date('h:i A',strtotime($interview->reschedule_time))}}</td>
+                                    <td>{{$interview->reschedule_meeting}}</tdjo>
+                                    @else
                                     <td>{{date('d M, Y',strtotime($interview->interview_date))}}</td>
-                                    <td>{{date('H:i A',strtotime($interview->interview_time))}}</td>
+                                    <td>{{date('h:i A',strtotime($interview->interview_time))}}</td>
                                     <td>{{$interview->meeting_media}}</td>
+                                    @endif
                                     <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$interview->jobDetails->id])}}">{{totalApplicants($interview->jobDetails->id)}} Applications</a><div></td>
                                     <td>
                                         <div class="job-status">{{$message}}</div>
                                     </td>
-                                {{--
+                                    @if($interview->reschedule_status == 1 && $interview->status == 0)
                                     <td>
                                         <div class="action-dots float-end">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                document.getElementById('accept-form-{{$interview->id}}').submit();">
+                                                <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> Accept</a>
+                                            </li>                                                
+                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                document.getElementById('reject-form-{{$interview->id}}').submit();">
+                                                <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Reject</a>
+                                            </li>                                                
+                                            <form id="accept-form-{{$interview->id}}" action="{{ route('employer.accept_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            </form>
+                                            <form id="reject-form-{{$interview->id}}" action="{{ route('employer.reject_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            </form>
+                                               
                                             </ul>
                                         </div>
                                     </td>
-                                      --}}
+                                   @endif
                                 </tr>
                                 @endforeach
                                 @endisset

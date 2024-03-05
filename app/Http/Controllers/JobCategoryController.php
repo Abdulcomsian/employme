@@ -18,7 +18,7 @@ class JobCategoryController extends Controller
             $jobCategories = JobCategory::all();
             foreach ($jobCategories as $jobCategory) {
                 $jobCategory->Options = '<button class="btn btn-primary Edit-Job-Category-Button m-1"   type="button" type="button" data-bs-toggle="modal" data-bs-target="#Edit-Job-Category-Modal"><i class="bi bi-pen"></i></button><button class="btn btn-danger Delete-Job-Category-Button"   type="button" type="button" ><i class="bi bi-trash"></i></button>';
-                $jobCategory->categoryIcon = '<img src="' . asset($jobCategory->category_icon) . '" alt="Category Icon" width = "20" height = "20">';
+                $jobCategory->categoryIcon = '<img src="' . asset($jobCategory->category_icon) . '" alt="Category Icon" width = "100" height = "100">';
             }
             $output = array(
                     "recordsTotal" => count($jobCategories),

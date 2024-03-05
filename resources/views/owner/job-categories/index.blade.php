@@ -115,7 +115,7 @@ Job Categories
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="User-Edit-Modal">{{__('Add Module')}}</h5>
+                <h5 class="modal-title" id="User-Edit-Modal">{{__('Add Category')}}</h5>
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -128,12 +128,12 @@ Job Categories
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label" for="Major Name">{{__('Name')}}</label>
-                        <input class="form-control" type="text" value="" name="name" id="name"
+                        <input class="form-control" type="text" value="" name="name" id="name" required
                             placeholder="{{__('Name')}}" autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label" for="Major Name">{{__('Category Icon')}}</label>
-                        <input class="form-control" type="file" value="" name="category_icon" id="category_icon" accept="image/jpeg, image/png"
+                        <input class="form-control" type="file" value="" name="category_icon" id="category_icon" accept="image/jpeg, image/png, image/svg" required
                             placeholder="{{__('Name')}}" autocomplete="off">
                     </div>
              
@@ -154,7 +154,7 @@ Job Categories
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="User-Edit-Modal">{{__('Edit Module')}}</h5>
+                <h5 class="modal-title" id="User-Edit-Modal">{{__('Edit Category')}}</h5>
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -167,12 +167,12 @@ Job Categories
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label" for="Major Name">{{__('Name')}}</label>
-                        <input class="form-control" type="text" value="" name="name" id="name"
+                        <input class="form-control" type="text" value="" name="name" id="name" required
                             placeholder="{{__('Name')}}" autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label" for="Major Name">{{__('Category Icon')}}</label>
-                        <input class="form-control" type="file" value="" name="category_icon" id="category_icon" accept="image/jpeg, image/png"
+                        <input class="form-control" type="file" value="" name="category_icon" id="category_icon" accept="image/jpeg, image/png, image/svg"
                             placeholder="{{__('Name')}}" autocomplete="off">
                     </div>
                 

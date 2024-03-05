@@ -310,11 +310,6 @@ class EmployerController extends Controller
         ]);
     }
 
-    public function rescheduleRequests(){
-        $allInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())->where('reschedule_status',1)->get();
-        return view('employer.reschedule-interview-requests',compact('allInterviews'));
-    }
-
     public function acceptRescheduleRequest($id)
     {
         $acceptRescheduleRequest = JobInterview::with('jobDetails')->find($id);

@@ -54,6 +54,9 @@ class InterviewRequestNotification extends Notification
             }
             $greetings = 'Dear '.$this->employerDetails->employerDetails->institution;
             $message = $this->candidateDetails->candidatePersonalDetails->full_name.' has '.$status.' an interview request for the position of '.$this->jobDetails->job_title;
+        }elseif($this->type== 2){
+            $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->full_name;
+            $message = $this->employerDetails->employerDetails->institution.' has rejected your application  for the position of '.$this->jobDetails->job_title;
         }else{
             $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->full_name;
             $message = $this->employerDetails->employerDetails->institution.' sent you an interview request for the position of '.$this->jobDetails->job_title;

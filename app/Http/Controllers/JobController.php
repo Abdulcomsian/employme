@@ -114,11 +114,11 @@ class JobController extends Controller
         $dt = Carbon::now();
         $dt2 = $dt->copy()->subWeek(); 
        
-        $allInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())->where('reschedule_status',0)->paginate(10);
+        $allInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())->paginate(10);
         $latestInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())
         ->where('created_at', '>=', $dt2->copy()->startOfDay())
         ->where('created_at', '<=', $dt->copy()->endOfDay())
-        ->where('reschedule_status',0)->paginate(10);
+        ->paginate(10);
         return view('employer.employer-interview-request',compact('allInterviews','latestInterviews'));
     }
 

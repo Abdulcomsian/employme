@@ -61,7 +61,7 @@ Employer Saved Candidate
                     @endif
                     <div class="right-side">
                         <div class="row gx-1 align-items-center">
-                            <div class="col-xl-3">
+                            <div class="col-xl-4">
                                 <div class="position-relative">
                                     <h4 class="candidate-name mb-0"><a href="#" class="tran3s">{{$jobApplicant->candidatePersonalDetails->full_name ?? ''}}</a></h4>
                                     <div class="candidate-post">{{$jobApplicant->candidatePersonalDetails->designation ?? ''}}</div>
@@ -82,21 +82,34 @@ Employer Saved Candidate
                                     <!-- /.cadidate-skills -->
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="col-xl-2 col-md-4 col-sm-6">
                                 <div class="candidate-info">
                                     <span>Salary</span>
                                     <div>{{$jobApplicant->candidatePreferences->expected_salary ?? ''}}{{!empty($jobApplicant->candidatePreferences->expected_salary) ? '/mo' : ''}}</div>
                                 </div>
                                 <!-- /.candidate-info -->
                             </div>
-                            <div class="col-xl-3 col-md-4 col-sm-6">
+                            
+                            <div class="col-xl-2 col-md-4 col-sm-6">
                                 <div class="candidate-info">
                                     <span>Location</span>
                                     <div>{{$jobApplicant->candidatePersonalDetails->current_location ?? ''}}</div>
                                 </div>
                                 <!-- /.candidate-info -->
                             </div>
-                            <div class="col-xl-3 col-md-4">
+                            <div class ="col-xl-2 col-md-4 col-sm-6">
+                                <div class = "candidate-info">
+                                        <span>Status</span>
+                                        @if($jobApplicant->pivot->application_status == 1)
+                                        <div >Shorlisted</div>
+                                        @elseif($jobApplicant->pivot->application_status == 2)
+                                        <div >Rejected</div>
+                                        @else
+                                        <div >Pending</div>
+                                        @endif
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-md-4">
                                 <div class="d-flex justify-content-md-end align-items-center">
                                     <a href="#" class="save-btn text-center rounded-circle tran3s mt-10 fw-normal cover-letter-button" id="{{$index}}" data-bs-toggle="modal" data-bs-target="#coverLetterModal"><i class="bi bi-eye"></i></a>
                                         <div id="cover-letter-{{$index}}" class="d-none">
@@ -107,10 +120,15 @@ Employer Saved Candidate
                                             <span></span>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
+                                           {{-- <li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li> --}}
                                             <li><a class="dropdown-item Interview-Modal-Button" href="#" data-bs-toggle="modal" data-bs-target="#InterviewModal" id = "{{$jobApplicant->pivot->employer_job_id ?? ''}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Interview</a></li>
-                                            <li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
-                                            <li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                document.getElementById('reject-application-{{$jobApplicant->pivot->employer_job_id}}').submit();"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Reject</a></li>
+                                            <form id="reject-application-{{$jobApplicant->pivot->employer_job_id ?? ''}}" action="{{ route('employer.rejectApplication', $jobApplicant->pivot->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('PUT')
+                                            </form>
+                                            {{--<li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>--}}
                                         </ul>
                                     </div>
                                 </div>
