@@ -165,8 +165,15 @@ class CandidateController extends Controller
 
     public function candidateJobApplications()
     {
+        $dt = Carbon::now();
+        $dt2 = $dt->copy()->subWeek();   
         $candidateJobApplications = User::find(Auth::id())->jobsApplied()->paginate(10);
-        return view('candidate.job-applications.index',compact('candidateJobApplications'));
+        $latestApplications = User::find(Auth::id())
+        ->jobsApplied()
+        ->where('job_applications.created_at', '>=', $dt2->copy()->startOfDay())
+        ->where('job_applications.created_at', '<=', $dt->copy()->endOfDay())
+        ->paginate(10);
+        return view('candidate.job-applications.index',compact('candidateJobApplications','latestApplications'));
     }
     public function deleteApplication($id)
     {

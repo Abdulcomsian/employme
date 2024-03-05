@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Notification;
 use App\Notifications\JobApplicationNotification;
 use App\Models\SavedJob;
+use Carbon\Carbon;
 class JobController extends Controller
 {
 
@@ -110,8 +111,15 @@ class JobController extends Controller
     }
 
     public function getInterviewpage(){
-        $allInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())->where('reschedule_status',0)->get();
-        return view('employer.employer-interview-request',compact('allInterviews'));
+        $dt = Carbon::now();
+        $dt2 = $dt->copy()->subWeek(); 
+       
+        $allInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())->where('reschedule_status',0)->paginate(10);
+        $latestInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())
+        ->where('created_at', '>=', $dt2->copy()->startOfDay())
+        ->where('created_at', '<=', $dt->copy()->endOfDay())
+        ->where('reschedule_status',0)->paginate(10);
+        return view('employer.employer-interview-request',compact('allInterviews','latestInterviews'));
     }
 
     public function SearchjobMarketplace(Request $request)

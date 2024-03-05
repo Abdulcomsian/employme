@@ -73,6 +73,15 @@ function  candidateTeachingVideoPath($user = null)
     }
     return $path;
 }
+function  categoryIconPath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/owner/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/category-icons/';
+    } else {
+        $path  = 'uploads/owner/category-icons/';
+    }
+    return $path;
+}
 function  candidateTeachingVideoThumbnailPath($user = null)
 {
     if ($user) {

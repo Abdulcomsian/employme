@@ -223,6 +223,7 @@ Interview Request
                         </table>
                         <!-- /.table job-alert-table -->
                     </div>
+                         {{ $allInterviews->links('vendor.pagination.custom-pagination-2') }}
                 </div>
                 <div class="tab-pane fade" id="a2" role="tabpanel">
                     <div class="table-responsive">
@@ -380,7 +381,6 @@ Interview Request
         <!-- /.card-box -->
 
 
-        {{ $allInterviews->links('vendor.pagination.custom-pagination-2') }}
 
     </div>
 </div>

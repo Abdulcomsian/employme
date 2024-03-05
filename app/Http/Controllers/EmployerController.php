@@ -207,6 +207,7 @@ class EmployerController extends Controller
 
     public function employerJobApplications()
     {
+     
         $employerJobApplications = EmployerJob::with('jobApplicants')->where('posted_by',Auth::id())->get();
         return view('employer.job-applications.index',compact('employerJobApplications'));
     }
@@ -283,7 +284,7 @@ class EmployerController extends Controller
         $urlParts = explode('/', $request->job_link);
         $jobId = end($urlParts);
         try {
-            $jobId = Crypt::decryptString($urlParts);
+            $jobId = Crypt::decryptString($jobId);
         } catch (DecryptException $e) {
             dd($e);
         }

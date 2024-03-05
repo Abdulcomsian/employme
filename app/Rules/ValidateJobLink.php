@@ -24,7 +24,8 @@ class ValidateJobLink implements ValidationRule
     {
         $urlParts = explode('/', $value);
         $jobId = end($urlParts);
-       
+        $jobId = Crypt::decryptString($jobId);
+
         $employerJob = EmployerJob::where('id', $jobId)
             ->where('posted_by', auth()->id());
 
