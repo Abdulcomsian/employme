@@ -270,8 +270,8 @@ class EmployerController extends Controller
             'meeting_media'=>'required',
             'interview_date'=>'required',
             'interview_time'=>'required',
-            'job_link' => ['required', new ValidateJobLink($request->candidate_id)],
-            'job_link' => ['required', 'regex:'.$regexPattern]
+            'job_link' => ['url', 'regex:'.$regexPattern],
+            'job_link' => ['required', new ValidateJobLink($request->candidate_id)]
         ]);
         if ($validator->fails()){
             return response()->json([

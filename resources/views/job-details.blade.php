@@ -46,12 +46,6 @@
 							<a href="#" class="fw-500 text-dark">{{$jobDetails->employerDetails->institution ?? ''}}</a>
 						</div>
 						@if(\Auth::check())
-						   @role('admin')
-						   	<button class="btn-one NonCandidateButton" >Apply For This Job</button>
-						   @endrole
-						   @role('employer')
-						   <button class="btn-one NonCandidateButton" >Apply For This Job</button>
-						   @endrole
 						   @role('candidate')
 						   @if(jobApplicationStatus($jobDetails->id) == 1)
 						   		<button class="btn-one">Applied Already</button>

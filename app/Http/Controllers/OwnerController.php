@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\ProfessionalSkills;
 use App\Models\User;
 use App\Models\EmployerJob;
-
+use Carbon\Carbon;
+use Auth;
 class OwnerController extends Controller
 {
 
@@ -85,7 +86,13 @@ class OwnerController extends Controller
     }
     public function getEmployersJobs()
     {
+        $dt = Carbon::now();
+        $dt2 = $dt->copy()->subWeek(); 
         $employerJobs = EmployerJob::with('employerDetails','employerInfo')->paginate(10);
+        $latestJobs = EmployerJob::with('employerDetails','employerInfo')
+        ->where('created_at', '>=', $dt2->copy()->startOfDay())
+        ->where('created_at', '<=', $dt->copy()->endOfDay())
+        ->paginate(5);
         return view('owner.jobs.index',get_defined_vars());
     }
     public function JobListingCandidate($id)

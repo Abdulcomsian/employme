@@ -99,7 +99,7 @@ Job Marketplace
 							</div>
 							<div class="light-bg border-20 ps-4 pe-4 pt-25 pb-30 mt-20">
 								<div class="filter-block bottom-line pb-25">
-									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false">Location</a>
+									<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false">Location</a>
 									<div class="collapse {{(isset($_GET['SearchLocation']) && $_GET['SearchLocation'] !='') ? 'show' : ''}}" id="collapseLocation">
 										<div class="main-body">
 											<!-- <select class="nice-select bg-white" name="SearchLocation">
@@ -115,7 +115,7 @@ Job Marketplace
 								</div>
 								<!-- /.filter-block -->
 								<div class="filter-block bottom-line pb-25 mt-25">
-									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseJobType" role="button" aria-expanded="false">Job Type</a>
+									<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseJobType" role="button" aria-expanded="false">Job Type</a>
 									<div class="collapse {{(isset($_GET['SearchFixedPriceJob']) || isset($_GET['SearchFullTimeJob']) || isset($_GET['SearchPartTimeJob']) || isset($_GET['SearchFreelanceJob'])) ? 'show' : ''}}" id="collapseJobType">
 										<div class="main-body">
 											<ul class="style-none filter-input">
@@ -141,7 +141,7 @@ Job Marketplace
 								</div>
 								<!-- /.filter-block -->
 								<div class="filter-block bottom-line pb-25 mt-25">
-									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseExp" role="button" aria-expanded="false">Experience</a>
+									<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp" role="button" aria-expanded="false">Experience</a>
 									<div class="collapse {{(isset($_GET['SearchFresher']) || isset($_GET['SearchIntermediate']) || isset($_GET['SearchNoExperience']) || isset($_GET['SearchExpert']) || isset($_GET['SearchExperience5'])) ? 'show' : ''}}" id="collapseExp">
 										<div class="main-body">
 											<ul class="style-none filter-input">
@@ -171,7 +171,7 @@ Job Marketplace
 								</div>
 								<!-- /.filter-block -->
 								<div class="filter-block bottom-line pb-25 mt-25">
-									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseSalary" role="button" aria-expanded="false">Salary </a>
+									<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseSalary" role="button" aria-expanded="false">Salary </a>
 									<div class="collapse {{((isset($_GET['SearchRangeMin']) && $_GET['SearchRangeMin'] !='') || (isset($_GET['SearchRangeMax']) && $_GET['SearchRangeMax'] !='')) ? 'show' : ''}}" id="collapseSalary">
 										<div class="main-body">
 											<div class="salary-slider">
@@ -214,7 +214,7 @@ Job Marketplace
 
 								<!-- house included demand of client -->
 								<div class="filter-block bottom-line pb-25 mt-25">
-									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseHousingIncluded" role="button" aria-expanded="false">Housing Included</a>
+									<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseHousingIncluded" role="button" aria-expanded="false">Housing Included</a>
 									<div class="collapse {{(isset($_GET['SearchHousingIncluded']) && $_GET['SearchHousingIncluded'] !='') ? 'show' : ''}}" id="collapseHousingIncluded">
 										<div class="main-body">
 											<select class="nice-select bg-white" name="SearchHousingIncluded">
@@ -229,7 +229,7 @@ Job Marketplace
 
 								<!--  Insurances Included demand of client -->
 								<div class="filter-block bottom-line pb-25 mt-25">
-									<a class="filter-title fw-500 text-dark" data-bs-toggle="collapse" href="#collapseInsuranceIncluded" role="button" aria-expanded="false"> Insurances Included </a>
+									<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseInsuranceIncluded" role="button" aria-expanded="false"> Insurances Included </a>
 									<div class="collapse {{(isset($_GET['SearchInsuranceIncluded']) && $_GET['SearchInsuranceIncluded'] !='') ? 'show' : ''}}" id="collapseInsuranceIncluded">
 										<div class="main-body">
 											<select class="nice-select bg-white" name="SearchInsuranceIncluded">
@@ -619,7 +619,7 @@ Job Marketplace
 					@auth
 					@role('employer')
 					<li class="me-2"><a href="{{route('candidatesMarketplace')}}" class="btn-three">Looking for job?</a></li>
-					<li class="ms-2"><a href="{{route('candidatesMarketplace')}}" class="btn-four">Post a job</a></li>
+					<li class="ms-2"><a href="{{route('postAJob')}}" class="btn-four">Post a job</a></li>
 					@endrole
 					@endauth
 					</ul>

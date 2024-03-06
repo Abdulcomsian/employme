@@ -362,7 +362,15 @@ class UserController extends Controller
             {
                if(auth()->user()->hasRole('employer'))
                {
-                 return response()->download($filepath,$filename);
+                 if(isset($candidateDetails->candidatePersonalDetails->candidate_resume) && !empty($candidateDetails->candidatePersonalDetails->candidate_resume) && file_exists($filepath))
+                 {
+                    return response()->download($filepath,$filename);
+                 }else
+                 {
+                    toastr()->error('No Resume Found');
+                    return redirect()->back();
+
+                 }
                }
                else{
                  toastr()->warning('Only Employer Can Download Resume');

@@ -163,7 +163,7 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('candidates', [OwnerController::class, 'getCandidates'])->name('getCandidates');
     Route::get('employers', [OwnerController::class, 'getEmployers'])->name('getEmployers');
     Route::get('employers/employer-details', [OwnerController::class, 'getEmployerDetails'])->name('getEmployerDetails');
-    Route::get('employers-jobs', [OwnerController::class, 'getEmployersJobs'])->name('admin.getEmployersJobs');
+    Route::get('employer-jobs', [OwnerController::class, 'getEmployersJobs'])->name('admin.getEmployersJobs');
     Route::get('job-applications', [OwnerController::class, 'getJobApplications'])->name('admin.getJobApplications');
     Route::get('professional-skills', [OwnerController::class, 'getProfessionalSkills'])->name('getProfessionalSkills');
     Route::post('save-professional-skill', [OwnerController::class, 'storeProfessionalSkill'])->name('saveProfessionalSkill');

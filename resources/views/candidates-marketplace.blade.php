@@ -756,7 +756,7 @@ Candidate Marketplace
 						@auth
 						@role('employer')
 						<li class="me-2"><a href="{{route('candidatesMarketplace')}}" class="btn-three">Looking for job?</a></li>
-						<li class="ms-2"><a href="{{route('candidatesMarketplace')}}" class="btn-four">Post a job</a></li>
+						<li class="ms-2"><a href="{{route('postAJob')}}" class="btn-four">Post a job</a></li>
 						@endrole
 						@endauth
 					</ul>
@@ -800,7 +800,7 @@ Candidate Marketplace
 							<div class="input-group-meta position-relative mb-20">
 								<label for="">Select Meeting Media</label>
 								<select name="meeting_media" id="meeting_media" class="nice-select">
-									<option value="Skype" >Skype</option>
+									<option value="Skype" selected >Skype</option>
 									<option value="Google Meet" >Google Meet</option>
 									<option value="Zoom">Zoom</option>
 								</select>

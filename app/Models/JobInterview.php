@@ -35,6 +35,11 @@ class JobInterview extends Model
         return $this->belongsTo(EmployerJob::class,'employer_job_id');
     }
 
+    public function jobCandidate()
+    {
+        return $this->belongsTo(User::class,'requested_to');
+    }
+
     public function employer()
     {
         return $this->belongsTo(User::class,'requested_from');

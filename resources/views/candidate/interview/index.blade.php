@@ -127,16 +127,16 @@ Interview Request
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> Accept</a></li>
+                                                                document.getElementById('accept-form-{{$interview->id}}').submit();"> Accept</a></li>
                                                 <form id="accept-form-{{$interview->id}}" action="{{ route('candidate.acceptInterview', $interview->id) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 </form>
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Reject</a></li>
+                                                                document.getElementById('reject-form-{{$interview->id}}').submit();"> Reject</a></li>
                                                 <form id="reject-form-{{$interview->id}}" action="{{ route('candidate.rejectInterview', $interview->id) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 </form>
-                                                <li><a class="dropdown-item Reschedule-Request-Button" href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" id = "{{$interview->id}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
+                                                <li><a class="dropdown-item Reschedule-Request-Button" href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" id = "{{$interview->id}}"> Reschedule</a></li>
                                                 {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>--}}
                                             </ul>
                                         </div>
@@ -415,7 +415,7 @@ Interview Request
                             <div class="input-group-meta position-relative mb-20">
                                 <label for="">Select Meeting Media</label>
                                 <select name="reschedule_meeting" id="reschedule_meeting" class="nice-select">
-                                    <option value="Skype" >Skype</option>
+                                    <option value="Skype" selected>Skype</option>
                                     <option value="Google Meet" >Google Meet</option>
                                     <option value="Zoom">Zoom</option>
                                 </select>

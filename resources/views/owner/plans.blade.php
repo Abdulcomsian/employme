@@ -135,16 +135,18 @@ Plans
                 <!-- /.table job-alert-table -->
             </div>
         </div>
-        <div class="dash-pagination d-flex justify-content-end mt-30">
-            <ul class="style-none d-flex align-items-center">
-                <li><a href="#" class="active">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li>..</li>
-                <li><a href="#">7</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-            </ul>
-        </div>
+        {{--
+            <div class="dash-pagination d-flex justify-content-end mt-30">
+                <ul class="style-none d-flex align-items-center">
+                    <li><a href="#" class="active">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li>..</li>
+                    <li><a href="#">7</a></li>
+                    <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
+                </ul>
+            </div>
+                --}}
     </div>
 </div>
 @endsection

@@ -59,6 +59,7 @@ Interview Request
                         <table class="table job-alert-table">
                             <thead>
                                 <tr>
+                                    <th scope="col">Candidate Name</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Time</th>
@@ -93,6 +94,9 @@ Interview Request
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
+                                        <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
+                                    </td>
+                                    <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
                                         <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>
                                     </td>
@@ -117,12 +121,10 @@ Interview Request
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                document.getElementById('accept-form-{{$interview->id}}').submit();">
-                                                <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> Accept</a>
+                                                document.getElementById('accept-form-{{$interview->id}}').submit();"> Accept</a>
                                             </li>                                                
                                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                document.getElementById('reject-form-{{$interview->id}}').submit();">
-                                                <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Reject</a>
+                                                document.getElementById('reject-form-{{$interview->id}}').submit();"> Reject</a>
                                             </li>                                                
                                             <form id="accept-form-{{$interview->id}}" action="{{ route('employer.accept_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
                                             @csrf
@@ -224,6 +226,7 @@ Interview Request
                         <table class="table job-alert-table">
                             <thead>
                                 <tr>
+                                <th scope="col">Candidate Name</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Time</th>
@@ -257,6 +260,9 @@ Interview Request
                                      }
                                 @endphp
                                 <tr class="{{$status}}">
+                                    <td>
+                                        <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
+                                    </td>
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
                                         <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>

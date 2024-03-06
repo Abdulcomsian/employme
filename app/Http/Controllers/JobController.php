@@ -114,8 +114,8 @@ class JobController extends Controller
         $dt = Carbon::now();
         $dt2 = $dt->copy()->subWeek(); 
        
-        $allInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())->paginate(10);
-        $latestInterviews = JobInterview::with('jobDetails')->where('requested_from',Auth::id())
+        $allInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())->paginate(10);
+        $latestInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())
         ->where('created_at', '>=', $dt2->copy()->startOfDay())
         ->where('created_at', '<=', $dt->copy()->endOfDay())
         ->paginate(10);

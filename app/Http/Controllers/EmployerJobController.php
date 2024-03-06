@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 use App\Notifications\{InterviewRequestNotification,InterviewRescheduleNotification};
+use Carbon\Carbon;
 class EmployerJobController extends Controller
 {
     /**
@@ -18,7 +19,13 @@ class EmployerJobController extends Controller
      */
     public function index()
     {
+        $dt = Carbon::now();
+        $dt2 = $dt->copy()->subWeek(); 
         $employerJobs = EmployerJob::where('posted_by',Auth::id())->paginate(5);
+        $latestJobs = EmployerJob::where('posted_by',Auth::id())
+        ->where('created_at', '>=', $dt2->copy()->startOfDay())
+        ->where('created_at', '<=', $dt->copy()->endOfDay())
+        ->paginate(5);
         return view('employer.jobs.index',get_defined_vars());
     }
 

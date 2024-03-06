@@ -14,7 +14,7 @@
                     <ul class="d-flex align-items-center style-none">
                          @auth
                             @role('employer')
-                            <li class="d-none d-md-block"><a href="{{route('employer-jobs.create')}}" class="job-post-btn tran3s">Post Job</a></li>
+                            <li class="d-none d-md-block"><a href="{{route('postAJob')}}" class="job-post-btn tran3s">Post Job</a></li>
                             @endrole
                          @endauth
                         @guest
@@ -49,6 +49,7 @@
                                         <div class="col-lg-6">
                                             @isset($jobCatgegories)
                                             @foreach($jobCatgegories as $index=>$jobCategory)
+                                            @if($index%2==1)
                                             <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                 <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($jobCategory->category_icon)}}" alt="" class="lazy-img"></div>
                                                 <div class="ps-3 flex-fill">
@@ -56,6 +57,7 @@
                                                     <div class="job-count">12k+ Jobs</div>
                                                 </div>
                                             </a>
+                                            @endif
                                             @endforeach
                                             @endisset
                                             {{--
@@ -78,15 +80,22 @@
                                                 <!-- /.item -->
                                                 --}}
                                         </div>
-                                        {{--
+                                    
                                             <div class="col-lg-6">
-                                                <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
-                                                    <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_68.svg')}}" alt="" class="lazy-img"></div>
-                                                    <div class="ps-3 flex-fill">
-                                                        <div class="fw-500 text-dark">Marketing</div>
-                                                        <div class="job-count">420+ Jobs</div>
-                                                    </div>
-                                                </a>
+                                            @isset($jobCatgegories)
+                                            @foreach($jobCatgegories as $index=>$jobCategory)
+                                            @if($index%2==0)
+                                            <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
+                                                <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($jobCategory->category_icon)}}" alt="" class="lazy-img"></div>
+                                                <div class="ps-3 flex-fill">
+                                                    <div class="fw-500 text-dark">{{$jobCategory->name}}</div>
+                                                    <div class="job-count">12k+ Jobs</div>
+                                                </div>
+                                            </a>
+                                            @endif
+                                            @endforeach
+                                            @endisset
+                                            {{--
                                                 <!-- /.item -->
                                                 <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                     <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_66.svg')}}" alt="" class="lazy-img"></div>
@@ -104,8 +113,9 @@
                                                     </div>
                                                 </a>
                                                 <!-- /.item -->
-                                            </div>
                                                 --}}
+                                            </div>
+                                                
                                     </li>
                                     <li>
                                         <a href="{{route('jobMarketplace')}}" class="explore-all-btn d-flex align-items-center justify-content-between tran3s">
@@ -237,7 +247,7 @@
                             </li>
                             @auth
                             @role('employer')
-                            <li class="d-md-none"><a href="{{route('employer-jobs.create')}}" class="job-post-btn tran3s">Post Job</a></li>
+                            <li class="d-md-none"><a href="{{route('postAJob')}}" class="job-post-btn tran3s">Post Job</a></li>
                             <li class="d-md-none"><a href="{{route('candidatesMarketplace')}}" class="btn-one w-100">Hire Top Talents</a></li>
                             @endrole
                             @endauth

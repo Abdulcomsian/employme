@@ -117,11 +117,11 @@ Job Listing
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
+                                                <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_60.svg')}}" alt="" class="lazy-img"> View</a></li>
                                                 {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>--}}
-                                                <li><a class="dropdown-item" href="{{route('employer-jobs.edit',$employerJob->id)}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
+                                                <li><a class="dropdown-item" href="{{route('employer-jobs.edit',$employerJob->id)}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_39.svg')}}" alt="" class="lazy-img"> Edit</a></li>
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('destroy-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                                                document.getElementById('destroy-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_8.svg')}}" alt="" class="lazy-img"> Delete</a></li>
                                             </ul>
                                         </div>
                                         <form id="destroy-form-{{$employerJob->id}}" action="{{ route('employer-jobs.destroy', $employerJob->id) }}" method="POST" style="display: none;">
@@ -209,6 +209,7 @@ Job Listing
                         </table>
                         <!-- /.table job-alert-table -->
                     </div>
+                    {{ $employerJobs->links('vendor.pagination.custom-pagination-2') }}
                 </div>
                 <div class="tab-pane fade" id="a2" role="tabpanel">
                     <div class="table-responsive">
@@ -223,15 +224,18 @@ Job Listing
                                 </tr>
                             </thead>
                             <tbody class="border-0">
-                                <tr class="pending">
+                                @isset($latestJobs)
+                                @foreach($latestJobs as $employerJob)
+                                <tr class="{{getActiveJobStatus($employerJob->job_status)}}">
                                     <td>
-                                        <div class="job-name fw-500">Marketing Specialist</div>
-                                        <div class="info1">Part-time . Uk</div>
+                                        <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}" > {{$employerJob->job_title}}</a></div>
+                                        <div class="info1">{{$employerJob->city_town}}</div>
                                     </td>
-                                    <td>05 Jun, 2022</td>
-                                    <td>20 Applicants</td>
+                                    <td>{{date('d M, Y',strtotime($employerJob->created_at))}}</td>
+                                    <td>{{$employerJob->employerDetails->institution ?? ''}}</td>
+                                    <td><div class="job-title"><a href="{{route('owner.JobListingCandidate', ['id'=>$employerJob->id])}}">{{totalApplicants($employerJob->id) ?? ''}} Applications</a></div></td>
                                     <td>
-                                        <div class="job-status">Pending</div>
+                                        <div class="job-status">Active</div>
                                     </td>
                                     <td>
                                         <div class="action-dots float-end">
@@ -239,14 +243,23 @@ Job Listing
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                                <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
+                                                <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
+                                                <li><a class="dropdown-item" href="{{route('employer-jobs.edit',$employerJob->id)}}"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                document.getElementById('destroy-form').submit();"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
                                             </ul>
                                         </div>
+                                        <form id="destroy-form" action="{{ route('employer-jobs.destroy', $employerJob->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+
+                                        </form>
                                     </td>
                                 </tr>
+                                @endforeach
+                                @endisset
+                                {{--
                                 <tr class="active">
                                     <td>
                                         <div class="job-name fw-500">Brand & Producr Designer</div>
@@ -319,11 +332,13 @@ Job Listing
                                         </div>
                                     </td>
                                 </tr>
+                                     --}}
 
                             </tbody>
                         </table>
                         <!-- /.table job-alert-table -->
                     </div>
+                    {{ $latestJobs->links('vendor.pagination.custom-pagination-2') }}
                 </div>
             </div>
 
@@ -331,7 +346,6 @@ Job Listing
         <!-- /.card-box -->
 
 
-        {{ $employerJobs->links('vendor.pagination.custom-pagination-2') }}
 
     </div>
 </div>
