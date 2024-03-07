@@ -34,14 +34,11 @@ class ValidateJobLink implements ValidationRule
 
        if(!$employerJob->exists())
        {
-             dd('exists');
             $fail("The Job doesn't exist on the Provided Url");
        }
        if($interviewRequestExists->exists())
        {
             $fail("Already Requested");
-       }else{
-        dd('does not exist');
        }
     }
 }
