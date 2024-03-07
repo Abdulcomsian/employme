@@ -227,12 +227,12 @@ function candidateProfilePercentage()
 function getActiveJobStatus($status=null)
 {
     $active_status = '';
-    if($status=='2')
-    $active_status = 'pending';
-    elseif($status=='3')
+    if($status==0)
     $active_status = 'expired';
+    elseif($status == 1)
+    $active_status = 'active';
      else
-     $active_status = 'active';
+     $active_status = 'pending';
 
      return $active_status;
 }

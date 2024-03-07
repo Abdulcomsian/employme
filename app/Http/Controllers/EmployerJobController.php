@@ -174,4 +174,6 @@ class EmployerJobController extends Controller
 
 
     }
+
+   
 }

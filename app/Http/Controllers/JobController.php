@@ -233,4 +233,23 @@ class JobController extends Controller
         }
     }
 
+    public function activateJob($id){
+        $activatateJob = EmployerJob::find($id);
+        $activatateJob->job_status = 1;
+        if($activatateJob->save())
+        {
+            toastr('Job Activated Successfully');
+            return redirect()->back();
+        }
+    }
+    public function deactivateJob($id){
+        $deactivateJob = EmployerJob::find($id);
+        $deactivateJob->job_status = 0;
+        if($deactivateJob->save())
+        {
+            toastr('Job Deactivated Successfully');
+            return redirect()->back();
+        }
+    }
+
 }

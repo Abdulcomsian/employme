@@ -101,6 +101,15 @@ Job Listing
                             <tbody class="border-0">
                                 @isset($employerJobs)
                                 @foreach($employerJobs as $employerJob)
+                                @php 
+                                if($employerJob->job_status == 0)
+                                {
+                                    $message = 'Inactive';
+                                }elseif($employerJob->job_status == 1)
+                                {
+                                    $message = 'Active';
+                                }
+                                @endphp
                                 <tr class="{{getActiveJobStatus($employerJob->job_status)}}">
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}">{{$employerJob->job_title}}</a></div>
@@ -109,7 +118,7 @@ Job Listing
                                     <td>{{date('d M, Y',strtotime($employerJob->created_at))}}</td>
                                     <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$employerJob->id])}}">{{totalApplicants($employerJob->id)}} Applications</a><div></td>
                                     <td>
-                                        <div class="job-status">Active</div>
+                                        <div class="job-status">{{$message}}</div>
                                     </td>
                                     <td>
                                         <div class="action-dots float-end">
@@ -118,8 +127,15 @@ Job Listing
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_60.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>--}}
-                                                <li><a class="dropdown-item" href="{{route('employer-jobs.edit',$employerJob->id)}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_39.svg')}}" alt="" class="lazy-img"> Edit</a></li>
+                                                @if($employerJob->job_status == 1)
+                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                document.getElementById('inactive-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Inactive.svg')}}" alt="" class="lazy-img"> Inactive</a></li>
+                                               
+                                                @elseif($employerJob->job_status == 0)
+                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                document.getElementById('active-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Active.svg')}}" alt="" class="lazy-img"> Active</a></li>
+                                                @endif                                               
+                                                 <li><a class="dropdown-item" href="{{route('employer-jobs.edit',$employerJob->id)}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_39.svg')}}" alt="" class="lazy-img"> Edit</a></li>
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                                 document.getElementById('destroy-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_8.svg')}}" alt="" class="lazy-img"> Delete</a></li>
                                             </ul>
@@ -129,6 +145,7 @@ Job Listing
                                                 @method('DELETE')
 
                                         </form>
+                                       
                                     </td>
                                 </tr>
                                 @endforeach
@@ -226,16 +243,24 @@ Job Listing
                             <tbody class="border-0">
                                 @isset($latestJobs)
                                 @foreach($latestJobs as $employerJob)
+                                @php 
+                                if($employerJob->job_status == 0)
+                                {
+                                    $message = 'Inactive';
+                                }elseif($employerJob->job_status == 1)
+                                {
+                                    $message = 'Active';
+                                }
+                                @endphp
                                 <tr class="{{getActiveJobStatus($employerJob->job_status)}}">
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}" > {{$employerJob->job_title}}</a></div>
                                         <div class="info1">{{$employerJob->city_town}}</div>
                                     </td>
                                     <td>{{date('d M, Y',strtotime($employerJob->created_at))}}</td>
-                                    <td>{{$employerJob->employerDetails->institution ?? ''}}</td>
                                     <td><div class="job-title"><a href="{{route('owner.JobListingCandidate', ['id'=>$employerJob->id])}}">{{totalApplicants($employerJob->id) ?? ''}} Applications</a></div></td>
                                     <td>
-                                        <div class="job-status">Active</div>
+                                        <div class="job-status">{{$message}}</div>
                                     </td>
                                     <td>
                                         <div class="action-dots float-end">
@@ -244,17 +269,37 @@ Job Listing
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_60.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>--}}
+                                                 @if($employerJob->job_status == 1)
+                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                document.getElementById('inactive-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Inactive.svg')}}" alt="" class="lazy-img"> Inactive</a></li>
+                                               
+            
+                                               
+                                                @elseif($employerJob->job_status == 0)
+                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                document.getElementById('active-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Active.svg')}}" alt="" class="lazy-img"> Active</a></li>
+                                                        
+                                                @endif
                                                 <li><a class="dropdown-item" href="{{route('employer-jobs.edit',$employerJob->id)}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_39.svg')}}" alt="" class="lazy-img"> Edit</a></li>
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('destroy-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_8.svg')}}" alt="" class="lazy-img"> Delete</a></li>
+                                                                document.getElementById('latest-destroy-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_8.svg')}}" alt="" class="lazy-img"> Delete</a></li>
                                             </ul>
                                         </div>
-                                        <form id="destroy-form" action="{{ route('employer-jobs.destroy', $employerJob->id) }}" method="POST" style="display: none;">
+                                        <form id="latest-destroy-form-{{$employerJob->id}}" action="{{ route('employer-jobs.destroy', $employerJob->id) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
 
                                         </form>
+                                        <form id="inactive-form-{{$employerJob->id}}" action="{{ route('employer.deactivate-job', $employerJob->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('PUT')
+
+                                        </form>
+                                        <form id="active-form-{{$employerJob->id}}" action="{{ route('employer.activate-job', $employerJob->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('PUT')
+                                        </form>
+                             
                                     </td>
                                 </tr>
                                 @endforeach
