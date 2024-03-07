@@ -187,11 +187,11 @@ Candidate Marketplace
 										<div class="salary-slider">
 											<div class="price-input d-flex align-items-center pt-5">
 												<div class="field d-flex align-items-center">
-													<input type="number" name="SearchCanidateMinSalary" class="input-min" value="0" readonly>
+													<input type="number" name="SearchCanidateMinSalary" class="input-min" value="0" >
 												</div>
 												<div class="pe-1 ps-1">-</div>
 												<div class="field d-flex align-items-center">
-													<input type="number" name="SearchCanidateMaxSalary" class="input-max" value="30000" readonly>
+													<input type="number" name="SearchCanidateMaxSalary" class="input-max" value="30000" >
 												</div>
 												<div class="currency ps-1">USD</div>
 											</div>

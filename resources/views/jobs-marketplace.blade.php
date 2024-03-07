@@ -177,11 +177,11 @@ Job Marketplace
 											<div class="salary-slider">
 												<div class="price-input d-flex align-items-center pt-5">
 													<div class="field d-flex align-items-center">
-														<input type="number" name="SearchRangeMin" class="input-min" value="{{isset($_GET['SearchRangeMin']) ? $_GET['SearchRangeMin'] : 0}}" readonly>
+														<input type="number" name="SearchRangeMin" class="input-min" value="{{isset($_GET['SearchRangeMin']) ? $_GET['SearchRangeMin'] : 0}}" >
 													</div>
 													<div class="pe-1 ps-1">-</div>
 													<div class="field d-flex align-items-center">
-														<input type="number" name= "SearchRangeMax" class="input-max" value="{{isset($_GET['SearchRangeMax']) ? $_GET['SearchRangeMax'] : 3000}}" readonly>
+														<input type="number" name= "SearchRangeMax" class="input-max" value="{{isset($_GET['SearchRangeMax']) ? $_GET['SearchRangeMax'] : 3000}}" >
 													</div>
 													<div class="currency ps-1">USD</div>
 												</div>
