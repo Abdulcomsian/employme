@@ -94,7 +94,7 @@ Interview Request
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
-                                        <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
+                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
                                     </td>
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
@@ -120,19 +120,18 @@ Interview Request
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                document.getElementById('accept-form-{{$interview->id}}').submit();"> Accept</a>
-                                            </li>                                                
-                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                document.getElementById('reject-form-{{$interview->id}}').submit();"> Reject</a>
-                                            </li>                                                
-                                            <form id="accept-form-{{$interview->id}}" action="{{ route('employer.accept_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
-                                            @csrf
-                                            </form>
-                                            <form id="reject-form-{{$interview->id}}" action="{{ route('employer.reject_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
-                                            @csrf
-                                            </form>
-                                               
+                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                    document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Accept</a>
+                                                </li>                                                
+                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                    document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a>
+                                                </li>                                                
+                                                <form id="accept-form-{{$interview->id}}" action="{{ route('employer.accept_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                </form>
+                                                <form id="reject-form-{{$interview->id}}" action="{{ route('employer.reject_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                </form>
                                             </ul>
                                         </div>
                                     </td>
@@ -261,7 +260,7 @@ Interview Request
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
-                                        <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
+                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
                                     </td>
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
@@ -287,21 +286,18 @@ Interview Request
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                document.getElementById('accept-form-{{$interview->id}}').submit();">
-                                                <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> Accept</a>
-                                            </li>                                                
-                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                document.getElementById('reject-form-{{$interview->id}}').submit();">
-                                                <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Reject</a>
-                                            </li>                                                
-                                            <form id="accept-form-{{$interview->id}}" action="{{ route('employer.accept_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
-                                            @csrf
-                                            </form>
-                                            <form id="reject-form-{{$interview->id}}" action="{{ route('employer.reject_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
-                                            @csrf
-                                            </form>
-                                               
+                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                    document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Accept</a>
+                                                </li>                                                
+                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                    document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a>
+                                                </li>                                                
+                                                <form id="accept-form-{{$interview->id}}" action="{{ route('employer.accept_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                </form>
+                                                <form id="reject-form-{{$interview->id}}" action="{{ route('employer.reject_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                </form>
                                             </ul>
                                         </div>
                                     </td>

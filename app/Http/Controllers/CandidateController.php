@@ -19,7 +19,7 @@ class CandidateController extends Controller
 
         $totalJobApplications = User::find(Auth::id())->jobsApplied()->count();
         $shortlistsCount = JobInterview::with('jobDetails','employer','employer.employerDetails')->where('requested_to',Auth::id())->count();
-
+        $totalSavedJobs = User::find(Auth::id())->savedJobs()->count();
         $candidateJobApplications = User::find(Auth::id())
         ->jobsApplied()
         ->where('job_applications.created_at', '>=', $dt2->copy()->startOfDay())

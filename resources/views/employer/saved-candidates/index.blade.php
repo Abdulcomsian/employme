@@ -72,17 +72,17 @@ Saved Candidate
                             </div>
                             <div class="col-xl-3 col-md-4">
                                 <div class="d-flex justify-content-md-end align-items-center">
-                                    <a href="#" class="save-btn text-center rounded-circle tran3s mt-10 fw-normal"><i class="bi bi-eye"></i></a>
+                                    {{--<a href="#" class="save-btn text-center rounded-circle tran3s mt-10 fw-normal"><i class="bi bi-eye"></i></a>--}}
                                     <div class="action-dots float-end mt-10 ms-2">
                                         <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span></span>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
-                                            <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
-                                            <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
+                                            <li><a class="dropdown-item" href="{{route('candidateProfileNew', \Crypt::encryptString($savedCandidate->id))}}"><img src="../images/lazy.svg" data-src="{{asset('assets/images/icon/icon_60.svg')}}" alt="" class="lazy-img"> View</a></li>
+                                            {{--  <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
+                                            <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>   --}}
                                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('destroy-form').submit();"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
+                                                                document.getElementById('destroy-form').submit();"><img src="../images/lazy.svg" data-src="{{asset('assets/images/icon/icon_8.svg')}}" alt="" class="lazy-img"> Delete</a></li>
                                         </ul>
                             
                                 <form id="destroy-form" action="{{ route('removeSavedCandidate', $savedCandidate->id) }}" method="POST" style="display: none;">

@@ -45,8 +45,8 @@ Dashboard
 					<div class="d-sm-flex align-items-center justify-content-between">
 						<div class="icon rounded-circle d-flex align-items-center justify-content-center order-sm-1"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_14.svg')}}" alt="" class="lazy-img"></div>
 						<div class="order-sm-0">
-							<div class="value fw-500">2.1k</div>
-							<span>Views</span>
+							<div class="value fw-500">{{$totalSavedJobs ?? ''}}</div>
+							<span>Saved Jobs</span>
 						</div>
 					</div>
 				</div>
@@ -65,7 +65,7 @@ Dashboard
 				<!-- /.dash-card-one -->
 			</div>
 		</div>
-
+		{{--
 		<div class="row d-flex pt-50 lg-pt-10">
 			<div class="col-xl-7 col-lg-6 d-flex flex-column">
 				<div class="user-activity-chart bg-white border-20 mt-30 h-100">
@@ -188,6 +188,7 @@ Dashboard
 				</div>
 			</div>
 		</div>
+		  --}}
 	</div>
 </div>
 <!-- /.dashboard-body -->

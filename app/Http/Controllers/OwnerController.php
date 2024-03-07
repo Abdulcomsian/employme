@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProfessionalSkills;
-use App\Models\User;
-use App\Models\EmployerJob;
+use App\Models\{EmployerJob, User, JobInterview};
 use Carbon\Carbon;
 use Auth;
 class OwnerController extends Controller
@@ -14,6 +13,9 @@ class OwnerController extends Controller
     public function getOwnerDashboard()
     {
         $totalJobApplications = EmployerJob::with('jobApplicants')->count();
+        $totalCandidates = User::role('candidate')->count();
+        $totalEmployers = User::role('employer')->count();
+        $totalShortlists = JobInterview::count();
         return view('owner.dashboard',get_defined_vars());
     }
 

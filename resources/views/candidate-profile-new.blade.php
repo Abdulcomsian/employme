@@ -130,11 +130,13 @@
                             </div>
                             @endif
                             @endif
+                            @if(isset($candidateDetails->candidateEducation->educational_details) && !empty($candidateDetails->candidateEducation->educational_details))
                             <div class="inner-card mb-75 lg-mb-50">
                                 <h3 class="title">Education</h3>
                                 <div class="time-line-data position-relative pt-15">
-                                @if(isset($candidateDetails->candidateEducation->educational_details) && !empty($candidateDetails->candidateEducation->educational_details))
+                               
                                 @foreach($candidateDetails->candidateEducation->educational_details as $index=>$educational_detail)
+                                   @if($educational_detail['institution'] !='' || $educational_detail['degree'] != '' || $educational_detail['description'] != '')
                                     <div class="info position-relative">
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
@@ -143,8 +145,8 @@
                                         <h4>{{$educational_detail['degree'] ?? ''}}</h4>
                                         <p>{{$educational_detail['description'] ?? ''}}</p>
                                     </div>
+                                    @endif
                                     @endforeach
-										@endif 
                                     
                                     <!-- ./info -->
                                     <!-- <div class="info position-relative">
@@ -160,6 +162,7 @@
                                 </div>
                                 <!-- /.time-line-data -->
                             </div>
+							@endif 
                             <!-- /.inner-card -->
                             <div class="inner-card mb-75 lg-mb-50">
                                 <h3 class="title">Skills</h3>
@@ -184,6 +187,7 @@
                                 <div class="time-line-data position-relative pt-15">
                                 @if(isset($candidateDetails->candidateEducation->professional_details) && !empty($candidateDetails->candidateEducation->professional_details))
                                 @foreach($candidateDetails->candidateEducation->professional_details as $index=>$professional_details)
+                                @if($professional_details['role'] !='' || $professional_details['employer_name'] != '' || $professional_details['description'] != '' || $professional_details['date_from'] != '' || $professional_details['date_to'] != '')
                                     <div class="info position-relative">
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
@@ -192,6 +196,7 @@
                                         <h4>{{$professional_details['role']}} ({{$professional_details['employer_name']}})</h4>
                                         <p>{{$professional_details['description']}}</p>
                                     </div>
+                                @endif
                                 @endforeach
                                 @endif
                                     <!-- ./info -->
