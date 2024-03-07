@@ -7,7 +7,7 @@ use App\Models\Countries;
 use App\Models\EmployerDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
-use App\Models\{Plan, User, SubscriptionItem, Subscription, EmployerJob, SavedCandidate, JobInterview};
+use App\Models\{Plan, User, SubscriptionItem, Subscription, EmployerJob, SavedCandidate, JobInterview, JobApplication};
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use App\Rules\ValidateJobLink;
@@ -22,8 +22,9 @@ class EmployerController extends Controller
     public function getEmployerDashboard()
     {
         $totalJobsPosted = EmployerJob::where('posted_by',Auth::id())->count();
+        $totalShortlists = JobInterview::where('requested_from',Auth::id())->count();
         $totalSavedCandidate = User::find(Auth::id())->savedCandidates()->count();
-        $totalEmployerJobApplications = EmployerJob::with('jobApplicants')->where('posted_by',Auth::id())->count();
+        $totalEmployerJobApplications = JobApplication::where('employer_id',Auth::id())->count();
         return view('employer.dashboard',get_defined_vars());
     }
     public function getEmployerProfilePage()
