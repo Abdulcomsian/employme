@@ -121,9 +121,9 @@ Employer Saved Candidate
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                            {{-- <li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li> --}}
-                                            <li><a class="dropdown-item Interview-Modal-Button" href="#" data-bs-toggle="modal" data-bs-target="#InterviewModal" id = "{{$jobApplicant->pivot->employer_job_id ?? ''}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Interview</a></li>
+                                            <li><a class="dropdown-item Interview-Modal-Button" href="#" data-bs-toggle="modal" data-bs-target="#InterviewModal" id = "{{$jobApplicant->pivot->employer_job_id ?? ''}}">Interview</a></li>
                                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                document.getElementById('reject-application-{{$jobApplicant->pivot->employer_job_id}}').submit();"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Reject</a></li>
+                                                document.getElementById('reject-application-{{$jobApplicant->pivot->employer_job_id}}').submit();"> Reject</a></li>
                                             <form id="reject-application-{{$jobApplicant->pivot->employer_job_id ?? ''}}" action="{{ route('employer.rejectApplication', $jobApplicant->pivot->id) }}" method="POST" style="display: none;">
                                             @csrf
                                             @method('PUT')

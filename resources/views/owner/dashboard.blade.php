@@ -116,6 +116,7 @@
                     <!-- /.dash-card-one -->
                 </div>
             </div>
+            {{--
             <div class="row d-flex pt-50 lg-pt-10">
                 <div class="col-xl-7 col-lg-6 d-flex flex-column">
                     <div class="user-activity-chart bg-white border-20 mt-30 h-100">
@@ -221,6 +222,7 @@
                     </div>
                 </div>
             </div>
+                      --}}
         </div>
     </div>
 @endsection
