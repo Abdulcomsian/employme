@@ -105,6 +105,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
     Route::post('save-profile-7',[CandidateController::class,'saveProfile7'])->name('candidate.profile-7.save');
     Route::get('saved-jobs', [CandidateController::class, 'candidateSavedJobs'])->name('candidateSavedJobs');
     Route::post('update-account-settings', [UserController::class, 'updateCandidateAccountSettingpage'])->name('candidate.updateAccountSettingpage');
+    Route::post('update-password', [UserController::class, 'candidateUpdatePassword'])->name('candidate.updatePassword');
     Route::delete('removed-job/{id}', [CandidateController::class, 'removeSavedJob'])->name('removeSavedJob');
 });
 //candidate dashboard route ends here
@@ -149,6 +150,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], fu
     Route::post('employer/save-profile-9',[EmployerController::class,'saveProfile9'])->name('employer.profile-9.save');
     Route::post('subscription', [SubscriptionController::class, 'subscription'])->name("subscription.create");
     Route::post('update-account-settings', [UserController::class, 'updateEmployerAccountSettingpage'])->name('employer.updateAccountSettingpage');
+    Route::post('employer-update-password', [UserController::class, 'employerUpdatePassword'])->name('employer.employerUpdatePassword');
     Route::get('saved-candidates', [EmployerController::class, 'employerSavedCandidates'])->name('employerSavedCandidates');
     Route::delete('removed-candidate/{id}', [EmployerController::class, 'removeSavedCandidate'])->name('removeSavedCandidate');
     Route::post('request-job-interview',[EmployerController::class,'jobInterviewRequest'])->name('employer.job_interview_request');
@@ -174,12 +176,10 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('employer-jobs/Job-listing-candidate/{id}', [OwnerController::class, 'JobListingCandidate'])->name('owner.JobListingCandidate');
     Route::get('delete-professional-skill/{id}', [OwnerController::class, 'deleteProfessionalSkill'])->name('deleteProfessionalSkill');
     Route::get('plans', [SubscriptionController::class, 'index'])->name('getPlans');
-
+    Route::post('update-account-details',[UserController::class,'udpateOwnerAccountDetails'])->name('owner.updateOwnerAccount');
+    Route::post('update-password',[UserController::class,'ownerUpdatePassword'])->name('owner.updatePassword');
     Route::get('plans/{plan}', [SubscriptionController::class, 'show'])->name("plans.show");
     Route::resource('job-categories', JobCategoryController::class);
-
-
-   
 });
 //owner dashboard route ends here
 // Auth::routes();

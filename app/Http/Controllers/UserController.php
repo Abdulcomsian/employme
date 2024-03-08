@@ -211,7 +211,6 @@ class UserController extends Controller
                 'email',
                 Rule::unique('users')->ignore(Auth::id()),
             ],
-            'password' => 'nullable|min:8', // Allow nullable for password field
         ]);
         $user = User::find(Auth::id());
 
@@ -220,12 +219,7 @@ class UserController extends Controller
             'email' => $request->email,
         ]);
         
-        // Update password only if it's not empty
-        if (!empty($request->password)) {
-            $user->update([
-                'password' => $request->password,
-            ]);
-        }
+      
         
         // Update EmployerDetails
         EmployerDetails::where('user_id', Auth::id())->update([
@@ -234,6 +228,79 @@ class UserController extends Controller
         ]);
         
         return redirect()->back()->with('status','Account Settings Updated Successfully');
+    }
+    public function employerUpdatePassword(Request $request)
+    {
+        $request->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+        $user = User::find(Auth::id());
+
+        // Update password only if it's not empty
+        if (!empty($request->password)) {
+            $user->update([
+                'password' => $request->password,
+            ]);
+        }
+        
+        return redirect()->back()->with('status','Password Change Successfully');
+    }
+    public function candidateUpdatePassword(Request $request)
+    {
+        $request->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+        $user = User::find(Auth::id());
+
+        // Update password only if it's not empty
+        if (!empty($request->password)) {
+            $user->update([
+                'password' => $request->password,
+            ]);
+        }
+        
+        return redirect()->back()->with('status','Password Change Successfully');
+    }
+    public function udpateOwnerAccountDetails(Request $request){
+        $request->validate([
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore(Auth::id()),
+            ],
+            'name'=>'required'
+        ]);
+        $user = User::find(Auth::id());
+        $imagename = $user->avatar;
+        if ($request->file('avatar')) {
+            $file = $request->file('avatar');
+            $filePath = employerInstitutionLogoPath();
+            $imagename = saveFile($filePath, $file, $user->avatar);
+        }
+        // Update email
+        $user->update([
+            'email' => $request->email,
+            'avatar' => $imagename,
+            'phone_number' => $request->phone_number,
+        ]);
+        
+        
+        return redirect()->back()->with('status','Account Settings Updated Successfully');
+    } 
+    public function ownerUpdatePassword(Request $request){
+        $request->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+        $user = User::find(Auth::id());
+
+        // Update password only if it's not empty
+        if (!empty($request->password)) {
+            $user->update([
+                'password' => $request->password,
+            ]);
+        }
+        
+        return redirect()->back()->with('status','Password Change Successfully');
     }
     public function jobDetails($id)
     {

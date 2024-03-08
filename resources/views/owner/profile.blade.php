@@ -57,77 +57,128 @@
 		<h2 class="main-title">Profile</h2>
 
 		<div class="bg-white card-box border-20">
-			<div class="user-avatar-setting d-flex align-items-center mb-30">
-				<img src="../images/lazy.svg" data-src="{{asset('assets/images/avatar_04.jpg')}}" alt="" class="lazy-img user-img">
-				<div class="upload-btn position-relative tran3s ms-4 me-3">
-					Upload new photo
-					<input type="file" id="uploadImg" name="uploadImg" placeholder="">
-				</div>
-				<button class="delete-btn tran3s">Delete</button>
-			</div>
-			<!-- /.user-avatar-setting -->
-			<div class="row">
-				<div class="col-md-6">
-					<div class="dash-input-wrapper mb-30">
-						<label for="">Employer Name*</label>
-						<input type="text" placeholder="Zubayer Hasan">
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="dash-input-wrapper mb-30">
-						<label for="">Employer Bussiness Registration Number *</label>
-						<input type="text" placeholder="AD1234">
-					</div>
-				</div>
-			</div>
-
-			<!-- /.dash-input-wrapper -->
-			<div class="row">
-				<div class="col-md-6">
-					<div class="dash-input-wrapper mb-30">
-						<label for="">Email*</label>
-						<input type="email" placeholder="companyinc@gmail.com">
-						<!-- <label for="socialmedia">Social Media</label>
-								<input type="email" placeholder="www.facebook.com/profile"> -->
-					</div>
-					<!-- /.dash-input-wrapper -->
-				</div>
-				<div class="col-md-6">
-					<div class="dash-input-wrapper mb-30">
-						<label for="">Website*</label>
-						<input type="text" placeholder="http://somename.come">
-					</div>
-					<!-- /.dash-input-wrapper -->
-				</div>
-				<!-- <div class="col-md-6">
-                            <div class="dash-input-wrapper mb-30">
-                                <label for="">Founded Date*</label>
-                                <input type="date">
-                            </div>
-                    
+					@if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
                         </div>
-                        <div class="col-md-6">
-                            <div class="dash-input-wrapper mb-30">
-                                <label for="">Company Size*</label>
-                                <input type="text" placeholder="700">
-                            </div>
-                    
-                        </div> -->
-				<div class="col-md-6">
-					<div class="dash-input-wrapper mb-30">
-						<label for="">Phone Number*</label>
-						<input type="tel" placeholder="+880 01723801729">
+                    @endif
+			<h4 class="dash-title-three">Update Account Details</h4>
+
+             <form action ="{{route('owner.updateOwnerAccount')}}" method = "POST" enctype = "multipart/form-data">
+				@csrf
+					<div class="user-avatar-setting d-flex align-items-center mb-30">
+						<img src="../images/lazy.svg" data-src="{{asset('assets/images/avatar_04.jpg')}}" alt="" class="lazy-img user-img">
+						<div class="upload-btn position-relative tran3s ms-4 me-3">
+							Upload new photo
+							<input type="file" id="uploadImg" name="avatar" placeholder="">
+						</div>
+						<button type = "button" class="delete-btn tran3s">Delete</button>
 					</div>
+					<!-- /.user-avatar-setting -->
+					<div class="row">
+						<div class="col-md-6">
+							<div class="dash-input-wrapper mb-30">
+								<label for="">Name</label>
+								<input type="text" name = "name" placeholder = "Enter Your Name" value="{{auth()->user()->name}}">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="dash-input-wrapper mb-20">
+								<label for="">Email</label>
+								<input type="email" name="email" class="@error('email') is-invalid @enderror" value="{{auth()->user()->email}}">
+										@error('email')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+									@enderror
+							</div>
+							<!-- /.dash-input-wrapper -->
+						</div>
+					</div>
+
 					<!-- /.dash-input-wrapper -->
-				</div>
-				<!-- <div class="col-md-6">
-                            <div class="dash-input-wrapper mb-30">
-                                <label for="">Category*</label>
-                                <input type="text" placeholder="Account, Finance, Marketing">
+					<div class="row">
+						{{--<div class="col-md-6">
+							<div class="dash-input-wrapper mb-30">
+								<label for="">Email*</label>
+								<input type="email" placeholder="companyinc@gmail.com">
+								<!-- <label for="socialmedia">Social Media</label>
+										<input type="email" placeholder="www.facebook.com/profile"> -->
+							</div>
+							<!-- /.dash-input-wrapper -->
+						</div>
+						<div class="col-md-6">
+							<div class="dash-input-wrapper mb-30">
+								<label for="">Website*</label>
+								<input type="text" name="phone_number" placeholder="http://somename.come">
+							</div>
+							<!-- /.dash-input-wrapper -->
+						</div>--}}
+						<!-- <div class="col-md-6">
+									<div class="dash-input-wrapper mb-30">
+										<label for="">Founded Date*</label>
+										<input type="date">
+									</div>
+							
+								</div>
+								<div class="col-md-6">
+									<div class="dash-input-wrapper mb-30">
+										<label for="">Company Size*</label>
+										<input type="text" placeholder="700">
+									</div>
+							
+								</div> -->
+						<div class="col-md-6">
+							<div class="dash-input-wrapper mb-30">
+								<label for="">Phone Number*</label>
+								<input type="tel" name = "phone_number" placeholder="+880 01723801729" value = "{{auth()->user()->phone_number}}">
+							</div>
+							<!-- /.dash-input-wrapper -->
+						</div>
+						<!-- <div class="col-md-6">
+									<div class="dash-input-wrapper mb-30">
+										<label for="">Category*</label>
+										<input type="text" placeholder="Account, Finance, Marketing">
+									</div>
+							
+								</div> -->
+					</div>
+					<div class="button-group d-inline-flex align-items-center mt-20 mb-20">
+						<button type="submit" class="dash-btn-two tran3s me-3 rounded-3">Save</button>
+						{{--<a href="#" class="dash-cancel-btn tran3s">Cancel</a>--}}
+					</div>
+				</form>
+				<h4 class="dash-title-three">Change Password</h4>
+
+				<form method = "POST" action  = "{{route('owner.updatePassword')}}">
+                    @csrf
+                    <div class = "row">
+                        <div class="col-6">
+                            <div class="dash-input-wrapper mb-20">
+                                <label for="">Password</label>
+                                <input type="password" name="password" class="@error('password') is-invalid @enderror" placeholder="Enter New Password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
                             </div>
-                    
-                        </div> -->
-			</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="dash-input-wrapper mb-20">
+                                <label for="">Confirm Password</label>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
+                                
+                            </div>
+                            <!-- /.dash-input-wrapper -->
+                        </div>
+                    </div>
+                    <div class="button-group d-inline-flex align-items-center mt-20 mb-20">
+                        <button type="submit" class="dash-btn-two tran3s me-3 rounded-3">Update Password</button>
+                        {{--<a href="#" class="dash-cancel-btn tran3s">Cancel</a>--}}
+                    </div>
+             </form>
 			<!-- <div class="dash-input-wrapper">
                         <label for="">About Company*</label>
                         <textarea class="size-lg" placeholder="Write something interesting about you...."></textarea>
@@ -137,7 +188,7 @@
 		</div>
 		<!-- /.card-box -->
 
-		<div class="bg-white card-box border-20 mt-40">
+		{{--<div class="bg-white card-box border-20 mt-40">
 			<h4 class="dash-title-three">Social Media</h4>
 
 			<div class="dash-input-wrapper mb-20">
@@ -151,10 +202,10 @@
 			</div>
 			<!-- /.dash-input-wrapper -->
 			<a href="#" class="dash-btn-one"><i class="bi bi-plus"></i> Add more link</a>
-		</div>
+		</div>--}}
 		<!-- /.card-box -->
 
-		<div class="bg-white card-box border-20 mt-40">
+		{{--<div class="bg-white card-box border-20 mt-40">
 			<h4 class="dash-title-three">Address & Location</h4>
 			<div class="row">
 				<div class="col-12">
@@ -243,10 +294,10 @@
 					<!-- /.dash-input-wrapper -->
 				</div>
 			</div>
-		</div>
+		</div>--}}
 		<!-- /.card-box -->
 
-		<div class="bg-white card-box border-20 mt-40">
+		{{--<div class="bg-white card-box border-20 mt-40">
 			<h4 class="dash-title-three">Members</h4>
 
 			<div class="dash-input-wrapper">
@@ -370,13 +421,13 @@
 				</div>
 			</div> <!-- /.dash-accordion-one -->
 			<a href="#" class="dash-btn-one"><i class="bi bi-plus"></i> Add Another Member</a>
-		</div>
+		</div>--}}
 		<!-- /.card-box -->
 
-		<div class="button-group d-inline-flex align-items-center mt-30">
+		{{--<div class="button-group d-inline-flex align-items-center mt-30">
 			<a href="#" class="dash-btn-two tran3s me-3">Save</a>
 			<a href="#" class="dash-cancel-btn tran3s">Cancel</a>
-		</div>
+		</div>--}}
 	</div>
 </div>
 @endsection

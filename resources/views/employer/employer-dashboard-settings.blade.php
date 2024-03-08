@@ -17,7 +17,7 @@ Account Settings
                             {{ session('status') }}
                         </div>
                     @endif
-            <h4 class="dash-title-three">Edit & Update</h4>
+            <h4 class="dash-title-three">Update Account Details</h4>
             <form action="{{route('employer.updateAccountSettingpage')}}" method="POST">
                 @csrf
                 <div class="row">
@@ -47,38 +47,53 @@ Account Settings
                         </div>
                         <!-- /.dash-input-wrapper -->
                     </div>
-                    <div class="col-12">
+                    <div class="col-6">
                         <div class="dash-input-wrapper mb-20">
                             <label for="">Phone Number</label>
                             <input type="tel" name="phone_number"  value="{{$employerDetails->phone_number}}" >
                         </div>
                         <!-- /.dash-input-wrapper -->
                     </div>
-                    <div class="col-12">
-                        <div class="dash-input-wrapper mb-20">
-                            <label for="">Password</label>
-                            <input type="password" name="password" class="@error('password') is-invalid @enderror" placeholder="Enter New Password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                            <div class="info-text d-sm-flex align-items-center justify-content-between mt-5">
-                                <p class="m0">Want to change the password? <a href="employer-dashboard-settings(pass-change).html" class="fw-500">Click here</a></p>
-                                <a href="employer-dashboard-settings(pass-change).html" class="fw-500 chng-pass">Change Password</a>
-                            </div>
-                        </div>
-                        <!-- /.dash-input-wrapper -->
-                    </div>
+                 
                 </div>
 
-                <div class="button-group d-inline-flex align-items-center mt-30">
+                <div class="button-group d-inline-flex align-items-center mt-20 mb-20">
                     <button type="submit" class="dash-btn-two tran3s me-3 rounded-3">Save</button>
-                    <a href="#" class="dash-cancel-btn tran3s">Cancel</a>
+                    {{--<a href="#" class="dash-cancel-btn tran3s">Cancel</a>--}}
                 </div>
             </form>
+            <h4 class="dash-title-three">Change Password</h4>
+             <form method = "POST" action  = "{{route('employer.employerUpdatePassword')}}">
+                    @csrf
+                    <div  class = "row">
+                        <div class="col-6">
+                            <div class="dash-input-wrapper mb-20">
+                                <label for="">Password</label>
+                                <input type="password" name="password" class="@error('password') is-invalid @enderror" placeholder="Enter New Password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="dash-input-wrapper mb-20">
+                                <label for="">Confirm Password</label>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
+                                
+                            </div>
+                            <!-- /.dash-input-wrapper -->
+                        </div>
+                    </div>
+                    <div class="button-group d-inline-flex align-items-center mt-20 mb-20">
+                        <button type="submit" class="dash-btn-two tran3s me-3 rounded-3">Update Password</button>
+                        {{--<a href="#" class="dash-cancel-btn tran3s">Cancel</a>--}}
+                    </div>
+             </form>
         </div>
+        
         <!-- /.card-box -->
     </div>
 </div>

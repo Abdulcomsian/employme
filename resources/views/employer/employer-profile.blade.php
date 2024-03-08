@@ -98,15 +98,15 @@ Profile
 						<div class="icon">
 							<div>3</div>
 						</div>
-						<div class="text">Subscription Plan Selection</div>
+						<div class="text">Eligibility Confirmation and Documentation</div>
 					</div>
 					<div id="tag-step-4" class="step">
 						<div class="icon">
 							<div>4</div>
 						</div>
-						<div class="text">Eligibility Confirmation and Documentation</div>
+						<div class="text">Declaration and Consent</div>
 					</div>
-					<div id="tag-step-5" class="step">
+					{{--<div id="tag-step-5" class="step">
 						<div class="icon">
 							<div>5</div>
 						</div>
@@ -129,12 +129,12 @@ Profile
 							<div>8</div>
 						</div>
 						<div class="text">Cultural Integration Programs</div>
-					</div>
-					<div id="tag-step-9" class="step">
+					</div>--}}
+					<div id="tag-step-5" class="step">
 						<div class="icon">
-							<div>9</div>
+							<div>5</div>
 						</div>
-						<div class="text">Declaration and Consent</div>
+						<div class="text">Subscription Plan Selection</div>
 					</div>
 				</div>
 				<form id="multi-step-form">
@@ -143,7 +143,7 @@ Profile
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
-									<label for="">Legal name of the school or institution</label>
+									<label for="">Legal Business Name or Institute Name</label>
 									<input type="text" name="legalNameOfSchool" placeholder="Legal name of the school or institution" value="{{$employerDetails->institution ?? ''}}">
 								</div>
 							</div>
@@ -151,10 +151,9 @@ Profile
 								<div class="dash-input-wrapper mb-30">
 									<label for="">Type of school</label>
 									<select name="typeOfSchool" id="typeOfSchool" class="nice-select">
-										<option value="Hagwon" {{$employerDetails->institution_type == 'Hagwon' ? 'selected' : ''}}>Hagwon</option>
-										<option value="Private Academy" {{$employerDetails->institution_type == 'Private Academy' ? 'selected' : ''}}>Private Academy</option>
+										<option value="Private English Academy" {{$employerDetails->institution_type == 'Private English Academy' ? 'selected' : ''}}>Private English Academy</option>
+										<option value="Private Math Academy" {{$employerDetails->institution_type == 'Private Math Academy' ? 'selected' : ''}}>Private Math Academy</option>
 										<option value="Public School" {{$employerDetails->institution_type == 'Public School' ? 'selected' : ''}}>Public School</option>
-										<option value="University" {{$employerDetails->institution_type == 'University' ? 'selected' : ''}}>University</option>
 									</select>
 								</div>
 							</div>
@@ -219,7 +218,7 @@ Profile
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
-									<label for="">Phone number</label>
+									<label for=""> Korean Phone Number</label>
 									<input type="number" class="number-input" name="phoneNumber" placeholder="(201) 555-0123" value="{{$employerDetails->phone_number ?? ''}}">
 								</div>
 							</div>
@@ -230,21 +229,8 @@ Profile
 								</div>
 							</div>
 						</div>
-
-						<div class="row">
-							<div class="col-md-6">
-								<div class="dash-input-wrapper mb-30">
-									<label for="">Number of Students</label>
-									<input type="number" class="number-input" name="numberOfStudents" placeholder="4935" value="{{$employerDetails->number_of_students ?? ''}}">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="dash-input-wrapper mb-30">
-									<label for="">Number of Teachers</label>
-									<input type="number" class="number-input" name="numberOfTeachers" placeholder="215" value="{{$employerDetails->number_of_teachers ?? ''}}">
-								</div>
-							</div>
-						</div>
+                    		{{--
+						
 
 						<div class="row">
 							<div class="col-md-6">
@@ -261,6 +247,7 @@ Profile
 								</div>
 							</div>
 						</div>
+						        --}}
 						<div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
@@ -280,7 +267,7 @@ Profile
                                 </div>
                             </div>
                         </div>
-						<div class="row">
+						{{--<div class="row">
                             <div class="col-md-12">
 								<div class="dash-input-wrapper">
 									<label for="">Employer Details</label>
@@ -289,7 +276,7 @@ Profile
 								</div>
 											
 							</div>
-                        </div>
+                        </div>--}}
 
 						<div class="d-flex flex-row justify-content-end gap-3">
 							<button type="button" class="dash-btn-one" id="basic-information" onclick="nextStep(1)">Next</button>
@@ -305,15 +292,15 @@ Profile
 									<input type="text" name="schoolMission" id="schoolMission" placeholder="Type your answer here..." value="{{$employerDetails->school_vision_and_mission ?? ''}}">
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="dash-input-wrapper mb-30">
-									<label for="">Languages of instruction used in the school</label>
-									<select name="languagesOfInstructionUsedInTheSchool" id="languagesOfInstructionUsedInTheSchool" class="nice-select">
-										<option value="korean" {{$employerDetails->instruction_languages_used == 'korean' ? 'selected' : ''}}>korean</option>
-										<option value="English" {{$employerDetails->instruction_languages_used == 'English' ? 'selected' : ''}}>English</option>
-										<option value="Other" {{$employerDetails->instruction_languages_used == 'Other' ? 'selected' : ''}}>Other</option>
-									</select>
-								</div>
+							{{--<div class="col-md-6">
+									<div class="dash-input-wrapper mb-30">
+										<label for="">Languages of instruction used in the school</label>
+										<select name="languagesOfInstructionUsedInTheSchool" id="languagesOfInstructionUsedInTheSchool" class="nice-select">
+											<option value="korean" {{$employerDetails->instruction_languages_used == 'korean' ? 'selected' : ''}}>korean</option>
+											<option value="English" {{$employerDetails->instruction_languages_used == 'English' ? 'selected' : ''}}>English</option>
+											<option value="Other" {{$employerDetails->instruction_languages_used == 'Other' ? 'selected' : ''}}>Other</option>
+										</select>
+									</div>
 							</div>
 						</div>
 
@@ -336,17 +323,16 @@ Profile
                                     </div>
                                     @endif
 								</div>
-							</div>
+							</div>--}}
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
-									<label for="">Number of foreign staff currently employed and their
-										roles</label>
+									<label for="">Number of Foreign Employers</label>
 									<input type="text" name="numberofForeignStaffCurrentlyEmployed" placeholder="Type your answer here..." value="{{$employerDetails->employed_foreign_staff_and_roles ?? ''}}">
 								</div>
 							</div>
 						</div>
 
-						<div class="row">
+						{{--<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
 									<label for="">Technical resources available for teaching (This question is required)</label>
@@ -355,6 +341,20 @@ Profile
 										<option value="Teaching Software" {{$employerDetails->available_technical_resources == 'Teaching Software' ? 'selected' : ''}}>Teaching Software</option>
 										<option value="Other" {{$employerDetails->available_technical_resources == 'Other' ? 'selected' : ''}}>Other</option>
 									</select>
+								</div>
+							</div>
+						</div>--}}
+						<div class="row">
+							<div class="col-md-6">
+								<div class="dash-input-wrapper mb-30">
+									<label for="">Number of Students</label>
+									<input type="number" class="number-input" name="numberOfStudents" placeholder="4935" value="{{$employerDetails->number_of_students ?? ''}}">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="dash-input-wrapper mb-30">
+									<label for="">Number of Teachers</label>
+									<input type="number" class="number-input" name="numberOfTeachers" placeholder="215" value="{{$employerDetails->number_of_teachers ?? ''}}">
 								</div>
 							</div>
 						</div>
@@ -366,7 +366,108 @@ Profile
 					</div>
 
 					<!-- Step 3 -->
+					
+
+					<!-- Step 4 -->
 					<div class="step" id="step-3">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="dash-input-wrapper mb-30">
+									<label for="">Business License Number</label>
+									<input type="text" name="proofOfRegistration" placeholder="Type your answer here..." value="{{$employerDetails->registration_business_license_proof ?? ''}}">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="dash-input-wrapper mb-30">
+									<label for="">Acknowledgement to adhere to South Korea’s labor laws</label>
+									<select name="southKoreaLawAcknowledgement" id="southKoreaLawAcknowledgement" class="nice-select">
+										<option value="I Accept" {{$employerDetails->south_korea_laws_acknowledgement == 'I Accept' ? 'selected' : ''}}>I Accept</option>
+										<option value="I do not Accept" {{$employerDetails->south_korea_laws_acknowledgement == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						{{--<div class="row">
+							<div class="col-md-6">
+								<div class="dash-input-wrapper mb-30">
+									<label for="">Confirmation of no history of major legal disputes related to
+										employment</label>
+									<label for="">provide relevant documents</label>
+									<div class="user-avatar-setting d-flex align-items-center">
+										<div class="upload-btn position-relative tran3s ms-4 me-3">
+											Upload
+											<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">
+										</div>
+										<button class="delete-btn tran3s">Delete</button>
+									</div>
+									@if(isset($employerDetails->legal_disputes_confirmation_document) && !empty($employerDetails->legal_disputes_confirmation_document))
+                                    <div style = "padding-left:20px;">
+                                        <a class="btn btn-primary" href = "{{asset($employerDetails->legal_disputes_confirmation_document)}}" target = "_blank">File</a>
+                                    </div>
+                                    @endif
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="dash-input-wrapper mb-30">
+									<label for="">Assurance of the ability and willingness to sponsor an E-2
+										teaching visa.</label>
+									<select name="abilityWillingnessAssurance" id="abilityWillingnessAssurance" class="nice-select">
+										<option value="I Accept" {{$employerDetails->ability_willingness_assurance == 'I Accept' ? 'selected' : ''}}>I Accept</option>
+										<option value="I do not Accept" {{$employerDetails->ability_willingness_assurance == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="dash-input-wrapper mb-30">
+									<label for="">Financial health to ensure the ability to pay salaries and
+										benefits.</label>
+									<select name="financialHealthToEnsure" id="financialHealthToEnsure" class="nice-select">
+										<option value="I Accept" {{$employerDetails->financial_health == 'I Accept' ? 'selected' : ''}}>I Accept</option>
+										<option value="I do not Accept" {{$employerDetails->financial_health == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
+									</select>
+								</div>
+							</div>
+						</div>--}}
+
+						<div class="d-flex flex-row justify-content-end gap-3">
+							<button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
+							<button type="button" class="dash-btn-one" id="eligibility-confirmation-details" onclick="nextStep(3)">Next</button>
+						</div>
+					</div>
+					<div class="step" id="step-4">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="dash-input-wrapper mb-30">
+									<label for="">Agreement to periodic checks and updates to ensure information
+										accuracy.</label>
+									<select name="agreementToPeriodicChecksAndUpdates" id="agreementToPeriodicChecksAndUpdates" class="nice-select">
+										<option value="I Accept" {{$employerDetails->agreement_period_checks_updates == 'I Accept' ? 'selected' : ''}}>I Accept</option>
+										<option value="I do not Accept" {{$employerDetails->agreement_period_checks_updates == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="dash-input-wrapper mb-30">
+									<label for="">Consent for data storage and processing as per data protection
+										regulations.</label>
+									<select name="consentForDataStorageAndProcessing" id="consentForDataStorageAndProcessing" class="nice-select">
+										<option value="I Accept" {{$employerDetails->agreement_period_checks_updates == 'I Accept' ? 'selected' : ''}}>I Accept</option>
+										<option value="I do not Accept" {{$employerDetails->agreement_period_checks_updates == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="d-flex flex-row justify-content-end gap-3">
+							<button type="button" class="dash-btn-one" onclick="previousStep(4)">Previous</button>
+							<button type="button" class="dash-btn-one" id = "declaration-consent-details"  onclick="nextStep(4)">Next</button>
+						</div>
+					</div>
+					<div class="step" id="step-5">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
@@ -411,83 +512,11 @@ Profile
 
 
 						<div class="d-flex flex-row justify-content-end gap-3">
-							<button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
-							<button type="button" class="dash-btn-one" id="subscription-details" onclick="nextStep(3)">Next</button>
+							<button type="button" class="dash-btn-one" onclick="previousStep(5)">Previous</button>
+							<button type="button" id="declaration-consent-details" id="subscription-details" class="dash-btn-one">Submit</button>
 						</div>
 					</div>
-
-					<!-- Step 4 -->
-					<div class="step" id="step-4">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="dash-input-wrapper mb-30">
-									<label for="">Proof of registration and a business license</label>
-									<input type="text" name="proofOfRegistration" placeholder="Type your answer here..." value="{{$employerDetails->registration_business_license_proof ?? ''}}">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="dash-input-wrapper mb-30">
-									<label for="">Acknowledgment that they adhere to South Korea's labor
-										laws.</label>
-									<select name="southKoreaLawAcknowledgement" id="southKoreaLawAcknowledgement" class="nice-select">
-										<option value="I Accept" {{$employerDetails->south_korea_laws_acknowledgement == 'I Accept' ? 'selected' : ''}}>I Accept</option>
-										<option value="I do not Accept" {{$employerDetails->south_korea_laws_acknowledgement == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
-									</select>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-6">
-								<div class="dash-input-wrapper mb-30">
-									<label for="">Confirmation of no history of major legal disputes related to
-										employment</label>
-									<label for="">provide relevant documents</label>
-									<div class="user-avatar-setting d-flex align-items-center">
-										<div class="upload-btn position-relative tran3s ms-4 me-3">
-											Upload
-											<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">
-										</div>
-										<button class="delete-btn tran3s">Delete</button>
-									</div>
-									@if(isset($employerDetails->legal_disputes_confirmation_document) && !empty($employerDetails->legal_disputes_confirmation_document))
-                                    <div style = "padding-left:20px;">
-                                        <a class="btn btn-primary" href = "{{asset($employerDetails->legal_disputes_confirmation_document)}}" target = "_blank">File</a>
-                                    </div>
-                                    @endif
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="dash-input-wrapper mb-30">
-									<label for="">Assurance of the ability and willingness to sponsor an E-2
-										teaching visa.</label>
-									<select name="abilityWillingnessAssurance" id="abilityWillingnessAssurance" class="nice-select">
-										<option value="I Accept" {{$employerDetails->ability_willingness_assurance == 'I Accept' ? 'selected' : ''}}>I Accept</option>
-										<option value="I do not Accept" {{$employerDetails->ability_willingness_assurance == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
-									</select>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-6">
-								<div class="dash-input-wrapper mb-30">
-									<label for="">Financial health to ensure the ability to pay salaries and
-										benefits.</label>
-									<select name="financialHealthToEnsure" id="financialHealthToEnsure" class="nice-select">
-										<option value="I Accept" {{$employerDetails->financial_health == 'I Accept' ? 'selected' : ''}}>I Accept</option>
-										<option value="I do not Accept" {{$employerDetails->financial_health == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
-									</select>
-								</div>
-							</div>
-						</div>
-
-						<div class="d-flex flex-row justify-content-end gap-3">
-							<button type="button" class="dash-btn-one" onclick="previousStep(4)">Previous</button>
-							<button type="button" class="dash-btn-one" id="eligibility-confirmation-details" onclick="nextStep(4)">Next</button>
-						</div>
-					</div>
-
+             {{--
 					<!-- Step 5 -->
 					<div class="step" id="step-5">
 						<div class="row">
@@ -626,37 +655,10 @@ Profile
 							<button type="button" class="dash-btn-one" id="cultural-development-details" onclick="nextStep(8)">Next</button>
 						</div>
 					</div>
+					        --}}
 
 					<!-- Step 9 -->
-					<div class="step" id="step-9">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="dash-input-wrapper mb-30">
-									<label for="">Agreement to periodic checks and updates to ensure information
-										accuracy.</label>
-									<select name="agreementToPeriodicChecksAndUpdates" id="agreementToPeriodicChecksAndUpdates" class="nice-select">
-										<option value="I Accept" {{$employerDetails->agreement_period_checks_updates == 'I Accept' ? 'selected' : ''}}>I Accept</option>
-										<option value="I do not Accept" {{$employerDetails->agreement_period_checks_updates == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="dash-input-wrapper mb-30">
-									<label for="">Consent for data storage and processing as per data protection
-										regulations.</label>
-									<select name="consentForDataStorageAndProcessing" id="consentForDataStorageAndProcessing" class="nice-select">
-										<option value="I Accept" {{$employerDetails->agreement_period_checks_updates == 'I Accept' ? 'selected' : ''}}>I Accept</option>
-										<option value="I do not Accept" {{$employerDetails->agreement_period_checks_updates == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
-									</select>
-								</div>
-							</div>
-						</div>
-
-						<div class="d-flex flex-row justify-content-end gap-3">
-							<button type="button" class="dash-btn-one" onclick="previousStep(9)">Previous</button>
-							<button type="submit" id="declaration-consent-details" class="dash-btn-one">Submit</button>
-						</div>
-					</div>
+					
 				</form>
 			</div>
 		</div>
@@ -798,12 +800,11 @@ Profile
         formData.append("zip_code", $("#multi-step-form").find("[name=zipPostCode]").val());
         formData.append("phone_number", $("#multi-step-form").find("[name=phoneNumber]").val());
         formData.append("email", $("#multi-step-form").find("[name=email]").val());
-        formData.append("number_of_students", $("#multi-step-form").find("[name=numberOfStudents]").val());
-        formData.append("number_of_teachers", $("#multi-step-form").find("[name=numberOfTeachers]").val());
+       /* 
         formData.append("number_of_administrative_staff", $("#multi-step-form").find("[name=numberOfAdministrativeStaff]").val());
         formData.append("established_date", $("#multi-step-form").find("[name=yearOfEstablished]").val());
+		formData.append("employer_details", $("#multi-step-form").find("[name=detailsDescription]").val());*/
         formData.append("institution_logo", $('#institution_logo')[0].files[0]);
-		formData.append("employer_details", $("#multi-step-form").find("[name=detailsDescription]").val());
 
           $.ajax({
             type: "POST",
@@ -835,10 +836,12 @@ Profile
 			var formData = new FormData();
 			formData.append("_token", "{{ csrf_token() }}");
 			formData.append('school_vision_and_mission',$("#multi-step-form").find('[name=schoolMission]').val());
-			formData.append('instruction_languages_used',$("#multi-step-form").find('[name=languagesOfInstructionUsedInTheSchool]').val());
-			formData.append('international_accredition_or_certification',$('#anyInternationalOrNationalAccreditations')[0].files[0]);
-			formData.append('employed_foreign_staff_and_roles',$("#multi-step-form").find('[name=numberofForeignStaffCurrentlyEmployed]').val());
+			/*formData.append('instruction_languages_used',$("#multi-step-form").find('[name=languagesOfInstructionUsedInTheSchool]').val());
 			formData.append('available_technical_resources',$("#multi-step-form").find('[name=technicalResources]').val());
+			formData.append('international_accredition_or_certification',$('#anyInternationalOrNationalAccreditations')[0].files[0]); */
+			formData.append('employed_foreign_staff_and_roles',$("#multi-step-form").find('[name=numberofForeignStaffCurrentlyEmployed]').val());
+			formData.append("number_of_students", $("#multi-step-form").find("[name=numberOfStudents]").val());
+        	formData.append("number_of_teachers", $("#multi-step-form").find("[name=numberOfTeachers]").val());
 		
           $.ajax({
             type: "POST",
@@ -902,9 +905,9 @@ Profile
         formData.append("_token", "{{ csrf_token() }}");
         formData.append('registration_business_license_proof',$("#multi-step-form").find('[name=proofOfRegistration]').val())
         formData.append('south_korea_laws_acknowledgement',$("#multi-step-form").find('[name=southKoreaLawAcknowledgement]').val())
-        formData.append('legal_disputes_confirmation_document',$('#legalDisputesConfirmationDocument')[0].files[0])
+        /*formData.append('legal_disputes_confirmation_document',$('#legalDisputesConfirmationDocument')[0].files[0])
         formData.append('ability_willingness_assurance',$("#multi-step-form").find('[name=abilityWillingnessAssurance]').val())
-        formData.append('financial_health',$("#multi-step-form").find('[name=financialHealthToEnsure]').val())
+        formData.append('financial_health',$("#multi-step-form").find('[name=financialHealthToEnsure]').val()) */
 	
           $.ajax({
             type: "POST",
@@ -1064,7 +1067,7 @@ Profile
               success: function (data) {
     
                 if (data.status) {
-                    window.location = data.redirect;
+                    // window.location = data.redirect;
                 }else{
                     $(".alert").remove();
                     $.each(data.errors, function (key, val) {
