@@ -3,6 +3,7 @@
         <button class="dash-mobile-nav-toggler d-block d-md-none me-auto">
             <span></span>
         </button>
+        {{--
         <form action="#" class="search-form">
             <input type="text" placeholder="Search here..">
             <button><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_10.svg')}}" alt="" class="lazy-img m-auto"></button>
@@ -41,6 +42,7 @@
                 </li>
             </ul>
         </div>
+          --}}
         <div><a href="{{route('jobMarketplace')}}" class="job-post-btn tran3s">Job Marketplace</a></div>
     </div>
 </header>

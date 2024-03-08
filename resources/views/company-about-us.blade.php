@@ -105,7 +105,7 @@
 										<span>Category: </span>
 										<div>Technology, Product,  Agency</div>
 									</li> -->
-							<li class="col-12">
+							{{--<li class="col-12">
 								<span>Social: </span>
 								<div>
 									<a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
@@ -119,7 +119,7 @@
 						</ul>
 
 						<a href="#" class="btn-ten fw-500 text-white w-100 text-center tran3s mt-25">Send
-							Message</a>
+							Message</a>--}}
 					</div>
 				</div>
 				<!-- /.job-company-info -->

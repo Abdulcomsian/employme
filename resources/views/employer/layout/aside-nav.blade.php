@@ -33,9 +33,10 @@
 					<li>
 						<a class="dropdown-item d-flex align-items-center" href="{{route('getEmployerDashboardSettings')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_24.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Account Settings</span></a>
 					</li>
+				{{--
 					<li>
 						<a class="dropdown-item d-flex align-items-center" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_25.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Notification</span></a>
-					</li>
+					</li>--}}
 				</ul>
 			</div>
 		</div>
