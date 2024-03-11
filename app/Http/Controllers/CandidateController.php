@@ -261,4 +261,121 @@ class CandidateController extends Controller
         
    }
 
+
+   public function deleteVideo(Request $request)
+   {
+       $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
+       if($candidatePreferencesDetails->video_url !='')
+       {
+         @unlink(public_path($candidatePreferencesDetails->video_url));
+         $candidatePreferencesDetails->video_url = '';
+         $candidatePreferencesDetails->save();
+         $message = "Video Deleted Successfully";
+         $status = true;
+       }else
+       {
+         $message = "No Video Found";
+         $status = false;
+       }
+
+       return response()->json([
+            "status" => $status, 
+            "message" => $message
+        ]);
+
+   }
+   public function deleteThumbnail(Request $request)
+   {
+       $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
+       if($candidatePreferencesDetails->video_thumbnail !='')
+       {
+         @unlink(public_path($candidatePreferencesDetails->video_thumbnail));
+         $candidatePreferencesDetails->video_thumbnail = '';
+         $candidatePreferencesDetails->save();
+         $message = "Thumbnail Image Deleted Successfully";
+         $status = true;
+       }else
+       {
+         $message = "No Thumbnail Found";
+         $status = false;
+       }
+
+       return response()->json([
+            "status" => $status, 
+            "message" => $message
+        ]);
+
+   }
+   public function deleteFile(Request $request)
+   {
+        $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
+        $candidatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
+       if($request->file_type == 'thumbnail-image')
+       {
+            if($candidatePreferencesDetails->video_thumbnail !='')
+            {
+            @unlink(public_path($candidatePreferencesDetails->video_thumbnail));
+            $candidatePreferencesDetails->video_thumbnail = '';
+            $candidatePreferencesDetails->save();
+            $message = "Thumbnail Image Deleted Successfully";
+            $status = true;
+            }else
+            {
+            $message = "No Thumbnail Found";
+            $status = false;
+            }
+       }elseif($request->file_type == 'video-url')
+       {
+            $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
+            if($candidatePreferencesDetails->video_url !='')
+            {
+                @unlink(public_path($candidatePreferencesDetails->video_url));
+                $candidatePreferencesDetails->video_url = '';
+                $candidatePreferencesDetails->save();
+                $message = "Video Deleted Successfully";
+                $status = true;
+            }else
+            {
+                $message = "No Video Found";
+                $status = false;
+            }
+       }elseif($request->file_type == 'profile-photo')
+       {
+            $candidatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
+            if($candidatePersonalDetails->profile_picture !='')
+            {
+                @unlink(public_path($candidatePersonalDetails->profile_picture));
+                $candidatePersonalDetails->profile_picture = '';
+                $candidatePersonalDetails->save();
+                $message = "Profile Image Deleted Successfully";
+                $status = true;
+            }else
+            {
+                $message = "No Image Found";
+                $status = false;
+            }
+       }elseif($request->file_type == 'resume-file')
+       {
+            if($candidatePersonalDetails->candidate_resume !='')
+            {
+                @unlink(public_path($candidatePersonalDetails->candidate_resume));
+                $candidatePersonalDetails->candidate_resume = '';
+                $candidatePersonalDetails->save();
+                $message = "Resume Deleted Successfully";
+                $status = true;
+            }else
+            {
+                $message = "No Resume Found";
+                $status = false;
+            }
+       }
+       
+
+       return response()->json([
+            "status" => $status, 
+            "message" => $message
+        ]);
+
+   }
+
 }

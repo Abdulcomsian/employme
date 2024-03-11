@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->longText('avatar')->nullable();
             $table->text('phone_number')->nullable();
+            $table->integer('account_status')->default(1);
         });
     }
 

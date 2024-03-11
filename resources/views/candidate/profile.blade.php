@@ -3,6 +3,8 @@
 @section('title')
 Profile
 @endsection
+@push('page-css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <style>
     .step {
         display: none;
@@ -53,6 +55,7 @@ Profile
         font-weight: 600;
     }
 </style>
+@endpush
 @section('content')
 <div class="dashboard-body">
     <div class="position-relative">
@@ -295,7 +298,7 @@ Profile
                                     <label for="">Profile Photo</label>
                                     <div class="user-avatar-setting d-flex align-items-center">
                                         @if($candidatePersonalDetails->profile_picture)
-                                        <img src="{{asset($candidatePersonalDetails->profile_picture)}}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img" >
+                                        <img src="{{asset($candidatePersonalDetails->profile_picture)}}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img profile-photo" >
                                         @else
                                         <img src="{../images/lazy.svg}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
                                         @endif
@@ -303,7 +306,7 @@ Profile
                                             Upload profile photo
                                             <input type="file" id="uploadImg" name="profileImage" placeholder="" accept="image/png, image/jpeg">
                                         </div>
-                                        <button class="delete-btn tran3s">Delete</button>
+                                        <button class="delete-btn tran3s " onclick = "deleteFile('profile-photo')">Delete</button>
                                     </div>
                                 </div>
                             </div>
@@ -316,11 +319,11 @@ Profile
                                             <input type="file" id="candidate_resume" name="candidate_resume" placeholder="" accept="application/pdf">
                                         </div>
 
-                                        <button class="delete-btn tran3s">Delete</button>
+                                        <button class="delete-btn tran3s" onclick = "deleteFile('resume-file')">Delete</button>
                                     </div>
                                     @if(isset($candidatePersonalDetails->candidate_resume) && !empty($candidatePersonalDetails->candidate_resume))
                                     <div style = "padding-left:20px;">
-                                        <a class="btn btn-primary" href = "{{asset($candidatePersonalDetails->candidate_resume)}}" target = "_blank">File</a>
+                                        <a class="btn btn-primary resume-file" href = "{{asset($candidatePersonalDetails->candidate_resume)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div>
@@ -828,13 +831,14 @@ Profile
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload new video
-                                            <input type="file" id="teachingVideo" name="teachingVideo" placeholder="" accept="video/mp4">
+                                            <input type="file" id="teachingVideo" name="teachingVideo" placeholder="" accept="video/mp4" onchange="previewVideo()">
                                         </div>
 
-                                        <button class="delete-btn tran3s">Delete</button>
+                                        <button class="delete-btn tran3s " onclick = "deleteFile('video-url')">Delete</button>
                                     </div>
+                                    <video id="videoPreview" class = "d-none" width="320" height="240" controls></video>
                                     @if(isset($candidatePreferencesDetails->video_url) && !empty($candidatePreferencesDetails->video_url))
-                                    <div style = "padding-left:20px;">
+                                    <div style = "padding-left:20px;" class = "mt-2 video-url">
                                         <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_url)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
@@ -862,10 +866,10 @@ Profile
                                             <input type="file" id="videoThumbnail" name="videoThumbnail" placeholder="" accept="image/jpeg,image/png">
                                         </div>
 
-                                        <button class="delete-btn tran3s">Delete</button>
+                                        <button class="delete-btn tran3s " onclick = "deleteFile('thumbnail-image')">Delete</button>
                                     </div>
                                     @if(isset($candidatePreferencesDetails->video_thumbnail) && !empty($candidatePreferencesDetails->video_thumbnail))
-                                    <div style = "padding-left:20px;">
+                                    <div style = "padding-left:20px;" class = "thumbnail-image">
                                         <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
@@ -1052,7 +1056,10 @@ Profile
         </div> -->
     </div>
 </div>
+@push('page-script')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 <script>
     let currentStep = 1;
 
@@ -1415,6 +1422,7 @@ Profile
   
           return false;
       });
+
     }); 
 </script>
 <script>
@@ -1563,5 +1571,52 @@ const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.te
             }
         });
     });
+
+    function previewVideo() {
+    const videoFile = document.getElementById('teachingVideo').files[0];
+    const videoPreview = document.getElementById('videoPreview');
+
+    if (videoFile) {
+        const videoURL = URL.createObjectURL(videoFile);
+        videoPreview.src = videoURL;
+        videoPreview.classList.remove('d-none')
+    }else
+    {
+        videoPreview.src = '';
+        videoPreview.classList.add('d-none')
+    }
+}
+
+ function deleteFile(fileType)
+ {
+    var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        formData.append("file_type",fileType);
+    
+     
+          $.ajax({
+            type: "POST",
+              url: "{{route('candidate.deleteFile')}}",
+              data: formData,
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              success: function (data) {
+    
+                if (data.status) {
+                    toastr.success(data.message);
+                    document.querySelector('.'+fileType).classList.add('d-none')
+                }else{
+                    toastr.error(data.message);
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+ }
 </script>
+@endpush
 @endsection

@@ -106,6 +106,9 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
     Route::get('saved-jobs', [CandidateController::class, 'candidateSavedJobs'])->name('candidateSavedJobs');
     Route::post('update-account-settings', [UserController::class, 'updateCandidateAccountSettingpage'])->name('candidate.updateAccountSettingpage');
     Route::post('update-password', [UserController::class, 'candidateUpdatePassword'])->name('candidate.updatePassword');
+    Route::post('deactivate-account', [UserController::class, 'candidateDeactivateAccount'])->name('candidate.deactivateAccount');
+    Route::post('activate-account', [UserController::class, 'candidateActivateAccount'])->name('candidate.activateAccount');
+    Route::post('delete-file', [CandidateController::class, 'deleteFile'])->name('candidate.deleteFile');
     Route::delete('removed-job/{id}', [CandidateController::class, 'removeSavedJob'])->name('removeSavedJob');
 });
 //candidate dashboard route ends here

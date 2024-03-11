@@ -71,10 +71,10 @@ Savced Jobs
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($savedJob->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
+                                {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>--}}
                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('destroy-form').submit();"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
+                                                                document.getElementById('destroy-form').submit();"><img src="../images/lazy.svg" data-src="{{asset('assets/images/icon/icon_8.svg')}}" alt="" class="lazy-img"> Delete</a></li>
                             </ul>
                             
                                 <form id="destroy-form" action="{{ route('removeSavedJob', $savedJob->id) }}" method="POST" style="display: none;">

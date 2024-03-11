@@ -450,4 +450,22 @@ class UserController extends Controller
               }
         }
     }
+    public function candidateDeactivateAccount(){
+        $deActivateUser = User::find(Auth::id());
+        $deActivateUser->account_status = 0;
+        if($deActivateUser->save())
+        {
+            toastr('You account have deactivated successfully');
+            return redirect()->back();
+        }
+    }
+    public function candidateActivateAccount(){
+        $activateUser = User::find(Auth::id());
+        $activateUser->account_status = 1;
+        if($activateUser->save())
+        {
+            toastr('You account have activated successfully');
+            return redirect()->back();
+        }
+    }
 }
