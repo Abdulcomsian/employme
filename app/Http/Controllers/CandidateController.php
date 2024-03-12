@@ -262,50 +262,6 @@ class CandidateController extends Controller
    }
 
 
-   public function deleteVideo(Request $request)
-   {
-       $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
-       if($candidatePreferencesDetails->video_url !='')
-       {
-         @unlink(public_path($candidatePreferencesDetails->video_url));
-         $candidatePreferencesDetails->video_url = '';
-         $candidatePreferencesDetails->save();
-         $message = "Video Deleted Successfully";
-         $status = true;
-       }else
-       {
-         $message = "No Video Found";
-         $status = false;
-       }
-
-       return response()->json([
-            "status" => $status, 
-            "message" => $message
-        ]);
-
-   }
-   public function deleteThumbnail(Request $request)
-   {
-       $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
-       if($candidatePreferencesDetails->video_thumbnail !='')
-       {
-         @unlink(public_path($candidatePreferencesDetails->video_thumbnail));
-         $candidatePreferencesDetails->video_thumbnail = '';
-         $candidatePreferencesDetails->save();
-         $message = "Thumbnail Image Deleted Successfully";
-         $status = true;
-       }else
-       {
-         $message = "No Thumbnail Found";
-         $status = false;
-       }
-
-       return response()->json([
-            "status" => $status, 
-            "message" => $message
-        ]);
-
-   }
    public function deleteFile(Request $request)
    {
         $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();

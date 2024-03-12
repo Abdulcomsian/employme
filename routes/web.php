@@ -15,7 +15,8 @@ use App\Http\Controllers\{
     SubscriptionController,
     EmployerJobController,
     JobCategoryController,
-    StripeWebhookController
+    StripeWebhookController,
+    StaffController
 };
 
 /*
@@ -110,6 +111,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
     Route::post('activate-account', [UserController::class, 'candidateActivateAccount'])->name('candidate.activateAccount');
     Route::post('delete-file', [CandidateController::class, 'deleteFile'])->name('candidate.deleteFile');
     Route::delete('removed-job/{id}', [CandidateController::class, 'removeSavedJob'])->name('removeSavedJob');
+    Route::resource('staff',StaffController::class);
 });
 //candidate dashboard route ends here
 

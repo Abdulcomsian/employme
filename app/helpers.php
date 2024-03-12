@@ -44,6 +44,15 @@ function  ownerProfilePicturePath($user = null)
     }
     return $path;
 }
+function  employerStaffPicturePath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/employer/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/staff_images/';
+    } else {
+        $path  = 'uploads/owner/staff_images/';
+    }
+    return $path;
+}
 
 function  employerConfirmationDocumentPath($user = null)
 {
