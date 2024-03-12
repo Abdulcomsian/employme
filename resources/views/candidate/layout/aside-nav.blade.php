@@ -63,7 +63,7 @@
                                         <span>Staff</span>
                                     </a>
                                 </li> 
-                                <li><a href="#" class="d-flex w-100 align-items-center ">
+                                <li><a href="{{route('gallery.index')}}" class="d-flex w-100 align-items-center {{(request()->is('candidate/gallery') || request()->is('candidate/gallery/*')) ? 'active' : ''}}">
                                     <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
                                         <span>Media Gallery</span>
                                     </a>

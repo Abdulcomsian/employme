@@ -16,7 +16,8 @@ use App\Http\Controllers\{
     EmployerJobController,
     JobCategoryController,
     StripeWebhookController,
-    StaffController
+    StaffController,
+    GalleryController
 };
 
 /*
@@ -112,6 +113,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
     Route::post('delete-file', [CandidateController::class, 'deleteFile'])->name('candidate.deleteFile');
     Route::delete('removed-job/{id}', [CandidateController::class, 'removeSavedJob'])->name('removeSavedJob');
     Route::resource('staff',StaffController::class);
+    Route::resource('gallery',GalleryController::class);
 });
 //candidate dashboard route ends here
 

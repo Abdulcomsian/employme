@@ -98,7 +98,7 @@ Profile
 						<div class="icon">
 							<div>3</div>
 						</div>
-						<div class="text">Eligibility Confirmation and Documentation</div>
+						<div class="text">Employer Verification</div>
 					</div>
 					<div id="tag-step-4" class="step">
 						<div class="icon">
@@ -513,7 +513,7 @@ Profile
 
 						<div class="d-flex flex-row justify-content-end gap-3">
 							<button type="button" class="dash-btn-one" onclick="previousStep(5)">Previous</button>
-							<button type="button" id="declaration-consent-details" id="subscription-details" class="dash-btn-one">Submit</button>
+							<button type="button" id="subscription-details" class="dash-btn-one">Submit</button>
 						</div>
 					</div>
              {{--
@@ -711,33 +711,6 @@ Profile
             token.setAttribute('name', 'token')
             token.setAttribute('value', setupIntent.payment_method)
 			console.log();
-          
-			var formData = new FormData();
-			formData.append("_token", "{{ csrf_token() }}");
-			formData.append('plan',$("#multi-step-form").find('[name=differentSubscriptionOptions]').val())
-			formData.append('terms_and_conditions_acceptance',$("#multi-step-form").find('[name=acceptanceOfTermsAndConditions]').val())
-			formData.append('token',token.value)
-            // form.submit();
-			$.ajax({
-            type: "POST",
-              url: "{{route('subscription.create')}}",
-              data: formData,
-              dataType: 'json',
-              contentType: false,
-              processData: false,
-              success: function (data) {
-    
-                if (data.status) {
-					nextStep(3)               
-				 }else{
-                    $(".alert").remove();
-                    $.each(data.errors, function (key, val) {
-                        $("#subscription-terms-condiditions-acceptance").append("<div class='alert alert-danger'>" + val + "</div>");
-                    });
-                }
-               
-              }
-          });
         }
 		
     })
@@ -867,6 +840,35 @@ Profile
           return false;
       });
 	
+	  $("#subscription-details").on('click',function(e){
+		var formData = new FormData();
+			formData.append("_token", "{{ csrf_token() }}");
+			formData.append('plan',$("#multi-step-form").find('[name=differentSubscriptionOptions]').val())
+			formData.append('terms_and_conditions_acceptance',$("#multi-step-form").find('[name=acceptanceOfTermsAndConditions]').val())
+			formData.append('token',$("#multi-step-form").find('[name=token]').val())
+			// formData.append('token',token.value)
+            // form.submit();
+			$.ajax({
+            type: "POST",
+              url: "{{route('subscription.create')}}",
+              data: formData,
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              success: function (data) {
+    
+                if (data.status) {
+                    window.location = data.redirect;
+				 }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#subscription-terms-condiditions-acceptance").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              }
+          });
+	  });
       // Canidate Educational and Professional Information
     //   $("#subscription-details").on("click", function(e) {
     //     e.preventDefault();

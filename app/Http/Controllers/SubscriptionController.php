@@ -68,6 +68,7 @@ class SubscriptionController extends Controller
         return response()->json([
             "status" => true, 
             "message" => "Subscribed Sucessfulyy",
+            "redirect" => url("employer/employer-profile")
         ]);
     }
 }

@@ -49,7 +49,16 @@ function  employerStaffPicturePath($user = null)
     if ($user) {
         $path = 'uploads/employer/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/staff_images/';
     } else {
-        $path  = 'uploads/owner/staff_images/';
+        $path  = 'uploads/employer/staff_images/';
+    }
+    return $path;
+}
+function  employerGalleryPath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/employer/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/gallery_images/';
+    } else {
+        $path  = 'uploads/employer/gallery_images/';
     }
     return $path;
 }
