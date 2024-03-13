@@ -149,7 +149,7 @@ Profile
 							</div>
 							<div class="col-md-6">
 								<div class="dash-input-wrapper mb-30">
-									<label for="">Type of school</label>
+									<label for="">Type of Business</label>
 									<select name="typeOfSchool" id="typeOfSchool" class="nice-select">
 										<option value="Private English Academy" {{$employerDetails->institution_type == 'Private English Academy' ? 'selected' : ''}}>Private English Academy</option>
 										<option value="Private Math Academy" {{$employerDetails->institution_type == 'Private Math Academy' ? 'selected' : ''}}>Private Math Academy</option>
