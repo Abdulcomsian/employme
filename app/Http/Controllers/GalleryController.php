@@ -13,7 +13,7 @@ class GalleryController extends Controller
     public function index()
     {
         $galleryImages = Gallery::where('employer_id',\Auth::id())->paginate(10);
-        return view('candidate.gallery.index',compact('galleryImages'));
+        return view('employer.gallery.index',compact('galleryImages'));
     }
 
     /**
@@ -21,7 +21,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view('candidate.gallery.create');
+        return view('employer.gallery.create');
 
     }
 
@@ -68,7 +68,7 @@ class GalleryController extends Controller
     public function edit($id)
     {
         $memberDetails = Gallery::find($id);
-        return view('candidate.gallery.edit',compact('memberDetails'));
+        return view('employer.gallery.edit',compact('memberDetails'));
 
     }
 

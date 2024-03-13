@@ -14,7 +14,7 @@ class StaffController extends Controller
     public function index()
     {
         $staffMembers = Staff::where('employer_id',\Auth::id())->paginate(10);
-        return view('candidate.staff.index',compact('staffMembers'));
+        return view('employer.staff.index',compact('staffMembers'));
     }
 
     /**
@@ -22,7 +22,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-        return view('candidate.staff.create');
+        return view('employer.staff.create');
 
     }
 
@@ -71,7 +71,7 @@ class StaffController extends Controller
     public function edit($id)
     {
         $memberDetails = Staff::find($id);
-        return view('candidate.staff.edit',compact('memberDetails'));
+        return view('employer.staff.edit',compact('memberDetails'));
 
     }
 

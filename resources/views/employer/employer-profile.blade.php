@@ -484,7 +484,7 @@ Profile
 										<select name="differentSubscriptionOptions" id="differentSubscriptionOptions" class="nice-select">
 											@isset($plans)
 											@foreach($plans as $plan)
-											<option value="{{$plan->id}}" {{$employerDetails->subscription_plan_id == $plan->id ? 'selected' : ''}}>{{$plan->name}} - ₩{{$plan->price}}/{{$plan->duration}} months</option>
+											<option value="{{$plan->id}}" {{$employerDetails->subscription_plan_id == $plan->id ? 'selected' : ''}}>{{$plan->name}} - ₩ {{$plan->price}}/{{$plan->duration}} months</option>
 											@endforeach
 											@endisset
 										</select>

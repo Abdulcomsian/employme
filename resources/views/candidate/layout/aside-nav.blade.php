@@ -48,40 +48,10 @@
                     </a></li>
                 @if(!session('email_verification') && !session('profile_completion'))
                 
-                <li>
-                    <a class="d-flex w-100 align-items-center" data-bs-toggle="collapse" href="#collapseJobType" role="button" aria-expanded="false">Manage Modules</a>
-                    <div class="collapse" id="collapseJobType">
-                        <div class="main-body">
-                            <ul class="style-none filter-input">
-                                <li><a href="{{route('getCandidateProfile')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/profile') ? 'active' : ''}}">
-                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
-                                        <span>My Profile</span>
-                                    </a>
-                                </li> 
-                                <li><a href="{{route('staff.index')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/staff') ? 'active' : ''}}">
-                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/staff') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
-                                        <span>Staff</span>
-                                    </a>
-                                </li> 
-                                <li><a href="{{route('gallery.index')}}" class="d-flex w-100 align-items-center {{(request()->is('candidate/gallery') || request()->is('candidate/gallery/*')) ? 'active' : ''}}">
-                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
-                                        <span>Media Gallery</span>
-                                    </a>
-                                </li> 
-                                <li><a href="#" class="d-flex w-100 align-items-center ">
-                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
-                                        <span>Business Operation</span>
-                                    </a>
-                                </li> 
-                                <li><a href="#" class="d-flex w-100 align-items-center ">
-                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
-                                        <span>Housing</span>
-                                    </a>
-                                </li>                            
-                            </ul>
-                        </div>
-                    </div>
-                </li> 
+                <li><a href="{{route('getCandidateProfile')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/profile') ? 'active' : ''}}">
+						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_2_active.svg')}}" alt="" class="lazy-img">
+						<span>My Profile</span>
+					</a></li>
                 <li><a href="{{route('candidateJobApplications')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/job-applications') ? 'active' : ''}}">
                     <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/job-applications') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
                     <span>My Applications</span>

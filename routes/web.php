@@ -112,8 +112,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
     Route::post('activate-account', [UserController::class, 'candidateActivateAccount'])->name('candidate.activateAccount');
     Route::post('delete-file', [CandidateController::class, 'deleteFile'])->name('candidate.deleteFile');
     Route::delete('removed-job/{id}', [CandidateController::class, 'removeSavedJob'])->name('removeSavedJob');
-    Route::resource('staff',StaffController::class);
-    Route::resource('gallery',GalleryController::class);
+   
 });
 //candidate dashboard route ends here
 
@@ -134,6 +133,8 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::put('employer-jobs/activate-job/{id}', [JobController::class, 'activateJob'])->name('employer.activate-job');
     Route::put('employer-jobs/de-activate-job/{id}', [JobController::class, 'deactivateJob'])->name('employer.deactivate-job');
     Route::resource('employer-jobs', EmployerJobController::class);
+    Route::resource('staff',StaffController::class);
+    Route::resource('gallery',GalleryController::class);
 
     /*Routes regarding Job Applications Actions */
     Route::post('interview-invitation', [EmployerJobController::class, 'interviewInvitation'])->name('employer.interviewInvitation');
