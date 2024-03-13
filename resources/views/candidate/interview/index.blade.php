@@ -136,7 +136,7 @@ Interview Request
                                                 <form id="reject-form-{{$interview->id}}" action="{{ route('candidate.rejectInterview', $interview->id) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 </form>
-                                                <li><a class="dropdown-item Reschedule-Request-Button" href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" id = "{{$interview->id}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
+                                                <li><a class="dropdown-item Reschedule-Request-Button" href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" id = "{{$interview->id}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
                                                 {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>--}}
                                             </ul>
                                         </div>
