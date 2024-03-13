@@ -137,9 +137,9 @@
 		</nav>
 		<!-- /.dasboard-main-nav -->
 		<div class="profile-complete-status">
-			<div class="progress-value fw-500">{{employeeProfilePercentage()}}%</div>
+			<div class="progress-value fw-500">{{employerProfilePercentage()}}%</div>
 			<div class="progress-line position-relative">
-				<div class="inner-line" style="width:{{employeeProfilePercentage()}}%;"></div>
+				<div class="inner-line" style="width:{{employerProfilePercentage()}}%;"></div>
 			</div>
 			<p>Profile Complete</p>
 		</div>

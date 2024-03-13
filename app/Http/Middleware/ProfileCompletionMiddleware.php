@@ -17,7 +17,7 @@ class ProfileCompletionMiddleware
     {
         
         if (\Auth::check() && auth()->user()->hasRole('employer')) {
-            if(employeeProfilePercentage() < 50)
+            if(employerProfilePercentage() < 50)
             {
                 $request->session()->put(['profile_completion' => 'yes']);
             if ($request->route()->getName() !== 'getEmployerProfile' && $request->route()->getName() !== 'authLogout' && $request->route()->getName() !== 'verification.send' && $request->route()->getName() !== 'verification.verify') 

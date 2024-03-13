@@ -182,7 +182,7 @@ function deleteAllCandidateProfileImages()
     
 // }
 
-function employeProfilePercentage()
+function employerProfilePercentage()
 {
    $excludedColumns = ['sk_cultural_programs',
     'languages_resources_foreign_staff',
@@ -193,20 +193,30 @@ function employeProfilePercentage()
     'teaching_management_recognition_award',
     'foreign_teachers_in_3_years',
     'foreign_teachers_retention_rate',
-    'reason_contract_termination'
+    'reason_contract_termination',
+    'employer_details',
+    'number_of_administrative_staff',
+    'established_date',
+    'instruction_languages_used',
+    'international_accredition_or_certification',
+    'accredition_or_certification',
+    'available_technical_resources',
+    'ability_willingness_assurance',
+    'financial_health'
 ];
 
 $filteredColumns = collect(\Schema::getColumnListing('employer_details'))->filter(function ($column) use ($excludedColumns) {
     return !in_array($column, $excludedColumns);
 });
-
 $attributes = $filteredColumns->count();
     // dd($attributes);
 
     $employerDetails = \App\Models\EmployerDetails::select(
         array_diff(\Schema::getColumnListing('employer_details'), $excludedColumns)
-    )->where('user_id', Auth::id())->first();    $recordArray = $employerDetails->toArray(); // Convert the record to an array
+    )->where('user_id', Auth::id())->first();   
+     $recordArray = $employerDetails->toArray(); // Convert the record to an array
     // Filter out non-null values
+
     $filtered = collect($recordArray)->filter(function ($value) {
         return !is_null($value);
     })->count();
@@ -219,24 +229,7 @@ $attributes = $filteredColumns->count();
     return $percentage;
 }
 
-function employeeProfilePercentage()
-{
-    $attributes = collect(\Schema::getColumnListing('employer_details'))->count();
-    // dd($attributes);
 
-    $employerDetails = \App\Models\EmployerDetails::where('user_id', Auth::id())->first();
-    $recordArray = $employerDetails->toArray(); // Convert the record to an array
-    
-    // Filter out non-null values
-    $filtered = collect($recordArray)->filter(function ($value) {
-        return !is_null($value);
-    })->count();
-    // return ($complete / count($attributes)) * 100;
-    $percentage = ($filtered / $attributes) * 100;
-    $percentage = round($percentage,0);
-    $percentage = number_format($percentage,0);
-    return $percentage;
-}
 function candidateProfilePercentage()
 {
     $candidatePersonalDetailsAttributes = collect(\Schema::getColumnListing('candidate_personal_details'))->count();
