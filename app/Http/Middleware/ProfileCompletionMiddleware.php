@@ -17,7 +17,7 @@ class ProfileCompletionMiddleware
     {
         
         if (\Auth::check() && auth()->user()->hasRole('employer')) {
-            if(employeeProfilePercentage() < 60)
+            if(employeeProfilePercentage() < 50)
             {
                 $request->session()->put(['profile_completion' => 'yes']);
             if ($request->route()->getName() !== 'getEmployerProfile' && $request->route()->getName() !== 'authLogout' && $request->route()->getName() !== 'verification.send' && $request->route()->getName() !== 'verification.verify') 
@@ -29,7 +29,7 @@ class ProfileCompletionMiddleware
                 $request->session()->forget('profile_completion');
             }
         }elseif(\Auth::check() && auth()->user()->hasRole('candidate')) {
-            if(candidateProfilePercentage() < 60)
+            if(candidateProfilePercentage() < 50)
             {
                 $request->session()->put(['profile_completion' => 'yes']);
             if ($request->route()->getName() !== 'getCandidateProfile' && $request->route()->getName() !== 'authLogout' && $request->route()->getName() !== 'verification.send' && $request->route()->getName() !== 'verification.verify') 

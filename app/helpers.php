@@ -184,16 +184,34 @@ function deleteAllCandidateProfileImages()
 
 function employeProfilePercentage()
 {
-    $attributes = collect(\Schema::getColumnListing('employer_details'))->count();
+   $excludedColumns = ['sk_cultural_programs',
+    'languages_resources_foreign_staff',
+    'past_ongoing_training_program',
+    'institution_development_opportunities',
+    'new_hiree_orientation',
+    'current_past_teacher_references',
+    'teaching_management_recognition_award',
+    'foreign_teachers_in_3_years',
+    'foreign_teachers_retention_rate',
+    'reason_contract_termination'
+];
+
+$filteredColumns = collect(\Schema::getColumnListing('employer_details'))->filter(function ($column) use ($excludedColumns) {
+    return !in_array($column, $excludedColumns);
+});
+
+$attributes = $filteredColumns->count();
     // dd($attributes);
 
-    $employerDetails = \App\Models\EmployerDetails::where('user_id', Auth::id())->first();
-    $recordArray = $employerDetails->toArray(); // Convert the record to an array
-    
+    $employerDetails = \App\Models\EmployerDetails::select(
+        array_diff(\Schema::getColumnListing('employer_details'), $excludedColumns)
+    )->where('user_id', Auth::id())->first();    $recordArray = $employerDetails->toArray(); // Convert the record to an array
     // Filter out non-null values
     $filtered = collect($recordArray)->filter(function ($value) {
         return !is_null($value);
     })->count();
+    
+
     // return ($complete / count($attributes)) * 100;
     $percentage = ($filtered / $attributes) * 100;
     $percentage = round($percentage,0);
@@ -330,11 +348,14 @@ function employerSpentAmount()
         $user = \App\Models\User::find(Auth::id()); // Replace $userId with the actual user ID
         $subscriptions = $user->subscriptions;
         $totalAmountSpent = 0;
-         
         foreach ($subscriptions as $subscription) {
-            foreach ($subscription->invoices() as $invoice) {
-                $totalAmountSpent += $invoice->total;
+            if($subscription->stripe_status !='canceled')
+            {
+                foreach ($subscription->invoices() as $invoice) {
+                    $totalAmountSpent += $invoice->total;
+                }
             }
+            
         }
         $totalAmountSpent = number_format($totalAmountSpent/100, 2);
         return $totalAmountSpent;

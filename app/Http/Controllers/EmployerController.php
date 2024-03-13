@@ -11,6 +11,7 @@ use App\Models\{Plan, User, SubscriptionItem, Subscription, EmployerJob, SavedCa
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use App\Rules\ValidateJobLink;
+use App\Rules\BusinessLicenseRule;
 use Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -29,7 +30,6 @@ class EmployerController extends Controller
     }
     public function getEmployerProfilePage()
     {
-
        $plans = Plan::get();
         $countries = Countries::all();
         $intent = auth()->user()->createSetupIntent();
@@ -56,7 +56,7 @@ class EmployerController extends Controller
         $renewalTimestamp=null;
         $planDetails=null;
         // dd("Subscription renews on ". $formattedDate);
-        if($userSubscription)
+        if(isset($userSubscription) && $userSubscription->stripe_status !='canceled')
         {
             $planDetails =\App\Models\Plan::where('stripe_plan',$userSubscription->stripe_price)->first();
                 $userSubscription->plan = $planDetails;
@@ -139,6 +139,17 @@ class EmployerController extends Controller
     }
     public function saveProfile4(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'legal_disputes_confirmation_document' => new BusinessLicenseRule(),
+        ]);
+        
+       if($validator->fails())
+       {
+        return response()->json(['status'=>false,'errors'=>$validator->errors()->all()]);
+       }
+        $validated = $validator->validated();
+
         $updateDetails = EmployerDetails::where('user_id',Auth::id())->first();
         $imagename = $updateDetails->legal_disputes_confirmation_document;
         if ($request->file('legal_disputes_confirmation_document')) {
@@ -156,6 +167,35 @@ class EmployerController extends Controller
     }
     public function saveProfile5(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'terms_and_conditions_acceptance' => 'required|in:I Accept',
+        ]);
+  
+        if ($validator->fails()){
+            return response()->json([
+                    "status" => false,
+                    "errors" => $validator->errors()
+                ]);
+        }
+        $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
+        $updateEmployerDetails->update(
+            [
+                'subscription_plan_id'=>$request->plan,
+                'terms_and_conditions_acceptance'=>$request->terms_and_conditions_acceptance
+            ]
+        );
+
+        
+  
+        // return view("subscription_success");
+        // toastr()->success('Your have successfully Subscribed the Plan');
+        // return redirect()->back();
+        return response()->json([
+            "status" => true, 
+            "message" => "Subscribed Sucessfulyy",
+            "redirect" => url("employer/employer-profile")
+        ]);
+        /*
         $input = $request->except('_token');
         $updateDetails = EmployerDetails::where('user_id',Auth::id());
         $updateDetails->update($input);
@@ -163,6 +203,7 @@ class EmployerController extends Controller
                         "status" => true, 
                         "message" => url("Employer Details Updated Successfully")
                     ]);
+        */
     }
     public function saveProfile6(Request $request)
     {

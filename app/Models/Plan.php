@@ -21,6 +21,7 @@ class Plan extends Model
         'stripe_plan',
         'price',
         'description',
+        'duration',
     ];
   
     /**
