@@ -17,7 +17,8 @@ use App\Http\Controllers\{
     JobCategoryController,
     StripeWebhookController,
     StaffController,
-    GalleryController
+    GalleryController,
+    BusinessOperationController
 };
 
 /*
@@ -133,8 +134,10 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::put('employer-jobs/activate-job/{id}', [JobController::class, 'activateJob'])->name('employer.activate-job');
     Route::put('employer-jobs/de-activate-job/{id}', [JobController::class, 'deactivateJob'])->name('employer.deactivate-job');
     Route::resource('employer-jobs', EmployerJobController::class);
-    Route::resource('staff',StaffController::class);
-    Route::resource('gallery',GalleryController::class);
+    Route::resource('manage/staff',StaffController::class);
+    Route::resource('manage/gallery',GalleryController::class);
+    Route::get('manage/business-operation',[BusinessOperationController::class,'manageBusinessOperation'])->name('employer.manageBusinessOperation');
+    Route::post('update-business-operation',[BusinessOperationController::class,'updateBusinessOperation'])->name('employer.updateBusinessOperation');
 
     /*Routes regarding Job Applications Actions */
     Route::post('interview-invitation', [EmployerJobController::class, 'interviewInvitation'])->name('employer.interviewInvitation');
