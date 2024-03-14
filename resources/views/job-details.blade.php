@@ -714,7 +714,7 @@
 					Close
                 </button>
                 <button class=" btn-submit btn-one" type="submit" name="submit">
-					<span id="buttonText">Appy</span>
+					<span id="buttonText">Apply</span>
 					<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
 				</button>
             </div>
