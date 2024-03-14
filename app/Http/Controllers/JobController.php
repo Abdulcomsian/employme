@@ -14,7 +14,7 @@ class JobController extends Controller
 {
 
     public function jobMarketplace(Request $request){
-        $allJobs = EmployerJob::with('employerDetails');
+        $allJobs = EmployerJob::where('job_status',1)->with('employerDetails');
         $jobCategories = JobCategory::all();
        
         if(isset($request->SearchJobTitle) && $request->SearchJobTitle !='')
