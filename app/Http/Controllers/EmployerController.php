@@ -178,10 +178,25 @@ class EmployerController extends Controller
                 ]);
         }
         $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
+        $video_url = $updateEmployerDetails->video_url;
+        $thumbnailPath  = $updateEmployerDetails->video_thumbnail;
+        if ($request->file('introductry_video')) {
+            $file = $request->file('introductry_video');
+            $filePath = employerIntroductryVideoPath();
+            $video_url = saveFile($filePath, $file, $updateEmployerDetails->video_url);
+        }
+        if ($request->file('video_thumbnail')) {
+            $file = $request->file('video_thumbnail');
+            $filePath = employerIntroductryVideoThumbnailPath();
+            $thumbnailPath = saveFile($filePath, $file, $updateEmployerDetails->video_thumbnail);
+        }
+        toastr('Profile Updated Successfully');
         $updateEmployerDetails->update(
             [
-                'subscription_plan_id'=>$request->plan,
-                'terms_and_conditions_acceptance'=>$request->terms_and_conditions_acceptance
+                'introductry_video'=>$video_url,
+                'video_thumbnail'=>$thumbnailPath,
+                'terms_and_conditions_acceptance'=>$request->terms_and_conditions_acceptance,
+                'employer_details'=>$request->employer_details
             ]
         );
 

@@ -92,7 +92,7 @@ Account Settings
 <script>
 $(document).ready(function() {
         $(".yearpicker").yearpicker({
-          year: 2017,
+          year: '',
           startYear: 1970,
           endYear: 2030
         });

@@ -14,7 +14,7 @@
                     <ul class="d-flex align-items-center style-none">
                          @auth
                             @role('employer')
-                            <li class="d-none d-md-block"><a href="{{route('postAJob')}}" class="job-post-btn tran3s">Post Job</a></li>
+                            <li class="d-none d-md-block"><a href="{{route('employer-jobs.create')}}" class="job-post-btn tran3s">Post Job</a></li>
                             @endrole
                          @endauth
                         @guest

@@ -48,6 +48,9 @@ class EmployerDetails extends Model
         'institution_development_opportunities',
         'new_hiree_orientation',
         'skculture_programs_resource',
+        'introductry_video',
+        'business_hours',
+        'video_thumbnail',
         'storage_processing',
         'user_id',
 

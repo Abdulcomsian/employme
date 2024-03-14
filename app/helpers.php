@@ -100,6 +100,15 @@ function  candidateTeachingVideoPath($user = null)
     }
     return $path;
 }
+function  employerIntroductryVideoPath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/employer/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/videos/';
+    } else {
+        $path  = 'uploads/employer/videos/';
+    }
+    return $path;
+}
 function  categoryIconPath($user = null)
 {
     if ($user) {
@@ -115,6 +124,15 @@ function  candidateTeachingVideoThumbnailPath($user = null)
         $path = 'uploads/candidate/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/thumbnails/';
     } else {
         $path  = 'uploads/candidate/thumbnails/';
+    }
+    return $path;
+}
+function  employerIntroductryVideoThumbnailPath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/employer/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/thumbnails/';
+    } else {
+        $path  = 'uploads/employer/thumbnails/';
     }
     return $path;
 }

@@ -132,6 +132,7 @@ class CandidateController extends Controller
         $updatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
         // save candidate profile code
         $video_url = $updatePreferencesDetails->video_url;
+        $thumbnailPath  = $updatePreferencesDetails->video_thumbnail;
         if ($request->file('video_url')) {
             $file = $request->file('video_url');
             $filePath = candidateTeachingVideoPath();

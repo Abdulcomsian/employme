@@ -619,7 +619,7 @@ Job Marketplace
 					@auth
 					@role('employer')
 					<li class="me-2"><a href="{{route('candidatesMarketplace')}}" class="btn-three">Looking for job?</a></li>
-					<li class="ms-2"><a href="{{route('postAJob')}}" class="btn-four">Post a job</a></li>
+					<li class="ms-2"><a href="{{route('employer-jobs.create')}} class="btn-four">Post a job</a></li>
 					@endrole
 					@endauth
 					</ul>

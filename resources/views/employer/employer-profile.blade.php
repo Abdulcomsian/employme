@@ -5,6 +5,7 @@ Profile
 @endsection
 @push('page-css')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.css')}}" media="all">	
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <style>
 	.step {
 		display: none;
@@ -54,6 +55,38 @@ Profile
 		font-size: 13px;
 		font-weight: 600;
 	}
+
+	.note-editable{
+   background: #fff;
+}
+.note-btn.dropdown-toggle:after {
+   content: none;
+}
+.note-btn[aria-label="Help"]{
+   display: none;
+}
+
+.note-editor .note-toolbar .note-color-all .note-dropdown-menu, .note-popover .popover-content .note-color-all .note-dropdown-menu{
+   min-width: 185px;
+}
+/* Customize Summernote editor */
+.note-editor {
+/* Your custom styles here */
+}
+
+.note-editable {
+/* Your custom styles here */
+}
+
+/* Toolbar customization */
+.note-toolbar {
+/* Your custom styles here */
+}
+
+/* Buttons customization */
+.note-btn {
+/* Your custom styles here */
+}
 </style>
 
 @endpush
@@ -134,7 +167,7 @@ Profile
 						<div class="icon">
 							<div>5</div>
 						</div>
-						<div class="text">Subscription Plan Selection</div>
+						<div class="text">Introductry Video</div>
 					</div>
 				</div>
 					<form id="basic-information-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
@@ -360,6 +393,14 @@ Profile
 									</div>
 								</div>
 							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="dash-input-wrapper mb-30">
+										<label for="">Business Hours</label>
+										<input type="number" class="number-input" name="businessHours" placeholder="4935" value="{{$employerDetails->business_hours ?? ''}}">
+									</div>
+								</div>
+							</div>
 
 							<div class="d-flex flex-row justify-content-end gap-3">
 								<button type="button" class="dash-btn-one" onclick="previousStep(2)">Previous</button>
@@ -478,6 +519,16 @@ Profile
 					<form id="payment-details-form" method = "post" enctype = "multipart/form-data">
 						<div class="step" id="step-5">
 							<div class="row">
+								<div class="col-lg-12">
+									<div class="dash-input-wrapper mb-20">
+										<label for="">Overview</label>
+										<textarea  name="detailsDescription" value="" id="summernote" class = " @error('title') is-invalid @enderror" placeholder="Zubayer">{!! $employerDetails->employer_details ?? '' !!}</textarea>
+										
+									</div>
+									<!-- /.dash-input-wrapper -->
+								</div>
+							</div>
+							{{--<div class="row">
 								<div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">
 										<label for="">Select Subscription</label>
@@ -490,7 +541,7 @@ Profile
 										</select>
 									</div>
 								</div>
-								{{--<div class="col-md-6">
+								<div class="col-md-6">
 									
 									<div class="row dash-input-wrapper mb-30">
 										<div class="form-group">
@@ -502,21 +553,61 @@ Profile
 									<hr>
 										<button type="submit" class="btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}">Purchase</button>
 									</div>
-								</div>--}}
+								</div>
+							</div>--}}
+							
+							<div class = "row">
+								<div class="col-md-6">
+									<div class="dash-input-wrapper mb-30">
+										<label for="">Teaching Video</label>
+										<div class="user-avatar-setting d-flex align-items-center mb-30">
+											<div class="upload-btn position-relative tran3s ms-4 me-3">
+												Upload new video
+												<input type="file" id="introductryVideo" name="introductryVideo" placeholder="" accept="video/mp4" onchange="previewVideo()">
+											</div>
+
+											<button class="delete-btn tran3s " onclick = "deleteFile('video-url')">Delete</button>
+										</div>
+										<video id="videoPreview" class = "d-none" width="320" height="240" controls></video>
+										@if(isset($employerDetails->introductry_video) && !empty($employerDetails->introductry_video))
+										<div style = "padding-left:20px;" class = "mt-2 video-url">
+											<a class="btn btn-primary" href = "{{asset($employerDetails->introductry_video)}}" target = "_blank">File</a>
+										</div>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="dash-input-wrapper mb-30">
+										<label for="">Video Thumbnail Image</label>
+										<div class="user-avatar-setting d-flex align-items-center mb-30">
+											<div class="upload-btn position-relative tran3s ms-4 me-3">
+												Upload Thumbnail
+												<input type="file" id="videoThumbnail" name="videoThumbnail" placeholder="" accept="image/jpeg,image/png">
+											</div>
+
+											<button class="delete-btn tran3s " onclick = "deleteFile('thumbnail-image')">Delete</button>
+										</div>
+										@if(isset($employerDetails->video_thumbnail) && !empty($employerDetails->video_thumbnail))
+										<div style = "padding-left:20px;" class = "thumbnail-image">
+											<a class="btn btn-primary" href = "{{asset($employerDetails->video_thumbnail)}}" target = "_blank">File</a>
+										</div>
+										@endif
+									</div>
+                            	</div>
 							</div>
 							<div class="row">
 							
-								<div class="col-md-6">
-									<div class="dash-input-wrapper mb-30">
-										<label for="">Acceptance of terms and conditions of the subscription.</label>
-										<select name="acceptanceOfTermsAndConditions" id="acceptanceOfTermsAndConditions" class="nice-select" >
-											<option value="I Accept" {{$employerDetails->terms_and_conditions_acceptance == 'I Accept' ? 'selected' : ''}}>I Accept</option>
-											<option value="I do not Accept" {{$employerDetails->terms_and_conditions_acceptance == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
-										</select>
-										<div id="subscription-terms-condiditions-acceptance"></div>
-									</div>
+							<div class="col-md-6">
+								<div class="dash-input-wrapper mb-30">
+									<label for="">Acceptance of terms and conditions of the subscription.</label>
+									<select name="acceptanceOfTermsAndConditions" id="acceptanceOfTermsAndConditions" class="nice-select" >
+										<option value="I Accept" {{$employerDetails->terms_and_conditions_acceptance == 'I Accept' ? 'selected' : ''}}>I Accept</option>
+										<option value="I do not Accept" {{$employerDetails->terms_and_conditions_acceptance == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
+									</select>
+									<div id="subscription-terms-condiditions-acceptance"></div>
 								</div>
 							</div>
+						</div>
 
 
 							<div class="d-flex flex-row justify-content-end gap-3">
@@ -684,6 +775,7 @@ Profile
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
 
 <script src="https://js.stripe.com/v3/"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script>
     const stripe = Stripe('{{ env('STRIPE_KEY') }}')
   
@@ -766,186 +858,196 @@ Profile
 	    //     else
 		// 	step3NextBtn.disabled = true
 
-
-    $("#basic-information-form").on("submit", function(e) {
-        e.preventDefault();
-		var formData = new FormData();
-        formData.append("_token", "{{ csrf_token() }}");
-        formData.append("institution", $("#basic-information-form").find("[name=legalNameOfSchool]").val());
-        formData.append("institution_type", $("#basic-information-form").find("[name=typeOfSchool]").val());
-        formData.append("address_line_1", $("#basic-information-form").find("[name=addressLine1]").val());
-        formData.append("address_line_2", $("#basic-information-form").find("[name=addressLine2]").val());
-        formData.append("country_id", $("#basic-information-form").find("[name=country]").val());
-        formData.append("state", $("#basic-information-form").find("[name=state]").val());
-        formData.append("city", $("#basic-information-form").find("[name=city]").val());
-        formData.append("zip_code", $("#basic-information-form").find("[name=zipPostCode]").val());
-        formData.append("phone_number", $("#basic-information-form").find("[name=phoneNumber]").val());
-        formData.append("email", $("#basic-information-form").find("[name=email]").val());
-       /* 
-        formData.append("number_of_administrative_staff", $("#multi-step-form").find("[name=numberOfAdministrativeStaff]").val());
-        formData.append("established_date", $("#multi-step-form").find("[name=yearOfEstablished]").val());
-		formData.append("employer_details", $("#multi-step-form").find("[name=detailsDescription]").val());*/
-        formData.append("institution_logo", $('#institution_logo')[0].files[0]);
-
-          $.ajax({
-            type: "POST",
-              url: "{{route('employer.profile-1.save')}}",
-              data: formData ,
-              dataType: 'json',
-			  contentType: false,
-              processData: false,
-              success: function (data) {
-    
-                if (data.status) {
-					nextStep(1);
-                    // window.location = data.redirect;
-                }else{
-                    $(".alert").remove();
-                    $.each(data.errors, function (key, val) {
-                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
-                    });
-                }
-               
-              }
-          });
-  
-          return false;
-      });
-
-	  // Employer Opeational Details
-      $("#operational-details-form").on("submit", function(e) {
+		$('#summernote').summernote({
+			placeholder: 'Curriculum',
+			tabsize: 2,
+			height: 200
+ 			});
+		$("#basic-information-form").on("submit", function(e) {
 			e.preventDefault();
 			var formData = new FormData();
 			formData.append("_token", "{{ csrf_token() }}");
-			formData.append('school_vision_and_mission',$("#operational-details-form").find('[name=schoolMission]').val());
-			/*formData.append('instruction_languages_used',$("#multi-step-form").find('[name=languagesOfInstructionUsedInTheSchool]').val());
-			formData.append('available_technical_resources',$("#multi-step-form").find('[name=technicalResources]').val());
-			formData.append('international_accredition_or_certification',$('#anyInternationalOrNationalAccreditations')[0].files[0]); */
-			formData.append('employed_foreign_staff_and_roles',$("#operational-details-form").find('[name=numberofForeignStaffCurrentlyEmployed]').val());
-			formData.append("number_of_students", $("#operational-details-form").find("[name=numberOfStudents]").val());
-        	formData.append("number_of_teachers", $("#operational-details-form").find("[name=numberOfTeachers]").val());
-		
-          $.ajax({
-            type: "POST",
-              url: "{{route('employer.profile-2.save')}}",
-              data: formData,
-              dataType: 'json',
-              contentType: false,
-              processData: false,
-              success: function (data) {
-    
-                if (data.status) {
-                    nextStep(2);
-                }else{
-                    $(".alert").remove();
-                    $.each(data.errors, function (key, val) {
-                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
-                    });
-                }
-               
-              }
-          });
-  
-          return false;
-      });
-	
-	  $("#payment-details-form").on('submit',function(e){
-		e.preventDefault();
-		var formData = new FormData();
-			formData.append("_token", "{{ csrf_token() }}");
-			formData.append('plan',$("#payment-details-form").find('[name=differentSubscriptionOptions]').val())
-			formData.append('terms_and_conditions_acceptance',$("#payment-details-form").find('[name=acceptanceOfTermsAndConditions]').val())
-			// formData.append('token',$("#multi-step-form").find('[name=token]').val())
-			// formData.append('token',token.value)
-            // form.submit();
-			$.ajax({
-            type: "POST",
-              url: "{{route('employer.profile-5.save')}}",
-              data: formData,
-              dataType: 'json',
-              contentType: false,
-              processData: false,
-              success: function (data) {
-    
-                if (data.status) {
-                    window.location = data.redirect;
-				 }else{
-                    $(".alert").remove();
-                    $.each(data.errors, function (key, val) {
-                        $("#subscription-terms-condiditions-acceptance").append("<div class='alert alert-danger'>" + val + "</div>");
-                    });
-                }
-               
-              }
-          });
-	  });
-      // Canidate Educational and Professional Information
-    //   $("#subscription-details").on("click", function(e) {
-    //     e.preventDefault();
-    //     var formData = new FormData();
-    //     formData.append("_token", "{{ csrf_token() }}");
-    //     formData.append('subscription_plan_id',$("#multi-step-form").find('[name=differentSubscriptionOptions]').val())
-    //     formData.append('terms_and_conditions_acceptance',$("#multi-step-form").find('[name=acceptanceOfTermsAndConditions]').val())
-    //       $.ajax({
-    //         type: "POST",
-    //           url: "{{route('employer.profile-3.save')}}",
-    //           data: formData,
-    //           dataType: 'json',
-    //           contentType: false,
-    //           processData: false,
-    //           success: function (data) {
-    
-    //             if (data.status) {
-    //                 // window.location = data.redirect;
-    //             }else{
-    //                 $(".alert").remove();
-    //                 $.each(data.errors, function (key, val) {
-    //                     $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
-    //                 });
-    //             }
-               
-    //           }
-    //       });
-  
-    //       return false;
-    //   });
+			formData.append("institution", $("#basic-information-form").find("[name=legalNameOfSchool]").val());
+			formData.append("institution_type", $("#basic-information-form").find("[name=typeOfSchool]").val());
+			formData.append("address_line_1", $("#basic-information-form").find("[name=addressLine1]").val());
+			formData.append("address_line_2", $("#basic-information-form").find("[name=addressLine2]").val());
+			formData.append("country_id", $("#basic-information-form").find("[name=country]").val());
+			formData.append("state", $("#basic-information-form").find("[name=state]").val());
+			formData.append("city", $("#basic-information-form").find("[name=city]").val());
+			formData.append("zip_code", $("#basic-information-form").find("[name=zipPostCode]").val());
+			formData.append("phone_number", $("#basic-information-form").find("[name=phoneNumber]").val());
+			formData.append("email", $("#basic-information-form").find("[name=email]").val());
+			formData.append("institution_logo", $('#institution_logo')[0].files[0]);
+				/* 
+					formData.append("number_of_administrative_staff", $("#multi-step-form").find("[name=numberOfAdministrativeStaff]").val());
+					formData.append("established_date", $("#multi-step-form").find("[name=yearOfEstablished]").val());
+					formData.append("employer_details", $("#multi-step-form").find("[name=detailsDescription]").val());
+					*/
 
-	 // Historical Recruitment Details
-	  $("#employer-verification-form").on("submit", function(e) {
-        e.preventDefault();
-        var formData = new FormData();
-        formData.append("_token", "{{ csrf_token() }}");
-        formData.append('registration_business_license_proof',$("#employer-verification-form").find('[name=proofOfRegistration]').val())
-        formData.append('south_korea_laws_acknowledgement',$("#employer-verification-form").find('[name=southKoreaLawAcknowledgement]').val())
-		formData.append('legal_disputes_confirmation_document',$('#legalDisputesConfirmationDocument')[0].files[0]);
-        /*
-        formData.append('ability_willingness_assurance',$("#multi-step-form").find('[name=abilityWillingnessAssurance]').val())
-        formData.append('financial_health',$("#multi-step-form").find('[name=financialHealthToEnsure]').val()) */
-	
-          $.ajax({
-            type: "POST",
-              url: "{{route('employer.profile-4.save')}}",
-              data: formData,
-              dataType: 'json',
-              contentType: false,
-              processData: false,
-              success: function (data) {
-    
-                if (data.status) {
-					nextStep(3);
-                    // window.location = data.redirect;
-                }else {
-						$("#license-document-error").empty(); // Clear previous errors
+			$.ajax({
+				type: "POST",
+				url: "{{route('employer.profile-1.save')}}",
+				data: formData ,
+				dataType: 'json',
+				contentType: false,
+				processData: false,
+				success: function (data) {
+		
+					if (data.status) {
+						nextStep(1);
+						// window.location = data.redirect;
+					}else{
+						$(".alert").remove();
 						$.each(data.errors, function (key, val) {
-							$("#license-document-error").append("<div class='alert alert-danger'>" + val + "</div>");
+							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
 						});
-        			}
-               
-              }
-          });
-  
-          return false;
-      });
+					}
+				
+				}
+			});
+	
+			return false;
+		});
+
+	  // Employer Opeational Details
+		$("#operational-details-form").on("submit", function(e) {
+				e.preventDefault();
+				var formData = new FormData();
+				formData.append("_token", "{{ csrf_token() }}");
+				formData.append('school_vision_and_mission',$("#operational-details-form").find('[name=schoolMission]').val());
+				/*formData.append('instruction_languages_used',$("#multi-step-form").find('[name=languagesOfInstructionUsedInTheSchool]').val());
+				formData.append('available_technical_resources',$("#multi-step-form").find('[name=technicalResources]').val());
+				formData.append('international_accredition_or_certification',$('#anyInternationalOrNationalAccreditations')[0].files[0]); */
+				formData.append('employed_foreign_staff_and_roles',$("#operational-details-form").find('[name=numberofForeignStaffCurrentlyEmployed]').val());
+				formData.append("number_of_students", $("#operational-details-form").find("[name=numberOfStudents]").val());
+				formData.append("number_of_teachers", $("#operational-details-form").find("[name=numberOfTeachers]").val());
+				formData.append("business_hours", $("#operational-details-form").find("[name=businessHours]").val());
+			
+			$.ajax({
+				type: "POST",
+				url: "{{route('employer.profile-2.save')}}",
+				data: formData,
+				dataType: 'json',
+				contentType: false,
+				processData: false,
+				success: function (data) {
+		
+					if (data.status) {
+						nextStep(2);
+					}else{
+						$(".alert").remove();
+						$.each(data.errors, function (key, val) {
+							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+						});
+					}
+				
+				}
+			});
+	
+			return false;
+		});
+	
+		$("#payment-details-form").on('submit',function(e){
+			e.preventDefault();
+			var formData = new FormData();
+				formData.append("_token", "{{ csrf_token() }}");
+				/* formData.append('plan',$("#payment-details-form").find('[name=differentSubscriptionOptions]').val())
+				 */
+				formData.append("employer_details", $("#payment-details-form").find("[name=detailsDescription]").val());
+				formData.append("introductry_video", $('#introductryVideo')[0].files[0]);
+        		formData.append("video_thumbnail", $('#videoThumbnail')[0].files[0]);
+				formData.append('terms_and_conditions_acceptance',$("#payment-details-form").find('[name=acceptanceOfTermsAndConditions]').val())
+				// formData.append('token',$("#multi-step-form").find('[name=token]').val())
+				// formData.append('token',token.value)
+				// form.submit();
+				$.ajax({
+				type: "POST",
+				url: "{{route('employer.profile-5.save')}}",
+				data: formData,
+				dataType: 'json',
+				contentType: false,
+				processData: false,
+				success: function (data) {
+		
+					if (data.status) {
+						window.location = data.redirect;
+					}else{
+						$(".alert").remove();
+						$.each(data.errors, function (key, val) {
+							$("#subscription-terms-condiditions-acceptance").append("<div class='alert alert-danger'>" + val + "</div>");
+						});
+					}
+				
+				}
+			});
+		});
+			// Canidate Educational and Professional Information
+			//   $("#subscription-details").on("click", function(e) {
+			//     e.preventDefault();
+			//     var formData = new FormData();
+			//     formData.append("_token", "{{ csrf_token() }}");
+			//     formData.append('subscription_plan_id',$("#multi-step-form").find('[name=differentSubscriptionOptions]').val())
+			//     formData.append('terms_and_conditions_acceptance',$("#multi-step-form").find('[name=acceptanceOfTermsAndConditions]').val())
+			//       $.ajax({
+			//         type: "POST",
+			//           url: "{{route('employer.profile-3.save')}}",
+			//           data: formData,
+			//           dataType: 'json',
+			//           contentType: false,
+			//           processData: false,
+			//           success: function (data) {
+			
+			//             if (data.status) {
+			//                 // window.location = data.redirect;
+			//             }else{
+			//                 $(".alert").remove();
+			//                 $.each(data.errors, function (key, val) {
+			//                     $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+			//                 });
+			//             }
+					
+			//           }
+			//       });
+		
+			//       return false;
+			//   });
+
+			// Historical Recruitment Details
+		$("#employer-verification-form").on("submit", function(e) {
+			e.preventDefault();
+			var formData = new FormData();
+			formData.append("_token", "{{ csrf_token() }}");
+			formData.append('registration_business_license_proof',$("#employer-verification-form").find('[name=proofOfRegistration]').val())
+			formData.append('south_korea_laws_acknowledgement',$("#employer-verification-form").find('[name=southKoreaLawAcknowledgement]').val())
+			formData.append('legal_disputes_confirmation_document',$('#legalDisputesConfirmationDocument')[0].files[0]);
+			/*
+			formData.append('ability_willingness_assurance',$("#multi-step-form").find('[name=abilityWillingnessAssurance]').val())
+			formData.append('financial_health',$("#multi-step-form").find('[name=financialHealthToEnsure]').val()) */
+		
+			$.ajax({
+				type: "POST",
+				url: "{{route('employer.profile-4.save')}}",
+				data: formData,
+				dataType: 'json',
+				contentType: false,
+				processData: false,
+				success: function (data) {
+		
+					if (data.status) {
+						nextStep(3);
+						// window.location = data.redirect;
+					}else {
+							$("#license-document-error").empty(); // Clear previous errors
+							$.each(data.errors, function (key, val) {
+								$("#license-document-error").append("<div class='alert alert-danger'>" + val + "</div>");
+							});
+						}
+				
+				}
+			});
+	
+			return false;
+		});
 
 		$("#historical-recruitment-details").on("click", function(e) {
 			e.preventDefault();
@@ -1120,6 +1222,23 @@ Profile
             }
         });
     });
+
+	
+
+	function previewVideo() {
+		const videoFile = document.getElementById('introductryVideo').files[0];
+		const videoPreview = document.getElementById('videoPreview');
+
+		if (videoFile) {
+			const videoURL = URL.createObjectURL(videoFile);
+			videoPreview.src = videoURL;
+			videoPreview.classList.remove('d-none');
+		}else
+		{
+			videoPreview.src = '';
+			videoPreview.classList.add('d-none');
+		}
+	}
 </script>
 @endpush
 @endsection
