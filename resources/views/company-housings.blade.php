@@ -20,7 +20,7 @@
 					<div class="row">
 						<div class="col-xl-6 m-auto text-center">
 							<div class="title-two">
-								<h2 class="text-white"> School Name</h2>
+								<h2 class="text-white"> {{$employerDetails->institution ?? ''}}</h2>
 							</div>
 							<div class="logo mt-10">
 								

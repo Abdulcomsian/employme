@@ -13,9 +13,7 @@
 .active{
 		color: #D2F34C !important;
 	}
-.expired-btn{
-    background:red;
-}	
+
 </style>
 <div class="inner-banner-one position-relative">
 			<div class="container">
@@ -23,7 +21,7 @@
 					<div class="row">
 						<div class="col-xl-6 m-auto text-center">
 							<div class="title-two">
-								<h2 class="text-white"> School Name</h2>
+								<h2 class="text-white"> {{$employerDetails->institution ?? ''}}</h2>
 							</div>
 							<div class="logo mt-10">
 								
@@ -211,7 +209,7 @@
                                         @if($job->job_status == 1)
 										<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="apply-btn text-center tran3s">APPLY</a>
                                         @else
-                                        <a href="#" class="expired-btn text-center tran3s">Expired</a>
+                                        <a href="#" class="apply-btn text-center tran3s">Expired</a>
                                         @endif
 									</div>
 								</div>
