@@ -45,18 +45,22 @@
 							{{date('d M Y',strtotime($jobDetails->created_at))}} by
 							<a href="#" class="fw-500 text-dark">{{$jobDetails->employerDetails->institution ?? ''}}</a>
 						</div>
-						@if(\Auth::check())
-						   @role('candidate')
-						   @if(jobApplicationStatus($jobDetails->id) == 1)
-						   		<button class="btn-one">Applied Already</button>
-							@else
-								<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
-								<button class="btn-one" data-bs-toggle="modal" data-bs-target="#JobApplicationModal">Apply For This Job</button>
-						   @endif
-						   @endrole
+						@if($jobDetails->job_status == 0)
+							<button class="btn-one " >Job Expired</button>
 						@else
-							<button class="btn-one PleaseLoginButton" >Apply For This Job</button>
-						      <!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
+							@if(\Auth::check())
+							@role('candidate')
+							@if(jobApplicationStatus($jobDetails->id) == 1)
+									<button class="btn-one">Applied Already</button>
+								@else
+									<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
+									<button class="btn-one" data-bs-toggle="modal" data-bs-target="#JobApplicationModal">Apply For This Job</button>
+							@endif
+							@endrole
+							@else
+								<button class="btn-one PleaseLoginButton" >Apply For This Job</button>
+								<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
+							@endif
 						@endif
 							<!-- <form id="job-application-form" action="{{ route('jobApplicationRequest') }}" method="POST" style="display: none;">
                               @csrf
