@@ -353,7 +353,7 @@
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto logo">
 						@endif
 					<div class="text-md text-dark text-center mt-15 mb-20">{{$jobDetails->employerDetails->institution ?? ''}}</div>
-					<a href="{{route('companyAboutUs', \Crypt::encryptString($jobDetails->employerDetails->id))}}" class="website-btn tran3s">About Company</a>
+					<a href="{{route('companyAboutUs', \Crypt::encryptString($jobDetails->posted_by))}}" class="website-btn tran3s">About Company</a>
 
 					<div class="border-top mt-40 pt-40">
 						<ul class="job-meta-data row style-none">

@@ -73,6 +73,7 @@ Route::get('candidate-profile-album', [UserController::class, 'candidateProfileA
 Route::get('candidate-profile-comment', [UserController::class, 'candidateProfileComment'])->name('candidateProfileComment');
 
 Route::get('company-about-us/{id}', [UserController::class, 'companyAboutUs'])->name('companyAboutUs');
+Route::get('company-business-operation/{id}', [UserController::class, 'companyBusinessOperation'])->name('companyBusinessOperation');
 Route::get('company-facilities/{id}', [UserController::class, 'companyFacilities'])->name('companyFacilities');
 Route::get('company-staff/{id}', [UserController::class, 'companyStaff'])->name('companyStaff');
 Route::get('company-programs/{id}', [UserController::class, 'companyPrograms'])->name('companyPrograms');

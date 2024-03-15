@@ -162,109 +162,32 @@
 
 
 					<div class="container">
-						<h3>Overview</h3>
+						<h3>Curriculum</h3>
 						{{--<p><b>School's Mission & Vision:</b> {{$employerDetails->school_vision_and_mission}}</p>--}}
-						<p>{!! $employerDetails->employer_details ?? '' !!}</p>
-						<h3>Intro</h3>
-					
-						@if(!empty($employerDetails->introductry_video))
-						<div
-							class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-50 lg-mb-50">
-							<a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
-								href="{{asset($employerDetails->introductry_video)}}">
-								<i class="bi bi-play"></i>
-							</a>
-						</div>
-						@endif
+						<p>{!! $businessOperationDetails->curriculum ?? '' !!}</p>
+						<h4>Work Hours</h4>
+                        <div class = "row col-md-6">
+                        <table class="table table-borderless">
+                        
+                        <tbody>
+                        @isset($businessOperationDetails->operation_time)
+                        @foreach($businessOperationDetails->operation_time as $operation_time)
+                        @if(isset($operation_time['day']) && $operation_time['day'] !='')
+                        <tr>
+                            <td><b>{{$operation_time['day']}}</b></td>
+                            <td>{{ isset($operation_time['start_time']) ? date('h:i A',strtotime($operation_time['start_time'])) : ''}} - {{ isset($operation_time['end_time']) ? date('h:i A',strtotime($operation_time['end_time'])) : ''}}</td>
+                        </tr>
+                        @endif
+                        @endforeach
+                        @endisset
+                        </tbody>
+                    </table>
+                        </div>
 						
 
 						<!-- <p><b>Teaching Philosophy:</b> (Details about the school's pedagogic beliefs and methods)</p> -->
 					</div>
-					<div class="details">
-					<h3>Company Reviews</h3>
-
-							<div class="company-review-slider">
-								<div class="item">
-									<div class="feedback-block-four">
-										<ul class="list-unstyled d-flex justify-content-start text-warning mb-0">
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="far fa-star fa-sm"></i></li>
-										</ul>										
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-											perspiciatis atque consequuntur reiciendis sunt magnam.</p>
-										<div class = "d-flex">
-											<img class="rounded-circle shadow-1-strong"
-												src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
-												style="width: 50px;margin-right:7px;" />
-											<h5>Maria Katie</h5>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="feedback-block-four">
-										<ul class="list-unstyled d-flex justify-content-start text-warning mb-0">
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="far fa-star fa-sm"></i></li>
-										</ul>										
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-											perspiciatis atque consequuntur reiciendis sunt magnam.</p>
-										<div class = "d-flex">
-											<img class="rounded-circle shadow-1-strong"
-												src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
-												style="width: 50px;margin-right:7px;" />
-											<h5>Maria Katie</h5>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="feedback-block-four">
-										<ul class="list-unstyled d-flex justify-content-start text-warning mb-0">
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="far fa-star fa-sm"></i></li>
-										</ul>										
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-											perspiciatis atque consequuntur reiciendis sunt magnam.</p>
-										<div class = "d-flex">
-											<img class="rounded-circle shadow-1-strong"
-												src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
-												style="width: 50px;margin-right:7px;" />
-											<h5>Maria Katie</h5>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="feedback-block-four">
-										<ul class="list-unstyled d-flex justify-content-start text-warning mb-0">
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="far fa-star fa-sm"></i></li>
-										</ul>										
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-											perspiciatis atque consequuntur reiciendis sunt magnam.</p>
-										<div class = "d-flex">
-											<img class="rounded-circle shadow-1-strong"
-												src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
-												style="width: 50px;margin-right:7px;" />
-											<h5>Maria Katie</h5>
-										</div>
-									</div>
-								</div>
-							</div>
-							{{--<p>
-							<h5>Extra-Curricular Activities: </h5>(Details about clubs, sports, arts, and other
-							non-academic activities)</p>--}}
-						</div>
+					
 				</div>
 			</div>
 		</div>

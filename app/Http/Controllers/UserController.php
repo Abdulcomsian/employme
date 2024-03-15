@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
-use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
-use App\Models\EmployerJob;
-use App\Models\EmployerDetails;
-use App\Models\CandidatePersonalDetails;
-use App\Models\SavedCandidate;
-use App\Models\JobCategory;
+use App\Models\{User, EmployerJob, EmployerDetails, CandidatePersonalDetails,
+     SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation };
 use Illuminate\Support\Facades\Auth;
 use File;
 use Response;
@@ -339,38 +335,48 @@ class UserController extends Controller
     public function companyAboutUs($id)
     {
         $id = Crypt::decryptString($id);
-        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->where('user_id',$id)->first();
         return view('company-about-us',compact('employerDetails'));
+    }
+    public function companyBusinessOperation($id)
+    {
+        $id = Crypt::decryptString($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->where('user_id',$id)->first();
+        $businessOperationDetails  = BusinessOperation::where('employer_id',$id)->first();
+        return view('company-business-operation',compact('employerDetails','businessOperationDetails'));
     }
     public function companyFacilities($id)
     {
         $id = Crypt::decryptString($id);
-        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->where('user_id',$id)->first();
+        
         return view('company-facilities',compact('employerDetails'));
     }
     public function companyStaff($id)
     {
         $id = Crypt::decryptString($id);
-        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
-        return view('company-staff',compact('employerDetails'));
+        $employerDetails = EmployerDetails::with('employerCountry')->where('user_id',$id)->first();
+        $employerStaff = Staff::where('employer_id',$id)->get();
+        return view('company-staff',compact('employerDetails','employerStaff'));
     }
     public function companyPrograms($id)
     {
         $id = Crypt::decryptString($id);
-        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->where('user_id',$id)->first();
         return view('company-programs',compact('employerDetails'));
     }
     public function companyReviews($id)
     {
         $id = Crypt::decryptString($id);
-        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->where('user_id',$id)->first();
         return view('company-reviews',compact('employerDetails'));
     }
     public function companyGallery($id)
     {
         $id = Crypt::decryptString($id);
-        $employerDetails = EmployerDetails::with('employerCountry')->find($id);
-        return view('company-gallery',compact('employerDetails'));
+        $employerDetails = EmployerDetails::with('employerCountry')->where('user_id',$id)->first();
+        $galleryFiles = Gallery::where('employer_id',$id)->get();
+        return view('company-gallery',compact('employerDetails','galleryFiles'));
     }
     public function companyLocation($id)
     {
