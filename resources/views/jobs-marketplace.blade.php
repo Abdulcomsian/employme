@@ -491,9 +491,8 @@ Job Marketplace
 
 					<div class="accordion-box grid-style show">
 						<div class="row">
-						@isset($allJobs)
-						@foreach($allJobs as $index=>$job)
-
+						   @isset($allJobs)
+						   @foreach($allJobs as $index=>$job)
 							<div class="col-sm-6 mb-30">
 								<div class="job-list-two style-two position-relative">
 									<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="logo">
@@ -515,7 +514,7 @@ Job Marketplace
 								</div> <!-- /.job-list-two -->
 							</div>
 							@endforeach
-						@endisset
+							@endisset
 							<!-- <div class="col-sm-6 mb-30">
 								<div class="job-list-two style-two position-relative">
 									<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img m-auto"></a>

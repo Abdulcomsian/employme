@@ -345,6 +345,20 @@ class UserController extends Controller
         $businessOperationDetails  = BusinessOperation::where('employer_id',$id)->first();
         return view('company-business-operation',compact('employerDetails','businessOperationDetails'));
     }
+    public function companyHousings($id)
+    {
+        $id = Crypt::decryptString($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->where('user_id',$id)->first();
+        $companyHousingsImages = Gallery::where('employer_id',$id)->get();
+        return view('company-housings',compact('employerDetails','companyHousingsImages'));
+    }
+    public function companyJobs($id)
+    {
+        $id = Crypt::decryptString($id);
+        $employerDetails = EmployerDetails::with('employerCountry')->where('user_id',$id)->first();
+        $allJobs = EmployerJob::with('employerDetails')->where('posted_by',$id)->get();
+        return view('company-jobs',compact('employerDetails','allJobs'));
+    }
     public function companyFacilities($id)
     {
         $id = Crypt::decryptString($id);

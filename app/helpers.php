@@ -62,6 +62,15 @@ function  employerGalleryPath($user = null)
     }
     return $path;
 }
+function  employerHousingImagePath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/employer/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/housing_images/';
+    } else {
+        $path  = 'uploads/employer/housing_images/';
+    }
+    return $path;
+}
 
 function  employerConfirmationDocumentPath($user = null)
 {

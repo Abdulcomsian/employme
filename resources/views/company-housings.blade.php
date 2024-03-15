@@ -9,10 +9,10 @@
 }
 .company-details .details-post-data .container h2 {
 	font-size:67px;
-}
+}	
 .active{
 		color: #D2F34C !important;
-	}	
+	}
 </style>
 <div class="inner-banner-one position-relative">
 			<div class="container">
@@ -49,12 +49,12 @@
 
 		  <nav class="nav-2" id="menu">
 			<ul id="menu-closed">
-			<li><a href="{{route('companyAboutUs', \Crypt::encryptString($employerDetails->user_id))}}" > About Us</a></li>
+			<li><a href="{{route('companyAboutUs', \Crypt::encryptString($employerDetails->user_id))}}">  About Us</a></li>
 			<li><a href="{{route('companyStaff', \Crypt::encryptString($employerDetails->user_id))}}">Staff</a></li>
-			<li><a href="{{route('companyGallery', \Crypt::encryptString($employerDetails->user_id))}}" class="active">Media Gallery</a></li>
+			<li><a href="{{route('companyGallery', \Crypt::encryptString($employerDetails->user_id))}}">Media Gallery</a></li>
 			<li><a href="{{route('companyBusinessOperation', \Crypt::encryptString($employerDetails->user_id))}}">Business Operation</a></li>
-			<li><a href="{{route('companyHousings', \Crypt::encryptString($employerDetails->user_id))}}">Housings</a></li>
-            <li><a href="{{route('companyJobs', \Crypt::encryptString($employerDetails->user_id))}}" >Jobs</a></li>
+			<li><a href="{{route('companyHousings', \Crypt::encryptString($employerDetails->user_id))}}" class="active">Housings</a></li>
+			<li><a href="{{route('companyJobs', \Crypt::encryptString($employerDetails->user_id))}}" >Jobs</a></li>
 
 			{{--	 <li>	<a href="{{route('companyFacilities', \Crypt::encryptString($employerDetails->user_id))}}"  class="active"> School Facilities</a></li>
 				<li><a href="{{route('companyPrograms', \Crypt::encryptString($employerDetails->user_id))}}">Programs and Curriculum</a></li>
@@ -170,18 +170,16 @@
 
 
 						<div class="container">
-							<h3>Gallery</h3>
+							<h3>Housings</h3>
 							{{--<p>Photos: (Images of classrooms, events, staff, and students, housing)</p>
 							<p>Videos: (Short clips or promotional videos showcasing the school environment, events, or teaching methods)</p>--}}
 						</div>
 						<div class="row">
-                           @isset($galleryFiles)
-						   @foreach($galleryFiles as $gallery)
-						   @if($gallery->file_extension != 'mp4')
+                           @isset($companyHousingsImages)
+						   @foreach($companyHousingsImages as $image)
 							<div class="col-md-4 mb-20">
-								<img src="{{asset($gallery->file_name)}}" alt="">
+								<img src="{{asset($image->file_name)}}" alt="">
 							</div>
-							@endif
 							@endforeach
 							@endisset
 							{{--<div class="col-md-4 mb-20">

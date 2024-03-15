@@ -18,6 +18,9 @@
 		height: 440px;
 		border-radius: 10px;
 	}
+	.active{
+		color: #D2F34C !important;
+	}
 </style>
 <div class="inner-banner-one position-relative">
 	<div class="container">
@@ -46,16 +49,18 @@
 </div> <!-- /.inner-banner-one -->
 <nav class="nav-2" id="menu">
 	<ul id="menu-closed">
-	<li><a href="{{route('companyAboutUs', \Crypt::encryptString($employerDetails->user_id))}}"> About Us</a></li>
-	<li><a href="{{route('companyStaff', \Crypt::encryptString($employerDetails->user_id))}}">Staff</a></li>
-	<li><a href="{{route('companyGallery', \Crypt::encryptString($employerDetails->user_id))}}">Media Gallery</a></li>
-	<li><a href="{{route('companyBusinessOperation', \Crypt::encryptString($employerDetails->user_id))}}">Business Operation</a></li>
+	<li><a href="{{route('companyAboutUs', \Crypt::encryptString($employerDetails->user_id))}}" > About Us</a></li>
+			<li><a href="{{route('companyStaff', \Crypt::encryptString($employerDetails->user_id))}}">Staff</a></li>
+			<li><a href="{{route('companyGallery', \Crypt::encryptString($employerDetails->user_id))}}">Media Gallery</a></li>
+			<li><a href="{{route('companyBusinessOperation', \Crypt::encryptString($employerDetails->user_id))}}" class="active">Business Operation</a></li>
+			<li><a href="{{route('companyHousings', \Crypt::encryptString($employerDetails->user_id))}}">Housings</a></li>
+            <li><a href="{{route('companyJobs', \Crypt::encryptString($employerDetails->user_id))}}" >Jobs</a></li>
 
-		 <li>	<a href="{{route('companyFacilities', \Crypt::encryptString($employerDetails->user_id))}}"  class="active"> School Facilities</a></li>
-		<li><a href="{{route('companyPrograms', \Crypt::encryptString($employerDetails->user_id))}}">Programs and Curriculum</a></li>
-		<li>	<a href="{{route('companyReviews', \Crypt::encryptString($employerDetails->user_id))}}">Reviews and Testimonials</a></li>
-		<li><a href="{{route('companyLocation', \Crypt::encryptString($employerDetails->user_id))}}">Location and Accessibility</a></li>
-		<li><a href="{{route('companyStaffInfo', \Crypt::encryptString($employerDetails->user_id))}}" > Current Staff Information</a></li> 
+			{{--	 <li>	<a href="{{route('companyFacilities', \Crypt::encryptString($employerDetails->user_id))}}"  class="active"> School Facilities</a></li>
+				<li><a href="{{route('companyPrograms', \Crypt::encryptString($employerDetails->user_id))}}">Programs and Curriculum</a></li>
+				<li>	<a href="{{route('companyReviews', \Crypt::encryptString($employerDetails->user_id))}}">Reviews and Testimonials</a></li>
+				<li><a href="{{route('companyLocation', \Crypt::encryptString($employerDetails->user_id))}}">Location and Accessibility</a></li>
+				<li><a href="{{route('companyStaffInfo', \Crypt::encryptString($employerDetails->user_id))}}" > Current Staff Information</a></li> --}}
 		<li><a href="#menu-closed">&#215; </a></li>
 		<li><a href="#menu">&#9776; more</a></li>
 	</ul>

@@ -73,7 +73,7 @@
                                         <span>Business Operation</span>
                                     </a>
                                 </li> 
-                                <li><a href="#" class="d-flex w-100 align-items-center ">
+                                <li><a href="{{route('employer.housing.index')}}"  class="d-flex w-100 align-items-center {{(request()->is('employer/manage/housings') || request()->is('employer/manage/housings/*')) ? 'active' : ''}}">
                                     <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
                                         <span>Housing</span>
                                     </a>

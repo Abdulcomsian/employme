@@ -18,7 +18,8 @@ use App\Http\Controllers\{
     StripeWebhookController,
     StaffController,
     GalleryController,
-    BusinessOperationController
+    BusinessOperationController,
+    HousingController
 };
 
 /*
@@ -74,6 +75,8 @@ Route::get('candidate-profile-comment', [UserController::class, 'candidateProfil
 
 Route::get('company-about-us/{id}', [UserController::class, 'companyAboutUs'])->name('companyAboutUs');
 Route::get('company-business-operation/{id}', [UserController::class, 'companyBusinessOperation'])->name('companyBusinessOperation');
+Route::get('company-housings/{id}', [UserController::class, 'companyHousings'])->name('companyHousings');
+Route::get('company-jobs/{id}', [UserController::class, 'companyJobs'])->name('companyJobs');
 Route::get('company-facilities/{id}', [UserController::class, 'companyFacilities'])->name('companyFacilities');
 Route::get('company-staff/{id}', [UserController::class, 'companyStaff'])->name('companyStaff');
 Route::get('company-programs/{id}', [UserController::class, 'companyPrograms'])->name('companyPrograms');
@@ -137,6 +140,9 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::resource('employer-jobs', EmployerJobController::class);
     Route::resource('manage/staff',StaffController::class);
     Route::resource('manage/gallery',GalleryController::class);
+    Route::get('manage/housings',[HousingController::class,'index'])->name('employer.housing.index');
+    Route::post('manage/housings/store',[HousingController::class,'store'])->name('employer.housing.store');
+    Route::delete('manage/housings/destroy/{id}',[HousingController::class,'destroy'])->name('employer.housing.destroy');
     Route::get('manage/business-operation',[BusinessOperationController::class,'manageBusinessOperation'])->name('employer.manageBusinessOperation');
     Route::post('update-business-operation',[BusinessOperationController::class,'updateBusinessOperation'])->name('employer.updateBusinessOperation');
 
