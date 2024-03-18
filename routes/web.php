@@ -100,7 +100,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     Route::post('reject-interview/{id}',[CandidateController::class,'rejectInterview'])->name('candidate.rejectInterview');
     Route::post('reschedule-interview',[CandidateController::class,'rescheduleInterview'])->name('candidate.reschedule_interview');
     Route::delete('job-applications/delete/{id}', [CandidateController::class, 'deleteApplication'])->name('candidate.delete-application');
-  
+    Route::post('candiate/review-save',[CandidateController::class,'saveReview'])->name('candidate.review_save');  
 });
 Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], function() {
     Route::post('save-profile-1',[CandidateController::class,'saveProfile1'])->name('candidate.profile-1.save');
@@ -154,6 +154,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('job-applications', [EmployerController::class, 'employerJobApplications'])->name('employerJobApplications');
     Route::post('accept-reschedule-request/{id}',[EmployerController::class,'acceptRescheduleRequest'])->name('employer.accept_reschedule_request');
     Route::post('reject-reschedule-request/{id}',[EmployerController::class,'rejectRescheduleRequest'])->name('employer.reject_reschedule_request');
+    Route::post('interview-conducted/{id}',[EmployerController::class,'interviewConducted'])->name('employer.interview.conducted');
 
 });
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {
