@@ -72,12 +72,12 @@ function  employerHousingImagePath($user = null)
     return $path;
 }
 
-function  employerConfirmationDocumentPath($user = null)
+function  employerBusinessLicenseDocumentPath($user = null)
 {
     if ($user) {
-        $path = 'uploads/employer/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/confirmation_documents/';
+        $path = 'uploads/employer/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/business_licenses/';
     } else {
-        $path  = 'uploads/employer/confirmation_documents/';
+        $path  = 'uploads/employer/business_licenses/';
     }
     return $path;
 }

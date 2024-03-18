@@ -7,7 +7,7 @@ use App\Models\Countries;
 use App\Models\EmployerDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
-use App\Models\{Plan, User, SubscriptionItem, Subscription, EmployerJob, SavedCandidate, JobInterview, JobApplication};
+use App\Models\{Plan, User, SubscriptionItem, Subscription, EmployerJob, SavedCandidate, JobInterview, JobApplication, EmployerBusinessLicense};
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use App\Rules\ValidateJobLink;
@@ -34,6 +34,7 @@ class EmployerController extends Controller
         $countries = Countries::all();
         $intent = auth()->user()->createSetupIntent();
         $employerDetails = EmployerDetails::where('user_id',Auth::id())->first();
+        $employerLicenseDetails = EmployerBusinessLicense::where('employer_id',Auth::id())->first();
         return view('employer.employer-profile',compact('countries','employerDetails','plans','intent'));
     }
     public function getEmployerCandidate()
@@ -151,17 +152,27 @@ class EmployerController extends Controller
         return response()->json(['status'=>false,'errors'=>$validator->errors()->all()]);
        }
         $validated = $validator->validated();
-
-        $updateDetails = EmployerDetails::where('user_id',Auth::id())->first();
-        $imagename = $updateDetails->legal_disputes_confirmation_document;
+        $imagename = '';
+        $checkDetails = EmployerBusinessLicense::where('employer_id',Auth::id())->first();
+        if($checkDetails)
+        {
+            $updateDetails = $checkDetails;
+            $imagename = $updateDetails->license_file;
+        }
+        else{
+            $updateDetails = new EmployerBusinessLicense;
+        }
         if ($request->file('legal_disputes_confirmation_document')) {
             $file = $request->file('legal_disputes_confirmation_document');
-            $filePath = employerConfirmationDocumentPath();
-            $imagename = saveFile($filePath, $file, $updateDetails->legal_disputes_confirmation_document);
+            $filePath = employerBusinessLicenseDocumentPath();
+            $imagename = saveFile($filePath, $file, $imagename);
         }
         $input = $request->except('_token','legal_disputes_confirmation_document');
-        $updateDetails = EmployerDetails::where('user_id',Auth::id());
-        $updateDetails->update(array_merge($input,['legal_disputes_confirmation_document'=>$imagename]));
+        $updateDetails->license_file = $imagename;
+        $updateDetails->license_number = $request->registration_business_license_proof;
+        $updateDetails->employer_id = Auth::id();
+        $updateDetails->approval_status = 0;
+        $updateDetails->save();
         return response()->json([
                         "status" => true, 
                         "message" => url("Employer Details Updated Successfully")

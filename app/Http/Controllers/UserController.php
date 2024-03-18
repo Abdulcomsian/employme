@@ -119,10 +119,10 @@ class UserController extends Controller
         //Search Candidate on  Expert Experience Based
         if(isset($request->SearchExpert) && $request->SearchExpert !='')
             $jobExperience[] = $request->SearcInternship;
-
+         
         if(!empty($jobExperience))
         {
-            $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($request){
+            $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($jobExperience){
                 $query->whereIn('experience_level',$jobExperience);
             });   
         }
@@ -148,7 +148,7 @@ class UserController extends Controller
 
         if(!empty($searchVisas))
         {
-            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
+            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($searchVisas){
                 $query->whereIn('current_visa_status',$searchVisas);
             });         
         }
@@ -164,7 +164,7 @@ class UserController extends Controller
 
         if(!empty($searchGender))
          {
-            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($request){
+            $candidates = $candidates->whereHas('candidatePersonalDetails',function (Builder $query) use ($searchGender){
                 $query->whereIn('gender',$searchGender);
             }); 
         }
@@ -184,8 +184,8 @@ class UserController extends Controller
 
         if(!empty($searchQualifications))
         {
-            $candidates = $candidates->whereHas('candidateEducation',function (Builder $query) use ($request){
-                $query->whereIn('highest_degree',$request->SearchDoctorateQualification);
+            $candidates = $candidates->whereHas('candidateEducation',function (Builder $query) use ($searchQualifications){
+                $query->whereIn('highest_degree',$searchQualifications);
             });         
         }
 

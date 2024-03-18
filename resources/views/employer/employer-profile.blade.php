@@ -441,7 +441,7 @@ Profile
 											<div class="upload-btn position-relative tran3s ms-4 me-3">
 												Upload
 												<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">											</div>
-											<button class="delete-btn tran3s">Delete</button>
+											<button type = "button" class="delete-btn tran3s">Delete</button>
 										</div>
 										<div class = "mt-1" id ="license-document-error"></div>
 										@if(isset($employerDetails->legal_disputes_confirmation_document) && !empty($employerDetails->legal_disputes_confirmation_document))

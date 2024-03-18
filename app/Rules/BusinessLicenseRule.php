@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use App\Models\{EmployerDetails, JobInterview};
+use App\Models\{EmployerDetails, EmployerBusinessLicense};
 use Illuminate\Support\Facades\Auth;
 class BusinessLicenseRule implements ValidationRule
 {
@@ -15,14 +15,18 @@ class BusinessLicenseRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $employerDetails = EmployerDetails::where('user_id',Auth::id())->first();
-        if($value == '' || $value == 'undefined')
+        $employerDetails = EmployerBusinessLicense::where('employer_id',Auth::id())->first();
+        if(isset($employerDetails))
         {
-            if( $employerDetails->legal_disputes_confirmation_document == '')
+            if($value == '' || $value == 'undefined')
             {
-                $fail('You haven\'t upload your Business License, kindly Upload Your Business License Certificate');
+                if( $employerDetails->license_file == '')
+                {
+                    $fail('You haven\'t upload your Business License, kindly Upload Your Business License Certificate');
+                }
             }
         }
+        
       
     }
 }
