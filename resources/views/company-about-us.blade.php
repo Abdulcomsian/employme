@@ -189,7 +189,31 @@
 					<h3>Company Reviews</h3>
 
 							<div class="company-review-slider">
+								@isset($candidateReviews)
+								@foreach($candidateReviews as $candidateReview)
 								<div class="item">
+									<div class="feedback-block-four">
+										<ul class="list-unstyled d-flex justify-content-start text-warning mb-0">
+											@for($i=1;$i < 6; $i++)
+											<li><i class="{{$candidateReview->ratings >= $i ? 'fas' : 'far'}} fa-star fa-sm"></i></li>
+											@endfor											
+											{{--<li><i class="fas fa-star fa-sm"></i></li>
+											<li><i class="fas fa-star fa-sm"></i></li>
+											<li><i class="fas fa-star fa-sm"></i></li>
+											<li><i class="far fa-star fa-sm"></i></li>--}}
+										</ul>										
+										<p>{{$candidateReview->comment}}</p>
+										<div class = "d-flex">
+											<img class="rounded-circle shadow-1-strong"
+												src="{{asset($candidateReview->candidateDetails->candidatePersonalDetails->profile_picture)}}" alt="avatar"
+												style="width: 50px;margin-right:7px;" />
+											<h5>{{$candidateReview->candidateDetails->candidatePersonalDetails->full_name ?? ''}}</h5>
+										</div>
+									</div>
+								</div>
+								@endforeach
+								@endisset
+								{{--<div class="item">
 									<div class="feedback-block-four">
 										<ul class="list-unstyled d-flex justify-content-start text-warning mb-0">
 											<li><i class="fas fa-star fa-sm"></i></li>
@@ -245,26 +269,7 @@
 											<h5>Maria Katie</h5>
 										</div>
 									</div>
-								</div>
-								<div class="item">
-									<div class="feedback-block-four">
-										<ul class="list-unstyled d-flex justify-content-start text-warning mb-0">
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="fas fa-star fa-sm"></i></li>
-											<li><i class="far fa-star fa-sm"></i></li>
-										</ul>										
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-											perspiciatis atque consequuntur reiciendis sunt magnam.</p>
-										<div class = "d-flex">
-											<img class="rounded-circle shadow-1-strong"
-												src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
-												style="width: 50px;margin-right:7px;" />
-											<h5>Maria Katie</h5>
-										</div>
-									</div>
-								</div>
+								</div>--}}
 							</div>
 							{{--<p>
 							<h5>Extra-Curricular Activities: </h5>(Details about clubs, sports, arts, and other

@@ -46,6 +46,7 @@ class InterviewRescheduleNotification extends Notification
         if($this->type == 1)
         {
             $status = '';
+            $subject = "Interview Reschedule Notification";
             if($this->interviewStatus == 1)
             {
                 $status = 'accepted';
@@ -54,11 +55,17 @@ class InterviewRescheduleNotification extends Notification
             }
             $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->full_name;
             $message = $this->employerDetails->employerDetails->institution.' has '.$status.' your request to reschedule the interview for the position of '.$this->jobDetails->job_title;
+        }elseif($this->type == 2){
+            $subject = "Interview Conducted";
+            $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->full_name;
+            $message = $this->employerDetails->employerDetails->institution.' has  marked your interview as conducted for the position of  '.$this->jobDetails->job_title;
         }else{
-        $greetings = 'Dear '.$this->employerDetails->employerDetails->institution;
-        $message = $this->candidateDetails->candidatePersonalDetails->full_name.' has requested to reschedule the interview for the position of  '.$this->jobDetails->job_title;
-        }
+            $subject = "Interview Reschedule Notification";
+            $greetings = 'Dear '.$this->employerDetails->employerDetails->institution;
+            $message = $this->candidateDetails->candidatePersonalDetails->full_name.' has requested to reschedule the interview for the position of  '.$this->jobDetails->job_title;
+            }
         return (new MailMessage)
+                    ->subject($subject)
                     ->greeting($greetings)
                     ->line($message)
                     // ->action('Notification Action', url('/'))

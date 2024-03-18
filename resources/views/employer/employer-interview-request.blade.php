@@ -86,6 +86,16 @@ Interview Request
                                             $status = 'expired';
                                             $message = 'Rejected';
                                         }
+                                        elseif($interview->status == 3)
+                                        {
+                                            $status = 'active';
+                                            $message = 'Conducted';
+                                        }
+                                        elseif($interview->status == 4)
+                                        {
+                                            $status = 'active';
+                                            $message = 'Conducted';
+                                        }
                                      }else
                                      {
                                         $status = 'pending';
@@ -132,6 +142,23 @@ Interview Request
                                                 <form id="reject-form-{{$interview->id}}" action="{{ route('employer.reject_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 </form>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                   @elseif($interview->reschedule_status == 0 && $interview->status == 1)
+                                   <td>
+                                        <div class="action-dots float-end">
+                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <span></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                    document.getElementById('conducted-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Mark as Conducted</a>
+                                                </li>                                                                                               
+                                                <form id="conducted-form-{{$interview->id}}" action="{{ route('employer.interview.conducted', $interview->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                </form>
+                                               
                                             </ul>
                                         </div>
                                     </td>

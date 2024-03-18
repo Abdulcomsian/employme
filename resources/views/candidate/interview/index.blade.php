@@ -6,6 +6,49 @@ Interview Request
 
 @section('content')
 @push('page-css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+<style>
+ 
+
+    .rating-box {
+        position: relative;
+        background: #fff;
+        padding: 25px 50px 35px;
+        border-radius: 25px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .rating-box header {
+        font-size: 22px;
+        color: #dadada;
+        font-weight: 500;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .rating-box .stars {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .stars i {
+        color: #e6e6e6;
+        font-size: 35px;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .stars i.active {
+        color: #ff9c1a !important;
+    }
+
+    @media screen and (min-width: 761px) {
+        .adjust_height {
+            height: 45px;
+        }
+    }
+</style>
 <style>
     .job-title, .job-application  {
     color: #00BF58 !important;
@@ -87,16 +130,33 @@ Interview Request
                                 @isset($allInterviews)
                                 @foreach($allInterviews as $interview)
                                 @php 
-                                     $status = 'pending';
+                                    $status = 'pending';
                                      $message = 'Pending';
-                                     if($interview->status == 1)
+                                     if($interview->reschedule_status == 0)
                                      {
-                                        $status = 'active';
-                                        $message = 'Scheduled';
-                                     }elseif($interview->status == 2)
+                                            if($interview->status == 1)
+                                        {
+                                            $status = 'active';
+                                            $message = 'Scheduled';
+                                        }elseif($interview->status == 2)
+                                        {
+                                            $status = 'expired';
+                                            $message = 'Rejected';
+                                        }
+                                        elseif($interview->status == 3)
+                                        {
+                                            $status = 'active';
+                                            $message = 'Conducted';
+                                        }
+                                        elseif($interview->status == 4)
+                                        {
+                                            $status = 'active';
+                                            $message = 'Conducted';
+                                        }
+                                     }else
                                      {
-                                        $status = 'expired';
-                                        $message = 'Rejected';
+                                        $status = 'pending';
+                                            $message = 'Reschedule Request';
                                      }
                                 @endphp
                                 <tr class="{{$status}}">
@@ -138,6 +198,17 @@ Interview Request
                                                 </form>
                                                 <li><a class="dropdown-item Reschedule-Request-Button" href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" id = "{{$interview->id}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
                                                 {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>--}}
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    @elseif($interview->reschedule_status == 0 && $interview->status == 3)
+                                    <td>
+                                        <div class="action-dots float-end">
+                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <span></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#reviewModal" onclick="employerData({{$interview->id}})"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img" > Review</a></li>
                                             </ul>
                                         </div>
                                     </td>
@@ -437,12 +508,84 @@ Interview Request
         </div>
     </div>
 </div>
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <form method = "post" action = "{{route('candidate.review_save')}}">
+                        @csrf
+                        <input type = "hidden" name= "interview_id"  id = "interview_id">
+                        <div class="modal-header">
+                            <h5 class="modal-title " id="reviewModalLabel" style="font-family:gordita">Rating</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class=" d-flex justify-content-center col-md-12">
+                                    <div class="stars">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <input type="text" name="rating" hidden value=0></input>
+                                <div class="  d-flex  col-md-12 mt-20">
+                                    <div class="input-group-meta position-relative mb-25">
+                                        <label><b>Comment</b></label>
+                                        <textarea  name = "comment" placeholder="" rows = "3" cols = "50" required></textarea>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn-submit fw-500 tran3s d-block mt-20">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 @push('page-script')
 <script>
     document.querySelector('.Reschedule-Request-Button').addEventListener('click',function(){
           document.querySelector('input[name=reschedule_interview_id]').value = this.id;
     });
+
+    const stars = document.querySelectorAll(".stars i");
+stars.forEach((star, index1) => {
+    star.addEventListener("click", () => {
+        stars.forEach((star, index2) => {
+            index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+        });
+        const rating = document.querySelectorAll(".stars i.active").length;
+        const hiddenInput = modal.querySelector('input[name="rating"]');
+        hiddenInput.value = rating;
+    });
+});
+
+function employerData(interviewId)
+{
+    document.getElementById('interview_id').value = interviewId;
+}
+const modal = document.getElementById('reviewModal');
+            modal.addEventListener('hidden.bs.modal', function() {
+                // Clear the select element
+                const selectElement = modal.querySelector('select');
+                selectElement.selectedIndex = 0; // Set it to the default option
+
+                // Clear the textarea
+                const textareaElement = modal.querySelector('textarea');
+                textareaElement.value = '';
+
+                const hiddenInput = modal.querySelector('input[name="rating"]');
+                hiddenInput.value = 0;
+
+                // Clear the star ratings (remove the "active" class)
+                const stars = modal.querySelectorAll('.stars i');
+                stars.forEach(star => star.classList.remove('active'));
+            });
 </script>
 @endpush
 @endsection

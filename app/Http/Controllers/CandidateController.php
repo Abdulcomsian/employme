@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\{User,
-    CandidatePersonalDetails, CandidateEducation, ProfessionalSkills, CandidatePreferences, Cities, Countries, SavedJob, EmployerJob, JobCategory, JobInterview};
+    CandidatePersonalDetails, CandidateEducation, ProfessionalSkills, CandidatePreferences,
+     Cities, Countries, SavedJob, EmployerJob, JobCategory, JobInterview, Review};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Notification;
@@ -333,6 +334,31 @@ class CandidateController extends Controller
             "message" => $message
         ]);
 
+   }
+
+   public function saveReview(Request $request)
+   {
+    $interviewDetails = JobInterview::find($request->interview_id);
+        $checkReview = Review::where(['candidate_id'=>\Auth::id(),'interview_id'=>$request->interview_id])->first();
+        if($checkReview)
+        {
+            $createReview = $checkReview;
+        }else
+        {
+            $createReview = new Review;
+        }
+        $createReview->comment = $request->comment;
+        $createReview->ratings = $request->rating;
+        $createReview->interview_id = $request->interview_id;
+        $createReview->employer_id = $interviewDetails->requested_from;
+        $createReview->candidate_id = \Auth::id();
+        if($createReview->save())
+        {
+            $interviewDetails->status = 4;
+            $interviewDetails->save();
+        toastr('Review Saved Successfully');
+        return redirect()->back();
+        }
    }
 
 }

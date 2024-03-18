@@ -35,17 +35,18 @@ class SubscriptionController extends Controller
      */
     public function subscription(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'terms_and_conditions_acceptance' => 'required|in:I Accept',
-        ]);
+        // dd($request->all());
+        // $validator = Validator::make($request->all(), [
+        //     'terms_and_conditions_acceptance' => 'required|in:I Accept',
+        // ]);
   
-        if ($validator->fails()){
-            return response()->json([
-                    "status" => false,
-                    "errors" => $validator->errors()
-                ]);
-        }
-        $plan = Plan::find($request->plan);
+        // if ($validator->fails()){
+        //     return response()->json([
+        //             "status" => false,
+        //             "errors" => $validator->errors()
+        //         ]);
+        // }
+        $plan = Plan::find($request->plan_id);
         $userSubscription = User::find(Auth::id())->subscriptions('default')->first();
         $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
         if(!empty($userSubscription))
@@ -53,22 +54,22 @@ class SubscriptionController extends Controller
             if($userSubscription->stripe_price != $plan->stripe_plan)
             {
                 $userSubscription->swap($plan->stripe_plan);
-                $updateEmployerDetails->update(['subscription_plan_id'=>$request->plan]);
+                $updateEmployerDetails->update(['subscription_plan_id'=>$request->plan_id]);
             }
         }else{
-            $subscription = $request->user()->newSubscription($request->plan, $plan->stripe_plan)
+            $subscription = $request->user()->newSubscription($request->plan_id, $plan->stripe_plan)
             ->create($request->token);
-            $updateEmployerDetails->update(['subscription_plan_id'=>$request->plan]);
+            $updateEmployerDetails->update(['subscription_plan_id'=>$request->plan_id]);
         }
         
   
         // return view("subscription_success");
-        // toastr()->success('Your have successfully Subscribed the Plan');
-        // return redirect()->back();
-        return response()->json([
-            "status" => true, 
-            "message" => "Subscribed Sucessfulyy",
-            "redirect" => url("employer/employer-profile")
-        ]);
+        toastr()->success('Your have successfully Subscribed the Plan');
+        return redirect()->back();
+        // return response()->json([
+        //     "status" => true, 
+        //     "message" => "Subscribed Sucessfulyy",
+        //     "redirect" => url("employer/employer-profile")
+        // ]);
     }
 }

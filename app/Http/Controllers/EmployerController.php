@@ -51,6 +51,8 @@ class EmployerController extends Controller
         // }
         // $subscription=User::find(Auth::id())->subscriptions('default')->first();
         // $subscription->swap('price_1O45OVIWh0YxdiV2lbhYthVN');
+        $intent = auth()->user()->createSetupIntent();
+        $allPlans = Plan::all();
         $userSubscription = User::find(Auth::id())->subscriptions('default')->first();
         
         $renewalTimestamp=null;
@@ -70,7 +72,7 @@ class EmployerController extends Controller
                 $formattedDate = $carbonDate->format('d M, Y');
                 $userSubscription->renewal_date =  $formattedDate;
         }
-        return view('employer.employer-dashboard-subscription-plan',compact('userSubscription'));
+        return view('employer.employer-dashboard-subscription-plan',compact('userSubscription','allPlans','intent'));
     }
 
     public function postAJob()
@@ -392,7 +394,7 @@ class EmployerController extends Controller
         $candidateDetails = User::with('candidatePersonalDetails')->find($acceptRescheduleRequest->requested_to);
         $employerDetails = User::with('employerDetails')->find($acceptRescheduleRequest->requested_from);
         $jobDetails = EmployerJob::find($acceptRescheduleRequest->employer_job_id);
-        $acceptRescheduleRequest->status = 1;
+        $acceptRescheduleRequest->status = 2;
         $acceptRescheduleRequest->reschedule_status = 0;
         if($acceptRescheduleRequest->save())
         {
@@ -400,6 +402,23 @@ class EmployerController extends Controller
             toastr()->success('Request Rejected Successfully');
             return redirect()->back();
         }    
+    }
+
+    public function interviewConducted($id)
+    {
+        $acceptRescheduleRequest = JobInterview::with('jobDetails')->find($id);
+        $candidateDetails = User::with('candidatePersonalDetails')->find($acceptRescheduleRequest->requested_to);
+        $employerDetails = User::with('employerDetails')->find($acceptRescheduleRequest->requested_from);
+        $jobDetails = EmployerJob::find($acceptRescheduleRequest->employer_job_id);
+        $acceptRescheduleRequest->status = 3;
+        $acceptRescheduleRequest->reschedule_status = 0;
+        if($acceptRescheduleRequest->save())
+        {
+            Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRescheduleNotification($candidateDetails,$employerDetails,$jobDetails,$type=2));
+            toastr()->success('Interview Marked as  Conducted');
+            return redirect()->back();
+        } 
+
     }
     
 }

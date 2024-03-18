@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\{User, EmployerJob, EmployerDetails, CandidatePersonalDetails,
-     SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation };
+     SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation, Review };
 use Illuminate\Support\Facades\Auth;
 use File;
 use Response;
@@ -336,7 +336,8 @@ class UserController extends Controller
     {
         $id = Crypt::decryptString($id);
         $employerDetails = EmployerDetails::with('employerCountry')->where('user_id',$id)->first();
-        return view('company-about-us',compact('employerDetails'));
+        $candidateReviews = Review::with('candidateDetails.candidatePersonalDetails')->where('employer_id',$id)->get();
+        return view('company-about-us',compact('employerDetails','candidateReviews'));
     }
     public function companyBusinessOperation($id)
     {
