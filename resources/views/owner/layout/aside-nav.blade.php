@@ -10,8 +10,13 @@
         </div>
         <div class="user-data">
             <div class="user-avatar online position-relative rounded-circle">
+                @if(auth()->user()->avatar != '')
+                <img src="{{ asset('assets/images/lazy.svg') }}" data-src="{{ asset(auth()->user()->avatar) }}"
+                    alt="" class="lazy-img">
+                @else
                 <img src="{{ asset('assets/images/lazy.svg') }}" data-src="{{ asset('assets/images/avatar_03.jpg') }}"
                     alt="" class="lazy-img">
+                @endif
             </div>
             <!-- /.user-avatar -->
             <div class="user-name-data">
@@ -75,6 +80,14 @@
                         <span>Employers</span>
                     </a>
                 </li>
+                <li><a href="{{ route('owner.employerBusinessLicenses') }}"
+                        class="d-flex w-100 align-items-center {{ request()->is('owner/employer-business-licenses') ? 'active' : '' }}">
+                        <img src="{{ asset('assets/images/lazy.svg') }}"
+                            data-src="{{ request()->is('owner/employer-business-licenses') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
+                            alt="" class="lazy-img">
+                        <span>Employers Licenses</span>
+                    </a>
+                </li>
                 <li><a href="{{ route('admin.getEmployersJobs') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/employers-jobs') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
@@ -136,13 +149,13 @@
                     </a>
                 </li>
 
-                <li><a href="{{ route('getUserProfile') }}"
+                {{--<li><a href="{{ route('getUserProfile') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/users') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
                             data-src="{{ request()->is('owner/users') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
                         <span>Users</span>
-                    </a></li>
+                    </a></li>--}}
 
                 {{-- <li><a href="{{ route('getJobListing') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('employer/job-listing') ? 'active' : '' }}">

@@ -67,12 +67,16 @@
              <form action ="{{route('owner.updateOwnerAccount')}}" method = "POST" enctype = "multipart/form-data">
 				@csrf
 					<div class="user-avatar-setting d-flex align-items-center mb-30">
-						<img src="../images/lazy.svg" data-src="{{asset('assets/images/avatar_04.jpg')}}" alt="" class="lazy-img user-img">
+					@if(auth()->user()->avatar != '')
+					<img src="../images/lazy.svg" data-src="{{asset(auth()->user()->avatar)}}" alt="" class="lazy-img user-img">
+					@else
+					<img src="../images/lazy.svg" data-src="{{asset('assets/images/avatar_04.jpg')}}" alt="" class="lazy-img user-img">
+					@endif
 						<div class="upload-btn position-relative tran3s ms-4 me-3">
 							Upload new photo
 							<input type="file" id="uploadImg" name="avatar" placeholder="">
 						</div>
-						<button type = "button" class="delete-btn tran3s">Delete</button>
+						{{--<button type = "button" class="delete-btn tran3s">Delete</button>--}}
 					</div>
 					<!-- /.user-avatar-setting -->
 					<div class="row">

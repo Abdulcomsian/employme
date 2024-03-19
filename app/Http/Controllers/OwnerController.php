@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProfessionalSkills;
-use App\Models\{EmployerJob, User, JobInterview};
+use App\Models\{EmployerJob, User, JobInterview, EmployerBusinessLicense};
 use Carbon\Carbon;
 use Auth;
+use Notification;
+use App\Notifications\{BusinessLicenseNotification,InterviewRescheduleNotification};
 class OwnerController extends Controller
 {
 
@@ -109,5 +111,32 @@ class OwnerController extends Controller
         return view('owner.job-applications.index',compact('employerJobApplications'));
     }
     
-
+    public function employerBusinessLicenses(){
+        $employerLicenses = EmployerBusinessLicense::with('user.employerDetails')->paginate(10);
+        return view('owner.employer-licenses.index',compact('employerLicenses'));
+    }
+    public function employerRejectLicense($id){
+        $rejectLicense = EmployerBusinessLicense::find($id);
+        $employerDetails = User::with('employerDetails')->find($rejectLicense->employer_id);
+        $rejectLicense->approval_status	 = 2;
+        $rejectLicense->approved_by = Auth::id();
+        if($rejectLicense->save())
+        {
+            Notification::route('mail',  $employerDetails->email ?? '')->notify(new BusinessLicenseNotification($employerDetails, $type=1,$status=2));
+            toastr()->success('License Rejected Successfully');
+            return redirect()->back();
+        }
+    }
+    public function employerApproveLicense($id){
+        $rejectLicense = EmployerBusinessLicense::find($id);
+        $employerDetails = User::with('employerDetails')->find($rejectLicense->employer_id);
+        $rejectLicense->approval_status	 = 1;
+        $rejectLicense->approved_by = Auth::id();
+        if($rejectLicense->save())
+        {
+            Notification::route('mail',  $employerDetails->email ?? '')->notify(new BusinessLicenseNotification($employerDetails, $type=1,$status=1));
+            toastr()->success('License Approved Successfully');
+            return redirect()->back();
+        }
+    }
 }

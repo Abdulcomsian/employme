@@ -204,9 +204,13 @@
 										</ul>										
 										<p>{{$candidateReview->comment}}</p>
 										<div class = "d-flex">
+											@if($candidateReview->candidateDetails->candidatePersonalDetails->profile_picture != '')
 											<img class="rounded-circle shadow-1-strong"
 												src="{{asset($candidateReview->candidateDetails->candidatePersonalDetails->profile_picture)}}" alt="avatar"
 												style="width: 50px;margin-right:7px;" />
+											@else
+											<img src="{{asset('assets/images/avatar_04.jpg')}}" data-src="{{asset('assets/images/avatar_04.jpg')}}" alt="avatar" class ="rounded-circle shadow-1-strong" style="width: 50px;margin-right:7px;">
+											@endif
 											<h5>{{$candidateReview->candidateDetails->candidatePersonalDetails->full_name ?? ''}}</h5>
 										</div>
 									</div>

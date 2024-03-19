@@ -16,7 +16,7 @@ use Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
-use App\Notifications\{InterviewRequestNotification,InterviewRescheduleNotification};
+use App\Notifications\{BusinessLicenseNotification, InterviewRequestNotification,InterviewRescheduleNotification};
 class EmployerController extends Controller
 {
 
@@ -35,7 +35,7 @@ class EmployerController extends Controller
         $intent = auth()->user()->createSetupIntent();
         $employerDetails = EmployerDetails::where('user_id',Auth::id())->first();
         $employerLicenseDetails = EmployerBusinessLicense::where('employer_id',Auth::id())->first();
-        return view('employer.employer-profile',compact('countries','employerDetails','plans','intent'));
+        return view('employer.employer-profile',compact('countries','employerDetails','plans','intent','employerLicenseDetails'));
     }
     public function getEmployerCandidate()
     {
@@ -144,14 +144,17 @@ class EmployerController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'legal_disputes_confirmation_document' => new BusinessLicenseRule(),
+            'license_number' => 'required',
+            'license_file' => 'required',
+        ],[
+            'license_number.required'=>'Business License Number is required',
+            'license_number.required'=>'Business License Certificate is required',
         ]);
         
        if($validator->fails())
        {
         return response()->json(['status'=>false,'errors'=>$validator->errors()->all()]);
        }
-        $validated = $validator->validated();
         $imagename = '';
         $checkDetails = EmployerBusinessLicense::where('employer_id',Auth::id())->first();
         if($checkDetails)
@@ -162,17 +165,20 @@ class EmployerController extends Controller
         else{
             $updateDetails = new EmployerBusinessLicense;
         }
-        if ($request->file('legal_disputes_confirmation_document')) {
-            $file = $request->file('legal_disputes_confirmation_document');
+        if ($request->file('license_file')) {
+            $file = $request->file('license_file');
             $filePath = employerBusinessLicenseDocumentPath();
             $imagename = saveFile($filePath, $file, $imagename);
         }
-        $input = $request->except('_token','legal_disputes_confirmation_document');
+        $input = $request->except('_token','license_file');
         $updateDetails->license_file = $imagename;
-        $updateDetails->license_number = $request->registration_business_license_proof;
+        $updateDetails->license_number = $request->license_number;
         $updateDetails->employer_id = Auth::id();
         $updateDetails->approval_status = 0;
         $updateDetails->save();
+        $employerDetails = User::with('employerDetails')->find(Auth::id());
+        Notification::route('mail','admin@admin.com')->notify(new BusinessLicenseNotification($employerDetails, $type=2,$status=1));
+
         return response()->json([
                         "status" => true, 
                         "message" => url("Employer Details Updated Successfully")

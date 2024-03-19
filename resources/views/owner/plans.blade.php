@@ -55,7 +55,7 @@ Plans
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">Plans</h2>
-            <div class="d-flex ms-auto xs-mt-30">
+            {{--<div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab" aria-selected="true">All</button>
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#a2" type="button" role="tab" aria-selected="false">New</button>
@@ -69,7 +69,7 @@ Plans
                         <option value="2">Disabled</option>
                     </select>
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="bg-white card-box border-20">
@@ -98,8 +98,8 @@ Plans
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Price</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Duration</th>
+                            {{--<th scope="col">Action</th>--}}
                         </tr>
                     </thead>
                     <tbody class="border-0">
@@ -110,12 +110,12 @@ Plans
                                 <div class="job-name " style = "color:black">{{$plan->name}}</div>
                                 <!-- <div class="info1">Fulltime . Spain</div> -->
                             </td>
-                            <td style = "color:black">${{$plan->price}}</td>
-                            <td style = "color:black">{{$plan->description}}</td>
+                            <td style = "color:black">₩ {{$plan->price}}</td>
+                            <td style = "color:black">{{$plan->duration}} months</td>
                             <!-- <td>
                                 <div class="job-status"  >Verified</div>
                             </td> -->
-                            <td>
+                            {{--<td>
                                 <div class="action-dots float-end">
                                     <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span></span>
@@ -127,7 +127,7 @@ Plans
                                         <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
                                     </ul>
                                 </div>
-                            </td>
+                            </td>--}}
                         </tr>
                         @endforeach
                     </tbody>

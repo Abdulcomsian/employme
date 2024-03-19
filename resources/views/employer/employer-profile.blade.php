@@ -109,7 +109,11 @@ Profile
 			<div class="alert alert-danger">
 					{{ __('Dear Employer, Your profile is not complete, kindly complete your profile.') }}
 				</div>
-		  @endif
+		  @elseif(session('license_approval'))
+			<div class="alert alert-danger">
+					{{ __('Dear Employer, Your can\'t perform any activity until your business license is approved by Admin') }}
+				</div>
+		@endif
 		<h2 class="main-title">Profile</h2>
 
 		<div class="bg-white card-box border-20 mb-40">
@@ -413,78 +417,152 @@ Profile
 					
 
 					<!-- Step 4 -->
-					<form id="employer-verification-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
 						<div class="step" id="step-3">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="dash-input-wrapper mb-30">
-										<label for="">Business License Number</label>
-										<input type="text" name="proofOfRegistration" placeholder="Type your answer here..." value="{{$employerDetails->registration_business_license_proof ?? ''}}">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="dash-input-wrapper mb-30">
-										<label for="">Acknowledgement to adhere to South Korea’s labor laws</label>
-										<select name="southKoreaLawAcknowledgement" id="southKoreaLawAcknowledgement" class="nice-select">
-											<option value="I Accept" {{$employerDetails->south_korea_laws_acknowledgement == 'I Accept' ? 'selected' : ''}}>I Accept</option>
-											<option value="I do not Accept" {{$employerDetails->south_korea_laws_acknowledgement == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
-										</select>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-6">
-									<div class="dash-input-wrapper mb-30">
-										<label for="">Upload Business License Certificate</label>
-										<div class="user-avatar-setting d-flex align-items-center">
-											<div class="upload-btn position-relative tran3s ms-4 me-3">
-												Upload
-												<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">											</div>
-											<button type = "button" class="delete-btn tran3s">Delete</button>
+							<form id="employer-verification-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
+							<div class = "mt-1" id ="license-document-error"></div>
+								@isset($employerLicenseDetails)
+								@if($employerLicenseDetails->approval_status == 0)
+								<div class="row">
+									<div class="col-md-2">
+										<div class="dash-input-wrapper mb-30">
+										    <label for="">{{$employerLicenseDetails->license_number}}</label>
+											@if(isset($employerLicenseDetails->license_file) && !empty($employerLicenseDetails->license_file))
+											<div style = "padding-left:20px;">
+												<a class="btn btn-primary" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
+											</div>
+											@endif
 										</div>
-										<div class = "mt-1" id ="license-document-error"></div>
-										@if(isset($employerDetails->legal_disputes_confirmation_document) && !empty($employerDetails->legal_disputes_confirmation_document))
-										<div style = "padding-left:20px;">
-											<a class="btn btn-primary" href = "{{asset($employerDetails->legal_disputes_confirmation_document)}}" target = "_blank">File</a>
+									</div>
+									<div class="col-md-6">
+										<div class="dash-input-wrapper mb-30">
+											<label for="">Waiting for an approval by Admin</label>
 										</div>
-										@endif
 									</div>
 								</div>
-							</div>
-							{{--	
+								@elseif($employerLicenseDetails->approval_status == 1)
+								<div class="row">
+									<div class="col-md-2">
+										<div class="dash-input-wrapper mb-30">
+										    <label for="">{{$employerLicenseDetails->license_number}}</label>
+											@if(isset($employerLicenseDetails->license_file) && !empty($employerLicenseDetails->license_file))
+											<div style = "padding-left:20px;">
+												<a class="btn btn-primary" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
+											</div>
+											@endif
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="dash-input-wrapper mb-30">
+											<label for="">Approved by Admin</label>
+										</div>
+									</div>
+								</div>
+								@elseif($employerLicenseDetails->approval_status == 2)
 								<div class="row">
 									<div class="col-md-6">
 										<div class="dash-input-wrapper mb-30">
-											<label for="">Assurance of the ability and willingness to sponsor an E-2
-												teaching visa.</label>
-											<select name="abilityWillingnessAssurance" id="abilityWillingnessAssurance" class="nice-select">
-												<option value="I Accept" {{$employerDetails->ability_willingness_assurance == 'I Accept' ? 'selected' : ''}}>I Accept</option>
-												<option value="I do not Accept" {{$employerDetails->ability_willingness_assurance == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
+											<label for="">Business License Number</label>
+											<input type="text" name="proofOfRegistration" placeholder="Type your answer here..." value="">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="dash-input-wrapper mb-30">
+											<label for="">Acknowledgement to adhere to South Korea’s labor laws</label>
+											<select name="southKoreaLawAcknowledgement" id="southKoreaLawAcknowledgement" class="nice-select">
+												<option value="I Accept" {{$employerDetails->south_korea_laws_acknowledgement == 'I Accept' ? 'selected' : ''}}>I Accept</option>
+												<option value="I do not Accept" {{$employerDetails->south_korea_laws_acknowledgement == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="dash-input-wrapper mb-30">
+											<label for="">Upload Business License Certificate</label>
+											<div class="user-avatar-setting d-flex align-items-center">
+												<div class="upload-btn position-relative tran3s ms-4 me-3">
+													Upload
+													<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">											</div>
+												<button type = "button" class="delete-btn tran3s">Delete</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								@endif
+								@else
+								<div class="row">
+									<div class="col-md-6">
+										<div class="dash-input-wrapper mb-30">
+											<label for="">Business License Number</label>
+											<input type="text" name="proofOfRegistration" placeholder="Type your answer here..." value="">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="dash-input-wrapper mb-30">
+											<label for="">Acknowledgement to adhere to South Korea’s labor laws</label>
+											<select name="southKoreaLawAcknowledgement" id="southKoreaLawAcknowledgement" class="nice-select">
+												<option value="I Accept" {{$employerDetails->south_korea_laws_acknowledgement == 'I Accept' ? 'selected' : ''}}>I Accept</option>
+												<option value="I do not Accept" {{$employerDetails->south_korea_laws_acknowledgement == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
 											</select>
 										</div>
 									</div>
 								</div>
 
-							<div class="row">
-								<div class="col-md-6">
-									<div class="dash-input-wrapper mb-30">
-										<label for="">Financial health to ensure the ability to pay salaries and
-											benefits.</label>
-										<select name="financialHealthToEnsure" id="financialHealthToEnsure" class="nice-select">
-											<option value="I Accept" {{$employerDetails->financial_health == 'I Accept' ? 'selected' : ''}}>I Accept</option>
-											<option value="I do not Accept" {{$employerDetails->financial_health == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
-										</select>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="dash-input-wrapper mb-30">
+											<label for="">Upload Business License Certificate</label>
+											<div class="user-avatar-setting d-flex align-items-center">
+												<div class="upload-btn position-relative tran3s ms-4 me-3">
+													Upload
+													<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">											</div>
+												<button type = "button" class="delete-btn tran3s">Delete</button>
+											</div>
+										</div>
 									</div>
 								</div>
-							</div>--}}
+								@endisset
+								{{--	
+									<div class="row">
+										<div class="col-md-6">
+											<div class="dash-input-wrapper mb-30">
+												<label for="">Assurance of the ability and willingness to sponsor an E-2
+													teaching visa.</label>
+												<select name="abilityWillingnessAssurance" id="abilityWillingnessAssurance" class="nice-select">
+													<option value="I Accept" {{$employerDetails->ability_willingness_assurance == 'I Accept' ? 'selected' : ''}}>I Accept</option>
+													<option value="I do not Accept" {{$employerDetails->ability_willingness_assurance == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
+												</select>
+											</div>
+										</div>
+									</div>
 
-							<div class="d-flex flex-row justify-content-end gap-3">
-								<button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
-								<button type="submit" class="dash-btn-one"  >Next</button>
-							</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="dash-input-wrapper mb-30">
+											<label for="">Financial health to ensure the ability to pay salaries and
+												benefits.</label>
+											<select name="financialHealthToEnsure" id="financialHealthToEnsure" class="nice-select">
+												<option value="I Accept" {{$employerDetails->financial_health == 'I Accept' ? 'selected' : ''}}>I Accept</option>
+												<option value="I do not Accept" {{$employerDetails->financial_health == 'I do not Accept' ? 'selected' : ''}}>I do not Accept</option>
+											</select>
+										</div>
+									</div>
+								</div>--}}
+
+								<div class="d-flex flex-row justify-content-end gap-3">
+									<button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
+									@isset($employerLicenseDetails)
+									@if($employerLicenseDetails->approval_status == 0 || $employerDetails->approval_status == 1)
+									<button type="button" class="dash-btn-one" onclick="nextStep(3)">Next</button>
+									@else
+									<button type="submit" class="dash-btn-one"  >Next</button>
+									@endif
+									@else
+									<button type="submit" class="dash-btn-one"  >Next</button>
+									@endif
+								</div>
+							</form>
 						</div>
-					</form>
 					<form id="declaration-consent-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
 						<div class="step" id="step-4">
 							<div class="row">
@@ -1017,9 +1095,10 @@ Profile
 			e.preventDefault();
 			var formData = new FormData();
 			formData.append("_token", "{{ csrf_token() }}");
-			formData.append('registration_business_license_proof',$("#employer-verification-form").find('[name=proofOfRegistration]').val())
+			formData.append('license_number',$("#employer-verification-form").find('[name=proofOfRegistration]').val())
 			formData.append('south_korea_laws_acknowledgement',$("#employer-verification-form").find('[name=southKoreaLawAcknowledgement]').val())
-			formData.append('legal_disputes_confirmation_document',$('#legalDisputesConfirmationDocument')[0].files[0]);
+			var licenseFile = $('#legalDisputesConfirmationDocument')[0].files[0];
+			formData.append('license_file', licenseFile ? licenseFile : '');
 			/*
 			formData.append('ability_willingness_assurance',$("#multi-step-form").find('[name=abilityWillingnessAssurance]').val())
 			formData.append('financial_health',$("#multi-step-form").find('[name=financialHealthToEnsure]').val()) */

@@ -122,7 +122,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
 //candidate dashboard route ends here
 
 //employer dashboard route starts here
-Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','email_verfication','profile_completion']], function () {
+Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','email_verfication','profile_completion','employer_license']], function () {
     Route::get('dashboard', [EmployerController::class, 'getEmployerDashboard'])->name('getEmployerDashboard');
     Route::get('employer-profile', [EmployerController::class, 'getEmployerProfilePage'])->name('getEmployerProfile');
     Route::get('job-listing', [JobController::class, 'getJobListing'])->name('getJobListing');
@@ -155,6 +155,9 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::post('accept-reschedule-request/{id}',[EmployerController::class,'acceptRescheduleRequest'])->name('employer.accept_reschedule_request');
     Route::post('reject-reschedule-request/{id}',[EmployerController::class,'rejectRescheduleRequest'])->name('employer.reject_reschedule_request');
     Route::post('interview-conducted/{id}',[EmployerController::class,'interviewConducted'])->name('employer.interview.conducted');
+    Route::get('saved-candidates', [EmployerController::class, 'employerSavedCandidates'])->name('employerSavedCandidates');
+    Route::delete('removed-candidate/{id}', [EmployerController::class, 'removeSavedCandidate'])->name('removeSavedCandidate');
+    Route::post('request-job-interview',[EmployerController::class,'jobInterviewRequest'])->name('employer.job_interview_request');
 
 });
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {
@@ -170,9 +173,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], fu
     Route::post('subscription', [SubscriptionController::class, 'subscription'])->name("subscription.create");
     Route::post('update-account-settings', [UserController::class, 'updateEmployerAccountSettingpage'])->name('employer.updateAccountSettingpage');
     Route::post('employer-update-password', [UserController::class, 'employerUpdatePassword'])->name('employer.employerUpdatePassword');
-    Route::get('saved-candidates', [EmployerController::class, 'employerSavedCandidates'])->name('employerSavedCandidates');
-    Route::delete('removed-candidate/{id}', [EmployerController::class, 'removeSavedCandidate'])->name('removeSavedCandidate');
-    Route::post('request-job-interview',[EmployerController::class,'jobInterviewRequest'])->name('employer.job_interview_request');
+ 
 
 
 });
@@ -186,6 +187,9 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('candidates', [OwnerController::class, 'getCandidates'])->name('getCandidates');
     Route::get('employers', [OwnerController::class, 'getEmployers'])->name('getEmployers');
     Route::get('employers/employer-details', [OwnerController::class, 'getEmployerDetails'])->name('getEmployerDetails');
+    Route::get('employer-business-licenses', [OwnerController::class, 'employerBusinessLicenses'])->name('owner.employerBusinessLicenses');
+    Route::post('employer-reject-license/{id}', [OwnerController::class, 'employerRejectLicense'])->name('owner.employerRejectLicense');
+    Route::post('employer-approve-license/{id}', [OwnerController::class, 'employerApproveLicense'])->name('owner.employerApproveLicense');
     Route::get('employer-jobs', [OwnerController::class, 'getEmployersJobs'])->name('admin.getEmployersJobs');
     Route::get('job-applications', [OwnerController::class, 'getJobApplications'])->name('admin.getJobApplications');
     Route::get('professional-skills', [OwnerController::class, 'getProfessionalSkills'])->name('getProfessionalSkills');

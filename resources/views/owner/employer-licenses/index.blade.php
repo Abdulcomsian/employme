@@ -1,19 +1,19 @@
 @extends('owner.layout.main')
 @section('title')
-Candidates
+Employers
 @endsection
 @push('page-css')
 <style>
- .candidate-name  {
+     .employer-name  {
     color: #00BF58 !important;
     
  }
- .candidate-name a:hover{
+ .employer-name a:hover{
     color: #D2F34C !important;
     
     /* color: #244034; */
  }
-.active {
+ .active {
     /* background-color: #04AA6D; */
     color: black !important;
 }
@@ -71,7 +71,7 @@ Candidates
         </header>
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
-            <h2 class="main-title m0">Candidates</h2>
+            <h2 class="main-title m0">Business Licenses</h2>
             {{--<div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab" aria-selected="true">All</button>
@@ -90,49 +90,86 @@ Candidates
         </div>
 
         <div class="bg-white card-box border-20">
+           
             <div class="table-responsive">
                 <table class="table job-alert-table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Verification Status</th>
-                            {{--<th scope="col">Action</th>--}}
+                            <th scope="col">License</th>
+                            <th scope="col">License Number</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="border-0">
-                    @isset($candidates)
-                    @foreach($candidates as $index=>$candidate)
-                        <tr class="active">
-                            <td>{{$index+1}}</td>
+                     @isset($employerLicenses)
+                    @foreach($employerLicenses as $index=>$license)
+                            @php
+                            if($license->approval_status == 0 )
+                              {
+                                $status = 'pending';
+                                $message = 'Pending';
+                              }elseif($license->approval_status == 1)
+                              {
+                                $status = 'active';
+                                $message = 'Approved';
+                              }elseif($license->approval_status == 2)
+                              {
+                                $status = 'expired';
+                                $message = 'Rejected';
+                              }
+                            @endphp
+                        <tr class="{{$status ?? 'active'}}">
+                        <td>
+                        @if(isset($license->user->employerDetails->institution_logo) && !empty($license->user->employerDetails->institution_logo))
+                        <img class="rounded-circle shadow-1-strong"
+												src="{{asset($license->user->employerDetails->institution_logo)}}" alt="avatar"
+												style="width: 50px;margin-right:7px;" />
+                        @else
+                        <img src="{{asset('assets/images/avatar_04.jpg')}}" data-src="{{asset('assets/images/avatar_04.jpg')}}" alt="avatar" class ="rounded-circle shadow-1-strong" style="width: 50px;margin-right:7px;">
+                        @endif
+                        </td>
                             <td>
-                                <div class="job-name candidate-name" ><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}">{{$candidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
+                                <div class="job-name employer-name" ><a href="{{route('companyAboutUs',\Crypt::encryptString($license->user->id))}}"> {{$license->user->employerDetails->institution ?? ''}}</a></div>
                                 <!-- <div class="info1">Fulltime . Spain</div> -->
                             </td>
-                            <td >{{$candidate->email}}</td>
-                            @if($candidate->email_verified_at)
-                            <td>
-                                <div class="job-status"  >Verified</div>
+                            <td >
+                                @if(isset($license->license_file) && !empty($license->license_file))
+                                <div style = "padding-left:20px;">
+                                    <a class="btn btn-primary" href = "{{asset($license->license_file)}}" target = "_blank">File</a>
+                                </div>
+                                @endif 
                             </td>
-                            @else
                             <td>
-                                <div class="job-status"  >Unverified</div>
+                                <div  >{{$license->license_number}}</div>
                             </td>
-                            @endif
-                            {{--<td>
+                            <td>
+                                <div class="job-status">{{$message ?? ''}}</div>
+                            </td>
+                          
+                            <td>
                                 <div class="action-dots float-end">
                                     <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span></span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                            document.getElementById('accept-form-{{$license->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Approve</a>
+                                        </li>                                                
+                                        <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                            document.getElementById('reject-form-{{$license->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a>
+                                        </li>                                                
+                                        <form id="accept-form-{{$license->id}}" action="{{ route('owner.employerApproveLicense', $license->id) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        </form>
+                                        <form id="reject-form-{{$license->id}}" action="{{ route('owner.employerRejectLicense', $license->id) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        </form>
                                     </ul>
                                 </div>
-                            </td>--}}
+                            </td>
                         </tr>
                         @endforeach
                         @endisset
@@ -151,7 +188,7 @@ Candidates
                 <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
         </div> -->
-        {{ $candidates->links('vendor.pagination.custom-pagination-2') }}
+        {{ $employerLicenses->links('vendor.pagination.custom-pagination-2') }}
 
     </div>
 </div>

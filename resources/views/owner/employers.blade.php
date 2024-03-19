@@ -72,7 +72,7 @@ Employers
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">Employers</h2>
-            <div class="d-flex ms-auto xs-mt-30">
+           {{-- <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab" aria-selected="true">All</button>
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#a2" type="button" role="tab" aria-selected="false">New</button>
@@ -86,7 +86,7 @@ Employers
                         <option value="2">Disabled</option>
                     </select>
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="bg-white card-box border-20">
@@ -99,7 +99,7 @@ Employers
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
-                            <th scope="col">Action</th>
+                         {{--   <th scope="col">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody class="border-0">
@@ -108,7 +108,7 @@ Employers
                         <tr class="active">
                         <td>{{$index+1}}</td>
                             <td>
-                                <div class="job-name employer-name" ><a href="{{route('companyAboutUs',\Crypt::encryptString($employer->employerDetails->id))}}"> {{$employer->employerDetails->institution ?? ''}}</a></div>
+                                <div class="job-name employer-name" ><a href="{{route('companyAboutUs',\Crypt::encryptString($employer->id))}}"> {{$employer->employerDetails->institution ?? ''}}</a></div>
                                 <!-- <div class="info1">Fulltime . Spain</div> -->
                             </td>
                             <td >{{$employer->email}}</td>
@@ -121,19 +121,19 @@ Employers
                                 <div class="job-status"  >Unverified</div>
                             </td>
                             @endif
-                            <td>
+                           {{-- <td>
                                 <div class="action-dots float-end">
                                     <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span></span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="{{route('companyAboutUs',\Crypt::encryptString($employer->employerDetails->id))}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
+                                        <li><a class="dropdown-item" href="{{route('companyAboutUs',\Crypt::encryptString($employer->id))}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
                                         <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
                                         <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
                                         <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
                                     </ul>
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>
                         @endforeach
                         @endisset

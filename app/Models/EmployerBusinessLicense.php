@@ -15,4 +15,9 @@ class EmployerBusinessLicense extends Model
         'employer_id',
         'approved_by'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'employer_id');
+    }
 }
