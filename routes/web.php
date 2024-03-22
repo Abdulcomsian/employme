@@ -91,6 +91,9 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     Route::get('profile', [CandidateController::class, 'getProfilePage'])->name('getCandidateProfile');
     Route::get('resume', [CandidateController::class, 'getResumePage'])->name('getResumePage');
     Route::get('messages', [MessageController::class, 'getCandidateMessagePage'])->name('getCandidateMessages');
+    Route::get('get-employer-chat/{id}',[MessageController::class,'getEmployerChat'])->name('candidate.get_employer_chat');
+    Route::post('send-text-to-employer',[MessageController::class,'sendTextToEmployer'])->name('employer.sendTextToEmployer');
+
     Route::get('job-alert', [JobController::class, 'getJobAlertPage'])->name('getJobAlert');
     // Route::get('save-job', [JobController::class, 'getSaveJobsPage'])->name('getSaveJob');
     Route::get('account-settings', [UserController::class, 'getAccountSettingsPage'])->name('getAccountSetting');
@@ -127,6 +130,8 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('employer-profile', [EmployerController::class, 'getEmployerProfilePage'])->name('getEmployerProfile');
     Route::get('job-listing', [JobController::class, 'getJobListing'])->name('getJobListing');
     Route::get('interview-requests', [JobController::class, 'getInterviewpage'])->name('getEmployerInterviewRequest');
+    Route::get('get-candidate-chat/{id}',[MessageController::class,'getCandidateChat'])->name('employer.get_candidate_chat');
+    Route::post('send-text-to-candidate',[MessageController::class,'sendTextToCandidate'])->name('employer.sendTextToCandidate');
     Route::get('employer-dashboard-message', [MessageController::class, 'getEmployerMessage'])->name('getEmployerDashboardMessage');
     Route::get('employer-dashboard-saved-candidate', [EmployerController::class, 'getEmployerCandidate'])->name('getEmployerDashboardSavedCandidate');
     Route::get('subscriptions', [EmployerController::class, 'employerSubscriptions'])->name('employerSubscriptions');
@@ -137,6 +142,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('employer-jobs/Job-listing-candidate/{id}', [EmployerController::class, 'JobListingCandidate'])->name('employer.JobListingCandidate');
     Route::put('employer-jobs/activate-job/{id}', [JobController::class, 'activateJob'])->name('employer.activate-job');
     Route::put('employer-jobs/de-activate-job/{id}', [JobController::class, 'deactivateJob'])->name('employer.deactivate-job');
+    
     Route::resource('employer-jobs', EmployerJobController::class);
     Route::resource('manage/staff',StaffController::class);
     Route::resource('manage/gallery',GalleryController::class);
@@ -149,6 +155,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     /*Routes regarding Job Applications Actions */
     Route::post('interview-invitation', [EmployerJobController::class, 'interviewInvitation'])->name('employer.interviewInvitation');
     Route::put('reject-application/{id}', [EmployerJobController::class, 'rejectApplication'])->name('employer.rejectApplication');
+    Route::put('contact-candidate/{id}', [EmployerJobController::class, 'cantactCandidate'])->name('employer.message_candidate');
 
     Route::get('schedule-interview', [EmployerController::class, 'scheduleInterview'])->name('scheduleInterview');
     Route::get('job-applications', [EmployerController::class, 'employerJobApplications'])->name('employerJobApplications');
@@ -173,9 +180,6 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], fu
     Route::post('subscription', [SubscriptionController::class, 'subscription'])->name("subscription.create");
     Route::post('update-account-settings', [UserController::class, 'updateEmployerAccountSettingpage'])->name('employer.updateAccountSettingpage');
     Route::post('employer-update-password', [UserController::class, 'employerUpdatePassword'])->name('employer.employerUpdatePassword');
- 
-
-
 });
 //employer dashboard route ends here
 

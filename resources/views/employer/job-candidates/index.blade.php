@@ -128,6 +128,12 @@ Employer Saved Candidate
                                             @csrf
                                             @method('PUT')
                                             </form>
+                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                document.getElementById('message-candidate-{{$jobApplicant->pivot->candidate_id}}').submit();"> Messaage</a></li>
+                                            <form id="message-candidate-{{$jobApplicant->pivot->candidate_id ?? ''}}" action="{{ route('employer.message_candidate', $jobApplicant->pivot->candidate_id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('PUT')
+                                            </form>
                                             {{--<li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>--}}
                                         </ul>
                                     </div>

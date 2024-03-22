@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\EmployerJob;
-use App\Models\{JobCategory, JobApplication,User, JobInterview};
+use App\Models\{JobCategory, JobApplication,User, JobInterview, Conversation};
 use Illuminate\Support\Facades\Auth;
 use Notification;
 use Illuminate\Support\Facades\Validator;
@@ -172,6 +172,25 @@ class EmployerJobController extends Controller
             return redirect()->back();
         }
 
+
+    }
+
+    public function cantactCandidate($id)
+    {
+        
+        $checkConversation = Conversation::where(['employer_id'=>Auth::id(),'candidate_id'=>$id])->first();
+        if($checkConversation)
+        {
+            return redirect()->route('getEmployerDashboardMessage');
+        }else{
+            $create =  new Conversation;
+            $create->employer_id = Auth::id();
+            $create->candidate_id = $id;
+            if($create->save())
+            {
+                return redirect()->route('getEmployerDashboardMessage');
+            }
+        }
 
     }
 

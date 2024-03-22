@@ -150,7 +150,7 @@ class EmployerController extends Controller
             'license_number.required'=>'Business License Number is required',
             'license_number.required'=>'Business License Certificate is required',
         ]);
-        
+       $isnewUser = null;
        if($validator->fails())
        {
         return response()->json(['status'=>false,'errors'=>$validator->errors()->all()]);
@@ -161,9 +161,11 @@ class EmployerController extends Controller
         {
             $updateDetails = $checkDetails;
             $imagename = $updateDetails->license_file;
+            $isnewUser = 0;
         }
         else{
             $updateDetails = new EmployerBusinessLicense;
+            $isnewUser = 1;
         }
         if ($request->file('license_file')) {
             $file = $request->file('license_file');
@@ -179,6 +181,12 @@ class EmployerController extends Controller
         $employerDetails = User::with('employerDetails')->find(Auth::id());
         Notification::route('mail','admin@admin.com')->notify(new BusinessLicenseNotification($employerDetails, $type=2,$status=1));
 
+        if($isnewUser == 1)
+        {
+            $employerDetails = User::with('employerDetails')->find($updateDetails->employer_id);
+            $view = view('components.admin.business_license',compact('updateDetails','employerDetails'));
+            event(new \App\Events\BusinessLicense($view));
+        }
         return response()->json([
                         "status" => true, 
                         "message" => url("Employer Details Updated Successfully")

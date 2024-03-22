@@ -103,7 +103,7 @@ Employers
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="border-0">
+                    <tbody class="border-0 add-more">
                      @isset($employerLicenses)
                     @foreach($employerLicenses as $index=>$license)
                             @php
@@ -192,4 +192,5 @@ Employers
 
     </div>
 </div>
+
 @endsection

@@ -38,7 +38,7 @@ Messages
                     <div class="compose-body">
                         <textarea>Hi, Mary Cooper! 
 
-Thanks for your invitation for the account manager position for you company. I Will back to you soon with all the require documents.</textarea>
+                        Thanks for your invitation for the account manager position for you company. I Will back to you soon with all the require documents.</textarea>
                     </div>
                     <!-- /.compose-body -->
 
@@ -110,22 +110,24 @@ Thanks for your invitation for the account manager position for you company. I W
                                     <button><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_10.svg')}}" alt="" class="lazy-img m-auto"></button>
                                 </form>
 
-                                <div class="message_filter d-flex align-items-center justify-content-between mb-20" id="module_btns">
+                                {{--<div class="message_filter d-flex align-items-center justify-content-between mb-20" id="module_btns">
                                     <button class="filter_btn active">All</button>
                                     <button class="filter_btn"><span style="background:#FF4545;"></span> Read</button>
                                     <button class="filter_btn"><span style="background:#3BDA84;"></span> Unread</button>
                                     <button class="filter_btn"><span style="background:#50C0FF;"></span> Primary</button>
-                                </div>
+                                </div>--}}
                             </div>
                             <div class="email-read-panel">
-                                <div class="email-list-item ps-3 pe-3 ps-xxl-4 pe-xxl-4 read">
+                                 @isset($allConversations)
+								@foreach($allConversations as $conversation)
+                                <div class="email-list-item users ps-3 pe-3 ps-xxl-4 pe-xxl-4 read" data-user-id = "{{$conversation->id}}">
                                     <div class="email-short-preview position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <div class="sender-name">Jenny Rio.</div>
-                                            <div class="date">Aug 22</div>
+                                            <div class="sender-name">{{$conversation->employer->employerDetails->institution}}</div>
+                                            <div class="date">@isset($conversation->lastChat->created_at){{date('d M',strtotime($conversation->lastChat->created_at))}}@endisset</div>
                                         </div>
-                                        <div class="mail-sub">Work inquiry from google.</div>
-                                        <div class="mail-text">Hello, This is Jenny from google. We’r the largest online platform offer...</div>
+                                        {{--<div class="mail-sub">Work inquiry from google.</div>--}}
+                                        <div class="mail-text">{{$conversation->lastChat->message ?? ''}}</div>
                                         <div class="attached-file-preview d-flex align-items-center mt-15">
                                             <div class="file d-flex align-items-center me-2">
                                                 <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_28.svg')}}" alt="" class="lazy-img me-2">
@@ -136,9 +138,12 @@ Thanks for your invitation for the account manager position for you company. I W
                                     </div>
                                     <!-- /.email-short-preview -->
                                 </div>
+								@endforeach
+								@endif
                                 <!-- /.email-list-item -->
+                                {{--
 
-                                <div class="email-list-item ps-3 pe-3 ps-xxl-4 pe-xxl-4 primary selected">
+                                <div class="email-list-item users ps-3 pe-3 ps-xxl-4 pe-xxl-4 primary selected" data-user-id = "2">
                                     <div class="email-short-preview position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="sender-name">Hasan Islam.</div>
@@ -162,7 +167,7 @@ Thanks for your invitation for the account manager position for you company. I W
                                 </div>
                                 <!-- /.email-list-item -->
 
-                                <div class="email-list-item ps-3 pe-3 ps-xxl-4 pe-xxl-4">
+                                <div class="email-list-item users ps-3 pe-3 ps-xxl-4 pe-xxl-4" data-user-id = "3">
                                     <div class="email-short-preview position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="sender-name">Jannatul Ferdaus.</div>
@@ -176,7 +181,7 @@ Thanks for your invitation for the account manager position for you company. I W
                                 <!-- /.email-list-item -->
 
 
-                                <div class="email-list-item ps-3 pe-3 ps-xxl-4 pe-xxl-4 read">
+                                <div class="email-list-item users ps-3 pe-3 ps-xxl-4 pe-xxl-4 read" data-user-id = "4">
                                     <div class="email-short-preview position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="sender-name">Jakie Chan</div>
@@ -188,13 +193,14 @@ Thanks for your invitation for the account manager position for you company. I W
                                     <!-- /.email-short-preview -->
                                 </div>
                                 <!-- /.email-list-item -->
+                                   --}}
                             </div>
                             <!-- /.email-read-panel -->
 
                         </div>
                         <!-- /.message-sidebar -->
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 employer-message-body">
                         <div class="open-email-container pb-40">
                             <div class="email-header divider d-flex justify-content-between ps-4 pe-4 ps-xxl-5 pe-xxl-5">
                                 <div class="sender-info d-flex align-items-center">
@@ -292,7 +298,7 @@ Thanks for your invitation for the account manager position for you company. I W
                                         <div class="compose-body">
                                             <textarea>Hi, Mary Cooper! 
 
-Thanks for your invitation for the account manager position for you company. I Will back to you soon with all the require documents.</textarea>
+                                             Thanks for your invitation for the account manager position for you company. I Will back to you soon with all the require documents.</textarea>
                                         </div>
                                         <!-- /.compose-body -->
 
@@ -330,4 +336,77 @@ Thanks for your invitation for the account manager position for you company. I W
         <!-- /.card-box -->
     </div>
 </div>
+
+@push('page-script')
+<script>
+    let conversationId = 0;
+    $(document).on('click', '.users', function() {
+     $('.users').removeClass('selected');
+     conversationId = $(this).data('user-id');
+    var selectedUser = $('[data-user-id="' + conversationId + '"]');
+    selectedUser.addClass('selected');
+    const apiUrl = '{{url("candidate/get-employer-chat")}}' + '/' + conversationId;
+    $.ajax({
+				type: "GET",
+				url:apiUrl,
+				dataType: 'json',
+				contentType: false,
+				processData: false,
+				success: function (data) {
+		
+					if (data.status) {
+						// window.location = data.redirect;
+                        // $(".employer-message-body").empty();
+                        $(".employer-message-body").html(data.html);
+					}else{
+						$.each(data.errors, function (key, val) {
+							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+						});
+					}
+				
+				}
+			});
+        });
+        $(document).on('submit', '#send-text-to-employer-form', function(e) {
+		e.preventDefault();
+		var formData = new FormData();
+		formData.append("_token", "{{ csrf_token() }}");
+		formData.append("conversation_id", $("#send-text-to-employer-form").find("input[name=conversation_id]").val());
+		formData.append("message", $("#send-text-to-employer-form").find("textarea[name=message]").val());
+		var apiUrl = '{{route("employer.sendTextToEmployer")}}';
+		$.ajax({
+				type: "POST",
+				url:apiUrl,
+				data: formData ,
+				dataType: 'json',
+				contentType: false,
+				processData: false,
+				success: function (data) {
+		
+					if (data.status) {
+                        $(".conversation-"+conversationId).append(data.html);
+                       $("#send-text-to-employer-form").find("textarea[name=message]").val('');
+					}else{
+						$.each(data.errors, function (key, val) {
+							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+						});
+					}
+				
+				}
+			});
+	});
+
+</script>
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+@vite('resources/js/app.js')
+
+
+<script type="module">
+      Echo.private(`employer-chat.{{auth()->user()->id}}`)
+    .listen('EmployerEvent', (e) => {
+        console.log(e.conversationId);
+        $(".conversation-"+e.conversationId).append(e.html);
+    });
+</script>
+@endpush
 @endsection
