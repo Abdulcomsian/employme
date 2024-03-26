@@ -79,43 +79,58 @@ class CandidateController extends Controller
             $imagename1 = saveFile($filePath, $file, $updatePersonalDetails->candidate_resume);
         }
         // End of saving candidate profile code
-
         $input = $request->except('_token','profile_picture','candidate_resume','experience_level');
         $updatePersonalDetails->update(array_merge($input,['profile_picture'=>$imagename,'candidate_resume'=>$imagename1]));
+        // dd($updatePersonalDetails , $input);
 
         //Saving Candidate Experience Level to Candidate Preferences Table
-        $updatePreferencesDetails->update(['experience_level'=>$request->experience_level]);
+        $updatePreferencesDetails->update([
+                                           'experience_level'=>$request->experience_level , 
+                                           'first_name' => $request->first_name,
+                                           'middle_name' => $request->middle_name,
+                                           'last_name' => $request->last_name,
+                                        ]);
 
          return response()->json([
                         "status" => true, 
-                        "message" => url("Personal Details Updated Successfully")
+                        "message" => "Personal Details Updated Successfully"
                     ]);
     }
+
     public function saveProfile3(Request $request)
     {
-        // dd($request->all());
         $input = $request->except('_token');
         $updateEducationalDetails = CandidateEducation::where('user_id',Auth::id());
         $updateEducationalDetails->update($input);
-         return response()->json([
+        return response()->json([
                         "status" => true, 
-                        "message" => url("Profile Updade Successfully")
+                        "message" => "Education Updated Successfully"
                     ]);
+
     }
+
     public function saveProfile4(Request $request)
     {
-        // $skills = implode(',', $request->skills);
-        // $skills = json_decode($request->skills);
-        // $skills = implode(',', $request->skills);
         $input = $request->except('_token');
         // dd($request->skills);
         // dd($commaSeparatedString);
-        $data = salaryRanges($request->expected_salary);
+        
+        // $data = salaryRanges($request->expected_salary);
+        // $data  = explode('-' ,preg_replace('/[^0-9-]/', '', $request->expected_salary));
+        $salaryRange  = preg_replace('/[^0-9-]/', '', $request->expected_salary);
+        $data = null;
+        if(!empty(trim($salaryRange))){
+            $salaryRange = explode('-' , $salaryRange);
+            $data = count($salaryRange) > 1 ? ['minimum_salary' => $salaryRange[0] , 'maximum_salary' => $salaryRange[1] ] : ['minimum_salary' => $salaryRange[0] ];
+        }else{
+            $data = [];
+        }
+
         $updatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id());
         $updatePreferencesDetails->update(array_merge($input,$data));
          return response()->json([
                         "status" => true, 
-                        "message" => url("Profile Updade Successfully")
+                        "message" => "Profile Updated Successfully"
                     ]);
     }
     public function saveProfile5(Request $request)
@@ -125,7 +140,7 @@ class CandidateController extends Controller
         $updatePersonalDetails->update($input);
          return response()->json([
                         "status" => true, 
-                        "message" => url("Profile Updaded Successfully")
+                        "message" => "Experience Updated Successfully"
                     ]);
     }
     public function saveProfile6(Request $request)

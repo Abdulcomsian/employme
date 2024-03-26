@@ -26,5 +26,17 @@ class CandidateSeeder extends Seeder
         CandidatePersonalDetails::create(['user_id'=>$candidate->id]);
         CandidateEducation::create(['user_id'=>$candidate->id]);
         CandidatePreferences::create(['user_id'=>$candidate->id]);
+
+
+        $candidate1 = User::create([
+            'name'=>'nouman',
+            'email'=>'nouman@gmail.com',
+            'password'=>Hash::make('nouman123'),
+            'email_verified_at'=>date('Y-m-d H:i:s')
+        ]);
+        $candidate1->assignRole('candidate');
+        CandidatePersonalDetails::create(['user_id'=>$candidate1->id]);
+        CandidateEducation::create(['user_id'=>$candidate1->id]);
+        CandidatePreferences::create(['user_id'=>$candidate1->id]);
     }
 }

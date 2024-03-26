@@ -11,6 +11,9 @@ class CandidatePersonalDetails extends Model
     protected $fillable = [
         'nationality',
         'full_name',
+        'first_name',
+        'middle_name',
+        'last_name',
         'designation',
         'job_category_id',
         'passport',
