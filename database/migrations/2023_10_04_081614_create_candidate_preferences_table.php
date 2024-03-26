@@ -20,9 +20,9 @@ return new class extends Migration
             $table->longText('video_url')->nullable();
             $table->longText('other_platform_video_url')->nullable();
             $table->string('expected_salary')->nullable();
-            $table->integer('minimum_salary')->nullable();
-            $table->integer('maximum_salary')->nullable();
-            $table->enum('experience_level',['Fresher','Intermediate','No-Experience','Expert','Internship'])->nullable();
+            $table->double('minimum_salary' , 10 , 2)->nullable();
+            $table->double('maximum_salary', 10 , 2)->nullable();
+            $table->enum('experience_level',['No Experience','0-1 Year','1-3 Years','3-5 Years','5-7 Years' ,'7-10 Years','10+'])->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
