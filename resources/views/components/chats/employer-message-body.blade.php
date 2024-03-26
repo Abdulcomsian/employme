@@ -67,6 +67,21 @@
         <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
             <p>{!! $chat->message !!}</p>
         </div>
+        <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+            <div class="attachments mb-30 d-flex">
+                @isset($chat->chatFiles)
+                @foreach($chat->chatFiles as $file)
+                <a href="javascript:void(0)" class="file tran3s d-flex align-items-center mt-10" onclick= "downloadFile('{{asset($file->file_path)}}', '{{$file->original_name}}')">
+                    <div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset($file->file_path)}}" data-src="{{asset($file->file_path)}}" alt="" class="lazy-img"></div>
+                    <div class="ps-2">
+                        <div class="file-name">{{$file->original_name}}</div>
+                        {{--<div class="file-size">2.3mb</div>--}}
+                    </div>
+                </a>
+                @endforeach
+                @endisset
+            </div>
+        </div>
         @endforeach
         @endisset
     </div>
@@ -74,38 +89,17 @@
 
     <div class="email-footer">
         <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
-            <div class="attachments mb-30">
-                <div class="d-flex justify-content-between mb-5">
-                    <h6 class="m0">2 Attachment</h6>
-                    <a href="#" class="all-download">Download All</a>
-                </div>
-                <div class="d-flex">
-                    <a href="#" class="file tran3s d-flex align-items-center mt-10" download>
-                        <div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset('assets/images/icon/icon_31.svg')}}" data-src="{{asset('assets/images/icon/icon_31.svg')}}" alt="" class="lazy-img"></div>
-                        <div class="ps-2">
-                            <div class="file-name">project-details.pdf</div>
-                            <div class="file-size">2.3mb</div>
-                        </div>
-                    </a>
-                    <a href="#" class="file tran3s d-flex align-items-center mt-10" download>
-                        <div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset('assets/images/icon/icon_31.svg')}}" data-src="{{asset('assets/images/icon/icon_31.svg')}}" alt="" class="lazy-img"></div>
-                        <div class="ps-2">
-                            <div class="file-name">form.pdf</div>
-                            <div class="file-size">1.3mb</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+        
 
             <div class="compose-new-email-container">
                 <div class="new-email-header position-relative">
-                    <div class="btn-group">
+                    {{--<div class="btn-group">
                         <a data-bs-toggle="collapse" href="#CC-input" role="button" aria-expanded="false" aria-controls="collapseExample">Cc</a>
                         <a data-bs-toggle="collapse" href="#BCC-input" role="button" aria-expanded="false" aria-controls="collapseExample">Bcc</a>
-                    </div>
+                    </div>--}}
                     <div class="input-group d-flex align-items-center">
                         <div class="text-center" style="width: 60px;">To</div>
-                        <input type="email" class="flex-fill" placeholder="{{$Conversations->employer->employerDetails->institution ?? ''}}">
+                        <input type="email" class="flex-fill" placeholder="{{$conversations->employer->employerDetails->institution ?? ''}}">
                     </div>
                     {{--<div class="collapse" id="CC-input">
                         <div class="input-group d-flex align-items-center">
@@ -132,7 +126,7 @@
                         <div class="d-flex align-items-center">
                             <div class="insert-file position-relative me-3">
                                 <img src="{{asset('assets/images/icon/icon_32.svg')}}" data-src="{{asset('assets/images/icon/icon_32.svg')}}" alt="" class="lazy-img">
-                                <input type="file" name="uploadImg" placeholder="" title="Insert File">
+                                <input type="file" name="chat_files[]" id = "chatFiles" placeholder="" title="Insert File" multiple>
                             </div>
                             {{--<button class="insert-emoji me-3"><img src="{{asset('assets/images/icon/icon_33.svg')}}" data-src="{{asset('assets/images/icon/icon_33.svg')}}" alt="" class="lazy-img"></button>
                             <div class="insert-file position-relative me-3">

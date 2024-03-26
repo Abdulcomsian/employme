@@ -1,24 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\{Conversation, Chat};
+use App\Models\{Conversation, Chat, ChatAttachment};
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 
 class MessageController extends Controller
 {
     public function getCandidateMessagePage(){
-        $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat')->where('candidate_id',\Auth::id())->get();
+        $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat','lastChat.chatFiles')->where('candidate_id',\Auth::id())->get();
         return view('candidate.message',compact('allConversations'));
     }
     public function getEmployerMessage(){
-        $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats')->where('employer_id',\Auth::id())->get();
+        $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat.chatFiles')->where('employer_id',\Auth::id())->get();
         return view('employer.employer-dashboard-message',compact('allConversations'));
     }
 
     public function getEmployerChat($id)
     {
-        $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats')->find($id);
+        $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','chats.chatFiles')->find($id);
         $html =  view('components.chats.employer-message-body',compact('conversations'))->render();
         return response()->json([
             "status" => true, 
@@ -27,7 +27,7 @@ class MessageController extends Controller
     }
     public function getCandidateChat($id)
     {
-        $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats')->find($id);
+        $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','chats.chatFiles')->find($id);
         $html =  view('components.chats.candidate-message-body',compact('conversations'))->render();
         return response()->json([
             "status" => true, 
@@ -42,8 +42,27 @@ class MessageController extends Controller
         $create->conversation_id = $request->conversation_id;
         $create->user_id = \Auth::id();
         $create->save();
+        if(isset($request->chat_files))
+        {
+            foreach($request->chat_files as $index=>$chatFile)
+            {
+                $imageName = '';
+                $imageExt = '';
+                $file = $chatFile;
+                $imageExt = $file->getClientOriginalExtension();
+                $originalName = $file->getClientOriginalName();
+                $filePath = getChatFilePath();
+                $imageName = saveFile($filePath, $file,null);
+                $addAttachment = new ChatAttachment;
+                $addAttachment->original_name = $originalName;
+                $addAttachment->file_path = $imageName;
+                $addAttachment->extension = $imageExt;
+                $addAttachment->chat_id = $create->id;
+                $addAttachment->save();
+            }
+        }
         $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails')->find($request->conversation_id);
-        $chatDetails = $conversations->chats()->find($create->id);
+        $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
         $type = 0;
         $html =  view('components.chats.employer-sent-message',compact('conversations','chatDetails','type'))->render();
         $type = 1;
@@ -62,8 +81,27 @@ class MessageController extends Controller
         $create->conversation_id = $request->conversation_id;
         $create->user_id = \Auth::id();
         $create->save();
+        if(isset($request->chat_files))
+        {
+            foreach($request->chat_files as $index=>$chatFile)
+            {
+                $imageName = '';
+                $imageExt = '';
+                $file = $chatFile;
+                $imageExt = $file->getClientOriginalExtension();
+                $originalName = $file->getClientOriginalName();
+                $filePath = getChatFilePath();
+                $imageName = saveFile($filePath, $file,null);
+                $addAttachment = new ChatAttachment;
+                $addAttachment->original_name = $originalName;
+                $addAttachment->file_path = $imageName;
+                $addAttachment->extension = $imageExt;
+                $addAttachment->chat_id = $create->id;
+                $addAttachment->save();
+            }
+        }
         $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails')->find($request->conversation_id);
-        $chatDetails = $conversations->chats()->find($create->id);
+        $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
         $type = 0;
         $html =  view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type'))->render();
         $type = 1;

@@ -3,13 +3,36 @@
 Messages
 @endsection
 @section('content')
+@push('page-css')
+<style>
+    .dashboard-body .message-wrapper .open-email-container .email-body .attachments .file {
+    padding: 9px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-right: 15px;
+}
+.dashboard-body .message-wrapper .open-email-container .email-body  {
+    height: 45vh;
+    overflow-x: scroll;
+}
+.message-wrapper{
+    height: 100vh;
+    overflow: scroll;
+}
+.dashboard-body{
+    
+    padding: 10px 55px 50px;
+}
+
+</style>
+@endpush
 <div class="dashboard-body">
     <div class="position-relative">
         <!-- ************************ Header **************************** -->
-			@include('employer.layout.header_menu')
+			{{--@include('employer.layout.header_menu')--}}
          <!-- End Header -->
 
-        <div class="row gx-0 align-items-center">
+        {{--<div class="row gx-0 align-items-center">
             <div class="offcanvas compose-mail-offcanvas" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="compose-new-email-container">
                     <div class="new-email-header position-relative">
@@ -83,7 +106,7 @@ Messages
                 </div>
                 <!-- /.message-pagination -->
             </div>
-        </div>
+        </div>--}}
 
         <div class="bg-white card-box border-20 p0 mt-30">
             <div class="message-wrapper">
@@ -358,6 +381,8 @@ Messages
 						// window.location = data.redirect;
 						$(".candidate-message-body").empty();
 						$(".candidate-message-body").html(data.html);
+                        $(".compose-new-email-container").find(".compose-body textarea").focus();
+                        $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
 					}else{
 						$.each(data.errors, function (key, val) {
 							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
@@ -373,6 +398,20 @@ Messages
 		formData.append("_token", "{{ csrf_token() }}");
 		formData.append("conversation_id", $("#send-text-to-candidate-form").find("input[name=conversation_id]").val());
 		formData.append("message", $("#send-text-to-candidate-form").find("textarea[name=message]").val());
+        var filesInput = $('#chatFiles')[0];
+        // Check if the file input element and its files property are defined
+        if (filesInput && filesInput.files && filesInput.files.length > 0) {
+            var files = filesInput.files;
+            // Iterate through each file
+            for (var i = 0; i < files.length; i++) {
+                var licenseFile = files[i];
+                // Do whatever you want with the file
+                formData.append('chat_files[]', licenseFile);
+            }
+        } else {
+            // No file selected or file input element not found
+            console.log("No files selected.");
+        }
 		var apiUrl = '{{route("employer.sendTextToCandidate")}}';
 		$.ajax({
 				type: "POST",
@@ -386,6 +425,8 @@ Messages
 					if (data.status) {
 				    $(".conversation-"+conversationId).append(data.html);
                     $("#send-text-to-candidate-form").find("textarea[name=message]").val('');
+                    $(".compose-new-email-container").find(".compose-body textarea").focus();
+                     $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
 					}else{
 						$.each(data.errors, function (key, val) {
 							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
@@ -396,6 +437,20 @@ Messages
 			});
 	});
 
+    function downloadFile(url, fileName) {
+        // Create a temporary anchor element
+        var link = document.createElement("a");
+        // Set the href attribute to the file URL
+        link.href = url;
+        // Set the download attribute to the desired filename
+        link.download = fileName;
+        // Append the anchor element to the document body
+        document.body.appendChild(link);
+        // Trigger a click event on the anchor element
+        link.click();
+        // Remove the anchor element from the document body
+        document.body.removeChild(link);
+    }
 </script>
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 @vite('resources/js/app.js')
@@ -406,6 +461,8 @@ Messages
     .listen('CandidateEvent', (e) => {
         console.log(e.conversationId);
         $(".conversation-"+e.conversationId).append(e.html);
+        $(".compose-new-email-container").find(".compose-body textarea").focus();
+        $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
     });
 </script>
 @endpush

@@ -3,13 +3,36 @@
 Messages
 @endsection
 @section('content')
+@push('page-css')
+<style>
+    .dashboard-body .message-wrapper .open-email-container .email-body .attachments .file {
+    padding: 9px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-right: 15px;
+}
+.dashboard-body .message-wrapper .open-email-container .email-body  {
+    height: 45vh;
+    overflow-x: scroll;
+}
+.message-wrapper{
+    height: 100vh;
+    overflow: scroll;
+}
+.dashboard-body{
+    
+    padding: 10px 55px 50px;
+}
+
+</style>
+@endpush
 <div class="dashboard-body">
     <div class="position-relative">
         <!-- ************************ Header **************************** -->
-			@include('candidate.layout.header_menu')
+			{{--@include('candidate.layout.header_menu')--}}
          <!-- End Header -->
 
-        <div class="row gx-0 align-items-center">
+        {{--<div class="row gx-0 align-items-center">
             <div class="offcanvas compose-mail-offcanvas" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="compose-new-email-container">
                     <div class="new-email-header position-relative">
@@ -83,7 +106,7 @@ Messages
                 </div>
                 <!-- /.message-pagination -->
             </div>
-        </div>
+        </div>--}}
 
         <div class="bg-white card-box border-20 p0 mt-30">
             <div class="message-wrapper">
@@ -128,12 +151,16 @@ Messages
                                         </div>
                                         {{--<div class="mail-sub">Work inquiry from google.</div>--}}
                                         <div class="mail-text">{{$conversation->lastChat->message ?? ''}}</div>
+                                        @isset($conversation->lastChat->chatFiles)
+                                        @foreach($conversation->lastChat->chatFiles as $file)
                                         <div class="attached-file-preview d-flex align-items-center mt-15">
                                             <div class="file d-flex align-items-center me-2">
                                                 <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_28.svg')}}" alt="" class="lazy-img me-2">
-                                                <span>details.pdf</span>
+                                                <span>{{$file->original_name}}</span>
                                             </div>
                                         </div>
+                                        @endforeach
+                                        @endisset
                                         <!-- /.attached-file-preview -->
                                     </div>
                                     <!-- /.email-short-preview -->
@@ -358,6 +385,8 @@ Messages
 						// window.location = data.redirect;
                         // $(".employer-message-body").empty();
                         $(".employer-message-body").html(data.html);
+                        $(".compose-new-email-container").find(".compose-body textarea").focus();
+                        $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
 					}else{
 						$.each(data.errors, function (key, val) {
 							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
@@ -372,6 +401,20 @@ Messages
 		var formData = new FormData();
 		formData.append("_token", "{{ csrf_token() }}");
 		formData.append("conversation_id", $("#send-text-to-employer-form").find("input[name=conversation_id]").val());
+        var filesInput = $('#chatFiles')[0];
+        // Check if the file input element and its files property are defined
+        if (filesInput && filesInput.files && filesInput.files.length > 0) {
+            var files = filesInput.files;
+            // Iterate through each file
+            for (var i = 0; i < files.length; i++) {
+                var licenseFile = files[i];
+                // Do whatever you want with the file
+                formData.append('chat_files[]', licenseFile);
+            }
+        } else {
+            // No file selected or file input element not found
+            console.log("No files selected.");
+        }
 		formData.append("message", $("#send-text-to-employer-form").find("textarea[name=message]").val());
 		var apiUrl = '{{route("employer.sendTextToEmployer")}}';
 		$.ajax({
@@ -386,6 +429,8 @@ Messages
 					if (data.status) {
                         $(".conversation-"+conversationId).append(data.html);
                        $("#send-text-to-employer-form").find("textarea[name=message]").val('');
+                       $(".compose-new-email-container").find(".compose-body textarea").focus();
+                        $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
 					}else{
 						$.each(data.errors, function (key, val) {
 							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
@@ -406,6 +451,8 @@ Messages
     .listen('EmployerEvent', (e) => {
         console.log(e.conversationId);
         $(".conversation-"+e.conversationId).append(e.html);
+        $(".compose-new-email-container").find(".compose-body textarea").focus();
+        $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
     });
 </script>
 @endpush

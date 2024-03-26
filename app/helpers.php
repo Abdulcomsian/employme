@@ -35,6 +35,15 @@ function  candidateProfilePicturePath($user = null)
     }
     return $path;
 }
+function  getChatFilePath($user = null)
+{
+    if ($user) {
+        $path = 'uploads/chat_files/' . strtolower(str_replace(' ', '_', trim($user->name))) . '-id-' . $user->id . '/profile_images/';
+    } else {
+        $path  = 'uploads/chat_files/';
+    }
+    return $path;
+}
 function  ownerProfilePicturePath($user = null)
 {
     if ($user) {

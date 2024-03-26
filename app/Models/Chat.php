@@ -14,5 +14,9 @@ class Chat extends Model
         'user_id',
     ];
 
+    public function chatFiles()
+    {
+        return $this->hasMany(ChatAttachment::class,'chat_id');
+    }
     
 }
