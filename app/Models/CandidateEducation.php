@@ -9,6 +9,7 @@ class CandidateEducation extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'country_id',
         'highest_degree',
         'field_of_study',
         'teaching_experiance',
