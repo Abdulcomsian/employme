@@ -459,7 +459,7 @@ Profile
                         @if(isset($candidateEducationalDetails->educational_details))
                         @foreach($candidateEducationalDetails->educational_details as $index=>$educational_detail)
                           @if($index == 0)
-                            <div  id="candidate-education">
+                            <div  id="candidate-education" class="educational-details-row">
                                     <center><h3>Educational Details</h3></center>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -487,7 +487,6 @@ Profile
                                     </div>
                                     <div class="col-md-2 pt-4">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Description</label>
                                             <button type="button" class="btn btn-danger remove-tr" >Remove</button>
                                         </div>
                                     </div>
@@ -523,7 +522,6 @@ Profile
                                     </div>
                                     <div class="col-md-2 pt-4">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Description</label>
                                             <button type="button" class="btn btn-danger remove-tr" >Remove</button>
                                         </div>
                                     </div>
@@ -1857,7 +1855,8 @@ const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.te
                             )
        });
        $(document).on('click', '.remove-tr', function(){  
-            $(this).parents('.educational-details-row').remove();
+        this.closest(".educational-details-row").remove();
+            // $(this).parents('.educational-details-row').remove();
        });
         //End of adding more educational details fields 
 

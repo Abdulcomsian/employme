@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('job_category_id')->nullable();
             $table->unsignedBigInteger('nationality')->nullable();
             $table->unsignedBigInteger('passport')->nullable();
-            $table->string('current_visa_status')->default('New To Applyl');
+            $table->string('current_visa_status')->default('New To Apply');
             $table->enum('criminal_record', ['Yes', 'No'])->default('No');
             $table->enum('is_healthy', ['Yes', 'No'])->default('Yes');
             $table->text('gender')->nullable();
