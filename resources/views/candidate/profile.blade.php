@@ -317,7 +317,7 @@ Profile
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Experience Level</label>
+                                    <label for="">Teaching Experience</label>
                                     <select name="ExperienceLevel" id="ExperienceLevel" class="nice-select">
                                         <option value="No Experience" {{$candidatePreferencesDetails->experience_level == 'No Experience' ? 'selected' : ''}}>No Experience</option>
                                         <option value="0-1 Year" {{$candidatePreferencesDetails->experience_level == '0-1 Year' ? 'selected' : ''}}>0-1 Year</option>
@@ -478,11 +478,17 @@ Profile
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="dash-input-wrapper mb-30">
                                             <label for="">Description</label>
                                             <input type="text" name="education[{{$index}}][description]" placeholder="" value = "{{$educational_detail['description'] ?? ''}}">
 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 pt-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Description</label>
+                                            <button type="button" class="btn btn-danger remove-tr" >Remove</button>
                                         </div>
                                     </div>
                                 </div>
