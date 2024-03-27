@@ -56,7 +56,7 @@ class CandidateController extends Controller
         $updatePersonalDetails->update($input);
         return response()->json([
                         "status" => true, 
-                        "message" => url("Profile Updated Successfully")
+                        "message" => "Profile Updated Successfully"
                     ]);
                
     }

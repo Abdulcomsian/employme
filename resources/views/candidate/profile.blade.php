@@ -178,8 +178,9 @@ Profile
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Current Visa Status in South Korea</label>
+                                    <label for="">Current Visa Status</label>
                                     <select name="current_visa_status" id="current_visa_status" class="nice-select">
+                                        <option value="New To Apply" {{$candidatePersonalDetails->current_visa_status == 'New To Apply' ? 'selected' : ''}}>New To Apply</option>
                                         <option value="E-2 (Teaching)" {{$candidatePersonalDetails->current_visa_status == 'E-2 (Teaching)' ? 'selected' : ''}}>E-2 (Teaching)</option>
                                         <option value="E-7 (Special Occupation)" {{$candidatePersonalDetails->current_visa_status == 'E-7 (Special Occupation)' ? 'selected' : ''}}>E-7 (Special Occupation)</option>
                                         <option value="F-2 (Resident)" {{$candidatePersonalDetails->current_visa_status == 'F-2 (Resident)' ? 'selected' : ''}}>F-2 (Resident)</option>
@@ -228,13 +229,13 @@ Profile
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Note</label>
-                                    <input type="text" name="note" placeholder="A brief explanation that these checks are essential for E2 visa requirements and obtaining teaching positions in South Korea." value="{{$candidatePersonalDetails->note}}">
+                                    <div id="note" class="summernote">{!! $candidatePersonalDetails->note ?? '<b>A brief explanation that these checks are essential for E2 visa requirements and obtaining teaching positions in South Korea</b>'!!}</div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id = "visa_eligibility_check">Save</button>
+                            <button type="button" class="dash-btn-one" id="visa_eligibility_check">Save</button>
                         </div>
                     </div>
 
@@ -1376,13 +1377,13 @@ Profile
                 criminal_record: $("#multi-step-form").find("[name=criminal_record]").val(),
                 graduation: $("#multi-step-form").find("[name=graduation_from_accredited_university]").val(),
                 is_healthy: $("#multi-step-form").find("[name=is_healthy]").val(),
-                note: $("#multi-step-form").find("[name=note]").val(),
+                note: document.querySelector("#step-1").querySelector(".note-editable").innerHTML,
                         },
               dataType: 'json',
               success: function (data) {
     
                 if (data.status) {
-                    // window.location = data.redirect;
+                    toastr.success(data.message);
                 }else{
                     $(".alert").remove();
                     $.each(data.errors, function (key, val) {
@@ -1516,7 +1517,7 @@ Profile
         e.preventDefault();
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
-        var noteEditable = document.querySelectorAll(".note-editable");
+        var noteEditable = document.querySelector("#step-4").querySelectorAll(".note-editable");
         var experienceData = [];
     
             for (var i = 0; ; i++) {

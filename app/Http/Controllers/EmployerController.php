@@ -31,11 +31,11 @@ class EmployerController extends Controller
     public function getEmployerProfilePage()
     {
        $plans = Plan::get();
-        $countries = Countries::all();
-        $intent = auth()->user()->createSetupIntent();
+        $countries = Countries::where('name' , 'Korea South')->get();
+        // $intent = auth()->user()->createSetupIntent();
         $employerDetails = EmployerDetails::where('user_id',Auth::id())->first();
         $employerLicenseDetails = EmployerBusinessLicense::where('employer_id',Auth::id())->first();
-        return view('employer.employer-profile',compact('countries','employerDetails','plans','intent','employerLicenseDetails'));
+        return view('employer.employer-profile',compact('countries','employerDetails','plans','employerLicenseDetails'));
     }
     public function getEmployerCandidate()
     {
