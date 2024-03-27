@@ -750,7 +750,7 @@ Profile
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">School Type Preferences</label>
+                                    <label for="">Preferences</label>
                                     <select name="schoolTypePreference" id="schoolTypePreference" class="nice-select">
                                         <option value= "" {{$candidatePreferencesDetails->school_type == '' ? 'selected' : ''}}>Select</option>
                                         <option value="Public"  {{$candidatePreferencesDetails->school_type == 'Public' ? 'selected' : ''}}>Public</option>
@@ -807,7 +807,7 @@ Profile
                             </div>
                             
                         </div>
-                        <div class="row " id="add-skill-field">
+                        {{-- <div class="row " id="add-skill-field">
                              @if(isset($candidatePreferencesDetails->skills))
                              @foreach($candidatePreferencesDetails->skills as $index=>$skill)
                               @if($index==0)
@@ -854,7 +854,7 @@ Profile
                                     </div>
                                 </div>
                                @endif
-                            </div>
+                        </div> --}}
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" id = "candidate-preferences-details">Save</button>
@@ -874,7 +874,7 @@ Profile
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Why motivates you interest in teaching in South Korea?</label>
+                                    <label for="">What motivates you interest in teaching in South Korea?</label>
                                     <textarea  name="whyInterestedInTeachingInSouthKorea"  >{{$candidatePersonalDetails->why_interested_teaching_in_korea ?? ''}}</textarea>
                                 </div>
                             </div>
@@ -910,7 +910,7 @@ Profile
                                     <label for="">Teaching Video</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
-                                            Upload new video
+                                            Upload a 30-Second Introduction Video
                                             <input type="file" id="teachingVideo" name="teachingVideo" placeholder="" accept="video/mp4" onchange="previewVideo()">
                                         </div>
 
@@ -1000,7 +1000,7 @@ Profile
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Your Degree</label>
+                                    <label for="">Copy of your Degree</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload Degree
@@ -1018,7 +1018,7 @@ Profile
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Police Certificate</label>
+                                    <label for="">Copy of your Police Certificate (Within Last 6 Months)</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload Certificate
@@ -1040,7 +1040,7 @@ Profile
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Your Degree Apostille</label>
+                                    <label for="">Copy of your Degree Apostille</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload Degree Apostille
@@ -1058,7 +1058,7 @@ Profile
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Your Certificate Apostille</label>
+                                    <label for="">Copy of your Certificate Apostille</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload Certificate Apostille
@@ -1080,7 +1080,7 @@ Profile
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Your SAQA Letter (Only For South Africa)</label>
+                                    <label for="">SAQA Letter (Only For South Africa)</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload SAQA Letter
@@ -1098,7 +1098,7 @@ Profile
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Your Passport</label>
+                                    <label for="">Copy of your Passport</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload passport
@@ -1113,6 +1113,21 @@ Profile
                                     </div>
                                     @endif
                                 </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                    <p>Please note: If all the above documents are uploaded and approved, your account will considered "verified". 
+                                     This means employers can feel confident that they are serious and ready to start.
+                                    </p>
+                            </div>
+                            <div class="col-12">
+                                <p>Documents are only for verfication and visa purposes. If you have not obtained the documents, we suggest doing
+                                    doing so visa applications can be a lengthy process.
+
+                                </p>
                             </div>
                         </div>
 
@@ -1582,9 +1597,9 @@ Profile
         var skillInput = $('input[name="skill[]"]');
 
 // Loop through each input element and append it to the FormData
-        skillInput.each(function(index, element) {
-        formData.append('skills[]', element.value);
-        });
+        // skillInput.each(function(index, element) {
+        // formData.append('skills[]', element.value);
+        // });
         formData.append('preferred_city_region',$("#multi-step-form").find('[name=preferredCityRegionInSouthKorea]').val());
         formData.append('school_type',$("#multi-step-form").find('[name=schoolTypePreference]').val());
         formData.append('age_group',$("#multi-step-form").find('[name=ageGroupPreference]').val());
