@@ -120,7 +120,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
     Route::post('activate-account', [UserController::class, 'candidateActivateAccount'])->name('candidate.activateAccount');
     Route::post('delete-file', [CandidateController::class, 'deleteFile'])->name('candidate.deleteFile');
     Route::delete('removed-job/{id}', [CandidateController::class, 'removeSavedJob'])->name('removeSavedJob');
-   
+    Route::post('delete-document' , [CandidateController::class , 'deleteCandidateDocument'])->name('deleteDocument');
 });
 //candidate dashboard route ends here
 
