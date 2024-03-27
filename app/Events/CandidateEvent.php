@@ -19,11 +19,13 @@ class CandidateEvent implements ShouldBroadcast
      */
     public $html;
     public  $conversationId;
+    public  $newCandidate;
     protected $employerId;
-    public function __construct($conversationId,$employerId,$html)
+    public function __construct($conversationId,$employerId,$html,$newCandidate)
     {
         $this->html = $html;
         $this->conversationId = $conversationId;
+        $this->newCandidate = $newCandidate;
         $this->employerId = $employerId;
     }
 

@@ -116,21 +116,23 @@ Messages
                             <div class="ps-3 pe-3 ps-xxl-4 pe-xxl-4">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="page-title fw-500">Inbox</div>
-                                    <div class="action-dots float-end">
-                                        <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <span></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="#">Sent</a></li>
-                                            <li><a class="dropdown-item" href="#">Important</a></li>
-                                            <li><a class="dropdown-item" href="#">Draft</a></li>
-                                            <li><a class="dropdown-item" href="#">Trash</a></li>
-                                        </ul>
-                                    </div>
+                                      {{--
+                                        <div class="action-dots float-end">
+                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <span></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Sent</a></li>
+                                                <li><a class="dropdown-item" href="#">Important</a></li>
+                                                <li><a class="dropdown-item" href="#">Draft</a></li>
+                                                <li><a class="dropdown-item" href="#">Trash</a></li>
+                                            </ul>
+                                        </div>
+                                         --}}
                                 </div>
-                                <form action="#" class="search-form mt-20 mb-20">
-                                    <input type="text" placeholder="Search contacts">
-                                    <button><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_10.svg')}}" alt="" class="lazy-img m-auto"></button>
+                                <form action="{{route('getEmployerDashboardMessage')}}" method = "get" class="search-form mt-20 mb-20">
+                                    <input type="text" name = "searchUser" placeholder="Search contacts">
+                                    <button type = "submit"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_10.svg')}}" alt="" class="lazy-img m-auto"></button>
                                 </form>
 
                                 {{--<div class="message_filter d-flex align-items-center justify-content-between mb-20" id="module_btns">
@@ -142,8 +144,8 @@ Messages
                             </div>
                             <div class="email-read-panel">
 								@isset($allConversations)
-								@foreach($allConversations as $conversation)
-                                <div class="email-list-item users ps-3 pe-3 ps-xxl-4 pe-xxl-4 read" data-user-id = "{{$conversation->id}}">
+								@foreach($allConversations as $index=>$conversation)
+                                <div class="email-list-item users ps-3 pe-3 ps-xxl-4 pe-xxl-4 read {{$index==0 ? 'selected' : ''}}" data-user-id = "{{$conversation->id}}">
                                     <div class="email-short-preview position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="sender-name">{{$conversation->candidate->candidatePersonalDetails->full_name}}</div>
@@ -151,12 +153,16 @@ Messages
                                         </div>
                                         {{--<div class="mail-sub">Work inquiry from google.</div>--}}
                                         <div class="mail-text">{{$conversation->lastChat->message ?? ''}}</div>
+                                        @isset($conversation->lastChat->chatFiles)
+                                        @foreach($conversation->lastChat->chatFiles as $file)
                                         <div class="attached-file-preview d-flex align-items-center mt-15">
                                             <div class="file d-flex align-items-center me-2">
                                                 <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_28.svg')}}" alt="" class="lazy-img me-2">
-                                                <span>details.pdf</span>
+                                                <span>{{$file->original_name}}</span>
                                             </div>
                                         </div>
+                                        @endforeach
+                                        @endisset
                                         <!-- /.attached-file-preview -->
                                     </div>
                                     <!-- /.email-short-preview -->
@@ -224,20 +230,28 @@ Messages
                         <!-- /.message-sidebar -->
                     </div>
                     <div class="col-lg-8 candidate-message-body">
+                        @isset($allConversations)
+                        @foreach($allConversations as $index=>$conversations)
+                        @if($index==0)
                         <div class="open-email-container pb-40">
                             <div class="email-header divider d-flex justify-content-between ps-4 pe-4 ps-xxl-5 pe-xxl-5">
                                 <div class="sender-info d-flex align-items-center">
-                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo_02.png')}}" alt="" class="lazy-img logo">
+                                    @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
+                                    <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo">
+                                    @else
+                                    <img src="{{asset('assets/images/logo_02.png')}}" data-src="{{asset('assets/images/logo_02.png')}}" alt="" class="lazy-img logo">
+                                    @endif            
                                     <div class="ps-3">
-                                        <div class="sender-name">Payoneer</div>
-                                        <div class="sender-email">payoneer@inquiry.com</div>
+                                        <div class="sender-name">{{$conversations->candidate->candidatePersonalDetails->full_name ?? ''}}</div>
+                                        <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div>
                                     </div>
                                 </div>
+                                {{--
                                 <div class="email-info">
                                     <div class="time">4:45AM (3 hours ago)</div>
                                     <div class="d-flex align-items-center justify-content-end">
-                                        <button class="delete-email"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_29.svg')}}" alt="" class="lazy-img"></button>
-                                        <button class="reply-email ms-3 me-3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_30.svg')}}" alt="" class="lazy-img"></button>
+                                        <button class="delete-email"><img src="{{asset('assets/images/icon/icon_29.svg')}}" data-src="{{asset('assets/images/icon/icon_29.svg')}}" alt="" class="lazy-img"></button>
+                                        <button class="reply-email ms-3 me-3"><img src="{{asset('assets/images/icon/icon_30.svg')}}" data-src="{{asset('assets/images/icon/icon_30.svg')}}" alt="" class="lazy-img"></button>
                                         <div class="action-dots float-end">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
@@ -251,60 +265,80 @@ Messages
                                         </div>
                                     </div>
                                 </div>
+                                       --}}
                             </div>
                             <!-- /.email-header -->
 
-                            <div class="email-body divider">
-                                <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
-                                    <h2>Account Manager.</h2>
-                                    <p>Hello, Greeting from Uber. Hope you doing great. I am approaching to you for as our company need a great & talented account manager. </p>
-                                    <p>What we need from you to start:</p>
-                                    <ul class="style-none mb-30">
-                                        <li>- Your CV</li>
-                                        <li>- Verified Gov ID</li>
-                                    </ul>
-                                    <p>After that we need to redesign our landing page because the current one doesn't carry any information. If you have any question don’t hesitate to contact us.</p>
-                                    <p>Our Telegram <a href="#" class="fw-500">@payoneer</a> <br>Thank you!</p>
+                            <div class="email-body divider conversation-{{$conversations->id}}">
+                                @isset($conversations->chats)
+                                @foreach($conversations->chats as $chat)
+                                @if($chat->user_id == auth()->user()->id)
+                                <div class = "row col-md-4" style = "padding-left:35px;">
+                                <div class="sender-info d-flex align-items-center">
+                                    @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
+                                    <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo" style = "max-width:30%;">
+                                    @else
+                                    <img src="{{asset('assets/images/logo_02.png')}}" data-src="{{asset('assets/images/logo_02.png')}}" alt="" class="lazy-img logo" style = "max-width:30%;">
+                                    @endif            
+                                    <div class="ps-3">
+                                        <div class="sender-name">You</div>
+                                        <div class="sender-email">{{$conversations->employer->email ?? ''}}</div>
+                                    </div>
                                 </div>
+                                </div>
+                                @else
+                                <div class = "row col-md-4" style = "padding-left:35px;">
+                                <div class="sender-info d-flex align-items-center">
+                                    @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
+                                    <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo" style = "max-width:30%;">
+                                    @else
+                                    <img src="{{asset('assets/images/logo_02.png')}}" data-src="{{asset('assets/images/logo_02.png')}}" alt="" class="lazy-img logo" style = "max-width:30%;">
+                                    @endif            
+                                    <div class="ps-3">
+                                        <div class="sender-name">{{$conversations->candidate->candidatePersonalDetails->full_name ?? ''}}</div>
+                                        <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div>
+                                    </div>
+                                </div>
+                                </div>
+                                @endif
+                                <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+                                    <p>{!! $chat->message !!}</p>
+                                </div>
+                                <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+                                    <div class="attachments mb-30 d-flex">
+                                        @isset($chat->chatFiles)
+                                        @foreach($chat->chatFiles as $file)
+                                        <a href="javascript:void(0)" class="file tran3s d-flex align-items-center mt-10" onclick= "downloadFile('{{asset($file->file_path)}}', '{{$file->original_name}}')">
+                                            <div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset($file->file_path)}}" data-src="{{asset($file->file_path)}}" alt="" class="lazy-img"></div>
+                                            <div class="ps-2">
+                                                <div class="file-name">{{$file->original_name}}</div>
+                                                {{--<div class="file-size">2.3mb</div>--}}
+                                            </div>
+                                        </a>
+                                        @endforeach
+                                        @endisset
+                                    </div>
+                                </div>
+                                
+
+                                @endforeach
+                                @endisset
                             </div>
                             <!-- /.email-body -->
 
                             <div class="email-footer">
                                 <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
-                                    <div class="attachments mb-30">
-                                        <div class="d-flex justify-content-between mb-5">
-                                            <h6 class="m0">2 Attachment</h6>
-                                            <a href="#" class="all-download">Download All</a>
-                                        </div>
-                                        <div class="d-flex">
-                                            <a href="#" class="file tran3s d-flex align-items-center mt-10" download>
-                                                <div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_31.svg')}}" alt="" class="lazy-img"></div>
-                                                <div class="ps-2">
-                                                    <div class="file-name">project-details.pdf</div>
-                                                    <div class="file-size">2.3mb</div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="file tran3s d-flex align-items-center mt-10" download>
-                                                <div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_31.svg')}}" alt="" class="lazy-img"></div>
-                                                <div class="ps-2">
-                                                    <div class="file-name">form.pdf</div>
-                                                    <div class="file-size">1.3mb</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-
                                     <div class="compose-new-email-container">
                                         <div class="new-email-header position-relative">
-                                            <div class="btn-group">
+                                            {{--<div class="btn-group">
                                                 <a data-bs-toggle="collapse" href="#CC-input" role="button" aria-expanded="false" aria-controls="collapseExample">Cc</a>
                                                 <a data-bs-toggle="collapse" href="#BCC-input" role="button" aria-expanded="false" aria-controls="collapseExample">Bcc</a>
-                                            </div>
+                                            </div>--}}
                                             <div class="input-group d-flex align-items-center">
                                                 <div class="text-center" style="width: 60px;">To</div>
-                                                <input type="email" class="flex-fill" placeholder="payoneer@inquiry.com">
+                                                <input type="email" class="flex-fill" placeholder="{{$conversations->candidate->candidatePersonalDetails->full_name ?? ''}}">
                                             </div>
-                                            <div class="collapse" id="CC-input">
+                                            {{--<div class="collapse" id="CC-input">
                                                 <div class="input-group d-flex align-items-center">
                                                     <div class="text-center" style="width: 60px;">Cc</div>
                                                     <input type="email" class="flex-fill" placeholder="payoneer@inquiry.com">
@@ -315,34 +349,36 @@ Messages
                                                     <div class="text-center" style="width: 60px;">Bcc</div>
                                                     <input type="email" class="flex-fill" placeholder="payoneer@inquiry.com">
                                                 </div>
-                                            </div>
+                                            </div>--}}
                                         </div>
                                         <!-- /.new-email-header -->
-                                        <div class="compose-body">
-                                            <textarea>Hi, Mary Cooper! 
-
-                                             Thanks for your invitation for the account manager position for you company. I Will back to you soon with all the require documents.</textarea>
-                                        </div>
-                                        <!-- /.compose-body -->
-
-                                        <div class="compose-email-footer d-flex justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <div class="insert-file position-relative me-3">
-                                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_32.svg')}}" alt="" class="lazy-img">
-                                                    <input type="file" name="uploadImg" placeholder="" title="Insert File">
+                                        <form id = "send-text-to-candidate-form" method = "post" enctype = "multipart/form-data">
+                                            @csrf
+                                            <input type = "hidden" name = "conversation_id"  value = "{{$conversations->id}}">
+                                            <div class="compose-body">
+                                                <textarea name = "message"></textarea>
+                                            </div>
+                                            <!-- /.compose-body -->
+                                        
+                                            <div class="compose-email-footer d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="insert-file position-relative me-3">
+                                                        <img src="{{asset('assets/images/icon/icon_32.svg')}}" data-src="{{asset('assets/images/icon/icon_32.svg')}}" alt="" class="lazy-img">
+                                                        <input type="file" name="chat_files[]" id = "chatFiles" placeholder="" title="Insert File" multiple>
+                                                    </div>
+                                                    {{--<button class="insert-emoji me-3"><img src="{{asset('assets/images/icon/icon_33.svg')}}" data-src="{{asset('assets/images/icon/icon_33.svg')}}" alt="" class="lazy-img"></button>
+                                                    <div class="insert-file position-relative me-3">
+                                                        <img src="{{asset('assets/images/icon/icon_34.svg')}}" data-src="{{asset('assets/images/icon/icon_34.svg')}}" alt="" class="lazy-img">
+                                                        <input type="file" name="uploadImg" placeholder="" title="Insert Image">
+                                                    </div>--}}
                                                 </div>
-                                                <button class="insert-emoji me-3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_33.svg')}}" alt="" class="lazy-img"></button>
-                                                <div class="insert-file position-relative me-3">
-                                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_34.svg')}}" alt="" class="lazy-img">
-                                                    <input type="file" name="uploadImg" placeholder="" title="Insert Image">
+
+                                                <div class="d-flex align-items-center">
+                                                    <a href="#" class="delete-mail me-3"><img src="{{asset('assets/images/icon/icon_35.svg')}}" data-src="{{asset('assets/images/icon/icon_35.svg')}}" alt="" class="lazy-img"></a>
+                                                    <button type = "submit"  class="reply-btn tran3s">Send</button>
                                                 </div>
                                             </div>
-
-                                            <div class="d-flex align-items-center">
-                                                <a href="#" class="delete-mail me-3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_35.svg')}}" alt="" class="lazy-img"></a>
-                                                <a href="#" class="reply-btn tran3s">Reply</a>
-                                            </div>
-                                        </div>
+                                        </form>
                                         <!-- /.compose-email-footer -->
                                     </div>
                                     <!-- /.compose-new-email-container -->
@@ -350,6 +386,9 @@ Messages
                             </div>
                             <!-- /.email-footer -->
                         </div>
+                        @endif
+                        @endforeach
+                        @endisset
                         <!-- /.open-email-container -->
                     </div>
                 </div>
@@ -362,12 +401,18 @@ Messages
 
 @push('page-script')
 <script>
-    let conversationId = 0; 
+    $(document).ready(function(){
+        $(".compose-new-email-container").find(".compose-body textarea").focus();
+        $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+    });
+    let conversationId = $(".email-list-item.selected").data("user-id");
     $(document).on('click', '.users', function() {
      $('.users').removeClass('selected');
      conversationId = $(this).data('user-id');
     var selectedUser = $('[data-user-id="' + conversationId + '"]');
     selectedUser.addClass('selected');
+    selectedUser.removeClass('unread');
+    selectedUser.addClass('read');
 	var apiUrl = '{{url("employer/get-candidate-chat")}}' + '/' + conversationId;
 		$.ajax({
 				type: "GET",
@@ -460,9 +505,18 @@ Messages
       Echo.private(`candidate-chat.{{auth()->user()->id}}`)
     .listen('CandidateEvent', (e) => {
         console.log(e.conversationId);
-        $(".conversation-"+e.conversationId).append(e.html);
-        $(".compose-new-email-container").find(".compose-body textarea").focus();
-        $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+      
+        if(e.conversationId == conversationId)
+        {
+            $(".conversation-"+e.conversationId).append(e.html);
+            $(".compose-new-email-container").find(".compose-body textarea").focus();
+            $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+        }
+        else
+        {
+            $(".users[data-user-id='" + e.conversationId + "']").remove();
+            $(".email-read-panel").prepend(e.newCandidate);
+        }
     });
 </script>
 @endpush

@@ -7,12 +7,28 @@ use Illuminate\Database\Eloquent\Builder;
 
 class MessageController extends Controller
 {
-    public function getCandidateMessagePage(){
-        $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat','lastChat.chatFiles')->where('candidate_id',\Auth::id())->get();
+    public function getCandidateMessagePage(Request $request){
+        $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat','lastChat.chatFiles')->where('candidate_id',\Auth::id());
+        if(isset($request->searchUser) && $request->searchUser != '')
+        {
+            $searchUser = $request->searchUser;
+            $allConversations = $allConversations->whereHas('employer.employerDetails', function($query) use ($searchUser){
+                $query->where('institution','like', '%'.$searchUser.'%');
+             });
+        }
+        $allConversations = $allConversations->get();
         return view('candidate.message',compact('allConversations'));
     }
-    public function getEmployerMessage(){
-        $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat.chatFiles')->where('employer_id',\Auth::id())->get();
+    public function getEmployerMessage(Request $request){
+        $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat.chatFiles')->where('employer_id',\Auth::id());
+        if(isset($request->searchUser) && $request->searchUser != '')
+        {
+            $searchUser = $request->searchUser;
+            $allConversations = $allConversations->whereHas('candidate.candidatePersonalDetails', function($query) use ($searchUser){
+                $query->where('full_name','like', '%'.$searchUser.'%');
+             });
+        }
+        $allConversations = $allConversations->get();
         return view('employer.employer-dashboard-message',compact('allConversations'));
     }
 
@@ -63,11 +79,13 @@ class MessageController extends Controller
         }
         $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails')->find($request->conversation_id);
         $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
+        $lastChat = $conversations->lastChat()->with('chatFiles')->find($create->id);
         $type = 0;
         $html =  view('components.chats.employer-sent-message',compact('conversations','chatDetails','type'))->render();
         $type = 1;
         $tocandidate = view('components.chats.employer-sent-message',compact('conversations','chatDetails','type'))->render();
-        event(new \App\Events\EmployerEvent($conversations->id,$conversations->candidate_id,$tocandidate));
+        $newemployer= view('components.chats.new-employer',compact('lastChat','conversations'))->render();
+        event(new \App\Events\EmployerEvent($conversations->id,$conversations->candidate_id,$tocandidate,$newemployer));
         return response()->json([
             "status" => true, 
             "message" => 'message sent successfully',
@@ -102,11 +120,13 @@ class MessageController extends Controller
         }
         $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails')->find($request->conversation_id);
         $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
+        $lastChat = $conversations->lastChat()->with('chatFiles')->find($create->id);
         $type = 0;
         $html =  view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type'))->render();
         $type = 1;
         $toemployer = view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type'))->render();
-        event(new \App\Events\CandidateEvent($conversations->id,$conversations->employer_id,$toemployer));
+        $newcandidate= view('components.chats.new-candidate',compact('lastChat','conversations'))->render();
+        event(new \App\Events\CandidateEvent($conversations->id,$conversations->employer_id,$toemployer,$newcandidate));
 
         return response()->json([
             "status" => true, 
