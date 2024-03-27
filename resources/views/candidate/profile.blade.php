@@ -69,6 +69,9 @@ Profile
         height: 100%;
         overflow-y: scroll;
     }
+    .alert-danger {
+        width: content-fit;
+    }
 </style>
 @endpush
 @section('content')
@@ -214,25 +217,26 @@ Profile
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Health Declaration</label>
-                                    <select name="is_healthy" id="is_healthy" class="nice-select">
+                                    <div id="note" class="summernote">{!! $candidatePersonalDetails->health_declaration !!}</div>
+                                    {{-- <select name="is_healthy" id="is_healthy" class="nice-select">
                                         <option value="Yes" {{$candidatePersonalDetails->is_healthy == 'Yes' ? 'selected' : ''}}>Yes</option>
                                         <option value="No" {{$candidatePersonalDetails->is_healthy == 'No' ? 'selected' : ''}}>No</option>
-                                    </select>
+                                    </select> --}}
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Note</label>
                                     <div id="note" class="summernote">{!! $candidatePersonalDetails->note ?? '<b>A brief explanation that these checks are essential for E2 visa requirements and obtaining teaching positions in South Korea</b>'!!}</div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" id="visa_eligibility_check">Save</button>
@@ -1377,7 +1381,7 @@ Profile
                 criminal_record: $("#multi-step-form").find("[name=criminal_record]").val(),
                 graduation: $("#multi-step-form").find("[name=graduation_from_accredited_university]").val(),
                 is_healthy: $("#multi-step-form").find("[name=is_healthy]").val(),
-                note: document.querySelector("#step-1").querySelector(".note-editable").innerHTML,
+                health_declaration: document.querySelector("#step-1").querySelector(".note-editable").innerHTML,
                         },
               dataType: 'json',
               success: function (data) {
