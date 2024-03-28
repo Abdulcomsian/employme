@@ -330,10 +330,10 @@ Messages
                                                 <a data-bs-toggle="collapse" href="#CC-input" role="button" aria-expanded="false" aria-controls="collapseExample">Cc</a>
                                                 <a data-bs-toggle="collapse" href="#BCC-input" role="button" aria-expanded="false" aria-controls="collapseExample">Bcc</a>
                                             </div>--}}
-                                            <div class="input-group d-flex align-items-center">
+                                            {{--<div class="input-group d-flex align-items-center">
                                                 <div class="text-center" style="width: 60px;">To</div>
                                                 <input type="email" class="flex-fill" placeholder="{{$conversations->employer->employerDetails->institution ?? ''}}">
-                                            </div>
+                                            </div>--}}
                                             {{--<div class="collapse" id="CC-input">
                                                 <div class="input-group d-flex align-items-center">
                                                     <div class="text-center" style="width: 60px;">Cc</div>
@@ -352,7 +352,7 @@ Messages
                                             @csrf
                                             <input type = "hidden" name = "conversation_id"  value = "{{$conversations->id}}">
                                             <div class="compose-body">
-                                                <textarea name = "message"></textarea>
+                                                <textarea name = "message" placeholder = "send message here"></textarea>
                                             </div>
                                             <!-- /.compose-body -->
                                             <div class="compose-email-footer d-flex justify-content-between">
