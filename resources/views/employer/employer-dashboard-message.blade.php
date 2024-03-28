@@ -303,6 +303,7 @@ Messages
                                 @endif
                                 <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
                                     <p>{!! $chat->message !!}</p>
+                                    <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chat->created_at))}}</p>
                                 </div>
                                 <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
                                     <div class="attachments mb-30 d-flex">
@@ -424,10 +425,13 @@ Messages
 		
 					if (data.status) {
 						// window.location = data.redirect;
-						$(".candidate-message-body").empty();
-						$(".candidate-message-body").html(data.html);
-                        $(".compose-new-email-container").find(".compose-body textarea").focus();
-                        $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+						if(data.html !='')
+                        {
+                            $(".candidate-message-body").empty();
+                            $(".candidate-message-body").html(data.html);
+                            $(".compose-new-email-container").find(".compose-body textarea").focus();
+                            $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+                        }
 					}else{
 						$.each(data.errors, function (key, val) {
 							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");

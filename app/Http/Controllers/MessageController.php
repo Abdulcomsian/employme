@@ -53,39 +53,45 @@ class MessageController extends Controller
 
     public function sendTextToCandidate(Request $request)
     {
-        $create = new Chat;
-        $create->message = $request->message;
-        $create->conversation_id = $request->conversation_id;
-        $create->user_id = \Auth::id();
-        $create->save();
-        if(isset($request->chat_files))
+        $html = '';
+        if($request->message !='' || isset($request->chat_files))
         {
-            foreach($request->chat_files as $index=>$chatFile)
+            $create = new Chat;
+            $create->message = $request->message;
+            $create->conversation_id = $request->conversation_id;
+            $create->user_id = \Auth::id();
+            $create->save();
+            if(isset($request->chat_files))
             {
-                $imageName = '';
-                $imageExt = '';
-                $file = $chatFile;
-                $imageExt = $file->getClientOriginalExtension();
-                $originalName = $file->getClientOriginalName();
-                $filePath = getChatFilePath();
-                $imageName = saveFile($filePath, $file,null);
-                $addAttachment = new ChatAttachment;
-                $addAttachment->original_name = $originalName;
-                $addAttachment->file_path = $imageName;
-                $addAttachment->extension = $imageExt;
-                $addAttachment->chat_id = $create->id;
-                $addAttachment->save();
+                foreach($request->chat_files as $index=>$chatFile)
+                {
+                    $imageName = '';
+                    $imageExt = '';
+                    $file = $chatFile;
+                    $imageExt = $file->getClientOriginalExtension();
+                    $originalName = $file->getClientOriginalName();
+                    $filePath = getChatFilePath();
+                    $imageName = saveFile($filePath, $file,null);
+                    $addAttachment = new ChatAttachment;
+                    $addAttachment->original_name = $originalName;
+                    $addAttachment->file_path = $imageName;
+                    $addAttachment->extension = $imageExt;
+                    $addAttachment->chat_id = $create->id;
+                    $addAttachment->save();
+                }
             }
+            $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails')->find($request->conversation_id);
+            $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
+            $lastChat = $conversations->lastChat()->with('chatFiles')->find($create->id);
+            $type = 0;
+            $html =  view('components.chats.employer-sent-message',compact('conversations','chatDetails','type'))->render();
+            $type = 1;
+            $tocandidate = view('components.chats.employer-sent-message',compact('conversations','chatDetails','type'))->render();
+            $newemployer= view('components.chats.new-employer',compact('lastChat','conversations'))->render();
+            event(new \App\Events\EmployerEvent($conversations->id,$conversations->candidate_id,$tocandidate,$newemployer));
+
         }
-        $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails')->find($request->conversation_id);
-        $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
-        $lastChat = $conversations->lastChat()->with('chatFiles')->find($create->id);
-        $type = 0;
-        $html =  view('components.chats.employer-sent-message',compact('conversations','chatDetails','type'))->render();
-        $type = 1;
-        $tocandidate = view('components.chats.employer-sent-message',compact('conversations','chatDetails','type'))->render();
-        $newemployer= view('components.chats.new-employer',compact('lastChat','conversations'))->render();
-        event(new \App\Events\EmployerEvent($conversations->id,$conversations->candidate_id,$tocandidate,$newemployer));
+       
         return response()->json([
             "status" => true, 
             "message" => 'message sent successfully',
@@ -94,40 +100,45 @@ class MessageController extends Controller
     }
     public function sendTextToEmployer(Request $request)
     {
-        $create = new Chat;
-        $create->message = $request->message;
-        $create->conversation_id = $request->conversation_id;
-        $create->user_id = \Auth::id();
-        $create->save();
-        if(isset($request->chat_files))
+        $html = '';
+        if($request->message !='' || isset($request->chat_files))
         {
-            foreach($request->chat_files as $index=>$chatFile)
+            $create = new Chat;
+            $create->message = $request->message;
+            $create->conversation_id = $request->conversation_id;
+            $create->user_id = \Auth::id();
+            $create->save();
+            if(isset($request->chat_files))
             {
-                $imageName = '';
-                $imageExt = '';
-                $file = $chatFile;
-                $imageExt = $file->getClientOriginalExtension();
-                $originalName = $file->getClientOriginalName();
-                $filePath = getChatFilePath();
-                $imageName = saveFile($filePath, $file,null);
-                $addAttachment = new ChatAttachment;
-                $addAttachment->original_name = $originalName;
-                $addAttachment->file_path = $imageName;
-                $addAttachment->extension = $imageExt;
-                $addAttachment->chat_id = $create->id;
-                $addAttachment->save();
+                foreach($request->chat_files as $index=>$chatFile)
+                {
+                    $imageName = '';
+                    $imageExt = '';
+                    $file = $chatFile;
+                    $imageExt = $file->getClientOriginalExtension();
+                    $originalName = $file->getClientOriginalName();
+                    $filePath = getChatFilePath();
+                    $imageName = saveFile($filePath, $file,null);
+                    $addAttachment = new ChatAttachment;
+                    $addAttachment->original_name = $originalName;
+                    $addAttachment->file_path = $imageName;
+                    $addAttachment->extension = $imageExt;
+                    $addAttachment->chat_id = $create->id;
+                    $addAttachment->save();
+                }
             }
-        }
-        $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails')->find($request->conversation_id);
-        $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
-        $lastChat = $conversations->lastChat()->with('chatFiles')->find($create->id);
-        $type = 0;
-        $html =  view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type'))->render();
-        $type = 1;
-        $toemployer = view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type'))->render();
-        $newcandidate= view('components.chats.new-candidate',compact('lastChat','conversations'))->render();
-        event(new \App\Events\CandidateEvent($conversations->id,$conversations->employer_id,$toemployer,$newcandidate));
+            $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails')->find($request->conversation_id);
+            $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
+            $lastChat = $conversations->lastChat()->with('chatFiles')->find($create->id);
+            $type = 0;
+            $html =  view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type'))->render();
+            $type = 1;
+            $toemployer = view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type'))->render();
+            $newcandidate= view('components.chats.new-candidate',compact('lastChat','conversations'))->render();
+            event(new \App\Events\CandidateEvent($conversations->id,$conversations->employer_id,$toemployer,$newcandidate));
 
+        }
+        
         return response()->json([
             "status" => true, 
             "message" => 'message sent successfully',

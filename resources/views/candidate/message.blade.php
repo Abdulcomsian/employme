@@ -278,7 +278,7 @@ Messages
                                     @endif            
                                     <div class="ps-3">
                                         <div class="sender-name">You</div>
-                                        <div class="sender-email">{{$conversations->employer->email ?? ''}}</div>
+                                        <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div>
                                     </div>
                                 </div>
                                 </div>
@@ -291,14 +291,15 @@ Messages
                                     <img src="{{asset('assets/images/logo_02.png')}}" data-src="{{asset('assets/images/logo_02.png')}}" alt="" class="lazy-img logo" style = "max-width:30%;">
                                     @endif            
                                     <div class="ps-3">
-                                        <div class="sender-name">{{$conversations->candidate->candidatePersonalDetails->full_name ?? ''}}</div>
-                                        <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div>
+                                        <div class="sender-name">{{$conversations->employer->employerDetails->institution ?? ''}}</div>
+                                        <div class="sender-email">{{$conversations->employer->email ?? ''}}</div>
                                     </div>
                                 </div>
                                 </div>
                                 @endif
                                 <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
                                     <p>{!! $chat->message !!}</p>
+                                    <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chat->created_at))}}</p>
                                 </div>
                                 <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
                                     <div class="attachments mb-30 d-flex">
@@ -421,9 +422,13 @@ Messages
 					if (data.status) {
 						// window.location = data.redirect;
                         // $(".employer-message-body").empty();
-                        $(".employer-message-body").html(data.html);
-                        $(".compose-new-email-container").find(".compose-body textarea").focus();
-                        $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+                        if(data.html != '')
+                        {
+                            $(".employer-message-body").html(data.html);
+                            $(".compose-new-email-container").find(".compose-body textarea").focus();
+                            $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+                        }
+                        
 					}else{
 						$.each(data.errors, function (key, val) {
 							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
