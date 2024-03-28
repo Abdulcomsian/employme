@@ -72,6 +72,10 @@ Profile
     .alert-danger {
         width: content-fit;
     }
+
+    h4{
+        font-family: 'gordita';
+    }
 </style>
 @endpush
 @section('content')
@@ -706,8 +710,7 @@ Profile
                         </div>
                     </div>
                     <!-- Step 5 -->
-                    <div class="card my-3 p-3" id="step-5">
-                           
+                    <div class="card my-3 p-3" id="step-5">  
                         <div class="row">
                             <!-- <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">

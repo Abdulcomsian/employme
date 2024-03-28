@@ -26,8 +26,8 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->string('second_contact_number')->nullable();
             $table->text('email')->nullable();
-            $table->integer('number_of_teachers')->nullable();
-            $table->integer('number_of_students')->nullable();
+            $table->string('number_of_teachers')->nullable();
+            $table->string('number_of_students')->nullable();
             $table->integer('number_of_administrative_staff')->nullable();
             $table->date('established_date')->nullable();
             $table->text('school_vision_and_mission')->nullable();
