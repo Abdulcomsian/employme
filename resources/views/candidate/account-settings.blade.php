@@ -12,6 +12,7 @@ Account Settings
         <h2 class="main-title">Account Settings</h2>
 
         <div class="bg-white card-box border-20">
+            <h4 class="dash-title-three">Update Account Details</h4>
                 @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -36,7 +37,6 @@ Account Settings
                         </div>
                     </div>
                     @endif
-            <h4 class="dash-title-three">Update Account Details</h4>
             <form action="{{route('candidate.updateAccountSettingpage')}}" method="POST">
                 @csrf
                 <div class="row">
@@ -74,6 +74,9 @@ Account Settings
                     {{--<a href="#" class="dash-cancel-btn tran3s">Cancel</a>--}}
                 </div>
             </form>
+        </div>
+        <div class="bg-white card-box border-20 mt-4">
+             
             <h4 class="dash-title-three">Change Password</h4>
              <form method = "POST" action  = "{{route('candidate.updatePassword')}}">
                     @csrf

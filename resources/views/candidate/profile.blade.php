@@ -72,6 +72,17 @@ Profile
     .alert-danger {
         width: content-fit;
     }
+    .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: none;
+    border-radius: .25rem;
+}
 </style>
 @endpush
 @section('content')
@@ -96,9 +107,9 @@ Profile
 		  @endif
         <h2 class="main-title">My Profile</h2>
 
-        <div class="bg-white card-box border-20 mb-40">
+        {{-- <div class="bg-white card-box border-20 mb-40">
             <div class="candidate-sign-up">
-                {{-- <div class="stepper">
+                <div class="stepper">
                     <div id="tag-step-1" class="step selected">
                         <div class="icon">
                             <div>1</div>
@@ -147,9 +158,16 @@ Profile
                         </div>
                         <div class="text">Legal & Verification</div>
                     </div>
-                </div> --}}
-                <form id="multi-step-form" enctype = "multipart/form-data">
-                    <!-- Step 1 -->
+                </div>
+               
+            </div>
+        </div> --}}
+
+        <form id="multi-step-form" enctype = "multipart/form-data">
+            <!-- Step 1 -->
+            <div class="bg-white card-box border-20 mb-40">
+                <h4 class="dash-title-three">Visa Eligibility</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-1">
                         <div class="row">
                             <div class="col-md-6">
@@ -242,8 +260,13 @@ Profile
                             <button type="button" class="dash-btn-one" id="visa_eligibility_check">Save</button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Step 2 -->
+            <!-- Step 2 -->
+            <div class="bg-white card-box border-20 mb-40">
+                <h4 class="dash-title-three">Personal Details</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-2">
                         <div class="row">
                             <div class="col-md-4">
@@ -300,7 +323,7 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Type</label>
                                     <select name="designationType" id="designationType" class="nice-select">
-                                       
+                                        
                                         @if(!$jobCategories->isEmpty())
                                             @foreach($jobCategories as $jobCategory)
                                             <option value="{{$jobCategory->id}}" {{$candidatePersonalDetails->job_category_id == $jobCategory->id ? 'selected' : ''}}>{{$jobCategory->name}}</option>
@@ -308,11 +331,11 @@ Profile
                                         @else
                                         <option value="" selected>Select</option>
                                         @endif
-                                     
+                                        
                                     </select>
                                 </div>
                             </div>
-                           
+                            
                         </div> --}}
                         <div class="row">
                             <div class="col-md-6">
@@ -329,7 +352,7 @@ Profile
                                     </select>
                                 </div>
                             </div>
-                           
+                            
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -374,8 +397,13 @@ Profile
                             <button type="button"  class="dash-btn-one" id = "candidate-personal-details">Save</button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Step 3 -->
+            <!-- Step 3 -->
+            <div class="bg-white card-box border-20 mb-40">
+                <h4 class="dash-title-three">Education</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-3">
                         <div class="row">
                             <div class="col-md-6">
@@ -458,7 +486,7 @@ Profile
                         </div>
                         @if(isset($candidateEducationalDetails->educational_details))
                         @foreach($candidateEducationalDetails->educational_details as $index=>$educational_detail)
-                          @if($index == 0)
+                            @if($index == 0)
                             <div  id="candidate-education" class="educational-details-row">
                                     <center><h3>Educational Details</h3></center>
                                 <div class="row">
@@ -543,12 +571,17 @@ Profile
                             <button type="button" class="dash-btn-one" id="candidate-educational-details">Save</button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Step 4 -->
+            <!-- Step 4 -->
+            <div class="bg-white card-box border-20 mb-40">
+                <h4 class="dash-title-three">Professional Details</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-4">
                         @if(isset($candidateEducationalDetails->professional_details))
                         @foreach($candidateEducationalDetails->professional_details as $index=>$professional_details)
-                         @if($index==0)
+                            @if($index==0)
                         <div id="candidate-experience" >
                                 <center><h3>Experience Details</h3></center>
                             <div class="row">
@@ -705,9 +738,14 @@ Profile
                             <button type="button" class="dash-btn-one" id="candidate-professional-details">Save</button>
                         </div>
                     </div>
-                    <!-- Step 5 -->
+                </div>
+            </div>
+            <!-- Step 5 -->
+            <div class="bg-white card-box border-20 mb-40">
+                <h4 class="dash-title-three">Preferences</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-5">
-                           
+                            
                         <div class="row">
                             <!-- <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
@@ -763,7 +801,7 @@ Profile
                         </div>
 
                         <div class="row">
-                         
+                            
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Age Group Preference</label>
@@ -808,9 +846,9 @@ Profile
                             
                         </div>
                         {{-- <div class="row " id="add-skill-field">
-                             @if(isset($candidatePreferencesDetails->skills))
-                             @foreach($candidatePreferencesDetails->skills as $index=>$skill)
-                              @if($index==0)
+                                @if(isset($candidatePreferencesDetails->skills))
+                                @foreach($candidatePreferencesDetails->skills as $index=>$skill)
+                                @if($index==0)
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
@@ -839,8 +877,8 @@ Profile
                                 </div>
                                 @endif
                                 @endforeach
-                               @else
-                               <div class="row">
+                                @else
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
                                             <label for="">Skills</label>
@@ -853,15 +891,20 @@ Profile
                                         </div>
                                     </div>
                                 </div>
-                               @endif
+                                @endif
                         </div> --}}
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" id = "candidate-preferences-details">Save</button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Step 6 -->
+            <!-- Step 6 -->
+            <div class="bg-white card-box border-20 mb-40">
+             <h4 class="dash-title-three">Introduction</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-6">
                         <div class="row">
                             <div class="col-md-12">
@@ -901,8 +944,13 @@ Profile
                             <button type="button" class="dash-btn-one" id= "candidate-introduction-details">Save</button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Step 7 -->
+            <!-- Step 7 -->
+            <div class="bg-white card-box border-20 mb-40">
+               <h4 class="dash-title-three">Uploads</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-7">
                         <div class="row">
                             <div class="col-md-6">
@@ -1120,7 +1168,7 @@ Profile
                         <div class="row">
                             <div class="col-12">
                                     <p>Please note: If all the above documents are uploaded and approved, your account will considered "verified". 
-                                     This means employers can feel confident that they are serious and ready to start.
+                                        This means employers can feel confident that they are serious and ready to start.
                                     </p>
                             </div>
                             <div class="col-12">
@@ -1143,54 +1191,54 @@ Profile
                             <button type="button" class="dash-btn-one" id="teaching-video-details">Save</button>
                         </div>
                     </div>
-
-                    <!-- Step 8 -->
-                    {{-- <div class="card my-3 p-3" id="step-8">
-                        <div class="row">
-                            <div class="col">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Criminal Background Check</label>
-                                    <input type="text" name="criminalBackgroundCheck" value = "{{$candidatePersonalDetails->criminal_background ?? ''}}" placeholder="A note that this will be required later for the E2 visa, so they should be prepared to provide it upon job offer. The document must be apostilled and no older than 6 months">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Apostille Degree</label>
-                                    <label for="">Must be mailed to the employer along with the criminal back
-                                        check upon signing of the final employment contract.</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Health Declaration</label>
-                                    <input type="text" name="healthDeclaration2" value = "{{$candidatePersonalDetails->health_declaration ?? ''}}" placeholder="A short note or checkbox stating they have no health conditions that would impede teaching or living abroad.">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Terms and Conditions</label>
-                                    <input type="text" name="TermsAndConditions" value = "{{$candidatePersonalDetails->terms_and_conditions ?? ''}}" placeholder="Including a privacy clause about how their data will be used.">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" onclick="previousStep(8)">Previous</button>
-                            <button type="submit" class="dash-btn-one" id = "legal-verification-details">Submit</button>
-                        </div>
-                    </div> --}}
-                </form>
+                </div>
             </div>
-        </div>
+
+            <!-- Step 8 -->
+            {{-- <div class="card my-3 p-3" id="step-8">
+                <div class="row">
+                    <div class="col">
+                        <div class="dash-input-wrapper mb-30">
+                            <label for="">Criminal Background Check</label>
+                            <input type="text" name="criminalBackgroundCheck" value = "{{$candidatePersonalDetails->criminal_background ?? ''}}" placeholder="A note that this will be required later for the E2 visa, so they should be prepared to provide it upon job offer. The document must be apostilled and no older than 6 months">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="dash-input-wrapper mb-30">
+                            <label for="">Apostille Degree</label>
+                            <label for="">Must be mailed to the employer along with the criminal back
+                                check upon signing of the final employment contract.</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="dash-input-wrapper mb-30">
+                            <label for="">Health Declaration</label>
+                            <input type="text" name="healthDeclaration2" value = "{{$candidatePersonalDetails->health_declaration ?? ''}}" placeholder="A short note or checkbox stating they have no health conditions that would impede teaching or living abroad.">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="dash-input-wrapper mb-30">
+                            <label for="">Terms and Conditions</label>
+                            <input type="text" name="TermsAndConditions" value = "{{$candidatePersonalDetails->terms_and_conditions ?? ''}}" placeholder="Including a privacy clause about how their data will be used.">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end gap-3">
+                    <button type="button" class="dash-btn-one" onclick="previousStep(8)">Previous</button>
+                    <button type="submit" class="dash-btn-one" id = "legal-verification-details">Submit</button>
+                </div>
+            </div> --}}
+        </form>
 
         <!-- <div class="bg-white card-box border-20">
             <div class="user-avatar-setting d-flex align-items-center mb-30">
