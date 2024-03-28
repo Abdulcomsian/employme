@@ -235,18 +235,29 @@ Profile
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            {{-- <div class="col-md-12">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Health Declaration</label>
                                     <div id="note" class="summernote">{!! $candidatePersonalDetails->health_declaration !!}</div>
-                                    {{-- <select name="is_healthy" id="is_healthy" class="nice-select">
+                                     <select name="is_healthy" id="is_healthy" class="nice-select">
                                         <option value="Yes" {{$candidatePersonalDetails->is_healthy == 'Yes' ? 'selected' : ''}}>Yes</option>
                                         <option value="No" {{$candidatePersonalDetails->is_healthy == 'No' ? 'selected' : ''}}>No</option>
-                                    </select> --}}
+                                    </select>
+                                </div>
+                            </div> --}}
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="dash-input-wrapper mb-30">
+                                    <p>Please confirm that you are in good health and fitness, and that you have no health issues that could affect the approval of your visa</p>
+                                    <label for="">Health Declaration </label>
+                                    <select name="is_healthy" id="is_healthy" class="nice-select">
+                                        <option value="Yes" {{$candidatePersonalDetails->is_healthy == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                        <option value="No" {{$candidatePersonalDetails->is_healthy == 'No' ? 'selected' : ''}}>No</option>
+                                    </select> 
                                 </div>
                             </div>
                         </div>
-
                         {{-- <div class="row">
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
