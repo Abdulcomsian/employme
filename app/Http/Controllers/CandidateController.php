@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{User,
+use App\Models\{CandidateDocument, User,
     CandidatePersonalDetails, CandidateEducation, ProfessionalSkills, CandidatePreferences,
-     Cities, Countries, SavedJob, EmployerJob, JobCategory, JobInterview, Review};
+     Cities, Countries, SavedJob, EmployerJob, JobCategory, JobInterview, Review };
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Notification;
@@ -35,12 +35,13 @@ class CandidateController extends Controller
         $candidatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
         $candidateEducationalDetails = CandidateEducation::where('user_id',Auth::id())->first();
         $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
+        $candidateDocuments = CandidateDocument::where('user_id',Auth::id())->get();
         $professionalSkills = ProfessionalSkills::all();
         $southKoreaCities = Cities::where('country_id',116)->get();
         $countries = Countries::all();
         $jobCategories = JobCategory::all();
         // dd($candidatePreferencesDetails->skills);
-        return view('candidate.profile',compact('countries','candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities','candidatePreferencesDetails','jobCategories'));
+        return view('candidate.profile',compact('countries','candidateDocuments','candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities','candidatePreferencesDetails','jobCategories'));
     }
 
     public function getResumePage()
@@ -55,7 +56,7 @@ class CandidateController extends Controller
         $updatePersonalDetails->update($input);
         return response()->json([
                         "status" => true, 
-                        "message" => url("Profile Updated Successfully")
+                        "message" => "Profile Updated Successfully"
                     ]);
                
     }
@@ -149,6 +150,7 @@ class CandidateController extends Controller
         // save candidate profile code
         $video_url = $updatePreferencesDetails->video_url;
         $thumbnailPath  = $updatePreferencesDetails->video_thumbnail;
+        $updatePreferencesDetails->terms_and_conditions = $request->terms_and_conditions == 'on' ? 1 : 0;
         if ($request->file('video_url')) {
             $file = $request->file('video_url');
             $filePath = candidateTeachingVideoPath();
@@ -159,15 +161,118 @@ class CandidateController extends Controller
             $filePath = candidateTeachingVideoThumbnailPath();
             $thumbnailPath = saveFile($filePath, $file, $updatePreferencesDetails->video_thumbnail);
         }
+
+        if ($request->file('degree')) {
+            $file = $request->file('degree');
+            [$filename , $path ] = candidateDocumentName($file);
+            $file->move($path , $filename);
+            CandidateDocument::updateOrCreate(
+                ['document_type' => 1,'user_id' =>auth()->user()->id],
+                [
+                    'document_type' => 1,
+                    'user_id' =>auth()->user()->id,
+                    'url' => $path.$filename, 
+                ]);
+        }
+        
+        if ($request->file('police_certificate')) {
+            $file = $request->file('police_certificate');
+            [$filename , $path ] = candidateDocumentName($file);
+            $file->move($path , $filename);
+            CandidateDocument::updateOrCreate(
+                ['document_type' => 2,'user_id' =>auth()->user()->id],
+                [
+                    'document_type' => 2,
+                    'user_id' =>auth()->user()->id,
+                    'url' => $path.$filename, 
+                ]);
+        }
+        
+        if ($request->file('degree_apostille')) {
+            $file = $request->file('degree_apostille');
+            [$filename , $path ] = candidateDocumentName($file);
+            $file->move($path , $filename);
+            CandidateDocument::updateOrCreate(
+                ['document_type' => 3,'user_id' =>auth()->user()->id],
+                [
+                    'document_type' => 3,
+                    'user_id' =>auth()->user()->id,
+                    'url' => $path.$filename, 
+                ]);
+        }
+        
+        if ($request->file('certificate_apostille')) {
+            $file = $request->file('certificate_apostille');
+            [$filename , $path ] = candidateDocumentName($file);
+            $file->move($path , $filename);
+            CandidateDocument::updateOrCreate(
+                ['document_type' => 4,'user_id' =>auth()->user()->id],
+                [
+                    'document_type' => 4,
+                    'user_id' =>auth()->user()->id,
+                    'url' => $path.$filename, 
+                ]);
+        }
+        
+        if ($request->file('saqa_letter')) {
+            $file = $request->file('saqa_letter');
+            [$filename , $path ] = candidateDocumentName($file);
+            $file->move($path , $filename);
+            CandidateDocument::updateOrCreate(
+                ['document_type' => 5,'user_id' =>auth()->user()->id],
+                [
+                    'document_type' => 5,
+                    'user_id' =>auth()->user()->id,
+                    'url' => $path.$filename, 
+                ]);
+        }
+        
+        if ($request->file('passport')) {
+            $file = $request->file('passport');
+            [$filename , $path ] = candidateDocumentName($file);
+            $file->move($path , $filename);
+            CandidateDocument::updateOrCreate(
+            ['document_type' => 6,'user_id' =>auth()->user()->id],
+            [
+                'document_type' => 6,
+                'user_id' =>auth()->user()->id,
+                'url' => $path.$filename, 
+            ]);
+        }
+
         // End of saving candidate profile code
 
-        $input = $request->except('_token','video_url');
+        $input = $request->except('_token', 'video_url' , 'terms_and_conditions');
         $updatePreferencesDetails->update(array_merge($input,['video_url'=>$video_url,'video_thumbnail'=>$thumbnailPath]));
          return response()->json([
                         "status" => true, 
-                        "message" => url("Personal Details Updated Successfully")
+                        "message" => "Detail updated"
                     ]);
     }
+
+    public function deleteCandidateDocument(Request $request)
+    {
+        $docId = $request->docId;
+        $document = CandidateDocument::where('id' , $docId)->first();
+        if($document){
+            if(file_exists(public_path("uploads/candidate/documents/$document->url")))
+            {
+                unlink(public_path("uploads/candidate/documents/$document->url"));
+            }
+            CandidateDocument::where('id' , $docId)->delete();
+            return response()->json([
+                "status" => true, 
+                "message" => "Deleted Successfully"
+            ]);
+        }else{
+            return response()->json([
+                "status" => false, 
+                "message" => "File not exist"
+            ]);
+        }
+    }
+
+
     public function saveProfile7(Request $request)
     {
         $input = $request->except('_token');

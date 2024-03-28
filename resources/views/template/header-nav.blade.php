@@ -5,7 +5,7 @@
                 <div class="logo order-lg-0">
                     <a href="/" class="d-flex align-items-center">
                         
-					<span style="font-size: 25px;font-weight: bold;">EmployMe</span>
+					<span style="font-size: 25px;font-weight: bold;">employme</span>
                     </a>
                 </div>
                 <!-- logo -->
@@ -39,7 +39,7 @@
                         <ul class="navbar-nav align-items-lg-center">
                             <li class="d-block d-lg-none">
                                 <div class="logo"><a href="/" class="d-block">
-					<span style="font-size: 25px;font-weight: bold;">EmployMe</span></a></div>
+					<span style="font-size: 25px;font-weight: bold;">employme</span></a></div>
                             </li>
                             <li class="nav-item dropdown category-btn mega-dropdown-sm">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-grid-fill"></i> Category</a>

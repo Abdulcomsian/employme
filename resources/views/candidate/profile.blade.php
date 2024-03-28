@@ -69,6 +69,9 @@ Profile
         height: 100%;
         overflow-y: scroll;
     }
+    .alert-danger {
+        width: content-fit;
+    }
 </style>
 @endpush
 @section('content')
@@ -178,8 +181,9 @@ Profile
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Current Visa Status in South Korea</label>
+                                    <label for="">Current Visa Status</label>
                                     <select name="current_visa_status" id="current_visa_status" class="nice-select">
+                                        <option value="New To Apply" {{$candidatePersonalDetails->current_visa_status == 'New To Apply' ? 'selected' : ''}}>New To Apply</option>
                                         <option value="E-2 (Teaching)" {{$candidatePersonalDetails->current_visa_status == 'E-2 (Teaching)' ? 'selected' : ''}}>E-2 (Teaching)</option>
                                         <option value="E-7 (Special Occupation)" {{$candidatePersonalDetails->current_visa_status == 'E-7 (Special Occupation)' ? 'selected' : ''}}>E-7 (Special Occupation)</option>
                                         <option value="F-2 (Resident)" {{$candidatePersonalDetails->current_visa_status == 'F-2 (Resident)' ? 'selected' : ''}}>F-2 (Resident)</option>
@@ -213,28 +217,29 @@ Profile
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Health Declaration</label>
-                                    <select name="is_healthy" id="is_healthy" class="nice-select">
+                                    <div id="note" class="summernote">{!! $candidatePersonalDetails->health_declaration !!}</div>
+                                    {{-- <select name="is_healthy" id="is_healthy" class="nice-select">
                                         <option value="Yes" {{$candidatePersonalDetails->is_healthy == 'Yes' ? 'selected' : ''}}>Yes</option>
                                         <option value="No" {{$candidatePersonalDetails->is_healthy == 'No' ? 'selected' : ''}}>No</option>
-                                    </select>
+                                    </select> --}}
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Note</label>
-                                    <input type="text" name="note" placeholder="A brief explanation that these checks are essential for E2 visa requirements and obtaining teaching positions in South Korea." value="{{$candidatePersonalDetails->note}}">
+                                    <div id="note" class="summernote">{!! $candidatePersonalDetails->note ?? '<b>A brief explanation that these checks are essential for E2 visa requirements and obtaining teaching positions in South Korea</b>'!!}</div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id = "visa_eligibility_check">Save</button>
+                            <button type="button" class="dash-btn-one" id="visa_eligibility_check">Save</button>
                         </div>
                     </div>
 
@@ -312,7 +317,7 @@ Profile
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Experience Level</label>
+                                    <label for="">Teaching Experience</label>
                                     <select name="ExperienceLevel" id="ExperienceLevel" class="nice-select">
                                         <option value="No Experience" {{$candidatePreferencesDetails->experience_level == 'No Experience' ? 'selected' : ''}}>No Experience</option>
                                         <option value="0-1 Year" {{$candidatePreferencesDetails->experience_level == '0-1 Year' ? 'selected' : ''}}>0-1 Year</option>
@@ -454,7 +459,7 @@ Profile
                         @if(isset($candidateEducationalDetails->educational_details))
                         @foreach($candidateEducationalDetails->educational_details as $index=>$educational_detail)
                           @if($index == 0)
-                            <div  id="candidate-education">
+                            <div  id="candidate-education" class="educational-details-row">
                                     <center><h3>Educational Details</h3></center>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -473,11 +478,16 @@ Profile
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="dash-input-wrapper mb-30">
                                             <label for="">Description</label>
                                             <input type="text" name="education[{{$index}}][description]" placeholder="" value = "{{$educational_detail['description'] ?? ''}}">
 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 pt-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <button type="button" class="btn btn-danger remove-tr" >Remove</button>
                                         </div>
                                     </div>
                                 </div>
@@ -512,7 +522,6 @@ Profile
                                     </div>
                                     <div class="col-md-2 pt-4">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Description</label>
                                             <button type="button" class="btn btn-danger remove-tr" >Remove</button>
                                         </div>
                                     </div>
@@ -741,7 +750,7 @@ Profile
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">School Type Preferences</label>
+                                    <label for="">Preferences</label>
                                     <select name="schoolTypePreference" id="schoolTypePreference" class="nice-select">
                                         <option value= "" {{$candidatePreferencesDetails->school_type == '' ? 'selected' : ''}}>Select</option>
                                         <option value="Public"  {{$candidatePreferencesDetails->school_type == 'Public' ? 'selected' : ''}}>Public</option>
@@ -798,7 +807,7 @@ Profile
                             </div>
                             
                         </div>
-                        <div class="row " id="add-skill-field">
+                        {{-- <div class="row " id="add-skill-field">
                              @if(isset($candidatePreferencesDetails->skills))
                              @foreach($candidatePreferencesDetails->skills as $index=>$skill)
                               @if($index==0)
@@ -845,7 +854,7 @@ Profile
                                     </div>
                                 </div>
                                @endif
-                            </div>
+                        </div> --}}
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" id = "candidate-preferences-details">Save</button>
@@ -865,7 +874,7 @@ Profile
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Why motivates you interest in teaching in South Korea?</label>
+                                    <label for="">What motivates you interest in teaching in South Korea?</label>
                                     <textarea  name="whyInterestedInTeachingInSouthKorea"  >{{$candidatePersonalDetails->why_interested_teaching_in_korea ?? ''}}</textarea>
                                 </div>
                             </div>
@@ -901,7 +910,7 @@ Profile
                                     <label for="">Teaching Video</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
-                                            Upload new video
+                                            Upload a 30-Second Introduction Video
                                             <input type="file" id="teachingVideo" name="teachingVideo" placeholder="" accept="video/mp4" onchange="previewVideo()">
                                         </div>
 
@@ -915,19 +924,6 @@ Profile
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Link to VideoAsk</label>
-                                    <input type="text" name="linkToVideoAsk" placeholder="A direct link or button that takes them to the VideoAsk platform to record or upload their video (this is mandatory but can be completed after the sign-up as well)" value = "{{$candidatePreferencesDetails->other_platform_video_url ?? ''}}">
-                                </div>
-                                    @if(isset($candidatePreferencesDetails->other_platform_video_url) && !empty($candidatePreferencesDetails->other_platform_video_url))
-                                    <div style = "padding-left:20px;">
-                                        <a class="btn btn-primary" href = "{{$candidatePreferencesDetails->other_platform_video_url}}" target = "_blank">Link</a>
-                                    </div>
-                                    @endif
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Video Thumbnail Image</label>
@@ -945,16 +941,211 @@ Profile
                                     </div>
                                     @endif
                                 </div>
+                                {{-- <div class="dash-input-wrapper mb-30">
+                                    <label for="">Link to VideoAsk</label>
+                                    <input type="text" name="linkToVideoAsk" placeholder="A direct link or button that takes them to the VideoAsk platform to record or upload their video (this is mandatory but can be completed after the sign-up as well)" value = "{{$candidatePreferencesDetails->other_platform_video_url ?? ''}}">
+                                </div> --}}
+                                    {{-- @if(isset($candidatePreferencesDetails->other_platform_video_url) && !empty($candidatePreferencesDetails->other_platform_video_url))
+                                    <div style = "padding-left:20px;">
+                                        <a class="btn btn-primary" href = "{{$candidatePreferencesDetails->other_platform_video_url}}" target = "_blank">Link</a>
+                                    </div>
+                                    @endif --}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{-- <div class="dash-input-wrapper mb-30">
+                                    <label for="">Video Thumbnail Image</label>
+                                    <div class="user-avatar-setting d-flex align-items-center mb-30">
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload Thumbnail
+                                            <input type="file" id="videoThumbnail" name="videoThumbnail" placeholder="" accept="image/jpeg,image/png">
+                                        </div>
+
+                                        <button class="delete-btn tran3s " onclick = "deleteFile('thumbnail-image')">Delete</button>
+                                    </div>
+                                    @if(isset($candidatePreferencesDetails->video_thumbnail) && !empty($candidatePreferencesDetails->video_thumbnail))
+                                    <div style = "padding-left:20px;" class = "thumbnail-image">
+                                        <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
+                                    </div>
+                                    @endif
+                                </div> --}}
+                            </div>
+                        </div>
+                        @php
+                        $degree = $candidateDocuments->first(function($document){
+                            return $document->document_type === 1;
+                        });
+
+                        $policeCertificate = $candidateDocuments->first(function($document){
+                            return $document->document_type === 2;
+                        });
+
+                        $degreeApostilled = $candidateDocuments->first(function($document){
+                            return $document->document_type === 3;
+                        });
+
+                        $certificateApostilled = $candidateDocuments->first(function($document){
+                            return $document->document_type === 4;
+                        });
+
+                        $saqaLetter = $candidateDocuments->first(function($document){
+                            return $document->document_type === 5;
+                        });
+
+                        $passport = $candidateDocuments->first(function($document){
+                            return $document->document_type === 6;
+                        });
+                        @endphp 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Copy of your Degree</label>
+                                    <div class="user-avatar-setting d-flex align-items-center mb-30">
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload Degree
+                                            <input type="file" id="degree" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                        </div>
+
+                                        <button class="delete-btn tran3s delete-doc" @if(isset($degree)) data-doc-id="{{$degree->id}}" @endif>Delete</button>
+                                    </div>
+                                    @if(isset($degree))
+                                    <div style = "padding-left:20px;" class="thumbnail-image">
+                                        <a class="btn btn-primary" href = "{{asset($degree->url)}}" target = "_blank">File</a>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Copy of your Police Certificate (Within Last 6 Months)</label>
+                                    <div class="user-avatar-setting d-flex align-items-center mb-30">
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload Certificate
+                                            <input type="file" id="policeCertificate" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                        </div>
+
+                                        <button class="delete-btn tran3s delete-doc" @if(isset($policeCertificate)) data-doc-id="{{$policeCertificate->id}}" @endif>Delete</button>
+                                    </div>
+                                    @if(isset($policeCertificate))
+                                    <div style = "padding-left:20px;" class="thumbnail-image">
+                                        <a class="btn btn-primary" href = "{{asset($policeCertificate->url)}}" target = "_blank">File</a>
+                                    </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
 
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Copy of your Degree Apostille</label>
+                                    <div class="user-avatar-setting d-flex align-items-center mb-30">
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload Degree Apostille
+                                            <input type="file" id="degreeApostille" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                        </div>
+
+                                        <button class="delete-btn tran3s delete-doc"  @if(isset($degreeApostilled)) data-doc-id="{{$degreeApostilled->id}}" @endif>Delete</button>
+                                    </div>
+                                    @if(isset($degreeApostilled))
+                                    <div style = "padding-left:20px;" class="thumbnail-image">
+                                        <a class="btn btn-primary" href = "{{asset($degreeApostilled->url)}}" target = "_blank">File</a>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Copy of your Certificate Apostille</label>
+                                    <div class="user-avatar-setting d-flex align-items-center mb-30">
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload Certificate Apostille
+                                            <input type="file" id="certificateApostille" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                        </div>
+
+                                        <button class="delete-btn tran3s delete-doc"  @if(isset($certificateApostilled)) data-doc-id="{{$certificateApostilled->id}}" @endif>Delete</button>
+                                    </div>
+                                    @if(isset($certificateApostilled))
+                                    <div style = "padding-left:20px;" class="thumbnail-image">
+                                        <a class="btn btn-primary" href = "{{asset($certificateApostilled->url)}}" target = "_blank">File</a>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">SAQA Letter (Only For South Africa)</label>
+                                    <div class="user-avatar-setting d-flex align-items-center mb-30">
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload SAQA Letter
+                                            <input type="file" id="saqaLetter" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                        </div>
+
+                                        <button class="delete-btn tran3s delete-doc"  @if(isset($saqaLetter)) data-doc-id="{{$saqaLetter->id}}" @endif>Delete</button>
+                                    </div>
+                                    @if(isset($saqaLetter))
+                                    <div style = "padding-left:20px;" class="thumbnail-image">
+                                        <a class="btn btn-primary" href = "{{asset($saqaLetter->url)}}" target = "_blank">File</a>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="dash-input-wrapper mb-30">
+                                    <label for="">Copy of your Passport</label>
+                                    <div class="user-avatar-setting d-flex align-items-center mb-30">
+                                        <div class="upload-btn position-relative tran3s ms-4 me-3">
+                                            Upload passport
+                                            <input type="file" id="userPassport" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                        </div>
+
+                                        <button class="delete-btn tran3s delete-doc"  @if(isset($passport)) data-doc-id="{{$passport->id}}" @endif>Delete</button>
+                                    </div>
+                                    @if(isset($passport))
+                                    <div style = "padding-left:20px;" class="thumbnail-image">
+                                        <a class="btn btn-primary" href = "{{asset($passport->url)}}" target = "_blank">File</a>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                    <p>Please note: If all the above documents are uploaded and approved, your account will considered "verified". 
+                                     This means employers can feel confident that they are serious and ready to start.
+                                    </p>
+                            </div>
+                            <div class="col-12">
+                                <p>Documents are only for verfication and visa purposes. If you have not obtained the documents, we suggest doing
+                                    doing so visa applications can be a lengthy process.
+
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                    <input type="checkbox" name="terms_and_conditions" id="preferences_terms_and_conditions" @if($candidatePreferencesDetails->terms_and_conditions) checked @endif>
+                                    <label for="preferences_terms_and_conditions"><strong>Terms And Conditions</strong></label>
+                            </div>
+                        </div>
+
+
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="teaching-video-details">Next</button>
+                            <button type="button" class="dash-btn-one" id="teaching-video-details">Save</button>
                         </div>
                     </div>
 
                     <!-- Step 8 -->
-                    <div class="card my-3 p-3" id="step-8">
+                    {{-- <div class="card my-3 p-3" id="step-8">
                         <div class="row">
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
@@ -996,7 +1187,7 @@ Profile
                             <button type="button" class="dash-btn-one" onclick="previousStep(8)">Previous</button>
                             <button type="submit" class="dash-btn-one" id = "legal-verification-details">Submit</button>
                         </div>
-                    </div>
+                    </div> --}}
                 </form>
             </div>
         </div>
@@ -1172,6 +1363,30 @@ Profile
             
         })
 
+    $(".delete-doc").on("click" , function(e){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let docId = e.target.dataset.docId;
+        if(docId !== undefined)
+        {
+            $.ajax({
+            type: "POST",
+              url: "{{route('deleteDocument')}}",
+              data: {
+                _token : "{{csrf_token()}}",
+                docId : docId
+              },
+              success:function(res){
+                if(res.status){
+                    toastr.success(res.message);
+                }else{
+                    toastr.error(res.message)
+                }
+              }
+            })
+        }
+    });
+
     $("#visa_eligibility_check").on("click", function(e) {
         e.preventDefault();
           $.ajax({
@@ -1185,13 +1400,13 @@ Profile
                 criminal_record: $("#multi-step-form").find("[name=criminal_record]").val(),
                 graduation: $("#multi-step-form").find("[name=graduation_from_accredited_university]").val(),
                 is_healthy: $("#multi-step-form").find("[name=is_healthy]").val(),
-                note: $("#multi-step-form").find("[name=note]").val(),
+                health_declaration: document.querySelector("#step-1").querySelector(".note-editable").innerHTML,
                         },
               dataType: 'json',
               success: function (data) {
     
                 if (data.status) {
-                    // window.location = data.redirect;
+                    toastr.success(data.message);
                 }else{
                     $(".alert").remove();
                     $.each(data.errors, function (key, val) {
@@ -1325,7 +1540,7 @@ Profile
         e.preventDefault();
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
-        var noteEditable = document.querySelectorAll(".note-editable");
+        var noteEditable = document.querySelector("#step-4").querySelectorAll(".note-editable");
         var experienceData = [];
     
             for (var i = 0; ; i++) {
@@ -1382,9 +1597,9 @@ Profile
         var skillInput = $('input[name="skill[]"]');
 
 // Loop through each input element and append it to the FormData
-        skillInput.each(function(index, element) {
-        formData.append('skills[]', element.value);
-        });
+        // skillInput.each(function(index, element) {
+        // formData.append('skills[]', element.value);
+        // });
         formData.append('preferred_city_region',$("#multi-step-form").find('[name=preferredCityRegionInSouthKorea]').val());
         formData.append('school_type',$("#multi-step-form").find('[name=schoolTypePreference]').val());
         formData.append('age_group',$("#multi-step-form").find('[name=ageGroupPreference]').val());
@@ -1454,6 +1669,14 @@ Profile
         formData.append("_token", "{{ csrf_token() }}");
         formData.append("video_url", $('#teachingVideo')[0].files[0]);
         formData.append("video_thumbnail", $('#videoThumbnail')[0].files[0]);
+
+        formData.append("degree", document.getElementById("degree").files[0]);
+        formData.append("police_certificate", document.getElementById("policeCertificate").files[0]);
+        formData.append("degree_apostille", document.getElementById("degreeApostille").files[0]);
+        formData.append("certificate_apostille", document.getElementById("certificateApostille").files[0]);
+        formData.append("saqa_letter", document.getElementById("saqaLetter").files[0]);
+        formData.append("passport", document.getElementById("userPassport").files[0]);
+        formData.append('terms_and_conditions' , document.getElementById("preferences_terms_and_conditions").value);
         formData.append('other_platform_video_url',$("#multi-step-form").find('[name=linkToVideoAsk]').val());
           $.ajax({
             type: "POST",
@@ -1465,7 +1688,7 @@ Profile
               success: function (data) {
     
                 if (data.status) {
-                    // window.location = data.redirect;
+                    toastr.success(data.message)
                 }else{
                     $(".alert").remove();
                     $.each(data.errors, function (key, val) {
@@ -1647,7 +1870,8 @@ const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.te
                             )
        });
        $(document).on('click', '.remove-tr', function(){  
-            $(this).parents('.educational-details-row').remove();
+        this.closest(".educational-details-row").remove();
+            // $(this).parents('.educational-details-row').remove();
        });
         //End of adding more educational details fields 
 
@@ -1686,6 +1910,8 @@ const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.te
         videoPreview.classList.add('d-none')
     }
 }
+
+
 
  function deleteFile(fileType)
  {

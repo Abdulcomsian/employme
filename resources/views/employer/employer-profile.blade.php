@@ -87,6 +87,10 @@ Profile
 .note-btn {
 /* Your custom styles here */
 }
+
+.alert-danger {
+	width: max-content;
+}
 </style>
 
 @endpush
@@ -243,19 +247,19 @@ Profile
 									
 									</div>
 								</div>
-								<div class="col-md-6">
+								{{-- <div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">
 										<label for="">Zip/Post code</label>
 										<input type="number" name="zipPostCode" placeholder="94304" value="{{$employerDetails->zip_code ?? ''}}">
 									</div>
-								</div>
+								</div> --}}
 								
 							</div>
 
 							<div class="row">
 								<div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">
-										<label for=""> Korean Phone Number</label>
+										<label for="">Mobile Number</label>
 										<input type="number" class="number-input" name="phoneNumber" placeholder="(201) 555-0123" value="{{$employerDetails->phone_number ?? ''}}">
 									</div>
 								</div>
@@ -291,9 +295,9 @@ Profile
 										<label for="">Logo</label>
 										<div class="user-avatar-setting d-flex align-items-center">
 											@if(!empty($employerDetails->institution_logo))
-											<img src="{{asset($employerDetails->institution_logo)}}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+											<img src="{{asset($employerDetails->institution_logo)}}" data-src="images/avatar_04.jpg" id="profile_image" alt="" class="lazy-img user-img">
 											@else
-											<img src="{../images/lazy.svg}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+											<img src="{{asset('assets/images/human-avatar.png')}}" data-src="images/avatar_04.jpg" id="profile_image" alt="" class="lazy-img user-img">
 											@endif
 											<div class="upload-btn position-relative tran3s ms-4 me-3">
 												Upload Logo
@@ -855,43 +859,43 @@ Profile
 <script src="https://js.stripe.com/v3/"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script>
-    const stripe = Stripe('{{ env('STRIPE_KEY') }}')
+   // const stripe = Stripe('{{ env('STRIPE_KEY') }}')
   
-    const elements = stripe.elements()
-    const cardElement = elements.create('card')
+    // const elements = stripe.elements()
+    // const cardElement = elements.create('card')
   
-    cardElement.mount('#card-element')
+    // cardElement.mount('#card-element')
   
-    // const form = document.getElementById('payment-form')
-    const cardBtn = document.getElementById('card-button')
-    // const cardHolderName = document.getElementById('card-holder-name')
+    // // const form = document.getElementById('payment-form')
+    // const cardBtn = document.getElementById('card-button')
+    // // const cardHolderName = document.getElementById('card-holder-name')
   
-    cardBtn.addEventListener('click', async (e) => {
-        e.preventDefault()
+    // cardBtn.addEventListener('click', async (e) => {
+    //     e.preventDefault()
 		
-        cardBtn.disabled = true
-        const { setupIntent, error } = await stripe.confirmCardSetup(
-            cardBtn.dataset.secret, {
-                payment_method: {
-                    card: cardElement,
-                    billing_details: {
-                        name: '{{auth()->user()->name}}'
-                    }   
-                }
-            }
-        )	
+    //     cardBtn.disabled = true
+    //     const { setupIntent, error } = await stripe.confirmCardSetup(
+    //         cardBtn.dataset.secret, {
+    //             payment_method: {
+    //                 card: cardElement,
+    //                 billing_details: {
+    //                     name: '{{auth()->user()->name}}'
+    //                 }   
+    //             }
+    //         }
+    //     )	
 		
-        if(error) {
-            cardBtn.disable = false
-        } else {
-            let token = document.createElement('input')
-            token.setAttribute('type', 'hidden')
-            token.setAttribute('name', 'token')
-            token.setAttribute('value', setupIntent.payment_method)
-			console.log();
-        }
+    //     if(error) {
+    //         cardBtn.disable = false
+    //     } else {
+    //         let token = document.createElement('input')
+    //         token.setAttribute('type', 'hidden')
+    //         token.setAttribute('name', 'token')
+    //         token.setAttribute('value', setupIntent.payment_method)
+	// 		console.log();
+    //     }
 		
-    })
+    // })
 </script>
 <script>
 	let currentStep = 1;
@@ -936,6 +940,19 @@ Profile
 	    //     else
 		// 	step3NextBtn.disabled = true
 
+		document.querySelector("#institution_logo").addEventListener("change" , function(e){
+            const file = event.target.files;
+            if (file) {
+                const fileReader = new FileReader();
+                const preview = document.querySelector('#profile_image');
+                fileReader.onload = event => {
+                    preview.setAttribute('src', event.target.result);
+                }
+                fileReader.readAsDataURL(file[0]);
+            }
+            
+        })
+
 		$('#summernote').summernote({
 			placeholder: 'Curriculum',
 			tabsize: 2,
@@ -952,7 +969,7 @@ Profile
 			formData.append("country_id", $("#basic-information-form").find("[name=country]").val());
 			formData.append("state", $("#basic-information-form").find("[name=state]").val());
 			formData.append("city", $("#basic-information-form").find("[name=city]").val());
-			formData.append("zip_code", $("#basic-information-form").find("[name=zipPostCode]").val());
+			// formData.append("zip_code", $("#basic-information-form").find("[name=zipPostCode]").val());
 			formData.append("phone_number", $("#basic-information-form").find("[name=phoneNumber]").val());
 			formData.append("email", $("#basic-information-form").find("[name=email]").val());
 			formData.append("institution_logo", $('#institution_logo')[0].files[0]);

@@ -145,6 +145,15 @@ function  candidateTeachingVideoThumbnailPath($user = null)
     }
     return $path;
 }
+
+function candidateDocumentName($file)
+{
+    $time = strtotime(now());
+    $filename = $time.'-'.str_replace(' ','-',$file->getClientOriginalName());
+    $path = 'uploads/candidate/documents/';
+    return [$filename , $path];
+}
+
 function  employerIntroductryVideoThumbnailPath($user = null)
 {
     if ($user) {

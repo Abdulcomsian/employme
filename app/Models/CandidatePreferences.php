@@ -21,7 +21,8 @@ class CandidatePreferences extends Model
         'expected_salary',
         'user_id',
         'video_thumbnail',
-        'preferred_start_date'
+        'preferred_start_date',
+        'terms_and_conditions'
     ];
     protected $casts = [
         'skills' => 'array',

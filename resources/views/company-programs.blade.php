@@ -22,7 +22,7 @@
 							</div>
 							<div class="logo mt-10">
 								
-					<span style="font-size: 25px;font-weight: bold;">EmployMe</span>
+					<span style="font-size: 25px;font-weight: bold;">employme</span>
 							</div>
 							<!-- <p class="text-lg text-white mt-10 lg-mt-20">Find company details here</p> -->
 						</div>

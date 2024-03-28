@@ -3,7 +3,7 @@
 		<div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
 			<a href="candidate-dashboard-index.html">
 				
-			<span style="font-size: 25px;font-weight: bold;">EmployMe</span>
+			<span style="font-size: 25px;font-weight: bold;">employme</span>
 			</a>
 			<button class="close-btn d-block d-md-none"><i class="bi bi-x-lg"></i></button>
 		</div>
@@ -14,12 +14,12 @@
 			</div>
             @else
             <div class="user-avatar online position-relative rounded-circle">
-				<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/avatar_03.jpg')}}" alt="" class="lazy-img">
+				<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img">
 			</div>
             @endif
 			
 			<!-- /.user-avatar -->
-			<div class="user-name-data">
+			<div class="user-name-data d-flex justify-content-center">
 				<button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
 				@if(isset(auth()->user()->employerDetails->institution))
                  {{auth()->user()->employerDetails->institution}}
