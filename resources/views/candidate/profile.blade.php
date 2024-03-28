@@ -1459,7 +1459,7 @@ Profile
                 criminal_record: $("#multi-step-form").find("[name=criminal_record]").val(),
                 graduation: $("#multi-step-form").find("[name=graduation_from_accredited_university]").val(),
                 is_healthy: $("#multi-step-form").find("[name=is_healthy]").val(),
-                health_declaration: document.querySelector("#step-1").querySelector(".note-editable").innerHTML,
+                // health_declaration: document.querySelector("#step-1").querySelector(".note-editable").innerHTML,
                         },
               dataType: 'json',
               success: function (data) {
