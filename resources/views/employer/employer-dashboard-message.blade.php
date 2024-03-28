@@ -148,7 +148,11 @@ Messages
                                 <div class="email-list-item users ps-3 pe-3 ps-xxl-4 pe-xxl-4 read {{$index==0 ? 'selected' : ''}}" data-user-id = "{{$conversation->id}}">
                                     <div class="email-short-preview position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <div class="sender-name">{{$conversation->candidate->candidatePersonalDetails->full_name}}</div>
+                                            <div class="sender-name">
+                                            {{$conversation->candidate->candidatePersonalDetails->first_name ?? ''}}
+                                            {{$conversation->candidate->candidatePersonalDetails->middle_name ?? ''}}
+                                            {{$conversation->candidate->candidatePersonalDetails->last_name ?? ''}}
+                                            </div>
                                             <div class="date">@isset($conversation->lastChat->created_at){{date('d M',strtotime($conversation->lastChat->created_at))}}@endisset</div>
                                         </div>
                                         {{--<div class="mail-sub">Work inquiry from google.</div>--}}
