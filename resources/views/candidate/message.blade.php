@@ -241,7 +241,7 @@ Messages
                                     @endif
                                     <div class="ps-3">
                                         <div class="sender-name">{{$conversations->employer->employerDetails->institution ?? ''}}</div>
-                                        <div class="sender-email">payoneer@inquiry.com</div>
+                                        <div class="sender-email">{{$conversations->employer->email ?? ''}}</div>
                                     </div>
                                 </div>
                                 {{--<div class="email-info">
