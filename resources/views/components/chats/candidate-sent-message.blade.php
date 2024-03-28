@@ -10,7 +10,11 @@
                 @if($type == 0)
                 <div class="sender-name">You</div>
                 @else
-                <div class="sender-name">{{$conversations->candidate->candidatePersonalDetails->full_name ?? ''}}</div>
+                <div class="sender-name">
+                {{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
+                {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
+                {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}
+                </div>
                 @endif
                 <div class="sender-email">{{$conversations->employer->email ?? ''}}</div>
             </div>

@@ -20,11 +20,9 @@
             <!-- /.user-avatar -->
             <div class="user-name-data d-flex justify-content-center">
                 <button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                @if(isset(auth()->user()->candidatePersonalDetails->full_name))
-                 {{auth()->user()->candidatePersonalDetails->full_name}}
-                 @else
-                 {{auth()->user()->name}}
-                 @endif
+                {{auth()->user()->candidatePersonalDetails->first_name ?? ''}}
+                {{auth()->user()->candidatePersonalDetails->middle_name ?? ''}}
+                {{auth()->user()->candidatePersonalDetails->last_name ?? ''}}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
                     <li>

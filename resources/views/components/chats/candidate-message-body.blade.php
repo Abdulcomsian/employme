@@ -7,7 +7,11 @@
             <img src="{{asset('assets/images/logo_02.png')}}" data-src="{{asset('assets/images/logo_02.png')}}" alt="" class="lazy-img logo">
             @endif            
             <div class="ps-3">
-                <div class="sender-name">{{$conversations->candidate->candidatePersonalDetails->full_name ?? ''}}</div>
+                <div class="sender-name">
+                {{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
+                {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
+                {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}
+                </div>
                 <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div>
             </div>
         </div>
@@ -58,7 +62,11 @@
             <img src="{{asset('assets/images/logo_02.png')}}" data-src="{{asset('assets/images/logo_02.png')}}" alt="" class="lazy-img logo" style = "max-width:30%;">
             @endif            
             <div class="ps-3">
-                <div class="sender-name">{{$conversations->candidate->candidatePersonalDetails->full_name ?? ''}}</div>
+                <div class="sender-name">
+                {{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
+                {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
+                {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}
+                </div>
                 <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div>
             </div>
         </div>
