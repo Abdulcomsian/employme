@@ -129,7 +129,7 @@ Employer Saved Candidate
                                             @method('PUT')
                                             </form>
                                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                document.getElementById('message-candidate-{{$jobApplicant->pivot->candidate_id}}').submit();"> Messaage</a></li>
+                                                document.getElementById('message-candidate-{{$jobApplicant->pivot->candidate_id}}').submit();"> Chat</a></li>
                                             <form id="message-candidate-{{$jobApplicant->pivot->candidate_id ?? ''}}" action="{{ route('employer.message_candidate', $jobApplicant->pivot->candidate_id) }}" method="POST" style="display: none;">
                                             @csrf
                                             @method('PUT')
