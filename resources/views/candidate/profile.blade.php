@@ -83,6 +83,10 @@ Profile
     border: none;
     border-radius: .25rem;
 }
+
+    h4{
+        font-family: 'gordita';
+    }
 </style>
 @endpush
 @section('content')

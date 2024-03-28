@@ -9,9 +9,9 @@ Sign Up
             <div class="row">
                 <div class="col-xl-6 m-auto text-center">
                     <div class="title-two">
-                        <h2 class="text-white">Candidate Sign Up</h2>
+                        <h2 class="text-white">Sign Up Now!</h2>
                     </div>
-                    <p class="text-lg text-white mt-30 lg-mt-20">Create an account & Start posting or hiring talents</p>
+                    <p class="text-lg text-white mt-30 lg-mt-20">Sign up and gain access to pre-vitted candidates or top job opportunities for job seeker.</p>
                 </div>
             </div>
         </div>

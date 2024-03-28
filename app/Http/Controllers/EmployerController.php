@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use App\Rules\ValidateJobLink;
 use App\Rules\BusinessLicenseRule;
-use Notification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
