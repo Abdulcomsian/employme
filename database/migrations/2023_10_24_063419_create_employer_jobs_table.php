@@ -48,7 +48,8 @@ return new class extends Migration
             $table->text('health_dental_insurance')->nullable();
             $table->text('airfare')->nullable();
             $table->string('pension')->nullable();
-            $table->text('vacation_sick_leave')->nullable();
+            $table->text('vacation_leave')->nullable();
+            $table->text('sick_leave')->nullable();
             $table->text('national_holidays')->nullable();
             $table->text('professional_development_opportunities')->nullable();
             $table->text('overtime_pay')->nullable();
@@ -79,6 +80,7 @@ return new class extends Migration
             $table->text('local_bank_account_assistance')->nullable();
             $table->text('emergency_contacts_and_support')->nullable();
             $table->text('required_documents')->nullable();
+            $table->text('document_type')->nullable();
             $table->text('interview_process')->nullable();
             $table->text('application_deadline')->nullable();
             $table->text('contact_review_process')->nullable();
@@ -89,6 +91,8 @@ return new class extends Migration
             $table->text('school_values_and_teaching_philosophy')->nullable();
             $table->text('links_to_teacher_testimonials_or_reviews')->nullable();
             $table->text('option_to_current_past_foreign_teachers')->nullable();
+            $table->time('start_time')->nullable();
+            $table->time('finish_time')->nullable();
             $table->integer('job_status')->nullable();
             $table->unsignedInteger('posted_by')->nullable();
             $table->timestamps();

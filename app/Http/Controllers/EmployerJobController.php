@@ -43,6 +43,7 @@ class EmployerJobController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         try {
 
         $input = $request->except('_token');

@@ -12,6 +12,7 @@
 			<script src="vendor/respond.js"></script>
 		<![endif]-->
 	@stack('page-css')
+	@yield('page-head')
 </head>
 
 <body>
