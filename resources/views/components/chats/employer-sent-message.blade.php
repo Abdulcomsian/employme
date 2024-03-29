@@ -18,7 +18,6 @@
         </div>
         <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
             <p>{!! $chatDetails->message !!}</p>
-            <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chatDetails->created_at))}}</p>
         </div>
         <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
             <div class="attachments mb-30 d-flex">
@@ -34,4 +33,5 @@
                 @endforeach
                 @endisset
             </div>
+            <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chatDetails->created_at))}}</p>
         </div>

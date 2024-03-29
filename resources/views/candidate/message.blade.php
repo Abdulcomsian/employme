@@ -299,7 +299,6 @@ Messages
                                 @endif
                                 <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
                                     <p>{!! $chat->message !!}</p>
-                                    <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chat->created_at))}}</p>
                                 </div>
                                 <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
                                     <div class="attachments mb-30 d-flex">
@@ -315,6 +314,7 @@ Messages
                                         @endforeach
                                         @endisset
                                     </div>
+                                    <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chat->created_at))}}</p>
                                 </div>
                                 @endforeach
                                 @endisset
@@ -403,46 +403,43 @@ Messages
     });
     let conversationId = $(".email-list-item.selected").data("user-id");
     $(document).on('click', '.users', function() {
-     $('.users').removeClass('selected');
-   
-     conversationId = $(this).data('user-id');
-    var selectedUser = $('[data-user-id="' + conversationId + '"]');
-    selectedUser.addClass('selected');
-    selectedUser.removeClass('unread');
-    selectedUser.addClass('read');
-    const apiUrl = '{{url("candidate/get-employer-chat")}}' + '/' + conversationId;
-    $.ajax({
-				type: "GET",
-				url:apiUrl,
-				dataType: 'json',
-				contentType: false,
-				processData: false,
-				success: function (data) {
-		
-					if (data.status) {
-						// window.location = data.redirect;
-                        // $(".employer-message-body").empty();
-                        if(data.html != '')
-                        {
-                            $(".employer-message-body").html(data.html);
-                            $(".compose-new-email-container").find(".compose-body textarea").focus();
-                            $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+        $('.users').removeClass('selected');
+        conversationId = $(this).data('user-id');
+        var selectedUser = $('[data-user-id="' + conversationId + '"]');
+        selectedUser.addClass('selected');
+        selectedUser.removeClass('unread');
+        selectedUser.addClass('read');
+        const apiUrl = '{{url("candidate/get-employer-chat")}}' + '/' + conversationId;
+            $.ajax({
+	    			type: "GET",
+                    url:apiUrl,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if (data.status) {
+                            // window.location = data.redirect;
+                            // $(".employer-message-body").empty();
+                            if(data.html != '')
+                            {
+                                $(".employer-message-body").html(data.html);
+                                $(".compose-new-email-container").find(".compose-body textarea").focus();
+                                $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+                            }
+                        }else{
+                            $.each(data.errors, function (key, val) {
+                                $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                            });
                         }
-                        
-					}else{
-						$.each(data.errors, function (key, val) {
-							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
-						});
-					}
-				
-				}
-			});
-        });
-        $(document).on('submit', '#send-text-to-employer-form', function(e) {
-		e.preventDefault();
-		var formData = new FormData();
-		formData.append("_token", "{{ csrf_token() }}");
-		formData.append("conversation_id", $("#send-text-to-employer-form").find("input[name=conversation_id]").val());
+                    
+                    }
+			    });
+    });
+    $(document).on('submit', '#send-text-to-employer-form', function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        formData.append("conversation_id", $("#send-text-to-employer-form").find("input[name=conversation_id]").val());
         var filesInput = $('#chatFiles')[0];
         // Check if the file input element and its files property are defined
         if (filesInput && filesInput.files && filesInput.files.length > 0) {
@@ -457,32 +454,46 @@ Messages
             // No file selected or file input element not found
             console.log("No files selected.");
         }
-		formData.append("message", $("#send-text-to-employer-form").find("textarea[name=message]").val());
-		var apiUrl = '{{route("employer.sendTextToEmployer")}}';
-		$.ajax({
-				type: "POST",
-				url:apiUrl,
-				data: formData ,
-				dataType: 'json',
-				contentType: false,
-				processData: false,
-				success: function (data) {
-		
-					if (data.status) {
-                        $(".conversation-"+conversationId).append(data.html);
-                       $("#send-text-to-employer-form").find("textarea[name=message]").val('');
-                       $(".compose-new-email-container").find(".compose-body textarea").focus();
-                        $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
-					}else{
-						$.each(data.errors, function (key, val) {
-							$("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
-						});
-					}
-				
-				}
-			});
-	});
+        formData.append("message", $("#send-text-to-employer-form").find("textarea[name=message]").val());
+        var apiUrl = '{{route("employer.sendTextToEmployer")}}';
+        $.ajax({
+            type: "POST",
+            url:apiUrl,
+            data: formData ,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+    
+                if (data.status) {
+                    $(".conversation-"+conversationId).append(data.html);
+                    $("#send-text-to-employer-form").find("textarea[name=message]").val('');
+                    $(".compose-new-email-container").find(".compose-body textarea").focus();
+                    $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+                }else{
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+            
+            }
+        });
+    });
 
+    function downloadFile(url, fileName) {
+        // Create a temporary anchor element
+        var link = document.createElement("a");
+        // Set the href attribute to the file URL
+        link.href = url;
+        // Set the download attribute to the desired filename
+        link.download = fileName;
+        // Append the anchor element to the document body
+        document.body.appendChild(link);
+        // Trigger a click event on the anchor element
+        link.click();
+        // Remove the anchor element from the document body
+        document.body.removeChild(link);
+    }
 </script>
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 @vite('resources/js/app.js')
