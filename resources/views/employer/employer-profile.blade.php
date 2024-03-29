@@ -450,7 +450,7 @@ input[type='checkbox']{
 											  </div>
 											  <div class="col-md-6">
 												<label for="end-time">End Time:</label>
-												<input type="time" id="end-time" value="{{$employerDetails->business_hours ? $workingHours[1] : $currentTime}}">
+												<input type="time" id="end-time" value="{{$employerDetails->business_hours && count($workingHours) > 1 ? $workingHours[1] : $currentTime}}">
 											  </div>
 										</div>
 										{{-- <input type="number" class="number-input" name="businessHours" placeholder="4935" value="{{$employerDetails->business_hours ?? ''}}"> --}}
