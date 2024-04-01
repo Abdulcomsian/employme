@@ -124,22 +124,22 @@ input[type='checkbox']{
 		@endif
 		<h2 class="main-title">Profile</h2>
 
-		<div class="bg-white card-box border-20 mb-40">
+		<div class=" border-20 mb-40">
 			<div class="employer-sign-up">
 				<div class="stepper">
-					<div id="tag-step-1" class="step selected">
+					{{-- <div id="tag-step-1" class="step selected">
 						<div class="icon">
 							<div>1</div>
 						</div>
-						<div class="text">Basic Employer Information</div>
+						<div class="text">Account Information</div>
 					</div>
 					<div id="tag-step-2" class="step">
 						<div class="icon">
 							<div>2</div>
 						</div>
-						<div class="text">Operational Details</div>
-					</div>
-					<div id="tag-step-3" class="step">
+						<div class="text">Company Information</div>
+					</div> --}}
+					{{-- <div id="tag-step-3" class="step">
 						<div class="icon">
 							<div>3</div>
 						</div>
@@ -149,8 +149,8 @@ input[type='checkbox']{
 						<div class="icon">
 							<div>4</div>
 						</div>
-						<div class="text">Declaration and Consent</div>
-					</div>
+						<div class="text">Terms And Conditions</div>
+					</div> --}}
 					{{--<div id="tag-step-5" class="step">
 						<div class="icon">
 							<div>5</div>
@@ -184,7 +184,8 @@ input[type='checkbox']{
 				</div>
 					<form id="basic-information-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
 						<!-- Step 1 -->
-						<div class="step active" id="step-1">
+						<div class="bg-white card-box" id="step-1">
+							<h3 class="my-3">Account Information</h3>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">
@@ -324,14 +325,15 @@ input[type='checkbox']{
 							</div>--}}
 
 							<div class="d-flex flex-row justify-content-end gap-3">
-								<button type="submit" class="dash-btn-one" id="basic-information" >Next</button>
+								<button type="submit" class="dash-btn-one" id="basic-information" >Submit</button>
 							</div>
 						</div>
 					</form>
 
 					<!-- Step 2 -->
 					<form id="operational-details-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
-						<div class="step" id="step-2">
+						<div class="bg-white card-box" id="step-2">
+							<h3 class="my-3">Company Information</h3>
 							<div class="row">
 								{{-- <div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">
@@ -409,7 +411,7 @@ input[type='checkbox']{
 
 								<div class="col-md-4">
 									<div class="dash-input-wrapper mb-30">
-										<label for="">Number of Teachers</label>
+										<label for="">Number of Staff</label>
 										<select name="numberOfTeachers" id="numberOfTeachers" class="form-select w-100">
 											<option value="1-5" {{$employerDetails->number_of_teachers == '1-5' ? 'selected' : ''}}>1-5</option>
 											<option value="6-10" {{$employerDetails->number_of_teachers == '6-10' ? 'selected' : ''}}>6-10</option>
@@ -459,8 +461,8 @@ input[type='checkbox']{
 							</div>
 
 							<div class="d-flex flex-row justify-content-end gap-3">
-								<button type="button" class="dash-btn-one" onclick="previousStep(2)">Previous</button>
-								<button type="submit" class="dash-btn-one" id ="operational-details" >Next</button>
+								{{-- <button type="button" class="dash-btn-one" onclick="previousStep(2)">Previous</button> --}}
+								<button type="submit" class="dash-btn-one" id ="operational-details" >Submit</button>
 							</div>
 						</div>
 					</form>
@@ -469,8 +471,9 @@ input[type='checkbox']{
 					
 
 					<!-- Step 4 -->
-						<div class="step" id="step-3">
-							<form id="employer-verification-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
+					<form id="employer-verification-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
+						<div class="bg-white card-box" id="step-3">
+							<h3 class="my-3">Employer Verification</h3>
 							<div class = "mt-1" id ="license-document-error"></div>
 								@isset($employerLicenseDetails)
 								@if($employerLicenseDetails->approval_status == 0)
@@ -611,21 +614,22 @@ input[type='checkbox']{
 								</div>--}}
 
 								<div class="d-flex flex-row justify-content-end gap-3">
-									<button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button>
+									{{-- <button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button> --}}
 									@isset($employerLicenseDetails)
 									@if($employerLicenseDetails->approval_status == 0 || $employerDetails->approval_status == 1)
-									<button type="button" class="dash-btn-one" onclick="nextStep(3)">Next</button>
+									<button type="submit" class="dash-btn-one" >Submit</button>
 									@else
-									<button type="submit" class="dash-btn-one"  >Next</button>
+									<button type="submit" class="dash-btn-one"  >Submit</button>
 									@endif
 									@else
-									<button type="submit" class="dash-btn-one"  >Next</button>
+									<button type="submit" class="dash-btn-one"  >Submit</button>
 									@endif
 								</div>
-							</form>
-						</div>
+							</div>
+						</form>
 					<form id="declaration-consent-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
-						<div class="step" id="step-4">
+						<div class="bg-white card-box" id="step-4">
+							<h3 class="my-3">Terms And Condition</h3>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">
@@ -660,7 +664,7 @@ input[type='checkbox']{
 							</div>
 
 							<div class="d-flex flex-row justify-content-end gap-3">
-								<button type="button" class="dash-btn-one" onclick="previousStep(4)">Previous</button>
+								{{-- <button type="button" class="dash-btn-one" onclick="previousStep(4)">Previous</button> --}}
 								<button type="submit" class="dash-btn-one" id = "declaration-consent-details" >Submit</button>
 							</div>
 						</div>
@@ -925,6 +929,7 @@ input[type='checkbox']{
 
 <script src="https://js.stripe.com/v3/"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
    // const stripe = Stripe('{{ env('STRIPE_KEY') }}')
   
@@ -967,21 +972,21 @@ input[type='checkbox']{
 <script>
 	let currentStep = 1;
 
-	function nextStep(step) {
-		document.getElementById(`step-${step}`).classList.remove('active');
-		document.getElementById(`tag-step-${step}`).classList.remove('selected');
-		currentStep = step + 1;
-		document.getElementById(`step-${currentStep}`).classList.add('active');
-		document.getElementById(`tag-step-${currentStep}`).classList.add('selected');
-	}
+	// function nextStep(step) {
+	// 	document.getElementById(`step-${step}`).classList.remove('active');
+	// 	document.getElementById(`tag-step-${step}`).classList.remove('selected');
+	// 	currentStep = step + 1;
+	// 	document.getElementById(`step-${currentStep}`).classList.add('active');
+	// 	document.getElementById(`tag-step-${currentStep}`).classList.add('selected');
+	// }
 
-	function previousStep(step) {
-		document.getElementById(`step-${step}`).classList.remove('active');
-		document.getElementById(`tag-step-${step}`).classList.remove('selected');
-		currentStep = step - 1;
-		document.getElementById(`step-${currentStep}`).classList.add('active');
-		document.getElementById(`tag-step-${currentStep}`).classList.add('selected');
-	}
+	// function previousStep(step) {
+	// 	document.getElementById(`step-${step}`).classList.remove('active');
+	// 	document.getElementById(`tag-step-${step}`).classList.remove('selected');
+	// 	currentStep = step - 1;
+	// 	document.getElementById(`step-${currentStep}`).classList.add('active');
+	// 	document.getElementById(`tag-step-${currentStep}`).classList.add('selected');
+	// }
 
 	// document.getElementById("multi-step-form").addEventListener("submit", function(event) {
 	// 	event.preventDefault();
@@ -1056,7 +1061,7 @@ input[type='checkbox']{
 				success: function (data) {
 		
 					if (data.status) {
-						nextStep(1);
+						toastr.success(data.message)
 						// window.location = data.redirect;
 					}else{
 						$(".alert").remove();
@@ -1097,7 +1102,7 @@ input[type='checkbox']{
 				success: function (data) {
 		
 					if (data.status) {
-						nextStep(2);
+						toastr.success(data.message);
 					}else{
 						$(".alert").remove();
 						$.each(data.errors, function (key, val) {
@@ -1134,7 +1139,8 @@ input[type='checkbox']{
 				success: function (data) {
 		
 					if (data.status) {
-						window.location = data.redirect;
+						toastr.success(data.message)
+						// window.location = data.redirect;
 					}else{
 						$(".alert").remove();
 						$.each(data.errors, function (key, val) {
@@ -1199,7 +1205,7 @@ input[type='checkbox']{
 				success: function (data) {
 		
 					if (data.status) {
-						nextStep(3);
+						toastr.success(data.message);
 						// window.location = data.redirect;
 					}else {
 							$("#license-document-error").empty(); // Clear previous errors

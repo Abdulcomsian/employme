@@ -43,6 +43,6 @@
                     </ul>
                 </div>
                 --}}
-                <div><a href="{{route('candidatesMarketplace')}}" class="job-post-btn tran3s">Hire Top Talents</a></div>
+                <div><a href="{{route('candidatesMarketplace')}}" class="job-post-btn tran3s">Candidate Market Place</a></div>
             </div>
         </header>

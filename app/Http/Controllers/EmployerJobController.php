@@ -43,11 +43,20 @@ class EmployerJobController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         try {
 
-        $input = $request->except('_token');
-        $createJob = EmployerJob::create(array_merge($input,['posted_by'=>Auth::id(),'job_status'=>1]));
+        $filename = null;
+        if($request->file('company_introduction'))
+        {
+            $file = $request->file('company_introduction');
+            $filename = strtotime(now()).'-'.str_replace(" ","-",$file->getClientOriginalName()) ;
+            $path = public_path('uploads/employer/introduction-video');
+            $file->move($path , $filename);
+        }
+
+        $input = $request->except('_token' , 'company_introduction');
+
+        EmployerJob::create(array_merge($input,['posted_by'=>Auth::id(),'job_status' =>1 , 'company_introduction' => $filename ]));
         toastr()->success('Job Created Successfully');
         return redirect()->route('employer-jobs.index');
           

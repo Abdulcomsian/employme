@@ -43,12 +43,14 @@
 		<!-- /.user-data -->
 		<nav class="dasboard-main-nav">
 			<ul class="style-none">
-				<li><a href="{{route('getEmployerDashboard')}}" class="d-flex w-100 align-items-center {{request()->is('employer/dashboard') ? 'active' : ''}}">
+				<li>
+					<a href="{{route('getEmployerDashboard')}}" class="d-flex w-100 align-items-center {{request()->is('employer/dashboard') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_1.svg')}}" alt="" class="lazy-img">
 						<span>Dashboard</span>
-					</a></li>
+					</a>
+				</li>
 		
-					<li>
+				<li>
                     <a class="d-flex w-100 align-items-center" data-bs-toggle="collapse" href="#collapseJobType" role="button" aria-expanded="false">Manage Modules</a>
                     <div class="collapse {{request()->is('employer/manage/*') ? 'show' : ''}}" id="collapseJobType">
                         <div class="main-body">
@@ -57,27 +59,48 @@
                                     <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_2_active.svg')}}" alt="" class="lazy-img">
                                         <span>My Profile</span>
                                     </a>
-                                </li> 
-                                <li><a href="{{route('staff.index')}}" class="d-flex w-100 align-items-center {{(request()->is('employer/manage/staff') || request()->is('employer/manage/staff/*'))  ? 'active' : ''}}">
-                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/staff') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
-                                        <span>Staff</span>
-                                    </a>
-                                </li> 
-                                <li><a href="{{route('gallery.index')}}" class="d-flex w-100 align-items-center {{(request()->is('employer/manage/gallery') || request()->is('employer/manage/gallery/*')) ? 'active' : ''}}">
-                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
-                                        <span>Media Gallery</span>
-                                    </a>
-                                </li> 
-                                <li><a href="{{route('employer.manageBusinessOperation')}}" class="d-flex w-100 align-items-center {{(request()->is('employer/manage/business-operation') || request()->is('employer/manage/business-operation/*')) ? 'active' : ''}}">
-                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
-                                        <span>Business Operation</span>
-                                    </a>
-                                </li> 
-                                <li><a href="{{route('employer.housing.index')}}"  class="d-flex w-100 align-items-center {{(request()->is('employer/manage/housings') || request()->is('employer/manage/housings/*')) ? 'active' : ''}}">
-                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
-                                        <span>Housing</span>
-                                    </a>
-                                </li>                            
+                                </li>
+
+
+
+								<a class="d-flex w-100 align-items-center" data-bs-toggle="collapse" href="#companyPageType" role="button" aria-expanded="false">Company Page</a>
+								<div class="collapse {{request()->is('employer/manage/staff') || request()->is('employer/manage/gallery') || request()->is('candidate/profile') || request()->is('employer/manage/business-operation') || request()->is('employer/manage/housings')  ? 'show' : ''}}" id="companyPageType">
+									<div class="main-body">
+										<ul class="style-none filter-input">
+											<li><a href="{{route('staff.index')}}" class="d-flex w-100 align-items-center {{(request()->is('employer/manage/staff') || request()->is('employer/manage/staff/*'))  ? 'active' : ''}}">
+												<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/staff') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
+													<span>Staff</span>
+												</a>
+											</li> 
+											<li><a href="{{route('gallery.index')}}" class="d-flex w-100 align-items-center {{(request()->is('employer/manage/gallery') || request()->is('employer/manage/gallery/*')) ? 'active' : ''}}">
+												<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
+													<span>Media Gallery</span>
+												</a>
+											</li> 
+											<li><a href="{{route('employer.manageBusinessOperation')}}" class="d-flex w-100 align-items-center {{(request()->is('employer/manage/business-operation') || request()->is('employer/manage/business-operation/*')) ? 'active' : ''}}">
+												<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
+													<span>Business Operation</span>
+												</a>
+											</li> 
+											<li><a href="{{route('employer.housing.index')}}"  class="d-flex w-100 align-items-center {{(request()->is('employer/manage/housings') || request()->is('employer/manage/housings/*')) ? 'active' : ''}}">
+												<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
+													<span>Housing</span>
+												</a>
+											</li>  
+										</ul>
+									</div>
+								</div>
+
+
+
+                                
+								
+								
+
+
+
+
+
                             </ul>
                         </div>
                     </div>

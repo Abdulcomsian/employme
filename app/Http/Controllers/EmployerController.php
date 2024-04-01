@@ -30,7 +30,7 @@ class EmployerController extends Controller
     }
     public function getEmployerProfilePage()
     {
-       $plans = Plan::get();
+        $plans = Plan::get();
         $countries = Countries::where('name' , 'Korea South')->get();
         // $intent = auth()->user()->createSetupIntent();
         $employerDetails = EmployerDetails::where('user_id',Auth::id())->first();
@@ -106,7 +106,7 @@ class EmployerController extends Controller
         $updateEmployerDetails->update(array_merge($input,['institution_logo'=>$imagename]));
         return response()->json([
                         "status" => true, 
-                        "message" => url("Employer Details Updated Successfully")
+                        "message" => "Employer Details Updated Successfully"
                     ]);
     }
     public function saveProfile2(Request $request)
@@ -127,7 +127,7 @@ class EmployerController extends Controller
         
         return response()->json([
                         "status" => true, 
-                        "message" => url("Employer Details Updated Successfully")
+                        "message" => "Employer Details Updated Successfully"
                     ]);
     }
     public function saveProfile3(Request $request)
@@ -137,17 +137,17 @@ class EmployerController extends Controller
         $updateDetails->update($input);
         return response()->json([
                         "status" => true, 
-                        "message" => url("Employer Details Updated Successfully")
+                        "message" => "Employer Details Updated Successfully"
                     ]);
     }
     public function saveProfile4(Request $request)
     {
-
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
-            'license_number' => 'required',
+            // 'license_number' => 'required',
             'license_file' => 'required',
         ],[
-            'license_number.required'=>'Business License Number is required',
+            // 'license_number.required'=>'Business License Number is required',
             'license_number.required'=>'Business License Certificate is required',
         ]);
        $isnewUser = null;
@@ -174,7 +174,7 @@ class EmployerController extends Controller
         }
         $input = $request->except('_token','license_file');
         $updateDetails->license_file = $imagename;
-        $updateDetails->license_number = $request->license_number;
+        // $updateDetails->license_number = $request->license_number;
         $updateDetails->employer_id = Auth::id();
         $updateDetails->approval_status = 0;
         $updateDetails->save();
@@ -189,7 +189,7 @@ class EmployerController extends Controller
         }
         return response()->json([
                         "status" => true, 
-                        "message" => url("Employer Details Updated Successfully")
+                        "message" => "Employer Details Updated Successfully"
                     ]);
     }
     public function saveProfile5(Request $request)

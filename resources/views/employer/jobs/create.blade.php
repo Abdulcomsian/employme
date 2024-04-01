@@ -45,7 +45,7 @@ Post A Job
 
         <h2 class="main-title">Post a New Job</h2>
         <div>
-            <form id="employer-job-form" action="{{route('employer-jobs.store')}}" method = "POST" class="search-form">
+            <form id="employer-job-form" action="{{route('employer-jobs.store')}}" enctype="multipart/form-data" method = "POST" class="search-form">
                  @csrf
                 <div class="bg-white card-box border-20 section" id="step1">
 
@@ -654,7 +654,7 @@ Post A Job
                     <h4 class="dash-title-three">Application & Recruitment Process</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Required Documents:</label>
+                            <label for="">E2 Visa Document Required:</label>
                             <div>
                                 <select class="nice-select" id="required_documents" name="required_documents">
                                     <option value="No" >No</option>
@@ -671,21 +671,21 @@ Post A Job
                             </div>
                             {{-- <input type="text" name="required_documents" placeholder=""> --}}
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Interview Process:</label>
                             <input type="text" name="interview_process" placeholder=""></input>
-                        </div>
+                        </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Application Deadline:</label>
-                            <input type="text" name="application_deadline" placeholder=""></input>
+                            <input type="date" name="application_deadline" placeholder=""></input>
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Contract Review Process:</label>
                             <input type="text" name="contact_review_process" placeholder="">
-                        </div>
+                        </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Decision Deadline:</label>
-                            <input type="text" name="decision_deadline" placeholder="">
+                            <input type="date" name="decision_deadline" placeholder="">
                         </div>
 
                     </div>
@@ -695,7 +695,7 @@ Post A Job
                     </div>
                 </div>
 
-                <div class="bg-white card-box border-20 hide section" id="step9">
+                {{-- <div class="bg-white card-box border-20 hide section" id="step9">
                     <h4 class="dash-title-three">Additional Information</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -720,18 +720,22 @@ Post A Job
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
                         <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="bg-white card-box border-20 hide section" id="step10">
+                <div class="bg-white card-box border-20 hide section" id="step9">
                     <h4 class="dash-title-three">Reviews & Testimonials</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Links to Teacher Testimonials or Reviews:</label>
-                            <textarea type="text" name="links_to_teacher_testimonials_or_reviews" placeholder=""></textarea>
+                            <label for="">Company Introduction</label>
+                            <input type="file" name="company_introduction" id="" accept=".mp4, .asf, .mov , .webm ,.avi , .mkv">
+                            <textarea class="size-lg summernote" name="company_detail" placeholder="company_detail"></textarea>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Option to Contact Current/Past Foreign Teachers:</label>
-                            <textarea type="text" name="option_to_current_past_foreign_teachers" placeholder=""></textarea>
+                            <select class="nice-select" name="option_to_current_past_foreign_teachers">
+                                <option value="Yes" selected>Yes</option>
+                                <option value="No">No</option>
+                            </select>
                         </div>
 
                     </div>

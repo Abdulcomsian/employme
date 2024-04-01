@@ -248,7 +248,7 @@
                             @auth
                             @role('employer')
                             <li class="d-md-none"><a href="{{route('postAJob')}}" class="job-post-btn tran3s">Post Job</a></li>
-                            <li class="d-md-none"><a href="{{route('candidatesMarketplace')}}" class="btn-one w-100">Hire Top Talents</a></li>
+                            <li class="d-md-none"><a href="{{route('candidatesMarketplace')}}" class="btn-one w-100">Candidate Market Place</a></li>
                             @endrole
                             @endauth
                         </ul>
