@@ -14,7 +14,7 @@ class CountriesTableSeeder extends Seeder
      */
     public function run()
     {
-        ini_set('max_execution_time', 180);
+        ini_set('memory_limit', '44M');
 
         \DB::table('countries')->delete();
         
