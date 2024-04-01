@@ -29,7 +29,7 @@
                         <div class="file-name">{{$file->original_name}}</div>
                         {{--<div class="file-size">2.3mb</div>--}}
                     </div>
-                </a>
+                </a> 
                 @endforeach
                 @endisset
             </div>
