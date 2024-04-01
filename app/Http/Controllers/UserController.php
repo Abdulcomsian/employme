@@ -337,7 +337,21 @@ class UserController extends Controller
         $id = Crypt::decryptString($id);
         $employerDetails = EmployerDetails::with('employerCountry')->where('user_id',$id)->first();
         $candidateReviews = Review::with('candidateDetails.candidatePersonalDetails')->where('employer_id',$id)->get();
-        return view('company-about-us',compact('employerDetails','candidateReviews'));
+        //new code starts here
+        $businessOperationDetails  = BusinessOperation::where('employer_id',$id)->first();
+        $companyHousingsImages = Gallery::where('employer_id',$id)->get();
+        $employerStaff = Staff::where('employer_id',$id)->get();
+        $allJobs = EmployerJob::with('employerDetails')->where('posted_by',$id)->get();
+        $galleryFiles = Gallery::where('employer_id',$id)->get();
+        return view('company-about-us',compact( 
+                                            'employerDetails', 
+                                            'candidateReviews' ,
+                                            'businessOperationDetails',
+                                            'companyHousingsImages',
+                                            'employerStaff',
+                                            'allJobs',
+                                            'galleryFiles'
+                                        ));
     }
     public function companyBusinessOperation($id)
     {

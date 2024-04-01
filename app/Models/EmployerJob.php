@@ -47,7 +47,8 @@ class EmployerJob extends Model
         'health_dental_insurance',
         'pension',
         'airfare',
-        'vacation_sick_leave',
+        'vacation_leave',
+        'sick_leave',
         'national_holidays',
         'professional_development_opportunities',
         'overtime_pay',
@@ -78,6 +79,7 @@ class EmployerJob extends Model
         'local_bank_account_assistance',
         'emergency_contacts_and_support',
         'required_documents',
+        'document_type',
         'interview_process',
         'application_deadline',
         'contact_review_process',
@@ -90,6 +92,8 @@ class EmployerJob extends Model
         'option_to_current_past_foreign_teachers',
         'job_status',
         'posted_by',
+        'start_time',
+        'finish_time'
     ];
 
     public function employerDetails()

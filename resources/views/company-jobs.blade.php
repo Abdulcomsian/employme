@@ -201,7 +201,7 @@
 									<div class="job-location">
 										<a href="javascript;;">{{$job->city_town}}</a>
 									</div>
-									<div class="job-salary"><span class="fw-500 text-dark">{{number_format($job->monthly_salary)}} USD</span> / month . {{$job->experience_level ?? ''}}</div>
+									<div class="job-salary"><span class="fw-500 text-dark">{{$job->monthly_salary}} USD</span> / month . {{$job->experience_level ?? ''}}</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">

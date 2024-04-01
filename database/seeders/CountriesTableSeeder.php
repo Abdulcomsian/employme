@@ -14,7 +14,7 @@ class CountriesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        ini_set('memory_limit', '44M');
 
         \DB::table('countries')->delete();
         
@@ -2872,7 +2872,7 @@ class CountriesTableSeeder extends Seeder
                                         114 => 
                                         array (
                                             'id' => 115,
-                                            'name' => 'Korea North',
+                                            'name' => 'North Korea',
                                             'iso3' => 'PRK',
                                             'iso2' => 'KP',
                                             'phonecode' => '850',
@@ -2897,7 +2897,7 @@ class CountriesTableSeeder extends Seeder
                                         115 => 
                                         array (
                                             'id' => 116,
-                                            'name' => 'Korea South',
+                                            'name' => 'South Korea',
                                             'iso3' => 'KOR',
                                             'iso2' => 'KR',
                                             'phonecode' => '82',
