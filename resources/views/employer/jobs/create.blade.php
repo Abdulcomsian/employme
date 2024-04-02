@@ -66,7 +66,7 @@ Post A Job
                                     <option value="Seoul Location">Seoul Location</option>
                                     <option value="Competitive Compensation">Competitive Compensation</option>
                                     <option value="Bonus Incentives">Bonus Incentives</option>
-                                    <option value="Opportunity to Renewal Contract">Opportunity to Renewal Contract</option>
+                                    <option value="Opportunity for Renewal Contract">Opportunity for Renewal Contract</option>
                                     <option value="Health Insurance Coverage">Health Insurance Coverage</option>
                                     <option value="Provided Accommodation">Provided Accommodation</option>
                                     <option value="Training Opportunities">Training Opportunities</option>
@@ -83,7 +83,7 @@ Post A Job
 
                         <div class="col-md-6">
                             <div class="dash-input-wrapper mb-30">
-                                <label for="">Ideal Candidate Profile:</label>
+                                <label for="">Key Candidate Qualifications:</label>
                                 <input type="hidden" name="ideal_candidate_profile">
                                 <select id="ideal_candidate_profile" multiple>
                                     <option value="1 Year Teaching Experience">1 Year Teaching Experience</option>
@@ -94,7 +94,7 @@ Post A Job
                                     <option value="Able to adapt quickly to Korean Culture">Able to adapt quickly to Korean Culture</option>
                                     <option value="Can work Autonomously">Can work Autonomously</option>
                                     <option value="Passionate About Teaching Kids">Passionate About Teaching Kids</option>
-                                    <option value="Can create and implement new curriculum">Can create and implement new curriculum</option>
+                                    <option value="Can Create and Implement New Curriculum">Can Create and Implement New Curriculum</option>
                                     <option value="Basic Korean Language Proficiency">Basic Korean Language Proficiency</option>
                                     <option value="Fluent in Korean">Fluent in Korean</option>
                                     <option value="Can Work Flexible Hours">Can Work Flexible Hours</option>
@@ -107,15 +107,24 @@ Post A Job
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Job Type:</label>
                             <select class="nice-select" name="job_type">
-                                <option value="Fixed-Price" selected>Fixed-Price</option>
-                                <option value="Full-Time">Full-Time</option>
-                                <option value="Part-Time">Part-Time</option>
+                                <option value="Full Time" selected>Full Time</option>
+                                <option value="Part Time">Part Time</option>
                                 <option value="Fixed Term Contract">Fixed Term Contract</option>
                             </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-12">
                             <label for="">Description:</label>
-                            <textarea class="size-lg summernote" name="job_description" placeholder="Write about the job in details..."></textarea>
+                            <textarea class="size-lg summernote" name="job_description" placeholder="">
+
+                                <b>Tips:</b> Provide a summary of the role, what success in the position looks like, and how this role fits into the organization overall.<br><br>
+
+                                <b>Responsibilities</b>
+                                [Be specific when describing each of the responsibilities. Use gender-neutral, inclusive language.]
+                                <br>Example: Determine and develop user requirements for systems in production, to ensure maximum usability <br><br>
+                                <b>Qualifications</b>
+                                [Some qualifications you may want to include are Skills, Education, Experience, or Certifications.] <br>
+                                Example: Excellent verbal and written communication skills
+                            </textarea>
                         </div>
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
@@ -172,7 +181,7 @@ Post A Job
                             <label for="">Salary Breakdown:</label>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Monthly pay:</label>
+                            <label for="">Monthly Pay:</label>
                             <input type="text" list="monthly_amount" name="monthly_salary"/>
                             <datalist id="monthly_amount">
                                 <option>Negotiation</option>
@@ -222,7 +231,7 @@ Post A Job
                                 <option value="Elementary">Elementary</option>
                                 <option value="Middle School">Middle School</option>
                                 <option value="High School">High School</option>
-                                <option value="Adult">Adult</option>
+                                <option value="Adults">Adults</option>
                             </select>
                             {{-- <input type="text" name="student_age_group" placeholder=""> --}}
                         </div>
@@ -242,7 +251,7 @@ Post A Job
                             <input type="number" class="number-input" name="hours_per_week" placeholder="">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Teaching Hours/Day:</label>
+                            <label for="">Classes Each Day:</label>
                             <select class="nice-select" name="teaching_hours_per_day">
                                 <option value="1-5 Classes Per Day" selected>1-5 Classes Per Day</option>
                                 <option value="5-10 Classes Per Day">5-10 Classes Per Day</option>
@@ -273,7 +282,7 @@ Post A Job
                             <label for="">Curriculum Overview:</label>
                             <input type="hidden" name="curriculum_overview">
                             <select id="curriculum_overview" multiple>
-                                <option value="Phonic">Phonic</option>
+                                <option value="Phonics">Phonics</option>
                                 <option value="Speaking Class">Speaking Class</option>
                                 <option value="Reading Class">Reading Class</option>
                                 <option value="Writing Class">Writing Class</option>
@@ -292,14 +301,14 @@ Post A Job
                                 <option value="Other">Other</option>
                             </select>
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{--<div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Materials & Resources Available:</label>
                             <input type="text" name="material_resources_available" placeholder="">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Teaching Aids:</label>
                             <input type="text" name="teaching_aids" placeholder="smartboards, projectors">
-                        </div>
+                        </div>--}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Start Time:</label>
                             <input type="time" name="start_time" >
@@ -341,20 +350,28 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Visa Application Assistance</label>
-                            <input type="text" name="relocation_allowance" placeholder=""></input>
+                            {{--<input type="text" name="relocation_allowance" placeholder=""></input>--}}
+                            <select class="nice-select" name="relocation_allowance">
+                                <option value="Yes" selected>Yes</option>
+                                <option value="No">No</option>
+                            </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Housing Details:</label>
                             <select class="nice-select" name="housing_details">
                                 <option value="Furnished" selected>Furnished</option>
-                                <option value="UnFurnished">UnFurnished</option>
+                                <option value="Unfurnished">Unfurnished</option>
                                 <option value="Partially Furnished">Partially Furnished</option>
                             </select>
                             {{-- <textarea type="text" name="housing_details" placeholder="Size, type, furnished/unfurnished, utilities covered, etc."></textarea> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Health Insurance:</label>
-                            <textarea type="text" name="health_dental_insurance" placeholder="Insurance Details"></textarea>
+                            {{--<textarea type="text" name="health_dental_insurance" placeholder="Insurance Details"></textarea>--}}
+                            <select class="nice-select" name="health_dental_insurance">
+                                <option value="Yes" selected>Yes</option>
+                                <option value="No">No</option>
+                            </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Airfare: </label>
@@ -362,9 +379,9 @@ Post A Job
                                 <option value="Return Flight (Paid End Of Contract)" selected>Return Flight (Paid End Of Contract)</option>
                                 <option value="Single Flight (Reimbursed First Pay Check)">Single Flight (Reimbursed First Pay Check)</option>
                                 <option value="Single Flight (Paid End Of Contract)">Single Flight (Paid End Of Contract)</option>
-                                <option value="Single Flight (Paid By Employer)">Partially Furnished</option>
-                                <option value="No Airfare">Partially Furnished</option>
-                                <option value="Other">Partially Furnished</option>
+                                <option value="Single Flight (Paid By Employer)">Single Flight (Paid By Employer)</option>
+                                <option value="No Airfare">No Airfare</option>
+                                <option value="Other">Other</option>
                             </select>
                             {{-- <input type="text" name="airfare" placeholder=""> --}}
                         </div>
@@ -408,7 +425,11 @@ Post A Job
                         </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Overtime Pay:</label>
-                            <input type="text" name="overtime_pay" placeholder="">
+                            {{--<input type="text" name="overtime_pay" placeholder="">--}}
+                            <select class="nice-select" name="overtime_pay">
+                                <option value="Yes" selected>Yes</option>
+                                <option value="No">No</option>
+                            </select>
                         </div>
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
@@ -423,7 +444,7 @@ Post A Job
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Education:</label>
                             <select class="nice-select" name="education">
-                                <option value="High School Diploma" selected>High School Diploma</option>
+                                <option value="High School Diploma/GED" selected>High School Diploma/GED</option>
                                 <option value="Associate's Degree">Associate's Degree</option>
                                 <option value="Bachelor's Degree">Bachelor's Degree</option>
                                 <option value="Master's Degree">Master's Degree</option>
@@ -501,7 +522,8 @@ Post A Job
                                 <option value="E-5 (Professional Employment)" >E-5 (Professional Employment)</option>
                                 <option value="E-6 (Entertainment)" >E-6 (Entertainment)</option>
                                 <option value="E-7 (Special Occupation)" >E-7 (Special Occupation)</option>
-                                <option value="E-9 (Non-Professional Employment)" >E-9 (Non-Professional Employment)</option>
+                                <option value="E-10 (Non-Professional Employment)" >E-9 (Non-Professional Employment)</option>
+                                <option value="E-10 (Job Seeking)" >E-10 (Job Seeking)</option>
                                 <option value="F-2 (Resident)" >F-2 (Resident)</option>
                                 <option value="F-5 (Permanent Resident)" >F-5 (Permanent Resident)</option>
                                 <option value="F-6 (Marriage Migrant)" >F-6 (Marriage Migrant)</option>
