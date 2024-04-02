@@ -16,10 +16,10 @@ Job Marketplace
 					<div class="title-two">
 						<h2 class="text-white">Jobs Marketplace</h2>
 					</div>
-					<p class="text-lg text-white mt-30 lg-mt-20 mb-35 lg-mb-20">We delivered blazing fast & striking work solution</p>
+					<p class="text-lg text-white mt-30 lg-mt-20 mb-35 lg-mb-20">Find the best candidate for your company</p>
 				</div>
 			</div>
-			<div class="position-relative">
+			{{-- <div class="position-relative">
 				<div class="row">
 					<div class="col-xl-9 col-lg-8 m-auto">
 						<div class="job-search-one position-relative" method="get">
@@ -68,7 +68,7 @@ Job Marketplace
 						<!-- /.job-search-one -->
 					</div>
 				</div>
-			</div>
+			</div> --}}
 		</div>
 	</div>
 	<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/shape/shape_02.svg')}}" alt="" class="lazy-img shapes shape_01">
@@ -213,7 +213,7 @@ Job Marketplace
 
 
 								<!-- house included demand of client -->
-								<div class="filter-block bottom-line pb-25 mt-25">
+								{{-- <div class="filter-block bottom-line pb-25 mt-25">
 									<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseHousingIncluded" role="button" aria-expanded="false">Housing Included</a>
 									<div class="collapse {{(isset($_GET['SearchHousingIncluded']) && $_GET['SearchHousingIncluded'] !='') ? 'show' : ''}}" id="collapseHousingIncluded">
 										<div class="main-body">
@@ -224,11 +224,11 @@ Job Marketplace
 											</select>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 
 
 								<!--  Insurances Included demand of client -->
-								<div class="filter-block bottom-line pb-25 mt-25">
+								{{-- <div class="filter-block bottom-line pb-25 mt-25">
 									<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseInsuranceIncluded" role="button" aria-expanded="false"> Insurances Included </a>
 									<div class="collapse {{(isset($_GET['SearchInsuranceIncluded']) && $_GET['SearchInsuranceIncluded'] !='') ? 'show' : ''}}" id="collapseInsuranceIncluded">
 										<div class="main-body">
@@ -239,7 +239,7 @@ Job Marketplace
 											</select>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 
 
 
@@ -279,19 +279,23 @@ Job Marketplace
 						<div class="job-list-one style-two position-relative border-style mb-20">
 							<div class="row justify-content-between align-items-center">
 								<div class="col-md-5">
+									
 									<div class="job-title d-flex align-items-center">
-										<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img m-auto"></a>
+										<a href="javascript:void(0)" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img m-auto"></a>
 										<div class="split-box1">
-											<a href="javascript;;" class="job-duration fw-500">{{$job->job_type}}</a>
-											<a href="javascript;;" class="title fw-500 tran3s">{{$job->job_title}}</a>
+											<a href="javascript:void(0)" class="job-duration fw-500">{{$job->job_type}}</a>
+											<a href="javascript:void(0)" class="title fw-500 tran3s">{{$job->job_title}}</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="javascript;;">{{$job->city_town}}</a>
+										<a href="javascript:void(0)">{{$job->city_town}}</a>
 									</div>
 									<div class="job-salary"><span class="fw-500 text-dark">{{$job->monthly_salary}} USD</span> / month . {{$job->experience_level ?? ''}}</div>
+								</div>
+								<div class="col-md-4 col-sm-6 company-detail d-flex align-items-center">
+									<p>{{$job->employerDetails->institution_type}}</p>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
@@ -503,10 +507,14 @@ Job Marketplace
 										@endif
 									</a>
 									<a  class="save-btn text-center rounded-circle tran3s {{(savedJob($job->id) == 1 ? 'bg-black' : '')}} save_job save_job{{base64_encode($job->id)}}" id="{{base64_encode($job->id)}}" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+									
 									<div><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="job-duration fw-500">{{$job->job_type}}</a></div>
+									<div class="company-detail my-3"><span class="title fw-200 tran3s">{{$job->employerDetails->institution_type}}</span></div>
 									<div><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="title fw-500 tran3s">{{$job->job_title}}</a></div>
 									<!-- <div class="job-salary"><span class="fw-500 text-dark">$300-$450</span> / Week</div> -->
-									<div class="job-salary"><span class="fw-500 text-dark">{{$job->monthly_salary}} USD</span></div>
+									<div class="job-salary"><span class="fw-500 text-dark my-2">{{$job->monthly_salary}} USD</span></div>
+									<div class="job-date"><span class="fw-100 text-dark"><i>Starting Date: </i>{{date("d-m-Y" , strtotime($job->start_date))}}</span></div>
+									
 									<div class="d-flex align-items-center justify-content-between mt-auto">
 										<div class="job-location"><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}">{{$job->city_town}}</a></div>
 										<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="apply-btn text-center tran3s">Interview Request</a>
