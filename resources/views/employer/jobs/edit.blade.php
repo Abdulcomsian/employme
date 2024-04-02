@@ -33,6 +33,8 @@ Post A Job
     }
     .select2-container {
         width: 100% !important; 
+    }
+    .selection{
         overflow-y: scroll;
     }
 </style>
