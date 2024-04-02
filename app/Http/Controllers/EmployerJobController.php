@@ -92,14 +92,21 @@ class EmployerJobController extends Controller
     {
       
         try {
-
-        $input = $request->except('_token');
-        $updateJob = EmployerJob::find($id)->update(array_merge($input,['posted_by'=>Auth::id(),'job_status'=>1]));
-        if($updateJob)
-        {
-            toastr()->success('Job Updated Successfully');
-        }
-        return redirect()->route('employer-jobs.index');
+            $filename = null;
+            if($request->file('company_introduction'))
+            {
+                $file = $request->file('company_introduction');
+                $filename = strtotime(now()).'-'.str_replace(" ","-",$file->getClientOriginalName()) ;
+                $path = public_path('uploads/employer/introduction-video');
+                $file->move($path , $filename);
+            }
+            $input = $request->except('_token', 'company_introduction');
+            $updateJob = EmployerJob::find($id)->update(array_merge($input,[ 'posted_by' => Auth::id(), 'job_status' => 1 , 'company_introduction' => $filename]));
+            if($updateJob)
+            {
+                toastr()->success('Job Updated Successfully');
+            }
+            return redirect()->route('employer-jobs.index');
               
         } 
         catch (\Exception $e) {

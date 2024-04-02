@@ -2,6 +2,10 @@
 @section('title')
 Post A Job
 @endsection
+@section('page-head')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
 @section('content')
 <style>
     .show {
@@ -10,6 +14,26 @@ Post A Job
 
     .hide {
         display: none;
+    }
+    .select2-container--default.select2-container--focus .select2-selection--multiple {
+        outline: 0;
+        height: 55px;
+        width: 100% !important;
+        border: 1px solid gainsboro;
+        overflow-y: scroll;
+    }
+    span.select2-selection.select2-selection--multiple {
+        height: 55px;
+        border: 1px solid gainsboro;
+    }
+
+    .form-select{
+        border: 1px solid gainsboro; 
+        height: 55px;
+    }
+    .select2-container {
+        width: 100% !important; 
+        overflow-y: scroll;
     }
 </style>
 
@@ -28,25 +52,80 @@ Post A Job
 
                     <h4 class="dash-title-three">Position Overview</h4>
                     <div class="row">
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <div class="dash-input-wrapper mb-30">
                                 <label for="">School Vision:</label>
                                 <input type="text" name="school_vision" placeholder="Briefly describe the school's ethos, aims, and values." value="{{$employerJob->school_vision ?? ''}}">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
+                            <div class="dash-input-wrapper mb-30">
+                                <label for="">Unique Selling Points:</label>
+                                <input type="hidden" name="unique_selling_point">
+                                @php
+                                    $uniqueSellingPoints = $employerJob->unique_selling_point ? explode(',' , $employerJob->unique_selling_point) : [];
+                                @endphp
+                                <select name="unique_selling_point" id="unique_selling_point" multiple>
+                                    <option value="Proximit to Subway" @if(in_array( "Proximit to Subway", $uniqueSellingPoints)) selected @endif>Proximit to Subway</option>
+                                    <option value="Seoul Location" @if(in_array( "Seoul Location", $uniqueSellingPoints)) selected @endif>Seoul Location</option>
+                                    <option value="Competitive Compensation" @if(in_array( "Competitive Compensation", $uniqueSellingPoints)) selected @endif>Competitive Compensation</option>
+                                    <option value="Bonus Incentives" @if(in_array( "Bonus Incentives", $uniqueSellingPoints)) selected @endif>Bonus Incentives</option>
+                                    <option value="Opportunity to Renewal Contract" @if(in_array( "Opportunity to Renewal Contract", $uniqueSellingPoints)) selected @endif>Opportunity to Renewal Contract</option>
+                                    <option value="Health Insurance Coverage" @if(in_array( "Health Insurance Coverage", $uniqueSellingPoints)) selected @endif>Health Insurance Coverage</option>
+                                    <option value="Provided Accommodation" @if(in_array( "Provided Accommodation", $uniqueSellingPoints)) selected @endif>Provided Accommodation</option>
+                                    <option value="Training Opportunities" @if(in_array( "Training Opportunities", $uniqueSellingPoints)) selected @endif>Training Opportunities</option>
+                                    <option value="Public Holidays Off" @if(in_array( "Public Holidays Off", $uniqueSellingPoints)) selected @endif>Public Holidays Off</option>
+                                    <option value="Paid Time Off" @if(in_array( "Paid Time Off", $uniqueSellingPoints)) selected @endif>Paid Time Off</option>
+                                    <option value="Sick Leave" @if(in_array( "Sick Leave", $uniqueSellingPoints)) selected @endif>Sick Leave</option>
+                                    <option value="Flexible Hours" @if(in_array( "Flexible Hours", $uniqueSellingPoints)) selected @endif>Flexible Hours</option>
+                                    <option value="No Weekend Work" @if(in_array( "No Weekend Work", $uniqueSellingPoints)) selected @endif>No Weekend Work</option>
+                                    <option value="Launch or Dinner Provided" @if(in_array( "Launch or Dinner Provided", $uniqueSellingPoints)) selected @endif>Launch or Dinner Provided</option>
+                                </select>
+                                {{-- <input type="text" name="unique_selling_point" placeholder="Highlight what sets the school apart."> --}}
+                            </div>
+                        </div>
+                        {{-- <div class="col-md-6">
                             <div class="dash-input-wrapper mb-30">
                                 <label for="">Unique Selling Points:</label>
                                 <input type="text" name="unique_selling_point" placeholder="Highlight what sets the school apart." value="{{$employerJob->unique_selling_point ?? ''}}">
                             </div>
-                        </div>
+                        </div> --}}
+
+                       
 
                         <div class="col-md-6">
                             <div class="dash-input-wrapper mb-30">
                                 <label for="">Ideal Candidate Profile:</label>
-                                <input type="text" name="ideal_candidate_profile" placeholder="Outline qualities the school is particularly looking for." value="{{$employerJob->ideal_candidate_profile ?? ''}}">
+                                <input type="hidden" name="ideal_candidate_profile">
+                                @php
+                
+                                $idealCandidateProfile = $employerJob->ideal_candidate_profile ? explode(',' , $employerJob->ideal_candidate_profile) : [];
+                                @endphp
+                                <select id="ideal_candidate_profile" multiple>
+                                    <option value="1 Year Teaching Experience" @if(in_array("1 Year Teaching Experience", $idealCandidateProfile)) selected @endif>1 Year Teaching Experience</option>
+                                    <option value="2 Years+ Teaching Experience" @if(in_array("2 Years+ Teaching Experience", $idealCandidateProfile)) selected @endif>2 Years+ Teaching Experience</option>
+                                    <option value="Qualified Teacher" @if(in_array("Qualified Teacher", $idealCandidateProfile)) selected @endif>Qualified Teacher</option>
+                                    <option value="Clear Pronounciation" @if(in_array("Clear Pronounciation", $idealCandidateProfile)) selected @endif>Clear Pronounciation</option>
+                                    <option value="Native English Speaker" @if(in_array("Native English Speaker", $idealCandidateProfile)) selected @endif>Native English Speaker</option>
+                                    <option value="Able to adapt quickly to Korean Culture" @if(in_array("Able to adapt quickly to Korean Culture", $idealCandidateProfile)) selected @endif>Able to adapt quickly to Korean Culture</option>
+                                    <option value="Can work Autonomously" @if(in_array("Can work Autonomously", $idealCandidateProfile)) selected @endif>Can work Autonomously</option>
+                                    <option value="Passionate About Teaching Kids" @if(in_array("Passionate About Teaching Kids", $idealCandidateProfile)) selected @endif>Passionate About Teaching Kids</option>
+                                    <option value="Can create and implement new curriculum" @if(in_array("Can create and implement new curriculum", $idealCandidateProfile)) selected @endif>Can create and implement new curriculum</option>
+                                    <option value="Basic Korean Language Proficiency" @if(in_array("Basic Korean Language Proficiency", $idealCandidateProfile)) selected @endif>Basic Korean Language Proficiency</option>
+                                    <option value="Fluent in Korean" @if(in_array("Fluent in Korean", $idealCandidateProfile)) selected @endif>Fluent in Korean</option>
+                                    <option value="Can Work Flexible Hours" @if(in_array("Can Work Flexible Hours", $idealCandidateProfile)) selected @endif>Can Work Flexible Hours</option>
+                                    <option value="Work Weekends" @if(in_array("Work Weekends", $idealCandidateProfile)) selected @endif>Work Weekends</option>
+                                    <option value="Quick Learner" @if(in_array("Quick Learner", $idealCandidateProfile)) selected @endif>Quick Learner</option>
+                                </select>
+                                {{-- <input type="text" name="ideal_candidate_profile" placeholder="Outline qualities the school is particularly looking for."> --}}
                             </div>
                         </div>
+                        {{-- <div class="col-md-6">
+                            <div class="dash-input-wrapper mb-30">
+                                <label for="">Ideal Candidate Profile:</label>
+                                <input type="text" name="ideal_candidate_profile" placeholder="Outline qualities the school is particularly looking for." value="{{$employerJob->ideal_candidate_profile ?? ''}}">
+                            </div>
+                        </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Job Type:</label>
                             <select class="nice-select" name="job_type">
@@ -58,7 +137,7 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-12">
                             <label for="">Description:</label>
-                            <textarea class="size-lg" name="job_description" placeholder="Write about the job in details...">{{$employerJob->job_description ?? ''}}</textarea>
+                            <textarea class="size-lg summernote" name="job_description" placeholder="Write about the job in details...">{!! $employerJob->job_description ?? '' !!}</textarea>
                         </div>
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;" >
@@ -71,7 +150,7 @@ Post A Job
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Job Category:</label>
                             <select name="job_category_id" id="job_category_id" class="nice-select">
-                            
+                                    <option value="Education And Training">Education And Training</option>
                                     @if(!$jobCategories->isEmpty())
                                     @foreach($jobCategories as $jobCategory)
                                     <option value="{{$jobCategory->id}}" {{$employerJob->job_category_id == $jobCategory->id ? 'selected' : ''}}>{{$jobCategory->name}}</option>
@@ -86,12 +165,6 @@ Post A Job
                             <label for="">Job Title:</label>
                             <input type="text" name="job_title" placeholder="e.g., ESL Instructor, Children’s English Teacher" value="{{$employerJob->job_title ?? ''}}">
                         </div>
-                        <!-- /.dash-input-wrapper -->
-                        <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Contract Duration:</label>
-                            <!-- <textarea class="size-lg" placeholder="Write about the job in details..."></textarea> -->
-                            <input type="text" name="contract_duration" placeholder="" value="{{$employerJob->contract_duration ?? ''}}">
-                        </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Renewal Possibilities:</label>
                             <select class="nice-select" name="renewal_possibilities">
@@ -99,6 +172,17 @@ Post A Job
                                 <option value="No" {{$employerJob->renewal_possibilities == 'No' ? 'selected' : ''}}>No</option>
                             </select>
                         </div>
+                        <!-- /.dash-input-wrapper -->
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Contract Duration:</label>
+                            <!-- <textarea class="size-lg" placeholder="Write about the job in details..."></textarea> -->
+                            <select class="nice-select" name="contract_duration">
+                                <option value="1 Year" @if($employerJob->contract_duration == "1 Year") selected @endif>1 Year</option>
+                                <option value="2 Years or More" @if($employerJob->contract_duration == "2 Years or More") selected @endif>2 Years or More</option>
+                            </select>
+                            {{-- <input type="text" name="contract_duration" placeholder="" value="{{$employerJob->contract_duration ?? ''}}"> --}}
+                        </div>
+                        
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Start Date:</label>
                             <input type="date" name="start_date" placeholder="" value="{{$employerJob->start_date ?? ''}}"></input>
@@ -111,6 +195,16 @@ Post A Job
                             <label for="">Salary Breakdown:</label>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Monthly pay:</label>
+                            <input type="text" list="monthly_amount" name="monthly_salary" value="{{$employerJob->monthly_salary}}"/>
+                            <datalist id="monthly_amount">
+                                <option>Negotiation</option>
+                                <option>2.5k - 3k</option>
+                            </datalist>
+
+                        </div>
+
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Base pay:</label>
                             <input type="text" name="base_pay" placeholder="" value="{{$employerJob->base_pay ?? ''}}"></input>
                         </div>
@@ -132,11 +226,12 @@ Post A Job
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Bonuses</label>
                             <input type="text" name="bonuses" placeholder="" value="{{$employerJob->bonuses ?? ''}}"></input>
-                        </div>
+                        </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Payday Details:</label>
-                            <textarea type="text" name="payday_details" placeholder="" >{{$employerJob->payday_details ?? ''}}</textarea>
+                            <label for="">Monthly Payment Day:</label>
+                            <input type="date" name="payday_details" value="{{$employerJob->payday_details ?? ''}}" ></input>
                         </div>
+                        
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
@@ -148,13 +243,35 @@ Post A Job
                 <div class="bg-white card-box border-20 hide section" id="step3">
                     <h4 class="dash-title-three">Class Information</h4>
                     <div class="row">
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Student Age Group:</label>
                             <input type="text" name="student_age_group" placeholder="" value="{{$employerJob->student_age_group ?? ''}}">
+                        </div> --}}
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Student Age Group:</label>
+                            <input type="hidden" name="student_age_group">
+                            @php
+                                $studentAgeGroup = $employerJob->student_age_group ? explode(',' , $employerJob->student_age_group) : [];
+                            @endphp
+                            <select id="student_age_group" multiple>
+                                <option value="Kindergarten" @if(in_array("Kindergarten" , $studentAgeGroup)) selected @endif>Kindergarten</option>
+                                <option value="Elementary" @if(in_array("Elementary" , $studentAgeGroup)) selected @endif>Elementary</option>
+                                <option value="Middle School" @if(in_array( "Middle School", $studentAgeGroup)) selected @endif>Middle School</option>
+                                <option value="High School" @if(in_array("High School" , $studentAgeGroup)) selected @endif>High School</option>
+                                <option value="Adult" @if(in_array("Adult" , $studentAgeGroup)) selected @endif>Adult</option>
+                            </select>
+                            {{-- <input type="text" name="student_age_group" placeholder=""> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Class Size:</label>
-                            <input type="text" name="class_size" placeholder="" value="{{$employerJob->class_size ?? ''}}">
+                            <select id="class_size" class="nice-select" name="class_size">
+                                <option value="1-5" @if($employerJob->class_size == '1-5') selected @endif>1-5</option>
+                                <option value="6-10" @if($employerJob->class_size == '6-10') selected @endif>6-10</option>
+                                <option value="10-15" @if($employerJob->class_size == '10-15') selected @endif>10-15</option>
+                                <option value="15-20" @if($employerJob->class_size == '15-20') selected @endif>15-20</option>
+                                <option value="20+" @if($employerJob->class_size == '20+') selected @endif>20+</option>
+                            </select>
+                            {{-- <input type="text" name="class_size" placeholder="" value="{{$employerJob->class_size ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Hours/Week:</label>
@@ -162,20 +279,61 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Teaching Hours/Day:</label>
-                            <input type="number" class="number-input" name="teaching_hours_per_day" placeholder="" value="{{$employerJob->teaching_hours_per_day ?? ''}}">
+                            <select class="nice-select" name="teaching_hours_per_day">
+                                <option value="1-5 Classes Per Day" @if($employerJob->teaching_hours_per_day == "1-5 Classes Per Day") selected @endif>1-5 Classes Per Day</option>
+                                <option value="5-10 Classes Per Day" @if($employerJob->teaching_hours_per_day == "5-10 Classes Per Day") selected @endif>5-10 Classes Per Day</option>
+                                <option value="Other" @if($employerJob->teaching_hours_per_day == "Other") selected @endif>Other</option>
+                            </select>
+                            {{-- <input type="number" class="number-input" name="teaching_hours_per_day" placeholder="" value="{{$employerJob->teaching_hours_per_day ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Non-Teaching Hours/Day:</label>
-                            <input type="number" class="number-input" name="non_teaching_hours_per_day" placeholder="prep time, meetings" value="{{$employerJob->non_teaching_hours_per_day ?? ''}}">
+                            <label for="">Preparation Time</label>
+                            <select class="nice-select" name="non_teaching_hours_per_day">
+                                <option value="Yes" @if($employerJob->non_teaching_hours_per_day == "Yes") selected @endif>Yes</option>
+                                <option value="No" @if($employerJob->non_teaching_hours_per_day == "No") selected @endif>No</option>
+                            </select>
+                            {{-- <input type="number" class="number-input" name="non_teaching_hours_per_day" placeholder="prep time, meetings" value="{{$employerJob->non_teaching_hours_per_day ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Break times</label>
-                            <input type="text" name="break_times" placeholder="" value="{{$employerJob->break_times ?? ''}}">
+                            <select id="break_times" class="nice-select" name="break_times" >
+                                <option value="Between Classes">Between Classes</option>
+                                <option value="1 Hour Per Day" @if($employerJob->break_times == "1 Hour Per Day" ) selected @endif>1 Hour Per Day</option>
+                                <option value="2 Hour Per Day" @if($employerJob->break_times == "2 Hour Per Day" ) selected @endif>2 Hour Per Day</option>
+                                <option value="1 Hour or Less Per Day" @if($employerJob->break_times == "1 Hour or Less Per Day" ) selected @endif>1 Hour or Less Per Day</option>
+                                <option value="Other" @if($employerJob->break_times == "Other" ) selected @endif>Other</option>
+                            </select>
+                            {{-- <input type="text" name="break_times" placeholder="" value="{{$employerJob->break_times ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Curriculum Overview:</label>
-                            <input type="text" name="curriculum_overview" placeholder="" value="{{$employerJob->curriculum_overview ?? ''}}">
+                            <input type="hidden" name="curriculum_overview">
+                            @php
+                                $curriculumActivities = $employerJob->curriculum_overview ? explode(',' , $employerJob->curriculum_overview) : [];
+                            @endphp
+                            <select id="curriculum_overview" multiple>
+                                <option value="Phonic" @if(in_array( "Phonic", $curriculumActivities)) selected @endif>Phonic</option>
+                                <option value="Speaking Class" @if(in_array("Speaking Class" , $curriculumActivities)) selected @endif>Speaking Class</option>
+                                <option value="Reading Class" @if(in_array( "Reading Class", $curriculumActivities)) selected @endif>Reading Class</option>
+                                <option value="Writing Class" @if(in_array( "Writing Class", $curriculumActivities)) selected @endif>Writing Class</option>
+                                <option value="Other" @if(in_array("Other" , $curriculumActivities)) selected @endif>Other</option>
+                            </select>
+                            {{-- <input type="text" name="curriculum_overview" placeholder="" value="{{$employerJob->curriculum_overview ?? ''}}"> --}}
                         </div>
+
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Class Duration:</label>
+                            <select class="nice-select" name="class_duration">
+                                <option value="30 Minutes" @if($employerJob->class_duration == "30 Minutes" ) selected @endif>30 Minutes</option>
+                                <option value="40 Minutes" @if($employerJob->class_duration == "40 Minutes" ) selected @endif>40 Minutes</option>
+                                <option value="45 Minutes" @if($employerJob->class_duration == "45 Minutes" ) selected @endif>45 Minutes</option>
+                                <option value="50 Minutes" @if($employerJob->class_duration == "50 Minutes" ) selected @endif>50 Minutes</option>
+                                <option value="1 Hour" @if($employerJob->class_duration == "1 Hour" ) selected @endif>1 Hour</option>
+                                <option value="Other" @if($employerJob->class_duration == "Other" ) selected @endif>Other</option>
+                            </select>
+                        </div>
+
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Materials & Resources Available:</label>
                             <input type="text" name="material_resources_available" placeholder="" value="{{$employerJob->material_resources_available ?? ''}}">
@@ -183,6 +341,15 @@ Post A Job
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Teaching Aids:</label>
                             <input type="text" name="teaching_aids" placeholder="smartboards, projectors" value="{{$employerJob->teaching_aids ?? ''}}">
+                        </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Start Time:</label>
+                            <input type="time" name="start_time" >
+                        </div>
+
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Finish Time:</label>
+                            <input type="time" name="finish_time" >
                         </div>
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
@@ -194,12 +361,12 @@ Post A Job
                 <!-- Compensation & Benefits-->
 
                 <div class="bg-white card-box border-20 hide section" id="step4">
-                    <h4 class="dash-title-three">Compensation & Benefits</h4>
+                    <h4 class="dash-title-three">Benefits</h4>
                     <div class="row">
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Monthly Salary (USD):</label>
                             <input type="number" name="monthly_salary" placeholder="" value="{{$employerJob->monthly_salary ?? ''}}">
-                        </div>
+                        </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Housing Included:</label>
                             <select class="nice-select" name="housing_included">
@@ -215,12 +382,17 @@ Post A Job
                             </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Relocation Allowance:</label>
+                            <label for="">Visa Application Assistance</label>
                             <input type="text" name="relocation_allowance" placeholder="" value="{{$employerJob->relocation_allowance ?? ''}}"></input>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Housing Details:</label>
-                            <textarea type="text" name="housing_details" placeholder="Size, type, furnished/unfurnished, utilities covered, etc.">{{$employerJob->housing_details ?? ''}}</textarea>
+                            <select class="nice-select" name="housing_details">
+                                <option value="Furnished"  @if($employerJob->housing_details == "Furnished") selected @endif>Furnished</option>
+                                <option value="UnFurnished" @if($employerJob->housing_details == "UnFurnished") selected @endif>UnFurnished</option>
+                                <option value="Partially Furnished" @if($employerJob->housing_details == "Partially Furnished") selected @endif>Partially Furnished</option>
+                            </select>
+                            {{-- <textarea type="text" name="housing_details" placeholder="Size, type, furnished/unfurnished, utilities covered, etc.">{{$employerJob->housing_details ?? ''}}</textarea> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Health & Dental Insurance:</label>
@@ -229,32 +401,65 @@ Post A Job
                      
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Airfare: </label>
-                            <input type="text" name="airfare" placeholder="" value="{{$employerJob->airfare ?? ''}}">
+                            <select class="nice-select" name="airfare">
+                                <option value="Return Flight (Paid End Of Contract)" @if($employerJob->airfare == "Return Flight (Paid End Of Contract)") selected @endif>Return Flight (Paid End Of Contract)</option>
+                                <option value="Single Flight (Reimbursed First Pay Check)" @if($employerJob->airfare == "Single Flight (Reimbursed First Pay Check)") selected @endif>Single Flight (Reimbursed First Pay Check)</option>
+                                <option value="Single Flight (Paid End Of Contract)" @if($employerJob->airfare == "Single Flight (Paid End Of Contract)") selected @endif>Single Flight (Paid End Of Contract)</option>
+                                <option value="Single Flight (Paid By Employer)" @if($employerJob->airfare == "Single Flight (Paid By Employer)") selected @endif>Partially Furnished</option>
+                                <option value="No Airfare" @if($employerJob->airfare == "No Airfare") selected @endif>No Airfare</option>
+                                <option value="Other" @if($employerJob->airfare == "Other") selected @endif>Other</option>
+                            </select>
+                            {{-- <input type="text" name="airfare" placeholder=""> --}}
                         </div>
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Airfare: </label>
+                            <input type="text" name="airfare" placeholder="" value="{{$employerJob->airfare ?? ''}}">
+                        </div> --}}
                        
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Pension:</label>
-                            <input type="text" name="pension" placeholder="" value="{{$employerJob->pension ?? ''}}">
+                            <select class="nice-select" name="pension">
+                                <option value="Yes" @if($employerJob->pension == "Yes") selected @endif>Yes</option>
+                                <option value="No" @if($employerJob->pension == "No") selected @endif>No</option>
+                            </select>
+                            {{-- <input type="text" name="pension" placeholder="" value="{{$employerJob->pension ?? ''}}"> --}}
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Vacation & Sick Leave:</label>
                             <input type="text" name="vacation_sick_leave" placeholder="" value="{{$employerJob->vacation_sick_leave ?? ''}}">
-                        </div>
+                        </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">National Holidays:</label>
                             <select class="nice-select" name="national_holidays">
                                 <option value="Paid" {{$employerJob->national_holidays == 'Paid' ? 'selected' : ''}}>Paid</option>
                                 <option value="Unpaid" {{$employerJob->national_holidays == 'Unpaid' ? 'selected' : ''}}>Unpaid</option>
+                                <option value="No" {{$employerJob->national_holidays == 'No' ? 'selected' : ''}}>No</option>
                             </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Paid Vacation</label>
+                            <select class="nice-select" name="paid_vacation">
+                                <option value="11 Days" @if($employerJob->paid_vacation =="11 Days") selected @endif>11 Days</option>
+                                <option value="Other (Specify how many days)" @if($employerJob->paid_vacation == "Other (Specify how many days)") selected @endif>Other (Specify how many days)</option>
+                                <option value="No" @if($employerJob->paid_vacation =="No") selected @endif>No</option>
+                            </select>
+                        </div>
+
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for=""> Sick Leave:</label>
+                            <select class="nice-select" name="sick_leave">
+                                <option value="Yes" @if($employerJob->sick_leave =="Yes") selected @endif>Yes</option>
+                                <option value="No" @if($employerJob->sick_leave =="No") selected @endif>No</option>
+                            </select>
+                        </div>
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Professional Development Opportunities:</label>
                             <input type="text" name="professional_development_opportunities" placeholder="" value="{{$employerJob->professional_development_opportunities ?? ''}}">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Overtime Pay:</label>
                             <input type="text" name="overtime_pay" placeholder="" value="{{$employerJob->overtime_pay ?? ''}}">
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
@@ -266,46 +471,112 @@ Post A Job
                     <h4 class="dash-title-three">Requirements & Qualifications</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Education:</label>
-                            <input type="text" name="education" placeholder="" value="{{$employerJob->education ?? ''}}">
+                            <div class="dash-input-wrapper mb-30 col-md-6">
+                                <label for="">Education:</label>
+                                <select class="nice-select" name="education">
+                                    <option value="High School Diploma" @if($employerJob->education =="High School Diploma") selected @endif>High School Diploma</option>
+                                    <option value="Associate's Degree"  @if($employerJob->education =="Associate's Degree") selected @endif>Associate's Degree</option>
+                                    <option value="Bachelor's Degree"  @if($employerJob->education =="Bachelor's Degree") selected @endif>Bachelor's Degree</option>
+                                    <option value="Master's Degree"  @if($employerJob->education =="Master's Degree") selected @endif>Master's Degree</option>
+                                    <option value="Doctorate/Ph.D."  @if($employerJob->education =="Doctorate/Ph.D.") selected @endif>Doctorate/Ph.D.</option>
+                                    <option value="Professional Certification"  @if($employerJob->education =="Professional Certification") selected @endif>Professional Certification</option>
+                                    <option value="Vocational Training"  @if($employerJob->education =="Vocational Training") selected @endif>Vocational Training</option>
+                                    <option value="Other (Please Specify)"  @if($employerJob->education =="Other (Please Specify)") selected @endif>Other (Please Specify)</option>
+                                </select>
+                            </div>
+                            {{-- <input type="text" name="education" placeholder="" value="{{$employerJob->education ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Teaching Certificate:</label>
-                            <input type="text" name="teaching_certificate" placeholder="" value="{{$employerJob->teaching_certificate ?? ''}}"></input>
+                            <select class="nice-select" name="teaching_certificate">
+                                <option value="TESOL" @if($employerJob->teaching_certificate =="TESOL") selected @endif>TESOL</option>
+                                <option value="TEFL" @if($employerJob->teaching_certificate =="TEFL") selected @endif>TEFL</option>
+                                <option value="CELTA" @if($employerJob->teaching_certificate =="CELTA") selected @endif>CELTA</option>
+                                <option value="DELTA" @if($employerJob->teaching_certificate =="DELTA") selected @endif>DELTA</option>
+                                <option value="TESL" @if($employerJob->teaching_certificate =="TESL") selected @endif>TESL</option>
+                                <option value="Other (Please Specify)" @if($employerJob->teaching_certificate =="Other (Please Specify)") selected @endif>Other (Please Specify)</option>
+                            </select>
+                            {{-- <input type="text" name="teaching_certificate" placeholder="" value="{{$employerJob->teaching_certificate ?? ''}}"></input> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Experience Level:</label>
+                            <label for="">Teaching Experience:</label>
                             <select class="nice-select" name="experience_level">
-                                <option value="Fresher" {{$employerJob->experience_level == 'Fresher' ? 'selected' : ''}}>Fresher</option>
-                                <option value="Intermediate" {{$employerJob->experience_level == 'Intermediate' ? 'selected' : ''}}>Intermediate</option>
-                                <option value="No-Experience" {{$employerJob->experience_level == 'No-Experience' ? 'selected' : ''}}>No-Experience</option>
-                                <option value="Expert" {{$employerJob->experience_level == 'Expert' ? 'selected' : ''}}>Expert</option>
-                                <option value="Internship" {{$employerJob->experience_level == 'Internship' ? 'selected' : ''}}>Internship</option>
+                                <option value="0-1 Year" {{$employerJob->experience_level == "0-1 Year" ? 'selected' : ''}}>0-1 Year</option>
+                                <option value="1-3 Years" {{$employerJob->experience_level == "1-3 Years" ? 'selected' : ''}}>1-3 Years</option>
+                                <option value="3-5 Years" {{$employerJob->experience_level == "3-5 Years" ? 'selected' : ''}}>3-5 Years</option>
+                                <option value="5-7 Years" {{$employerJob->experience_level == "5-7 Years" ? 'selected' : ''}}>5-7 Years</option>
+                                <option value="7-10 Years" {{$employerJob->experience_level == "7-10 Years" ? 'selected' : ''}}>7-10 Years</option>
+                                <option value="10+" {{$employerJob->experience_level == "10+" ? 'selected' : ''}}>10+</option>
+                               
                             </select>
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Experience Details:</label>
                             <input type="text" name="experience" placeholder="" value="{{$employerJob->experience ?? ''}}"></input>
-                        </div>
+                        </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Background Check:</label>
-                            <input type="text" name="background_check" placeholder="" value="{{$employerJob->background_check ?? ''}}">
+                            <select class="nice-select" name="background_check">
+                                <option value="Yes" {{$employerJob->background_check == "Yes" ? 'selected' : ''}}>Yes</option>
+                                <option value="No" {{$employerJob->background_check == "No" ? 'selected' : ''}}>No</option>
+                            </select>
+                            {{-- <input type="text" name="background_check" placeholder="" value="{{$employerJob->background_check ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Health Check Requirements:</label>
-                            <input type="text" name="health_check_requirement" placeholder="" value="{{$employerJob->health_check_requirement ?? ''}}">
+                            <select class="nice-select" id="health_check_requirement" name="health_check_requirement">
+                                <option value="Yes" {{$employerJob->health_check_requirement == "Yes" ? 'selected' : ''}} >Yes</option>
+                                <option value="No" {{$employerJob->health_check_requirement == "Yes" ? 'selected' : ''}} >No</option>
+                            </select>
+                            {{-- <input type="text" name="health_check_requirement" placeholder="" value="{{$employerJob->health_check_requirement ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Preferred Accent:</label>
-                            <input type="text" name="preferred_accent" placeholder="" value="{{$employerJob->preferred_accent ?? ''}}">
+                            <input type="hidden" name="preferred_accent">
+                            @php
+                                $preferredAccent = $employerJob->preferred_accent ? explode(',' , $employerJob->preferred_accent) : [];
+                            @endphp 
+                            <select id="preferred_accent" multiple>
+                                <option value="British English" {{in_array("British English" , $preferredAccent) ? 'selected' : ''}}>British English</option>
+                                <option value="American English" {{in_array("American English" , $preferredAccent) ? 'selected' : ''}}>American English</option>
+                                <option value="Canadian English" {{in_array("Canadian English" , $preferredAccent) ? 'selected' : ''}}>Canadian English</option>
+                                <option value="Australian English" {{in_array("Australian English" , $preferredAccent) ? 'selected' : ''}}>Australian English</option>
+                                <option value="New Zealand English" {{in_array("New Zealand English" , $preferredAccent) ? 'selected' : ''}}>New Zealand English</option>
+                                <option value="South African English" {{in_array("South African English" , $preferredAccent) ? 'selected' : ''}}>South African English</option>
+                                <option value="Scottish English" {{in_array("Scottish English" , $preferredAccent) ? 'selected' : ''}}>Scottish English</option>
+                            </select>
+                            {{-- <input type="text" name="preferred_accent" placeholder="" value="{{$employerJob->preferred_accent ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Visa Type:</label>
-                            <input type="text" name="visa_type" placeholder="" value="{{$employerJob->visa_type ?? ''}}">
+                            <select class="nice-select" id="visa_type" name="visa_type">
+                                <option value="Eligible E2 Visa Application" {{$employerJob->visa_type == "Eligible E2 Visa Application" ? 'selected' : ''}}>Eligible E2 Visa Application</option>
+                                <option value="E-1 (Professorship)" {{$employerJob->visa_type == "E-1 (Professorship)" ? 'selected' : ''}} >E-1 (Professorship)</option>
+                                <option value="E-2 (Teaching)" {{$employerJob->visa_type == "E-2 (Teaching)" ? 'selected' : ''}} >E-2 (Teaching)</option>
+                                <option value="E-3 (Research)" {{$employerJob->visa_type == "E-3 (Research)" ? 'selected' : ''}} >E-3 (Research)</option>
+                                <option value="E-4 (Technial Internship)" {{$employerJob->visa_type == "E-4 (Technial Internship)" ? 'selected' : ''}} >E-4 (Technial Internship)</option>
+                                <option value="E-5 (Professional Employment)" {{$employerJob->visa_type == "E-5 (Professional Employment)" ? 'selected' : ''}} >E-5 (Professional Employment)</option>
+                                <option value="E-6 (Entertainment)" {{$employerJob->visa_type == "E-6 (Entertainment)" ? 'selected' : ''}} >E-6 (Entertainment)</option>
+                                <option value="E-7 (Special Occupation)" {{$employerJob->visa_type == "E-7 (Special Occupation)" ? 'selected' : ''}} >E-7 (Special Occupation)</option>
+                                <option value="E-9 (Non-Professional Employment)" {{$employerJob->visa_type == "E-9 (Non-Professional Employment)" ? 'selected' : ''}} >E-9 (Non-Professional Employment)</option>
+                                <option value="F-2 (Resident)" {{$employerJob->visa_type == "F-2 (Resident)" ? 'selected' : ''}} >F-2 (Resident)</option>
+                                <option value="F-5 (Permanent Resident)" {{$employerJob->visa_type == "F-5 (Permanent Resident)" ? 'selected' : ''}} >F-5 (Permanent Resident)</option>
+                                <option value="F-6 (Marriage Migrant)" {{$employerJob->visa_type == "F-6 (Marriage Migrant)" ? 'selected' : ''}} >F-6 (Marriage Migrant)</option>
+                                <option value="Other (Please Specify)" {{$employerJob->visa_type == "Other (Please Specify)" ? 'selected' : ''}} >Other (Please Specify)</option>
+                            </select>
+                            {{-- <input type="text" name="visa_type" placeholder="" value="{{$employerJob->visa_type ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Language Proficiency:</label>
-                            <input type="text" name="language_proficiency" placeholder="" value="{{$employerJob->language_proficiency ?? ''}}">
+                            <select class="nice-select" id="language_proficiency" name="language_proficiency">
+                                <option value="Native/Bilingual Proficiency"  {{$employerJob->language_proficiency == "Native/Bilingual Proficiency" ? 'selected' : ''}}>Native/Bilingual Proficiency</option>
+                                <option value="Fluent"  {{$employerJob->language_proficiency == "Fluent" ? 'selected' : ''}} >Fluent</option>
+                                <option value="Advanced"  {{$employerJob->language_proficiency == "Advanced" ? 'selected' : ''}} >Advanced</option>
+                                <option value="Intermediate"  {{$employerJob->language_proficiency == "Intermediate" ? 'selected' : ''}} >Intermediate</option>
+                                <option value="Basic"  {{$employerJob->language_proficiency == "Basic" ? 'selected' : ''}} >Basic</option>
+                                <option value="None"  {{$employerJob->language_proficiency == "None" ? 'selected' : ''}} >None</option>
+                            </select>
+                            {{-- <input type="text" name="language_proficiency" placeholder="" value="{{$employerJob->language_proficiency ?? ''}}"> --}}
                         </div>
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
@@ -319,24 +590,45 @@ Post A Job
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Arrival Assistance:</label>
-                            <input type="text" name="arrival_assitance" placeholder="Airport pick-up, initial days' guidance" value="{{$employerJob->arrival_assitance ?? ''}}">
+                            <select class="nice-select" id="arrival_assitance" name="arrival_assitance">
+                                <option value="Airport Pickup" {{$employerJob->arrival_assitance == "Airport Pickup"? 'selected' : ''}}>Airport Pickup</option>
+                                <option value="Temporary Accommodation Assistance" {{$employerJob->arrival_assitance == "Temporary Accommodation Assistance" ? 'selected' : ''}} >Temporary Accommodation Assistance</option>
+                                <option value="Assistance With Documentation" {{$employerJob->arrival_assitance == "Assistance With Documentation" ? 'selected' : ''}} >Assistance With Documentation</option>
+                                <option value="Not Provided" {{$employerJob->arrival_assitance == "Not Provided" ? 'selected' : ''}} >Not Provided</option>
+                            </select>
+                            {{-- <input type="text" name="arrival_assitance" placeholder="Airport pick-up, initial days' guidance" value="{{$employerJob->arrival_assitance ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Initial Accommodation:</label>
-                            <input type="text" name="initial_accomodation" placeholder="" value="{{$employerJob->initial_accomodation ?? ''}}"></input>
+                            <label for="">Initial Accommodation:</label>(If the provided accomodation is not ready upon your arrival, the employer will arrange temporary housing until it is ready for occupancy)
+                            <select class="nice-select" id="initial_accomodation" name="initial_accomodation">
+                                <option value="No" {{$employerJob->initial_accomodation == "No" ? 'selected' : ''}}  >No</option>
+                                <option value="Yes" {{$employerJob->initial_accomodation == "Yes" ? 'selected' : ''}}  >Yes</option>
+                            </select>
+                            {{-- <input type="text" name="initial_accomodation" placeholder="" value="{{$employerJob->initial_accomodation ?? ''}}"></input> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">First Week Structure:</label>
-                            <input type="text" name="first_week_structure" placeholder="Orientation, training, introductions, etc." value="{{$employerJob->first_week_structure ?? ''}}"></input>
+                            <label for="">Training:</label>
+                            <select class="nice-select" id="first_week_structure" name="first_week_structure">
+                                <option value="Unpaid" {{$employerJob->first_week_structure == "Unpaid" ? 'selected' : ''}}  >Unpaid</option>
+                                <option value="Paid"  {{$employerJob->first_week_structure == "Paid" ? 'selected' : ''}} >Paid</option>
+                            </select>
+                            {{-- <input type="text" name="first_week_structure" placeholder="Orientation, training, introductions, etc." value="{{$employerJob->first_week_structure ?? ''}}"></input> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Induction Programs:</label>
-                            <input type="text" name="induction_programs" placeholder="Training, school's philosophy, methodologies, etc." value="{{$employerJob->induction_programs ?? ''}}">
+                            <label for="">Traning Duration:</label>
+                            <select class="nice-select" id="induction_programs" name="induction_programs">
+                                <option value="1 Week"  {{$employerJob->induction_programs == "1 Week" ? 'selected' : ''}} >1 Week</option>
+                                <option value="2 Weeks" {{$employerJob->induction_programs == "2 Weeks" ? 'selected' : ''}} >2 Weeks</option>
+                                <option value="3 Weeks" {{$employerJob->induction_programs == "3 Weeks" ? 'selected' : ''}} >3 Weeks</option>
+                                <option value="4 Weeks" {{$employerJob->induction_programs == "4 Weeks" ? 'selected' : ''}} >4 Weeks</option>
+                            </select>
+                            {{-- <input type="text" name="induction_programs" placeholder="Training, school's philosophy, methodologies, etc." value="{{$employerJob->induction_programs ?? ''}}"> --}}
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Mentorship:</label>
                             <input type="text" name="mentorship" placeholder="" value="{{$employerJob->mentorship ?? ''}}">
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
@@ -344,7 +636,7 @@ Post A Job
                     </div>
                 </div>
 
-                <div class="bg-white card-box border-20 hide section" id="step7">
+                {{-- <div class="bg-white card-box border-20 hide section" id="step7">
                     <h4 class="dash-title-three">Location & Environment</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -384,8 +676,8 @@ Post A Job
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
                         <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
                     </div>
-                </div>
-                <div class="bg-white card-box border-20 hide section" id="step8">
+                </div> --}}
+                <div class="bg-white card-box border-20 hide section" id="step7">
                     <h4 class="dash-title-three">Support for Foreign Teachers</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -416,28 +708,46 @@ Post A Job
                     </div>
                 </div>
 
-                <div class="bg-white card-box border-20 hide section" id="step9">
+                <div class="bg-white card-box border-20 hide section" id="step8">
                     <h4 class="dash-title-three">Application & Recruitment Process</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">E2 Visa Document Required:</label>
+                            <div>
+                                <select class="nice-select" id="required_documents" name="required_documents">
+                                    <option value="No" @if($employerJob->required_documents == "No") selected @endif>No</option>
+                                    <option value="Yes" @if($employerJob->required_documents == "Yes") selected @endif>Yes</option>
+                                </select>
+                            </div>
+                            <div>
+                                <select class="form-select @if($employerJob->required_documents == "No") d-none @endif my-2" id="document_type" name="document_type">
+                                    <option value="">Select Document Type</option>
+                                    <option value="Apostilled Degree Certificate" @if($employerJob->document_type == "Apostilled Degree Certificate") selected @endif>Apostilled Degree Certificate</option>
+                                    <option value="Apostilled Background Check (Within last 6 months)" @if($employerJob->document_type == "Apostilled Background Check (Within last 6 months)") selected @endif >Apostilled Background Check (Within last 6 months)</option>
+                                    <option value="SAQA Letter (South Africa Applicants Only )" @if($employerJob->document_type == "SAQA Letter (South Africa Applicants Only )") selected @endif >SAQA Letter (South Africa Applicants Only )</option>
+                                </select>
+                            </div>
+                            {{-- <input type="text" name="required_documents" placeholder=""> --}}
+                        </div>
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Required Documents:</label>
                             <input type="text" name="required_documents" placeholder="" value="{{$employerJob->required_documents ?? ''}}">
-                        </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        </div> --}}
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Interview Process:</label>
                             <input type="text" name="interview_process" placeholder="" value="{{$employerJob->interview_process ?? ''}}"></input>
-                        </div>
+                        </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Application Deadline:</label>
-                            <input type="text" name="application_deadline" placeholder="" value="{{$employerJob->application_deadline ?? ''}}"></input>
+                            <input type="date" name="application_deadline" placeholder="" value="{{$employerJob->application_deadline ?? ''}}"></input>
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Contract Review Process:</label>
                             <input type="text" name="contact_review_process" placeholder="" value="{{$employerJob->contact_review_process ?? ''}}">
-                        </div>
+                        </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Decision Deadline:</label>
-                            <input type="text" name="decision_deadline" placeholder="" value="{{$employerJob->decision_deadline ?? ''}}">
+                            <input type="date" name="decision_deadline" placeholder="" value="{{$employerJob->decision_deadline ?? ''}}">
                         </div>
 
                     </div>
@@ -447,7 +757,7 @@ Post A Job
                     </div>
                 </div>
 
-                <div class="bg-white card-box border-20 hide section" id="step10">
+                {{-- <div class="bg-white card-box border-20 hide section" id="step10">
                     <h4 class="dash-title-three">Additional Information</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -472,11 +782,23 @@ Post A Job
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
                         <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="bg-white card-box border-20 hide section" id="step11">
+                <div class="bg-white card-box border-20 hide section" id="step9">
                     <h4 class="dash-title-three">Reviews & Testimonials</h4>
-                    <div class="row">
+                    <div class="dash-input-wrapper mb-30 col-md-6">
+                        <label for="">Company Introduction</label>
+                        <input type="file" name="company_introduction" id="" accept=".mp4, .asf, .mov , .webm ,.avi , .mkv">
+                        <textarea class="size-lg summernote" name="company_detail" placeholder="company_detail">{!! $employerJob->company_detail !!}</textarea>
+                    </div>
+                    <div class="dash-input-wrapper mb-30 col-md-6">
+                        <label for="">Option to Contact Current/Past Foreign Teachers:</label>
+                        <select class="nice-select" name="option_to_current_past_foreign_teachers">
+                            <option value="Yes" @if($employerJob->option_to_current_past_foreign_teachers == "Yes") selected @endif>Yes</option>
+                            <option value="No" @if($employerJob->option_to_current_past_foreign_teachers == "No") selected @endif>No</option>
+                        </select>
+                    </div>
+                    {{-- <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Links to Teacher Testimonials or Reviews:</label>
                             <textarea type="text" name="links_to_teacher_testimonials_or_reviews" placeholder="" >{{$employerJob->links_to_teacher_testimonials_or_reviews ?? ''}}</textarea>
@@ -486,7 +808,7 @@ Post A Job
                             <textarea type="text" name="option_to_current_past_foreign_teachers" placeholder="" >{{$employerJob->option_to_current_past_foreign_teachers ?? ''}}</textarea>
                         </div>
 
-                    </div>
+                    </div> --}}
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
                         <button type="submit" id="nextBtn" class="dash-btn-two tran3s">Submit</button>
@@ -505,6 +827,8 @@ Post A Job
     </div>
 
     @push('page-script')
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         var currentSection = 1;
 
@@ -537,6 +861,47 @@ Post A Job
     </script>
     <script>
         $(document).ready(function() {
+
+            $("#ideal_candidate_profile").select2();
+            $("#unique_selling_point").select2();
+            $("#student_age_group").select2();
+            $("#curriculum_overview").select2();
+            $("#preferred_accent").select2();
+            
+            $('.summernote').summernote({
+                height: 300,
+                toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['view', ['fullscreen']],
+                ['insert', []] // Empty array to remove all insert options (including video, audio, and picture)
+            ]});
+
+            document.querySelector('#employer-job-form').addEventListener("submit" , function(e){
+                e.preventDefault()
+                
+                document.querySelector("input[name='ideal_candidate_profile']").value = $("#ideal_candidate_profile").val();
+                document.querySelector("input[name='unique_selling_point']").value = $("#unique_selling_point").val();
+                document.querySelector("input[name='student_age_group']").value = $("#student_age_group").val();
+                document.querySelector("input[name='curriculum_overview']").value = $("#curriculum_overview").val();
+                document.querySelector("input[name='preferred_accent']").value = $("#preferred_accent").val();
+                this.submit();
+                
+            })
+
+            $("#required_documents").change(function(e){
+            // $("document_type").toggleClass('open');
+            if(this.value == 'Yes'){
+                document.getElementById("document_type").classList.remove("d-none")
+            } else{
+                document.getElementById("document_type").classList.add("d-none")
+                document.getElementById("document_type").selectedIndex = 0;
+            }; 
+        })
+
+
             $('.number-input').on('keydown', function(e) {
                 // Allow digits (0-9), backspace, and the currency symbols
                 if (
