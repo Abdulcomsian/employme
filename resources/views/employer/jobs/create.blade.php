@@ -413,7 +413,7 @@ Post A Job
 
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for=""> Sick Leave:</label>
-                            <select class="nice-select" name="national_holidays">
+                            <select class="nice-select" name="sick_leave">
                                 <option value="Yes" selected>Yes</option>
                                 <option value="No">No</option>
                             </select>
@@ -565,7 +565,7 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Initial Accommodation:</label>(If the provided accomodation is not ready upon your arrival, the employer will arrange temporary housing until it is ready for occupancy)
-                            <select class="nice-select" id="initial_accomodation" name="first_week_structure">
+                            <select class="nice-select" id="initial_accomodation" name="initial_accomodation">
                                 <option value="No" >No</option>
                                 <option value="Yes" >Yes</option>
                             </select>
