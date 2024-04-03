@@ -31,7 +31,7 @@ class EmployerController extends Controller
     public function getEmployerProfilePage()
     {
         $plans = Plan::get();
-        $countries = Countries::where('name' , 'Korea South')->get();
+        $countries = Countries::where('name' , 'South Korea')->get();
         // $intent = auth()->user()->createSetupIntent();
         $employerDetails = EmployerDetails::where('user_id',Auth::id())->first();
         $employerLicenseDetails = EmployerBusinessLicense::where('employer_id',Auth::id())->first();
