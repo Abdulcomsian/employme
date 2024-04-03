@@ -25,7 +25,7 @@ Post A Job
     span.select2-selection.select2-selection--multiple {
         height: 55px;
         border: 1px solid gainsboro;
-    }
+    } 
 
     .form-select{
         border: 1px solid gainsboro; 
