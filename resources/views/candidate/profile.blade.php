@@ -84,6 +84,19 @@ Profile
     border-radius: .25rem;
 }
 
+    p.docname {
+        width: 400px;
+        text-align: left;
+    }
+    .upload-btn{
+        position: relative;
+    }
+
+    p.docname.text-dark {
+    position: absolute;
+    top: 40px;
+}
+
     h4{
         font-family: 'gordita';
     }
@@ -968,6 +981,9 @@ Profile
                 <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-7">
                         <div class="row">
+                            <div class="col-12">
+                                <p>Please upload a 30-Second introduction video to tell employers why they should hire you.</p>
+                            </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Teaching Video</label>
@@ -993,7 +1009,8 @@ Profile
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload Thumbnail
-                                            <input type="file" id="videoThumbnail" name="videoThumbnail" placeholder="" accept="image/jpeg,image/png">
+                                            <input type="file" class="document"  id="videoThumbnail" name="videoThumbnail" placeholder="" accept="image/jpeg,image/png">
+                                            <p class="docname text-dark"></p>
                                         </div>
 
                                         <button class="delete-btn tran3s " onclick = "deleteFile('thumbnail-image')">Delete</button>
@@ -1067,7 +1084,8 @@ Profile
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload Degree
-                                            <input type="file" id="degree" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <input type="file" class="document" id="degree" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <p class="docname text-dark"></p>
                                         </div>
 
                                         <button class="delete-btn tran3s delete-doc" @if(isset($degree)) data-doc-id="{{$degree->id}}" @endif>Delete</button>
@@ -1085,7 +1103,8 @@ Profile
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload Certificate
-                                            <input type="file" id="policeCertificate" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <input type="file" class="document"  id="policeCertificate" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <p class="docname text-dark"></p>
                                         </div>
 
                                         <button class="delete-btn tran3s delete-doc" @if(isset($policeCertificate)) data-doc-id="{{$policeCertificate->id}}" @endif>Delete</button>
@@ -1107,7 +1126,8 @@ Profile
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload Degree Apostille
-                                            <input type="file" id="degreeApostille" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <input type="file" class="document"  id="degreeApostille" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <p class="docname text-dark"></p>
                                         </div>
 
                                         <button class="delete-btn tran3s delete-doc"  @if(isset($degreeApostilled)) data-doc-id="{{$degreeApostilled->id}}" @endif>Delete</button>
@@ -1121,11 +1141,12 @@ Profile
                             </div>
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
-                                    <label for="">Copy of your Certificate Apostille</label>
+                                    <label for="">Copy of your Police Apostille</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload Certificate Apostille
-                                            <input type="file" id="certificateApostille" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <input type="file" class="document"  id="certificateApostille" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <p class="docname text-dark"></p>
                                         </div>
 
                                         <button class="delete-btn tran3s delete-doc"  @if(isset($certificateApostilled)) data-doc-id="{{$certificateApostilled->id}}" @endif>Delete</button>
@@ -1147,7 +1168,8 @@ Profile
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload SAQA Letter
-                                            <input type="file" id="saqaLetter" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <input type="file" class="document"  id="saqaLetter" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <p class="docname text-dark"></p>
                                         </div>
 
                                         <button class="delete-btn tran3s delete-doc"  @if(isset($saqaLetter)) data-doc-id="{{$saqaLetter->id}}" @endif>Delete</button>
@@ -1165,7 +1187,8 @@ Profile
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload passport
-                                            <input type="file" id="userPassport" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <input type="file" class="document"  id="userPassport" name="degree" placeholder="" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">
+                                            <p class="docname text-dark"></p>
                                         </div>
 
                                         <button class="delete-btn tran3s delete-doc"  @if(isset($passport)) data-doc-id="{{$passport->id}}" @endif>Delete</button>
@@ -1937,6 +1960,13 @@ const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.te
             // $(this).parents('.educational-details-row').remove();
        });
         //End of adding more educational details fields 
+
+        $(document).on("change" , ".document" , function(e){
+            let parent = this.closest(".upload-btn");
+            let docname = parent.querySelector(".docname");
+            let filename = this.files[0].name;
+            docname.innerHTML = filename
+        })
 
 </script>
 <!-- Validation to Input Field exluding '-' input -->

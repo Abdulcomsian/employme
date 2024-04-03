@@ -494,21 +494,30 @@ Post A Job
                                     <option value="Doctorate/Ph.D."  @if($employerJob->education =="Doctorate/Ph.D.") selected @endif>Doctorate/Ph.D.</option>
                                     <option value="Professional Certification"  @if($employerJob->education =="Professional Certification") selected @endif>Professional Certification</option>
                                     <option value="Vocational Training"  @if($employerJob->education =="Vocational Training") selected @endif>Vocational Training</option>
-                                    <option value="Other (Please Specify)"  @if($employerJob->education =="Other (Please Specify)") selected @endif>Other (Please Specify)</option>
+                                    @php
+                                        $educationArray = ["High School Diploma" , "Associate's Degree" , "Bachelor's Degree" , "Master's Degree" , "Doctorate/Ph.D.", "Professional Certification" , "Vocational Training"];
+                                    @endphp
+                                    <option value="Other"  @if(!in_array($employerJob->education , $educationArray )) selected @endif>Other (Please Specify)</option>
                                 </select>
+                                <input type="hidden" class="select-hidden-input" name="education" placeholder="Education" value="{{$employerJob->education}}">
                             </div>
                             {{-- <input type="text" name="education" placeholder="" value="{{$employerJob->education ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Teaching Certificate:</label>
-                            <select class="nice-select" name="teaching_certificate">
+                            <select class="nice-select specify">
                                 <option value="TESOL" @if($employerJob->teaching_certificate =="TESOL") selected @endif>TESOL</option>
                                 <option value="TEFL" @if($employerJob->teaching_certificate =="TEFL") selected @endif>TEFL</option>
                                 <option value="CELTA" @if($employerJob->teaching_certificate =="CELTA") selected @endif>CELTA</option>
                                 <option value="DELTA" @if($employerJob->teaching_certificate =="DELTA") selected @endif>DELTA</option>
                                 <option value="TESL" @if($employerJob->teaching_certificate =="TESL") selected @endif>TESL</option>
-                                <option value="Other (Please Specify)" @if($employerJob->teaching_certificate =="Other (Please Specify)") selected @endif>Other (Please Specify)</option>
+                                @php
+                                        $certificateArray = ["TESOL" , "TEFL" , "CELTA" , "DELTA" , "TESL"];
+                                    @endphp
+                                <option value="Other" @if(!in_array($employerJob->teaching_certificate , $certificateArray)) selected @endif>Other (Please Specify)</option>
                             </select>
+                            <input type="hidden" class="select-hidden-input" name="teaching_certificate" placeholder="Certificate" value="{{$employerJob->teaching_certificate}}">
+                            
                             {{-- <input type="text" name="teaching_certificate" placeholder="" value="{{$employerJob->teaching_certificate ?? ''}}"></input> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -562,7 +571,7 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Visa Type:</label>
-                            <select class="nice-select" id="visa_type" name="visa_type">
+                            <select class="nice-select specify" id="visa_type">
                                 <option value="Eligible E2 Visa Application" {{$employerJob->visa_type == "Eligible E2 Visa Application" ? 'selected' : ''}}>Eligible E2 Visa Application</option>
                                 <option value="E-1 (Professorship)" {{$employerJob->visa_type == "E-1 (Professorship)" ? 'selected' : ''}} >E-1 (Professorship)</option>
                                 <option value="E-2 (Teaching)" {{$employerJob->visa_type == "E-2 (Teaching)" ? 'selected' : ''}} >E-2 (Teaching)</option>
@@ -576,8 +585,16 @@ Post A Job
                                 <option value="F-2 (Resident)" {{$employerJob->visa_type == "F-2 (Resident)" ? 'selected' : ''}} >F-2 (Resident)</option>
                                 <option value="F-5 (Permanent Resident)" {{$employerJob->visa_type == "F-5 (Permanent Resident)" ? 'selected' : ''}} >F-5 (Permanent Resident)</option>
                                 <option value="F-6 (Marriage Migrant)" {{$employerJob->visa_type == "F-6 (Marriage Migrant)" ? 'selected' : ''}} >F-6 (Marriage Migrant)</option>
-                                <option value="Other (Please Specify)" {{$employerJob->visa_type == "Other (Please Specify)" ? 'selected' : ''}} >Other (Please Specify)</option>
+                                @php
+                                    $visaArray = [
+                                                        "Eligible E2 Visa Application" , "E-1 (Professorship)" , "E-2 (Teaching)" , "E-3 (Research)" , "E-4 (Technial Internship)", 
+                                                         "E-5 (Professional Employment)" , "E-6 (Entertainment)" , "E-7 (Special Occupation)" , "E-9 (Non-Professional Employment)"
+                                                         "F-2 (Resident)" ,"F-5 (Permanent Resident)" ,"F-6 (Marriage Migrant)" 
+                                                        ];
+                                @endphp
+                                <option value="Other" {{!in_array($employerJob->visa_type , $visaArray) ? 'selected' : ''}} >Other (Please Specify)</option>
                             </select>
+                            <input type="hidden" class="select-hidden-input" name="visa_type" placeholder="Visa Type" value="{{$employerJob->visa_type}}">
                             {{-- <input type="text" name="visa_type" placeholder="" value="{{$employerJob->visa_type ?? ''}}"> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -932,6 +949,21 @@ Post A Job
                 }
             });
         });
+
+        $(document).on("change" , ".specify" , function(e){
+            let value = this.value;
+            let parent = this.closest(".dash-input-wrapper");
+            let hiddenField = parent.querySelector(".select-hidden-input")
+            if(value === "Other"){
+                hiddenField.setAttribute("type" , "text");
+                hiddenField.value = "";
+            }else{
+                hiddenField.setAttribute("type" , "hidden");
+                hiddenField.value = value;
+            }
+        })
+
+        
     </script>
     @endpush
     <!-- <script>

@@ -635,7 +635,7 @@ input[type='checkbox']{
 									<div class="dash-input-wrapper mb-30">
 										<div class="form-check d-flex">
 											<input type="checkbox" name="agreementToPeriodicChecksAndUpdates" id="agreementToPeriodicChecksAndUpdates" @if($employerDetails->agreement_period_checks_updates) checked @endif>
-											<label for="agreementToPeriodicChecksAndUpdates" class="mt-3 mx-1">Agreement to periodic checks and updates to ensure information accuracy.</label>
+											<label for="agreementToPeriodicChecksAndUpdates" class="mt-3 mx-1">By signing up you agree to employme Terms of Service and Privacy Policy, which outline your rights and obligation with respect to your use of our Service and processing of your data</label>
 										</div>
 										{{-- <select name="agreementToPeriodicChecksAndUpdates" id="agreementToPeriodicChecksAndUpdates" class="nice-select">
 											<option value="I Accept" {{$employerDetails->agreement_period_checks_updates == 'I Accept' ? 'selected' : ''}}>I Accept</option>
@@ -647,7 +647,7 @@ input[type='checkbox']{
 									<div class="dash-input-wrapper mb-30">
 										<div class="form-check d-flex">
 											<input type="checkbox" name="consentForDataStorageAndProcessing" id="consentForDataStorageAndProcessing" @if($employerDetails->agreement_period_checks_updates) checked @endif>
-											<label for="consentForDataStorageAndProcessing" class="mt-3 mx-1">Consent for data storage and processing as per data protection regulations.</label>
+											<label for="consentForDataStorageAndProcessing" class="mt-3 mx-1">Your Agree to recieve subsequent email and third party communications, which you may opt out of, or unsubscribe form, at any time.</label>
 										</div>
 										{{-- <select name="consentForDataStorageAndProcessing" id="consentForDataStorageAndProcessing" class="nice-select">
 											<option value="I Accept" {{$employerDetails->agreement_period_checks_updates == 'I Accept' ? 'selected' : ''}}>I Accept</option>
@@ -658,8 +658,6 @@ input[type='checkbox']{
 							</div>
 
 							<div class="col-md-12">
-								<p>By signing up you agree to employme Terms of Service and Privacy Policy, which outline your rights and obligation with respect to your use of our Service and processing of your data</p>
-								<p>Your Agree to recieve subsequent email and third party communications, which you may opt out of, or unsubscribe form, at any time.</p>
 								<p><strong>employme is committed to protecting your data privacy. Permission are the part of our continuing compliance efforts.</strong></p>
 							</div>
 
