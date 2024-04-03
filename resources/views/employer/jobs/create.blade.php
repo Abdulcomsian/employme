@@ -358,14 +358,16 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Airfare: </label>
-                            <select class="nice-select" name="airfare">
+                            <select class="nice-select specify">
+                                <option value="">Select Airfare</option>
                                 <option value="Return Flight (Paid End Of Contract)" selected>Return Flight (Paid End Of Contract)</option>
                                 <option value="Single Flight (Reimbursed First Pay Check)">Single Flight (Reimbursed First Pay Check)</option>
                                 <option value="Single Flight (Paid End Of Contract)">Single Flight (Paid End Of Contract)</option>
                                 <option value="Single Flight (Paid By Employer)">Partially Furnished</option>
                                 <option value="No Airfare">No Airfare</option>
-                                <option value="Other">Other</option>
+                                <option value="Other">Other (specify)</option>
                             </select>
+                            <input type="hidden" class="select-hidden-input" name="airfare" placeholder="Airfare">
                             {{-- <input type="text" name="airfare" placeholder=""> --}}
                         </div>
                         
@@ -422,7 +424,7 @@ Post A Job
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Education:</label>
-                            <select class="nice-select" name="education">
+                            <select class="nice-select specify">
                                 <option value="High School Diploma" selected>High School Diploma</option>
                                 <option value="Associate's Degree">Associate's Degree</option>
                                 <option value="Bachelor's Degree">Bachelor's Degree</option>
@@ -430,19 +432,22 @@ Post A Job
                                 <option value="Doctorate/Ph.D.">Doctorate/Ph.D.</option>
                                 <option value="Professional Certification">Professional Certification</option>
                                 <option value="Vocational Training">Vocational Training</option>
-                                <option value="Other (Please Specify)">Other (Please Specify)</option>
+                                <option value="Other">Other (Please Specify)</option>
                             </select>
+                            <input type="hidden" class="select-hidden-input" name="education" placeholder="Education">
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Teaching Certificate:</label>
-                            <select class="nice-select" name="teaching_certificate">
+                            <select class="nice-select specify">
+                                <option value="">Select Certificate</option>
                                 <option value="TESOL" selected>TESOL</option>
                                 <option value="TEFL">TEFL</option>
                                 <option value="CELTA">CELTA</option>
                                 <option value="DELTA">DELTA</option>
                                 <option value="TESL">TESL</option>
-                                <option value="Other (Please Specify)">Other (Please Specify)</option>
+                                <option value="Other">Other (Please Specify)</option>
                             </select>
+                            <input type="hidden" class="select-hidden-input" name="teaching_certificate" placeholder="Certificate">
                             {{-- <input type="text" name="teaching_certificate" placeholder=""></input> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -492,7 +497,7 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Visa Type:</label>
-                            <select class="nice-select" id="visa_type" name="visa_type">
+                            <select class="nice-select specify" id="visa_type">
                                 <option value="Eligible E2 Visa Application" >Eligible E2 Visa Application</option>
                                 <option value="E-1 (Professorship)" >E-1 (Professorship)</option>
                                 <option value="E-2 (Teaching)" >E-2 (Teaching)</option>
@@ -505,8 +510,9 @@ Post A Job
                                 <option value="F-2 (Resident)" >F-2 (Resident)</option>
                                 <option value="F-5 (Permanent Resident)" >F-5 (Permanent Resident)</option>
                                 <option value="F-6 (Marriage Migrant)" >F-6 (Marriage Migrant)</option>
-                                <option value="Other (Please Specify)" >Other (Please Specify)</option>
+                                <option value="Other" >Other (Please Specify)</option>
                             </select>
+                            <input type="hidden" class="select-hidden-input" name="visa_type" placeholder="Visa Type">
                             {{-- <input type="text" name="visa_type" placeholder=""> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -759,7 +765,7 @@ Post A Job
 
    @push('page-script')
    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
    <script>
         var currentSection = 1;
 
@@ -847,6 +853,19 @@ Post A Job
                 document.getElementById("document_type").classList.add("d-none")
                 document.getElementById("document_type").selectedIndex = 0;
             }; 
+        })
+
+        $(document).on("change" , ".specify" , function(e){
+            let value = this.value;
+            let parent = this.closest(".dash-input-wrapper");
+            let hiddenField = parent.querySelector(".select-hidden-input")
+            if(value === "Other"){
+                hiddenField.setAttribute("type" , "text");
+                hiddenField.value = "";
+            }else{
+                hiddenField.setAttribute("type" , "hidden");
+                hiddenField.value = value;
+            }
         })
 
     </script>
