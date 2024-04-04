@@ -152,7 +152,6 @@ Post A Job
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Job Category:</label>
                             <select name="job_category_id" id="job_category_id" class="nice-select">
-                                    <option value="Education And Training">Education And Training</option>
                                     @if(!$jobCategories->isEmpty())
                                     @foreach($jobCategories as $jobCategory)
                                     <option value="{{$jobCategory->id}}" {{$employerJob->job_category_id == $jobCategory->id ? 'selected' : ''}}>{{$jobCategory->name}}</option>
@@ -951,7 +950,7 @@ Post A Job
             }
         })
 
-        
+
     </script>
     @endpush
     <!-- <script>
