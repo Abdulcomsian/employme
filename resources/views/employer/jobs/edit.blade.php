@@ -516,7 +516,7 @@ Post A Job
                                 <option value="3-5 Years" {{$employerJob->experience_level == "3-5 Years" ? 'selected' : ''}}>3-5 Years</option>
                                 <option value="5-7 Years" {{$employerJob->experience_level == "5-7 Years" ? 'selected' : ''}}>5-7 Years</option>
                                 <option value="7-10 Years" {{$employerJob->experience_level == "7-10 Years" ? 'selected' : ''}}>7-10 Years</option>
-                                <option value="10+" {{$employerJob->experience_level == "10+" ? 'selected' : ''}}>10+</option>
+                                <option value="10+ Years" {{$employerJob->experience_level == "10+ Years" ? 'selected' : ''}}>10+ Years</option>
                                
                             </select>
                         </div>

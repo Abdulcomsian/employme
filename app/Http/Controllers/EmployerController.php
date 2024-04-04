@@ -445,5 +445,14 @@ class EmployerController extends Controller
         } 
 
     }
+
+    public function deleteProfileImage()
+    {
+        $employerDetail = EmployerDetails::where('user_id' , auth()->user()->id)->first();
+        $employerDetail->institution_logo = null;
+        $employerDetail->save();
+
+        return response()->json(['status' => true , 'message' => 'logo deleted successfully']);
+    }
     
 }
