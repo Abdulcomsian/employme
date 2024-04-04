@@ -647,7 +647,7 @@ input[type='checkbox']{
 								<div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">
 										<div class="form-check d-flex">
-											<input type="checkbox" name="consentForDataStorageAndProcessing" id="consentForDataStorageAndProcessing" @if($employerDetails->agreement_period_checks_updates) checked @endif>
+											<input type="checkbox" name="consentForDataStorageAndProcessing" id="consentForDataStorageAndProcessing" @if($employerDetails->storage_processing_consent) checked @endif>
 											<label for="consentForDataStorageAndProcessing" class="mt-3 mx-1">Your Agree to recieve subsequent email and third party communications, which you may opt out of, or unsubscribe form, at any time.</label>
 										</div>
 										{{-- <select name="consentForDataStorageAndProcessing" id="consentForDataStorageAndProcessing" class="nice-select">
