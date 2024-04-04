@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EmployerSeeder::class);
         $this->call(CountriesTableSeeder::class);
         $this->call(PlanSeeder::class);
+        $this->call(JobCategorySeeder::class);
         // $this->call(StatesTableSeeder::class);
         // $this->call(CitiesTableChunkOneSeeder::class);
         // $this->call(CitiesTableChunkTwoSeeder::class);
