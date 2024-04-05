@@ -25,25 +25,25 @@
                     {{auth()->user()->name}}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
-                    <li>
+                    {{--<li>
                         <a class="dropdown-item d-flex align-items-center" href="{{ route('getEmployerProfile') }}"><img
                                 src="{{ asset('assets/images/lazy.svg') }}"
                                 data-src="{{ asset('assets/images/dashboard-icon/icon_23.svg') }}" alt=""
                                 class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>
-                    </li>
+                    </li>--}}
                     <li>
                         <a class="dropdown-item d-flex align-items-center"
-                            href="{{ route('getEmployerDashboardSettings') }}"><img
+                            href="{{ route('getOwnerProfile') }}"><img
                                 src="{{ asset('assets/images/lazy.svg') }}"
                                 data-src="{{ asset('assets/images/dashboard-icon/icon_24.svg') }}" alt=""
                                 class="lazy-img"><span class="ms-2 ps-1">Account Settings</span></a>
                     </li>
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#"><img
-                                src="{{ asset('assets/images/lazy.svg') }}"
-                                data-src="{{ asset('assets/images/dashboard-icon/icon_25.svg') }}" alt=""
-                                class="lazy-img"><span class="ms-2 ps-1">Notification</span></a>
-                    </li>
+                       {{-- <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#"><img
+                                    src="{{ asset('assets/images/lazy.svg') }}"
+                                    data-src="{{ asset('assets/images/dashboard-icon/icon_25.svg') }}" alt=""
+                                    class="lazy-img"><span class="ms-2 ps-1">Notification</span></a>
+                        </li>--}}
                 </ul>
             </div>
         </div>
@@ -57,9 +57,9 @@
                         <span>Dashboard</span>
                     </a></li>
                 <li><a href="{{ route('getOwnerProfile') }}"
-                        class="d-flex w-100 align-items-center {{ request()->is('owner/profile') ? 'active' : '' }}">
+                        class="d-flex w-100 align-items-center {{ request()->is('owner/account-settings') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
-                            data-src="{{ request()->is('owner/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
+                            data-src="{{ request()->is('owner/account-settings') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
                         <span>My Profile</span>
                     </a>
@@ -86,6 +86,14 @@
                             data-src="{{ request()->is('owner/employer-business-licenses') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
                         <span>Employers Licenses</span>
+                    </a>
+                </li>
+                <li><a href="{{ route('interviewRequests') }}"
+                        class="d-flex w-100 align-items-center {{ request()->is('owner/interview-requests') ? 'active' : '' }}">
+                        <img src="{{ asset('assets/images/lazy.svg') }}"
+                            data-src="{{ request()->is('owner/interview-requests') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
+                            alt="" class="lazy-img">
+                        <span>Interview Requests</span>
                     </a>
                 </li>
                 <li><a href="{{ route('admin.getEmployersJobs') }}"

@@ -139,4 +139,9 @@ class OwnerController extends Controller
             return redirect()->back();
         }
     }
+    public function interviewRequests()
+    {
+        $allInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails','employer.employerDetails')->paginate(10);
+        return view('owner.interview-requests.index',compact('allInterviews'));
+    }
 }

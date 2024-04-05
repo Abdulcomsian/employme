@@ -187,7 +187,8 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], fu
 //owner dashboard route starts here
 Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function () {
     Route::get('dashboard', [OwnerController::class, 'getOwnerDashboard'])->name('getOwnerDashboard');
-    Route::get('profile', [OwnerController::class, 'getOwnerProfile'])->name('getOwnerProfile');
+    Route::get('interview-requests', [OwnerController::class, 'interviewRequests'])->name('interviewRequests');
+    Route::get('account-settings', [OwnerController::class, 'getOwnerProfile'])->name('getOwnerProfile');
     Route::get('users', [OwnerController::class, 'getUserProfile'])->name('getUserProfile');
     Route::get('candidates', [OwnerController::class, 'getCandidates'])->name('getCandidates');
     Route::get('employers', [OwnerController::class, 'getEmployers'])->name('getEmployers');
