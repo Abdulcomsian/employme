@@ -165,6 +165,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('saved-candidates', [EmployerController::class, 'employerSavedCandidates'])->name('employerSavedCandidates');
     Route::delete('removed-candidate/{id}', [EmployerController::class, 'removeSavedCandidate'])->name('removeSavedCandidate');
     Route::post('request-job-interview',[EmployerController::class,'jobInterviewRequest'])->name('employer.job_interview_request');
+    Route::post('delete-employer-profile-image' , [EmployerController::class , 'deleteProfileImage'])->name('employer.delete_profile');
 
 });
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], function () {

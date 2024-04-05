@@ -131,7 +131,7 @@
 
                  <!--- End of Moduels Code -->
                 <li>
-                    <a class="d-flex w-100 align-items-center" data-bs-toggle="collapse" href="#collapseJobType" role="button" aria-expanded="false">Manage Modules</a>
+                    <a class="d-flex w-100 align-items-center" data-bs-toggle="collapse" href="#collapseJobType" role="button" aria-expanded="false"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/module.png')}}" alt="" class="lazy-img mx-1">Manage Modules</a>
                     <div class="collapse " id="collapseJobType">
                         <div class="main-body">
                             <ul class="style-none filter-input">

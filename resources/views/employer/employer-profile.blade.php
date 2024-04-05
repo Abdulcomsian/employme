@@ -6,6 +6,7 @@ Profile
 @push('page-css')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.css')}}" media="all">	
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet">
 <style>
 	.step {
 		display: none;
@@ -308,7 +309,7 @@ input[type='checkbox']{
 												Upload Logo
 												<input type="file" id="institution_logo" name="institution_logo" placeholder="">
 											</div>
-											<button class="delete-btn tran3s">Delete</button>
+											<button class="delete-btn tran3s delete-profile-logo">Delete</button>
 										</div>
 									</div>
 								</div>
@@ -646,7 +647,7 @@ input[type='checkbox']{
 								<div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">
 										<div class="form-check d-flex">
-											<input type="checkbox" name="consentForDataStorageAndProcessing" id="consentForDataStorageAndProcessing" @if($employerDetails->agreement_period_checks_updates) checked @endif>
+											<input type="checkbox" name="consentForDataStorageAndProcessing" id="consentForDataStorageAndProcessing" @if($employerDetails->storage_processing_consent) checked @endif>
 											<label for="consentForDataStorageAndProcessing" class="mt-3 mx-1">Your Agree to recieve subsequent email and third party communications, which you may opt out of, or unsubscribe form, at any time.</label>
 										</div>
 										{{-- <select name="consentForDataStorageAndProcessing" id="consentForDataStorageAndProcessing" class="nice-select">
@@ -927,7 +928,8 @@ input[type='checkbox']{
 
 <script src="https://js.stripe.com/v3/"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
+
 <script>
    // const stripe = Stripe('{{ env('STRIPE_KEY') }}')
   
@@ -1394,6 +1396,24 @@ input[type='checkbox']{
             }
         });
     });
+
+	$(document).on("click" , ".delete-profile-logo" , function(e){
+		$.ajax({
+			type: "POST",
+			url: "{{route('employer.delete_profile')}}",
+			data: { '_token' : "{{csrf_token()}}"},
+			success: function (data) {
+	
+				if (data.status) {
+					toastr.success(data.message);
+					let src = "{{asset('assets/images/human-avatar.png')}}";
+					document.getElementById("profile_image").setAttribute("src" , src);
+					
+				}
+			
+			}
+		})
+	})
 
 	
 

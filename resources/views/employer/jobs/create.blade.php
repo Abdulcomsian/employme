@@ -278,7 +278,7 @@ Post A Job
                             {{-- <input type="text" name="break_times" placeholder=""> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Curriculum Overview:</label>
+                            <label for="">Type of Class:</label>
                             <input type="hidden" name="curriculum_overview">
                             <select id="curriculum_overview" multiple>
                                 <option value="Phonics">Phonics</option>
@@ -478,7 +478,7 @@ Post A Job
                                 <option value="3-5 Years">3-5 Years</option>
                                 <option value="5-7 Years">5-7 Years</option>
                                 <option value="7-10 Years">7-10 Years</option>
-                                <option value="10+">10+</option>
+                                <option value="10+ Years">10+ Years</option>
                             </select>
                         </div>
                         {{-- <div class="dash-input-wrapper mb-30 col-md-6">
@@ -754,6 +754,7 @@ Post A Job
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Company Introduction</label>
+                            <p>Upload a video showcasing your business, display then ambiance of the workplace, introduce your team members, or have a staff member share insigts about the job and the work enviroment.</p>
                             <input type="file" name="company_introduction" id="" accept=".mp4, .asf, .mov , .webm ,.avi , .mkv">
                             <textarea class="size-lg summernote" name="company_detail" placeholder="company_detail"></textarea>
                         </div>
