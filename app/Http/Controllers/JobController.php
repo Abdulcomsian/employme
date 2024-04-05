@@ -129,15 +129,7 @@ class JobController extends Controller
 
     public function jobApplicationRequest(Request $request)
     {
-       $validator = Validator::make($request->all(), [
-        'cover_letter' => 'required',
-    ]);
-    if ($validator->fails()){
-        return response()->json([
-                "status" => false,
-                "errors" => $validator->errors()
-            ]);
-    }
+       
         $checkExistingApplication = JobApplication::where('candidate_id',Auth::id())->where('employer_job_id',$request->job_id)->first();
         if($checkExistingApplication)
         {
