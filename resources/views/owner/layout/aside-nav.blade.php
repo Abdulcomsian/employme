@@ -2,7 +2,7 @@
 <aside class="dash-aside-navbar">
     <div class="position-relative">
         <div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
-            <a href="candidate-dashboard-index.html">
+            <a href="{{route('getEmployerDashboard')}}">
                 
 					<span style="font-size: 25px;font-weight: bold;">employme</span>
             </a>

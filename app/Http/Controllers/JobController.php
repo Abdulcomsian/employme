@@ -161,9 +161,8 @@ class JobController extends Controller
                     'candidate_id'=>Auth::id(),
                     'employer_id'=>$jobDetails->posted_by,
                     'employer_job_id'=>$request->job_id,
-                    'cover_letter'=>$request->cover_letter,
                     'application_status'=>0,
-                    'application_date'=>date('ymdhis')
+                    'application_date'=>$request->application_date
                 ]);
                 $jobDetails = EmployerJob::find($request->job_id);
                 $candidateDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();

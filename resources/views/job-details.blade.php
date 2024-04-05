@@ -63,11 +63,11 @@
 									<button class="btn-one">Applied Already</button>
 								@else
 									<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
-									<button class="btn-one" data-bs-toggle="modal" data-bs-target="#JobApplicationModal">Apply For This Job</button>
+									<button class="btn-one" data-bs-toggle="modal" data-bs-target="#JobApplicationModal">Request Interview</button>
 							@endif
 							@endrole
 							@else
-								<button class="btn-one PleaseLoginButton" >Apply For This Job</button>
+								<button class="btn-one PleaseLoginButton" >Request Interview</button>
 								<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
 							@endif
 						@endif
@@ -101,7 +101,7 @@
 							<h4 class="block-title">Job Description</h4>
 						</div>
 						<!-- <p>As a <a href="#">Product Designer</a> at WillowTree, you’ll give form to ideas by being the voice and owner of product decisions. You’ll drive the design direction, and then make it happen!</p> -->
-						<p>{{$jobDetails->job_description ?? ''}}</p>
+						<p>{!! $jobDetails->job_description !!}</p>
 					</div>
 					 @endif
 					  @if(isset($jobDetails->employerDetails->employer_details) && $jobDetails->employerDetails->employer_details !='')
@@ -132,19 +132,19 @@
 						</div>
 						<ul class="list-type-one style-none mb-15">
 							@if($jobDetails->education)
-							<li>{{$jobDetails->education ?? ''}}</li>
+							<li>Education: {{$jobDetails->education ?? ''}}</li>
 							@endif
 							@if($jobDetails->teaching_certificate)
-							<li>{{$jobDetails->teaching_certificate ?? ''}}</li>
+							<li>Teaching Certificate: {{$jobDetails->teaching_certificate ?? ''}}</li>
 							@endif
 							@if($jobDetails->experience)
-							<li>{{$jobDetails->experience ?? ''}}</li>
+							<li>Experience: {{$jobDetails->experience ?? ''}}</li>
 							@endif
 							@if($jobDetails->background_check)
-							<li>{{$jobDetails->background_check ?? ''}}</li>
+							<li>Background: {{$jobDetails->background_check ?? ''}}</li>
 							@endif
 							@if($jobDetails->health_check_requirement)
-							<li>{{$jobDetails->health_check_requirement ?? ''}}</li>
+							<li>Health: {{$jobDetails->health_check_requirement ?? ''}}</li>
 							@endif
 							@if($jobDetails->preferred_accent)
 							<li>{{$jobDetails->preferred_accent ?? ''}}</li>
@@ -200,10 +200,10 @@
 							<li>{{$jobDetails->arrival_assitance ?? ''}}</li>
 							@endif
 							@if($jobDetails->initial_accomodation)
-							<li>{{$jobDetails->initial_accomodation ?? ''}}</li>
+							<li>Initial Accomodation: {{$jobDetails->initial_accomodation ?? ''}}</li>
 							@endif
 							@if($jobDetails->first_week_structure)
-							<li>{{$jobDetails->first_week_structure ?? ''}}</li>
+							<li>First Week Structure: {{$jobDetails->first_week_structure ?? ''}}</li>
 							@endif
 							@if($jobDetails->induction_programs)
 							<li>{{$jobDetails->induction_programs ?? ''}}</li>
@@ -399,8 +399,8 @@
 								<div>{{$jobDetails->renewal_possibilities ?? ''}}</div>
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
-								<span>Base Pay</span>
-								<div>{{$jobDetails->base_pay ?? ''}}</div>
+								<span>Monthly Pay</span>
+								<div>{{$jobDetails->monthly_salary ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Housing Included</span>
@@ -421,7 +421,7 @@
 							</li> -->
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Location</span>
-								<div>{{$jobDetails->city_town ?? ''}}</div>
+								<div>{{$jobDetails->employerDetails->city.','.$jobDetails->employerDetails->state}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Specification</span>
@@ -746,6 +746,7 @@
               data: {
                 _token:"{{csrf_token()}}",
                 job_id: $("#Job-Application-Form").find('input[name=job_id]').val(),
+                cover_letter: $("#Job-Application-Form").find('textarea[name=cover_letter]').val(),
                         },
               type: "POST",
               dataType: 'json',

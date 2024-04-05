@@ -21,6 +21,7 @@ class PlanSeeder extends Seeder
                 'stripe_plan' => 'price_1OtpYNEgIRH0mqHupTyNMEk2', 
                 'price' => 300000, 
                 'description' => '',
+                'allowed_jobs' => 1,
                 'duration' => 1
             ],
             [
@@ -29,6 +30,7 @@ class PlanSeeder extends Seeder
                 'stripe_plan' => 'price_1OtpaCEgIRH0mqHu9EBohTci', 
                 'price' => 810000, 
                 'description' => '',
+                'allowed_jobs' => 2,
                 'duration' => 3
             ],
             [
@@ -37,6 +39,7 @@ class PlanSeeder extends Seeder
                 'stripe_plan' => 'price_1OtpceEgIRH0mqHuKROR07W8', 
                 'price' => 1530000, 
                 'description' => '',
+                'allowed_jobs' => 5,
                 'duration' => 6
             ],
             [
@@ -45,6 +48,7 @@ class PlanSeeder extends Seeder
                 'stripe_plan' => 'price_1OtpeXEgIRH0mqHulfFolVP8', 
                 'price' => 2880000, 
                 'description' => '',
+                'allowed_jobs' => 8,
                 'duration' => 12
             ]
         ];

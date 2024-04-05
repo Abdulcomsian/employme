@@ -4,6 +4,21 @@
 Subscription Plan
 @endsection
 
+@section('page-head')
+    <style>
+        #plan{
+            width: 200px!important;
+        }
+        #plan-choose-btn{
+            width: 130px!important;
+            background: #ff715b;
+            color: white;
+        }
+        .nice-select {
+            width: 300px;
+        }
+    </style>
+@endsection
 @section('content')
 
 <div class="dashboard-body">
@@ -43,6 +58,21 @@ Subscription Plan
             </div>
             @endif
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <label for="plan" class="my-2"><strong>Choose Plan</strong></label>
+                <div class="d-flex">
+                    <select name="plan" id="plan" class="nice-select">
+                        @foreach($allPlans as $index=>$plan)
+                        <option value="{{$plan->id}}">{{$plan->price/1000}}K</option>
+                        @endforeach
+                    </select>
+                    <button class="btn mx-3" id="plan-choose-btn">Choose</button>
+                </div>
+            </div>
+        </div>
+
         <!-- /.membership-plan-wrapper -->
 
         <section class="pricing-section">
@@ -82,11 +112,10 @@ Subscription Plan
                         <div class="price fw-500"><sub>₩</sub> {{$plan->price/1000}}K<!--<sup>99</sup>--></div>
                         <ul class="style-none">
                             <li>{{$plan->duration}} {{$plan->duration > 1 ? 'Months' : 'Month'}} Duration </li>
-                            <li>60 job posting </li>
-                            <li>30 featured job </li>
+                            <li>{{$plan->allowed_jobs > 1 ? $plan->allowed_jobs.' '.'job posts' : 'Only One Job Post' }}</li>
                             <li>Job post live for 130 days </li>
                         </ul>
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" class="get-plan-btn tran3s w-100 mt-30 change-plan-id" id="{{$plan->id}}" onclick = "changePlan({{$plan->id}})" >Choose Plan</a>
+                        {{-- <a href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" class="get-plan-btn tran3s w-100 mt-30 change-plan-id" id="{{$plan->id}}" onclick = "changePlan({{$plan->id}})" >Choose Plan</a> --}}
                     </div>
                     <!-- /.pricing-card-one -->
                 </div>
@@ -137,6 +166,12 @@ Subscription Plan
 <script src="https://js.stripe.com/v3/"></script>
 <script>
 
+    $(document).on("click" , "#plan-choose-btn" , function(e){
+        let plan = document.getElementById("plan").value;
+        document.getElementById('plan_id').value = plan;
+        $("#RescheduleRequestModal").modal("show");
+    })
+    
     
   // const form = document.getElementById('payment-form')
     function changePlan(id)

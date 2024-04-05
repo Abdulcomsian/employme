@@ -1,7 +1,7 @@
 <aside class="dash-aside-navbar">
 	<div class="position-relative">
 		<div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
-			<a href="candidate-dashboard-index.html">
+			<a href="{{route('getEmployerDashboard')}}">
 				
 			<span style="font-size: 25px;font-weight: bold;">employme</span>
 			</a>
@@ -56,7 +56,7 @@
                         <div class="main-body">
                             <ul class="style-none filter-input">
                                 <li><a href="{{route('getEmployerProfile')}}" class="d-flex w-100 align-items-center {{request()->is('employer/employer-profile') ? 'active' : ''}}">
-                                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_2_active.svg')}}" alt="" class="lazy-img">
+                                    <img src="{{asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img" style="">
                                         <span>My Profile</span>
                                     </a>
                                 </li>

@@ -446,11 +446,13 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Paid Vacation</label>
-                            <select class="nice-select" name="paid_vacation">
+                            <select class="nice-select specify">
                                 <option value="11 Days" @if($employerJob->paid_vacation =="11 Days") selected @endif>11 Days</option>
-                                <option value="Other (Specify how many days)" @if($employerJob->paid_vacation == "Other (Specify how many days)") selected @endif>Other (Specify how many days)</option>
+                                <option value="Other" @if($employerJob->paid_vacation == "Other") selected @endif>Other (Specify how many days)</option>
                                 <option value="No" @if($employerJob->paid_vacation =="No") selected @endif>No</option>
                             </select>
+                            <input type="{{$employerJob->paid_vacation == "Other" ? "text" : "hidden"}}" class="select-hidden-input" name="paid_vacation" placeholder="Paid Vacation">
+
                         </div>
 
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -587,7 +589,7 @@ Post A Job
                                 @php
                                     $visaArray = [
                                                         "Eligible E2 Visa Application" , "E-1 (Professorship)" , "E-2 (Teaching)" , "E-3 (Research)" , "E-4 (Technial Internship)", 
-                                                         "E-5 (Professional Employment)" , "E-6 (Entertainment)" , "E-7 (Special Occupation)" , "E-9 (Non-Professional Employment)"
+                                                         "E-5 (Professional Employment)" , "E-6 (Entertainment)" , "E-7 (Special Occupation)" , "E-9 (Non-Professional Employment)",
                                                          "F-2 (Resident)" ,"F-5 (Permanent Resident)" ,"F-6 (Marriage Migrant)" 
                                                         ];
                                 @endphp
@@ -620,11 +622,15 @@ Post A Job
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Arrival Assistance:</label>
-                            <select class="nice-select" id="arrival_assitance" name="arrival_assitance">
-                                <option value="Airport Pickup" {{$employerJob->arrival_assitance == "Airport Pickup"? 'selected' : ''}}>Airport Pickup</option>
-                                <option value="Temporary Accommodation Assistance" {{$employerJob->arrival_assitance == "Temporary Accommodation Assistance" ? 'selected' : ''}} >Temporary Accommodation Assistance</option>
-                                <option value="Assistance With Documentation" {{$employerJob->arrival_assitance == "Assistance With Documentation" ? 'selected' : ''}} >Assistance With Documentation</option>
-                                <option value="Not Provided" {{$employerJob->arrival_assitance == "Not Provided" ? 'selected' : ''}} >Not Provided</option>
+                            <input type="hidden" name="arrival_assitance" value="{{$employerJob->arrival_assitance}}">
+                            @php
+                               $arrivalAssistance = explode(',' , $employerJob->arrival_assitance);
+                            @endphp
+                            <select id="arrival_assitance" name="arrival_assitance" multiple>
+                                <option value="Airport Pickup" {{in_array("Airport Pickup" , $arrivalAssistance) ? 'selected' : '' }}>Airport Pickup</option>
+                                <option value="Temporary Accommodation Assistance" {{in_array("Temporary Accommodation Assistance" , $arrivalAssistance ) ? 'selected' : ''}} >Temporary Accommodation Assistance</option>
+                                <option value="Assistance With Documentation" {{ in_array("Assistance With Documentation" , $arrivalAssistance ) ? 'selected' : ''}} >Assistance With Documentation</option>
+                                <option value="Not Provided" {{ in_array("Not Provided" , $arrivalAssistance ) ? 'selected' : '' }} >Not Provided</option>
                             </select>
                             {{-- <input type="text" name="arrival_assitance" placeholder="Airport pick-up, initial days' guidance" value="{{$employerJob->arrival_assitance ?? ''}}"> --}}
                         </div>
@@ -707,7 +713,7 @@ Post A Job
                         <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
                     </div>
                 </div> --}}
-                <div class="bg-white card-box border-20 hide section" id="step7">
+                {{-- <div class="bg-white card-box border-20 hide section" id="step7">
                     <h4 class="dash-title-three">Support for Foreign Teachers</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -736,9 +742,9 @@ Post A Job
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
                         <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="bg-white card-box border-20 hide section" id="step8">
+                <div class="bg-white card-box border-20 hide section" id="step7">
                     <h4 class="dash-title-three">Application & Recruitment Process</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -814,7 +820,7 @@ Post A Job
                     </div>
                 </div> --}}
 
-                <div class="bg-white card-box border-20 hide section" id="step9">
+                <div class="bg-white card-box border-20 hide section" id="step8">
                     <h4 class="dash-title-three">Reviews & Testimonials</h4>
                     <div class="dash-input-wrapper mb-30 col-md-6">
                         <label for="">Company Introduction</label>
@@ -827,6 +833,25 @@ Post A Job
                             <option value="Yes" @if($employerJob->option_to_current_past_foreign_teachers == "Yes") selected @endif>Yes</option>
                             <option value="No" @if($employerJob->option_to_current_past_foreign_teachers == "No") selected @endif>No</option>
                         </select>
+
+                        <div>
+                            <select class="form-select @if($employerJob->option_to_current_past_foreign_teachers == "Yes") d-none @endif my-2" id="document_type" name="document_type">
+                                <option value="">Select Document Type</option>
+                                <option value="Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)" @if($employerJob->document_type == "Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)" ) selected @endif>Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)</option>
+                                <option value="Criminal Background Check Apostile" @if($employerJob->document_type == "Criminal Background Check Apostile" ) selected @endif>Criminal Background Check Apostile</option>
+                                <option value="Completed Visa Application Form" @if($employerJob->document_type == "Completed Visa Application Form" ) selected @endif>Completed Visa Application Form</option>
+                                <option value="Copy of Passport" @if($employerJob->document_type == "Copy of Passport" ) selected @endif>Copy of Passport</option>
+                                <option value="Recent Passport-Sized photos" @if($employerJob->document_type == "Recent Passport-Sized photos" ) selected @endif>Recent Passport-Sized photos</option>
+                                <option value="Self Health Statement" @if($employerJob->document_type == "Self Health Statement" ) selected @endif>Self Health Statement</option>
+                                <option value="Other documents may be required" @if($employerJob->document_type == "Other documents may be required" ) selected @endif>Other documents may be required</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="dash-input-wrapper mb-30 col-md-6">
+                        <label for="">Visa Document Submission Deadline:</label>
+                        <input type="date" name="application_deadline" value="{{$employerJob->application_deadline}}" placeholder=""></input>
                     </div>
                     {{-- <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -890,6 +915,15 @@ Post A Job
         }
     </script>
     <script>
+        $(document).on( "change", "#required_documents" , function(e){
+            // $("document_type").toggleClass('open');
+            if(this.value == 'Yes'){
+                document.getElementById("document_type").classList.remove("d-none")
+            } else{
+                document.getElementById("document_type").classList.add("d-none")
+                document.getElementById("document_type").selectedIndex = 0;
+            }; 
+        })
         $(document).ready(function() {
 
             $("#ideal_candidate_profile").select2();
@@ -897,6 +931,7 @@ Post A Job
             $("#student_age_group").select2();
             $("#curriculum_overview").select2();
             $("#preferred_accent").select2();
+            $("#arrival_assitance").select2();
             
             $('.summernote').summernote({
                 height: 300,
@@ -917,19 +952,12 @@ Post A Job
                 document.querySelector("input[name='student_age_group']").value = $("#student_age_group").val();
                 document.querySelector("input[name='curriculum_overview']").value = $("#curriculum_overview").val();
                 document.querySelector("input[name='preferred_accent']").value = $("#preferred_accent").val();
+                document.querySelector("input[name='arrival_assitance']").value = $("#arrival_assitance").val();
                 this.submit();
                 
             })
 
-            $("#required_documents").change(function(e){
-            // $("document_type").toggleClass('open');
-            if(this.value == 'Yes'){
-                document.getElementById("document_type").classList.remove("d-none")
-            } else{
-                document.getElementById("document_type").classList.add("d-none")
-                document.getElementById("document_type").selectedIndex = 0;
-            }; 
-        })
+            
 
 
             $('.number-input').on('keydown', function(e) {
