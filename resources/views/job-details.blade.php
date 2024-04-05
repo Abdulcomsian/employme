@@ -703,38 +703,6 @@
 	</div>
 </section>
 <!-- /.job-portal-intro -->
-	{{--<div class="modal fade" id="JobApplicationModal" tabindex="-1" role="dialog" aria-labelledby="Edit User"
-		aria-hidden="true">
-		<div class="modal-dialog modal-lg " role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="User-Edit-Modal">{{__('Job Application')}}</h5>
-					<button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<form id='Job-Application-Form' method="POST" class="clearfix" enctype="multipart/form-data">
-						<input type = "hidden" name = "job_id" value = "{{$jobDetails->id}}">
-						<div id="errors-list"></div>
-						<div class="mb-3">
-							<label class="col-form-label" for="Major Name">{{__('Cover Letter')}}</label>
-							<textarea class="form-control"  name="cover_letter" id="cover_letter"
-								placeholder="{{__('Job Application Cover Letter')}}" rows="5" autocomplete="off"></textarea>
-						</div>
-				
-				</div>
-				<div class="modal-footer">
-					<button class="btn-one" type="button" data-bs-dismiss="modal">
-						Close
-					</button>
-					<button class=" btn-submit btn-one" type="submit" name="submit">
-						<span id="buttonText">Apply</span>
-						<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
-					</button>
-				</div>
-				</form>
-			</div>
-		</div>
-	</div>--}}
 <div class="modal fade" id="JobApplicationModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen modal-dialog-centered">
         <div class="container">
@@ -743,8 +711,8 @@
                 <div class="remove-account-popup text-center modal-content">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <img src="{{asset('assets/images/apply-job.png')}}" data-src="{{asset('assets/images/apply-job.png')}}" alt="" class="lazy-img m-auto">
-                    <h3>Are you sure to apply ?</h3>
-                    <p>Your Profile will be shared with the Employer.</p>
+                    <h3 style = "font-family:gordita;">Are you sure you want to apply ?</h3>
+                    <p>Your profile will be shared with the Employer.</p>
                     <div class="button-group d-inline-flex justify-content-center align-items-center pt-15">
                         <button  type="submit" name="submit" class="btn-submit confirm-btn fw-500 tran3s me-3">
 						<span id="buttonText">Apply</span>
