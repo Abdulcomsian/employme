@@ -469,7 +469,7 @@ Candidate Marketplace
 									@else
 									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
 									@endif
-									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="tran3s">{{$candidate->candidatePersonalDetails->full_name ?? ''}}</a></h4>
+									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="tran3s">{{$candidate->candidatePersonalDetails->first_name ?? ''}} {{$candidate->candidatePersonalDetails->middle_name ?? ''}} {{$candidate->candidatePersonalDetails->last_name ?? ''}}</a></h4>
 									<div class="candidate-post">{{$candidate->candidatePersonalDetails->designation ?? ''}}</div>
 									<ul class="cadidate-skills style-none d-flex flex-wrap align-items-center justify-content-center justify-content-md-between pt-30 sm-pt-20 pb-10">
 										@if(isset($candidate->candidatePreferences->skills) && !empty($candidate->candidatePreferences->skills))
@@ -635,7 +635,7 @@ Candidate Marketplace
 									<div class="row gx-1 align-items-center">
 										<div class="col-xl-3">
 											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">{{$candidate->candidatePersonalDetails->full_name ?? ''}}</a></h4>
+												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">{{$candidate->candidatePersonalDetails->first_name ?? ''}} {{$candidate->candidatePersonalDetails->middle_name ?? ''}} {{$candidate->candidatePersonalDetails->last_name ?? ''}}</a></h4>
 												<div class="candidate-post">{{$candidate->candidatePersonalDetails->designation ?? ''}}</div>
 												<ul class="cadidate-skills style-none d-flex align-items-center">
 													@if(isset($candidate->candidatePreferences->skills) && !empty($candidate->candidatePreferences->skills))

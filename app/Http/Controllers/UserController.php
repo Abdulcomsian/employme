@@ -30,12 +30,14 @@ class UserController extends Controller
    public function updateCandidateAccountSettingpage(Request $request)
    {
     $request->validate([
+        'first_name'=>'required',
+        'last_name'=>'required',
+        'middle_name'=>'required',
         'email' => [
             'required',
             'email',
             Rule::unique('users')->ignore(Auth::id()),
         ],
-        'password' => 'nullable|min:8', // Allow nullable for password field
     ]);
     $user = User::find(Auth::id());
 
@@ -43,17 +45,13 @@ class UserController extends Controller
     $user->update([
         'email' => $request->email,
     ]);
-    
-    // Update password only if it's not empty
-    if (!empty($request->password)) {
-        $user->update([
-            'password' => $request->password,
-        ]);
-    }
+   
     
     // Update EmployerDetails
     CandidatePersonalDetails::where('user_id', Auth::id())->update([
-        'full_name' => $request->full_name,
+        'first_name' => $request->first_name,
+        'middle_name' => $request->middle_name,
+        'last_name' => $request->last_name,
     ]);
     
     return redirect()->back()->with('status','Account Settings Updated Successfully');

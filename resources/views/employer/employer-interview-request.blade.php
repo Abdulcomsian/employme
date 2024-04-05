@@ -104,7 +104,7 @@ Interview Request
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
-                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
+                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->first_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->middle_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->last_name ?? ''}}</a></div>
                                     </td>
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
@@ -297,7 +297,7 @@ Interview Request
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
-                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
+                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->first_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->middle_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->last_name ?? ''}}</a></div>
                                     </td>
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>

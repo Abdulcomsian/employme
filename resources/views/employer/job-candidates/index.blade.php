@@ -61,9 +61,9 @@ Employer Saved Candidate
                     @endif
                     <div class="right-side">
                         <div class="row gx-1 align-items-center">
-                            <div class="col-xl-4">
+                            <div class="col-xl-3">
                                 <div class="position-relative">
-                                    <h4 class="candidate-name mb-0"><a href="#" class="tran3s">{{$jobApplicant->candidatePersonalDetails->full_name ?? ''}}</a></h4>
+                                    <h4 class="candidate-name mb-0"><a href="#" class="tran3s">{{$jobApplicant->candidatePersonalDetails->first_name ?? ''}} {{$jobApplicant->candidatePersonalDetails->middle_name ?? ''}} {{$jobApplicant->candidatePersonalDetails->last_name ?? ''}}</a></h4>
                                     <div class="candidate-post">{{$jobApplicant->candidatePersonalDetails->designation ?? ''}}</div>
                                     <ul class="cadidate-skills style-none d-flex align-items-center">
                                         @if(isset($jobApplicant->candidatePreferences->skills) && !empty($jobApplicant->candidatePreferences->skills))
@@ -90,7 +90,7 @@ Employer Saved Candidate
                                 <!-- /.candidate-info -->
                             </div>
                             
-                            <div class="col-xl-2 col-md-4 col-sm-6">
+                            <div class="col-xl-3 col-md-4 col-sm-6">
                                 <div class="candidate-info">
                                     <span>Location</span>
                                     <div>{{$jobApplicant->candidatePersonalDetails->current_location ?? ''}}</div>
@@ -111,10 +111,10 @@ Employer Saved Candidate
                             </div>
                             <div class="col-xl-2 col-md-4">
                                 <div class="d-flex justify-content-md-end align-items-center">
-                                    <a href="#" class="save-btn text-center rounded-circle tran3s mt-10 fw-normal cover-letter-button" id="{{$index}}" data-bs-toggle="modal" data-bs-target="#coverLetterModal"><i class="bi bi-eye"></i></a>
+                                       {{--<a href="#" class="save-btn text-center rounded-circle tran3s mt-10 fw-normal cover-letter-button" id="{{$index}}" data-bs-toggle="modal" data-bs-target="#coverLetterModal"><i class="bi bi-eye"></i></a>
                                         <div id="cover-letter-{{$index}}" class="d-none">
                                             <p>{{$jobApplicant->pivot->cover_letter}}</p>
-                                        </div>
+                                        </div>--}}
                                     <div class="action-dots float-end mt-10 ms-2">
                                         <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span></span>

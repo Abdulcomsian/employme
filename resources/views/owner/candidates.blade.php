@@ -107,7 +107,7 @@ Candidates
                         <tr class="active">
                             <td>{{$index+1}}</td>
                             <td>
-                                <div class="job-name candidate-name" ><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}">{{$candidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
+                                <div class="job-name candidate-name" ><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}">{{$candidate->candidatePersonalDetails->first_name ?? ''}} {{$candidate->candidatePersonalDetails->middle_name ?? ''}} {{$candidate->candidatePersonalDetails->last_name ?? ''}}</a></div>
                                 <!-- <div class="info1">Fulltime . Spain</div> -->
                             </td>
                             <td >{{$candidate->email}}</td>

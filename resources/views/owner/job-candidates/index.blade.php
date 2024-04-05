@@ -95,7 +95,7 @@ Job Candidates
                         <div class="row gx-1 align-items-center">
                             <div class="col-xl-3">
                                 <div class="position-relative">
-                                    <h4 class="candidate-name mb-0"><a href="#" class="tran3s">{{$jobApplicant->candidatePersonalDetails->full_name ?? ''}}</a></h4>
+                                    <h4 class="candidate-name mb-0"><a href="#" class="tran3s">{{$jobApplicant->candidatePersonalDetails->first_name ?? ''}} {{$jobApplicant->candidatePersonalDetails->middle_name ?? ''}} {{$jobApplicant->candidatePersonalDetails->last_name ?? ''}}</a></h4>
                                     <div class="candidate-post">{{$jobApplicant->candidatePersonalDetails->designation ?? ''}}</div>
                                     <ul class="cadidate-skills style-none d-flex align-items-center">
                                         @if(isset($jobApplicant->candidatePreferences->skills) && !empty($jobApplicant->candidatePreferences->skills))
