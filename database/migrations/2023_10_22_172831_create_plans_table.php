@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('stripe_plan');
             $table->integer('price');
+            $table->integer('allowed_jobs');
             $table->string('description');
             $table->timestamps();
         });

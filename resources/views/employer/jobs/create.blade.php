@@ -388,11 +388,12 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Paid Vacation</label>
-                            <select class="nice-select" name="paid_vacation">
+                            <select class="nice-select specify">
                                 <option value="11 Days" selected>11 Days</option>
-                                <option value="Other (Specify how many days)">Other (Specify how many days)</option>
+                                <option value="Other">Other (Specify how many days)</option>
                                 <option value="No">No</option>
                             </select>
+                            <input type="hidden" class="select-hidden-input" name="paid_vacation" placeholder="Paid Vacation">
                         </div>
 
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -538,7 +539,8 @@ Post A Job
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Arrival Assistance:</label>
-                            <select class="nice-select" id="arrival_assitance" name="arrival_assitance">
+                            <input type="hidden" name="arrival_assitance">
+                            <select id="arrival_assitance" multiple>
                                 <option value="Airport Pickup" >Airport Pickup</option>
                                 <option value="Temporary Accommodation Assistance" >Temporary Accommodation Assistance</option>
                                 <option value="Assistance With Documentation" >Assistance With Documentation</option>
@@ -624,7 +626,7 @@ Post A Job
                         <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
                     </div>
                 </div> --}}
-                <div class="bg-white card-box border-20 hide section" id="step7">
+                {{-- <div class="bg-white card-box border-20 hide section" id="step7">
                     <h4 class="dash-title-three">Support for Foreign Teachers</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -653,9 +655,9 @@ Post A Job
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
                         <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="bg-white card-box border-20 hide section" id="step8">
+                <div class="bg-white card-box border-20 hide section" id="step7">
                     <h4 class="dash-title-three">Application & Recruitment Process</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -669,9 +671,13 @@ Post A Job
                             <div>
                                 <select class="form-select d-none my-2" id="document_type" name="document_type">
                                     <option value="">Select Document Type</option>
-                                    <option value="Apostilled Degree Certificate" >Apostilled Degree Certificate</option>
-                                    <option value="Apostilled Background Check (Within last 6 months)" >Apostilled Background Check (Within last 6 months)</option>
-                                    <option value="SAQA Letter (South Africa Applicants Only )" >SAQA Letter (South Africa Applicants Only )</option>
+                                    <option value="Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)" >Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)</option>
+                                    <option value="Criminal Background Check Apostile" >Criminal Background Check Apostile</option>
+                                    <option value="Completed Visa Application Form" >Completed Visa Application Form</option>
+                                    <option value="Copy of Passport" >Copy of Passport</option>
+                                    <option value="Recent Passport-Sized photos" >Recent Passport-Sized photos</option>
+                                    <option value="Self Health Statement" >Self Health Statement</option>
+                                    <option value="Other documents may be required" >Other documents may be required</option>
                                 </select>
                             </div>
                             {{-- <input type="text" name="required_documents" placeholder=""> --}}
@@ -681,17 +687,17 @@ Post A Job
                             <input type="text" name="interview_process" placeholder=""></input>
                         </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Application Deadline:</label>
+                            <label for="">Visa Document Submission Deadline:</label>
                             <input type="date" name="application_deadline" placeholder=""></input>
                         </div>
                         {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Contract Review Process:</label>
                             <input type="text" name="contact_review_process" placeholder="">
                         </div> --}}
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Decision Deadline:</label>
                             <input type="date" name="decision_deadline" placeholder="">
-                        </div>
+                        </div> --}}
 
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
@@ -727,7 +733,7 @@ Post A Job
                     </div>
                 </div> --}}
 
-                <div class="bg-white card-box border-20 hide section" id="step9">
+                <div class="bg-white card-box border-20 hide section" id="step8">
                     <h4 class="dash-title-three">Reviews & Testimonials</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -803,6 +809,8 @@ Post A Job
             $("#student_age_group").select2();
             $("#curriculum_overview").select2();
             $("#preferred_accent").select2();
+            $("#arrival_assitance").select2();
+            
             
             $('.summernote').summernote({
                 height: 300,
@@ -823,6 +831,7 @@ Post A Job
                 document.querySelector("input[name='student_age_group']").value = $("#student_age_group").val();
                 document.querySelector("input[name='curriculum_overview']").value = $("#curriculum_overview").val();
                 document.querySelector("input[name='preferred_accent']").value = $("#preferred_accent").val();
+                document.querySelector("input[name='arrival_assitance']").value = $("#arrival_assitance").val();
                 this.submit();
                 
             })

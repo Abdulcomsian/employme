@@ -130,14 +130,14 @@ class JobController extends Controller
     public function jobApplicationRequest(Request $request)
     {
        $validator = Validator::make($request->all(), [
-        'cover_letter' => 'required',
-    ]);
-    if ($validator->fails()){
-        return response()->json([
-                "status" => false,
-                "errors" => $validator->errors()
-            ]);
-    }
+        'application_date' => 'required',
+        ]);
+        if ($validator->fails()){
+            return response()->json([
+                    "status" => false,
+                    "errors" => $validator->errors()
+                ]);
+        }
         $checkExistingApplication = JobApplication::where('candidate_id',Auth::id())->where('employer_job_id',$request->job_id)->first();
         if($checkExistingApplication)
         {
@@ -169,9 +169,8 @@ class JobController extends Controller
                     'candidate_id'=>Auth::id(),
                     'employer_id'=>$jobDetails->posted_by,
                     'employer_job_id'=>$request->job_id,
-                    'cover_letter'=>$request->cover_letter,
                     'application_status'=>0,
-                    'application_date'=>date('ymdhis')
+                    'application_date'=>$request->application_date
                 ]);
                 $jobDetails = EmployerJob::find($request->job_id);
                 $candidateDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();

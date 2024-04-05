@@ -96,6 +96,10 @@ Profile
 input[type='checkbox']{
 	width: 20px!important;
 }
+
+h3{
+	font-family: "gordita";
+}
 </style>
 
 @endpush
@@ -474,7 +478,7 @@ input[type='checkbox']{
 					<!-- Step 4 -->
 					<form id="employer-verification-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
 						<div class="bg-white card-box" id="step-3">
-							<h3 class="my-3">Employer Verification</h3>
+							<h3 class="my-3">Business License Certificate</h3>
 							<div class = "mt-1" id ="license-document-error"></div>
 								@isset($employerLicenseDetails)
 								@if($employerLicenseDetails->approval_status == 0)

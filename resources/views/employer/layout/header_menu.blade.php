@@ -43,6 +43,6 @@
                     </ul>
                 </div>
                 --}}
-                <div><a href="{{route('candidatesMarketplace')}}" class="job-post-btn tran3s">Candidate Market Place</a></div>
+                <div class="candidate-marketplace-btn"><a href="{{route('candidatesMarketplace')}}" class="job-post-btn tran3s w-100">Candidate Market Place</a></div>
             </div>
         </header>

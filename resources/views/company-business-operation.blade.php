@@ -216,8 +216,10 @@
 				<div class="col-lg-5">
 					<ul class="btn-group style-none d-flex flex-wrap justify-content-center justify-content-lg-end">
 						@auth
-						@role('employer')
+						@role('candidate')
 						<li class="me-2"><a href="{{route('candidatesMarketplace')}}" class="btn-three">Looking for job?</a></li>
+						@endrole
+						@role('employer')
 						<li class="ms-2"><a href="{{route('employer-jobs.create')}}" class="btn-four">Post a job</a></li>
 						@endrole
 						@endauth
