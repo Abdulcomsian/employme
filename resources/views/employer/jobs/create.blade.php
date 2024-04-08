@@ -410,7 +410,7 @@ Post A Job
                                 <option value="Other">Other (Specify how many days)</option>
                                 <option value="No">No</option>
                             </select>
-                            <input type="hidden" class="select-hidden-input" name="paid_vacation" placeholder="Paid Vacation">
+                            <input type="hidden" class="select-hidden-input" name="vacation_leave" placeholder="Paid Vacation">
                         </div>
 
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -690,9 +690,9 @@ Post A Job
                                     <option value="Yes" >Yes</option>
                                 </select>
                             </div>
-                            <div>
-                                <select class="form-select d-none my-2" id="document_type" name="document_type">
-                                    <option value="">Select Document Type</option>
+                            <div class="document_type_box d-none">
+                                <input type="hidden" name="document_type">
+                                <select class="my-2" id="document_type" multiple>
                                     <option value="Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)" >Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)</option>
                                     <option value="Criminal Background Check Apostile" >Criminal Background Check Apostile</option>
                                     <option value="Completed Visa Application Form" >Completed Visa Application Form</option>
@@ -832,6 +832,8 @@ Post A Job
             $("#curriculum_overview").select2();
             $("#preferred_accent").select2();
             $("#arrival_assitance").select2();
+            $("#document_type").select2();
+            
             
             
             $('.summernote').summernote({
@@ -854,6 +856,7 @@ Post A Job
                 document.querySelector("input[name='curriculum_overview']").value = $("#curriculum_overview").val();
                 document.querySelector("input[name='preferred_accent']").value = $("#preferred_accent").val();
                 document.querySelector("input[name='arrival_assitance']").value = $("#arrival_assitance").val();
+                document.querySelector("input[name='document_type']").value = $("#document_type").val();
                 this.submit();
                 
             })
@@ -879,10 +882,10 @@ Post A Job
         $("#required_documents").change(function(e){
             // $("document_type").toggleClass('open');
             if(this.value == 'Yes'){
-                document.getElementById("document_type").classList.remove("d-none")
+                document.querySelector(".document_type_box").classList.remove("d-none")
             } else{
-                document.getElementById("document_type").classList.add("d-none")
-                document.getElementById("document_type").selectedIndex = 0;
+                document.querySelector(".document_type_box").classList.add("d-none")
+                document.querySelector(".document_type_box").selectedIndex = 0;
             }; 
         })
 

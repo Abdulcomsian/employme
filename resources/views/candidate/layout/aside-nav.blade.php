@@ -20,9 +20,13 @@
             <!-- /.user-avatar -->
             <div class="user-name-data d-flex justify-content-center">
                 <button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                {{auth()->user()->candidatePersonalDetails->first_name ?? ''}}
-                {{auth()->user()->candidatePersonalDetails->middle_name ?? ''}}
-                {{auth()->user()->candidatePersonalDetails->last_name ?? ''}}
+<!--<<<<<<< HEAD-->
+<!--                {{auth()->user()->candidatePersonalDetails->first_name ?? ''}}-->
+<!--                {{auth()->user()->candidatePersonalDetails->middle_name ?? ''}}-->
+<!--                {{auth()->user()->candidatePersonalDetails->last_name ?? ''}}-->
+<!--=======-->
+                 {{auth()->user()->name}}
+<!-->>>>>>> 7604aae18d192b811c1d08c522e23af176b1ced2-->
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
                     <li>

@@ -59,16 +59,24 @@ Subscription Plan
             @endif
         </div>
 
-        <div class="row">
+        <div class="row my-5">
             <div class="col-md-12">
-                <label for="plan" class="my-2"><strong>Choose Plan</strong></label>
-                <div class="d-flex">
-                    <select name="plan" id="plan" class="nice-select">
-                        @foreach($allPlans as $index=>$plan)
-                        <option value="{{$plan->id}}">{{$plan->price/1000}}K</option>
-                        @endforeach
-                    </select>
-                    <button class="btn mx-3" id="plan-choose-btn">Choose</button>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex flex-column">
+                        <label for="plan" class="text-start my-2"><strong>Choose Plan</strong></label><br>
+                        <div class="d-flex">
+                            <select name="plan" id="plan" class="nice-select">
+                                <option value="">Select Plan</option>
+                                @foreach($allPlans as $index=>$plan)
+                                <option value="{{$plan->id}}">{{$plan->price/1000}}K</option>
+                                @endforeach
+                            </select>
+                            <button class="btn mx-3" id="plan-choose-btn">Choose</button>
+                        </div>
+                        <div id="plan-detail">
+    
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,34 +85,7 @@ Subscription Plan
 
         <section class="pricing-section">
             <div class="row justify-content-center">
-               {{-- <div class="col-lg-4 col-md-6">
-                    <div class="pricing-card-one border-0 mt-25">
-                        <div class="pack-name">Standard</div>
-                        <div class="price fw-500">0</div>
-                        <ul class="style-none">
-                            <li>15 job posting </li>
-                            <li>7 featured job </li>
-                            <li>Job post live for 30 days </li>
-                        </ul>
-                        <a href="#" class="get-plan-btn tran3s w-100 mt-30">Choose Plan</a>
-                    </div>
-                    <!-- /.pricing-card-one -->
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="pricing-card-one popular-two mt-25">
-                        <div class="popular-badge">popular</div>
-                        <div class="pack-name">Gold</div>
-                        <div class="price fw-500"><sub>₩</sub> 27.<sup>99</sup></div>
-                        <ul class="style-none">
-                            <li>30 job posting </li>
-                            <li>15 featured job </li>
-                            <li>Job post live for 60 days </li>
-                        </ul>
-                        <a href="#" class="get-plan-btn tran3s w-100 mt-30">Choose Plan</a>
-                    </div>
-                    <!-- /.pricing-card-one -->
-                </div>--}}
-                @isset($allPlans)
+                {{-- @isset($allPlans)
                 @foreach($allPlans as $index=>$plan)
                 <div class="col-lg-4 col-md-6">
                     <div class="pricing-card-one border-0 mt-25">
@@ -115,12 +96,10 @@ Subscription Plan
                             <li>{{$plan->allowed_jobs > 1 ? $plan->allowed_jobs.' '.'job posts' : 'Only One Job Post' }}</li>
                             <li>Job post live for 130 days </li>
                         </ul>
-                        {{-- <a href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" class="get-plan-btn tran3s w-100 mt-30 change-plan-id" id="{{$plan->id}}" onclick = "changePlan({{$plan->id}})" >Choose Plan</a> --}}
                     </div>
-                    <!-- /.pricing-card-one -->
                 </div>
                 @endforeach
-                @endisset
+                @endisset --}}
             </div>
         </section>
         <!-- ./pricing-section -->
@@ -212,6 +191,23 @@ Subscription Plan
             token.setAttribute('value', setupIntent.payment_method)
             form.appendChild(token)
             form.submit();
+        }
+    })
+
+    $(document).on("change" , "#plan" , function(e){
+        let plan_id = document.getElementById("plan").value;
+        if(plan_id)
+        {
+            $.ajax({
+                type : "post",
+                url : "{{route('employer.subscription-plan')}}",
+                data : { plan_id : plan_id , "_token" : "{{csrf_token()}}"},
+                success : function(res){
+                    if(res.status){
+                        document.getElementById("plan-detail").innerHTML = res.html;
+                    }
+                }
+            })
         }
     })
 </script>

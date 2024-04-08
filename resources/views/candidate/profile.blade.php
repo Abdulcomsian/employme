@@ -7,6 +7,7 @@ Profile
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
     .step {
         display: none;
@@ -388,9 +389,9 @@ Profile
                                     <label for="">Profile Photo</label>
                                     <div class="user-avatar-setting d-flex align-items-center">
                                         @if($candidatePersonalDetails->profile_picture)
-                                        <img src="{{asset($candidatePersonalDetails->profile_picture)}}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img profile-photo" >
+                                        <img src="{{asset($candidatePersonalDetails->profile_picture)}}"  data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img profile-photo" >
                                         @else
-                                        <img src="{{asset('assets/images/avatar_04.jpg')}}" data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img">
+                                        <img src="{{asset('assets/images/avatar_04.jpg')}}"  data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img profile-photo">
                                         @endif
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
                                             Upload profile photo
@@ -407,6 +408,7 @@ Profile
                                         <div class="upload-btn position-relative tran3s me-3">
                                             Upload Resume PDF
                                             <input type="file" id="candidate_resume" name="candidate_resume" placeholder="" accept="application/pdf">
+                                            <strong class="candidate_resume_name text-dark text-start"></strong>
                                         </div>
 
                                         <button class="delete-btn tran3s" onclick = "deleteFile('resume-file')">Delete</button>
@@ -422,7 +424,7 @@ Profile
                         
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button"  class="dash-btn-one" id = "candidate-personal-details">Save</button>
+                            <button type="button"  class="dash-btn-one" id = "candidate-personal-details">Save <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-personal-details-progress"></i></button>
                         </div>
                     </div>
                 </div>
@@ -452,13 +454,15 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Qualification Obtained</label>
-                                    <select name="fieldOfStudy" id="fieldOfStudy" class="nice-select">
+                                    <input type="text" name="fieldOfStudy" id="fieldOfStudy" value="{{$candidateEducationalDetails->field_of_study ?? ''}}">
+
+                                    {{-- <select name="fieldOfStudy" id="fieldOfStudy" class="nice-select">
                                         <option value="Bachelor Of Arts" {{$candidateEducationalDetails->field_of_study == 'Bachelor Of Arts' ? 'selected' : ''}}>Bachelor Of Arts</option>
                                         <option value="Engineering" {{$candidateEducationalDetails->field_of_study == 'Engineering' ? 'selected' : ''}}>Engineering</option>
                                         <option value="MBBS" {{$candidateEducationalDetails->field_of_study == 'MBBS' ? 'selected' : ''}}>MBBS</option>
                                         <option value="Business" {{$candidateEducationalDetails->field_of_study == 'Business' ? 'selected' : ''}}>Business</option>
                                         <option value="Arts" {{$candidateEducationalDetails->field_of_study == 'Arts' ? 'selected' : ''}}>Arts</option>
-                                    </select>
+                                    </select> --}}
                                 </div>
                             </div>
                         </div>
@@ -611,7 +615,7 @@ Profile
                         @foreach($candidateEducationalDetails->professional_details as $index=>$professional_details)
                             @if($index==0)
                         <div id="candidate-experience" >
-                                <center><h3>Experience Details</h3></center>
+                                {{-- <center><h3>Experience Details</h3></center> --}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="dash-input-wrapper mb-30">
@@ -658,7 +662,7 @@ Profile
                         </div>
                         @else
                         <div class="candidate-experience-details">
-                                <center><h3>Experience Details</h3></center>
+                                {{-- <center><h3>Experience Details</h3></center> --}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="dash-input-wrapper mb-30">
@@ -713,7 +717,7 @@ Profile
                         @endforeach
                         @else
                         <div id="candidate-experience" >
-                                <center><h3>Experience Details</h3></center>
+                                {{-- <center><h3>Experience Details</h3></center> --}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="dash-input-wrapper mb-30">
@@ -1508,6 +1512,7 @@ Profile
 
       $("#candidate-personal-details").on("click", function(e) {
         e.preventDefault();
+        document.querySelector(".candidate-personal-details-progress").classList.remove("d-none")
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
         formData.append("middle_name", $("#multi-step-form").find("[name=middle_name]").val());
@@ -1529,7 +1534,7 @@ Profile
               contentType: false,
               processData: false,
               success: function (data) {
-    
+                document.querySelector(".candidate-personal-details-progress").classList.add("d-none")
                 if (data.status) {
                     toastr.success(data.message);
                 }else{
@@ -1544,6 +1549,10 @@ Profile
   
           return false;
       });
+
+      $(document).on("change" , "#candidate_resume" , function(e){
+        document.querySelector(".candidate_resume_name").innerHTML = this.files[0].name; 
+      })
   
       // Canidate Educational and Professional Information
       $("#candidate-educational-details").on("click", function(e) {
