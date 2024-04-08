@@ -132,7 +132,7 @@
 							<li>Experience: {{$jobDetails->experience ?? ''}}</li>
 							@endif
 							@if($jobDetails->background_check)
-							<li>Background: {{$jobDetails->background_check ?? ''}}</li>
+							<li>Background Check: {{$jobDetails->background_check ?? ''}}</li>
 							@endif
 							@if($jobDetails->health_check_requirement)
 							<li>Health: {{$jobDetails->health_check_requirement ?? ''}}</li>
@@ -401,34 +401,42 @@
 								<span>Insurance Included</span>
 								<div>{{$jobDetails->Insurance_included ?? ''}}</div>
 							</li>
-							<li class="col-xl-7 col-md-4 col-sm-6">
+							{{-- <li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Allowances & Other Incentives</span>
 								<div>{{$jobDetails->allownces_other_incentives ?? ''}}</div>
-							</li>
+							</li> --}}
 							<!-- <li class="col-xl-7 col-md-4 col-sm-6">
 
 								<span>Education Grade</span>
 								<div>B+</div>
 							</li> -->
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Airport Assistance</span>
+								<div>{{$jobDetails->arrival_assitance ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Payday Details:</span>
+								<div>{{$jobDetails->payday_details ?? ''}}</div>
+							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Location</span>
 								<div>{{$jobDetails->employerDetails->city.','.$jobDetails->employerDetails->state}}</div>
 							</li>
-							<li class="col-xl-7 col-md-4 col-sm-6">
+							{{-- <li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Specification</span>
 								<div>{{$jobDetails->specify ?? ''}} </div>
-							</li>
-							<li class="col-xl-5 col-md-4 col-sm-6">
+							</li> --}}
+							{{-- <li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Tax Deductions</span>
 								<div>{{$jobDetails->tax_deductions ?? ''}}</div>
-							</li>
+							</li> --}}
 							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Housing and Insurances</span>
-								<div>yes</div>
-							</li>
-							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Flights</span>
 								<div>{{$jobDetails->airfare ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Housing and Insurances</span>
+								<div>yes</div>
 							</li>
 
 
@@ -436,22 +444,15 @@
 								<span>Furnished Housing</span>
 								<div>no</div>
 							</li>
-							<li class="col-xl-5 col-md-4 col-sm-6">
-								<span>Airport Assistance</span>
-								<div>{{$jobDetails->arrival_assitance ?? ''}}</div>
-							</li>
-							<li class="col-xl-7 col-md-4 col-sm-6">
+							
+							{{-- <li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Bonuses</span>
 								<div>{{$jobDetails->bonuses ?? ''}}</div>
-							</li>
-							<li class="col-xl-5 col-md-4 col-sm-6">
+							</li> --}}
+							{{-- <li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Tax Deductions</span>
 								<div>{{$jobDetails->tax_deductions ?? ''}}</div>
-							</li>
-							<li class="col-xl-12 col-md-4 col-sm-6">
-								<span>Payday Details:</span>
-								<div>{{$jobDetails->payday_details ?? ''}}</div>
-							</li>
+							</li> --}}
 						
 						</ul>
 
@@ -494,6 +495,15 @@
 								<span>Break Times</span>
 								<div>{{$jobDetails->break_times ?? ''}}</div>
 							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Start Time</span>
+								<div>{{$jobDetails->start_time ?? ''}} </div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>End Time</span>
+								<div>{{$jobDetails->finish_time ?? ''}} </div>
+							</li>
+							
 							<li class="col-xl-12 col-md-4 col-sm-6">
 								<span>Curriculum Overview</span>
 								<div>{{$jobDetails->curriculum_overview ?? ''}}</div>
@@ -511,6 +521,9 @@
 								<span>Teaching Aids</span>
 								<div>{{$jobDetails->teaching_aids ?? ''}} </div>
 							</li>
+
+							
+							
 						</ul>
 
 						<!-- <div class="job-tags d-flex flex-wrap pt-15">
@@ -545,8 +558,12 @@
 								<div>{{$jobDetails->airfare ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Vacation & Sick Leave</span>
-								<div>{{$jobDetails->vacation_sick_leave ?? ''}}</div>
+								<span>Paid Vacation</span>
+								<div>{{$jobDetails->vacation_leave ?? ''}}</div>
+							</li>
+							<li class="col-xl-5 col-md-4 col-sm-6">
+								<span>Sick Leave</span>
+								<div>{{$jobDetails->sick_leave ?? ''}}</div>
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Pension</span>
@@ -556,20 +573,15 @@
 								<span>National Holidays</span>
 								<div>{{$jobDetails->national_holidays ?? ''}}</div>
 							</li>
-							<!-- <li class="col-xl-7 col-md-4 col-sm-6">
-
-								<span>Education Grade</span>
-								<div>B+</div>
-							</li> -->
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Overtime Pay</span>
 								<div>{{$jobDetails->overtime_pay ?? ''}}</div>
 							</li>
-							<li class="col-xl-12 col-md-4 col-sm-6">
+							{{-- <li class="col-xl-12 col-md-4 col-sm-6">
 								<span>Professional Development Opportunities</span>
 								<div>{{$jobDetails->professional_development_opportunities ?? ''}} </div>
-							</li>
-							<li class="col-xl-12 col-md-4 col-sm-6">
+							</li> --}}
+							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Housing Details</span>
 								<div>{{$jobDetails->housing_details ?? ''}}</div>
 							</li>

@@ -94,7 +94,7 @@ class CandidateController extends Controller
 
          return response()->json([
                         "status" => true, 
-                        "message" => "Personal Details Updated Successfully"
+                        "message" => "Personal detail, profile picture and document updated "
                     ]);
     }
 

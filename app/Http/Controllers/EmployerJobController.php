@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\EmployerJob;
-use App\Models\{JobCategory, JobApplication,User, JobInterview, Conversation};
+use App\Models\{JobCategory, JobApplication,User, JobInterview, Conversation , Plan};
 use Illuminate\Support\Facades\Auth;
 use Notification;
 use Illuminate\Support\Facades\Validator;
@@ -209,6 +209,24 @@ class EmployerJobController extends Controller
             }
         }
 
+    }
+
+    public function getSubscriptionPlan(Request $request)
+    {
+        $validator = Validator::make($request->all() , [ 'plan_id' => 'nullable|numeric'] );
+
+        if($validator->fails())
+        {
+            return response()->json(['status' => false , 'msg' => implode(',' , $validator->errors()->all())]);
+        }
+
+        try{
+           $plan = Plan::where('id' , $request->plan_id)->first();
+           $html = view('employer.subscription.plan' , ['plan' => $plan])->render();
+           return response()->json(['status' => true , 'html' => $html]);
+        }catch(\Exception $e){
+            return response()->json(['status' => false , 'msg' => $e->getMessage()]);
+        }
     }
 
    
