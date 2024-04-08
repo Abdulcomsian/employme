@@ -4599,7 +4599,8 @@ iframe {
   font-weight: 600;
 }
 .pricing-card-one .price {
-  font-family: "EB Garamond", serif;
+  /* font-family: "EB Garamond", serif; */
+  font-family: "gordita";
   font-size: 72px;
   letter-spacing: -1px;
   color: #ff715b;

@@ -117,7 +117,6 @@ Post A Job
                     </div>
                 </div>
                 <!-- class information -->
-
                 <div class="bg-white card-box border-20 hide section" id="step3">
                     <h4 class="dash-title-three">Class Information</h4>
                     <div class="row">
