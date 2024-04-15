@@ -5324,12 +5324,13 @@ iframe {
   box-shadow: 0px 20px 40px rgba(22, 105, 70, 0.08);
 }
 .job-list-two .logo {
-  height: 54px;
-  width: -moz-fit-content;
-  width: fit-content;
+  height: 80px;
+  width: 80px;
 }
 .job-list-two .logo img {
   max-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .job-list-two .job-duration {
   font-size: 13px;
