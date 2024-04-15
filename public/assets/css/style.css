@@ -5088,7 +5088,7 @@ iframe {
   position: relative;
 }
 .upper-filter .total-job-found {
-  color: rgba(0, 0, 0, 0.4);
+  color: #000;
 }
 .upper-filter .short-filter .nice-select {
   min-width: 154px;
@@ -5338,7 +5338,7 @@ iframe {
   padding: 2px 12px;
   background: #E7F6EF;
   border-radius: 3px;
-  margin: 54px 0 16px;
+  margin: 17px 0 0;
 }
 .job-list-two .job-duration.part-time {
   background: rgba(255, 87, 87, 0.08);
@@ -5355,12 +5355,12 @@ iframe {
 .job-list-two .job-date {
   font-size: 16px;
   color: #AAAAAA;
-  margin: 18px 0 65px;
+  margin: 18px 0 27px;
 }
 .job-list-two .job-salary {
   font-size: 16px;
   color: #AAAAAA;
-  margin: 18px 0 65px;
+  margin: 18px 0 16px;
 }
 .job-list-two .job-location a {
   font-size: 16px;
