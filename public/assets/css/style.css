@@ -5675,9 +5675,10 @@ iframe {
 }
 .job-details .list-type-one li {
   position: relative;
-  font-size: 17px;
+  font-size: 15px;
   margin-top: 20px;
   padding-left: 30px;
+  font-weight: 500;
   line-height: 1.882em;
 }
 .job-details .list-type-one li:before {
@@ -5693,7 +5694,8 @@ iframe {
 }
 .job-details .list-type-two li {
   position: relative;
-  font-size: 17px;
+  font-size: 15px;
+  font-weight: 500;
   margin-top: 25px;
   padding-left: 18px;
 }
