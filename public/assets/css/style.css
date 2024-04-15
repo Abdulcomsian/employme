@@ -5328,9 +5328,9 @@ iframe {
   width: 80px;
 }
 .job-list-two .logo img {
-  max-height: 100%;
-  width: 100%;
   height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 .job-list-two .job-duration {
   font-size: 13px;
@@ -5338,7 +5338,7 @@ iframe {
   padding: 2px 12px;
   background: #E7F6EF;
   border-radius: 3px;
-  margin: 17px 0 0;
+  margin: 54px 0 16px;
 }
 .job-list-two .job-duration.part-time {
   background: rgba(255, 87, 87, 0.08);
@@ -5355,12 +5355,12 @@ iframe {
 .job-list-two .job-date {
   font-size: 16px;
   color: #AAAAAA;
-  margin: 18px 0 27px;
+  margin: 18px 0 65px;
 }
 .job-list-two .job-salary {
   font-size: 16px;
   color: #AAAAAA;
-  margin: 18px 0 16px;
+  margin: 18px 0 65px;
 }
 .job-list-two .job-location a {
   font-size: 16px;
@@ -5570,7 +5570,8 @@ iframe {
   color: #31795A;
 }
 .job-company-info .job-meta-data span {
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 500;
   color: rgba(36, 64, 52, 0.6);
 }
 .job-company-info .job-meta-data div {
