@@ -256,7 +256,7 @@ Job Marketplace
 			<div class="col-xl-9 col-lg-8">
 				<div class="job-post-item-wrapper ms-xxl-5 ms-xl-3">
 					<div class="upper-filter d-flex justify-content-between align-items-center mb-20">
-						<div class="total-job-found">All <span class="text-dark">@isset($allJobs){{ $allJobs->total()}}@endisset</span> jobs found</div>
+						<div class="total-job-found">All <span class="text-dark fw-500">@isset($allJobs){{ $allJobs->total()}}@endisset</span> jobs found</div>
 						<div class="d-flex align-items-center">
 							<div class="short-filter d-flex align-items-center">
 								<div class="text-dark fw-500 me-2">Short:</div>
