@@ -94,5 +94,10 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         return $this->hasMany(CandidateDocument::class , 'user_id' , 'id');
     }
 
+    public function license()
+    {
+        return $this->hasOne(EmployerBusinessLicense::class , 'employer_id' , 'id');
+    }
+
     
 }

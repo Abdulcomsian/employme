@@ -143,7 +143,6 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::put('employer-jobs/activate-job/{id}', [JobController::class, 'activateJob'])->name('employer.activate-job');
     Route::put('employer-jobs/de-activate-job/{id}', [JobController::class, 'deactivateJob'])->name('employer.deactivate-job');
     Route::post('get-subscription-plan' , [EmployerJobController::class , 'getSubscriptionPlan'])->name('employer.subscription-plan');
-    
     Route::resource('employer-jobs', EmployerJobController::class);
     Route::resource('manage/staff',StaffController::class);
     Route::resource('manage/gallery',GalleryController::class);
@@ -209,6 +208,7 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::post('update-password',[UserController::class,'ownerUpdatePassword'])->name('owner.updatePassword');
     Route::get('plans/{plan}', [SubscriptionController::class, 'show'])->name("plans.show");
     Route::resource('job-categories', JobCategoryController::class);
+    Route::post('update-certificate-approval-status' , [EmployerJobController::class , 'updateCertificateApprovalStatus'])->name('updateCertificateApprovalStatus');
 });
 //owner dashboard route ends here
 // Auth::routes();

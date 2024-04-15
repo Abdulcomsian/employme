@@ -141,9 +141,9 @@
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
                                             {{$index+1}}</div>
-                                        <div class="text_1 fw-500">{{$educational_detail['institution'] ?? ''}}</div>
-                                        <h4>{{$educational_detail['degree'] ?? ''}}</h4>
-                                        <p>{{$educational_detail['description'] ?? ''}}</p>
+                                        <div class="text_1 fw-500">{!!$educational_detail['institution'] ?? ''!!}</div>
+                                        <h4>{!! $educational_detail['degree'] ?? '' !!}</h4>
+                                        <p>{!!$educational_detail['description'] ?? ''!!}</p>
                                     </div>
                                     @endif
                                     @endforeach
@@ -164,7 +164,7 @@
                             </div>
 							@endif 
                             <!-- /.inner-card -->
-                            <div class="inner-card mb-75 lg-mb-50">
+                            <!-- <div class="inner-card mb-75 lg-mb-50">
                                 <h3 class="title">Skills</h3>
                                 <ul class="style-none skill-tags d-flex flex-wrap pb-25">
                                     @if(isset($candidateDetails->candidatePreferences->skills) && !empty($candidateDetails->candidatePreferences->skills))
@@ -180,7 +180,7 @@
 										@endif
 										@endif
                                 </ul>
-                            </div>
+                            </div> -->
                             <!-- /.inner-card -->
                             <div class="inner-card mb-60 lg-mb-50">
                                 <h3 class="title">Work Experience</h3>
@@ -192,9 +192,9 @@
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
                                             {{$index+1}}</div>
-                                        <div class="text_1 fw-500">{{$professional_details['date_from']}} - {{$professional_details['date_to']}}</div>
-                                        <h4>{{$professional_details['role']}} ({{$professional_details['employer_name']}})</h4>
-                                        <p>{{$professional_details['description']}}</p>
+                                        <div class="text_1 fw-500">{{ $professional_details['date_from']}} - {{$professional_details['date_to']}}</div>
+                                        <h4>{{ $professional_details['role']}} ({{$professional_details['employer_name']}})</h4>
+                                        <p>{!! $professional_details['description'] !!}</p>
                                     </div>
                                 @endif
                                 @endforeach

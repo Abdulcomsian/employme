@@ -18,6 +18,8 @@ Employers
     color: black !important;
 }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
 @section('content')
 <div class="dashboard-body">
@@ -98,13 +100,14 @@ Employers
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
-                         {{--   <th scope="col">Action</th> --}}
+                            <th scope="col">Email Verified</th>
+                            <th scope="col">Certificate</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="border-0">
                      @isset($employers)
-                    @foreach($employers as $index=>$employer)
+                        @foreach($employers as $index=>$employer)
                         <tr class="active">
                         <td>{{$index+1}}</td>
                             <td>
@@ -112,28 +115,21 @@ Employers
                                 <!-- <div class="info1">Fulltime . Spain</div> -->
                             </td>
                             <td >{{$employer->email}}</td>
-                            @if($employer->email_verified_at)
                             <td>
-                                <div class="job-status"  >Verified</div>
+                                <div class="job-status"  >{{auth()->user()->email_verified_at ? 'Verified' : 'Unverified'}}</div>
                             </td>
-                            @else
                             <td>
-                                <div class="job-status"  >Unverified</div>
+                                <div class="license text-center"  >@if($employer->license) <a href="{{asset($employer->license->license_file)}}"><i class="fa-regular fa-file"></i></a> @else <i title="No Certificate Added" class="fa-solid fa-file-circle-xmark"></i> @endif </div>
                             </td>
-                            @endif
-                           {{-- <td>
-                                <div class="action-dots float-end">
-                                    <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span></span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="{{route('companyAboutUs',\Crypt::encryptString($employer->id))}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
-                                    </ul>
-                                </div>
-                            </td> --}}
+                            <td>
+                                <select class="form-select employer-approval-status" name="" id="" data-employer-id="{{$employer->id}}">
+                                    <option value="">Approval Status</option>
+                                    <option value="{{\AppConst::LICENSE_PENDING}}" @if($employer->license->approval_status == \AppConst::LICENSE_PENDING) selected @endif>Pending</option>
+                                    <option value="{{\AppConst::LICENSE_APPROVED}}" @if($employer->license->approval_status == \AppConst::LICENSE_APPROVED) selected @endif>Approval</option>
+                                    <option value="{{\AppConst::LICENSE_REJECTED}}" @if($employer->license->approval_status == \AppConst::LICENSE_REJECTED) selected @endif>Rejected</option>
+                                </select>
+                            </td>
+                          
                         </tr>
                         @endforeach
                         @endisset
@@ -153,6 +149,32 @@ Employers
             </ul>
         </div> -->
         {{ $employers->links('vendor.pagination.custom-pagination-2') }}
+
+        @push('page-script')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script>
+                $(document).on("change" , ".employer-approval-status" , function(e){
+                    let employerId = this.dataset.employerId;
+                    let status = this.value;
+                    $.ajax({
+                        type : 'POST',
+                        url : "{{route('updateCertificateApprovalStatus')}}",
+                        data : {
+                            _token : "{{csrf_token()}}",
+                            employerId : employerId,
+                            status : status
+                        },
+                        success : function(res){
+                            if(res.status){
+                                toastr.success(res.message);
+                            }else{
+                                toastr.error(res.error);
+                            }
+                        }
+                    })
+                })
+            </script>
+        @endpush
 
     </div>
 </div>
