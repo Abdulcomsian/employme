@@ -187,7 +187,7 @@ h3{
 						<div class="text">Introductry Video</div>
 					</div> --}}
 				</div>
-					<form id="basic-information-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
+					<form id="basic-information-form" class="mt-4" method="post" enctype="multipart/form-data">
 						<!-- Step 1 -->
 						<div class="bg-white card-box" id="step-1">
 							<h3 class="my-3">Account Information</h3>
@@ -276,7 +276,7 @@ h3{
 								<div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">
 										<label for="">Email</label>
-										<input type="email" name="email" placeholder="name@example.com" value="{{$employerDetails->email ?? ''}}">
+										<input type="email" name="email" placeholder="name@example.com" value="{{auth()->user()->email ?? ''}}" readonly>
 									</div>
 								</div>
 							</div>
@@ -547,8 +547,10 @@ h3{
 											<div class="user-avatar-setting d-flex align-items-center">
 												<div class="upload-btn position-relative tran3s ms-4 me-3">
 													Upload
-													<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">											</div>
-												<button type = "button" class="delete-btn tran3s">Delete</button>
+													<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">	
+													<button type = "button" class="delete-btn tran3s">Delete</button>
+												</div>
+												<strong id="legalDisputesConfirmationDocumentFileName"></strong>										
 											</div>
 										</div>
 									</div>
@@ -584,9 +586,11 @@ h3{
 											<div class="user-avatar-setting d-flex align-items-center">
 												<div class="upload-btn position-relative tran3s me-3">
 													Upload
-													<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">											</div>
+													<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">		
+												</div>
 												<button type = "button" class="delete-btn tran3s">Delete</button>
 											</div>
+											<strong id="legalDisputesConfirmationDocumentFileName"></strong>			
 										</div>
 									</div>
 								</div>
@@ -632,7 +636,7 @@ h3{
 								</div>
 							</div>
 						</form>
-					<form id="declaration-consent-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
+					<form id="declaration-consent-form" class="mt-4" method="post">
 						<div class="bg-white card-box" id="step-4">
 							<h3 class="my-3">Terms And Condition</h3>
 							<div class="row">
@@ -668,7 +672,7 @@ h3{
 
 							<div class="d-flex flex-row justify-content-end gap-3">
 								{{-- <button type="button" class="dash-btn-one" onclick="previousStep(4)">Previous</button> --}}
-								<button type="submit" class="dash-btn-one" id = "declaration-consent-details" >Submit</button>
+								<button type="button" class="dash-btn-one" id="declaration-consent-details" >Submit</button>
 							</div>
 						</div>
 					</form>
@@ -1015,9 +1019,8 @@ h3{
 		// step3NextBtn.disabled = false
 	    //     else
 		// 	step3NextBtn.disabled = true
-
-		document.querySelector("#institution_logo").addEventListener("change" , function(e){
-            const file = event.target.files;
+		$(document).on("change" , "#institution_logo" , function(e){
+			const file = event.target.files;
             if (file) {
                 const fileReader = new FileReader();
                 const preview = document.querySelector('#profile_image');
@@ -1026,8 +1029,14 @@ h3{
                 }
                 fileReader.readAsDataURL(file[0]);
             }
-            
-        })
+		})
+
+		$(document).on("change" , "#legalDisputesConfirmationDocument" , function(e){
+			let filename = this.files[0].name;
+			document.querySelector("#legalDisputesConfirmationDocumentFileName").innerHTML = filename;
+		})
+
+
 
 		$('#summernote').summernote({
 			placeholder: 'Curriculum',
@@ -1343,7 +1352,7 @@ h3{
 	
 			return false;
 		});
-		$("#declaration-consent-form").on("submit", function(e) {
+		$(document).on("click" , "#declaration-consent-details" , function(e){
 			e.preventDefault();
 			var formData = new FormData();
 			formData.append("_token", "{{ csrf_token() }}");
@@ -1375,7 +1384,7 @@ h3{
 			});
 	
 			return false;
-		});
+		})
     
 	  
     }); 

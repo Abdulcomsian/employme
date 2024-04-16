@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\BusinessLicense;
 use Illuminate\Http\Request;
 use App\Models\EmployerJob;
-use App\Models\{JobCategory, JobApplication,User, JobInterview, Conversation , Plan};
+use App\Models\{JobCategory, JobApplication,User, JobInterview, Conversation , EmployerBusinessLicense, Plan};
 use Illuminate\Support\Facades\Auth;
 use Notification;
 use Illuminate\Support\Facades\Validator;
@@ -227,6 +228,19 @@ class EmployerJobController extends Controller
         }catch(\Exception $e){
             return response()->json(['status' => false , 'msg' => $e->getMessage()]);
         }
+    }
+
+    public function updateCertificateApprovalStatus(Request $request)
+    {
+        try{
+            $businessLicense = EmployerBusinessLicense::where('employer_id' , $request->employerId)->first();
+            $businessLicense->approval_status = $request->status;
+            $businessLicense->save();
+            return response()->json(['status' => true , 'message' => 'Employer approval status changed successfully']);
+        }catch(\Exception $e){
+            return response()->json(['status' => true , 'error' => $e->getMessage()]);
+        }
+
     }
 
    

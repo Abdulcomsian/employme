@@ -9593,6 +9593,7 @@ body.compensate-for-scrollbar {
 }
 .dash-aside-navbar .user-data .user-avatar img {
   border-radius: 50%;
+  height: 100%;
 }
 .dash-aside-navbar .user-data .user-avatar.online:before {
   content: "";
@@ -9720,7 +9721,7 @@ body.compensate-for-scrollbar {
 
 .dashboard-body {
   min-height: 100vh;
-  background: #F0F5F3;
+  background: #f7f7f7;
   margin-left: 260px;
   border-radius: 50px 0 0 50px;
   padding: 150px 55px 50px;
@@ -9740,7 +9741,7 @@ body.compensate-for-scrollbar {
 .dashboard-body .main-title {
   font-family: "gordita";
   font-size: 36px;
-  color: #244034;
+  color: #000;
   margin-bottom: 40px;
 }
 .dashboard-body .dash-title-two {
@@ -9814,7 +9815,7 @@ body.compensate-for-scrollbar {
   top: 0;
   right: 55px;
   left: 315px;
-  background: #F0F5F3;
+  background: #F7F7F7;
   padding: 30px 0;
   z-index: 999;
 }
@@ -9986,10 +9987,11 @@ body.compensate-for-scrollbar {
 .dashboard-body .dash-card-one .value {
   font-size: 36px;
   letter-spacing: -0.36px;
-  color: #244034;
+  color: #000;
 }
 .dashboard-body .dash-card-one span {
   color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
 }
 .dashboard-body .user-activity-chart .job-list {
   padding: 25px 20px;

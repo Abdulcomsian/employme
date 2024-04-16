@@ -29,8 +29,8 @@ Subscription Plan
 
         <h2 class="main-title">Membership</h2>
         <span><b>Total Spent: </b></span><spa>{{employerSpentAmount()}} ₩</span>
+        @if($userSubscription && $userSubscription->plan)
         <div class="membership-plan-wrapper mb-20">
-            @if($userSubscription)
             <div class="row gx-0">
                 <div class="col-xxl-7 col-lg-6 d-flex flex-column">
                     <div class="column w-100 h-100">
@@ -56,9 +56,8 @@ Subscription Plan
                     </div>
                 </div>
             </div>
-            @endif
         </div>
-
+        @else
         <div class="row my-5">
             <div class="col-md-12">
                 <div class="d-flex justify-content-center">
@@ -67,7 +66,7 @@ Subscription Plan
                         <div class="d-flex">
                             <select name="plan" id="plan" class="nice-select">
                                 <option value="">Select Plan</option>
-                                @foreach($allPlans as $index=>$plan)
+                                @foreach($allPlans as $index => $plan)
                                 <option value="{{$plan->id}}">{{$plan->price/1000}}K</option>
                                 @endforeach
                             </select>
@@ -80,6 +79,8 @@ Subscription Plan
                 </div>
             </div>
         </div>
+        @endif
+
 
         <!-- /.membership-plan-wrapper -->
 
@@ -113,16 +114,13 @@ Subscription Plan
                 <div class="text-center">
                     <h3>Reschedule Form</h3>
                 </div>
-                <div class="form-wrapper m-auto">
-                    <form  id = "payment-form" action = "{{route('subscription.create')}}" method = "POST">
+                <div class="form-wrapper p-5">
+                    <form  id="payment-form" action = "{{route('subscription.create')}}" method="POST">
                         @csrf
-                        <input type = "hidden" id = "plan_id" name = "plan_id" value = "">
+                        <input type="hidden" id="plan_id" name="plan_id" value="">
                         <div id="interview-request-errors-list"></div>
                         <div class="row">
-                                    <div class="col-md-12">
-											<label for="">Card details</label>
-											<div id="card-element"></div>
-									</div>
+                                    <div class="col-md-12 my-2"><label for="">Card details</label><div id="card-element"></div></div>
                           
                         
                             <div class="col-md-6">
@@ -147,8 +145,11 @@ Subscription Plan
 
     $(document).on("click" , "#plan-choose-btn" , function(e){
         let plan = document.getElementById("plan").value;
-        document.getElementById('plan_id').value = plan;
-        $("#RescheduleRequestModal").modal("show");
+        if(plan.trim())
+        {
+            document.getElementById('plan_id').value = plan;
+            $("#RescheduleRequestModal").modal("show");
+        }
     })
     
     
