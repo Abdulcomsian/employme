@@ -109,8 +109,8 @@
                                 <p>{{$candidateDetails->candidatePersonalDetails->introduction ?? ''}}</p>
                             </div>
                             <!-- /.inner-card -->
-                            <h3 class="title">Interview</h3>
                             @if(isset($candidateDetails->candidatePreferences->video_url) || isset($candidateDetails->candidatePreferences->other_platform_video_url))
+                            <h3 class="title">Introduction</h3>
                             @if(!empty($candidateDetails->candidatePreferences->video_url))
                             <div
                                 class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
