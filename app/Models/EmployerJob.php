@@ -108,6 +108,10 @@ class EmployerJob extends Model
     {
         return $this->belongsToMany(User::class, 'job_applications', 'employer_job_id', 'candidate_id')->with('candidatePersonalDetails','candidateEducation','candidatePreferences')->withPivot('id','cover_letter','application_status');
     }
+    public function interview()
+    {
+        return $this->hasMany(JobInterview::class , 'employer_job_id' , 'id');
+    }
     public function savedJobs()
     {
         return $this->belongsToMany(User::class, 'saved_jobs', 'employer_job_id', 'user_id');

@@ -161,11 +161,11 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Start Date:</label>
-                            <input type="date" name="start_date" placeholder=""></input>
+                            <input type="date" name="start_date" min="{{date('Y-m-d')}}" placeholder=""></input>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">End Date:</label>
-                            <input type="date" name="end_date" placeholder=""></input>
+                            <input type="date" name="end_date" min="{{date('Y-m-d')}}" placeholder=""></input>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-12">
                             <label for="">Salary Breakdown:</label>

@@ -243,5 +243,27 @@ class EmployerJobController extends Controller
 
     }
 
+    public function updateInterviewStatus(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            'interviewId' => 'required|numeric',
+            'status' => 'required|numeric', 
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json(['status' => false , 'error' => implode(',' , $validator->errors()->all())]);
+        }
+
+        try{
+            $interview = JobInterview::where('id' , $request->interviewId)->first();
+            $interview->status = $request->status;
+            $interview->save();
+            return response()->json(['status' => true , 'message' => 'Interview status changed successfully']);
+        }catch(\Exception $e){
+            return response()->json(['status' => false , 'error' => $e->getMessage()]);
+        }
+    }
+
    
 }

@@ -25,7 +25,17 @@ Interview Request
     /* background-color: #04AA6D; */
     color: black !important;
 }
+.dropdown-menu-end img{
+    width : 25px!important;
+}
+.dropdown-menu-end li{
+    cursor: pointer;
+}
+.dropdown-menu-end li:hover a{
+    color: #ff5b5b;
+}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
 
 <div class="dashboard-body">
@@ -94,7 +104,12 @@ Interview Request
                                         elseif($interview->status == 4)
                                         {
                                             $status = 'active';
-                                            $message = 'Conducted';
+                                            $message = 'Approved';
+                                        }
+                                        elseif($interview->status ==5)
+                                        {
+                                            $status = 'active';
+                                            $message = 'Rejected';
                                         }
                                      }else
                                      {
@@ -152,12 +167,9 @@ Interview Request
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                    document.getElementById('conducted-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Mark as Conducted</a>
-                                                </li>                                                                                               
-                                                <form id="conducted-form-{{$interview->id}}" action="{{ route('employer.interview.conducted', $interview->id) }}" method="POST" style="display: none;">
-                                                @csrf
-                                                </form>
+                                                <li class="dropdown-item approve-interview interview-status" data-interview-id="{{$interview->id}}" data-status="4" ><img src="{{asset('assets/images/accept.png')}}" data-src="{{asset('assets/images/icon/accept.png')}}" alt="" class="lazy-img">Mark As Approve</li>
+                                                <li class="dropdown-item reject-interview interview-status" data-interview-id="{{$interview->id}}" data-status="5"><img src="{{asset('assets/images/reject.png')}}" data-src="{{asset('assets/images/icon/reject.png')}}" alt="" class="lazy-img">Mark As Reject</li>
+                                                <li><a class="dropdown-item conduct-interview interview-status" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Mark as Conducted</a></li>                                                                                               
                                                
                                             </ul>
                                         </div>
@@ -457,6 +469,33 @@ Interview Request
         </div> -->
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
 
+
+    $(document).on("click" , ".interview-status" , function(e){
+        let status = this.dataset.status;
+        let interviewId = this.dataset.interviewId;
+        $.ajax({
+            type : 'POST',
+            url : '{{route("employer.changeInterviewStatus")}}',
+            data : {
+                _token : '{{csrf_token()}}',
+                status : status,
+                interviewId : interviewId
+            },
+            success : function(res){
+                if(res.status)
+                {
+                    toastr.success(res.message);
+                }else{
+                    toastr.error(res.error)
+                }
+            }
+        })
+
+    })
+</script>
 
 @endsection

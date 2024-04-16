@@ -50,7 +50,7 @@
 						@else
 							@if(\Auth::check())
 							@role('candidate')
-							@if(jobApplicationStatus($jobDetails->id) == 1)
+							@if($appliedInterview)
 									<button class="btn-one">Applied Already</button>
 								@else
 									<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
@@ -720,9 +720,7 @@
 					<div id="errors-list"></div>
                     <div class="mb-3">
                         <label class="col-form-label" for="Major Name">Interview Date</label>
-						<input type="date" name="application_date" id="application_date" class="form-control">
-                        {{-- <textarea class="form-control"  name="cover_letter" id="cover_letter"
-                            placeholder="{{__('Job Application Cover Letter')}}" rows="5" autocomplete="off"></textarea> --}}
+						<input type="date" name="application_date" id="application_date" class="form-control" min="{{date('Y-m-d')}}">
                     </div>
              
             </div>

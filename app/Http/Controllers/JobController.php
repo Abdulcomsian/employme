@@ -17,6 +17,13 @@ class JobController extends Controller
         $allJobs = EmployerJob::where('job_status',1)->with('employerDetails');
         $jobCategories = JobCategory::all();
        
+        if(auth()->check())
+        {
+            $allJobs->with(['interview' => function($query){
+                $query->where('requested_to' , auth()->user()->id);
+            }]);
+        }
+
         if(isset($request->SearchJobTitle) && $request->SearchJobTitle !='')
         {
             $allJobs = $allJobs->where('job_title','like','%'.$request->SearchJobTitle.'%');
@@ -114,7 +121,7 @@ class JobController extends Controller
         $dt = Carbon::now();
         $dt2 = $dt->copy()->subWeek(); 
        
-        $allInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())->paginate(10);
+        $allInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->whereNotNull('job_link')->where('requested_from',Auth::id())->paginate(10);
         $latestInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())
         ->where('created_at', '>=', $dt2->copy()->startOfDay())
         ->where('created_at', '<=', $dt->copy()->endOfDay())
@@ -122,10 +129,6 @@ class JobController extends Controller
         return view('employer.employer-interview-request',compact('allInterviews','latestInterviews'));
     }
 
-    public function SearchjobMarketplace(Request $request)
-    {
-        dd('shakir');
-    }
 
     public function jobApplicationRequest(Request $request)
     {
@@ -151,14 +154,8 @@ class JobController extends Controller
         }
         else
         {
-            if(auth()->user()->hasRole('admin'))
+            if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('employer'))
             {
-                return response()->json([
-                    "status" => false,
-                    "errors" => ["Only Candidate can Apply for Job"]
-                ]);
-            }
-            elseif(auth()->user()->hasRole('employer')){
                 return response()->json([
                     "status" => false,
                     "errors" => ["Only Candidate can Apply for Job"]
@@ -175,6 +172,7 @@ class JobController extends Controller
                 $jobDetails = EmployerJob::find($request->job_id);
                 $candidateDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
                 $employerDetails = User::find($jobDetails->posted_by);
+                JobInterview::create(['requested_from' =>  $jobDetails->posted_by , 'requested_to' =>auth()->user()->id , 'employer_job_id' => $request->job_id  , 'interview_date' => $request->application_date]);
                 $subject = 'Job Application';
                 $text = '';
                 $employer_notify_message = [

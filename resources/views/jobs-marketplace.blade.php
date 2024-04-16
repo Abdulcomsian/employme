@@ -8,6 +8,42 @@ Job Marketplace
 		============================================== 
 		-->
 @section('content')
+<style>
+	span#loadingIcon img {
+		width: 20px;
+	}
+</style>
+<div class="modal fade" id="JobApplicationModal" tabindex="-1" role="dialog" aria-labelledby="Edit User"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="User-Edit-Modal">{{__('Job Application')}}</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id='Job-Application-Form' method="POST" class="clearfix" enctype="multipart/form-data">
+					<input id="interview-job-id" type="hidden" name="job_id" value="">
+					<div id="errors-list"></div>
+                    <div class="mb-3">
+                        <label class="col-form-label" for="Major Name">Interview Date</label>
+						<input type="date" name="application_date" id="application_date" class="form-control" min="{{date('Y-m-d')}}">
+                    </div>
+             
+            </div>
+            <div class="modal-footer">
+                <button class="btn-one" type="button" data-bs-dismiss="modal">
+					Close
+                </button>
+                <button class=" btn-submit btn-one" type="submit" name="submit">
+					<span id="buttonText">Apply</span>
+					<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
+				</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="inner-banner-one position-relative">
 	<div class="container">
 		<div class="position-relative">
@@ -517,7 +553,11 @@ Job Marketplace
 									
 									<div class="d-flex align-items-center justify-content-between mt-auto">
 										<div class="job-location"><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}">{{$job->city_town}}</a></div>
-										<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="apply-btn text-center tran3s">Interview Request</a>
+										@if($job->interview->count() == 1)
+										<button class="apply-btn text-center tran3s">Interview Applied</button>
+										@else
+										<button class="apply-btn text-center tran3s apply-interview" data-job-id="{{$job->id}}">Interview Request</button>
+										@endif
 									</div>
 								</div> <!-- /.job-list-two -->
 							</div>
@@ -637,4 +677,53 @@ Job Marketplace
 		</div>
 	</div>
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).on("click" , ".apply-interview" , function(e){
+		let id = this.dataset.jobId;
+		document.getElementById('interview-job-id').value = id;
+		$("#JobApplicationModal").modal("show");
+	})
+
+	$(document).on("submit", "#Job-Application-Form", function() {
+        // e.preventDefault();
+        //   var e = this;
+		$('#buttonText').hide();
+        $('#loadingIcon').removeClass("d-none");
+        $(".btn-submit").prop('disabled',true);
+  
+          $.ajax({
+              url: '{{route("jobApplicationRequest")}}',
+              data: {
+                _token:"{{csrf_token()}}",
+                job_id: $("#Job-Application-Form").find('input[name=job_id]').val(),
+                application_date: $("#Job-Application-Form").find('input[name="application_date"]').val(),
+                        },
+              type: "POST",
+              dataType: 'json',
+              success: function (data) {
+    
+                if (data.status) {
+                    window.location = data.redirect;
+                }else{
+                    $(".alert").remove();
+                    $.each(data.errors, function (key, val) {
+                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    });
+                }
+               
+              },
+			  complete: function(){
+                $('#loadingIcon').addClass("d-none");
+                $('#buttonText').show();
+				$(".btn-submit").attr('disabled',false);
+
+            }
+          });
+  
+          return false;
+      });
+</script>
 @endsection
+

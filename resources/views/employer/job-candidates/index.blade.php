@@ -262,7 +262,7 @@ Employer Saved Candidate
                             <div class="col-md-6">
                                 <div class="input-group-meta position-relative mb-25">
                                     <label>Date*</label>
-                                    <input type="date" name = "interview_date" placeholder="" required>
+                                    <input type="date" name="interview_date" placeholder="" min="{{date('Y-m-d')}}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
