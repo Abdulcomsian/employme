@@ -28,7 +28,7 @@
                             <div class="row gx-1 align-items-center">
                                 <div class="col-xl-2 order-xl-0">
                                     <div class="position-relative">
-                                        <h4 class="candidate-name text-white mb-0">{{$candidateDetails->candidatePersonalDetails->full_name ?? ''}}</h4>
+                                        <h4 class="candidate-name text-white mb-0">{{$candidateDetails->candidatePersonalDetails->first_name ?? ''}} {{$candidateDetails->candidatePersonalDetails->middle_name ?? ''}} {{$candidateDetails->candidatePersonalDetails->last_name ?? ''}}</h4>
                                         <div class="candidate-post">{{$candidateDetails->candidatePersonalDetails->designation ?? ''}}</div>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@
 
 									         <li class="border-0">
                                         <span>Name: </span>
-                                        <div>{{$candidateDetails->candidatePersonalDetails->full_name ?? ''}}</div>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->first_name ?? ''}} {{$candidateDetails->candidatePersonalDetails->middle_name ?? ''}} {{$candidateDetails->candidatePersonalDetails->last_name ?? ''}}</div>
                                     </li>
                                     <!-- <li>
                                         <span>Age: </span>
