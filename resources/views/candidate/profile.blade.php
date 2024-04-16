@@ -124,63 +124,6 @@ Profile
 				</div>
 		  @endif
         <h2 class="main-title">My Profile</h2>
-
-        {{-- <div class="bg-white card-box border-20 mb-40">
-            <div class="candidate-sign-up">
-                <div class="stepper">
-                    <div id="tag-step-1" class="step selected">
-                        <div class="icon">
-                            <div>1</div>
-                        </div>
-                        <div class="text">Visa Eligibility Check</div>
-                    </div>
-                    <div id="tag-step-2" class="step">
-                        <div class="icon">
-                            <div>2</div>
-                        </div>
-                        <div class="text">Personal Details</div>
-                    </div>
-                    <div id="tag-step-3" class="step">
-                        <div class="icon">
-                            <div>3</div>
-                        </div>
-                        <div class="text">Education</div>
-                    </div>
-                    <div id="tag-step-4" class="step">
-                        <div class="icon">
-                            <div>4</div>
-                        </div>
-                        <div class="text">Professional Details</div>
-                    </div>
-                    <div id="tag-step-5" class="step">
-                        <div class="icon">
-                            <div>5</div>
-                        </div>
-                        <div class="text">Skills & Preferences</div>
-                    </div>
-                    <div id="tag-step-6" class="step">
-                        <div class="icon">
-                            <div>6</div>
-                        </div>
-                        <div class="text">Introduce Yourself</div>
-                    </div>
-                    <div id="tag-step-7" class="step">
-                        <div class="icon">
-                            <div>7</div>
-                        </div>
-                        <div class="text">Teaching Video & Interview (optional)</div>
-                    </div>
-                    <div id="tag-step-8" class="step">
-                        <div class="icon">
-                            <div>8</div>
-                        </div>
-                        <div class="text">Legal & Verification</div>
-                    </div>
-                </div>
-               
-            </div>
-        </div> --}}
-
         <form id="multi-step-form" enctype = "multipart/form-data">
             <!-- Step 1 -->
             <div class="bg-white card-box border-20 mb-40">
@@ -931,54 +874,7 @@ Profile
                             </div>
                             
                         </div>
-                        {{-- <div class="row " id="add-skill-field">
-                                @if(isset($candidatePreferencesDetails->skills))
-                                @foreach($candidatePreferencesDetails->skills as $index=>$skill)
-                                @if($index==0)
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <label for="">Skills</label>
-                                            <input type="text" name="skill[]" id="professionalSkills" placeholder="Add Skill" value = "{{$skill ?? ''}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mt-4">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                @else
-                                <div class="row skill-field-row">
-                                    <div class="col-md-6">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <input type="text" name="skill[]"  placeholder="Add Skill" value = "{{$skill ?? ''}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <button type="button" class="btn btn-danger remove-tr">Remove</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endif
-                                @endforeach
-                                @else
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <label for="">Skills</label>
-                                            <input type="text" name="skill[]" id="professionalSkills" placeholder="Add Skill" value = "{{$candidatePersonalDetails->preferred_city_region ?? ''}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mt-4">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endif
-                        </div> --}}
+                     
 
                         <div class="d-flex flex-row justify-content-end gap-3">
                             <button type="button" class="dash-btn-one" id = "candidate-preferences-details">Save</button>
@@ -1690,8 +1586,6 @@ Profile
        // Canidate  Professional Information
       $("#candidate-professional-details").on("click", function(e) {
         e.preventDefault();
-        var formData = new FormData();
-        formData.append("_token", "{{ csrf_token() }}");
         var noteEditable = document.querySelector("#step-4").querySelectorAll(".note-editable");
         var experienceData = [];
     
@@ -1716,6 +1610,8 @@ Profile
             }
     
         var experienceData = JSON.stringify(experienceData);
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
         formData.append('professional_details',experienceData)
 
           $.ajax({
@@ -1746,12 +1642,7 @@ Profile
         e.preventDefault();
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
-        var skillInput = $('input[name="skill[]"]');
-
-        // Loop through each input element and append it to the FormData
-        // skillInput.each(function(index, element) {
-        // formData.append('skills[]', element.value);
-        // });
+       
         formData.append('preferred_city_region',$("#multi-step-form").find('[name=preferredCityRegionInSouthKorea]').val());
         formData.append('school_type',$("#multi-step-form").find('[name=schoolTypePreference]').val());
         formData.append('age_group',$("#multi-step-form").find('[name=ageGroupPreference]').val());
