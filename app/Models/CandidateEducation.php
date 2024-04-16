@@ -10,22 +10,16 @@ class CandidateEducation extends Model
     use HasFactory;
     protected $fillable = [
         'country_id',
-        'highest_degree',
-        'field_of_study',
         'teaching_experiance',
-        'institute_name',
-        'institute_place',
         'tefl_tesol_clarification',
         'clarification_details_if_yes',
         'prevous_teaching_in_korea',
         'experiance_description_if_yes',
-        'educational_details',
         'professional_details', 
         'user_id',    
     ];
     protected $casts =
     [
-     'educational_details'=>'array',
      'professional_details'=>'array'
     ];
     /**

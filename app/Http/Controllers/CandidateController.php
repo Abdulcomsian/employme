@@ -103,10 +103,10 @@ class CandidateController extends Controller
     {
         $input = $request->except('_token','educational_details');
         $updateEducationalDetails = CandidateEducation::where('user_id',Auth::id());
-        $deletePreviousEducationRecord = CandidateEducationalDetail::where('user_id',Auth::id())->delete();
         if(isset($request->educational_details))
         {
         $educationalDetails = json_decode($request->educational_details);
+        $deletePreviousEducationRecord = CandidateEducationalDetail::where('user_id',Auth::id())->delete();
             foreach($educationalDetails as $education)
             {
                 $addEducation = new CandidateEducationalDetail;
