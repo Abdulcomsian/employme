@@ -142,7 +142,6 @@ class EmployerController extends Controller
     }
     public function saveProfile4(Request $request)
     {
-        dd($request->all());
         $validator = Validator::make($request->all(), [
             // 'license_number' => 'required',
             'license_file' => 'required',

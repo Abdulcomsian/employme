@@ -59,7 +59,7 @@
 						@else
 							@if(\Auth::check())
 							@role('candidate')
-							@if(jobApplicationStatus($jobDetails->id) == 1)
+							@if($appliedInterview)
 									<button class="btn-one">Applied Already</button>
 								@else
 									<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->

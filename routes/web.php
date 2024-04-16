@@ -151,7 +151,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::delete('manage/housings/destroy/{id}',[HousingController::class,'destroy'])->name('employer.housing.destroy');
     Route::get('manage/business-operation',[BusinessOperationController::class,'manageBusinessOperation'])->name('employer.manageBusinessOperation');
     Route::post('update-business-operation',[BusinessOperationController::class,'updateBusinessOperation'])->name('employer.updateBusinessOperation');
-
+    Route::post('update-interview-status' , [EmployerJobController::class , 'updateInterviewStatus'])->name('employer.changeInterviewStatus');
     /*Routes regarding Job Applications Actions */
     Route::post('interview-invitation', [EmployerJobController::class, 'interviewInvitation'])->name('employer.interviewInvitation');
     Route::put('reject-application/{id}', [EmployerJobController::class, 'rejectApplication'])->name('employer.rejectApplication');
