@@ -435,148 +435,125 @@ Profile
                 <h4 class="dash-title-three">Education</h4>
                 <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Education</label>
-                                    <select name="highestDegreeObtained" id="highestDegreeObtained" class="nice-select">
-                                        <option value="High School Diploma/GED" {{$candidateEducationalDetails->highest_degree == 'High School Diploma/GED' ? 'selected' : ''}}>High School Diploma/GED</option>
-                                        <option value="Associate's Degree" {{$candidateEducationalDetails->highest_degree == "Associate's Degree" ? 'selected' : ''}}>Associate's Degree</option>
-                                        <option value="Bachelor's Degree" {{$candidateEducationalDetails->highest_degree == "Bachelor's Degree" ? 'selected' : ''}}>Bachelor's Degree</option>
-                                        <option value="Master's Degree" {{$candidateEducationalDetails->highest_degree == "Master's Degree" ? 'selected' : ''}}>Master's Degree</option>
-                                        <option value="Doctorate/Ph.D." {{$candidateEducationalDetails->highest_degree == "Doctorate/Ph.D." ? 'selected' : ''}}>Doctorate/Ph.D.</option>
-                                        <option value="Professional Certification" {{$candidateEducationalDetails->highest_degree == "Professional Certification" ? 'selected' : ''}}>Professional Certification</option>
-                                        <option value="Vocational Training" {{$candidateEducationalDetails->highest_degree == 'Vocational Training' ? 'selected' : ''}}>Vocational Training</option>
-                                        <option value="Other (Please Specify)" {{$candidateEducationalDetails->highest_degree == "Other (Please Specify)" ? 'selected' : ''}}>Other (Please Specify)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Qualification Obtained</label>
-                                    <input type="text" name="fieldOfStudy" id="fieldOfStudy" value="{{$candidateEducationalDetails->field_of_study ?? ''}}">
-
-                                    {{-- <select name="fieldOfStudy" id="fieldOfStudy" class="nice-select">
-                                        <option value="Bachelor Of Arts" {{$candidateEducationalDetails->field_of_study == 'Bachelor Of Arts' ? 'selected' : ''}}>Bachelor Of Arts</option>
-                                        <option value="Engineering" {{$candidateEducationalDetails->field_of_study == 'Engineering' ? 'selected' : ''}}>Engineering</option>
-                                        <option value="MBBS" {{$candidateEducationalDetails->field_of_study == 'MBBS' ? 'selected' : ''}}>MBBS</option>
-                                        <option value="Business" {{$candidateEducationalDetails->field_of_study == 'Business' ? 'selected' : ''}}>Business</option>
-                                        <option value="Arts" {{$candidateEducationalDetails->field_of_study == 'Arts' ? 'selected' : ''}}>Arts</option>
-                                    </select> --}}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">University/College Name</label>
-                                    <input type="text" name="universityCollegeNameCountry" placeholder="Name of College or Univesity" value = "{{$candidateEducationalDetails->institute_name ?? ''}}">
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Country</label>
-                                    <select name="instituteCountry" id="instituteCountry" class="nice-select">
-                                        @foreach($countries as $country)
-                                        <option value="{{$country->id}}" {{$candidateEducationalDetails->country_id == $country->id ? 'selected' : ''}}>{{$country->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-4">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Year Graduated</label>
-                                    <input type="number" name="yearsOfTeachingExperience" class="number-input" placeholder="Year Graduated" value = "{{$candidateEducationalDetails->teaching_experiance ?? ''}}">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">TEFL/TESOL Certification</label>
-                                    <select name="TEFLTESOLCertification" id="TEFLTESOLCertification" class="nice-select">
-                                        <option value="Yes" {{$candidateEducationalDetails->tefl_tesol_clarification == 'Yes' ? 'selected' : ''}}>Yes</option>
-                                        <option value="No" {{$candidateEducationalDetails->tefl_tesol_clarification == 'No' ? 'selected' : ''}}>No</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Previous Teaching in Korea</label>
-                                    <select name="previousTeachingInKorea" id="previousTeachingInKorea" class="nice-select">
-                                        <option value="Yes" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'Yes' ? 'selected' : ''}}>Yes</option>
-                                        <option value="No" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'No' ? 'selected' : ''}}>No</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        @if(isset($candidateEducationalDetails->educational_details))
-                        @foreach($candidateEducationalDetails->educational_details as $index=>$educational_detail)
+                        @if(isset($candidateEducations) && $candidateEducations != "" && count($candidateEducations) > 0)
+                        @foreach($candidateEducations as $index=>$education)
                             @if($index == 0)
-                            <div  id="candidate-education" class="educational-details-row">
-                                    <center><h3>Educational Details</h3></center>
+                            <div class = "educational-details-row">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Degree</label>
-                                            <input type="text" name="education[{{$index}}][degree]" placeholder="" value = "{{$educational_detail['degree'] ?? ''}}">
-
+                                            <label for="">Education</label>
+                                            <select name="education[{{$index}}][degree]" id="highestDegreeObtained" class="nice-select">
+                                                <option value="High School Diploma/GED" {{$education->degree == 'High School Diploma/GED' ? 'selected' : ''}}>High School Diploma/GED</option>
+                                                <option value="Associate's Degree" {{$education->degree == "Associate's Degree" ? 'selected' : ''}}>Associate's Degree</option>
+                                                <option value="Bachelor's Degree" {{$education->degree == "Bachelor's Degree" ? 'selected' : ''}}>Bachelor's Degree</option>
+                                                <option value="Master's Degree" {{$education->degree == "Master's Degree" ? 'selected' : ''}}>Master's Degree</option>
+                                                <option value="Doctorate/Ph.D." {{$education->degree == "Doctorate/Ph.D." ? 'selected' : ''}}>Doctorate/Ph.D.</option>
+                                                <option value="Professional Certification" {{$education->degree == "Professional Certification" ? 'selected' : ''}}>Professional Certification</option>
+                                                <option value="Vocational Training" {{$education->degree == 'Vocational Training' ? 'selected' : ''}}>Vocational Training</option>
+                                                <option value="Other (Please Specify)" {{$education->degree == "Other (Please Specify)" ? 'selected' : ''}}>Other (Please Specify)</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Institution</label>
-                                            <input type="text" name="education[{{$index}}][institution]" placeholder="" value = "{{$educational_detail['institution'] ?? ''}}">
-
+                                            <label for="">Qualification Obtained</label>
+                                            <input type="text" name="education[{{$index}}][field_of_study]" id="fieldOfStudy" value="{{$education->field_of_study ?? ''}}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-4">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Description</label>
-                                            <input type="text" name="education[{{$index}}][description]" placeholder="" value = "{{$educational_detail['description'] ?? ''}}">
+                                            <label for="">University/College Name</label>
+                                            <input type="text" name="education[{{$index}}][institute_name]" placeholder="Name of College or Univesity" value = "{{$education->institute_name ?? ''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Country</label>
+                                            <select name="education[{{$index}}][institute_place]" id="instituteCountry" class="nice-select">
+                                                @foreach($countries as $country)
+                                                <option value="{{$country->id}}" {{$education->institute_place == $country->id ? 'selected' : ''}}>{{$country->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Year Graduated</label>
+                                            <input type="number" name="education[{{$index}}][year_of_study]" class="number-input" placeholder="Year Graduated" value = "{{$education->year_of_study ?? ''}}">
 
                                         </div>
                                     </div>
-                                    <div class="col-md-2 pt-4">
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
-                                            <button type="button" class="btn btn-danger remove-tr" >Remove</button>
+                                            <label for="">TEFL/TESOL Certification</label>
+                                            <select name="TEFLTESOLCertification" id="TEFLTESOLCertification" class="nice-select">
+                                                <option value="Yes" {{$candidateEducationalDetails->tefl_tesol_clarification == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                <option value="No" {{$candidateEducationalDetails->tefl_tesol_clarification == 'No' ? 'selected' : ''}}>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Previous Teaching in Korea</label>
+                                            <select name="previousTeachingInKorea" id="previousTeachingInKorea" class="nice-select">
+                                                <option value="Yes" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                <option value="No" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'No' ? 'selected' : ''}}>No</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                             @else
-                            <div  class="educational-details-row">
-                                    <center><h3>Educational Details</h3></center>
+                            <div class = "educational-details-row">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Degree</label>
-                                            <input type="text" name="education[{{$index}}][degree]" placeholder="" value = "{{$educational_detail['degree'] ?? ''}}">
-
+                                            <label for="">Education</label>
+                                            <select name="education[{{$index}}][degree]" id="highestDegreeObtained" class="nice-select">
+                                                <option value="High School Diploma/GED" {{$education->degree == 'High School Diploma/GED' ? 'selected' : ''}}>High School Diploma/GED</option>
+                                                <option value="Associate's Degree" {{$education->degree == "Associate's Degree" ? 'selected' : ''}}>Associate's Degree</option>
+                                                <option value="Bachelor's Degree" {{$education->degree == "Bachelor's Degree" ? 'selected' : ''}}>Bachelor's Degree</option>
+                                                <option value="Master's Degree" {{$education->degree == "Master's Degree" ? 'selected' : ''}}>Master's Degree</option>
+                                                <option value="Doctorate/Ph.D." {{$education->degree == "Doctorate/Ph.D." ? 'selected' : ''}}>Doctorate/Ph.D.</option>
+                                                <option value="Professional Certification" {{$education->degree == "Professional Certification" ? 'selected' : ''}}>Professional Certification</option>
+                                                <option value="Vocational Training" {{$education->degree == 'Vocational Training' ? 'selected' : ''}}>Vocational Training</option>
+                                                <option value="Other (Please Specify)" {{$education->degree == "Other (Please Specify)" ? 'selected' : ''}}>Other (Please Specify)</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Institution</label>
-                                            <input type="text" name="education[{{$index}}][institution]" placeholder="" value = "{{$educational_detail['institution'] ?? ''}}">
-
+                                            <label for="">Qualification Obtained</label>
+                                            <input type="text" name="education[{{$index}}][field_of_study]" id="fieldOfStudy" value="{{$education->field_of_study ?? ''}}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-4">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Description</label>
-                                            <input type="text" name="education[{{$index}}][description]" placeholder="" value = "{{$educational_detail['description'] ?? ''}}">
+                                            <label for="">University/College Name</label>
+                                            <input type="text" name="education[{{$index}}][institute_name]" placeholder="Name of College or Univesity" value = "{{$education->institute_name ?? ''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Country</label>
+                                            <select name="education[{{$index}}][institute_place]" id="instituteCountry" class="nice-select">
+                                                @foreach($countries as $country)
+                                                <option value="{{$country->id}}" {{$education->institute_place == $country->id ? 'selected' : ''}}>{{$country->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Year Graduated</label>
+                                            <input type="number" name="education[{{$index}}][year_of_study]" class="number-input" placeholder="Year Graduated" value = "{{$education->year_of_study ?? ''}}">
 
                                         </div>
                                     </div>
@@ -586,15 +563,92 @@ Profile
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
-                        @endif
+                            @endif
                         @endforeach
                         @else
+                        <div class = "educational-details-row">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Education</label>
+                                        <select name="education[0][degree]" id="highestDegreeObtained" class="nice-select">
+                                            <option value="High School Diploma/GED" {{$candidateEducationalDetails->highest_degree == 'High School Diploma/GED' ? 'selected' : ''}}>High School Diploma/GED</option>
+                                            <option value="Associate's Degree" {{$candidateEducationalDetails->highest_degree == "Associate's Degree" ? 'selected' : ''}}>Associate's Degree</option>
+                                            <option value="Bachelor's Degree" {{$candidateEducationalDetails->highest_degree == "Bachelor's Degree" ? 'selected' : ''}}>Bachelor's Degree</option>
+                                            <option value="Master's Degree" {{$candidateEducationalDetails->highest_degree == "Master's Degree" ? 'selected' : ''}}>Master's Degree</option>
+                                            <option value="Doctorate/Ph.D." {{$candidateEducationalDetails->highest_degree == "Doctorate/Ph.D." ? 'selected' : ''}}>Doctorate/Ph.D.</option>
+                                            <option value="Professional Certification" {{$candidateEducationalDetails->highest_degree == "Professional Certification" ? 'selected' : ''}}>Professional Certification</option>
+                                            <option value="Vocational Training" {{$candidateEducationalDetails->highest_degree == 'Vocational Training' ? 'selected' : ''}}>Vocational Training</option>
+                                            <option value="Other (Please Specify)" {{$candidateEducationalDetails->highest_degree == "Other (Please Specify)" ? 'selected' : ''}}>Other (Please Specify)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Qualification Obtained</label>
+                                        <input type="text" name="education[0][field_of_study]" id="fieldOfStudy" value="{{$candidateEducationalDetails->field_of_study ?? ''}}">
+
+                                        {{-- <select name="fieldOfStudy" id="fieldOfStudy" class="nice-select">
+                                            <option value="Bachelor Of Arts" {{$candidateEducationalDetails->field_of_study == 'Bachelor Of Arts' ? 'selected' : ''}}>Bachelor Of Arts</option>
+                                            <option value="Engineering" {{$candidateEducationalDetails->field_of_study == 'Engineering' ? 'selected' : ''}}>Engineering</option>
+                                            <option value="MBBS" {{$candidateEducationalDetails->field_of_study == 'MBBS' ? 'selected' : ''}}>MBBS</option>
+                                            <option value="Business" {{$candidateEducationalDetails->field_of_study == 'Business' ? 'selected' : ''}}>Business</option>
+                                            <option value="Arts" {{$candidateEducationalDetails->field_of_study == 'Arts' ? 'selected' : ''}}>Arts</option>
+                                        </select> --}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">University/College Name</label>
+                                        <input type="text" name="education[0][institute_name]" placeholder="Name of College or Univesity" value = "{{$candidateEducationalDetails->institute_name ?? ''}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Country</label>
+                                        <select name="education[0][institute_place]" id="instituteCountry" class="nice-select">
+                                            @foreach($countries as $country)
+                                            <option value="{{$country->id}}" {{$candidateEducationalDetails->country_id == $country->id ? 'selected' : ''}}>{{$country->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Year Graduated</label>
+                                        <input type="number" name="education[0][year_of_study]" class="number-input" placeholder="Year Graduated" value = "{{$candidateEducationalDetails->teaching_experiance ?? ''}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">TEFL/TESOL Certification</label>
+                                        <select name="TEFLTESOLCertification" id="TEFLTESOLCertification" class="nice-select">
+                                            <option value="Yes" {{$candidateEducationalDetails->tefl_tesol_clarification == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                            <option value="No" {{$candidateEducationalDetails->tefl_tesol_clarification == 'No' ? 'selected' : ''}}>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Previous Teaching in Korea</label>
+                                        <select name="previousTeachingInKorea" id="previousTeachingInKorea" class="nice-select">
+                                            <option value="Yes" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                            <option value="No" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'No' ? 'selected' : ''}}>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                         <div  id="candidate-education">
                             
                         </div>
-                        @endif
                         <div class="d-flex flex-row justify-content-start gap-3">
                                 <button type="button" class="dash-btn-one" id="add-more-education" >add more</button>
                         </div>
@@ -1557,8 +1611,6 @@ Profile
       // Canidate Educational and Professional Information
       $("#candidate-educational-details").on("click", function(e) {
         e.preventDefault();
-        var formData = new FormData();
-        formData.append("_token", "{{ csrf_token() }}");
         // var experienceData = [];
     
         //     for (var i = 0; ; i++) {
@@ -1581,31 +1633,36 @@ Profile
         //     });
         //     }
                     var educationData = [];
-    
-                    for (var j = 0; ; j++) {
-                    var degree = $("input[name='education[" + j + "][degree]']").val();
-                   
-                    var institution = $("input[name='education[" + j + "][institution]']").val();
-                    var description = $("input[name='education[" + j + "][description]']").val();
-                    if (degree === undefined && institution === undefined && description === undefined ) {
-                            break;
-                        }
-                                educationData.push({
-                        degree: degree,
-                        institution: institution,
-                        description: description,
-                    });
+                    var rowCount = $(".educational-details-row").length;
+                     console.log(rowCount);
+                    for (var j = 0; j < rowCount; j++) {
+                        var degree = $("select[name='education[" + j + "][degree]']").val();
+                        var field_of_study = $("input[name='education[" + j + "][field_of_study]']").val();
+                        var institute_name = $("input[name='education[" + j + "][institute_name]']").val();
+                        var institute_place = $("select[name='education[" + j + "][institute_place]']").val();
+                        var year_of_study = $("input[name='education[" + j + "][year_of_study]']").val();
+
+                        educationData.push({
+                            degree: degree,
+                            field_of_study: field_of_study,
+                            institute_name: institute_name,
+                            institute_place: institute_place,
+                            year_of_study: year_of_study !='' ? year_of_study : null,
+                        });
                     }
+
         var educationData = JSON.stringify(educationData);
 
-        formData.append('educational_details',educationData)
-        formData.append('highest_degree',$("#multi-step-form").find('[name=highestDegreeObtained]').val())
-        formData.append('field_of_study',$("#multi-step-form").find('[name=fieldOfStudy]').val())
-        formData.append('institute_name',$("#multi-step-form").find('[name=universityCollegeNameCountry]').val())
-        formData.append('teaching_experiance',$("#multi-step-form").find('[name=yearsOfTeachingExperience]').val())
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        formData.append('educational_details',educationData);
+        // formData.append('highest_degree',$("#multi-step-form").find('[name=highestDegreeObtained]').val())
+        // formData.append('field_of_study',$("#multi-step-form").find('[name=fieldOfStudy]').val())
+        // formData.append('institute_name',$("#multi-step-form").find('[name=universityCollegeNameCountry]').val())
+        // formData.append('teaching_experiance',$("#multi-step-form").find('[name=yearsOfTeachingExperience]').val())
         formData.append('tefl_tesol_clarification',$("#multi-step-form").find('[name=TEFLTESOLCertification]').val())
         formData.append('prevous_teaching_in_korea',$("#multi-step-form").find('[name=previousTeachingInKorea]').val())
-        formData.append('country_id',$("#multi-step-form").find('[name=instituteCountry]').val())
+        // formData.append('country_id',$("#multi-step-form").find('[name=instituteCountry]').val())
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-3.save')}}",
@@ -1691,7 +1748,7 @@ Profile
         formData.append("_token", "{{ csrf_token() }}");
         var skillInput = $('input[name="skill[]"]');
 
-// Loop through each input element and append it to the FormData
+        // Loop through each input element and append it to the FormData
         // skillInput.each(function(index, element) {
         // formData.append('skills[]', element.value);
         // });
@@ -1923,8 +1980,8 @@ const experienceArrLength = experienceArr.filter(name => /experience\[\d+\]\[rol
         //adding more experience educational fields 
        var k = 0;
        const form = document.getElementById('multi-step-form');
-const inputNames = Array.from(form.getElementsByTagName('input')).map(input => input.name);
-const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.test(name)).length;
+const selectDegrees = Array.from(form.getElementsByTagName('select')).filter(select => select.name.includes('degree'));
+const educationCount = selectDegrees.length;
         k=educationCount-1;
 // console.log(`Number of objects in the 'education' array: ${objectCount}`);
        $("#add-more-education").click(function(){
@@ -1933,34 +1990,63 @@ const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.te
            ++k;
       
         //    $("#add-skill-field").append('<tr><td><input type="text" name="addmore['+i+'][name]" placeholder="Enter your Name" class="form-control" /></td><td><input type="text" name="addmore['+i+'][qty]" placeholder="Enter your Qty" class="form-control" /></td><td><input type="text" name="addmore['+i+'][price]" placeholder="Enter your Price" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
-           $("#candidate-education").append('<div class="educational-details-row"><center><h3>Educational Details</h3></center><div class="row ">'+
+           $("#candidate-education").append('<div class = "educational-details-row">'+
+                            '<div class="row">'+
                                 '<div class="col-md-6">'+
                                     '<div class="dash-input-wrapper mb-30">'+
-                                        '<label for="">Degree</label>'+
-                                        '<input type="text" name="education['+k+'][degree]" placeholder="" value = "">'+
+                                        '<label for="">'+"Education"+'</label>'+
+                                        '<select name="education['+k+'][degree]" id="highestDegreeObtained" class="nice-select">'+
+                                            '<option value="High School Diploma/GED" >'+ "High School Diploma/GED"+'</option>'+
+                                            '<option value="Associate\'s Degree" >'+ "Associate\'s Degree"+'</option>'+
+                                            '<option value="Bachelor\'s Degree" >'+ "Bachelor\'s Degree"+'</option>'+
+                                            '<option value="Master\'s Degree" >'+ "Master\'s Degree"+'</option>'+
+                                            '<option value="Doctorate/Ph.D." >'+ "Doctorate/Ph.D."+'</option>'+
+                                            '<option value="Professional Certification" >'+ "Professional Certification"+'</option>'+
+                                            '<option value="Vocational Training" >'+ "Vocational Training"+'</option>'+
+                                            '<option value="Other (Please Specify)" >'+ "Other (Please Specify)"+'</option>'+
+                                        '</select>'+
                                     '</div>'+
                                 '</div>'+
                                 '<div class="col-md-6">'+
                                     '<div class="dash-input-wrapper mb-30">'+
-                                        '<label for="">Institution</label>'+
-                                        '<input type="text" name="education['+k+'][institution]" placeholder="" value = "">'+
+                                        '<label for="">Qualification Obtained</label>'+
+                                        '<input type="text" name="education['+k+'][field_of_study]" id="fieldOfStudy" value="">'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
                             '<div class="row">'+
-                               ' <div class="col-md-8">'+
+                                '<div class="col-md-4">'+
                                     '<div class="dash-input-wrapper mb-30">'+
-                                        '<label for="">Description</label>'+
-                                        '<input type="text" name="education['+k+'][description]" placeholder="" value = "">'+
+                                        '<label for="">University/College Name</label>'+
+                                        '<input type="text" name="education['+k+'][institute_name]" placeholder="Name of College or Univesity" value = "">'+
+                                    '</div>'+
+                                '</div>'+
+
+                                '<div class="col-md-4">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Country</label>'+
+                                        '<select name="education['+k+'][institute_place]" id="instituteCountry" class="nice-select">'+
+                                            @foreach($countries as $country)
+                                            '<option value="{{$country->id}}">'+"{{$country->name}}"+'</option>'+
+                                            @endforeach
+                                        '</select>'+
+                                    '</div>'+
+                                '</div>'+
+
+
+                                '<div class="col-md-4">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Year Graduated</label>'+
+                                        '<input type="number" name="education['+k+'][year_of_study]" class="number-input" placeholder="Year Graduated" value = "">'+
                                     '</div>'+
                                 '</div>'+
                                 ' <div class="col-md-2 pt-4">'+
-                                    '<div class="dash-input-wrapper mb-30">'+
-                                        '<button type="button" class="btn btn-danger remove-tr" >Remove</button>'+
+                                        '<div class="dash-input-wrapper mb-30">'+
+                                            '<button type="button" class="btn btn-danger remove-tr" >Remove</button>'+
+                                        '</div>'+
                                     '</div>'+
-                                '</div>'+
-                                '</div>'+
-                            '</div>'
+                            '</div>'+
+                        '</div>'
                             
                             )
        });

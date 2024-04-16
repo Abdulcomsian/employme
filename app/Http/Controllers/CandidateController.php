@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\{CandidateDocument, User,
     CandidatePersonalDetails, CandidateEducation, ProfessionalSkills, CandidatePreferences,
-     Cities, Countries, SavedJob, EmployerJob, JobCategory, JobInterview, Review };
+     Cities, Countries, SavedJob, EmployerJob, JobCategory, JobInterview, Review, CandidateEducationalDetail };
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Notification;
@@ -34,6 +34,7 @@ class CandidateController extends Controller
     {
         $candidatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
         $candidateEducationalDetails = CandidateEducation::where('user_id',Auth::id())->first();
+        $candidateEducations = CandidateEducationalDetail::where('user_id',Auth::id())->get();
         $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
         $candidateDocuments = CandidateDocument::where('user_id',Auth::id())->get();
         $professionalSkills = ProfessionalSkills::all();
@@ -41,7 +42,7 @@ class CandidateController extends Controller
         $countries = Countries::all();
         $jobCategories = JobCategory::all();
         // dd($candidatePreferencesDetails->skills);
-        return view('candidate.profile',compact('countries','candidateDocuments','candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities','candidatePreferencesDetails','jobCategories'));
+        return view('candidate.profile',compact('candidateEducations','countries','candidateDocuments','candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities','candidatePreferencesDetails','jobCategories'));
     }
 
     public function getResumePage()
@@ -100,8 +101,24 @@ class CandidateController extends Controller
 
     public function saveProfile3(Request $request)
     {
-        $input = $request->except('_token');
+        $input = $request->except('_token','educational_details');
         $updateEducationalDetails = CandidateEducation::where('user_id',Auth::id());
+        $deletePreviousEducationRecord = CandidateEducationalDetail::where('user_id',Auth::id())->delete();
+        if(isset($request->educational_details))
+        {
+        $educationalDetails = json_decode($request->educational_details);
+            foreach($educationalDetails as $education)
+            {
+                $addEducation = new CandidateEducationalDetail;
+                $addEducation->degree = $education->degree;
+                $addEducation->field_of_study = $education->field_of_study;
+                $addEducation->institute_name = $education->institute_name;
+                $addEducation->institute_place = $education->institute_place;
+                $addEducation->year_of_study = $education->year_of_study;
+                $addEducation->user_id = Auth::id();
+                $addEducation->save();
+            }
+        }
         $updateEducationalDetails->update($input);
         return response()->json([
                         "status" => true, 
