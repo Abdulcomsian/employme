@@ -15,8 +15,8 @@ class BusinessLicenseMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $employerLicenseDetails =  EmployerBusinessLicense::where('employer_id',\Auth::id())->first();
         if (\Auth::check() && auth()->user()->hasRole('employer')) {
-           $employerLicenseDetails =  EmployerBusinessLicense::where('employer_id',\Auth::id())->first();
            if(isset($employerLicenseDetails) && $employerLicenseDetails->approval_status ==0)
            {
                 $request->session()->put(['license_approval' => 'yes']);
@@ -26,11 +26,18 @@ class BusinessLicenseMiddleware
                 }
            }else
            {
+
             $request->session()->forget('license_approval');
            }
-          
+      
            
         }
+
+    
+        // if($employerLicenseDetails && $employerLicenseDetails->approval_status == 1 && (!auth()->user()->lastSubscription || !is_null(auth()->user()->lastSubscription->ends_at)))
+        // {
+        //      return redirect()->route('getEmployerSubscriptionPlan');
+        // }
         return $next($request);
     }
 }

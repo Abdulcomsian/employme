@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\BusinessLicense;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\{User, EmployerJob, EmployerDetails, CandidatePersonalDetails,
-     SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation, JobInterview, Review };
+     SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation, EmployerBusinessLicense, JobInterview, Review };
 use Illuminate\Support\Facades\Auth;
 use File;
 use Response;
@@ -189,7 +190,9 @@ class UserController extends Controller
 
         $candidates = $candidates->paginate(10);
 
-        return view('candidates-marketplace',compact('candidates','jobCategories'));
+        $verifiedCertificate = auth()->check() && auth()->user()->hasRole('employer') ? EmployerBusinessLicense::where('employer_id' , auth()->user()->id)->where('approval_status' , 1)->count() : 0;
+
+        return view('candidates-marketplace',compact('candidates','jobCategories','verifiedCertificate'));
     }
 
     public function getEmployerAccountSettingpage()
@@ -300,7 +303,7 @@ class UserController extends Controller
     {
         $jobId = Crypt::decryptString($id);
         $jobDetails = EmployerJob::with('employerDetails')->find($jobId);
-        $appliedInterview = JobInterview::where(['employer_job_id' => $jobId , 'requested_to' => auth()->user()->id])->first();
+        $appliedInterview = auth()->check() ? JobInterview::where(['employer_job_id' => $jobId , 'requested_to' => auth()->user()->id])->first() : null;
         return view('job-details',compact('jobDetails' , 'appliedInterview'));
     }
     // public function employerjobListing()
