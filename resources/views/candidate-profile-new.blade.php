@@ -130,22 +130,20 @@
                             </div>
                             @endif
                             @endif
-                            @if(isset($candidateDetails->candidateEducation->educational_details) && !empty($candidateDetails->candidateEducation->educational_details))
+                            @if(isset($candidateDetails->candidateEducationalDetails) && count($candidateDetails->candidateEducationalDetails) > 0)
                             <div class="inner-card mb-75 lg-mb-50">
                                 <h3 class="title">Education</h3>
                                 <div class="time-line-data position-relative pt-15">
                                
-                                @foreach($candidateDetails->candidateEducation->educational_details as $index=>$educational_detail)
-                                   @if($educational_detail['institution'] !='' || $educational_detail['degree'] != '' || $educational_detail['description'] != '')
+                                @foreach($candidateDetails->candidateEducationalDetails as $index=>$educational_detail)
                                     <div class="info position-relative">
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
                                             {{$index+1}}</div>
-                                        <div class="text_1 fw-500">{!!$educational_detail['institution'] ?? ''!!}</div>
-                                        <h4>{!! $educational_detail['degree'] ?? '' !!}</h4>
-                                        <p>{!!$educational_detail['description'] ?? ''!!}</p>
+                                        <div class="text_1 fw-500">{{$educational_detail->institute_name ?? ''}} ({{$educational_detail->instituteCountry->name ?? ''}}-{{$educational_detail->year_of_study ?? ''}})</div>
+                                        <h4>{{$educational_detail->degree ?? ''}}</h4>
+                                        <p>{{$educational_detail->field_of_study ?? ''}}</p>
                                     </div>
-                                    @endif
                                     @endforeach
                                     
                                     <!-- ./info -->

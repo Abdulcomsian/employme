@@ -19,6 +19,6 @@ class CandidateEducationalDetail extends Model
 
     public function instituteCountry()
     {
-        return $this->belongsTo(Country::class,'institute_place');
+        return $this->belongsTo(Countries::class,'institute_place');
     }
 }
