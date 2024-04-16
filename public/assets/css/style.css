@@ -9618,7 +9618,7 @@ body.compensate-for-scrollbar {
   text-transform: capitalize;
   line-height: 45px;
   padding: 0 5px 0 20px;
-  color: #254035;
+  color: #000;
   font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.16px;
@@ -9632,7 +9632,7 @@ body.compensate-for-scrollbar {
   font-size: 1.1em;
 }
 .dash-aside-navbar .user-data .user-name-data .dropdown-menu .dropdown-item:hover {
-  color: #31795A;
+  color: #b1b0eb;
   background: rgba(0, 0, 0, 0.01);
 }
 .dash-aside-navbar .user-data .user-name-data .dropdown-menu .dropdown-item img {
@@ -9652,7 +9652,7 @@ body.compensate-for-scrollbar {
   font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.16px;
-  color: #244034;
+  color: #000;
   padding: 20px 5px 20px 20px;
   border-radius: 15px;
   transition: all 0.25s ease-in-out 0s;
@@ -9677,7 +9677,7 @@ body.compensate-for-scrollbar {
   margin: 60px 0 75px 20px;
 }
 .dash-aside-navbar .profile-complete-status .progress-value {
-  color: #244034;
+  color: #000;
 }
 .dash-aside-navbar .profile-complete-status .progress-line {
   height: 5px;
@@ -9703,7 +9703,7 @@ body.compensate-for-scrollbar {
   font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.16px;
-  color: #244034;
+  color: #000;
   margin-left: 20px;
   transition: all 0.25s ease-in-out 0s;
 }
