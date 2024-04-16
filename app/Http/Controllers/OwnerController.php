@@ -81,7 +81,7 @@ class OwnerController extends Controller
     }
     public function getEmployers()
     {
-        $employers =User::with('employerDetails')->role('employer')->paginate(10);
+        $employers =User::with('employerDetails' , 'license')->role('employer')->paginate(10);
         return view('owner.employers',compact('employers'));
     }
     public function getEmployerDetails()

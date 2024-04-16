@@ -1743,6 +1743,7 @@ Profile
               success: function (data) {
     
                 if (data.status) {
+                toastr.success(data.message);
                     // window.location = data.redirect;
                 }else{
                     $(".alert").remove();
@@ -1928,7 +1929,6 @@ const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.te
         k=educationCount-1;
 // console.log(`Number of objects in the 'education' array: ${objectCount}`);
        $("#add-more-education").click(function(){
-
 
            ++k;
       

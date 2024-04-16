@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('license_number')->nullable();
             $table->longText('license_file')->nullable();
-            $table->integer('approval_status')->nullable();
+            $table->integer('approval_status')->default(0);
             $table->unsignedBigInteger('employer_id');
             $table->foreign('employer_id')->references('id')->on('users')->cascadeOnDelete();
             $table->unsignedBigInteger('approved_by')->nullable();
