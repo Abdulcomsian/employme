@@ -2,50 +2,67 @@
     <div class="container">
         <div class="inner-wrapper">
             <div class="row">
-                <div class="col-lg-2 col-md-3 footer-intro mb-15">
-                    <div class="logo mb-15">
-                        <a href="/" class="d-flex align-items-center">
-                            <img src="{{asset('assets/images/logo/logo_03.png')}} " alt="">
-                        </a>
-                    </div> 
-                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/shape/shape_28.svg')}}" alt="" class="lazy-img mt-80 sm-mt-30 sm-mb-20">
-                    <!-- logo -->
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
-                    <h5 class="footer-title">Services​</h5>
-                    <ul class="footer-nav-link style-none">
-                        <li><a href="{{route('jobMarketplace')}}">Browse Jobs</a></li>
-                        <li><a href="/">Companies</a></li>
-                        <li><a href="candidates-marketplace">Candidates</a></li>
-                        <li><a href="{{route('pricing')}}">Pricing</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
-                    <h5 class="footer-title">Company</h5>
-                    <ul class="footer-nav-link style-none">
-                        <li><a href="{{route('about')}}">About us</a></li>
-                        <li><a href="{{route('blog')}}">Blogs</a></li>
-                        <li><a href="{{route('faq')}}">FAQ’s</a></li>
-                        <li><a href="{{route('contact')}}">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
-                    <h5 class="footer-title">Support</h5>
-                    <ul class="footer-nav-link style-none">
-                        <li><a href="/">Terms of use</a></li>
-                        <li><a href="terms-of-services">Terms of service</a></li>
-                        <li><a href="/">Privacy</a></li>
-                        <li><a href="/">Cookie policy</a></li>
-                    </ul>
-                </div>
                 <div class="col-lg-4 mb-20 footer-newsletter">
-                    <h5 class="footer-title">Newsletter</h5>
-                    <p>Join & get important new regularly</p>
+                    <h5 class="footer-title">EmployMe</h5>
+                    <p>Uniting Korean Employers and International Talent</p>
                     <form action="#" class="d-flex">
                         <input type="email" placeholder="Enter your email*">
                         <button>Send</button>
                     </form>
                     <p class="note">We only send interesting and relevant emails.</p>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
+                    <h5 class="footer-title">Job Seekers</h5>
+                    <ul class="footer-nav-link style-none">
+                        <li><a href="{{route('howItWorks')}}">How it works</a></li>
+                        <li><a href="job-marketplace">Jobs Marketplace</a></li>
+                        <li>
+                  <a href="about-us">About us</a>
+                </li>
+                <li>
+                  <a href="faq">FAQ</a>
+                </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
+                    <h5 class="footer-title">Employers</h5>
+                    <ul class="footer-nav-link style-none">
+                    <li>
+                  <a href="how-it-works-employer">How it works</a>
+                </li>
+                <li>
+                  <a href="{{route('candidatesMarketplace')}}">Candidate Marketplace</a>
+                </li>
+                <li>
+                  <a href="about-us-employer">About us</a>
+                </li>
+                <li>
+                  <a href="faq">FAQ</a>
+                </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
+                    <h5 class="footer-title">Help Center</h5>
+                    <ul class="footer-nav-link style-none">
+                    <li>
+                    <a href="terms-of-services">Terms of service</a>
+                    </li>
+                    <li>
+                    <a href="visa-support">Visa Support</a>
+                    </li>
+                    <li>
+                    <a href="/">Privacy policy</a>
+                    </li>
+                    <li>
+                    <a href="/">Incident report</a>
+                    </li>
+                    <li>
+                    <a href="contact">Contact</a>
+                    </li>
+                    </ul>
                 </div>
             </div>
         </div> <!-- /.inner-wrapper -->
@@ -68,7 +85,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-4 order-lg-2">
-                    <p class="text-center mb-15">Copyright @2023 jobi inc.</p>
+                    <p class="text-center mb-15">Copyright @2024 Employtme inc.</p>
                 </div>
             </div>
         </div>
