@@ -11,6 +11,8 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\CanResetPassword ;
 use Laravel\Cashier\Billable;
+use App\Models\Subscription;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
@@ -51,6 +53,13 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected static function booted()
+    {
+        static::addGlobalScope('user_detail', function (Builder $builder) {
+            $builder->with('lastSubscription');
+        });
+    }
 
     public function candidatePersonalDetails()
     {
@@ -101,6 +110,11 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     public function license()
     {
         return $this->hasOne(EmployerBusinessLicense::class , 'employer_id' , 'id');
+    }
+
+    public function lastSubscription()
+    {
+        return $this->hasOne(Subscription::class , 'user_id' , 'id')->orderBy('id' , 'desc');
     }
 
     
