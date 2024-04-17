@@ -10445,7 +10445,6 @@ body.compensate-for-scrollbar {
 }
 .dashboard-body .job-alert-table th:last-child {
   border-radius: 0 7px 7px 0;
-  text-align: right;
 }
 .dashboard-body .job-alert-table td {
   font-size: 15px;

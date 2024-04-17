@@ -80,14 +80,14 @@
                         <span>Employers</span>
                     </a>
                 </li>
-                <li><a href="{{ route('owner.employerBusinessLicenses') }}"
+                <!-- <li><a href="{{ route('owner.employerBusinessLicenses') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/employer-business-licenses') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
                             data-src="{{ request()->is('owner/employer-business-licenses') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
                         <span>Employers Licenses</span>
                     </a>
-                </li>
+                </li> -->
                 <li><a href="{{ route('interviewRequests') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/interview-requests') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
