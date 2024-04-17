@@ -485,7 +485,7 @@ h3{
 					<!-- Step 4 -->
 					<form id="employer-verification-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
 						<div class="bg-white card-box" id="step-3">
-							<h3 class="my-3">Business License Certificate</h3>
+							<h3 class="my-3">Employer Verification</h3>
 							<div class = "mt-1" id ="license-document-error"></div>
 								@isset($employerLicenseDetails)
 								@if($employerLicenseDetails->approval_status == 0)
@@ -645,7 +645,7 @@ h3{
 						</form>
 					<form id="declaration-consent-form" class="mt-4" method="post">
 						<div class="bg-white card-box" id="step-4">
-							<h3 class="my-3">Terms And Condition</h3>
+							<h3 class="my-3">Terms And Conditions</h3>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">

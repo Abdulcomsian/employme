@@ -69,7 +69,7 @@ class Kernel extends HttpKernel
         'email_verfication' => \App\Http\Middleware\EmailVerification::class,
         'profile_completion' => \App\Http\Middleware\ProfileCompletionMiddleware::class,
         'employer_license'=>\App\Http\Middleware\BusinessLicenseMiddleware::class,
-
+        'verify_subscription' => \App\Http\Middleware\VerifySubscriptionMiddleware::class,
     ];
 
     protected $middlewarePriority = [

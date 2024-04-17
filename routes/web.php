@@ -126,7 +126,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
 
 //employer dashboard route starts here
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','email_verfication','profile_completion','employer_license']], function () {
-    Route::get('dashboard', [EmployerController::class, 'getEmployerDashboard'])->name('getEmployerDashboard');
+    Route::get('dashboard', [EmployerController::class, 'getEmployerDashboard'])->name('getEmployerDashboard')->middleware('verify_subscription');
     Route::get('employer-profile', [EmployerController::class, 'getEmployerProfilePage'])->name('getEmployerProfile');
     Route::get('job-listing', [JobController::class, 'getJobListing'])->name('getJobListing');
     Route::get('interview-requests', [JobController::class, 'getInterviewpage'])->name('getEmployerInterviewRequest');
