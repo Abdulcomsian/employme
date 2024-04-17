@@ -6,11 +6,12 @@ Savced Jobs
 @push('page-css')
 <style>
     .job-title, .job-application  {
-    color: #00BF58 !important;
+    color: #000 !important;
+    font-weight: 500;
     
  }
  .job-title a:hover{
-    color: #D2F34C !important;
+    color: #ff715b !important;
     
     /* color: #244034; */
  }
