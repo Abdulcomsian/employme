@@ -6077,15 +6077,15 @@ button:hover{
   border-radius: 40px;
 }
 .candidate-profile-card .profile-btn:hover {
-  background: #00BF58;
+  background: #b1b0eb ;
 }
 .candidate-profile-card .msg-btn {
   font-size: 11px;
   font-weight: 500;
   letter-spacing: -0.5px;
   line-height: 38px;
-  color: #000;
-  border: 1px solid #000;
+  color: #fff;
+  /* border: 1px solid #000; */
   text-align: center;
   padding: 0 15px;
   border-radius: 40px;
@@ -6101,7 +6101,7 @@ button:hover{
 
 .candidate-profile-card .msg-btn:hover {
   background: #00BF58;
-  border-color: #00BF58;
+  /* border-color: #00BF58; */
   color: #fff;
 }
 .candidate-profile-card.list-layout {

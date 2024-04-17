@@ -522,6 +522,8 @@ Candidate Marketplace
 										</div>
 
 									</div>
+
+									@if(auth()->check() && $verifiedCertificate)
 									<div class="row gx-2 pt-25 sm-pt-10">
 										<div class="col-md-6">
 											<a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="profile-btn tran3s w-100 mt-5">View Profile</a>
@@ -535,12 +537,7 @@ Candidate Marketplace
 											<button class="msg-btn tran3s w-100 mt-5 NonEmployerButton" >Request Interview</button>
 											@endrole
 											@role('employer')
-									{{--		@if(jobApplicationStatus($jobDetails->id) == 1)
-													<button class="btn-one">Requested</button>
-												@else
-													<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
-													<button class=" msg-btn tran3s w-100 mt-5" data-bs-toggle="modal" data-bs-target="#InterviewRequestModal">Request Interview</button>
-											@endif --}}
+									
 											<button class=" msg-btn tran3s w-100 mt-5 Interview-Modal-Button" data-bs-toggle="modal" data-bs-target="#InterviewRequestModal" value = "{{$candidate->id}}">Request Interview</button>
 
 											@endrole
@@ -551,6 +548,7 @@ Candidate Marketplace
 										</div>
 
 									</div>
+									@endif
 									<!-- <div class="row justify-content-center gx-2 pt-15 sm-pt-10">
 													<div class="col-md-10">
 													<a href="#" class="tran3s w-100 interview ">  Interview Request</a>

@@ -20,10 +20,11 @@
             <div class="container">
                 <div class="candidate-profile-card list-layout">
                     <div class="d-flex align-items-start align-items-xl-center">
-                        <div class="cadidate-avatar position-relative d-block me-auto ms-auto"><a href="#"
-                                class="rounded-circle"><img src="images/lazy.svg"
-                                    data-src="images/candidates/img_01.jpg" alt="" class="lazy-img rounded-circle"></a>
-                        </div>
+                        @if(isset($candidateDetails->candidatePersonalDetails->profile_picture) && !empty($candidateDetails->candidatePersonalDetails->profile_picture))
+                        <div class="cadidate-avatar  position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidateDetails->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidateDetails->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
+                        @else
+                        <div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidateDetails->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
+                        @endif
                         <div class="right-side">
                             <div class="row gx-1 align-items-center">
                                 <div class="col-xl-2 order-xl-0">
@@ -32,7 +33,7 @@
                                         <div class="candidate-post">{{$candidateDetails->candidatePersonalDetails->designation ?? ''}}</div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 order-xl-3">
+                                {{--<div class="col-xl-3 order-xl-3">
                                     <ul class="cadidate-skills style-none d-flex flex-wrap align-items-center"> 
                                         @if(isset($candidateDetails->candidatePreferences->skills) && !empty($candidateDetails->candidatePreferences->skills))
 										@foreach($candidateDetails->candidatePreferences->skills as $index=>$skill)
@@ -48,6 +49,13 @@
 										@endif
                                     </ul>
                                     <!-- /.cadidate-skills -->
+                                </div>--}}
+                                <div class="col-xl-2 col-md-4 order-xl-1">
+                                    <div class="candidate-info">
+                                        <span>Visa Status</span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->current_visa_status ?? ''}}</div>
+                                    </div>
+                                    <!-- /.candidate-info -->
                                 </div>
                                 <div class="col-xl-2 col-md-4 order-xl-1">
                                     <div class="candidate-info">
