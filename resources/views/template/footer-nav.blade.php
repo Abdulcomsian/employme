@@ -70,22 +70,17 @@
     <div class="bottom-footer">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-4 order-lg-3 mb-15">
+                
+                <div class="col-lg-4">
+                    <p class="text-start mb-15">© Employme — South Korea</p>
+                </div>
+                <div class="col-lg-8">
                     <ul class="style-none d-flex order-lg-last justify-content-center justify-content-lg-end social-icon">
-                        <li><a href="#"><i class="bi bi-whatsapp"></i></a></li>
-                        <li><a href="#"><i class="bi bi-dribbble"></i></a></li>
-                        <li><a href="#"><i class="bi bi-google"></i></a></li>
                         <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+                        <li><a href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
+                        <li><a href="#"><i class="bi bi-twitter"></i></a></li>
                     </ul>
-                </div>
-                <div class="col-lg-4 order-lg-1 mb-15">
-                    <ul class="d-flex style-none bottom-nav justify-content-center justify-content-lg-start">
-                        <li><a href="{{route('termsOfServices')}}">Privacy & Terms.</a></li>
-                        <li><a href="{{route('contact')}}"> Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 order-lg-2">
-                    <p class="text-center mb-15">Copyright @2024 Employtme inc.</p>
                 </div>
             </div>
         </div>

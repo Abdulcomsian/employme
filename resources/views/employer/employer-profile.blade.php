@@ -189,7 +189,7 @@ h3{
 				</div>
 					<form id="basic-information-form" class="mt-4" method="post" enctype="multipart/form-data">
 						<!-- Step 1 -->
-						<div class="bg-white card-box" id="step-1">
+						<div class="bg-white card-box border-20" id="step-1">
 							<h3 class="my-3">Account Information</h3>
 							<div class="row">
 								<div class="col-md-6">
