@@ -414,7 +414,7 @@ hr {
   width: 100%;
 }
 .btn-eleven:hover, .btn-eleven:focus {
-  background: #00BF58;
+  background: #ff715b;
 }
 
 .title-one h2 {
@@ -5439,9 +5439,9 @@ iframe {
 /* button{
   background: #ff715b !important;
 } */
-button:hover{
+/* button:hover{
   background: #b1b0eb !important;
-}
+} */
 
 .job-list-three {
   background: #fff;
