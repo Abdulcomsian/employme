@@ -22,7 +22,7 @@ Job Listing
     
  }
  .job-title a:hover{
-    color: #D2F34C !important;
+    color: #ff715b !important;
     
     /* color: #244034; */
  }
