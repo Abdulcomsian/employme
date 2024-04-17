@@ -34,10 +34,10 @@ class BusinessLicenseMiddleware
         }
 
     
-        // if($employerLicenseDetails && $employerLicenseDetails->approval_status == 1 && (!auth()->user()->lastSubscription || !is_null(auth()->user()->lastSubscription->ends_at)))
-        // {
-        //      return redirect()->route('getEmployerSubscriptionPlan');
-        // }
+        if($employerLicenseDetails && $employerLicenseDetails->approval_status == 1 && (!auth()->user()->lastSubscription || !is_null(auth()->user()->lastSubscription->ends_at)))
+        {
+             return redirect()->route('getEmployerSubscriptionPlan');
+        }
         return $next($request);
     }
 }
