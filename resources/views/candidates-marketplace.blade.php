@@ -489,22 +489,22 @@ Candidate Marketplace
 									<div class="row gx-1">
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Salary</span>
-												<div>{{$candidate->candidatePreferences->expected_salary ?? ''}}{{!empty($candidate->candidatePreferences->expected_salary) ? '/mo' : ''}}</div>
+												<span	class="text-start fw-500">Salary</span>
+												<div	class="text-end">{{$candidate->candidatePreferences->expected_salary ?? ''}}{{!empty($candidate->candidatePreferences->expected_salary) ? '/mo' : ''}}</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span> Document Status</span>
-												<div class="doc-v">Verified</div>
+												<span	class="text-start fw-500"> Document Status</span>
+												<div class="doc-v text-end">Verified</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Current Location</span>
-												<div>{{$candidate->candidatePersonalDetails->current_location ?? ''}}</div>
+												<span	class="text-start fw-500">Current Location</span>
+												<div	class="text-end">{{$candidate->candidatePersonalDetails->current_location ?? ''}}</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>
@@ -516,8 +516,8 @@ Candidate Marketplace
 										</div> -->
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Nationality</span>
-												<div>{{$candidate->candidatePersonalDetails->getNationality->name ?? ''}}</div>
+												<span class="text-start fw-500">Nationality</span>
+												<div	class="text-end">{{$candidate->candidatePersonalDetails->getNationality->name ?? ''}}</div>
 											</div>
 										</div>
 
