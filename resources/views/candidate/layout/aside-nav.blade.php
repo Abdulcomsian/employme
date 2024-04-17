@@ -3,7 +3,7 @@
         <div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
             <a href="{{route('getCandidateDashboard')}}">
                
-					<span style="font-size: 25px;font-weight: bold;">employme</span>
+					<span style="font-size: 25px;font-weight: bold;color:#000;">employme</span>
             </a>
             <button class="close-btn d-block d-md-none"><i class="bi bi-x-lg"></i></button>
         </div>
@@ -19,7 +19,7 @@
             @endif
             <!-- /.user-avatar -->
             <div class="user-name-data d-flex justify-content-center">
-                <button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                <button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="background: transparent !important;color:#000;">
 
                  {{auth()->user()->name}}
 

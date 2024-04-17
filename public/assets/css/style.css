@@ -449,11 +449,13 @@ hr {
   font-size: 14px;
   margin-bottom: 15px;
 }
-
+.inner-banner-one p{
+  color: #000 !important;
+}
 .title-two h2 {
   font-size: 64px;
   line-height: 1.062em;
-  color: #000;
+  color: #000 !important;
   margin: 0;
 }
 .title-two h2.color-blue {
@@ -2289,24 +2291,24 @@ iframe {
 } */
 
 .menu-style-one.theme-main-menu.fixed {
-  background: #244034;
+  background: #e6e0fc;
 }
 
 .menu-style-one .navbar .nav-item .nav-link {
-  color: #fff;
+  color: #000;
 }
 
 .menu-style-one .navbar .nav-item:hover .nav-link {
-  color: #D2F34C;
+  color: rgb(255 113 91);
 }
 
 .menu-style-one .navbar .nav-item.category-btn .nav-link {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(255 113 91);
   line-height: 33px;
   padding: 0 17px;
   border-radius: 25px;
   margin: 10px 35px 10px 0;
-  color: #D2F34C;
+  color: #fff;
 }
 .menu-style-one .navbar .nav-item.category-btn .nav-link i {
   margin-right: 5px;
@@ -3186,7 +3188,7 @@ iframe {
 }
 
 .inner-banner-one {
-  background: #244034;
+  background: #e6e0fc;
   padding: 150px 0 115px;
   z-index: 9;
 }
@@ -4121,7 +4123,7 @@ iframe {
 }
 
 .registration-section {
-  background: #EFF6F3;
+  background: #f2f2f2;
 }
 
 .modal .modal-dialog {
@@ -4160,7 +4162,7 @@ iframe {
   border-radius: 8px;
   padding: 0 52px 0 20px;
   color: #000;
-  background: rgba(49, 121, 90, 0.09);
+  background: #f2f2f2;
 }
 .user-data-form .form-wrapper .input-group-meta label {
   font-size: 14px;
@@ -4278,7 +4280,7 @@ iframe {
   z-index: 1;
 }
 .user-data-form .nav {
-  background: #F0F5F3;
+  background: #f2f2f2 ;
   border-radius: 40px;
 }
 .user-data-form .nav .nav-item {
@@ -4293,8 +4295,9 @@ iframe {
   color: rgba(0, 0, 0, 0.5);
 }
 .user-data-form .nav .nav-item .nav-link.active {
-  color: #000;
-  border-color: #000;
+  color: #fff;
+  /* border-color: #000; */
+  background: #ff715b;
 }
 
 .card-style-one .wrapper {
@@ -5431,9 +5434,9 @@ iframe {
 .job-listing-three.bg-color {
   background: #EFF6F3;
 }
-button{
+/* button{
   background: #ff715b !important;
-}
+} */
 button:hover{
   background: #b1b0eb !important;
 }
@@ -7049,7 +7052,7 @@ button:hover{
   right: 10px;
   bottom: 10px;
   border-radius: 6px;
-  background: #244034;
+  background: #ff715b;
   color: #fff;
   transition: all 0.2s ease-in-out 0s;
 }
@@ -9652,7 +9655,8 @@ body.compensate-for-scrollbar {
   width: 100%;
   font-size: 18px;
   font-weight: 500;
-  color: #244034;
+  color: #000;
+  background: transparent !important;
   margin: 15px 0 45px;
 }
 .dash-aside-navbar .user-data .user-name:after {
@@ -10438,7 +10442,7 @@ body.compensate-for-scrollbar {
   font-size: 15px;
   font-weight: 500;
   color: #244034;
-  background: #F0F5F3;
+  background: #ececec;
 }
 .dashboard-body .job-alert-table th:first-child {
   border-radius: 7px 0 0 7px;
@@ -10516,11 +10520,14 @@ body.compensate-for-scrollbar {
   vertical-align: -1px;
   margin-right: 5px;
 }
-.dashboard-body .action-dots .dropdown-menu li:last-child .dropdown-item:hover {
+.dashboard-body .action-dots .dropdown-menu li .dropdown-item:hover {
   color: #ff5b5b;
 }
 .dashboard-body .action-dots .action-btn {
   padding: 8px;
+}
+.dashboard-body .action-dots .action-btn:hover{
+  background: transparent !important;
 }
 .dashboard-body .action-dots .action-btn span {
   display: block;
@@ -10551,10 +10558,10 @@ body.compensate-for-scrollbar {
   display: none;
 }
 .dashboard-body .action-dots .action-btn:hover span {
-  background: #00BF58;
+  background: #ff715b;
 }
 .dashboard-body .action-dots .action-btn:hover span:before, .dashboard-body .action-dots .action-btn:hover span:after {
-  background: #00BF58;
+  background: #ff715b;
 }
 .dashboard-body .dash-pagination li {
   font-size: 16px;
@@ -10677,9 +10684,9 @@ body.compensate-for-scrollbar {
   position: relative;
 }
 .dashboard-body .message-wrapper .message-sidebar .email-list-item.selected {
-  background: #F0F5F3;
-  border-left: 4px solid #779E86;
-  border-right: 4px solid #779E86;
+  background: #f2f2f2;
+  border-left: 4px solid #ff715b;
+  border-right: 4px solid #ff715b;
 }
 .dashboard-body .message-wrapper .message-sidebar .email-list-item.selected .email-short-preview .file {
   background: #fff;
@@ -10706,7 +10713,7 @@ body.compensate-for-scrollbar {
 .dashboard-body .message-wrapper .message-sidebar .email-list-item .email-short-preview .sender-name {
   font-size: 15px;
   font-weight: 500;
-  color: rgba(63, 99, 77, 0.8);
+  color: #000;
 }
 .dashboard-body .message-wrapper .message-sidebar .email-list-item .email-short-preview .date {
   font-size: 12px;
