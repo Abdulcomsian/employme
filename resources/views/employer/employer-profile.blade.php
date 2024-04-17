@@ -92,7 +92,14 @@ Profile
 .alert-danger {
 	width: max-content;
 }
-
+.btn-file{
+	color: #fff;
+    background: #ff715b;
+}
+.btn-file:hover{
+	background: #b1b0eb;
+    color: #fff;
+}
 input[type='checkbox']{
 	width: 20px!important;
 }
@@ -373,7 +380,7 @@ h3{
 										</div>
 										@if(isset($employerDetails->international_accredition_or_certification) && !empty($employerDetails->international_accredition_or_certification))
 										<div style = "padding-left:20px;">
-											<a class="btn btn-primary" href = "{{asset($employerDetails->international_accredition_or_certification)}}" target = "_blank">File</a>
+											<a class="btn btn-file" href = "{{asset($employerDetails->international_accredition_or_certification)}}" target = "_blank">File</a>
 										</div>
 										@endif
 									</div>
@@ -488,7 +495,7 @@ h3{
 										    <label for="">{{$employerLicenseDetails->license_number}}</label>
 											@if(isset($employerLicenseDetails->license_file) && !empty($employerLicenseDetails->license_file))
 											<div style = "padding-left:20px;">
-												<a class="btn btn-primary" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
+												<a class="btn btn-file" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
 											</div>
 											@endif
 										</div>
@@ -506,7 +513,7 @@ h3{
 										    <label for="">{{$employerLicenseDetails->license_number}}</label>
 											@if(isset($employerLicenseDetails->license_file) && !empty($employerLicenseDetails->license_file))
 											<div style = "padding-left:20px;">
-												<a class="btn btn-primary" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
+												<a class="btn btn-file" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
 											</div>
 											@endif
 										</div>
@@ -731,7 +738,7 @@ h3{
 										<video id="videoPreview" class = "d-none" width="320" height="240" controls></video>
 										@if(isset($employerDetails->introductry_video) && !empty($employerDetails->introductry_video))
 										<div style = "padding-left:20px;" class = "mt-2 video-url">
-											<a class="btn btn-primary" href = "{{asset($employerDetails->introductry_video)}}" target = "_blank">File</a>
+											<a class="btn btn-file" href = "{{asset($employerDetails->introductry_video)}}" target = "_blank">File</a>
 										</div>
 										@endif
 									</div>
@@ -749,7 +756,7 @@ h3{
 										</div>
 										@if(isset($employerDetails->video_thumbnail) && !empty($employerDetails->video_thumbnail))
 										<div style = "padding-left:20px;" class = "thumbnail-image">
-											<a class="btn btn-primary" href = "{{asset($employerDetails->video_thumbnail)}}" target = "_blank">File</a>
+											<a class="btn btn-file" href = "{{asset($employerDetails->video_thumbnail)}}" target = "_blank">File</a>
 										</div>
 										@endif
 									</div>

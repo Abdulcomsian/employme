@@ -414,7 +414,7 @@ hr {
   width: 100%;
 }
 .btn-eleven:hover, .btn-eleven:focus {
-  background: #00BF58;
+  background: #ff715b;
 }
 
 .title-one h2 {
@@ -2369,7 +2369,7 @@ iframe {
 }
 
 .menu-style-one .job-post-btn {
-  color: #fff;
+  color: #000;
   font-weight: 500;
   padding-right: 20px;
   margin-right: 20px;
@@ -2377,7 +2377,7 @@ iframe {
   border-right: 1px solid rgba(255, 255, 255, 0.27);
 }
 .menu-style-one .job-post-btn:hover {
-  color: #D2F34C;
+  color: #ff715b;
 }
 
 .theme-main-menu .login-btn-one {
@@ -3257,30 +3257,32 @@ iframe {
   color: rgba(255, 255, 255, 0.4);
 }
 .inner-banner-one .candidate-profile-card .candidate-info span {
-  color: rgba(255, 255, 255, 0.6);
+  color: #818181;
+  font-weight: 500;
 }
 .inner-banner-one .candidate-profile-card .candidate-info div {
-  color: #fff;
+  color: #000;
 }
 .inner-banner-one .candidate-profile-card .cv-download-btn {
   line-height: 38px;
-  border: 1px solid #fff;
+  border: 1px solid #ff715b;
   border-radius: 40px;
-  color: #fff;
+  color: #ff715b;
   font-size: 15px;
   letter-spacing: -0.5px;
   padding: 0 20px;
 }
 .inner-banner-one .candidate-profile-card .cv-download-btn:hover {
-  background: #375749;
-  border-color: #375749;
+  background: #ff715b !important;
+  border-color: #ff715b;
+  color: #fff;
 }
 .inner-banner-one .candidate-profile-card .cadidate-skills li {
   background: #375749;
   color: rgba(255, 255, 255, 0.55);
 }
 .inner-banner-one .candidate-profile-card.list-layout .save-btn {
-  background: #375749;
+  background: #ff715b;
   border-color: #fff;
   color: #fff;
 }
@@ -5437,9 +5439,9 @@ iframe {
 /* button{
   background: #ff715b !important;
 } */
-button:hover{
+/* button:hover{
   background: #b1b0eb !important;
-}
+} */
 
 .job-list-three {
   background: #fff;
