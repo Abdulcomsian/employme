@@ -10,11 +10,12 @@ Job Listing
     color: black !important;
 }
 .job-title, .job-application, .candidate-profile  {
-    color: #00BF58 !important;
+    color: #000 !important;
+    font-weight: 500;
     
  }
  .job-title a:hover{
-    color: #D2F34C !important;
+    color: #ff715b !important;
     
     /* color: #244034; */
  }
