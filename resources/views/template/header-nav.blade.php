@@ -22,7 +22,7 @@
                         @endguest
                         @auth
                             @role('employer')
-                            <li class="d-none d-md-block ms-4"><a href="{{route('candidatesMarketplace')}}" class="btn-one">Hire Top Talents</a></li>
+                            <!-- <li class="d-none d-md-block ms-4"><a href="{{route('candidatesMarketplace')}}" class="btn-one">Hire Top Talents</a></li> -->
                             @endrole
                         @endauth
                         @auth

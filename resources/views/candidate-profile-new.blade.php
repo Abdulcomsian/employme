@@ -20,19 +20,20 @@
             <div class="container">
                 <div class="candidate-profile-card list-layout">
                     <div class="d-flex align-items-start align-items-xl-center">
-                        <div class="cadidate-avatar position-relative d-block me-auto ms-auto"><a href="#"
-                                class="rounded-circle"><img src="images/lazy.svg"
-                                    data-src="images/candidates/img_01.jpg" alt="" class="lazy-img rounded-circle"></a>
-                        </div>
+                        @if(isset($candidateDetails->candidatePersonalDetails->profile_picture) && !empty($candidateDetails->candidatePersonalDetails->profile_picture))
+                        <div class="cadidate-avatar  position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidateDetails->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidateDetails->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
+                        @else
+                        <div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidateDetails->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
+                        @endif
                         <div class="right-side">
                             <div class="row gx-1 align-items-center">
                                 <div class="col-xl-2 order-xl-0">
                                     <div class="position-relative">
-                                        <h4 class="candidate-name text-white mb-0">{{$candidateDetails->candidatePersonalDetails->first_name ?? ''}} {{$candidateDetails->candidatePersonalDetails->middle_name ?? ''}} {{$candidateDetails->candidatePersonalDetails->last_name ?? ''}}</h4>
+                                        <h4 class="candidate-name text-dark mb-0">{{$candidateDetails->candidatePersonalDetails->first_name ?? ''}} {{$candidateDetails->candidatePersonalDetails->middle_name ?? ''}} {{$candidateDetails->candidatePersonalDetails->last_name ?? ''}}</h4>
                                         <div class="candidate-post">{{$candidateDetails->candidatePersonalDetails->designation ?? ''}}</div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 order-xl-3">
+                                {{--<div class="col-xl-3 order-xl-3">
                                     <ul class="cadidate-skills style-none d-flex flex-wrap align-items-center"> 
                                         @if(isset($candidateDetails->candidatePreferences->skills) && !empty($candidateDetails->candidatePreferences->skills))
 										@foreach($candidateDetails->candidatePreferences->skills as $index=>$skill)
@@ -48,10 +49,21 @@
 										@endif
                                     </ul>
                                     <!-- /.cadidate-skills -->
-                                </div>
+                                </div>--}}
                                 <div class="col-xl-2 col-md-4 order-xl-1">
                                     <div class="candidate-info">
+                                        <span>Visa Status</span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->current_visa_status ?? ''}}</div>
+                                    </div>
+                                    <!-- /.candidate-info -->
+                                </div>
+                                <div class="col-xl-2 col-md-4 order-xl-0">
+                                    <div class="candidate-info">
                                         <span>Location</span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->current_location ?? ''}}</div>
+                                    </div>
+                                    <div class="candidate-info">
+                                        <span>Start Date</span>
                                         <div>{{$candidateDetails->candidatePersonalDetails->current_location ?? ''}}</div>
                                     </div>
                                     <!-- /.candidate-info -->
@@ -109,24 +121,26 @@
                                 <p>{{$candidateDetails->candidatePersonalDetails->introduction ?? ''}}</p>
                             </div>
                             <!-- /.inner-card -->
-                            @if(isset($candidateDetails->candidatePreferences->video_url) || isset($candidateDetails->candidatePreferences->other_platform_video_url))
-                            <h3 class="title">Introduction</h3>
-                            @if(!empty($candidateDetails->candidatePreferences->video_url))
-                            <div
-                                class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
-                                <a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
-                                    href="{{asset($candidateDetails->candidatePreferences->video_url)}}">
-                                    <i class="bi bi-play"></i>
-                                </a>
-                            </div>
-                            @elseif(!empty($candidateDetails->candidatePreferences->other_platform_video_url))
-                            <div
-                                class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
-                                <a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
-                                    href="{{$candidateDetails->candidatePreferences->other_platform_video_url}}">
-                                    <i class="bi bi-play"></i>
-                                </a>
-                                
+                            @if(isset($candidateDetails->candidatePreferences->video_url) || isset($candidateDetails->candidatePreferences->other_platform_video_url) && $candidateDetails->candidatePreferences->other_platform_video_url != 'undefined' && $candidateDetails->candidatePreferences->video_url != 'undefined')
+                            <div class="inner-card mb-60 lg-mb-50">
+                                <h3 class="title">Introduction</h3>
+                                @if(!empty($candidateDetails->candidatePreferences->video_url))
+                                <div
+                                    class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
+                                    <a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
+                                        href="{{asset($candidateDetails->candidatePreferences->video_url)}}">
+                                        <i class="bi bi-play"></i>
+                                    </a>
+                                </div>
+                                @elseif(!empty($candidateDetails->candidatePreferences->other_platform_video_url))
+                                <div
+                                    class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
+                                    <a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
+                                        href="{{$candidateDetails->candidatePreferences->other_platform_video_url}}">
+                                        <i class="bi bi-play"></i>
+                                    </a>
+                                    
+                                </div>
                             </div>
                             @endif
                             @endif
@@ -219,32 +233,56 @@
                         <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
                             <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
                                 <ul class="style-none">
-
-									         <li class="border-0">
-                                        <span>Name: </span>
-                                        <div>{{$candidateDetails->candidatePersonalDetails->first_name ?? ''}} {{$candidateDetails->candidatePersonalDetails->middle_name ?? ''}} {{$candidateDetails->candidatePersonalDetails->last_name ?? ''}}</div>
+                                    @isset($candidateDetails->documents)
+                                    @foreach($candidateDetails->documents as $document)
+                                    @if($document->document_type == 1)
+                                    <li class="border-0">
+                                        {{--<span>Copy of Degree: </span>--}}
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Degree</a></div>
                                     </li>
                                     <!-- <li>
                                         <span>Age: </span>
                                         <div>28</div>
                                     </li> -->
-									         <li >
-                                        <span>Location: </span>
-                                        <div>{{$candidateDetails->candidatePersonalDetails->current_location ?? ''}}</div>
+                                    @elseif($document->document_type == 2)
+                                    <li >
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Police Certificate</a></div>
+                                    </li>
+                                    @elseif($document->document_type == 3)
+									<li>
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Degree Apostille</a></div>
+                                    </li>
+                                    @elseif($document->document_type == 4)
+                                    <li>
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Police Apostille</a></div>
+                                    </li>
+                                    @elseif($document->document_type == 5)
+                                    <li>
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of SAQA Letter</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Passport</a></div>
+                                    </li>
+                                    @endif
+                                    @endforeach
+                                    @endisset
+
+                                </ul>
+                                <a href="#" class="btn-ten cv-download-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download CV</a>
+                            </div>
+                        </div> 
+                        <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
+                            <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
+                                <ul class="style-none">
+									<li>
+                                        <span>Preferred Start Date: </span>
+                                        <div>{{$candidateDetails->candidatePreferences->preferred_start_date ?? ''}}</div>
                                     </li>
 									<li>
-                                        <span>Expected Salary: </span>
-                                        <div>{{$candidateDetails->candidatePreferences->expected_salary ?? ''}}</div>
+                                        <span>Current Visa Status:</span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->current_visa_status ?? ''}}</div>
                                     </li>
-									<!-- <li>
-                                        <span>Intended Start Date: </span>
-                                        <div>14 August 2024</div>
-                                    </li>
-									<li>
-                                        <span>Country of Origin: </span>
-                                        <div>Pakistan</div>
-                                    </li> -->
-									<li>
+                                    <li>
                                         <span>Apostille Status: </span>
                                         <div>Verified</div>
                                     </li>
@@ -254,7 +292,6 @@
                                     </li>
 
                                 </ul>
-                                <a href="#" class="btn-ten cv-download-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download CV</a>
                             </div>
                             <!-- /.cadidate-bio -->
                             <!-- <h4 class="sidebar-title">Location</h4>

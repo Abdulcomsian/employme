@@ -552,12 +552,13 @@ Job Marketplace
 									<div class="job-date"><span class="fw-100 text-dark"><i>Starting Date: </i>{{date("d-m-Y" , strtotime($job->start_date))}}</span></div>
 									
 									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}">{{$job->city_town}}</a></div>
 										@if($job->interview->count() == 1)
 										<button class="apply-btn text-center tran3s">Interview Applied</button>
 										@else
 										<button class="apply-btn text-center tran3s apply-interview" data-job-id="{{$job->id}}">Interview Request</button>
 										@endif
+										
+										<div class="job-location"><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}">{{$job->city_town}}</a></div>
 									</div>
 								</div> <!-- /.job-list-two -->
 							</div>
