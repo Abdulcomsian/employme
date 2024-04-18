@@ -10939,11 +10939,11 @@ body.compensate-for-scrollbar {
   padding: 0 15px;
   line-height: 35px;
   border-radius: 50px;
-  background: #244034;
+  background: #ff715b;
 }
 .compose-new-email-container .reply-btn:hover {
-  background: #D2F34C;
-  color: #244034;
+  background: #b1b0eb;
+  color: #000;
 }
 
 .compose-mail-offcanvas {
