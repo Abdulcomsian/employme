@@ -5568,7 +5568,7 @@ input[type="range"]::-webkit-slider-thumb {
 .job-company-info {
   border-radius: 20px;
   padding: 50px 20px 30px;
-  background: #EFF6F3;
+  background: #f6f6f6;
 }
 .job-company-info .logo {
   height: 60px;
@@ -5582,11 +5582,11 @@ input[type="range"]::-webkit-slider-thumb {
   font-weight: 500;
   letter-spacing: -0.5px;
   color: #fff;
-  background: #244034;
+  background: #000;
   border-radius: 30px;
 }
 .job-company-info .website-btn:hover {
-  background: #000;
+  background: #ff715b;
 }
 .job-company-info .website-btn-two {
   font-weight: 500;
@@ -5601,12 +5601,12 @@ input[type="range"]::-webkit-slider-thumb {
 .job-company-info .job-meta-data span {
   font-size: 14px;
   font-weight: 500;
-  color: rgba(36, 64, 52, 0.6);
+  color: rgb(0 0 0 / 60%);
 }
 .job-company-info .job-meta-data div {
   font-size: 15px;
   font-weight: 500;
-  color: #244034;
+  color: #000;
   margin: 4px 0 25px;
 }
 .job-company-info .job-meta-data div a:hover {
@@ -5656,12 +5656,12 @@ input[type="range"]::-webkit-slider-thumb {
 .job-details .share-buttons li a {
   font-size: 14px;
   font-weight: 500;
-  color: #244034;
+  color: #ff715b;
   line-height: 33px;
   border-radius: 5px;
   padding: 0 15px;
   margin-top: 5px;
-  background: rgba(49, 121, 90, 0.12);
+  background: rgb(255 113 91 / 12%);
   transition: all 0.2s ease-in-out 0s;
 }
 .job-details .share-buttons li a i {
@@ -5669,7 +5669,7 @@ input[type="range"]::-webkit-slider-thumb {
   margin-right: 7px;
 }
 .job-details .share-buttons li a:hover {
-  background: #244034;
+  background: #ff715b;
   color: #fff;
 }
 .job-details .post-block.border-style {
@@ -5984,7 +5984,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .candidates-profile.bg-color {
-  background: #EFF6F3;
+  background: #f6f6f6;
 }
 
 .candidate-profile-card {
@@ -7104,7 +7104,7 @@ input[type="range"]::-webkit-slider-thumb {
   transition: all 0.2s ease-in-out 0s;
 }
 .footer-one .bottom-footer .social-icon a:hover {
-  color: #00BF58;
+  color: #ff715b;
 }
 .footer-one .bottom-footer .bottom-nav a {
   font-weight: 500;
@@ -10460,7 +10460,7 @@ body.compensate-for-scrollbar {
   padding: 12px 15px;
   font-size: 15px;
   font-weight: 500;
-  color: #244034;
+  color: #000;
   background: #ececec;
 }
 .dashboard-body .job-alert-table th:first-child {
