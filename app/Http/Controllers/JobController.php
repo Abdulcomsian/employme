@@ -14,7 +14,13 @@ class JobController extends Controller
 {
 
     public function jobMarketplace(Request $request){
-        $allJobs = EmployerJob::where('job_status',1)->with('employerDetails');
+        $allJobs = EmployerJob::where('job_status',1)
+                                ->whereHas('employerInfo' , function($query){
+                                    $query->whereHas('license', function($query){
+                                        $query->where('approval_status' , \App\Http\AppConst::LICENSE_APPROVED);
+                                    });
+                                })
+                                ->with('employerDetails');
         $jobCategories = JobCategory::all();
        
         if(auth()->check())

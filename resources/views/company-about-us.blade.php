@@ -206,8 +206,14 @@
 								</div>
 						</div>
 					</div>
-
 					
+					@if($introductionVideo)
+						<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
+							<video width="640" height="360" controls>
+								<source src="{{asset('uploads/employer/introduction-video/'.$introductionVideo->file_path)}}" type="video/mp4">
+							</video>
+						</div>
+					@endif
 
 					<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
 						<div class="details-post-data me-xxl-5 pe-xxl-4">
@@ -255,15 +261,15 @@
 						</div>
 					</div>
 
-					<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
+					<!--<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
 						<div class="details-post-data me-xxl-5 pe-xxl-4">
-							<!-- <h3>Overview</h3> -->
-							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Vulputate odio ut enim blandit. Nibh ipsum consequat nisl vel pretium lectus quam.</p> -->
-							<!-- <p> Nulla at volutpat diam ut. Lobortis feugiat vivamus at augue eget arcu. Urna condimentum mattis pellentesque id nibh tortor id aliquet. Dignissim cras tincidunt lobortis feugiat. Est sit amet facilisis magna etiam tempor. Eu augue ut lectus arcu bibendum at varius vel pharetra. Vel facilisis volutpat est velit egestas dui id. Ut pharetra sit amet aliquam. Elit at imperdiet dui accumsan sit amet nulla facilisi morbi. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Magna fringilla urna porttitor rhoncus. Et odio pellentesque diam volutpat. Congue eu consequat ac felis donec et odio pellentesque diam. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. </p> -->
-							<!-- <p>Felis eget velit aliquet sagittis id. Massa placerat duis ultricies lacus sed turpis tincidunt id. Vel eros donec ac odio tempor orci dapibus ultrices. Ipsum consequat nisl vel pretium lectus quam. Dignissim sodales ut eu sem. </p> -->
+							 <h3>Overview</h3> 
+							 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Vulputate odio ut enim blandit. Nibh ipsum consequat nisl vel pretium lectus quam.</p> 
+							 <p> Nulla at volutpat diam ut. Lobortis feugiat vivamus at augue eget arcu. Urna condimentum mattis pellentesque id nibh tortor id aliquet. Dignissim cras tincidunt lobortis feugiat. Est sit amet facilisis magna etiam tempor. Eu augue ut lectus arcu bibendum at varius vel pharetra. Vel facilisis volutpat est velit egestas dui id. Ut pharetra sit amet aliquam. Elit at imperdiet dui accumsan sit amet nulla facilisi morbi. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Magna fringilla urna porttitor rhoncus. Et odio pellentesque diam volutpat. Congue eu consequat ac felis donec et odio pellentesque diam. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. </p> 
+							 <p>Felis eget velit aliquet sagittis id. Massa placerat duis ultricies lacus sed turpis tincidunt id. Vel eros donec ac odio tempor orci dapibus ultrices. Ipsum consequat nisl vel pretium lectus quam. Dignissim sodales ut eu sem. </p> 
 
 
-							<div class="container">
+							 <div class="container">
 								<h3>Curriculum</h3>
 								{{--<p><b>School's Mission & Vision:</b> {{$employerDetails->school_vision_and_mission}}</p>--}}
 								<p>{!! $businessOperationDetails->curriculum ?? '' !!}</p>
@@ -271,27 +277,27 @@
 								<div class = "row col-md-6">
 								<table class="table table-borderless">
 								
-								<tbody>
-								@isset($businessOperationDetails->operation_time)
-								@foreach($businessOperationDetails->operation_time as $operation_time)
-								@if(isset($operation_time['day']) && $operation_time['day'] !='')
-								<tr>
-									<td><b>{{$operation_time['day']}}</b></td>
-									<td>{{ isset($operation_time['start_time']) ? date('h:i A',strtotime($operation_time['start_time'])) : ''}} - {{ isset($operation_time['end_time']) ? date('h:i A',strtotime($operation_time['end_time'])) : ''}}</td>
-								</tr>
-								@endif
-								@endforeach
-								@endisset
-								</tbody>
-							</table>
+									<tbody>
+									@isset($businessOperationDetails->operation_time)
+									@foreach($businessOperationDetails->operation_time as $operation_time)
+									@if(isset($operation_time['day']) && $operation_time['day'] !='')
+									<tr>
+										<td><b>{{$operation_time['day']}}</b></td>
+										<td>{{ isset($operation_time['start_time']) ? date('h:i A',strtotime($operation_time['start_time'])) : ''}} - {{ isset($operation_time['end_time']) ? date('h:i A',strtotime($operation_time['end_time'])) : ''}}</td>
+									</tr>
+									@endif
+									@endforeach
+									@endisset
+									</tbody>
+								</table>
 								</div>
 								
 
-								<!-- <p><b>Teaching Philosophy:</b> (Details about the school's pedagogic beliefs and methods)</p> -->
-							</div>
+								 <p><b>Teaching Philosophy:</b> (Details about the school's pedagogic beliefs and methods)</p> 
+							</div> 
 							
 						</div>
-					</div>
+					</div>-->
 
 					<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
 						<div class="details-post-data me-xxl-5 pe-xxl-4">
@@ -536,76 +542,8 @@
 						</div>
 					</div>
 
-					<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
-						<div class="details-post-data me-xxl-5 pe-xxl-4">
-							
+					
 
-
-							<div class="container">
-								<h3>Housings</h3>
-								
-							</div>
-							<div class="row">
-							@isset($companyHousingsImages)
-							@foreach($companyHousingsImages as $image)
-								<div class="col-md-4 mb-20">
-									<img src="{{asset($image->file_name)}}" alt="">
-								</div>
-								@endforeach
-								@endisset
-								
-
-							</div>
-
-
-							
-						</div>
-					</div>
-
-					<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
-						<div class="details-post-data me-xxl-5 pe-xxl-4">
-							<!-- <h3>Overview</h3> -->
-							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Vulputate odio ut enim blandit. Nibh ipsum consequat nisl vel pretium lectus quam.</p> -->
-							<!-- <p> Nulla at volutpat diam ut. Lobortis feugiat vivamus at augue eget arcu. Urna condimentum mattis pellentesque id nibh tortor id aliquet. Dignissim cras tincidunt lobortis feugiat. Est sit amet facilisis magna etiam tempor. Eu augue ut lectus arcu bibendum at varius vel pharetra. Vel facilisis volutpat est velit egestas dui id. Ut pharetra sit amet aliquam. Elit at imperdiet dui accumsan sit amet nulla facilisi morbi. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Magna fringilla urna porttitor rhoncus. Et odio pellentesque diam volutpat. Congue eu consequat ac felis donec et odio pellentesque diam. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. </p> -->
-							<!-- <p>Felis eget velit aliquet sagittis id. Massa placerat duis ultricies lacus sed turpis tincidunt id. Vel eros donec ac odio tempor orci dapibus ultrices. Ipsum consequat nisl vel pretium lectus quam. Dignissim sodales ut eu sem. </p> -->
-
-
-							<div class="container">
-								<div class="row justify-content-md-center">
-									<div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-										<h3 class="mb-4 display-5 text-left">Our Staff</h3>
-										{{--<p class="text-secondary mb-5 text-center lead fs-4">We are a group of innovative, experienced, and proficient teams. You will love to collaborate with us.</p>--}}
-										<hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
-									</div>
-								</div>
-							</div>
-
-							<div class="container overflow-hidden">
-								<div class="row gy-4 gy-lg-0 gx-xxl-5">
-								@isset($employerStaff)
-								@foreach($employerStaff as $employer_staff)
-								<div class="col-12 col-md-6 col-lg-3">
-									<div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
-										<div class="card-body p-0">
-											<figure class="m-0 p-0">
-											<img class="img-fluid" loading="lazy" src="{{asset($employer_staff->staff_image)}}" alt="">
-											<figcaption class="m-0 p-4">
-												<h4 class="mb-1">{{$employer_staff->title ?? '' }}</h4>
-												<p class="text-secondary mb-0">{{$employer_staff->year_started ?? ''}}</p>
-											</figcaption>
-											</figure>
-										</div>
-									</div>
-								</div>
-								@endforeach
-								@endisset
-								
-							</div>
-
-
-							
-						</div>
-					</div>
 					</div>
 				</div>
 			</div>

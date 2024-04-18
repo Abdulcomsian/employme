@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "laravelcollective/html": "^6.4",
+        "minuteoflaravel/laravel-audio-video-validator": "^1.1",
         "pbmedia/laravel-ffmpeg": "^8.4",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^5.11",
