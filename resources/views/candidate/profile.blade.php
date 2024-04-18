@@ -229,7 +229,7 @@ Profile
                         </div> --}}
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="visa_eligibility_check">Save</button>
+                            <button type="button" class="dash-btn-one" id="visa_eligibility_check">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -367,7 +367,7 @@ Profile
                         
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button"  class="dash-btn-one" id = "candidate-personal-details">Save <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-personal-details-progress"></i></button>
+                            <button type="button"  class="dash-btn-one" id = "candidate-personal-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-personal-details-progress"></i></button>
                         </div>
                     </div>
                 </div>
@@ -597,7 +597,7 @@ Profile
                         </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="candidate-educational-details">Save</button>
+                            <button type="button" class="dash-btn-one" id="candidate-educational-details">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -764,7 +764,7 @@ Profile
                                 <button type="button" class="dash-btn-one" id="add-more-experience" >add more</button>
                             </div>
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="candidate-professional-details">Save</button>
+                            <button type="button" class="dash-btn-one" id="candidate-professional-details">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -877,7 +877,7 @@ Profile
                      
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id = "candidate-preferences-details">Save</button>
+                            <button type="button" class="dash-btn-one" id = "candidate-preferences-details">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -923,7 +923,7 @@ Profile
                         </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id= "candidate-introduction-details">Save</button>
+                            <button type="button" class="dash-btn-one" id= "candidate-introduction-details">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -1180,7 +1180,7 @@ Profile
 
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="teaching-video-details">Save</button>
+                            <button type="button" class="dash-btn-one" id="teaching-video-details">Submit</button>
                         </div>
                     </div>
                 </div>

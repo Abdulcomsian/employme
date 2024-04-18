@@ -1,7 +1,7 @@
 <aside class="dash-aside-navbar">
     <div class="position-relative">
         <div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
-            <a href="{{route('getCandidateDashboard')}}">
+            <a href="{{asset('/')}}">
                
 					<span style="font-size: 25px;font-weight: bold;color:#000;">employme</span>
             </a>
@@ -26,7 +26,7 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="{{route('getCandidateProfile')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>
+                        <a class="dropdown-item d-flex align-items-center" href="{{route('candidateProfileNew', \Crypt::encryptString(\Auth::id()))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>
                     </li>
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="{{route('getAccountSetting')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_24.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Account Settings</span></a>
