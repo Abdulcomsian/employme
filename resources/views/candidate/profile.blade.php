@@ -101,6 +101,14 @@ Profile
     h4{
         font-family: 'gordita';
     }
+    .btn-file{
+	color: #fff;
+    background: #ff715b;
+}
+.btn-file:hover{
+	background: #b1b0eb;
+    color: #fff;
+}
 </style>
 @endpush
 @section('content')
@@ -358,7 +366,7 @@ Profile
                                     </div>
                                     @if(isset($candidatePersonalDetails->candidate_resume) && !empty($candidatePersonalDetails->candidate_resume))
                                     <div style = "padding-left:20px;">
-                                        <a class="btn btn-primary resume-file" href = "{{asset($candidatePersonalDetails->candidate_resume)}}" target = "_blank">File</a>
+                                        <a class="btn btn-file resume-file" href = "{{asset($candidatePersonalDetails->candidate_resume)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div>
@@ -952,7 +960,7 @@ Profile
                                     <video id="videoPreview" class = "d-none" width="320" height="240" controls></video>
                                     @if(isset($candidatePreferencesDetails->video_url) && !empty($candidatePreferencesDetails->video_url))
                                     <div style = "padding-left:20px;" class = "mt-2 video-url">
-                                        <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_url)}}" target = "_blank">File</a>
+                                        <a class="btn btn-file" href = "{{asset($candidatePreferencesDetails->video_url)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div>
@@ -971,7 +979,7 @@ Profile
                                     </div>
                                     @if(isset($candidatePreferencesDetails->video_thumbnail) && !empty($candidatePreferencesDetails->video_thumbnail))
                                     <div style = "padding-left:20px;" class = "thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
+                                        <a class="btn btn-file" href = "{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div>
@@ -1000,7 +1008,7 @@ Profile
                                     </div>
                                     @if(isset($candidatePreferencesDetails->video_thumbnail) && !empty($candidatePreferencesDetails->video_thumbnail))
                                     <div style = "padding-left:20px;" class = "thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
+                                        <a class="btn btn-file" href = "{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div> --}}
@@ -1046,7 +1054,7 @@ Profile
                                     </div>
                                     @if(isset($degree))
                                     <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($degree->url)}}" target = "_blank">File</a>
+                                        <a class="btn btn-file" href = "{{asset($degree->url)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div>
@@ -1065,7 +1073,7 @@ Profile
                                     </div>
                                     @if(isset($policeCertificate))
                                     <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($policeCertificate->url)}}" target = "_blank">File</a>
+                                        <a class="btn btn-file" href = "{{asset($policeCertificate->url)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div>
@@ -1088,7 +1096,7 @@ Profile
                                     </div>
                                     @if(isset($degreeApostilled))
                                     <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($degreeApostilled->url)}}" target = "_blank">File</a>
+                                        <a class="btn btn-file" href = "{{asset($degreeApostilled->url)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div>
@@ -1107,7 +1115,7 @@ Profile
                                     </div>
                                     @if(isset($certificateApostilled))
                                     <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($certificateApostilled->url)}}" target = "_blank">File</a>
+                                        <a class="btn btn-file" href = "{{asset($certificateApostilled->url)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div>
@@ -1130,7 +1138,7 @@ Profile
                                     </div>
                                     @if(isset($saqaLetter))
                                     <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($saqaLetter->url)}}" target = "_blank">File</a>
+                                        <a class="btn btn-file" href = "{{asset($saqaLetter->url)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div>
@@ -1149,7 +1157,7 @@ Profile
                                     </div>
                                     @if(isset($passport))
                                     <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($passport->url)}}" target = "_blank">File</a>
+                                        <a class="btn btn-file" href = "{{asset($passport->url)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div>
