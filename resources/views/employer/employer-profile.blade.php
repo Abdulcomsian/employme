@@ -344,7 +344,7 @@ h3{
 
 					<!-- Step 2 -->
 					<form id="operational-details-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
-						<div class="bg-white card-box" id="step-2">
+						<div class="bg-white card-box border-20" id="step-2">
 							<h3 class="my-3">Company Information</h3>
 							<div class="row">
 								{{-- <div class="col-md-6">
@@ -484,8 +484,13 @@ h3{
 
 					<!-- Step 4 -->
 					<form id="employer-verification-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
+<<<<<<< HEAD
 						<div class="bg-white card-box" id="step-3">
 							<h3 class="my-3">Employer Verification</h3>
+=======
+						<div class="bg-white card-box border-20" id="step-3">
+							<h3 class="my-3">Business License Certificate</h3>
+>>>>>>> 1a981765860bea2aacbd93687a05162fd0dfe77c
 							<div class = "mt-1" id ="license-document-error"></div>
 								@isset($employerLicenseDetails)
 								@if($employerLicenseDetails->approval_status == 0)
@@ -644,8 +649,13 @@ h3{
 							</div>
 						</form>
 					<form id="declaration-consent-form" class="mt-4" method="post">
+<<<<<<< HEAD
 						<div class="bg-white card-box" id="step-4">
 							<h3 class="my-3">Terms And Conditions</h3>
+=======
+						<div class="bg-white card-box border-20" id="step-4">
+							<h3 class="my-3">Terms And Condition</h3>
+>>>>>>> 1a981765860bea2aacbd93687a05162fd0dfe77c
 							<div class="row">
 								<div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">
