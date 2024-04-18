@@ -3188,6 +3188,7 @@ iframe {
 
 .job-portal-intro h2 {
   font-size: 55px;
+  font-family: "gordita";
 }
 
 .inner-banner-one {
@@ -4146,9 +4147,11 @@ iframe {
   padding: 50px 15px 20px;
 }
 .user-data-form h2 {
-  font-size: 50px;
+  font-size: 36px;
   font-weight: normal;
-  color: #244034;
+  font-family: "gordita";
+  color: #000;
+  font-weight: bold;
 }
 .user-data-form p a {
   color: #000;
@@ -4744,7 +4747,7 @@ iframe {
   transform: rotate(180deg);
 }
 .filter-area-tab .light-bg {
-  background: #EFF6F3;
+  background: #f3f3f3;
 }
 .filter-area-tab .main-title {
   font-size: 25px;
@@ -5414,7 +5417,7 @@ iframe {
   border: 1px solid #EBEBEB;
 }
 .job-list-two.style-two:hover {
-  background: #F8FDE4;
+  background: #fff7f6;
   border-color: #000;
   box-shadow: none;
 }
@@ -7073,8 +7076,8 @@ input[type="range"]::-webkit-slider-thumb {
   transition: all 0.2s ease-in-out 0s;
 }
 .footer-one .footer-newsletter form button:hover {
-  background: #D2F34C;
-  color: #244034;
+  background: #b1b0eb;
+  color: #000;
 }
 .footer-one .footer-newsletter form.border-style {
   border: 1px solid #000;
