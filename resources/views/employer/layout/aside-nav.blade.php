@@ -25,7 +25,8 @@
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="profile-dropdown">
 					<li>
-						<a class="dropdown-item d-flex align-items-center" href="{{route('getEmployerProfile')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>
+					<a class="dropdown-item d-flex align-items-center" href="{{url('company-about-us/'.\Crypt::encryptString(auth()->user()->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>
+						<!-- <a class="dropdown-item d-flex align-items-center" href="{{route('getEmployerProfile')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a> -->
 					</li>
 					<li>
 						<a class="dropdown-item d-flex align-items-center" href="{{route('getEmployerDashboardSettings')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_24.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Account Settings</span></a>
@@ -64,6 +65,11 @@
 								<div class="collapse {{request()->is('employer/manage/staff') || request()->is('employer/manage/gallery') || request()->is('candidate/profile') || request()->is('employer/manage/business-operation') || request()->is('employer/manage/housings')  ? 'show' : ''}}" id="companyPageType">
 									<div class="main-body">
 										<ul class="style-none filter-input">
+											<li><a href="{{route('introduct.video')}}" class="d-flex w-100 align-items-center {{(request()->is('employer/introduction-video'))  ? 'active' : ''}}">
+												<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/introduction-video') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
+													<span>Introduction</span>
+												</a>
+											</li> 
 											<li><a href="{{route('staff.index')}}" class="d-flex w-100 align-items-center {{(request()->is('employer/manage/staff') || request()->is('employer/manage/staff/*'))  ? 'active' : ''}}">
 												<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/staff') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
 													<span>Staff</span>
@@ -103,10 +109,15 @@
                     </div>
                 </li> 
 					@if(!session('email_verification') && !session('profile_completion'))
-				<li><a href="{{route('employer-jobs.index')}}" class="d-flex w-100 align-items-center {{request()->is('employer/employer-jobs*') ? 'active' : ''}}">
+				
+				@if(authenticateEmployerLicense())
+				<li>
+					<a href="{{route('employer-jobs.index')}}" class="d-flex w-100 align-items-center {{request()->is('employer/employer-jobs*') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/job-listing') ? asset('assets/images/dashboard-icon/icon_3_active.svg') : asset('assets/images/dashboard-icon/icon_3.svg')}}" alt="" class="lazy-img">
 						<span>Job Listings</span>
-					</a></li>
+					</a>
+				</li>
+				@endif
 					<li><a href="{{route('employerSavedCandidates')}}" class="d-flex w-100 align-items-center {{request()->is('employer/saved-candidates') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/employer-dashboard-saved-candidate') ? asset('assets/images/dashboard-icon/icon_6_active.svg') : asset('assets/images/dashboard-icon/icon_6.svg')}}" alt="" class="lazy-img">
 						<span>Saved Candidate</span>

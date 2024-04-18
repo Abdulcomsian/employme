@@ -245,10 +245,10 @@ Post A Job
                             </select>
                             {{-- <input type="text" name="class_size" placeholder=""> --}}
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        <!-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Hours/Week:</label>
                             <input type="number" class="number-input" name="hours_per_week" placeholder="">
-                        </div>
+                        </div> -->
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Classes Each Day:</label>
                             <select class="nice-select" name="teaching_hours_per_day">

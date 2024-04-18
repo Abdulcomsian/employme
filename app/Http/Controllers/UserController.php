@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\{User, EmployerJob, EmployerDetails, CandidatePersonalDetails,
-     SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation, EmployerBusinessLicense, JobInterview, Review };
+     SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation, EmployerBusinessLicense, IntroductionVideo, JobInterview, Review };
 use Illuminate\Support\Facades\Auth;
 use File;
 use Response;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
 
@@ -191,8 +192,8 @@ class UserController extends Controller
         $candidates = $candidates->paginate(10);
 
         $verifiedCertificate = auth()->check() && auth()->user()->hasRole('employer') ? EmployerBusinessLicense::where('employer_id' , auth()->user()->id)->where('approval_status' , 1)->count() : 0;
-
-        return view('candidates-marketplace',compact('candidates','jobCategories','verifiedCertificate'));
+        $employerIsSubscribed = auth()->check() &&  auth()->user()->lastSubscription && is_null(auth()->user()->lastSubscription->ends_at) ? true : false;
+        return view('candidates-marketplace',compact('candidates','jobCategories','verifiedCertificate' , 'employerIsSubscribed'));
     }
 
     public function getEmployerAccountSettingpage()
@@ -345,6 +346,7 @@ class UserController extends Controller
         $employerStaff = Staff::where('employer_id',$id)->get();
         $allJobs = EmployerJob::with('employerDetails')->where('posted_by',$id)->get();
         $galleryFiles = Gallery::where('employer_id',$id)->get();
+        $introductionVideo = IntroductionVideo::where('employer_id' , $id)->first();
         return view('company-about-us',compact( 
                                             'employerDetails', 
                                             'candidateReviews' ,
@@ -352,7 +354,8 @@ class UserController extends Controller
                                             'companyHousingsImages',
                                             'employerStaff',
                                             'allJobs',
-                                            'galleryFiles'
+                                            'galleryFiles',
+                                            'introductionVideo'
                                         ));
     }
     public function companyBusinessOperation($id)
@@ -505,4 +508,38 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+    public function getVideoDuration($file)
+    {
+
+    }
+    public function updateIntroVideo(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            'file' => 'required|mimes:mp4,webm'
+        ]);
+        
+        if($validator->fails())
+        {
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( ", " , $validator->errors()->all())]);
+        }
+
+        try{
+            $file = $request->file;
+            $filename = strtotime(date('Y-m-d')).'-'.str_replace( ' ' ,'-',$file->getClientOriginalName());
+            $path = public_path('uploads/employer/introduction-video');
+            $file->move($path , $filename);
+            
+            IntroductionVideo::updateOrCreate(
+                ['employer_id' => auth()->user()->id]
+                ,
+                ['file_path' => $filename,'employer_id' => auth()->user()->id]
+            );
+            
+            return response()->json(['status' => true , 'msg' => 'Introduction video updated successfully']);
+
+        }catch(\Exception $e){
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
+        }
+    }
+
 }

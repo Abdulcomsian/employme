@@ -51,6 +51,27 @@ Candidate Marketplace
     height: 20px; /* Adjust as needed */
 }
 
+.Interview-Modal-Button{
+	background-color: #ff715b;
+	color: white;
+}
+
+.Interview-Modal-Button:hover{
+	background-color: black!important;
+}
+
+a.btn.Interview-Modal-Button.subscribed-redirect {
+    font-size: 12px;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 18px;
+    width: 130px;
+}
+
+a.btn.Interview-Modal-Button.subscribed-redirect:hover{
+	color:white!important;
+}
+
 </style>
 <!--
 		=============================================
@@ -522,6 +543,7 @@ Candidate Marketplace
 										</div>
 
 									</div>
+			
 
 									@if(auth()->check() && $verifiedCertificate)
 									<div class="row gx-2 pt-25 sm-pt-10">
@@ -537,9 +559,11 @@ Candidate Marketplace
 											<button class="msg-btn tran3s w-100 mt-5 NonEmployerButton" >Request Interview</button>
 											@endrole
 											@role('employer')
-									
-											<button class=" msg-btn tran3s w-100 mt-5 Interview-Modal-Button" data-bs-toggle="modal" data-bs-target="#InterviewRequestModal" value = "{{$candidate->id}}">Request Interview</button>
-
+												@if($employerIsSubscribed)
+												<button class=" msg-btn tran3s w-100 mt-5 Interview-Modal-Button" data-bs-toggle="modal" data-bs-target="#InterviewRequestModal" value = "{{$candidate->id}}">Request Interview</button>
+												@else
+												<a href="{{route('getEmployerSubscriptionPlan')}}" class="btn Interview-Modal-Button subscribed-redirect">Request Interview</a>
+												@endif
 											@endrole
 											@else
 												<button class=" msg-btn tran3s w-100 mt-5 PleaseLoginButton" >Request Interview</button>
@@ -559,62 +583,7 @@ Candidate Marketplace
 							</div>
 							@endforeach
 							@endisset
-							<!-- <div class="col-xxl-4 col-sm-6 d-flex">
-								<div class="candidate-profile-card text-center grid-layout mb-25">
-									<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn tran3s"><i class="bi bi-heart"></i></a>
-									<div class="cadidate-avatar position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_02.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Juan Marko</a></h4>
-									<div class="candidate-post">Javascript Developer</div>
-									<ul class="cadidate-skills style-none d-flex flex-wrap align-items-center justify-content-center justify-content-md-between pt-30 sm-pt-20 pb-10">
-										<li>Java</li>
-										<li>Developer</li>
-										<li>code</li>
-										<li class="more">1+</li>
-									</ul>
-									<div class="row gx-1">
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Salary</span>
-												<div>$3k-$5k/m</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span> Document Status</span>
-												<div class="doc-v">Verified</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Current Location</span>
-												<div>California, US</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Start Date</span>
-												<div>30 Aug 2023</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Nationality</span>
-												<div>Pakistani</div>
-											</div>
-										</div>
-
-									</div>
-									<div class="row gx-2 pt-25 sm-pt-10">
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s w-100 mt-5"> View Profile</a>
-										</div>
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
-										</div>
-									</div>
-									
-								</div>
-							</div> -->
+							
 						</div>
 					</div>
 
