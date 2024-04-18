@@ -92,7 +92,14 @@ Profile
 .alert-danger {
 	width: max-content;
 }
-
+.btn-file{
+	color: #fff;
+    background: #ff715b;
+}
+.btn-file:hover{
+	background: #b1b0eb;
+    color: #fff;
+}
 input[type='checkbox']{
 	width: 20px!important;
 }
@@ -189,7 +196,7 @@ h3{
 				</div>
 					<form id="basic-information-form" class="mt-4" method="post" enctype="multipart/form-data">
 						<!-- Step 1 -->
-						<div class="bg-white card-box" id="step-1">
+						<div class="bg-white card-box border-20" id="step-1">
 							<h3 class="my-3">Account Information</h3>
 							<div class="row">
 								<div class="col-md-6">
@@ -337,7 +344,7 @@ h3{
 
 					<!-- Step 2 -->
 					<form id="operational-details-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
-						<div class="bg-white card-box" id="step-2">
+						<div class="bg-white card-box border-20" id="step-2">
 							<h3 class="my-3">Company Information</h3>
 							<div class="row">
 								{{-- <div class="col-md-6">
@@ -373,7 +380,7 @@ h3{
 										</div>
 										@if(isset($employerDetails->international_accredition_or_certification) && !empty($employerDetails->international_accredition_or_certification))
 										<div style = "padding-left:20px;">
-											<a class="btn btn-primary" href = "{{asset($employerDetails->international_accredition_or_certification)}}" target = "_blank">File</a>
+											<a class="btn btn-file" href = "{{asset($employerDetails->international_accredition_or_certification)}}" target = "_blank">File</a>
 										</div>
 										@endif
 									</div>
@@ -477,8 +484,13 @@ h3{
 
 					<!-- Step 4 -->
 					<form id="employer-verification-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
+<<<<<<< HEAD
 						<div class="bg-white card-box" id="step-3">
 							<h3 class="my-3">Employer Verification</h3>
+=======
+						<div class="bg-white card-box border-20" id="step-3">
+							<h3 class="my-3">Business License Certificate</h3>
+>>>>>>> 1a981765860bea2aacbd93687a05162fd0dfe77c
 							<div class = "mt-1" id ="license-document-error"></div>
 								@isset($employerLicenseDetails)
 								@if($employerLicenseDetails->approval_status == 0)
@@ -488,7 +500,7 @@ h3{
 										    <label for="">{{$employerLicenseDetails->license_number}}</label>
 											@if(isset($employerLicenseDetails->license_file) && !empty($employerLicenseDetails->license_file))
 											<div style = "padding-left:20px;">
-												<a class="btn btn-primary" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
+												<a class="btn btn-file" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
 											</div>
 											@endif
 										</div>
@@ -506,7 +518,7 @@ h3{
 										    <label for="">{{$employerLicenseDetails->license_number}}</label>
 											@if(isset($employerLicenseDetails->license_file) && !empty($employerLicenseDetails->license_file))
 											<div style = "padding-left:20px;">
-												<a class="btn btn-primary" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
+												<a class="btn btn-file" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
 											</div>
 											@endif
 										</div>
@@ -637,8 +649,13 @@ h3{
 							</div>
 						</form>
 					<form id="declaration-consent-form" class="mt-4" method="post">
+<<<<<<< HEAD
 						<div class="bg-white card-box" id="step-4">
 							<h3 class="my-3">Terms And Conditions</h3>
+=======
+						<div class="bg-white card-box border-20" id="step-4">
+							<h3 class="my-3">Terms And Condition</h3>
+>>>>>>> 1a981765860bea2aacbd93687a05162fd0dfe77c
 							<div class="row">
 								<div class="col-md-6">
 									<div class="dash-input-wrapper mb-30">
@@ -731,7 +748,7 @@ h3{
 										<video id="videoPreview" class = "d-none" width="320" height="240" controls></video>
 										@if(isset($employerDetails->introductry_video) && !empty($employerDetails->introductry_video))
 										<div style = "padding-left:20px;" class = "mt-2 video-url">
-											<a class="btn btn-primary" href = "{{asset($employerDetails->introductry_video)}}" target = "_blank">File</a>
+											<a class="btn btn-file" href = "{{asset($employerDetails->introductry_video)}}" target = "_blank">File</a>
 										</div>
 										@endif
 									</div>
@@ -749,7 +766,7 @@ h3{
 										</div>
 										@if(isset($employerDetails->video_thumbnail) && !empty($employerDetails->video_thumbnail))
 										<div style = "padding-left:20px;" class = "thumbnail-image">
-											<a class="btn btn-primary" href = "{{asset($employerDetails->video_thumbnail)}}" target = "_blank">File</a>
+											<a class="btn btn-file" href = "{{asset($employerDetails->video_thumbnail)}}" target = "_blank">File</a>
 										</div>
 										@endif
 									</div>
