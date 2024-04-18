@@ -47,7 +47,7 @@ class SubscriptionController extends Controller
         //         ]);
         // }
         $plan = Plan::find($request->plan_id);
-        $userSubscription = User::find(Auth::id())->subscriptions('default')->first();
+        $userSubscription = User::find(Auth::id())->subscriptions('default')->where('stripe_status',"!=","canceled")->first();
         $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
         if(!empty($userSubscription))
         {

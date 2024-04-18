@@ -106,13 +106,13 @@ Subscription Plan
         <!-- ./pricing-section -->
     </div>
 </div>
-<div class="modal fade" id="RescheduleRequestModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="SubscriptionModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen modal-dialog-centered">
         <div class="container">
             <div class="user-data-form modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="text-center">
-                    <h3>Reschedule Form</h3>
+                    <h3>Subscription Form</h3>
                 </div>
                 <div class="form-wrapper p-5">
                     <form  id="payment-form" action = "{{route('subscription.create')}}" method="POST">
@@ -148,7 +148,7 @@ Subscription Plan
         if(plan.trim())
         {
             document.getElementById('plan_id').value = plan;
-            $("#RescheduleRequestModal").modal("show");
+            $("#SubscriptionModal").modal("show");
         }
     })
     
