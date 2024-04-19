@@ -279,7 +279,7 @@
                                         <div>{{$candidateDetails->candidatePreferences->preferred_start_date ?? ''}}</div>
                                     </li>
 									<li>
-                                        <span>Current Visa Status:</span>
+                                        <span>Visa Status:</span>
                                         <div>{{$candidateDetails->candidatePersonalDetails->current_visa_status ?? ''}}</div>
                                     </li>
                                     <li>
