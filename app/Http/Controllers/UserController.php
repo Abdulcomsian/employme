@@ -515,7 +515,7 @@ class UserController extends Controller
     public function updateIntroVideo(Request $request)
     {
         $validator = Validator::make($request->all() , [
-            'file' => 'required|mimes:mp4,webm'
+            'file' => 'required|mimes:mp4,webm|size:10240'
         ]);
         
         if($validator->fails())
