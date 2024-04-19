@@ -141,8 +141,8 @@
                                     </a>
                                     
                                 </div>
+                                @endif
                             </div>
-                            @endif
                             @endif
                             @if(isset($candidateDetails->candidateEducationalDetails) && count($candidateDetails->candidateEducationalDetails) > 0)
                             <div class="inner-card mb-75 lg-mb-50">
