@@ -548,7 +548,11 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 									@if(auth()->check() && $verifiedCertificate)
 									<div class="row gx-2 pt-25 sm-pt-10">
 										<div class="col-md-6">
+											@if(auth()->check() && auth()->user()->hasRole('employer') && !$employerIsSubscribed)
+											<a href="{{route('getEmployerSubscriptionPlan')}}" class="btn Interview-Modal-Button subscribed-redirect">View Profile</a>
+											@else
 											<a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="profile-btn tran3s w-100 mt-5">View Profile</a>
+											@endif
 										</div>
 										<div class="col-md-6">
 										@if(\Auth::check())
@@ -566,6 +570,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 												@endif
 											@endrole
 											@else
+											
 												<button class=" msg-btn tran3s w-100 mt-5 PleaseLoginButton" >Request Interview</button>
 												<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
 											@endif
