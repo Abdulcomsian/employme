@@ -153,75 +153,39 @@
                                     <div class="info position-relative">
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
-                                            {{$index+1}}</div>
+                                            {{$index+1}}
+                                        </div>
                                         <div class="text_1 fw-500">{{$educational_detail->institute_name ?? ''}} ({{$educational_detail->instituteCountry->name ?? ''}}-{{$educational_detail->year_of_study ?? ''}})</div>
                                         <h4>{{$educational_detail->degree ?? ''}}</h4>
                                         <p>{{$educational_detail->field_of_study ?? ''}}</p>
                                     </div>
-                                    @endforeach
-                                    
-                                    <!-- ./info -->
-                                    <!-- <div class="info position-relative">
-                                        <div
-                                            class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
-                                            2</div>
-                                        <div class="text_1 fw-500">Design Collage</div>
-                                        <h4>UI/UX Design Course</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
-                                            tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                    </div> -->
-                                    <!-- ./info -->
+                                @endforeach
+                                   
                                 </div>
                                 <!-- /.time-line-data -->
                             </div>
 							@endif 
-                            <!-- /.inner-card -->
-                            <!-- <div class="inner-card mb-75 lg-mb-50">
-                                <h3 class="title">Skills</h3>
-                                <ul class="style-none skill-tags d-flex flex-wrap pb-25">
-                                    @if(isset($candidateDetails->candidatePreferences->skills) && !empty($candidateDetails->candidatePreferences->skills))
-										@foreach($candidateDetails->candidatePreferences->skills as $index=>$skill)
-										@if($index < 8)
-										<li>{{$skill}}</li>
-										@endif
-										@endforeach
-										@endif 
-                                        @if(isset($candidateDetails->candidatePreferences->skills) && !empty($candidateDetails->candidatePreferences->skills))
-                                        @if(count($candidateDetails->candidatePreferences->skills) > 8)
-										<li class="more">+{{{count($candidateDetails->candidatePreferences->skills)-8}}}</li>
-										@endif
-										@endif
-                                </ul>
-                            </div> -->
+                         
                             <!-- /.inner-card -->
                             <div class="inner-card mb-60 lg-mb-50">
                                 <h3 class="title">Work Experience</h3>
                                 <div class="time-line-data position-relative pt-15">
-                                @if(isset($candidateDetails->candidateEducation->professional_details) && !empty($candidateDetails->candidateEducation->professional_details))
-                                @foreach($candidateDetails->candidateEducation->professional_details as $index=>$professional_details)
-                                @if($professional_details['role'] !='' || $professional_details['employer_name'] != '' || $professional_details['description'] != '' || $professional_details['date_from'] != '' || $professional_details['date_to'] != '')
-                                    <div class="info position-relative">
-                                        <div
-                                            class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
-                                            {{$index+1}}</div>
-                                        <div class="text_1 fw-500">{{ $professional_details['date_from']}} - {{$professional_details['date_to']}}</div>
-                                        <h4>{{ $professional_details['role']}} ({{$professional_details['employer_name']}})</h4>
-                                        <p>{!! $professional_details['description'] !!}</p>
-                                    </div>
-                                @endif
-                                @endforeach
-                                @endif
-                                    <!-- ./info -->
-                                    <!-- <div class="info position-relative">
-                                        <div
-                                            class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
-                                            2</div>
-                                        <div class="text_1 fw-500">02/07/20 - 13/09/22</div>
-                                        <h4>UI/UX Engineer (Adobe)</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
-                                            tellus. Interdum primis</p>
-                                    </div> -->
-                                    <!-- ./info -->
+                                    @if(isset($candidateDetails->candidateEducation->professional_details) && !empty($candidateDetails->candidateEducation->professional_details))
+                                    @foreach($candidateDetails->candidateEducation->professional_details as $index=>$professional_details)
+                                    @if($professional_details['role'] !='' || $professional_details['employer_name'] != '' || $professional_details['description'] != '' || $professional_details['date_from'] != '' || $professional_details['date_to'] != '')
+                                        <div class="info position-relative">
+                                            <div
+                                                class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
+                                                {{$index+1}}
+                                            </div>
+                                            <div class="text_1 fw-500">{{ $professional_details['date_from']}} - {{$professional_details['date_to']}}</div>
+                                            <h4>{{ $professional_details['role']}} ({{$professional_details['employer_name']}})</h4>
+                                            <p>{!! $professional_details['description'] !!}</p>
+                                        </div>
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                 
                                 </div>
                                 <!-- /.time-line-data -->
                             </div>
