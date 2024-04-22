@@ -115,7 +115,7 @@
 										</a>
 									</div> -->
 									<video width="640" height="360" controls>
-										<source src="{{asset('uploads/employer/introduction-video/'.introductionVideo->file_path)}}" type="video/mp4">
+										<source src="{{asset('uploads/employer/introduction-video/'.$introductionVideo->file_path)}}" type="video/mp4">
 									</video>
 								</div>
 								@endif
