@@ -228,6 +228,36 @@ Candidate Profile Details
                                 <a href="#" class="btn-ten cv-download-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download CV</a>
                             </div>
                         </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        
                         <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
                             <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
                                 <ul class="style-none">
