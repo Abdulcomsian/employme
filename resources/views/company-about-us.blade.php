@@ -241,18 +241,15 @@
 									<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
 								</div>
 								<div class="carousel-inner">
-									<div class="carousel-item active">
+								@foreach($galleryFiles as $index =>  $gallery)
+									@if($gallery->file_extension != 'mp4')
+									<div class="carousel-item  @if($index == 0) active @endif">
 										1
-									<!-- <img src="..." class="d-block w-100" alt="..."> -->
+										<img class="d-block w-100"  src="{{asset($gallery->file_name)}}" alt="First slide">
 									</div>
-									<div class="carousel-item">
-										1
-									<!-- <img src="..." class="d-block w-100" alt="..."> -->
-									</div>
-									<div class="carousel-item">
-										1
-									<!-- <img src="..." class="d-block w-100" alt="..."> -->
-									</div>
+									@endif
+								@endforeach
+									
 								</div>
 								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
 									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -263,25 +260,7 @@
 									<span class="visually-hidden">Next</span>
 								</button>
 								</div>
-							<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								@foreach($galleryFiles as $index =>  $gallery)
-									@if($gallery->file_extension != 'mp4')
-										<div class="carousel-item @if($index == 0) active @endif">
-											<img class="d-block w-100"  src="{{asset($gallery->file_name)}}" alt="First slide">
-										</div>
-									@endif
-								@endforeach
-							</div>
-							<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="sr-only">Previous</span>
-							</a>
-							<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="sr-only">Next</span>
-							</a>
-							</div>
+							
 								
 
 							</div>
