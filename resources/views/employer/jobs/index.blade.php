@@ -142,7 +142,7 @@ Job Listing
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_60.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a href="#" data-job-url="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}" class="dropdown-item job-url"><i class="fa-solid fa-link me-3"></i>Url</a></li>
+                                                <li><a href="#" data-job-url="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}" class="dropdown-item job-url"><i class="fa-solid fa-link me-3"></i>Copy Url</a></li>
                                                 @if($employerJob->job_status == 1)
                                                  <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                                 document.getElementById('inactive-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Inactive.svg')}}" alt="" class="lazy-img"> Inactive</a></li>

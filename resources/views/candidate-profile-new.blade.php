@@ -127,19 +127,25 @@ Candidate Profile Details
                             <div class="inner-card mb-60 lg-mb-50">
                                 <h3 class="title">Introduction</h3>
                                 @if(!empty($candidateDetails->candidatePreferences->video_url))
-                                <div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
+                                <!-- <div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
                                     <a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
                                         href="{{asset($candidateDetails->candidatePreferences->video_url)}}">
                                         <i class="bi bi-play"></i>
                                     </a>
-                                </div>
+                                </div> -->
+                                <video width="640" height="360" controls>
+										<source src="{{asset($candidateDetails->candidatePreferences->video_url)}}" type="video/mp4">
+									</video>
                                 @elseif(!empty($candidateDetails->candidatePreferences->other_platform_video_url))
-                                <div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
+                                <!-- <div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
                                     <a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
                                         href="{{$candidateDetails->candidatePreferences->other_platform_video_url}}">
                                         <i class="bi bi-play"></i>
                                     </a>   
-                                </div>
+                                </div> -->
+                                <video width="640" height="360" controls>
+										<source src="{{asset($candidateDetails->candidatePreferences->other_platform_video_url)}}" type="video/mp4">
+									</video>
                                 @endif
                             </div>
                             @endif
@@ -228,36 +234,6 @@ Candidate Profile Details
                                 <a href="#" class="btn-ten cv-download-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download CV</a>
                             </div>
                         </div> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        
                         <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
                             <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
                                 <ul class="style-none">

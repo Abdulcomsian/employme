@@ -477,7 +477,13 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 						</div>
 					</div>
 					<!-- /.upper-filter -->
-
+					@role('employer')
+						@if(!$employerIsSubscribed)
+						<div class="alert alert-danger" role="alert">
+							Please choose a subscription plan to view candidate profile and request interview.
+						</div>
+						@endif
+					@endrole
 					<div class="accordion-box grid-style show">
 						<div class="row">
 							@isset($candidates)
