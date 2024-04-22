@@ -57,7 +57,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     protected static function booted()
     {
         static::addGlobalScope('user_detail', function (Builder $builder) {
-            $builder->with('lastSubscription');
+            $builder->with('lastSubscription' , 'intro');
         });
     }
 
@@ -110,15 +110,17 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     {
         return $this->hasMany(CandidateDocument::class , 'user_id' , 'id');
     }
-
     public function license()
     {
         return $this->hasOne(EmployerBusinessLicense::class , 'employer_id' , 'id');
     }
-
     public function lastSubscription()
     {
         return $this->hasOne(Subscription::class , 'user_id' , 'id')->orderBy('id' , 'desc');
+    }
+    public function intro()
+    {
+        return $this->hasOne(IntroductionVideo::class , 'employer_id' , 'id');
     }
 
     

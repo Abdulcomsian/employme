@@ -55,19 +55,19 @@ Job Marketplace
 					<p class="text-lg text-white mt-30 lg-mt-20 mb-35 lg-mb-20">Find the best candidate for your company</p>
 				</div>
 			</div>
-			{{-- <div class="position-relative">
+			<div class="position-relative">
 				<div class="row">
 					<div class="col-xl-9 col-lg-8 m-auto">
 						<div class="job-search-one position-relative" method="get">
 							<form action="{{route('jobMarketplace')}}">
 								<div class="row">
-									<div class="col-md-5">
+									<div class="col-md-9">
 										<div class="input-box">
 											<div class="label">What are you looking for?</div>
-											<input type="text" class="form-control form-control-lg" name="SearchJobTitle" placeholder = "Search a Job" value="{{ isset($_GET['SearchJobTitle']) ? $_GET['SearchJobTitle'] : ''}}"/>
+											<input type="text" class="form-control form-control-lg" name="SearchJobTitle" placeholder="Keyword" value="{{ isset($_GET['SearchJobTitle']) ? $_GET['SearchJobTitle'] : ''}}"/>
 										</div>
 									</div>
-									<div class="col-md-4">
+									<!-- <div class="col-md-4">
 										<div class="input-box border-left">
 											<div class="label">Category</div>
 											<select name="SearchJobCategory" class="nice-select lg">
@@ -80,7 +80,7 @@ Job Marketplace
 													@endif
 											</select>
 										</div>
-									</div>
+									</div> -->
 									<!-- <div class="col-md-4">
 										<div class="input-box border-left">
 											<div class="label">Category</div>
@@ -104,7 +104,7 @@ Job Marketplace
 						<!-- /.job-search-one -->
 					</div>
 				</div>
-			</div> --}}
+			</div>
 		</div>
 	</div>
 	<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/shape/shape_02.svg')}}" alt="" class="lazy-img shapes shape_01">
@@ -528,7 +528,6 @@ Job Marketplace
 						<!-- /.job-list-one -->
 					</div>
 
-
 					<div class="accordion-box grid-style show">
 						<div class="row">
 						   @isset($allJobs)
@@ -549,9 +548,16 @@ Job Marketplace
 									<div><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="title fw-500 tran3s">{{$job->job_title}}</a></div>
 									<!-- <div class="job-salary"><span class="fw-500 text-dark">$300-$450</span> / Week</div> -->
 									<div class="job-salary"><span class="fw-500 text-dark my-2">{{$job->monthly_salary}} USD</span></div>
+									<div class="row">
+										<div class="col-12">
+										<div class="job-location"><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}">{{$job->employerDetails ? $job->employerDetails->city.','.$job->employerDetails->state : ''}}</a></div>
+										</div>
+									</div>
 									<div class="job-date"><span class="fw-100 text-dark"><i>Starting Date: </i>{{date("d-m-Y" , strtotime($job->start_date))}}</span></div>
 									
+
 									<div class="d-flex align-items-center justify-content-between mt-auto">
+										
 										@if($job->interview->count() == 1)
 										<button class="apply-btn text-center tran3s">Interview Applied</button>
 										@else
@@ -564,73 +570,7 @@ Job Marketplace
 							</div>
 							@endforeach
 							@endisset
-							<!-- <div class="col-sm-6 mb-30">
-								<div class="job-list-two style-two position-relative">
-									<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img m-auto"></a>
-									<a href="javascript;;" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="javascript;;" class="job-duration fw-500 part-time">Part-time</a></div>
-									<div><a href="javascript;;" class="title fw-500 tran3s">Developer & expert in c++ & java.</a></div>
-									<div class="job-salary"><span class="fw-500 text-dark">$10-$15</span> / Hour</div>
-									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="javascript;;">USA, Alaska</a></div>
-										<a href="javascript;;" class="apply-btn text-center tran3s">Interview Request</a>
-									</div>
-								</div> 
-							</div>
-							<div class="col-sm-6 mb-30">
-								<div class="job-list-two style-two position-relative">
-									<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_24.png')}}" alt="" class="lazy-img m-auto"></a>
-									<a href="javascript;;" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="javascript;;" class="job-duration fw-500 part-time">Part-time</a></div>
-									<div><a href="javascript;;" class="title fw-500 tran3s">Marketing specialist in SEO & Affiliate. </a></div>
-									<div class="job-salary"><span class="fw-500 text-dark">$40k</span> / Yearly</div>
-									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="javascript;;">AUS, Sydney</a></div>
-										<a href="javascript;;" class="apply-btn text-center tran3s">Interview Request</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 mb-30">
-								<div class="job-list-two style-two position-relative">
-									<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_25.png')}}" alt="" class="lazy-img m-auto"></a>
-									<a href="javascript;;" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="javascript;;" class="job-duration fw-500">Fulltime</a></div>
-									<div><a href="javascript;;" class="title fw-500 tran3s">Lead & Product & Web Designer.</a></div>
-									<div class="job-salary"><span class="fw-500 text-dark">$2k-3k</span> / Month</div>
-									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="javascript;;">UAE, Dubai</a></div>
-										<a href="javascript;;" class="apply-btn text-center tran3s">Interview Request</a>
-									</div>
-								</div> 
-							</div>
-
-							<div class="col-sm-6 mb-30">
-								<div class="job-list-two style-two position-relative">
-									<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_34.png')}}" alt="" class="lazy-img m-auto"></a>
-									<a href="javascript;;" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="javascript;;" class="job-duration fw-500 part-time">Part-time</a></div>
-									<div><a href="javascript;;" class="title fw-500 tran3s">Accountant Bookkeeper Financial Reporting</a></div>
-									<div class="job-salary"><span class="fw-500 text-dark">$300-$450</span> / Week</div>
-									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="javascript;;">US, Alaska</a></div>
-										<a href="javascript;;" class="apply-btn text-center tran3s">Interview Request</a>
-									</div>
-								</div> 
-							</div>
-
-							<div class="col-sm-6 mb-30">
-								<div class="job-list-two style-two position-relative">
-									<a href="javascript;;" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto"></a>
-									<a href="javascript;;" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
-									<div><a href="javascript;;" class="job-duration fw-500 part-time">Part-time</a></div>
-									<div><a href="javascript;;" class="title fw-500 tran3s">Amazon Product Research</a></div>
-									<div class="job-salary"><span class="fw-500 text-dark">$15-$20</span> / Hour</div>
-									<div class="d-flex align-items-center justify-content-between mt-auto">
-										<div class="job-location"><a href="javascript;;">Germany, Hamburg</a></div>
-										<a href="javascript;;" class="apply-btn text-center tran3s">Interview Request</a>
-									</div>
-								</div> 
-							</div> -->
+							
 						</div>
 					</div>
 					<!-- /.accordion-box -->

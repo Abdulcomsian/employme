@@ -181,6 +181,8 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], fu
     Route::post('subscription', [SubscriptionController::class, 'subscription'])->name("subscription.create");
     Route::post('update-account-settings', [UserController::class, 'updateEmployerAccountSettingpage'])->name('employer.updateAccountSettingpage');
     Route::post('employer-update-password', [UserController::class, 'employerUpdatePassword'])->name('employer.employerUpdatePassword');
+    Route::view('introduction-video' , 'employer.introduction-video')->name('introduct.video');
+    Route::post('add-introduction-video' , [UserController::class , 'updateIntroVideo'])->name('add.introduct.video');
 });
 //employer dashboard route ends here
 

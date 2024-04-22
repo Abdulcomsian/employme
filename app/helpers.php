@@ -326,6 +326,13 @@ function employerSubscription()
     return isset($getSubscription->employerSubscriptionItems) ? 1 : 0;
 }
 
+
+function authenticateEmployerLicense()
+{
+    $employerLicense = \App\Models\EmployerBusinessLicense::where('employer_id' , auth()->user()->id)->first();
+    return $employerLicense && $employerLicense->approval_status == \AppConst::LICENSE_APPROVED ? true : false;
+}
+
 function jobApplicationStatus($employer_job_id=null)
 {
     $checkApplication = \App\Models\JobApplication::where('candidate_id',\Auth::id())->where('employer_job_id',$employer_job_id)->first();
