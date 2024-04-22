@@ -1,6 +1,8 @@
 @extends('layout.main')
 
-
+@section('title')
+Candidate Profile Details
+@endsection
 @section('content')
 <style>
     .candidates-profile-details .video-post {
@@ -228,6 +230,12 @@
                         <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
                             <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
                                 <ul class="style-none">
+                                        @isset($candidateDetails->candidateHighestQualification)
+                                    <li>
+                                        <span>Qualification: </span>
+                                        <div>{{$candidateDetails->candidateHighestQualification->degree ?? ''}}</div>
+                                    </li>
+                                        @endisset
                                     <li>
                                         <span>Preferred Start Date: </span>
                                         <div>{{$candidateDetails->candidatePreferences->preferred_start_date ?? ''}}</div>
