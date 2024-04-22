@@ -491,7 +491,7 @@ h3{
 								@isset($employerLicenseDetails)
 								@if($employerLicenseDetails->approval_status == 0)
 								<div class="row">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<div class="dash-input-wrapper mb-30">
 										    <label for="">{{$employerLicenseDetails->license_number}}</label>
 											@if(isset($employerLicenseDetails->license_file) && !empty($employerLicenseDetails->license_file))
@@ -501,8 +501,8 @@ h3{
 											@endif
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="dash-input-wrapper mb-30">
+									<div class="col-md-6 px-0">
+										<div class="dash-input-wrapper mt-20">
 											<label for="">Waiting for an approval by Admin</label>
 										</div>
 									</div>

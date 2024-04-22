@@ -7,6 +7,10 @@ Candidate Marketplace
 	.red-heart{
 		color:red;
 	}
+	.nice-select{
+		padding: 10px 15px;
+    	background: #f2f2f2;
+	}
 	.filter-area-tab .salary-slider .price-input input {
     width: 110px;
     height: 20px;
@@ -752,7 +756,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 			<div class="user-data-form modal-content">
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				<div class="text-center">
-					<h3>Request Form</h3>
+					<h3 style="font-family:'gordita';">Request Form</h3>
 				</div>
 				<div class="form-wrapper m-auto">
 					<form  id = "Interview-Request-Form">
@@ -787,7 +791,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 						</div>
 							</div>
 						
-							<div class="col-md-6">
+							<div class="col-md-6 mb-30">
 								<button class="btn-submit fw-500 tran3s d-block" type = "submit" >
 									<span id="buttonText">Submit</span>
 									<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>

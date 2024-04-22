@@ -231,7 +231,7 @@ Candidate Profile Details
                                     @endisset
 
                                 </ul>
-                                <a href="#" class="btn-ten cv-download-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download CV</a>
+                                <a href="#" class="btn-ten cv-download-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download Docs</a>
                             </div>
                         </div> 
                         <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
