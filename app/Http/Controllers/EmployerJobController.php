@@ -35,6 +35,12 @@ class EmployerJobController extends Controller
      */
     public function create()
     {
+        $employerLicenseDetails =  EmployerBusinessLicense::where('employer_id',auth()->user()->id)->first();
+        if($employerLicenseDetails && $employerLicenseDetails->approval_status == 1 && (!auth()->user()->lastSubscription || !is_null(auth()->user()->lastSubscription->ends_at)))
+        {
+            return redirect()->route('getEmployerSubscriptionPlan');    
+        }
+
         $jobCategories = JobCategory::all();
         return view('employer.jobs.create',get_defined_vars());
     }
