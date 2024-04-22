@@ -6190,14 +6190,14 @@ input[type="range"]::-webkit-slider-thumb {
 .candidates-profile-details .video-post .video-icon {
   width: 65px;
   height: 65px;
-  background: #D2F34C;
-  color: #000;
+  background: #000;
+  color: #fff;
   font-size: 45px;
   line-height: 65px;
   padding-left: 7px;
 }
 .candidates-profile-details .video-post .video-icon:hover {
-  background: #00BF58;
+  background: #ff715b;
   color: #fff;
 }
 .candidates-profile-details .time-line-data .info {
@@ -6299,12 +6299,12 @@ input[type="range"]::-webkit-slider-thumb {
 .cadidate-profile-sidebar .cadidate-bio ul li div {
   font-size: 15px;
   font-weight: 500;
-  color: #244034;
+  color: #000;
   margin: 4px 0 0;
 }
 .cadidate-profile-sidebar .cadidate-bio ul li div a:hover {
   text-decoration: underline;
-  color: #244034;
+  color: #000;
 }
 .cadidate-profile-sidebar .sidebar-title {
   font-family: "gordita";
@@ -10468,7 +10468,6 @@ body.compensate-for-scrollbar {
 }
 .dashboard-body .job-alert-table th:last-child {
   border-radius: 0 7px 7px 0;
-  text-align: right;
 }
 .dashboard-body .job-alert-table td {
   font-size: 15px;
