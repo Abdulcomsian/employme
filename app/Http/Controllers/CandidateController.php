@@ -261,9 +261,11 @@ class CandidateController extends Controller
 
         $input = $request->except('_token', 'video_url' , 'terms_and_conditions');
         $updatePreferencesDetails->update(array_merge($input,['video_url'=>$video_url,'video_thumbnail'=>$thumbnailPath]));
+        toastr('Files Update Successfully');
          return response()->json([
                         "status" => true, 
-                        "message" => "Detail updated"
+                        "message" => "Detail updated",
+                        "redirect" => url("candidate/profile")
                     ]);
     }
 
