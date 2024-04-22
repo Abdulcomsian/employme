@@ -116,6 +116,11 @@ h3{
     line-height: 65px;
     padding-left: 7px;
 }
+.btn-upload{
+    background-color: #ff715b;
+    border-color: #ff7863;
+    color: #fff !important;
+}
 </style>
 
 @endpush
@@ -148,18 +153,15 @@ h3{
             </div>
         </div>
         @endif
-        <div class="container">
             <div class="row">
                 <div class="col-12 p-3">
                     <form id="update-intro-form" action="{{route('add.introduct.video')}}" method="post" enctype="multipart/form-data">
                         <input type="file" id="file" accept=".mp4,.webm">
                         <strong id="filename"></strong>
-                        <button type="submit" class="btn btn-success">@if(auth()->user()->intro) Update @else Upload @endif</button>
+                        <button type="submit" class="btn btn-upload">@if(auth()->user()->intro) Update @else Upload @endif</button>
                     </form>
                 </div>
             </div>
-        </div>
-
 	
 	
 
