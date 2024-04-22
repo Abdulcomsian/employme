@@ -187,61 +187,24 @@
                                     <li><a href="job-details-v2.html" class="dropdown-item"><span>Job Details v-2</span></a></li>
                                 </ul>
                             </li> -->
-                            <li class="nav-item dropdown mega-dropdown-sm">
-                                <a class="nav-link" href="{{route('jobMarketplace')}}" role="button">Explore
-                                </a>
-                                <!-- <ul class="dropdown-menu">
-                                    <li class="row gx-1">
-                                        <div class="col-md-4">
-                                            <div class="menu-column">
-                                                <h6 class="mega-menu-title">Candidates</h6>
-                                                <ul class="style-none mega-dropdown-list">
-                                                    <li><a href="candidates-v1.html" class="dropdown-item"><span>Candidates V-1</span></a></li>
-                                                    <li><a href="candidates-v2.html" class="dropdown-item"><span>Candidates V-2</span></a></li>
-                                                    <li><a href="candidates-v3.html" class="dropdown-item"><span>Candidates V-3</span></a></li>
-                                                    <li><a href="candidates-v4.html" class="dropdown-item"><span>Candidates V-4</span></a></li>
-                                                    <li><a href="candidate-profile-v1.html" class="dropdown-item"><span>Candidates Details v-1</span></a></li>
-                                                    <li><a href="candidate-profile-v2.html" class="dropdown-item"><span>Candidates Details v-2</span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="menu-column">
-                                                <h6 class="mega-menu-title">Company</h6>
-                                                <ul class="style-none mega-dropdown-list">
-                                                    <li><a href="company-v1.html" class="dropdown-item"><span>Company V-1</span></a></li>
-                                                    <li><a href="company-v2.html" class="dropdown-item"><span>Company V-2</span></a></li>
-                                                    <li><a href="company-v3.html" class="dropdown-item"><span>Company V-3</span></a></li>
-                                                    <li><a href="company-v4.html" class="dropdown-item"><span>Company V-4</span></a></li>
-                                                    <li><a href="company-details.html" class="dropdown-item"><span>Company Details</span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="menu-column">
-                                                <h6 class="mega-menu-title">Essential</h6>
-                                                <ul class="style-none mega-dropdown-list">
-                                                    <li><a href="about-us.html" class="dropdown-item"><span>About Us</span></a></li>
-                                                    <li><a href="pricing.html" class="dropdown-item"><span>Pricing</span></a></li>
-                                                    <li><a href="faq.html" class="dropdown-item"><span>Faq's</span></a></li>
-                                                    <li><a href="signup.html" class="dropdown-item"><span>Register</span></a></li>
-                                                    <li><a href="404.html" class="dropdown-item"><span>404 Error</span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul> -->
-                            </li>
                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="/" role="button">Marketplaces
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="index.html" class="dropdown-item"><span>Jobs</span></a></li>
+                                    <li><a href="index-2.html" class="dropdown-item"><span>Candidates</span></a></li>
+                                </ul>
+                            </li>
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link" href="{{route('blog')}}" role="button">Blog
                                 </a>
-                                <!-- <ul class="dropdown-menu">
+                                <ul class="dropdown-menu">
                                     <li><a href="blog-v1.html" class="dropdown-item"><span>Blog Standard</span></a></li>
                                     <li><a href="blog-v2.html" class="dropdown-item"><span>Blog Grid</span></a></li>
                                     <li><a href="blog-v3.html" class="dropdown-item"><span>Blog Full width</span></a></li>
                                     <li><a href="blog-details.html" class="dropdown-item"><span>Blog Details</span></a></li>
-                                </ul> -->
-                            </li>
+                                </ul> 
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('contact')}}" role="button">Contact</a>
                             </li>

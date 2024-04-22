@@ -79,7 +79,7 @@
                                     <div class="d-flex justify-content-md-end">
 									<a  class="save-btn text-center rounded-circle tran3s save_candidate  save_candidate{{base64_encode($candidateDetails->id)}}" id="{{base64_encode($candidateDetails->id)}}" style="color:{{(savedCandidate($candidateDetails->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
                                         <button class="cv-download-btn fw-500 tran3s ms-md-3 sm-mt-20" id="{{base64_encode($candidateDetails->id)}}">Download
-                                            CV</button>
+                                            Docs</button>
                                     </div>
                                 </div>
                             </div>
