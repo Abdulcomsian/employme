@@ -106,14 +106,17 @@
 								<p>{!! $employerDetails->employer_details ?? '' !!}</p>
 								<h3>Intro</h3>
 							
-								@if(!empty($employerDetails->introductry_video))
+								@if($introductionVideo)
 								<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
-									<div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-50 lg-mb-50">
+									<!-- <div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-50 lg-mb-50">
 										<a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
 											href="{{asset($employerDetails->introductry_video)}}">
 											<i class="bi bi-play"></i>
 										</a>
-									</div>
+									</div> -->
+									<video width="640" height="360" controls>
+										<source src="{{asset('uploads/employer/introduction-video/'.introductionVideo->file_path)}}" type="video/mp4">
+									</video>
 								</div>
 								@endif
 								
