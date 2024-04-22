@@ -85,6 +85,10 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     {
         return $this->hasMany(CandidateEducationalDetail::class,'user_id');
     }
+    public function candidateHighestQualification()
+    {
+        return $this->hasOne(CandidateEducationalDetail::class,'user_id');
+    }
 
     public function jobsApplied()
     {
