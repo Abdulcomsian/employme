@@ -1,6 +1,8 @@
 @extends('layout.main')
 
-
+@section('title')
+Candidate Profile Details
+@endsection
 @section('content')
 <style>
     .candidates-profile-details .video-post {
@@ -79,7 +81,7 @@
                                     <div class="d-flex justify-content-md-end">
 									<a  class="save-btn text-center rounded-circle tran3s save_candidate  save_candidate{{base64_encode($candidateDetails->id)}}" id="{{base64_encode($candidateDetails->id)}}" style="color:{{(savedCandidate($candidateDetails->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
                                         <button class="cv-download-btn fw-500 tran3s ms-md-3 sm-mt-20" id="{{base64_encode($candidateDetails->id)}}">Download
-                                            CV</button>
+                                            Docs</button>
                                     </div>
                                 </div>
                             </div>
@@ -228,6 +230,12 @@
                         <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
                             <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
                                 <ul class="style-none">
+                                        @isset($candidateDetails->candidateHighestQualification)
+                                    <li>
+                                        <span>Qualification: </span>
+                                        <div>{{$candidateDetails->candidateHighestQualification->degree ?? ''}}</div>
+                                    </li>
+                                        @endisset
                                     <li>
                                         <span>Preferred Start Date: </span>
                                         <div>{{$candidateDetails->candidatePreferences->preferred_start_date ?? ''}}</div>
