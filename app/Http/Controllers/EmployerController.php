@@ -188,7 +188,7 @@ class EmployerController extends Controller
         }
         return response()->json([
                         "status" => true, 
-                        "message" => "Employer Details Updated Successfully"
+                        "message" => "Employer License Updated Successfully"
                     ]);
     }
     public function saveProfile5(Request $request)

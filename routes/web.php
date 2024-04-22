@@ -143,7 +143,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::put('employer-jobs/activate-job/{id}', [JobController::class, 'activateJob'])->name('employer.activate-job');
     Route::put('employer-jobs/de-activate-job/{id}', [JobController::class, 'deactivateJob'])->name('employer.deactivate-job');
     Route::post('get-subscription-plan' , [EmployerJobController::class , 'getSubscriptionPlan'])->name('employer.subscription-plan');
-    Route::resource('employer-jobs', EmployerJobController::class);
+    Route::resource('employer-jobs', EmployerJobController::class)->middleware('verify_subscription');
     Route::resource('manage/staff',StaffController::class);
     Route::resource('manage/gallery',GalleryController::class);
     Route::get('manage/housings',[HousingController::class,'index'])->name('employer.housing.index');
