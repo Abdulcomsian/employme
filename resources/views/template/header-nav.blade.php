@@ -41,7 +41,7 @@
                                 <div class="logo"><a href="/" class="d-block">
 					<span style="font-size: 25px;font-weight: bold;color:#000;">employme</span></a></div>
                             </li>
-                            <li class="nav-item dropdown category-btn mega-dropdown-sm">
+                            <!-- <li class="nav-item dropdown category-btn mega-dropdown-sm">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-grid-fill"></i> Category</a>
                                 <ul class="dropdown-menu category-dropdown">
                                     <li class="row gx-0">
@@ -61,7 +61,6 @@
                                             @endforeach
                                             @endisset
                                             {{--
-                                                <!-- /.item -->
                                                 <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                     <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_64.svg')}}" alt="" class="lazy-img"></div>
                                                     <div class="ps-3 flex-fill">
@@ -69,7 +68,6 @@
                                                         <div class="job-count">7k+ Jobs</div>
                                                     </div>
                                                 </a>
-                                                <!-- /.item -->
                                                 <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                     <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_65.svg')}}" alt="" class="lazy-img"></div>
                                                     <div class="ps-3 flex-fill">
@@ -77,7 +75,6 @@
                                                         <div class="job-count">310+ Jobs</div>
                                                     </div>
                                                 </a>
-                                                <!-- /.item -->
                                                 --}}
                                         </div>
                                     
@@ -96,7 +93,6 @@
                                             @endforeach
                                             @endisset
                                             {{--
-                                                <!-- /.item -->
                                                 <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                     <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_66.svg')}}" alt="" class="lazy-img"></div>
                                                     <div class="ps-3 flex-fill">
@@ -104,7 +100,6 @@
                                                         <div class="job-count">3k+ Jobs</div>
                                                     </div>
                                                 </a>
-                                                <!-- /.item -->
                                                 <a href="{{route('jobMarketplace')}}" class="item d-flex align-items-center">
                                                     <div class="icon d-flex align-items-center justify-content-center rounded-circle tran3s"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_67.svg')}}" alt="" class="lazy-img"></div>
                                                     <div class="ps-3 flex-fill">
@@ -112,7 +107,6 @@
                                                         <div class="job-count">150+ Jobs</div>
                                                     </div>
                                                 </a>
-                                                <!-- /.item -->
                                                 --}}
                                             </div>
                                                 
@@ -124,7 +118,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                             @auth
                             @role('candidate')
                             <li class="nav-item dropdown dashboard-menu">
