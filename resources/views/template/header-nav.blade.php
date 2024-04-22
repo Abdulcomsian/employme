@@ -41,9 +41,11 @@
                                 <div class="logo"><a href="/" class="d-block">
 					<span style="font-size: 25px;font-weight: bold;color:#000;">employme</span></a></div>
                             </li>
-                            <!-- <li class="nav-item dropdown category-btn mega-dropdown-sm">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-grid-fill"></i> Category</a>
-                                <ul class="dropdown-menu category-dropdown">
+                            @auth
+                            @role('candidate')
+                            <li class="nav-item dropdown category-btn mega-dropdown-sm">
+                            <a class="nav-link" href="{{route('getEmployerDashboard')}}" role="button"  aria-expanded="false" style="background-color: #ff715b;color: #fff;padding: 10px 21px;border-radius: 50px;"> <i class="bi bi-grid-fill" style="    margin-right: 7px;"></i>Dashboard
+                                <!-- <ul class="dropdown-menu category-dropdown">
                                     <li class="row gx-0">
                                         
                                         <div class="col-lg-6">
@@ -117,24 +119,19 @@
                                             <span class="icon"><i class="bi bi-chevron-right"></i></span>
                                         </a>
                                     </li>
-                                </ul>
-                            </li> -->
-                            @auth
-                            @role('candidate')
-                            <li class="nav-item dropdown dashboard-menu">
-                                <a class="nav-link" href="{{route('getCandidateDashboard')}}" role="button"  aria-expanded="false">Dashboard
-                                </a>
+                                </ul> -->
                             </li>
                             @endrole
+                           
                             @role('employer')
                             <li class="nav-item dropdown dashboard-menu">
-                                <a class="nav-link" href="{{route('getEmployerDashboard')}}" role="button"  aria-expanded="false">Dashboard
+                                <a class="nav-link" href="{{route('getEmployerDashboard')}}" role="button"  aria-expanded="false" style="background-color: #ff715b;color: #fff;padding: 10px 21px;border-radius: 50px;"> <i class="bi bi-grid-fill" style="    margin-right: 7px;"></i>Dashboard
                                 </a>
                             </li>
                             @endrole
                             @role('admin')
                             <li class="nav-item dropdown dashboard-menu">
-                                <a class="nav-link" href="{{route('getOwnerDashboard')}}" role="button"  aria-expanded="false">Dashboard
+                            <a class="nav-link" href="{{route('getEmployerDashboard')}}" role="button"  aria-expanded="false" style="background-color: #ff715b;color: #fff;padding: 10px 21px;border-radius: 50px;"> <i class="bi bi-grid-fill" style="    margin-right: 7px;"></i>Dashboard
                                 </a>
                             </li>
                             @endrole
