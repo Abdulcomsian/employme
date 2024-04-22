@@ -6083,7 +6083,7 @@ input[type="range"]::-webkit-slider-thumb {
 .candidate-profile-card .candidate-info div {
   font-size: 15px;
   font-weight: 500;
-  color: #244034;
+  color: #000;
   margin: 2px 0 0;
 }
 .candidate-profile-card .profile-btn {
