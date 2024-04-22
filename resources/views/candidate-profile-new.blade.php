@@ -1,6 +1,8 @@
 @extends('layout.main')
 
-
+@section('title')
+Candidate Profile Details
+@endsection
 @section('content')
 <style>
     .candidates-profile-details .video-post {
@@ -79,7 +81,7 @@
                                     <div class="d-flex justify-content-md-end">
 									<a  class="save-btn text-center rounded-circle tran3s save_candidate  save_candidate{{base64_encode($candidateDetails->id)}}" id="{{base64_encode($candidateDetails->id)}}" style="color:{{(savedCandidate($candidateDetails->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
                                         <button class="cv-download-btn fw-500 tran3s ms-md-3 sm-mt-20" id="{{base64_encode($candidateDetails->id)}}">Download
-                                            CV</button>
+                                            Docs</button>
                                     </div>
                                 </div>
                             </div>
@@ -125,35 +127,33 @@
                             <div class="inner-card mb-60 lg-mb-50">
                                 <h3 class="title">Introduction</h3>
                                 @if(!empty($candidateDetails->candidatePreferences->video_url))
-                                <div
-                                    class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
+                                <div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
                                     <a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
                                         href="{{asset($candidateDetails->candidatePreferences->video_url)}}">
                                         <i class="bi bi-play"></i>
                                     </a>
                                 </div>
                                 @elseif(!empty($candidateDetails->candidatePreferences->other_platform_video_url))
-                                <div
-                                    class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
+                                <div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
                                     <a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
                                         href="{{$candidateDetails->candidatePreferences->other_platform_video_url}}">
                                         <i class="bi bi-play"></i>
-                                    </a>
-                                    
+                                    </a>   
                                 </div>
+                                @endif
                             </div>
-                            @endif
                             @endif
                             @if(isset($candidateDetails->candidateEducationalDetails) && count($candidateDetails->candidateEducationalDetails) > 0)
                             <div class="inner-card mb-75 lg-mb-50">
                                 <h3 class="title">Education</h3>
                                 <div class="time-line-data position-relative pt-15">
-                               
-                                @foreach($candidateDetails->candidateEducationalDetails as $index=>$educational_detail)
+                            
+                                    @foreach($candidateDetails->candidateEducationalDetails as $index=>$educational_detail)
                                     <div class="info position-relative">
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
-                                            {{$index+1}}</div>
+                                            {{$index+1}}
+                                        </div>
                                         <div class="text_1 fw-500">{{$educational_detail->institute_name ?? ''}} ({{$educational_detail->instituteCountry->name ?? ''}}-{{$educational_detail->year_of_study ?? ''}})</div>
                                         <h4>{{$educational_detail->degree ?? ''}}</h4>
                                         <p>{{$educational_detail->field_of_study ?? ''}}</p>
@@ -183,7 +183,6 @@
                                 </div>
                                 <!-- /.time-line-data -->
                             </div>
-
                         </div>
                     </div>
                     <!-- /.candidates-profile-details -->
@@ -207,7 +206,7 @@
                                         <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Police Certificate</a></div>
                                     </li>
                                     @elseif($document->document_type == 3)
-									<li>
+                                    <li>
                                         <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Degree Apostille</a></div>
                                     </li>
                                     @elseif($document->document_type == 4)
@@ -232,11 +231,17 @@
                         <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
                             <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
                                 <ul class="style-none">
-									<li>
+                                        @isset($candidateDetails->candidateHighestQualification)
+                                    <li>
+                                        <span>Qualification: </span>
+                                        <div>{{$candidateDetails->candidateHighestQualification->degree ?? ''}}</div>
+                                    </li>
+                                        @endisset
+                                    <li>
                                         <span>Preferred Start Date: </span>
                                         <div>{{$candidateDetails->candidatePreferences->preferred_start_date ?? ''}}</div>
                                     </li>
-									<li>
+                                    <li>
                                         <span>Visa Status:</span>
                                         <div>{{$candidateDetails->candidatePersonalDetails->current_visa_status ?? ''}}</div>
                                     </li>
@@ -244,7 +249,7 @@
                                         <span>Apostille Status: </span>
                                         <div>Verified</div>
                                     </li>
-									<li>
+                                    <li>
                                         <span> Teaching Experience: </span>
                                         <div>{{$candidateDetails->candidateEducation->teaching_experiance ?? ''}}</div>
                                     </li>
@@ -284,7 +289,6 @@
                         <!-- /.cadidate-profile-sidebar -->
                     </div>
                 </div>
-
             </div>
         </section>
 
