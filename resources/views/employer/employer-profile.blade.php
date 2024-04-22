@@ -509,7 +509,7 @@ h3{
 								</div>
 								@elseif($employerLicenseDetails->approval_status == 1)
 								<div class="row">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<div class="dash-input-wrapper mb-30">
 										    <label for="">{{$employerLicenseDetails->license_number}}</label>
 											@if(isset($employerLicenseDetails->license_file) && !empty($employerLicenseDetails->license_file))
