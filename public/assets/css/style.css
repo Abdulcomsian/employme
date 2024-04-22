@@ -6080,6 +6080,14 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: 15px;
   color: rgb(14 14 14 / 60%);
 }
+.nice-select{
+  background: #f2f2f2;
+    padding: 10px !important;
+    height: auto !important;
+}
+h3{
+  font-family:"gordita";
+}
 .candidate-profile-card .candidate-info div {
   font-size: 15px;
   font-weight: 500;
