@@ -123,7 +123,6 @@ Employers
                             </td>
                             <td>
                                 <select class="form-select employer-approval-status" name="" id="" data-employer-id="{{$employer->id}}">
-                                    <option value="">Approval Status</option>
                                     <option value="{{\AppConst::LICENSE_PENDING}}" @if($employer->license->approval_status == \AppConst::LICENSE_PENDING) selected @endif>Pending</option>
                                     <option value="{{\AppConst::LICENSE_APPROVED}}" @if($employer->license->approval_status == \AppConst::LICENSE_APPROVED) selected @endif>Approved</option>
                                     <option value="{{\AppConst::LICENSE_REJECTED}}" @if($employer->license->approval_status == \AppConst::LICENSE_REJECTED) selected @endif>Rejected</option>
