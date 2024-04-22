@@ -315,7 +315,7 @@ class UserController extends Controller
     public function candidateProfileNew($id)
     {
         $candidateId = Crypt::decryptString($id);
-        $candidateDetails = User::role('candidate')->with('documents','candidateEducationalDetails','candidatePreferences','candidateEducation','candidatePersonalDetails','candidatePersonalDetails.getNationality','candidatePersonalDetails.getPassport')->find($candidateId);
+        $candidateDetails = User::role('candidate')->with('documents','candidateHighestQualification','candidateEducationalDetails','candidatePreferences','candidateEducation','candidatePersonalDetails','candidatePersonalDetails.getNationality','candidatePersonalDetails.getPassport')->find($candidateId);
         return view('candidate-profile-new',compact('candidateDetails'));
     }
     public function candidateProfileDocument()
