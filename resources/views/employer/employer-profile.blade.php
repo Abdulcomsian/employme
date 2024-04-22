@@ -645,10 +645,6 @@ h3{
 							</div>
 						</form>
 					<form id="declaration-consent-form" class="mt-4" method="post">
-<<<<<<< HEAD
-=======
-
->>>>>>> e949f603b30b47d53d0ff9cbeeaf7a44105be136
 						<div class="bg-white card-box border-20" id="step-4">
 							<h3 class="my-3">Terms And Condition</h3>
 							<div class="row">

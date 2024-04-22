@@ -135,7 +135,7 @@ h3{
                     <form id="update-intro-form" action="{{route('add.introduct.video')}}" method="post" enctype="multipart/form-data">
                         <input type="file" id="file" accept=".mp4,.webm">
                         <strong id="filename"></strong>
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-success">@if(auth()->user()->intro) Update @else Upload @endif</button>
                     </form>
                 </div>
             </div>
