@@ -128,10 +128,10 @@ Post A Job
                             <label for="">Class Size:</label>
                             <input type="text" name="ClassSize" placeholder="">
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        <!-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Hours/Week:</label>
                             <input type="text" name="Hours/Week" placeholder="">
-                        </div>
+                        </div> -->
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Teaching Hours/Day:</label>
                             <input type="text" name="TeachingHours/Day" placeholder="">

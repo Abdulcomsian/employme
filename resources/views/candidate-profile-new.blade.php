@@ -152,7 +152,8 @@ Candidate Profile Details
                                     <div class="info position-relative">
                                         <div
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
-                                            {{$index+1}}</div>
+                                            {{$index+1}}
+                                        </div>
                                         <div class="text_1 fw-500">{{$educational_detail->institute_name ?? ''}} ({{$educational_detail->instituteCountry->name ?? ''}}-{{$educational_detail->year_of_study ?? ''}})</div>
                                         <h4>{{$educational_detail->degree ?? ''}}</h4>
                                         <p>{{$educational_detail->field_of_study ?? ''}}</p>
