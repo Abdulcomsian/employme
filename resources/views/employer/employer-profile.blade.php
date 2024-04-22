@@ -520,7 +520,7 @@ h3{
 										</div>
 									</div>
 									<div class="col-md-6 px-0">
-										<div class="dash-input-wrapper mb-15">
+										<div class="dash-input-wrapper mt-15">
 											<label for="">Approved by Admin</label>
 										</div>
 									</div>
