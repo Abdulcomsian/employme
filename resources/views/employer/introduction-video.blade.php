@@ -132,18 +132,18 @@ h3{
             <div class="row">
                 <div class="col-xxl-12 col-xl-12 order-xl-first my-3 mr-1 p-1 padding-box">
 
-                    <div class="inner-card mb-60 lg-mb-50">
+                <!-- <div class="inner-card mb-60 lg-mb-50">
 					    <h3 class="title">Introduction</h3>
 						<div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
 							<a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox="" href="{{asset('uploads/employer/introduction-video/'.auth()->user()->intro->file_path)}}">
 								<i class="bi bi-play"></i>
 							</a>
 						</div>
-                    </div>
+                    </div> -->
 
-                    <!-- <video width="640" height="360" controls>
+                    <video width="640" height="360" controls>
                         <source src="{{asset('uploads/employer/introduction-video/'.auth()->user()->intro->file_path)}}" type="video/mp4">
-                    </video> -->
+                    </video>
                 </div>
             </div>
         </div>
