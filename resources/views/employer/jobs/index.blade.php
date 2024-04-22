@@ -56,11 +56,24 @@ Job Listing
     background: #b1b0eb;
     color: #244034;
 }
+.job-url-text{
+    color:#ff715b!important;
+}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 @endpush
 @section('content')
 
 <div class="dashboard-body">
+    <div class="modal fade" id="clipBoardModal" tabindex="-1" role="dialog" aria-labelledby="clipBoardModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center job-url-text"><strong>Job URL Copied!</strong></h3>
+            </div>
+            </div>
+        </div>
+    </div>
     <div class="position-relative">
          <!-- ************************ Header **************************** -->
             @include('employer.layout.header_menu')
@@ -122,12 +135,14 @@ Job Listing
                                         <div class="job-status">{{$message}}</div>
                                     </td>
                                     <td>
-                                        <div class="action-dots float-end">
+
+                                        <div class="action-dots float-center">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li><a class="dropdown-item" href="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_60.svg')}}" alt="" class="lazy-img"> View</a></li>
+                                                <li><a href="#" data-job-url="{{route('jobDetails',\Crypt::encryptString($employerJob->id))}}" class="dropdown-item job-url"><i class="fa-solid fa-link me-3"></i>Copy Url</a></li>
                                                 @if($employerJob->job_status == 1)
                                                  <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                                 document.getElementById('inactive-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Inactive.svg')}}" alt="" class="lazy-img"> Inactive</a></li>
@@ -341,7 +356,7 @@ Job Listing
                                         <div class="job-status">Active</div>
                                     </td>
                                     <td>
-                                        <div class="action-dots float-end">
+                                        <div class="action-dots float-center">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>
@@ -395,5 +410,15 @@ Job Listing
 
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    $(document).on("click" , ".job-url" , function(e){
+        navigator.clipboard.writeText(e.target.dataset.jobUrl);
+        $('#clipBoardModal').modal('show');
+        setTimeout(()=>{
+            $('#clipBoardModal').modal('hide');
+        } , 2000)
+    })
+</script>
 
 @endsection

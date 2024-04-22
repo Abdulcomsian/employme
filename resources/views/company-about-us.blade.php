@@ -34,8 +34,17 @@
 	}
 	.padding-box h3{
 		font-size: 22px !important;
-    font-family: "gordita";
-    margin: 0;
+		font-family: "gordita";
+		margin: 0;
+	}
+	.video-post .video-icon {
+		width: 65px;
+		height: 65px;
+		background: #D2F34C;
+		color: #000;
+		font-size: 45px;
+		line-height: 65px;
+		padding-left: 7px;
 	}
 </style>
 <div class="inner-banner-one position-relative">
@@ -95,23 +104,11 @@
 								<h3>Overview</h3>
 								{{--<p><b>School's Mission & Vision:</b> {{$employerDetails->school_vision_and_mission}}</p>--}}
 								<p>{!! $employerDetails->employer_details ?? '' !!}</p>
-								<h3>Intro</h3>
-							
-								@if(!empty($employerDetails->introductry_video))
-								<div
-									class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-50 lg-mb-50">
-									<a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox=""
-										href="{{asset($employerDetails->introductry_video)}}">
-										<i class="bi bi-play"></i>
-									</a>
-								</div>
-								@endif
-								
-
+					
 								<!-- <p><b>Teaching Philosophy:</b> (Details about the school's pedagogic beliefs and methods)</p> -->
 							</div>
 							<div class="details">
-							<h3>Company Reviews</h3>
+								<h3>Company Reviews</h3>
 
 									<div class="company-review-slider">
 										@isset($candidateReviews)
@@ -203,12 +200,20 @@
 									{{--<p>
 									<h5>Extra-Curricular Activities: </h5>(Details about clubs, sports, arts, and other
 									non-academic activities)</p>--}}
-								</div>
+							</div>
 						</div>
 					</div>
 					
 					@if($introductionVideo)
-						<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
+					<!-- <div class="inner-card mb-60 lg-mb-50">
+						<div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
+							<a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox="" href="http://127.0.0.1:8000/uploads/candidate/videos/171376439287871.mp4">
+								<i class="bi bi-play"></i>
+							</a>
+						</div>
+                    </div> -->
+					<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
+							<h3 class="title">Introduction</h3>
 							<video width="640" height="360" controls>
 								<source src="{{asset('uploads/employer/introduction-video/'.$introductionVideo->file_path)}}" type="video/mp4">
 							</video>
@@ -229,30 +234,27 @@
 								<p>Videos: (Short clips or promotional videos showcasing the school environment, events, or teaching methods)</p>--}}
 							</div>
 							<div class="row">
-							@isset($galleryFiles)
-							@foreach($galleryFiles as $gallery)
-							@if($gallery->file_extension != 'mp4')
-								<div class="col-md-4 mb-20">
-									<img src="{{asset($gallery->file_name)}}" alt="">
-								</div>
-								@endif
+
+							<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+								@foreach($galleryFiles as $gallery)
+									@if($gallery->file_extension != 'mp4')
+										<div class="carousel-item active">
+											<img class="d-block w-100" src="{{asset($gallery->file_name)}}" alt="First slide">
+										</div>
+									@endif
 								@endforeach
-								@endisset
-								{{--<div class="col-md-4 mb-20">
-									<img src="http://127.0.0.1:8000/assets/images/assets/classroom-1.jpg" alt="">
-								</div>
-								<div class="col-md-4 mb-20">
-									<img src="http://127.0.0.1:8000/assets/images/assets/classroom-1.jpg" alt="">
-								</div>
-								<div class="col-md-4 mb-20">
-									<img src="http://127.0.0.1:8000/assets/images/assets/classroom-1.jpg" alt="">
-								</div>
-								<div class="col-md-4 mb-20">
-									<img src="http://127.0.0.1:8000/assets/images/assets/classroom-1.jpg" alt="">
-								</div>
-								<div class="col-md-4 mb-20">
-									<img src="http://127.0.0.1:8000/assets/images/assets/classroom-1.jpg" alt="">
-								</div>--}}
+							</div>
+							<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+							</div>
+								
 
 							</div>
 
@@ -546,96 +548,96 @@
 
 					</div>
 				</div>
-			</div>
-			<div class="col-xxl-3 col-xl-4 order-xl-last my-3 mr-1 p-1">
-				<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mb-50">
-					@if(isset($employerDetails->institution_logo))
-					<img src="{{asset($employerDetails->institution_logo)}}" data-src="{{asset($employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto logo">
-					@else
-					<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto logo">
-					@endif
-					<!-- <img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto logo"> -->
-					<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">{{$employerDetails->institution ?? ''}}</div>
-					<div class="text-center"><a href="#" class="website-btn-two tran3s" target="_blank">Visit
-							our website</a></div>
-
-					<div class="border-top mt-35 lg-mt-20 pt-25">
-						<ul class="job-meta-data row style-none">
-							<li class="col-12">
-								<span>Business Hours:</span>
-								<div>{{$employerDetails->business_hours ?? ''}}</div>
-							</li>
-							<li class="col-12">
-								<span>Number of Students:</span>
-								<div>{{$employerDetails->number_of_students ?? ''}}</div>
-							</li>
-							<li class="col-12">
-								<span>Number of Teachers:</span>
-								<div>{{$employerDetails->number_of_teachers ?? ''}}</div>
-							</li>
-
-							<!-- <li class="col-12">
-										<span>Size:</span>
-										<div>7000-8000, Worldwide</div>
-									</li> -->
-							{{--<li class="col-12">
-								<span>Email: </span>
-								<div><a href="#">{{$employerDetails->email ?? ''}}</a></div>
-							</li>--}}
-							<li class="col-12">
-								<span>Business Address: </span>
-								<div>{{$employerDetails->city ?? ''}} {{$employerDetails->state ?? ''}}, {{$employerDetails->employerCountry->name ?? ''}} </div>
-							</li>
-							<!-- <li class="col-12">
-										<span>Founded: </span>
-										<div>13 Jan, 1997</div>
-									</li> -->
-							<!-- <li class="col-12">
-										<span>Phone:</span>
-										<div><a href="#">(990) 234 112 779,</a> <a href="#">+770 723801870</a></div>
-									</li> -->
-							<!-- <li class="col-12">
-										<span>Category: </span>
-										<div>Technology, Product,  Agency</div>
-									</li> -->
-							{{--<li class="col-12">
-								<span>Social: </span>
-								<div>
-									<a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
-									<a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
-									<a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
-									<a href="#" class="me-3"><i class="bi bi-linkedin"></i></a>
-									<a href="#" class="me-3"> Blog</a>
-
-								</div>
-							</li>--}}
-						</ul>
-
-						{{--<a href="#" class="btn-ten fw-500 text-white w-100 text-center tran3s mt-25">Send
-							Message</a>--}}
+				<div class="col-xxl-3 col-xl-4 order-xl-last my-3 mr-1 p-1">
+					<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mb-50">
+						@if(isset($employerDetails->institution_logo))
+						<img src="{{asset($employerDetails->institution_logo)}}" data-src="{{asset($employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto logo">
+						@else
+						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto logo">
+						@endif
+						<!-- <img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto logo"> -->
+						<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">{{$employerDetails->institution ?? ''}}</div>
+						<div class="text-center"><a href="#" class="website-btn-two tran3s" target="_blank">Visit
+								our website</a></div>
+	
+						<div class="border-top mt-35 lg-mt-20 pt-25">
+							<ul class="job-meta-data row style-none">
+								<li class="col-12">
+									<span>Business Hours:</span>
+									<div>{{$employerDetails->business_hours ?? ''}}</div>
+								</li>
+								<li class="col-12">
+									<span>Number of Students:</span>
+									<div>{{$employerDetails->number_of_students ?? ''}}</div>
+								</li>
+								<li class="col-12">
+									<span>Number of Teachers:</span>
+									<div>{{$employerDetails->number_of_teachers ?? ''}}</div>
+								</li>
+	
+								<!-- <li class="col-12">
+											<span>Size:</span>
+											<div>7000-8000, Worldwide</div>
+										</li> -->
+								{{--<li class="col-12">
+									<span>Email: </span>
+									<div><a href="#">{{$employerDetails->email ?? ''}}</a></div>
+								</li>--}}
+								<li class="col-12">
+									<span>Business Address: </span>
+									<div>{{$employerDetails->city ?? ''}} {{$employerDetails->state ?? ''}}, {{$employerDetails->employerCountry->name ?? ''}} </div>
+								</li>
+								<!-- <li class="col-12">
+											<span>Founded: </span>
+											<div>13 Jan, 1997</div>
+										</li> -->
+								<!-- <li class="col-12">
+											<span>Phone:</span>
+											<div><a href="#">(990) 234 112 779,</a> <a href="#">+770 723801870</a></div>
+										</li> -->
+								<!-- <li class="col-12">
+											<span>Category: </span>
+											<div>Technology, Product,  Agency</div>
+										</li> -->
+								{{--<li class="col-12">
+									<span>Social: </span>
+									<div>
+										<a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+										<a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
+										<a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+										<a href="#" class="me-3"><i class="bi bi-linkedin"></i></a>
+										<a href="#" class="me-3"> Blog</a>
+	
+									</div>
+								</li>--}}
+							</ul>
+	
+							{{--<a href="#" class="btn-ten fw-500 text-white w-100 text-center tran3s mt-25">Send
+								Message</a>--}}
+						</div>
 					</div>
+					<!-- /.job-company-info -->
+					<!-- <div class="job-company-info mt-100 ms-xl-5 ms-xxl-0 lg-mb-50">
+						{{-- <img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto logo"> --}}
+						<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">Location</div>
+						{{-- <div class="text-center"><a href="#" class="website-btn-two tran3s" target="_blank">Visit our website</a></div> --}}
+	
+						<div class="border-top mt-35 lg-mt-20 pt-25">
+							<ul class="job-meta-data row style-none">
+								<li>
+									<div class="map">
+										<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13287.201679616686!2d73.0740548!3d33.6364165!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df95f7c0118bb1%3A0x773c0f0856728b7!2sSilk%20Center%20Plaza!5e0!3m2!1sen!2s!4v1693389113300!5m2!1sen!2s" width="270" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+									</div>
+	
+								</li>
+								<li>
+									<p>silk center, Murree Rd, B-Block Block B Satellite Town, Rawalpindi, Punjab 44000</p>
+								</li>
+							</ul>
+	
+						</div>
+					</div> -->
 				</div>
-				<!-- /.job-company-info -->
-				<!-- <div class="job-company-info mt-100 ms-xl-5 ms-xxl-0 lg-mb-50">
-					{{-- <img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto logo"> --}}
-					<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">Location</div>
-					{{-- <div class="text-center"><a href="#" class="website-btn-two tran3s" target="_blank">Visit our website</a></div> --}}
-
-					<div class="border-top mt-35 lg-mt-20 pt-25">
-						<ul class="job-meta-data row style-none">
-							<li>
-								<div class="map">
-									<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13287.201679616686!2d73.0740548!3d33.6364165!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df95f7c0118bb1%3A0x773c0f0856728b7!2sSilk%20Center%20Plaza!5e0!3m2!1sen!2s!4v1693389113300!5m2!1sen!2s" width="270" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-								</div>
-
-							</li>
-							<li>
-								<p>silk center, Murree Rd, B-Block Block B Satellite Town, Rawalpindi, Punjab 44000</p>
-							</li>
-						</ul>
-
-					</div>
-				</div> -->
 			</div>
 		</div>
 	</div>

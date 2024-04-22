@@ -107,6 +107,15 @@ input[type='checkbox']{
 h3{
 	font-family: "gordita";
 }
+.video-post .video-icon {
+    width: 65px;
+    height: 65px;
+    background: #D2F34C;
+    color: #000;
+    font-size: 45px;
+    line-height: 65px;
+    padding-left: 7px;
+}
 </style>
 
 @endpush
@@ -122,20 +131,30 @@ h3{
         <div class="container">
             <div class="row">
                 <div class="col-xxl-12 col-xl-12 order-xl-first my-3 mr-1 p-1 padding-box">
+
+                <!-- <div class="inner-card mb-60 lg-mb-50">
+					    <h3 class="title">Introduction</h3>
+						<div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
+							<a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox="" href="{{asset('uploads/employer/introduction-video/'.auth()->user()->intro->file_path)}}">
+								<i class="bi bi-play"></i>
+							</a>
+						</div>
+                    </div> -->
+
                     <video width="640" height="360" controls>
                         <source src="{{asset('uploads/employer/introduction-video/'.auth()->user()->intro->file_path)}}" type="video/mp4">
                     </video>
                 </div>
             </div>
         </div>
-                @endif
+        @endif
         <div class="container">
             <div class="row">
                 <div class="col-12 p-3">
                     <form id="update-intro-form" action="{{route('add.introduct.video')}}" method="post" enctype="multipart/form-data">
                         <input type="file" id="file" accept=".mp4,.webm">
                         <strong id="filename"></strong>
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-success">@if(auth()->user()->intro) Update @else Upload @endif</button>
                     </form>
                 </div>
             </div>

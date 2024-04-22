@@ -1,5 +1,7 @@
 @extends('components.master')
-
+@section('title')
+Contact
+@endsection
 @section('content')
 
 <div class="section">

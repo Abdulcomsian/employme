@@ -315,7 +315,7 @@ class UserController extends Controller
     public function candidateProfileNew($id)
     {
         $candidateId = Crypt::decryptString($id);
-        $candidateDetails = User::role('candidate')->with('documents','candidateEducationalDetails','candidatePreferences','candidateEducation','candidatePersonalDetails','candidatePersonalDetails.getNationality','candidatePersonalDetails.getPassport')->find($candidateId);
+        $candidateDetails = User::role('candidate')->with('documents','candidateHighestQualification','candidateEducationalDetails','candidatePreferences','candidateEducation','candidatePersonalDetails','candidatePersonalDetails.getNationality','candidatePersonalDetails.getPassport')->find($candidateId);
         return view('candidate-profile-new',compact('candidateDetails'));
     }
     public function candidateProfileDocument()
@@ -514,10 +514,10 @@ class UserController extends Controller
     }
     public function updateIntroVideo(Request $request)
     {
-        $validator = Validator::make($request->all() , [
-            'file' => 'required|mimes:mp4,webm|size:10240'
-        ]);
-        
+        $validator = Validator::make($request->all() , 
+            [ 'file' => 'required|mimes:mp4,webm|max:10240'] , 
+            ['file.max' => "File must be less then 10MB"]
+        );
         if($validator->fails())
         {
             return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( ", " , $validator->errors()->all())]);

@@ -21,7 +21,7 @@
             <div class="user-name-data d-flex justify-content-center">
                 <button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="background: transparent !important;color:#000;">
 
-                 {{auth()->user()->candidatePersonalDetails->first_name ?? ''}} {{auth()->user()->candidatePersonalDetails->middle_name ?? ''}} {{auth()->user()->candidatePersonalDetails->last_name ?? ''}}
+                 {{auth()->user()->candidatePersonalDetails->first_name ?? ''}}
 
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
