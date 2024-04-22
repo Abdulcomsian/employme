@@ -25,7 +25,7 @@ Candidate Marketplace
     text-transform: uppercase;
     letter-spacing: 0.88px;
     color: #fff;
-    background: #31795A;
+    background: #ff715b;
     width: auto;
     padding: 14px;
 }
@@ -782,7 +782,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 							</div>
 						
 							<div class="col-md-6">
-								<button class="btn-submit fw-500 tran3s d-block mt-20" type = "submit" >
+								<button class="btn-submit fw-500 tran3s d-block" type = "submit" >
 									<span id="buttonText">Submit</span>
 									<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
 								</button>

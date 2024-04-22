@@ -6078,12 +6078,20 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .candidate-profile-card .candidate-info span {
   font-size: 15px;
-  color: rgba(36, 64, 52, 0.6);
+  color: rgb(14 14 14 / 60%);
+}
+.nice-select{
+  background: #f2f2f2;
+    padding: 10px !important;
+    height: auto !important;
+}
+h3{
+  font-family:"gordita";
 }
 .candidate-profile-card .candidate-info div {
   font-size: 15px;
   font-weight: 500;
-  color: #244034;
+  color: #000;
   margin: 2px 0 0;
 }
 .candidate-profile-card .profile-btn {
