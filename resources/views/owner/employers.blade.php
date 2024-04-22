@@ -119,13 +119,13 @@ Employers
                                 <div class="job-status"  >{{auth()->user()->email_verified_at ? 'Verified' : 'Unverified'}}</div>
                             </td>
                             <td>
-                                <div class="license text-center"  >@if($employer->license) <a href="{{asset($employer->license->license_file)}}"><i class="fa-regular fa-file"></i></a> @else <i title="No Certificate Added" class="fa-solid fa-file-circle-xmark"></i> @endif </div>
+                                <div class="license ps-4"  >@if($employer->license) <a href="{{asset($employer->license->license_file)}}"><i class="fa-regular fa-file"></i></a> @else <i title="No Certificate Added" class="fa-solid fa-file-circle-xmark"></i> @endif </div>
                             </td>
                             <td>
                                 <select class="form-select employer-approval-status" name="" id="" data-employer-id="{{$employer->id}}">
                                     <option value="">Approval Status</option>
                                     <option value="{{\AppConst::LICENSE_PENDING}}" @if($employer->license->approval_status == \AppConst::LICENSE_PENDING) selected @endif>Pending</option>
-                                    <option value="{{\AppConst::LICENSE_APPROVED}}" @if($employer->license->approval_status == \AppConst::LICENSE_APPROVED) selected @endif>Approval</option>
+                                    <option value="{{\AppConst::LICENSE_APPROVED}}" @if($employer->license->approval_status == \AppConst::LICENSE_APPROVED) selected @endif>Approved</option>
                                     <option value="{{\AppConst::LICENSE_REJECTED}}" @if($employer->license->approval_status == \AppConst::LICENSE_REJECTED) selected @endif>Rejected</option>
                                 </select>
                             </td>

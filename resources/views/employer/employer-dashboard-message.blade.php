@@ -251,7 +251,7 @@ Messages
                                         {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
                                         {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}
                                         </div>
-                                        <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div>
+                                        <!-- <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div> -->
                                     </div>
                                 </div>
                                 {{--
@@ -290,7 +290,7 @@ Messages
                                     @endif            
                                     <div class="ps-3">
                                         <div class="sender-name">You</div>
-                                        <div class="sender-email">{{$conversations->employer->email ?? ''}}</div>
+                                        <!-- <div class="sender-email">{{$conversations->employer->email ?? ''}}</div> -->
                                     </div>
                                 </div>
                                 </div>
@@ -308,7 +308,7 @@ Messages
                                         {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
                                         {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}
                                         </div>
-                                        <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div>
+                                        <!-- <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div> -->
                                     </div>
                                 </div>
                                 </div>
@@ -521,7 +521,6 @@ Messages
       Echo.private(`candidate-chat.{{auth()->user()->id}}`)
     .listen('CandidateEvent', (e) => {
         console.log(e.conversationId);
-      
         if(e.conversationId == conversationId)
         {
             $(".conversation-"+e.conversationId).append(e.html);

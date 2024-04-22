@@ -16,7 +16,7 @@
                 {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}
                 </div>
                 @endif
-                <div class="sender-email">{{$conversations->employer->email ?? ''}}</div>
+                <!-- <div class="sender-email">{{$conversations->employer->email ?? ''}}</div> -->
             </div>
         </div>
         </div>
