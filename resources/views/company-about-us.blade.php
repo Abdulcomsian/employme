@@ -237,10 +237,10 @@
 
 							<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
-								@foreach($galleryFiles as $gallery)
+								@foreach($galleryFiles as index =>  $gallery)
 									@if($gallery->file_extension != 'mp4')
-										<div class="carousel-item active">
-											<img class="d-block w-100" src="{{asset($gallery->file_name)}}" alt="First slide">
+										<div class="carousel-item @if($index == 1) active @endif">
+											<img class="d-block w-100"  src="{{asset($gallery->file_name)}}" alt="First slide">
 										</div>
 									@endif
 								@endforeach
