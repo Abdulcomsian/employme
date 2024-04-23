@@ -19,7 +19,7 @@ Candidate Profile Details
 		============================================== 
 		-->
         <div class="inner-banner-one position-relative">
-            <div class="container">
+            <div class="container" style="min-width: 80%;">
                 <div class="candidate-profile-card list-layout">
                     <div class="d-flex align-items-start align-items-xl-center">
                         @if(isset($candidateDetails->candidatePersonalDetails->profile_picture) && !empty($candidateDetails->candidatePersonalDetails->profile_picture))
@@ -64,6 +64,9 @@ Candidate Profile Details
                                         <span>Location</span>
                                         <div>{{$candidateDetails->candidatePersonalDetails->current_location ?? ''}}</div>
                                     </div>
+                                    <!-- /.candidate-info -->
+                                </div>
+                                <div class="col-xl-2 col-md-4 order-xl-0">
                                     <div class="candidate-info">
                                         <span>Start Date</span>
                                         <div>{{$candidateDetails->candidatePersonalDetails->current_location ?? ''}}</div>
@@ -77,7 +80,7 @@ Candidate Profile Details
                                     </div>
                                     <!-- /.candidate-info -->
                                 </div>
-                                <div class="col-xl-3 col-md-4 order-xl-4">
+                                <div class="col-xl-2 col-md-4 order-xl-4">
                                     <div class="d-flex justify-content-md-end">
 									<a  class="save-btn text-center rounded-circle tran3s save_candidate  save_candidate{{base64_encode($candidateDetails->id)}}" id="{{base64_encode($candidateDetails->id)}}" style="color:{{(savedCandidate($candidateDetails->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
                                         <button class="cv-download-btn fw-500 tran3s ms-md-3 sm-mt-20" id="{{base64_encode($candidateDetails->id)}}">Download
@@ -133,7 +136,7 @@ Candidate Profile Details
                                         <i class="bi bi-play"></i>
                                     </a>
                                 </div> -->
-                                <video width="640" height="360" controls>
+                                <video width="100%" height="360" controls>
 										<source src="{{asset($candidateDetails->candidatePreferences->video_url)}}" type="video/mp4">
 									</video>
                                 @elseif(!empty($candidateDetails->candidatePreferences->other_platform_video_url))
@@ -143,7 +146,7 @@ Candidate Profile Details
                                         <i class="bi bi-play"></i>
                                     </a>   
                                 </div> -->
-                                <video width="640" height="360" controls>
+                                <video width="100%" height="360" controls>
 										<source src="{{asset($candidateDetails->candidatePreferences->other_platform_video_url)}}" type="video/mp4">
 									</video>
                                 @endif
@@ -193,47 +196,7 @@ Candidate Profile Details
                     </div>
                     <!-- /.candidates-profile-details -->
                     <div class="col-xxl-3 col-lg-4">
-                        <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
-                            <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
-                                <ul class="style-none">
-                                    @isset($candidateDetails->documents)
-                                    @foreach($candidateDetails->documents as $document)
-                                    @if($document->document_type == 1)
-                                    <li class="border-0">
-                                        {{--<span>Copy of Degree: </span>--}}
-                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Degree</a></div>
-                                    </li>
-                                    <!-- <li>
-                                        <span>Age: </span>
-                                        <div>28</div>
-                                    </li> -->
-                                    @elseif($document->document_type == 2)
-                                    <li >
-                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Police Certificate</a></div>
-                                    </li>
-                                    @elseif($document->document_type == 3)
-                                    <li>
-                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Degree Apostille</a></div>
-                                    </li>
-                                    @elseif($document->document_type == 4)
-                                    <li>
-                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Police Apostille</a></div>
-                                    </li>
-                                    @elseif($document->document_type == 5)
-                                    <li>
-                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of SAQA Letter</a></div>
-                                    </li>
-                                    <li>
-                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Passport</a></div>
-                                    </li>
-                                    @endif
-                                    @endforeach
-                                    @endisset
-
-                                </ul>
-                                <a href="#" class="btn-ten cv-download-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download Docs</a>
-                            </div>
-                        </div> 
+                        
                         <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
                             <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
                                 <ul class="style-none">
@@ -291,6 +254,47 @@ Candidate Profile Details
                                     </div>
                                 </form>
                             </div> -->
+                        </div> 
+                        <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
+                            <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
+                                <ul class="style-none">
+                                    @isset($candidateDetails->documents)
+                                    @foreach($candidateDetails->documents as $document)
+                                    @if($document->document_type == 1)
+                                    <li class="border-0">
+                                        {{--<span>Copy of Degree: </span>--}}
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Degree</a></div>
+                                    </li>
+                                    <!-- <li>
+                                        <span>Age: </span>
+                                        <div>28</div>
+                                    </li> -->
+                                    @elseif($document->document_type == 2)
+                                    <li >
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Police Certificate</a></div>
+                                    </li>
+                                    @elseif($document->document_type == 3)
+                                    <li>
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Degree Apostille</a></div>
+                                    </li>
+                                    @elseif($document->document_type == 4)
+                                    <li>
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Police Apostille</a></div>
+                                    </li>
+                                    @elseif($document->document_type == 5)
+                                    <li>
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of SAQA Letter</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Passport</a></div>
+                                    </li>
+                                    @endif
+                                    @endforeach
+                                    @endisset
+
+                                </ul>
+                                <a href="#" class="btn-ten cv-download-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download Docs</a>
+                            </div>
                         </div> 
                         <!-- /.cadidate-profile-sidebar -->
                     </div>

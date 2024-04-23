@@ -51,7 +51,7 @@
 	<div class="container">
 		<div class="position-relative">
 			<div class="row">
-				<div class="col-xl-6 m-auto text-center">
+				<div class="col-xl-12 text-center">
 					<div class="title-two">
 						<h2 class="text-white"> {{$employerDetails->institution ?? ''}}</h2>
 					</div>
@@ -214,7 +214,7 @@
                     </div> -->
 					<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
 							<h3 class="title">Introduction</h3>
-							<video width="640" height="360" controls>
+							<video width="100%" height="360" controls>
 								<source src="{{asset('uploads/employer/introduction-video/'.$introductionVideo->file_path)}}" type="video/mp4">
 							</video>
 						</div>
