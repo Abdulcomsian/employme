@@ -282,7 +282,7 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Date of Birth</label>
-                                    <input type="date" name="dateOfBirth" placeholder="Date of birth" value = "{{$candidatePersonalDetails->date_of_birth ?? ''}}">
+                                    <input type="date" name="dateOfBirth" placeholder="Date of birth" max="{{date('Y-m-d')}}" value="{{$candidatePersonalDetails->date_of_birth ?? ''}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
