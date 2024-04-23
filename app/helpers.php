@@ -277,20 +277,61 @@ $attributes = $filteredColumns->count();
 
 function candidateProfilePercentage()
 {
-    $candidatePersonalDetailsAttributes = collect(\Schema::getColumnListing('candidate_personal_details'))->count();
-    $candidatePreferencesAttributes = collect(\Schema::getColumnListing('candidate_preferences'))->count();
-    $candidateEducationAttributes = collect(\Schema::getColumnListing('candidate_education'))->count();
+    $excludedCandidatePreferencesColumns = [
+    'other_platform_vidoe_url',
+    ];
+    $excludedCandidateEducationColumns = [
+        'country_id',
+        'teaching_experience',
+        'clarification_details_if_yes',
+        'experience_description_if_yes'
+        ];
+    $excludedCandidatePersonalDetailsColumns = [
+        'full_name',
+        'designation',
+        'job_category_id',
+        'note',
+        'health_declaration',
+        'terms_and_condition',
+        'criminal_background',
+        ];
 
-    $candidatePersonalDetails = \App\Models\CandidatePersonalDetails::where('user_id', Auth::id())->first();
+    $totalCandidateUploadedDocuments = \App\Models\CandidateDocument::where('user_id', Auth::id())->count();
+    // $candidatePersonalDetailsAttributes = collect(\Schema::getColumnListing('candidate_personal_details'))->count();
+    $filterredCandidatePersonalDetailsAttributes = collect(\Schema::getColumnListing('candidate_personal_details'))->filter(function ($column) use ($excludedCandidatePersonalDetailsColumns) {
+        return !in_array($column, $excludedCandidatePersonalDetailsColumns);
+    });
+    $candidatePersonalDetailsAttributes = $filterredCandidatePersonalDetailsAttributes->count();
+    // $candidatePreferencesAttributes = collect(\Schema::getColumnListing('candidate_preferences'))->count();
+    $filterredCandidatePreferencesAttributes = collect(\Schema::getColumnListing('candidate_preferences'))->filter(function ($column) use ($excludedCandidatePreferencesColumns) {
+        return !in_array($column, $excludedCandidatePreferencesColumns);
+    });
+    $candidatePreferencesAttributes = $filterredCandidatePreferencesAttributes->count();
+    // $candidateEducationAttributes = collect(\Schema::getColumnListing('candidate_education'))->count();
+    $filterredCandidateEducationAttributes =collect(\Schema::getColumnListing('candidate_education'))->filter(function ($column) use ($excludedCandidateEducationColumns) {
+        return !in_array($column, $excludedCandidateEducationColumns);
+    });
+    $candidateEducationAttributes = $filterredCandidateEducationAttributes->count();
+
+    // $candidatePersonalDetails = \App\Models\CandidatePersonalDetails::where('user_id', Auth::id())->first();
+    $candidatePersonalDetails = \App\Models\CandidatePersonalDetails::select(
+        array_diff(\Schema::getColumnListing('candidate_personal_details'), $excludedCandidatePersonalDetailsColumns)
+    )->where('user_id', Auth::id())->first(); 
     $candidatePersonalDetails = $candidatePersonalDetails->toArray();
 
-    $candidatePreferences = \App\Models\CandidatePreferences::where('user_id', Auth::id())->first();
+    // $candidatePreferences = \App\Models\CandidatePreferences::where('user_id', Auth::id())->first();
+    $candidatePreferences = \App\Models\CandidatePreferences::select(
+        array_diff(\Schema::getColumnListing('candidate_preferences'), $excludedCandidatePreferencesColumns)
+    )->where('user_id', Auth::id())->first(); 
     $candidatePreferences = $candidatePreferences->toArray();
 
-    $candidateEducation = \App\Models\CandidateEducation::where('user_id', Auth::id())->first();
+    // $candidateEducation = \App\Models\CandidateEducation::where('user_id', Auth::id())->first();
+    $candidateEducation = \App\Models\CandidatePreferences::select(
+        array_diff(\Schema::getColumnListing('candidate_preferences'), $excludedCandidatePreferencesColumns)
+    )->where('user_id', Auth::id())->first(); 
     $candidateEducation = $candidateEducation->toArray();
     
-    $totalAttributes = $candidatePersonalDetailsAttributes +  $candidatePreferencesAttributes + $candidateEducationAttributes;
+    $totalAttributes = $candidatePersonalDetailsAttributes +  $candidatePreferencesAttributes + $candidateEducationAttributes + 6;
     $filledPersonalDetails = collect($candidatePersonalDetails)->filter(function ($value) {
         return !is_null($value);
     })->count();
@@ -300,7 +341,7 @@ function candidateProfilePercentage()
     $filledEducation = collect($candidateEducation)->filter(function ($value) {
         return !is_null($value);
     })->count();
-    $totalFilledAttributes = $filledPersonalDetails + $filledEducation + $filledEducation;
+    $totalFilledAttributes = $filledPersonalDetails + $filledEducation + $filledEducation + $totalCandidateUploadedDocuments;
     $percentage = ($totalFilledAttributes / $totalAttributes) * 100;
     $percentage = round($percentage,0);
     $percentage = number_format($percentage,0);

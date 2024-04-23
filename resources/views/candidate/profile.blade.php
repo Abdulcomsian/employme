@@ -983,15 +983,6 @@ Profile
                                     </div>
                                     @endif
                                 </div>
-                                {{-- <div class="dash-input-wrapper mb-30">
-                                    <label for="">Link to VideoAsk</label>
-                                    <input type="text" name="linkToVideoAsk" placeholder="A direct link or button that takes them to the VideoAsk platform to record or upload their video (this is mandatory but can be completed after the sign-up as well)" value = "{{$candidatePreferencesDetails->other_platform_video_url ?? ''}}">
-                                </div> --}}
-                                    {{-- @if(isset($candidatePreferencesDetails->other_platform_video_url) && !empty($candidatePreferencesDetails->other_platform_video_url))
-                                    <div style = "padding-left:20px;">
-                                        <a class="btn btn-primary" href = "{{$candidatePreferencesDetails->other_platform_video_url}}" target = "_blank">Link</a>
-                                    </div>
-                                    @endif --}}
                             </div>
                         </div>
                         <div class="row">
@@ -1729,7 +1720,6 @@ Profile
         formData.append("saqa_letter", document.getElementById("saqaLetter").files[0]);
         formData.append("passport", document.getElementById("userPassport").files[0]);
         formData.append('terms_and_conditions' , document.getElementById("preferences_terms_and_conditions").value);
-        formData.append('other_platform_video_url',$("#multi-step-form").find('[name=linkToVideoAsk]').val());
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-6.save')}}",
@@ -1740,7 +1730,8 @@ Profile
               success: function (data) {
     
                 if (data.status) {
-                    toastr.success(data.message)
+                    // toastr.success(data.message)
+                    window.location = data.redirect;
                 }else{
                     $(".alert").remove();
                     $.each(data.errors, function (key, val) {

@@ -182,8 +182,8 @@
                                 <a class="nav-link dropdown-toggle" href="/" role="button">Marketplaces
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="index.html" class="dropdown-item"><span>Jobs</span></a></li>
-                                    <li><a href="index-2.html" class="dropdown-item"><span>Candidates</span></a></li>
+                                    <li><a href="{{url('job-marketplace')}}" class="dropdown-item"><span>Jobs</span></a></li>
+                                    <li><a href="{{url('candidates-marketplace')}}" class="dropdown-item"><span>Candidates</span></a></li>
                                 </ul>
                             </li>
                             <!-- <li class="nav-item dropdown">
