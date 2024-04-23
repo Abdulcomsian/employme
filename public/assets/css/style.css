@@ -2277,8 +2277,8 @@ iframe {
   transition: all 0.2s ease-in-out 0s;
 }
 .navbar .dropdown-menu .dropdown-item:hover {
-  color: #005025;
-  background: rgba(0, 191, 88, 0.06);
+  color: #000000;
+  background: rgb(255 113 91 / 33%);
 }
 
 /* .dashboard-menu .nav-link::before {
@@ -3253,7 +3253,7 @@ iframe {
   left: 0;
 }
 .inner-banner-one .candidate-profile-card {
-  background: url(../images/shape/shape_34.svg) repeat-x;
+  background: #fff;
   background-size: cover;
   border: none;
 }
