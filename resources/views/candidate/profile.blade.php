@@ -947,7 +947,7 @@ Profile
                                 <p>Please upload a 30-Second introduction video to tell employers why they should hire you.</p>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Teaching Video</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -955,18 +955,20 @@ Profile
                                             <input type="file" id="teachingVideo" name="teachingVideo" placeholder="" accept="video/mp4" onchange="previewVideo()">
                                         </div>
 
-                                        <button class="delete-btn tran3s " onclick = "deleteFile('video-url')">Delete</button>
                                     </div>
                                     <video id="videoPreview" class = "d-none" width="320" height="240" controls></video>
                                     @if(isset($candidatePreferencesDetails->video_url) && !empty($candidatePreferencesDetails->video_url))
-                                    <div style = "padding-left:20px;" class = "mt-2 video-url">
-                                        <a class="btn btn-file" href = "{{asset($candidatePreferencesDetails->video_url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class = "mt-2 video-url">
+                                            <a class="btn btn-file" href = "{{asset($candidatePreferencesDetails->video_url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s @if(!$candidatePreferencesDetails || !$candidatePreferencesDetails->video_url) d-none @endif" onclick="deleteFile('video-url' , event.target)">Delete</button>
                                     </div>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Video Thumbnail Image</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -975,11 +977,14 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s " onclick = "deleteFile('thumbnail-image')">Delete</button>
                                     </div>
                                     @if(isset($candidatePreferencesDetails->video_thumbnail) && !empty($candidatePreferencesDetails->video_thumbnail))
-                                    <div style = "padding-left:20px;" class = "thumbnail-image">
-                                        <a class="btn btn-file" href = "{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                            <a class="btn btn-file" href="{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s @if(!$candidatePreferencesDetails || !$candidatePreferencesDetails->video_thumbnail) d-none @endif" onclick = "deleteFile('thumbnail-image' , event.target)">Delete</button>
+
                                     </div>
                                     @endif
                                 </div>
@@ -995,7 +1000,7 @@ Profile
                                             <input type="file" id="videoThumbnail" name="videoThumbnail" placeholder="" accept="image/jpeg,image/png">
                                         </div>
 
-                                        <button class="delete-btn tran3s " onclick = "deleteFile('thumbnail-image')">Delete</button>
+                                        <button class="delete-btn tran3s" onclick="deleteFile('thumbnail-image')">Delete</button>
                                     </div>
                                     @if(isset($candidatePreferencesDetails->video_thumbnail) && !empty($candidatePreferencesDetails->video_thumbnail))
                                     <div style = "padding-left:20px;" class = "thumbnail-image">
@@ -1032,7 +1037,7 @@ Profile
                         @endphp 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Copy of your Degree</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1041,17 +1046,19 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc" @if(isset($degree)) data-doc-id="{{$degree->id}}" @endif>Delete</button>
                                     </div>
                                     @if(isset($degree))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-file" href = "{{asset($degree->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                            <a class="btn btn-file" href = "{{asset($degree->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$degree || !$degree->url) d-none @endif" @if(isset($degree)) data-doc-id="{{$degree->id}}" @endif>Delete</button>
                                     </div>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Copy of your Police Certificate (Within Last 6 Months)</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1060,11 +1067,14 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc" @if(isset($policeCertificate)) data-doc-id="{{$policeCertificate->id}}" @endif>Delete</button>
+                                        
                                     </div>
                                     @if(isset($policeCertificate))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-file" href = "{{asset($policeCertificate->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                            <a class="btn btn-file" href = "{{asset($policeCertificate->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$policeCertificate || !$policeCertificate->url) d-none @endif" @if(isset($policeCertificate)) data-doc-id="{{$policeCertificate->id}}" @endif>Delete</button>
                                     </div>
                                     @endif
                                 </div>
@@ -1074,7 +1084,7 @@ Profile
 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Copy of your Degree Apostille</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1083,17 +1093,20 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc"  @if(isset($degreeApostilled)) data-doc-id="{{$degreeApostilled->id}}" @endif>Delete</button>
                                     </div>
                                     @if(isset($degreeApostilled))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-file" href = "{{asset($degreeApostilled->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                            <a class="btn btn-file" href = "{{asset($degreeApostilled->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$degreeApostilled || !$degreeApostilled->url) d-none @endif"  @if(isset($degreeApostilled)) data-doc-id="{{$degreeApostilled->id}}" @endif>Delete</button>
+
                                     </div>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Copy of your Police Apostille</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1102,11 +1115,14 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc"  @if(isset($certificateApostilled)) data-doc-id="{{$certificateApostilled->id}}" @endif>Delete</button>
                                     </div>
                                     @if(isset($certificateApostilled))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-file" href = "{{asset($certificateApostilled->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                            <a class="btn btn-file" href = "{{asset($certificateApostilled->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$certificateApostilled || !$certificateApostilled->url) d-none @endif"  @if(isset($certificateApostilled)) data-doc-id="{{$certificateApostilled->id}}" @endif>Delete</button>
+
                                     </div>
                                     @endif
                                 </div>
@@ -1116,7 +1132,7 @@ Profile
 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">SAQA Letter (Only For South Africa)</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1125,17 +1141,19 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc"  @if(isset($saqaLetter)) data-doc-id="{{$saqaLetter->id}}" @endif>Delete</button>
                                     </div>
                                     @if(isset($saqaLetter))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-file" href = "{{asset($saqaLetter->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                            <a class="btn btn-file" href = "{{asset($saqaLetter->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$saqaLetter || !$saqaLetter->url) d-none @endif"  @if(isset($saqaLetter)) data-doc-id="{{$saqaLetter->id}}" @endif>Delete</button>
                                     </div>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Copy of your Passport</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1144,11 +1162,13 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc"  @if(isset($passport)) data-doc-id="{{$passport->id}}" @endif>Delete</button>
                                     </div>
                                     @if(isset($passport))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-file" href = "{{asset($passport->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                            <a class="btn btn-file" href = "{{asset($passport->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$passport || !$passport->url) d-none @endif"  @if(isset($passport)) data-doc-id="{{$passport->id}}" @endif>Delete</button>
                                     </div>
                                     @endif
                                 </div>
@@ -1406,6 +1426,7 @@ Profile
         e.preventDefault();
         e.stopImmediatePropagation();
         let docId = e.target.dataset.docId;
+        let element = this;
         if(docId !== undefined)
         {
             $.ajax({
@@ -1418,6 +1439,9 @@ Profile
               success:function(res){
                 if(res.status){
                     toastr.success(res.message);
+                    element.classList.add("d-none");
+                    let uploadSection = element.closest(".upload-section");
+                    uploadSection.querySelector(".btn-file").remove();
                 }else{
                     toastr.error(res.message)
                 }
@@ -1991,7 +2015,7 @@ const educationCount = selectDegrees.length;
 
 
 
- function deleteFile(fileType)
+ function deleteFile(fileType , element = null)
  {
     var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
@@ -2008,8 +2032,12 @@ const educationCount = selectDegrees.length;
               success: function (data) {
     
                 if (data.status) {
+
                     toastr.success(data.message);
                     document.querySelector('.'+fileType).classList.add('d-none')
+                    if(element){
+                        element.classList.add("d-none");
+                    }
                 }else{
                     toastr.error(data.message);
                     $(".alert").remove();
