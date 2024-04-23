@@ -42,7 +42,11 @@
 					<span style="font-size: 25px;font-weight: bold;color:#000;">employme</span></a></div>
                             </li>
                             @auth
-                           
+                            @role('candidate')
+                            <li class="nav-item dropdown category-btn mega-dropdown-sm">
+                            <a class="nav-link" href="{{route('getEmployerDashboard')}}" role="button"  aria-expanded="false" style="background-color: #ff715b;color: #fff;padding: 10px 21px;border-radius: 50px;"> <i class="bi bi-grid-fill" style="    margin-right: 7px;"></i>Dashboard</a> 
+                            </li>
+                            @endrole
                            
                             @role('employer')
                             <li class="nav-item dropdown dashboard-menu">
