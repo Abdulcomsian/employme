@@ -41,7 +41,7 @@ class CandidateController extends Controller
         $southKoreaCities = Cities::where('country_id',116)->get();
         $countries = Countries::all();
         $jobCategories = JobCategory::all();
-        // dd($candidatePreferencesDetails->skills);
+        
         return view('candidate.profile',compact('candidateEducations','countries','candidateDocuments','candidatePersonalDetails','candidateEducationalDetails','professionalSkills','southKoreaCities','candidatePreferencesDetails','jobCategories'));
     }
 
@@ -259,7 +259,7 @@ class CandidateController extends Controller
 
         // End of saving candidate profile code
 
-        $input = $request->except('_token', 'video_url' , 'terms_and_conditions');
+        $input = $request->except('_token', 'video_url');
         $updatePreferencesDetails->update(array_merge($input,['video_url'=>$video_url,'video_thumbnail'=>$thumbnailPath]));
         toastr('Files Update Successfully');
          return response()->json([
