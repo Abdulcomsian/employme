@@ -146,7 +146,7 @@ h3{
 						</div>
                     </div> -->
 
-                    <video width="640" height="360" controls>
+                    <video width="100%" height="360" controls>
                         <source src="{{asset('uploads/employer/introduction-video/'.auth()->user()->intro->file_path)}}" type="video/mp4">
                     </video>
                 </div>
