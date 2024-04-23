@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Contact </title>
+  <title>EmployMe </title>
   <meta content="Mollie is a refined Webflow template focused on SaaS Tech companies that are eager to stand out in the crowd. A practical and versatile design to reach clients seeking outstanding visual businesses." name="description">
   <meta content="Mollie - Webflow Ecommerce Website Template" property="og:title">
   <meta content="Mollie is a refined Webflow template focused on SaaS Tech companies that are eager to stand out in the crowd. A practical and versatile design to reach clients seeking outstanding visual businesses." property="og:description">
