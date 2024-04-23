@@ -348,12 +348,14 @@ Profile
                                             Upload profile photo
                                             <input type="file" id="uploadImg" name="profileImage" placeholder="" accept="image/png, image/jpeg">
                                         </div>
-                                        <button class="delete-btn tran3s " onclick = "deleteFile('profile-photo')">Delete</button>
+                                        @if(!$candidatePersonalDetails || !$candidatePersonalDetails->profile_picture)
+                                            <button class="delete-btn tran3s " onclick = "deleteFile('profile-photo' , event.target)">Delete</button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Resume</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s me-3">
@@ -362,11 +364,13 @@ Profile
                                             <strong class="candidate_resume_name text-dark text-start"></strong>
                                         </div>
 
-                                        <button class="delete-btn tran3s" onclick = "deleteFile('resume-file')">Delete</button>
                                     </div>
                                     @if(isset($candidatePersonalDetails->candidate_resume) && !empty($candidatePersonalDetails->candidate_resume))
-                                    <div style = "padding-left:20px;">
-                                        <a class="btn btn-file resume-file" href = "{{asset($candidatePersonalDetails->candidate_resume)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="mx-2">
+                                            <a class="btn btn-file resume-file" href = "{{asset($candidatePersonalDetails->candidate_resume)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s" onclick = "deleteFile('resume-file' , event.target)">Delete</button>
                                     </div>
                                     @endif
                                 </div>
@@ -959,7 +963,7 @@ Profile
                                     <video id="videoPreview" class = "d-none" width="320" height="240" controls></video>
                                     @if(isset($candidatePreferencesDetails->video_url) && !empty($candidatePreferencesDetails->video_url))
                                     <div class="d-flex">
-                                        <div style = "padding-left:20px;" class = "mt-2 video-url">
+                                        <div style = "padding-left:20px;" class = "mt-2 video-url mx-2">
                                             <a class="btn btn-file" href = "{{asset($candidatePreferencesDetails->video_url)}}" target = "_blank">File</a>
                                         </div>
                                         <button class="delete-btn tran3s @if(!$candidatePreferencesDetails || !$candidatePreferencesDetails->video_url) d-none @endif" onclick="deleteFile('video-url' , event.target)">Delete</button>
@@ -980,7 +984,7 @@ Profile
                                     </div>
                                     @if(isset($candidatePreferencesDetails->video_thumbnail) && !empty($candidatePreferencesDetails->video_thumbnail))
                                     <div class="d-flex">
-                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                        <div style = "padding-left:20px;" class="thumbnail-image mx-2">
                                             <a class="btn btn-file" href="{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
                                         </div>
                                         <button class="delete-btn tran3s @if(!$candidatePreferencesDetails || !$candidatePreferencesDetails->video_thumbnail) d-none @endif" onclick = "deleteFile('thumbnail-image' , event.target)">Delete</button>
@@ -1049,7 +1053,7 @@ Profile
                                     </div>
                                     @if(isset($degree))
                                     <div class="d-flex">
-                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                        <div style = "padding-left:20px;" class="thumbnail-image mx-2">
                                             <a class="btn btn-file" href = "{{asset($degree->url)}}" target = "_blank">File</a>
                                         </div>
                                         <button class="delete-btn tran3s delete-doc @if(!$degree || !$degree->url) d-none @endif" @if(isset($degree)) data-doc-id="{{$degree->id}}" @endif>Delete</button>
@@ -1071,7 +1075,7 @@ Profile
                                     </div>
                                     @if(isset($policeCertificate))
                                     <div class="d-flex">
-                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                        <div style = "padding-left:20px;" class="thumbnail-image mx-2">
                                             <a class="btn btn-file" href = "{{asset($policeCertificate->url)}}" target = "_blank">File</a>
                                         </div>
                                         <button class="delete-btn tran3s delete-doc @if(!$policeCertificate || !$policeCertificate->url) d-none @endif" @if(isset($policeCertificate)) data-doc-id="{{$policeCertificate->id}}" @endif>Delete</button>
@@ -1096,7 +1100,7 @@ Profile
                                     </div>
                                     @if(isset($degreeApostilled))
                                     <div class="d-flex">
-                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                        <div style = "padding-left:20px;" class="thumbnail-image mx-2">
                                             <a class="btn btn-file" href = "{{asset($degreeApostilled->url)}}" target = "_blank">File</a>
                                         </div>
                                         <button class="delete-btn tran3s delete-doc @if(!$degreeApostilled || !$degreeApostilled->url) d-none @endif"  @if(isset($degreeApostilled)) data-doc-id="{{$degreeApostilled->id}}" @endif>Delete</button>
@@ -1118,7 +1122,7 @@ Profile
                                     </div>
                                     @if(isset($certificateApostilled))
                                     <div class="d-flex">
-                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                        <div style = "padding-left:20px;" class="thumbnail-image mx-2">
                                             <a class="btn btn-file" href = "{{asset($certificateApostilled->url)}}" target = "_blank">File</a>
                                         </div>
                                         <button class="delete-btn tran3s delete-doc @if(!$certificateApostilled || !$certificateApostilled->url) d-none @endif"  @if(isset($certificateApostilled)) data-doc-id="{{$certificateApostilled->id}}" @endif>Delete</button>
