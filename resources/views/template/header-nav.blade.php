@@ -56,7 +56,7 @@
                             @endrole
                             @role('admin')
                             <li class="nav-item dropdown dashboard-menu">
-                            <a class="nav-link" href="{{route('getEmployerDashboard')}}" role="button"  aria-expanded="false" style="background-color: #ff715b;color: #fff;padding: 10px 21px;border-radius: 50px;"> <i class="bi bi-grid-fill" style="    margin-right: 7px;"></i>Dashboard
+                            <a class="nav-link" href="{{route('getOwnerDashboard')}}" role="button"  aria-expanded="false" style="background-color: #ff715b;color: #fff;padding: 10px 21px;border-radius: 50px;"> <i class="bi bi-grid-fill" style="    margin-right: 7px;"></i>Dashboard
                                 </a>
                             </li>
                             @endrole
