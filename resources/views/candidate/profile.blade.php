@@ -348,8 +348,10 @@ Profile
                                             Upload profile photo
                                             <input type="file" id="uploadImg" name="profileImage" placeholder="" accept="image/png, image/jpeg">
                                         </div>
-                                        @if(!$candidatePersonalDetails || !$candidatePersonalDetails->profile_picture)
+                                        @if($candidatePersonalDetails && $candidatePersonalDetails->profile_picture)
+                                        <div>
                                             <button class="delete-btn tran3s " onclick = "deleteFile('profile-photo' , event.target)">Delete</button>
+                                        </div>
                                         @endif
                                     </div>
                                 </div>
@@ -1747,7 +1749,7 @@ Profile
         formData.append("certificate_apostille", document.getElementById("certificateApostille").files[0]);
         formData.append("saqa_letter", document.getElementById("saqaLetter").files[0]);
         formData.append("passport", document.getElementById("userPassport").files[0]);
-        formData.append('terms_and_conditions' , document.getElementById("preferences_terms_and_conditions").value);
+        formData.append('terms_and_conditions' , document.getElementById("preferences_terms_and_conditions").checked == true ? 1 : 0);
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-6.save')}}",
