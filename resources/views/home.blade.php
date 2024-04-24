@@ -7,10 +7,9 @@
     <div id="w-node-_3a0f5fec-828a-eafa-5dce-f5c5693cd89f-b18f5798" class="wrapper-container header">
       <div class="container header w-container">
         <div class="w-layout-grid main-grid">
-          <div id="w-node-e93d0b9b-71e9-4dbd-e250-ce2fc27474eb-b18f5798" class="center-wrapper hero-container-top">
-            <!-- <div class="heading-xlarge margin-bottom-small custom-heading">Join the<span class="span-smile orange">
-              </span>platform <br> and get <span class="scribble-002">hired</span> &nbsp;</div> -->
-              <div class="heading-xxlarge xl">Join the platform and<span class="span-arrow"> </span><span class="span-scribble">get hired</span></div>
+          <div id="w-node-e93d0b9b-71e9-4dbd-e250-ce2fc27474eb-b18f5798" class="content-wrapper">
+            <div class="heading-xlarge margin-bottom-small custom-heading">Join the<span class="span-smile orange">
+              </span>platform <br> and get <span class="scribble-002">hired</span> &nbsp;</div>
             <div class="hero-cta-wrapper margin-bottom-xsmall">
               <div class="form-wrapper">
                 <div class="full-form w-form">
@@ -25,7 +24,9 @@
               </div>
             </div>
           </div>
-          <!-- <div id="w-node-_61666704-67e4-53b5-2126-8750936417d0-b18f5798" class="content-wrapper">
+          <div id="w-node-_61666704-67e4-53b5-2126-8750936417d0-b18f5798" class="content-wrapper">
+            <!-- <p class="main-paragraph margin-bottom-xsmall">Unlock access to qualified candidates. Join our Platform.</p>
+              <p class="main-paragraph margin-bottom-xsmall " style="margin-top: -20px;">Join now and access a pool of talented candidates.</p> -->
             <p class="main-paragraph margin-bottom-xsmall">Explore All Job Opportunities <br>
               from Korean Employers</p>
 
@@ -33,7 +34,7 @@
               <img src="{{asset('assets/images/arrow-2.svg')}}" loading="lazy" alt="" class="cta-arrow circle">
               <div class="button-fill"></div>
             </a>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
