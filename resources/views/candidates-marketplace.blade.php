@@ -205,7 +205,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 									</div>
 								</div>
 							</div>
-							<div class="filter-block bottom-line pb-25 mt-25">
+							<!-- <div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark " data-bs-toggle="collapse" href="#collapseSalary" role="button" aria-expanded="false">Salary Range</a>
 								<div class="collapse show" id="collapseSalary">
 									<div class="main-body">
@@ -228,23 +228,9 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 												<input type="range" class="range-max" min="0" max="100000" value="30000" step="10">
 											</div>
 										</div>
-										<!-- <ul class="style-none d-flex flex-wrap justify-content-between radio-filter mb-5">
-											<li>
-												<input type="radio" name="jobDuration" value="01">
-												<label>Weekly</label>
-											</li>
-											<li>
-												<input type="radio" name="jobDuration" value="02">
-												<label>Monthly</label>
-											</li>
-											<li>
-												<input type="radio" name="jobDuration" value="03">
-												<label>Hourly</label>
-											</li>
-										</ul> -->
 									</div>
 								</div>
-							</div>
+							</div> -->
 
 							<!-- <div class="filter-block bottom-line pb-25  mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#EDUg" role="button" aria-expanded="false">Education Grade</a>
@@ -756,7 +742,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 			<div class="user-data-form modal-content">
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				<div class="text-center">
-					<h3 style="font-family:'gordita';">Request Form</h3>
+					<h3 style="font-family:'gordita';">Request Interview</h3>
 				</div>
 				<div class="form-wrapper m-auto">
 					<form  id = "Interview-Request-Form">
@@ -765,7 +751,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 							<div class="col-md-6">
 								<div class="input-group-meta position-relative mb-25">
 									<label>Date*</label>
-									<input type="date" name = "interview_date" placeholder="" required>
+									<input type="date" name = "interview_date" min="{{date('Y-m-d')}}" placeholder="" required>
 								</div>
 							</div>
 							<div class="col-md-6">

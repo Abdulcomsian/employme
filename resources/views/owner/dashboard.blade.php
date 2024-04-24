@@ -59,7 +59,9 @@
                             </li>
                         </ul>
                     </div>
+                    @role('employer')
                     <div><a href="{{ route('postAJob') }}" class="job-post-btn tran3s">Post a Job</a></div>
+                    @endrole
                 </div>
             </header>
 

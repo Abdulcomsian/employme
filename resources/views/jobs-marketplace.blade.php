@@ -206,7 +206,7 @@ Job Marketplace
 									</div>
 								</div>
 								<!-- /.filter-block -->
-								<div class="filter-block bottom-line pb-25 mt-25">
+								<!-- <div class="filter-block bottom-line pb-25 mt-25">
 									<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseSalary" role="button" aria-expanded="false">Salary </a>
 									<div class="collapse {{((isset($_GET['SearchRangeMin']) && $_GET['SearchRangeMin'] !='') || (isset($_GET['SearchRangeMax']) && $_GET['SearchRangeMax'] !='')) ? 'show' : ''}}" id="collapseSalary">
 										<div class="main-body">
@@ -229,23 +229,10 @@ Job Marketplace
 													<input type="range"  class="range-max" min="0" max="100000" value="30000" step="10">
 												</div>
 											</div>
-											<!-- <ul class="style-none d-flex flex-wrap justify-content-between radio-filter mb-5">
-												<li>
-													<input type="radio" name="jobDuration" value="01">
-													<label>Weekly</label>
-												</li>
-												<li>
-													<input type="radio" name="jobDuration" value="02">
-													<label>Monthly</label>
-												</li>
-												<li>
-													<input type="radio" name="jobDuration" value="03">
-													<label>Hourly</label>
-												</li>
-											</ul> -->
+											
 										</div>
 									</div>
-								</div>
+								</div> -->
 
 
 								<!-- house included demand of client -->

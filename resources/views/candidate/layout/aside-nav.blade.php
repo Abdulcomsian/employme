@@ -14,7 +14,7 @@
 			</div>
             @else
             <div class="user-avatar online position-relative rounded-circle">
-				<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img">
+				<img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img">
 			</div>
             @endif
             <!-- /.user-avatar -->

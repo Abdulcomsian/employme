@@ -56,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 
     protected static function booted()
     {
-        static::addGlobalScope('user_detail', function (Builder $builder) {
+        static::addGlobalScope('user_detail' , function (Builder $builder) {
             $builder->with('lastSubscription' , 'intro');
         });
     }
