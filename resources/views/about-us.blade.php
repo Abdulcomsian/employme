@@ -108,8 +108,8 @@
           <div class="w-layout-grid content-grid">
             <div class="icon-box green"><img src="{{ asset('assets/images/ic-006-color.svg')}}" loading="lazy" alt="" class="icon-content"></div>
             <div class="small-paragraph-wrapper">
-              <h3 class="heading-small">Interview Requests</h3>
-              <p class="p-small">Request interviews with employers or allow them to request interviews with you</p>
+              <h3 class="heading-small">Inbuilt Messaging</h3>
+              <p class="p-small">Avoid dealing with recruiters and connect directly with your future employer</p>
             </div>
           </div>
         </div>
@@ -118,51 +118,9 @@
             <div class="icon-box orange"><img src="{{ asset('assets/images/ic-013.svg')}}" loading="lazy" alt="" class="icon-content">
             </div>
             <div class="small-paragraph-wrapper">
-              <h3 class="heading-small">Visa Support</h3>
-              <p class="p-small">Know precisely what you need to do and when to do it for a smooth visa process
+              <h3 class="heading-small">Recruitment & Visa Platform</h3>
+              <p class="p-small">Know precisely what you need to do and when to do it for a smooth hiring and visa process.
               </p>
-            </div>
-          </div>
-        </div>
-        <div id="w-node-_285b0cba-74ac-16b0-ec06-5b23db52b5b9-b18f57c0" class="gray-wrapper icons">
-          <div class="w-layout-grid content-grid">
-            <div class="icon-box royal"><img src="{{ asset('assets/images/ic-004.svg')}}" loading="lazy" alt="" class="icon-content">
-            </div>
-            <div class="small-paragraph-wrapper">
-              <h3 class="heading-small">Candidate-Employer Messaging</h3>
-              <p class="p-small">Avoid dealing with recruiters and connect directly with your future employe</p>
-            </div>
-          </div>
-        </div>
-        <div id="w-node-_285b0cba-74ac-16b0-ec06-5b23db52b5c2-b18f57c0" class="gray-wrapper icons">
-          <div class="w-layout-grid content-grid">
-            <div class="icon-box yellow"><img src="{{ asset('assets/images/ic-003-color.svg')}}" loading="lazy" alt="" class="icon-content"></div>
-            <div class="small-paragraph-wrapper">
-              <h3 class="heading-small">Qualified Employers & Candidates</h3>
-              <p class="p-small">Employers and candidates can mutually evaluate each other, raising the bar of
-                standards in the process</p>
-            </div>
-          </div>
-        </div>
-        <div id="w-node-_285b0cba-74ac-16b0-ec06-5b23db52b5cb-b18f57c0" class="gray-wrapper icons">
-          <div class="w-layout-grid content-grid">
-            <div class="icon-box royal"><img src="{{ asset('assets/images/ic-005.svg')}}" loading="lazy" alt="" class="icon-content">
-            </div>
-            <div class="small-paragraph-wrapper">
-              <h3 class="heading-small">End-To-End Process</h3>
-              <p class="p-small">Streamline your application process, seamlessly navigating from job search to visa
-                approval, all in one convenient platform</p>
-            </div>
-          </div>
-        </div>
-        <div id="w-node-_285b0cba-74ac-16b0-ec06-5b23db52b5d4-b18f57c0" class="gray-wrapper icons">
-          <div class="w-layout-grid content-grid">
-            <div class="icon-box red"><img src="{{ asset('assets/images/ic-012.svg')}}" loading="lazy" alt="" class="icon-content">
-            </div>
-            <div class="small-paragraph-wrapper">
-              <h3 class="heading-small">Dispute Mediation</h3>
-              <p class="p-small">Rely on us during workplace challenges. We provide guidance and represent your
-                interests with your employer for solutions</p>
             </div>
           </div>
         </div>
@@ -183,16 +141,13 @@
         <div id="w-node-eee4be13-2e2f-9df3-9173-ea05ebacf486-b18f57c0">
           <a class="button-one ">One Mission</a>
           <div class="rounded-block box-1 bg-white mt-50">
-            <h3 class="heading-medium">Uniting Korean Employers and International Talent</h3>
-            <p class="main-paragraph">Employme is dedicated to bridging the gap between international talent and South
-              Korean employers. Our mission is to empower you with exceptional work opportunities and connect
-              employers with top-notch talent. Experience your career flourish or watch your business soar as we
-              unleash the transformative power of connection.
-              <br> <br>We envision a seamless alliance between job seekers from diverse backgrounds and Korean
-              companies in search of unparalleled talent. Together, we're shaping a more equitable recruitment
-              landscape. <br> <br>
-              Join us now and unlock endless possibilities!
-            </p>
+            <h3 class="heading-medium">All-in-one platform for careers and visas</h3>
+            <p class="main-paragraph">Employme was designed to connect Korean employers with international talent while simplify the recruitment and visa process by consolidating it into a single platform
+              <br> <br>
+              To achieve this, Employme operates as a centralized Jobs and Talent marketplace, seamlessly integrating recruitment and visa process management into a single platform.
+              <br> <br>
+              Our vision entails forging a seamless partnership between job seekers from diverse backgrounds and Korean enterprises in search of qualified talent. By simplifying the recruitment and visa process, we aim to make Korea an attractive workplace for global talent.
+              </p>
           </div>
         </div>
         <div id="w-node-eee4be13-2e2f-9df3-9173-ea05ebacf486-b18f57c0" class="rounded-wrapper box bg-white">
