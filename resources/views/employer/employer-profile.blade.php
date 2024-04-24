@@ -1141,10 +1141,10 @@ h3{
 				formData.append("_token", "{{ csrf_token() }}");
 				/* formData.append('plan',$("#payment-details-form").find('[name=differentSubscriptionOptions]').val())
 				 */
-				formData.append("employer_details", $("#payment-details-form").find("[name=detailsDescription]").val());
+				// formData.append("employer_details", $("#payment-details-form").find("[name=detailsDescription]").val());
 				formData.append("introductry_video", $('#introductryVideo')[0].files[0]);
         		formData.append("video_thumbnail", $('#videoThumbnail')[0].files[0]);
-				formData.append('terms_and_conditions_acceptance',$("#payment-details-form").find('[name=acceptanceOfTermsAndConditions]').val())
+				// formData.append('terms_and_conditions_acceptance',$("#payment-details-form").find('[name=acceptanceOfTermsAndConditions]').val())
 				// formData.append('token',$("#multi-step-form").find('[name=token]').val())
 				// formData.append('token',token.value)
 				// form.submit();

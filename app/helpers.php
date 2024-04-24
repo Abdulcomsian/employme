@@ -247,7 +247,18 @@ function employerProfilePercentage()
     'accredition_or_certification',
     'available_technical_resources',
     'ability_willingness_assurance',
-    'financial_health'
+    'financial_health',
+    'zip_code',
+    'second_contact_number',
+    'school_vision_and_mission',
+    'subscription_plan_id',
+    'terms_and_conditions_acceptance',
+    'registration_business_license_proof',
+    'south_korea_laws_acknowledgement',
+    'legal_disputes_confirmation_document',
+    'introduction_video'
+
+
 ];
 
 $filteredColumns = collect(\Schema::getColumnListing('employer_details'))->filter(function ($column) use ($excludedColumns) {
