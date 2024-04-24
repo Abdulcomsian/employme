@@ -155,21 +155,21 @@ Job Marketplace
 									<div class="collapse {{(isset($_GET['SearchFixedPriceJob']) || isset($_GET['SearchFullTimeJob']) || isset($_GET['SearchPartTimeJob']) || isset($_GET['SearchFreelanceJob'])) ? 'show' : ''}}" id="collapseJobType">
 										<div class="main-body">
 											<ul class="style-none filter-input">
-												<li>
+												{{--<li>
 													<input type="checkbox" name="SearchFixedPriceJob" value="Fixed-Price" {{isset($_GET['SearchFixedPriceJob']) ? 'checked' : ''}}>
 													<label>Fixed-Price <span>{{jobTypeCount('Fixed-Price')}}</span></label>
+												</li>--}}
+												<li>
+													<input type="checkbox" name="SearchFullTimeJob" value="Full Time" {{isset($_GET['SearchFullTimeJob']) ? 'checked' : ''}}>
+													<label>Full Time <span>{{jobTypeCount('Full Time')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchFullTimeJob" value="Full-Time" {{isset($_GET['SearchFullTimeJob']) ? 'checked' : ''}}>
-													<label>Full-Time <span>{{jobTypeCount('Full-Time')}}</span></label>
+													<input type="checkbox" name="SearchPartTimeJob" value="Part Time" {{isset($_GET['SearchPartTimeJob']) ? 'checked' : ''}}>
+													<label>Part Time<span>{{jobTypeCount('Part Time')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchPartTimeJob" value="Part-time" {{isset($_GET['SearchPartTimeJob']) ? 'checked' : ''}}>
-													<label>Part-time<span>{{jobTypeCount('Part-time')}}</span></label>
-												</li>
-												<li>
-													<input type="checkbox" name="SearchFreelanceJob" value="Freelance" {{isset($_GET['SearchFreelanceJob']) ? 'checked' : ''}}>
-													<label>Freelance <span>{{jobTypeCount('Freelance')}}</span></label>
+													<input type="checkbox" name="SearchFreelanceJob" value="Fixed Term Contract" {{isset($_GET['SearchFreelanceJob']) ? 'checked' : ''}}>
+													<label>Fixed Term Contract <span>{{jobTypeCount('Fixed Term Contract')}}</span></label>
 												</li>
 											</ul>
 										</div>
@@ -182,24 +182,28 @@ Job Marketplace
 										<div class="main-body">
 											<ul class="style-none filter-input">
 												<li>
-													<input type="checkbox" name="SearchFresher" value="Fresher" {{isset($_GET['SearchFresher']) ? 'checked' : ''}}>
-													<label>Fresher <span>{{jobExperienceCount('Fresher')}}</span></label>
+													<input type="checkbox" name="Search0To1Year" value="0-1 Year" {{isset($_GET['Search0To1Year']) ? 'checked' : ''}}>
+													<label>0-1 Year <span>{{jobExperienceCount('0-1 Year')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchIntermediate" value="Intermediate" {{isset($_GET['SearchIntermediate']) ? 'checked' : ''}}>
-													<label>Intermediate <span>{{jobExperienceCount('Intermediate')}}</span></label>
+													<input type="checkbox" name="Search1To3Years" value="1-3 Years" {{isset($_GET['Search1To3Years']) ? 'checked' : ''}}>
+													<label>1-3 Years <span>{{jobExperienceCount('Intermediate')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchNoExperience" value="No-Experience" {{isset($_GET['SearchNoExperience']) ? 'checked' : ''}}>
-													<label>No-Experience <span>{{jobExperienceCount('No-Experience')}}</span></label>
+													<input type="checkbox" name="Search3To5Years" value="3-5 Years" {{isset($_GET['Search3To5Years']) ? 'checked' : ''}}>
+													<label>3-5 Years <span>{{jobExperienceCount('3-5 Years')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchInternship" value="Internship" {{isset($_GET['SearchInternship']) ? 'checked' : ''}}>
-													<label>Internship <span>{{jobExperienceCount('Internship')}}</span></label>
+													<input type="checkbox" name="Search5To7Years" value="5-7 Years" {{isset($_GET['Search5To7Years']) ? 'checked' : ''}}>
+													<label>5-7 Years <span>{{jobExperienceCount('5-7 Years')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchExpert" value="Expert" {{isset($_GET['SearchExpert']) ? 'checked' : ''}}>
-													<label>Expert <span>{{jobExperienceCount('Expert')}}</span></label>
+													<input type="checkbox" name="Search7To10Years" value="7-10 Years" {{isset($_GET['Search7To10Years']) ? 'checked' : ''}}>
+													<label>7-10 Years <span>{{jobExperienceCount('7-10 Years')}}</span></label>
+												</li>
+												<li>
+													<input type="checkbox" name="Search10PlusYears" value="7-10 Years" {{isset($_GET['Search10PlusYears']) ? 'checked' : ''}}>
+													<label>10+ Years <span>{{jobExperienceCount('10+ Years')}}</span></label>
 												</li>
 											</ul>
 										</div>

@@ -133,7 +133,7 @@ Post A Job
                             <select class="nice-select" name="job_type">
                                 <option value="Full Time" {{$employerJob->job_type == 'Full Time' ? 'selected' : ''}}>Full Time</option>
                                 <option value="Part Time" {{$employerJob->job_type == 'Part Time' ? 'selected' : ''}}>Part Time</option>
-                                <option value="Freelance" {{$employerJob->job_type == 'Freelance' ? 'selected' : ''}}>Freelance</option>
+                                <option value="Fixed Term Contract" {{$employerJob->job_type == 'Fixed Term Contract' ? 'selected' : ''}}>Fixed Term Contract</option>
                             </select>
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-12">

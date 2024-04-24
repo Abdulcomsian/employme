@@ -45,9 +45,9 @@ class JobController extends Controller
 
          /* Search Job on Type Based */
          $jobTypes = [];
-         if(isset($request->SearchFixedPriceJob) && $request->SearchFixedPriceJob !='') {
-             $jobTypes[] = $request->SearchFixedPriceJob;
-         }
+        //  if(isset($request->SearchFixedPriceJob) && $request->SearchFixedPriceJob !='') {
+        //      $jobTypes[] = $request->SearchFixedPriceJob;
+        //  }
          if(isset($request->SearchFullTimeJob) && $request->SearchFullTimeJob !='') {
              $jobTypes[] = $request->SearchFullTimeJob;
          }
@@ -76,21 +76,24 @@ class JobController extends Controller
 
         /* Search Jobs on Fresher, Intermediate, Intership, No Experience and Expert Based */
         $jobExperiences = [];
-         if(isset($request->SearchFresher) && $request->SearchFresher !='') {
-             $jobExperiences[] = $request->SearchFresher;
+         if(isset($request->Search0To1Year) && $request->Search0To1Year !='') {
+             $jobExperiences[] = $request->Search0To1Year;
          }
-         if(isset($request->SearchIntermediate) && $request->SearchIntermediate !='') {
-             $jobExperiences[] = $request->SearchIntermediate;
+         if(isset($request->Search1To3Years) && $request->Search1To3Years !='') {
+             $jobExperiences[] = $request->Search1To3Years;
          }
-         if(isset($request->SearchInternship) && $request->SearchInternship !='') {
-             $jobExperiences[] = $request->SearchInternship;
+         if(isset($request->Search3To5Years) && $request->Search3To5Years !='') {
+             $jobExperiences[] = $request->Search3To5Years;
          }
-         if(isset($request->SearchExpert) && $request->SearchExpert !='') {
-             $jobExperiences[] = $request->SearchExpert;
+         if(isset($request->Search5To7Years) && $request->Search5To7Years !='') {
+             $jobExperiences[] = $request->Search5To7Years;
          }
-         if(isset($request->SearchNoExperience) && $request->SearchNoExperience !='') {
-            $jobExperiences[] = $request->SearchNoExperience;
-        }
+         if(isset($request->Search7To10Years) && $request->Search7To10Years !='') {
+            $jobExperiences[] = $request->Search7To10Years;
+            }
+        if(isset($request->Search10PlusYears) && $request->Search10PlusYears !='') {
+            $jobExperiences[] = $request->Search10PlusYears;
+            }
         if (!empty($jobExperiences))
         {
             $allJobs = $allJobs->whereIn('experience_level',$jobExperiences);
