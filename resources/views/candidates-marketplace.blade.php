@@ -484,7 +484,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 									@if(isset($candidate->candidatePersonalDetails->profile_picture) && !empty($candidate->candidatePersonalDetails->profile_picture))
 									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
 									@else
-									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
+									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img rounded-circle"></a></div>
 									@endif
 									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="tran3s">{{$candidate->candidatePersonalDetails->first_name ?? ''}} {{$candidate->candidatePersonalDetails->middle_name ?? ''}} {{$candidate->candidatePersonalDetails->last_name ?? ''}}</a></h4>
 									<div class="candidate-post">{{$candidate->candidatePersonalDetails->designation ?? ''}}</div>
@@ -596,14 +596,14 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 								@if(isset($candidate->candidatePersonalDetails->profile_picture) && !empty($candidate->candidatePersonalDetails->profile_picture))
 								<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
 								@else
-								<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
+								<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img rounded-circle"></a></div>
 								@endif
 								<!-- <div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div> -->
 								<div class="right-side">
 									<div class="row gx-1 align-items-center">
 										<div class="col-xl-3">
 											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">{{$candidate->candidatePersonalDetails->first_name ?? ''}} {{$candidate->candidatePersonalDetails->middle_name ?? ''}} {{$candidate->candidatePersonalDetails->last_name ?? ''}}</a></h4>
+												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="tran3s">{{$candidate->candidatePersonalDetails->first_name ?? ''}} {{$candidate->candidatePersonalDetails->middle_name ?? ''}} {{$candidate->candidatePersonalDetails->last_name ?? ''}}</a></h4>
 												<div class="candidate-post">{{$candidate->candidatePersonalDetails->designation ?? ''}}</div>
 												<ul class="cadidate-skills style-none d-flex align-items-center">
 													@if(isset($candidate->candidatePreferences->skills) && !empty($candidate->candidatePreferences->skills))

@@ -19,7 +19,7 @@ Candidate Profile Details
 		============================================== 
 		-->
         <div class="inner-banner-one position-relative">
-            <div class="container" style="min-width: 80%;">
+            <div class="container" style="min-width: 92%;">
                 <div class="candidate-profile-card list-layout">
                     <div class="d-flex align-items-start align-items-xl-center">
                         @if(isset($candidateDetails->candidatePersonalDetails->profile_picture) && !empty($candidateDetails->candidatePersonalDetails->profile_picture))

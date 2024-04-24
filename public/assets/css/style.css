@@ -6053,7 +6053,7 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: 18px;
 }
 .candidate-profile-card .candidate-name a:hover {
-  color: #00BF58;
+  color: rgb(255 113 91);
 }
 .candidate-profile-card .candidate-post {
   font-size: 15px;
