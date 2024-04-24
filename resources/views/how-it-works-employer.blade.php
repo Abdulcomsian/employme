@@ -102,8 +102,7 @@
                   <div class="icon-box purple"><img loading="lazy" src="{{ asset('assets/images//ic-007-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
                     <h3 class="heading-small">Step 1: Sign Up</h3>
-                    <p class="p-small">Complete the sign-up process, choose your desired subscription plan, and get
-                      access to the marketplaces.</p>
+                    <p class="p-small">Complete sign-up, choose your payment cycle, and gain access to pre-vetted candidates.</p>
                   </div>
                 </div>
               </div>
@@ -112,9 +111,7 @@
                   <div class="icon-box blue"><img loading="lazy" src="{{ asset('assets/images/ic-002-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
                     <h3 class="heading-small">Step 2: List Your Job</h3>
-                    <p class="p-small">Fill in the job listing form to showcase what's available for candidates.
-                      Depending on your access candidates will be able to see your job listing or you'll have to
-                      request an interview with a candidate for it to be visible to them.</p>
+                    <p class="p-small">Create a job post advertised on our marketplace for candidates to view.</p>
                   </div>
                 </div>
               </div>
@@ -123,8 +120,7 @@
                   <div class="icon-box green"><img loading="lazy" src="{{ asset('assets/images/ic-006-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
                     <h3 class="heading-small">Step 3: Candidate Search</h3>
-                    <p class="p-small">Based on your subscription, you'll be able to search through pre-vetted
-                      candidate profiles or shortlist applicants who have applied through your job listing.</p>
+                    <p class="p-small">Quickly discover qualified candidates matching your requirements on the Candidate Marketplace.</p>
                   </div>
                 </div>
               </div>
@@ -189,8 +185,9 @@
                   <div class="icon-box purple"><img loading="lazy" src="{{ asset('assets/images/ic-007-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
                     <h3 class="heading-small">Step 4: Interviewing</h3>
-                    <p class="p-small">Initiate the process of scheduling online interviews with your preferred
-                      candidates.</p>
+                    <p class="p-small">Search and send interview request to  candidates you like, or let candidates request interviews through your job post.
+
+</p>
                   </div>
                 </div>
               </div>
@@ -199,8 +196,9 @@
                   <div class="icon-box blue"><img loading="lazy" src="{{ asset('assets/images/ic-002-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
                     <h3 class="heading-small">Step 5: Conditional Offer</h3>
-                    <p class="p-small">Create a conditional job offer that delineates the job's perks and terms, along
-                      with the prerequisites a candidate must satisfy before receiving a definitive employment offer.
+                    <p class="p-small">Communicate directly with candidates on the platform to discuss or negotiate terms before making an offer.
+
+
                     </p>
                   </div>
                 </div>
@@ -210,8 +208,9 @@
                   <div class="icon-box green"><img loading="lazy" src="{{ asset('assets/images/ic-006-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
                     <h3 class="heading-small">Step 6: Documentation & Final Offer</h3>
-                    <p class="p-small">Once all Step 5 documents and requirements are met, issue the final employment
-                      contract and request the candidate's signature.</p>
+                    <p class="p-small">Complete the employment contract and request the documents needed to begin the visa application.
+
+</p>
                   </div>
                 </div>
               </div>
@@ -275,9 +274,11 @@
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box purple"><img loading="lazy" src="{{ asset('assets/images/ic-007-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
-                    <h3 class="heading-small">Step 7: Visa Processing</h3>
-                    <p class="p-small">Gather materials from Steps 5 and 6 to submit a visa application for your
-                      candidate, with an approximate processing time of two weeks.</p>
+                    <h3 class="heading-small">Step 7: Visa Immigration</h3>
+                    <p class="p-small">Once you have the documents, visit the nearest immigration office to apply for your employee's visa. This process typically takes around 2 weeks.
+
+
+</p>
                   </div>
                 </div>
               </div>
@@ -285,9 +286,10 @@
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box blue"><img loading="lazy" src="{{ asset('assets/images/ic-002-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
-                    <h3 class="heading-small">Step 8: Visa Approval</h3>
-                    <p class="p-small"> Upon visa approval, share the visa issuance number with the candidate for
-                      their final visa processing at their local Korean embassy, which typically takes two weeks.</p>
+                    <h3 class="heading-small">Step 8: Visa Confirmation Number</h3>
+                    <p class="p-small"> Give the candidate the visa confirmation number. They should then visit the nearest Korean embassy to finalize the visa approval, which usually takes 1-2 weeks.
+
+</p>
                   </div>
                 </div>
               </div>
@@ -295,9 +297,10 @@
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box green"><img loading="lazy" src="{{ asset('assets/images/ic-006-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
-                    <h3 class="heading-small">Step 9: Finalization of Employment</h3>
-                    <p class="p-small">Upon arrival, the candidate must undergo a health check and apply for their
-                      alien registration card to finalize the visa application proces</p>
+                    <h3 class="heading-small">Step 9: Health Check & ARC Card</h3>
+                    <p class="p-small">After arrival, the candidate must undergo a health examination. Once the results are received, they can visit immigration to apply for their ARC card.
+
+</p>
                   </div>
                 </div>
               </div>
@@ -454,8 +457,8 @@
       <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6d40-b18f58033" class="box-wrapper list no-hover">
         <div class="icon-box  blue"><img src="{asset('assets/images/ic-002-color.svg')}}" loading="lazy" alt="" class="icon-content">
         </div>
-        <h3 class="heading-medium">Recruitment <br>
-          Platform</h3>
+        <h3 class="heading-medium">Recruitment & Visa <br>
+Platform</h3>
         <div class="list-wrapper">
           <div class="list-flex">
             <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
@@ -470,12 +473,7 @@
           <div class="list-flex">
             <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
             </div>
-            <div>Conditional offer and employment contract generator</div>
-          </div>
-          <div class="list-flex">
-            <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-            </div>
-            <div>Create tasks for candidates</div>
+            <div>Step-by-step visa application process</div>
           </div>
           <div class="list-flex">
             <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">

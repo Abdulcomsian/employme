@@ -4,10 +4,10 @@
 
 <div class="section blog-post bg-babyblue">
     <div class="container titles w-container">
-      <h3 class="title-tag text-orange">WORKING IN SOUTH KOREA</h3>
-      <h1 class="heading-xlarge">Find everything you need about Korean visas</h1>
+      <h3 class="title-tag text-orange">VISA SUPPORT CENTER</h3>
+      <h1 class="heading-xlarge">Discover all your visa info here</h1>
       <div class="wrap-summary inner-padding-small">
-        <p class="main-paragraph">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed posuere consectetur est at lobortis. </p>
+        <p class="main-paragraph">This page should be a place where we can upload documents, forms, it should be a library of information </p>
       </div>
     </div>
   </div>
