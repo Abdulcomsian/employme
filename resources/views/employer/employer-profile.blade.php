@@ -320,7 +320,8 @@ h3{
 												Upload Logo
 												<input type="file" id="institution_logo" name="institution_logo" placeholder="">
 											</div>
-											<button class="delete-btn tran3s delete-profile-logo">Delete</button>
+											
+											<button type="button" class="tran3s delete-profile-logo @if(!$employerDetails || !$employerDetails->institution_logo) d-none @endif">Delete</button>
 										</div>
 									</div>
 								</div>
@@ -556,7 +557,7 @@ h3{
 												<div class="upload-btn position-relative tran3s ms-4 me-3">
 													Upload
 													<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">	
-													<button type = "button" class="delete-btn tran3s">Delete</button>
+													<button type="button" class="delete-btn tran3s d-none dispute-delete-btn">Delete</button>
 												</div>
 												<strong id="legalDisputesConfirmationDocumentFileName"></strong>										
 											</div>
@@ -596,7 +597,7 @@ h3{
 													Upload
 													<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">		
 												</div>
-												<button type = "button" class="delete-btn tran3s">Delete</button>
+												<button type = "button" class="delete-btn tran3s d-none dispute-delete-btn">Delete</button>
 											</div>
 											<strong id="legalDisputesConfirmationDocumentFileName"></strong>			
 										</div>
@@ -1042,6 +1043,7 @@ h3{
 		$(document).on("change" , "#legalDisputesConfirmationDocument" , function(e){
 			let filename = this.files[0].name;
 			document.querySelector("#legalDisputesConfirmationDocumentFileName").innerHTML = filename;
+			document.querySelector(".dispute-delete-btn").classList.add("remove");
 		})
 
 
@@ -1053,6 +1055,7 @@ h3{
  			});
 		$("#basic-information-form").on("submit", function(e) {
 			e.preventDefault();
+			let deleteBtn = this.querySelector(".delete-profile-logo");
 			var formData = new FormData();
 			formData.append("_token", "{{ csrf_token() }}");
 			formData.append("institution", $("#basic-information-form").find("[name=legalNameOfSchool]").val());
@@ -1066,11 +1069,6 @@ h3{
 			formData.append("phone_number", $("#basic-information-form").find("[name=phoneNumber]").val());
 			formData.append("email", $("#basic-information-form").find("[name=email]").val());
 			formData.append("institution_logo", $('#institution_logo')[0].files[0]);
-				/* 
-					formData.append("number_of_administrative_staff", $("#multi-step-form").find("[name=numberOfAdministrativeStaff]").val());
-					formData.append("established_date", $("#multi-step-form").find("[name=yearOfEstablished]").val());
-					formData.append("employer_details", $("#multi-step-form").find("[name=detailsDescription]").val());
-					*/
 
 			$.ajax({
 				type: "POST",
@@ -1083,7 +1081,7 @@ h3{
 		
 					if (data.status) {
 						toastr.success(data.message)
-						// window.location = data.redirect;
+						deleteBtn.classList.remove("d-none");
 					}else{
 						$(".alert").remove();
 						$.each(data.errors, function (key, val) {
@@ -1419,17 +1417,18 @@ h3{
     });
 
 	$(document).on("click" , ".delete-profile-logo" , function(e){
+		let element = this;
 		$.ajax({
 			type: "POST",
 			url: "{{route('employer.delete_profile')}}",
 			data: { '_token' : "{{csrf_token()}}"},
 			success: function (data) {
+				element.classList.add("d-none");
 	
 				if (data.status) {
 					toastr.success(data.message);
 					let src = "{{asset('assets/images/human-avatar.png')}}";
 					document.getElementById("profile_image").setAttribute("src" , src);
-					
 				}
 			
 			}
