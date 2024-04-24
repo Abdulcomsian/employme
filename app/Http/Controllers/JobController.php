@@ -173,7 +173,7 @@ class JobController extends Controller
                 $jobDetails = EmployerJob::find($request->job_id);
                 $candidateDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
                 $employerDetails = User::find($jobDetails->posted_by);
-                JobInterview::create(['requested_from' =>  $jobDetails->posted_by , 'requested_to' =>auth()->user()->id , 'employer_job_id' => $request->job_id  , 'interview_date' => $request->application_date]);
+                // JobInterview::create(['requested_from' =>  $jobDetails->posted_by , 'requested_to' =>auth()->user()->id , 'employer_job_id' => $request->job_id  , 'interview_date' => $request->application_date]);
                 $subject = 'Job Application';
                 $text = '';
                 $employer_notify_message = [

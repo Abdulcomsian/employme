@@ -11,6 +11,15 @@ Candidate Profile Details
     height: 430px;
     border-radius: 15px;
 }
+.candidate-profile-card.list-layout .save-btn {
+    width: 32px;
+    height: 32px;
+    line-height: 34px;
+    border: 1px solid #E4E4E4;
+    font-weight: 900;
+    color: #000;
+    font-size: 15px;
+}
 </style>
 
         <!-- 
@@ -66,14 +75,14 @@ Candidate Profile Details
                                     </div>
                                     <!-- /.candidate-info -->
                                 </div>
-                                <div class="col-xl-2 col-md-4 order-xl-0">
+                                <div class="col-xl-1 col-md-4 order-xl-0">
                                     <div class="candidate-info">
                                         <span>Start Date</span>
-                                        <div>{{$candidateDetails->candidatePersonalDetails->current_location ?? ''}}</div>
+                                        <div>{{$candidateDetails->candidatePreferences->preferred_start_date ?? ''}}</div>
                                     </div>
                                     <!-- /.candidate-info -->
                                 </div>
-                                <div class="col-xl-2 col-md-4 order-xl-2">
+                                <div class="col-xl-3 col-md-4 order-xl-2">
                                     <div class="candidate-info">
                                         <span>Salary</span>
                                         <div>{{$candidateDetails->candidatePreferences->expected_salary ?? ''}}</div>
