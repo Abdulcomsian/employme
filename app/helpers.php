@@ -282,7 +282,8 @@ function candidateProfilePercentage()
     ];
     $excludedCandidateEducationColumns = [
         'country_id',
-        'teaching_experience',
+        'teaching_experiance',
+        'educational_details',
         'clarification_details_if_yes',
         'experience_description_if_yes'
         ];
@@ -326,22 +327,24 @@ function candidateProfilePercentage()
     $candidatePreferences = $candidatePreferences->toArray();
 
     // $candidateEducation = \App\Models\CandidateEducation::where('user_id', Auth::id())->first();
-    $candidateEducation = \App\Models\CandidatePreferences::select(
-        array_diff(\Schema::getColumnListing('candidate_preferences'), $excludedCandidatePreferencesColumns)
+    $candidateEducation = \App\Models\CandidateEducation::select(
+        array_diff(\Schema::getColumnListing('candidate_education'), $excludedCandidateEducationColumns)
     )->where('user_id', Auth::id())->first(); 
     $candidateEducation = $candidateEducation->toArray();
-    
     $totalAttributes = $candidatePersonalDetailsAttributes +  $candidatePreferencesAttributes + $candidateEducationAttributes + 6;
     $filledPersonalDetails = collect($candidatePersonalDetails)->filter(function ($value) {
         return !is_null($value);
     })->count();
+
     $filledPreferences = collect($candidatePreferences)->filter(function ($value) {
         return !is_null($value);
     })->count();
+
     $filledEducation = collect($candidateEducation)->filter(function ($value) {
         return !is_null($value);
     })->count();
-    $totalFilledAttributes = $filledPersonalDetails + $filledEducation + $filledEducation + $totalCandidateUploadedDocuments;
+
+    $totalFilledAttributes = $filledPersonalDetails + $filledEducation + $filledPreferences + $totalCandidateUploadedDocuments;
     $percentage = ($totalFilledAttributes / $totalAttributes) * 100;
     $percentage = round($percentage,0);
     $percentage = number_format($percentage,0);
