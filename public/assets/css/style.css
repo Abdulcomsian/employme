@@ -5210,7 +5210,7 @@ iframe {
 }
 .job-list-one .job-duration {
   font-size: 15px;
-  color: #00BF58;
+  color: rgb(255 113 91);
 }
 .job-list-one .job-duration:hover {
   text-decoration: underline;
@@ -5281,7 +5281,7 @@ iframe {
   background: #000;
 }
 .job-list-one.style-two .apply-btn:hover {
-  background: #00BF58;
+  background: rgb(255 113 91);
 }
 .job-list-one.style-two .title:hover {
   color: #000;
