@@ -73,7 +73,7 @@
     <div class="container w-container">
       <div class="w-layout-grid main-grid">
         <div id="w-node-_417db195-3bf6-1495-ef92-2327a9cb3bdf-b18f57c0" class="content-wrapper">
-          <p class="p-large margin-bottom-small">Where employers and Job Seekers connect<span class="span-circle _001"> </span>Say goodbye to recruiters and say hello to faster hiring<span class="span-circle _002"> </span>Job Seekers get employed faster while Employers hirer quicker.</p>
+          <p class="p-large margin-bottom-small">Where employers and job seekers connect<span class="span-circle _001"> </span>Say goodbye to recruiters and say hello to faster hiring<span class="span-circle _002"> </span>Job seekers get employed faster while employers hirer quicker.</p>
           <a href="services" class="link-block green w-inline-block">
             <div class="btn-label-wrapper">
               <div class="label-button">Services</div>
@@ -100,7 +100,7 @@
             <div class="icon-box blue"><img src="{{ asset('assets/images/ic-002-color.svg')}}" loading="lazy" alt="" class="icon-content"></div>
             <div class="small-paragraph-wrapper">
               <h3 class="heading-small">Candidate Marketplace</h3>
-              <p class="p-small">Showcase your skills and expertise to attract employers who apply to you</p>
+              <p class="p-small">Advertise your profile on the marketplace to begin attracting interview requests from employers.</p>
             </div>
           </div>
         </div>
