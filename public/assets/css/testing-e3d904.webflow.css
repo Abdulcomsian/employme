@@ -14276,9 +14276,12 @@ input[type="file"] {
 }
 
 .bg-remove-hover:hover {
-  background-color: #244034;
+  background-color: #b1b0eb;
 }
-
+.set-size{
+  font-size: 19px;
+  line-height: 29px;
+}
 .no-hover:hover {
   border: none;
   background-color: white;
