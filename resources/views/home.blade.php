@@ -27,8 +27,9 @@
           <div id="w-node-_61666704-67e4-53b5-2126-8750936417d0-b18f5798" class="content-wrapper">
             <!-- <p class="main-paragraph margin-bottom-xsmall">Unlock access to qualified candidates. Join our Platform.</p>
               <p class="main-paragraph margin-bottom-xsmall " style="margin-top: -20px;">Join now and access a pool of talented candidates.</p> -->
-            <p class="main-paragraph margin-bottom-xsmall">Explore All Job Opportunities <br>
-              from Korean Employers</p>
+            <p class="main-paragraph margin-bottom-xsmall">Dive into the 'Jobs Marketplace' <br> to explore current job opportunities
+
+</p>
 
             <a href="{{route('jobMarketplace')}}" class="button-circle w-inline-block hire bg-remove-hover">
               <img src="{{asset('assets/images/arrow-2.svg')}}" loading="lazy" alt="" class="cta-arrow circle">
@@ -173,8 +174,9 @@
           <div id="w-node-_1dc1b062-d679-2ced-19b1-9ba419d15dd6-b18f5798" class="box-wrapper-1  no-hover">
             <div class="center-wrapper _w-min">
               <h2 class="heading-large ">Talk With Your <br> Future Employer</h2>
-              <p class="main-paragraph inner-padding-small text-align-center">Job offers with transparency—no
-                surprises. Build your profile, engage employers directly, and delve into their offerings. </p>
+              <p class="main-paragraph inner-padding-small text-align-center">Job offers with transparency—no surprises. Build your profile and start messaging employers instantly.
+
+</p>
               <div style="-webkit-transform:translate3d(0, 4em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 4em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 4em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -0.5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0); " class="button-wrapper">
                 <a href="services" class="link-block w-inline-block">
                   <div class="btn-label-wrapper">
@@ -204,8 +206,9 @@
           <div class="icon-box purple"><img src="{{asset('assets/images/ic-007-color.svg')}}" loading="lazy" alt="" class="icon-content"></div>
           <div style=" -webkit-transform: translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0) " class="content-wrapper">
             <h3 class="heading-small neg-30-margin">Jobs Marketplace</h3>
-            <p class="p-small">Effortlessly discover job opportunities that prioritize transparency
-              <br> <span style="color: transparent;">more content</span>
+            <p class="p-small">Effortlessly discover job opportunities and know exactly who you're talking to, and what's on offer.
+
+
             </p>
           </div>
         </div>
@@ -216,60 +219,27 @@
           </div>
           <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
             <h3 class="heading-small  neg-30-margin">Candidate Marketplace</h3>
-            <p class="p-small">Showcase your skills and expertise to attract employers who apply to you
-              <br> <span style="color: transparent;">more content</span>
+            <p class="p-small">Create a career profile and promote yourself to employers so they can apply to you.
+
+
             </p>
           </div>
         </div>
         <div id="w-node-df6b7e03-bb73-87a9-bfd4-1931cd314877-b18f5798" data-w-id="df6b7e03-bb73-87a9-bfd4-1931cd314877" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper custom-gray-warpper icons no-hover">
           <div class="icon-box green"><img src="{{asset('assets/images/ic-006-color.svg')}}" loading="lazy" alt="" class="icon-content"></div>
           <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-            <h3 class="heading-small  neg-30-margin">Interview Requests</h3>
-            <p class="p-small">Request interviews with employers or allow them to request interviews with you</p>
+            <h3 class="heading-small  neg-30-margin">Candidate-Employer Messaging</h3>
+            <p class="p-small">Avoid dealing with recruiters and connect directly with your future employer.
+
+</p>
           </div>
         </div>
         <div id="w-node-df6b7e03-bb73-87a9-bfd4-1931cd31487f-b18f5798" data-w-id="df6b7e03-bb73-87a9-bfd4-1931cd31487f" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper custom-gray-warpper icons no-hover">
           <div class="icon-box orange"><img src="{{asset('assets/images/ic-013.svg')}}" loading="lazy" alt="" class="icon-content">
           </div>
           <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-            <h3 class="heading-small  neg-30-margin">Visa Support</h3>
-            <p class="p-small">Know precisely what you need to do and when to do it for a smooth visa process</p>
-          </div>
-        </div>
-        <div id="w-node-df6b7e03-bb73-87a9-bfd4-1931cd314867-b18f5798" data-w-id="df6b7e03-bb73-87a9-bfd4-1931cd314867" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper custom-gray-warpper icons no-hover">
-
-          <div class="icon-box royal"><img src="{{asset('assets/images/ic-004.svg')}}" loading="lazy" alt="" class="icon-content">
-          </div>
-          <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-            <h3 class="heading-small  neg-30-margin">Candidate-Employer Messaging</h3>
-            <p class="p-small">Avoid dealing with recruiters and connect directly with your future employer <br> <span style="color: white;"> no more content</span></p>
-          </div>
-        </div>
-
-        <div id="w-node-df6b7e03-bb73-87a9-bfd4-1931cd31486f-b18f5798" data-w-id="df6b7e03-bb73-87a9-bfd4-1931cd31486f" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper custom-gray-warpper icons no-hover">
-          <div class="icon-box yellow"><img src="{{asset('assets/images/ic-003-color.svg')}}" loading="lazy" alt="" class="icon-content"></div>
-
-          <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-            <h3 class="heading-small  neg-30-margin">Qualified Employers & Candidates</h3>
-            <p class="p-small">Employers and candidates can mutually evaluate each other, raising the bar of standards
-              in the process <span style="color: white;"> no more content</span> </p>
-          </div>
-        </div>
-        <div id="w-node-df6b7e03-bb73-87a9-bfd4-1931cd314877-b18f5798" data-w-id="df6b7e03-bb73-87a9-bfd4-1931cd314877" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper custom-gray-warpper icons no-hover">
-          <div class="icon-box royal"><img src="{{asset('assets/images/ic-005.svg')}}" loading="lazy" alt="" class="icon-content">
-          </div>
-          <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-            <h3 class="heading-small  neg-30-margin">End-To-End Process</h3>
-            <p class="p-small">Streamline your application process, seamlessly navigating from job search to visa
-              approval, all in one convenient platform</p>
-          </div>
-        </div>
-        <div id="w-node-df6b7e03-bb73-87a9-bfd4-1931cd31487f-b18f5798" data-w-id="df6b7e03-bb73-87a9-bfd4-1931cd31487f" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper custom-gray-warpper icons no-hover">
-          <div class="icon-box red"><img src="{{asset('assets/images/ic-012.svg')}}" loading="lazy" alt="" class="icon-content"></div>
-          <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-            <h3 class="heading-small  neg-30-margin">Dispute Mediation</h3>
-            <p class="p-small">Rely on us during workplace challenges. We provide guidance and represent your
-              interests with your employer for solutions</p>
+            <h3 class="heading-small  neg-30-margin">Recruitment & Visa Platform</h3>
+            <p class="p-small">Know precisely what you need to do and when to do it for a smooth hiring and visa process.</p>
           </div>
         </div>
       </div>
@@ -277,8 +247,8 @@
         <div class="overflow-heading">
           <div class="overflow-heading">
             <div class="_w-header">
-              <h2 class="heading-large inner-padding-micro">Candidate Marketplace<span class="span-smile"> </span>for
-                employers</h2>
+              <h2 class="heading-large inner-padding-micro">How to get<span class="span-smile"> </span>
+              started</h2>
             </div>
           </div>
         </div>
@@ -334,16 +304,7 @@
             </div>
           </div>
         </div> -->
-      <div class="w-layout-grid main-grid overflow">
-        <div id="w-node-_85a7ff2a-02c7-4e27-4712-5c02f14d452a-b18f5798" class="center-wrapper">
-          <div class="overflow-heading">
-            <div class="_w-header">
-              <h2 class="heading-large inner-padding-micro">Get Started<br>Get<span class="text-ui-arrow">
-                </span>Hired</h2>
-            </div>
-          </div>
-        </div>
-      </div>
+    
       <div class="rounded-block bg-purple gap">
         <div class="overflow-grid plan">
           <div class="w-layout-grid main-grid">
@@ -355,8 +316,7 @@
                     <!-- <p class="price">$9<span class="span-small">/mo</span></p> -->
                     <p class="price">Apply </p>
 
-                    <p class="p-small min-h">Begin your journey by signing up and completing our automated interview
-                      process</p>
+                    <p class="p-small">Begin your journey by signing up and completing your career profile to attract employers.</p>
                   </div>
                   <div class="list-wrapper">
                     <a href="signup" class="button plan-button  plan margin-bottom-xsmall w-inline-block">
@@ -364,19 +324,23 @@
                     </a>
                     <div class="list-flex">
                       <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                      <div>Check Your Eligibility</div>
+                      <div>Start by joining now</div>
                     </div>
                     <div class="list-flex">
                       <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                      <div>Create Your Profile</div>
+                      <div>Check eligibility and complete your profile</div>
                     </div>
                     <div class="list-flex">
                       <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                      <div>Prepare Required Documents</div>
+                      <div>If eligible, your profile will be visible on the 'Candidate Marketplace'</div>
                     </div>
                     <div class="list-flex">
                       <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                      <div>Complete Virtual Interview</div>
+                      <div>Prepare required visa documents</div>
+                    </div>
+                    <div class="list-flex">
+                      <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
+                      <div>Explore the 'Jobs Marketplace' for opportunities</div>
                     </div>
                   </div>
                 </div>
@@ -390,29 +354,27 @@
                   <p class="price">Connect</p>
 
 
-                  <p class="p-small min-h">Apply for job opportunities or receive interview requests directly from
-                    employers</p>
+                  <p class="p-small">Apply for job opportunities or receive interview requests directly from employers</p>
                 </div>
                 <div class="list-wrapper">
-                  <!-- <a href="#" class="button plan-button plan margin-bottom-xsmall w-inline-block">
+                  <a href="#" class="button plan-button plan margin-bottom-xsmall w-inline-block">
                     <div>Connect with Employers</div>
-                  </a> -->
+                  </a>
                   <div class="list-flex">
                     <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                    <div>Request Interviews With Employers</div>
+                    <div>Request interviews with employers on the 'Jobs Marketplace'</div>
                   </div>
                   <div class="list-flex">
                     <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                    <div>Respond To Interview Requests From Employers</div>
+                    <div>Respond to interview requests from employers</div>
                   </div>
                   <div class="list-flex">
                     <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                    <div>
-                      Negotiate Terms Of Employment</div>
+                    <div>Negotiate terms of employment</div>
                   </div>
                   <div class="list-flex">
                     <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                    <div>Review Employment Contract</div>
+                    <div>Review employment contract</div>
                   </div>
 
 
@@ -426,25 +388,23 @@
                   <h3 class="heading-small outline margin-bottom-small">Stage 3</h3>
                   <!-- <p class="price">$99<span class="span-small">/mo</span></p> -->
                   <p class="price">Prepare</p>
-                  <p class="p-small min-h">Gather the necessary documents and make necessary arrangements for visa
-                    application and travel</p>
+                  <p class="p-small">Gather the necessary documents and make necessary arrangements for visa application and travel</p>
                 </div>
                 <div class="list-wrapper">
-                  <!-- <a href="#" class="button plan-button  plan margin-bottom-xsmall w-inline-block">
+                  <a href="#" class="button plan-button  plan margin-bottom-xsmall w-inline-block">
                     <div>Required Documents</div>
-                  </a> -->
+                  </a>
                   <div class="list-flex">
                     <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
                     <div>Complete Visa Forms & Documents</div>
                   </div>
                   <div class="list-flex">
                     <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                    <div>
-                      Mail Necessary Visa Documents To Employer</div>
+                    <div>Mail necessary visa documents to the employer</div>
                   </div>
                   <div class="list-flex">
                     <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                    <div>Receive Visa Issuance Number From The Employer</div>
+                    <div>Receive visa issuance number from the employer</div>
                   </div>
                   <div class="list-flex">
                     <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
@@ -452,8 +412,7 @@
                   </div>
                   <div class="list-flex">
                     <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                    <div>
-                      After arrival complete the health exam and apply for your Alien registration card</div>
+                    <div>After arrival complete the health exam and apply for your Alien registration card</div>
                   </div>
                 </div>
               </div>
@@ -587,7 +546,7 @@
                 <div class="heading-small regular">Jobs Marketplace</div>
               </div>
               <div class="overflow-heading">
-                <h2 class="heading-large margin-bottom-xsmall">Explore Jobs From Korean Employers</h2>
+                <h2 class="heading-large margin-bottom-xsmall">Explore jobs from employers</h2>
               </div>
               <a href="{{route('jobMarketplace')}}" class="link-block w-inline-block">
                 <div class="btn-label-wrapper">
@@ -611,7 +570,7 @@
                 <div class="heading-small regular">EmployMe Blog</div>
               </div>
               <div class="overflow-heading">
-                <h2 class="heading-large margin-bottom-xsmall">Check Out Our Blog For Insights, Tips and More</h2>
+                <h2 class="heading-large margin-bottom-xsmall">Check out our blog for insights, tips and more</h2>
               </div>
               <a href="blog" class="link-block w-inline-block">
                 <div class="btn-label-wrapper">
