@@ -6,13 +6,14 @@ use App\Events\BusinessLicense;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Crypt;
-use App\Models\{User, EmployerJob, EmployerDetails, CandidatePersonalDetails,
+use App\Models\{User, CandidateDocument, EmployerJob, EmployerDetails, CandidatePersonalDetails,
      SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation, EmployerBusinessLicense, IntroductionVideo, JobInterview, Review };
 use Illuminate\Support\Facades\Auth;
 use File;
 use Response;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
+use ZipArchive;
 class UserController extends Controller
 {
 
@@ -458,13 +459,18 @@ class UserController extends Controller
             $candidate_id = base64_decode($_POST['candidate_id']);
             $candidateDetails = User::with('candidatePersonalDetails')->find($candidate_id);
             $filepath = public_path($candidateDetails->candidatePersonalDetails->candidate_resume);
-            $filename = $candidateDetails->candidatePersonalDetails->full_name;
+            $filename = $candidateDetails->candidatePersonalDetails->first_name.' '.$candidateDetails->candidatePersonalDetails->middle_name.' '.$candidateDetails->candidatePersonalDetails->last_name;
+            if($filename == '')
+            {
+                $filename = $candidateDetails->username;
+            }
             // Get the original file name without the extension
             $originalFileName = pathinfo($filepath, PATHINFO_FILENAME);
             // Sanitize the name by replacing special characters with hyphens
             $filename = preg_replace('/[^A-Za-z0-9\-]/', '-', $filename);
             // Specify the desired file name and extension
             $filename = $filename . '.' . pathinfo($filepath, PATHINFO_EXTENSION);
+
             if(\Auth::check())
             {
                if(auth()->user()->hasRole('employer'))
@@ -488,6 +494,97 @@ class UserController extends Controller
                 toastr()->warning('You are not Logged In, Please Login');
                 return redirect()->back();
               }
+        }
+    }
+    public function downloadCandidateDocs()
+    {
+        if (isset($_POST['candidate_id'])) {
+            $candidate_id = base64_decode($_POST['candidate_id']);
+            $candidateDetails = User::with('candidatePersonalDetails')->find($candidate_id);
+            $filepath = public_path($candidateDetails->candidatePersonalDetails->candidate_resume);
+            $filename = $candidateDetails->candidatePersonalDetails->first_name.' '.$candidateDetails->candidatePersonalDetails->middle_name.' '.$candidateDetails->candidatePersonalDetails->last_name;
+            if($filename == '')
+            {
+                $filename = $candidateDetails->username;
+            }
+            $zip = new ZipArchive;
+            $zipFileName = $filename.'.zip';
+            $candidateDocuments  = CandidateDocument::where('user_id',$candidate_id)->first();
+            if(!$candidateDocuments->isEmpty())
+            {
+                foreach($candidateDocuments as $document)
+                {
+                    switch ($document->document_type) {
+                        case 1:
+                        $filename = "Copy-of-Degree";
+                          break;
+                        case 2:
+                        $filename = "Copy-of-Police-Certificate";
+                          break;
+                        case 3:
+                        $filename = "Copy-of-Degree-Apostile";
+                          break;
+                        case 4:
+                        $filename = "Copy-of-Police-Certificate-Apostile";
+                          break;
+                        case 5:
+                        $filename = "Copy-of-Saqa-Letter";
+                          break;
+                        case 6:
+                        $filename = "Copy-of-Passport";
+                          break;
+                        default:
+                          //code block
+                      }
+                        $filepath = public_path($document->url);
+                        // Get the original file name without the extension
+                        $originalFileName = pathinfo($filepath, PATHINFO_FILENAME);
+                        // Sanitize the name by replacing special characters with hyphens
+                        $filename = preg_replace('/[^A-Za-z0-9\-]/', '-', $filename);
+                        // Specify the desired file name and extension
+                        $filename = $filename . '.' . pathinfo($filepath, PATHINFO_EXTENSION);
+                    
+                  
+                        $filesToZip[] = [
+                            "file_path"=>$filepath,
+                            "file_name"=>$filename
+                        ];
+                }
+                
+                if ($zip->open(public_path($zipFileName), ZipArchive::CREATE) === TRUE) {
+                   
+        
+                    foreach ($filesToZip as $file) {
+                        $zip->addFile($file["file_path"], $file["file_name"]);
+                    }
+        
+                    $zip->close();
+                    if(\Auth::check())
+                        {
+                           if(auth()->user()->hasRole('employer'))
+                           {
+                            return response()->download(public_path($zipFileName))->deleteFileAfterSend(true);
+    
+                           }
+                           else{
+                             toastr()->warning('Only Employer Can Download Resume');
+                             return redirect()->back();
+                           }
+                        }
+                        else{
+                            toastr()->warning('You are not Logged In, Please Login');
+                            return redirect()->back();
+                          }
+                } else {
+                    toastr()->warning('Failed to create the zip file');
+                    return redirect()->back();
+                }
+            }else{
+                toastr()->warning('Failed to create the zip file');
+                return redirect()->back();
+            }
+          
+           
         }
     }
     public function candidateDeactivateAccount(){

@@ -93,7 +93,7 @@ Candidate Profile Details
                                     <div class="d-flex justify-content-md-end">
 									<a  class="save-btn text-center rounded-circle tran3s save_candidate  save_candidate{{base64_encode($candidateDetails->id)}}" id="{{base64_encode($candidateDetails->id)}}" style="color:{{(savedCandidate($candidateDetails->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
                                         <button class="cv-download-btn fw-500 tran3s ms-md-3 sm-mt-20" id="{{base64_encode($candidateDetails->id)}}">Download
-                                            Docs</button>
+                                            Resume</button>
                                     </div>
                                 </div>
                             </div>
@@ -264,10 +264,10 @@ Candidate Profile Details
                                 </form>
                             </div> -->
                         </div> 
+                        @if($candidateDetails->documents && $candidateDetails->documents->isNotEmpty())
                         <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
                             <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
                                 <ul class="style-none">
-                                    @isset($candidateDetails->documents)
                                     @foreach($candidateDetails->documents as $document)
                                     @if($document->document_type == 1)
                                     <li class="border-0">
@@ -299,12 +299,12 @@ Candidate Profile Details
                                     </li>
                                     @endif
                                     @endforeach
-                                    @endisset
 
                                 </ul>
-                                <a href="#" class="btn-ten cv-download-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download Docs</a>
+                                <a href="#" class="btn-ten download-candidate-docs-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download Docs</a>
                             </div>
                         </div> 
+                        @endif
                         <!-- /.cadidate-profile-sidebar -->
                     </div>
                 </div>
@@ -348,6 +348,36 @@ Candidate Profile Details
         form.remove();
          
        });
+        /* Donwload Resume */
+        $(".download-candidate-docs-btn").click(function(){
+            var _token = "{{ csrf_token() }}";
+            var candidate_id = $(this).attr("id");
+                // Create a hidden form
+            var form = $('<form>', {
+                'action': "{{ url('download-candidate-documents') }}",
+                'method': 'post',
+            });
+
+            // Add necessary input fields
+            form.append($('<input>', {
+                'type': 'hidden',
+                'name': '_token',
+                'value': "{{ csrf_token() }}"
+            }));
+
+            form.append($('<input>', {
+                'type': 'hidden',
+                'name': 'candidate_id',
+                'value': candidate_id
+            }));
+
+            // Append the form to the body and submit it
+            $('body').append(form);
+            form.submit();
+
+            // Remove the form after submission
+            form.remove();
+        });
    });
 </script>
 @endsection
