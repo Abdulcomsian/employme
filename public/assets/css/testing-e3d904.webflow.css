@@ -4790,6 +4790,7 @@ figcaption {
 
 
 .box-wrapper.auto {
+  align-items: center;
   width: 100%;
   height: auto;
 }

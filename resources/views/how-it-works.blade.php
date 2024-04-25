@@ -155,7 +155,7 @@
       <div class="w-layout-grid main-grid main-grid-3 no-gap inner-padding-small">
         <div id="w-node-_05fcaccd-c9fb-bc42-7aa9-cfa3a24ebae4-b18f5804">
 
-          <div id="w-node-c0d053f0-8b8c-c1ff-1344-fe5cea251420-b18f5804" class="box-wrapper no-hover">
+          <div id="w-node-c0d053f0-8b8c-c1ff-1344-fe5cea251420-b18f5804" class="box-wrapper auto no-hover">
             <!-- <div class="stage">
                 <div class=" bullet how-it-works"> </div>
                 <div class="text"> Stage 2</div>
