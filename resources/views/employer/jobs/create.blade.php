@@ -775,10 +775,11 @@ Post A Job
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
-                        <button type="submit" id="nextBtn" class="dash-btn-two tran3s">Submit</button>
+                        <button type="submit" id="nextBtn" class="dash-btn-two tran3s job-submit-btn">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none job-submit-progress"></i></button>
                     </div>
 
                 </div>
+ 
                 <!-- <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                     <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3 hide" onclick="nextPrev(-1)">Previous</button>
 					<button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
@@ -902,6 +903,11 @@ Post A Job
             }
         })
 
+        $(document).on("submit","#employer-job-form",function(){
+            document.querySelector(".job-submit-progress").classList.remove("d-none");
+                $(".job-submit-btn").attr('disabled',true);
+        });
+
     </script>
    @endpush
 
@@ -921,4 +927,5 @@ Post A Job
        
     });
 </script> -->
+
     @endsection
