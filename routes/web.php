@@ -66,6 +66,7 @@ Route::get('candidates-marketplace', [UserController::class, 'candidatesMarketpl
 Route::get('job-details/{id}', [UserController::class, 'jobDetails'])->name('jobDetails');
 Route::post('save-candidate', [UserController::class, 'saveCandidate'])->name('saveCandidate')->middleware(['auth','role:employer']);
 Route::post('download-resume', [UserController::class, 'downloadResume'])->name('downloadResume');
+Route::post('download-candidate-documents', [UserController::class, 'downloadCandidateDocs'])->name('downloadCandidateDocs');
 // Route::get('employer-job-listing' , [UserController::class , 'employerjobListing'])->name('employerjobListing');
 Route::get('candidate-profile-new/{id}', [UserController::class, 'candidateProfileNew'])->name('candidateProfileNew');
 Route::get('candidate-profile-document', [UserController::class, 'candidateProfileDocument'])->name('candidateProfileDocument');
