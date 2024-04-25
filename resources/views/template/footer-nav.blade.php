@@ -3,8 +3,8 @@
         <div class="inner-wrapper">
             <div class="row">
                 <div class="col-lg-4 mb-20 footer-newsletter">
-                    <h5 class="footer-title">EmployMe</h5>
-                    <p>Uniting Korean Employers and International Talent</p>
+                    <h5 class="footer-title">Employme</h5>
+                    <p>All-in-one platform for careers and visas</p>
                     <form action="#" class="d-flex">
                         <input type="email" placeholder="Enter your email*">
                         <button>Send</button>
