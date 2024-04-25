@@ -27,6 +27,8 @@ class JobController extends Controller
         {
             $allJobs->with(['interview' => function($query){
                 $query->where('requested_to' , auth()->user()->id);
+            }])->with(['applications' => function($query){
+                $query->where('candidate_id' , auth()->user()->id);
             }]);
         }
 
