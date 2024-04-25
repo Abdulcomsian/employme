@@ -143,23 +143,25 @@ Subscription Plan
 <script src="https://js.stripe.com/v3/"></script>
 <script>
 
-    $(document).on("click" , "#plan-choose-btn" , function(e){
-        let plan = document.getElementById("plan").value;
-        if(plan.trim())
-        {
-            document.getElementById('plan_id').value = plan;
-            $("#SubscriptionModal").modal("show");
-        }
-    })
+   
     
     
   // const form = document.getElementById('payment-form')
-    function changePlan(id)
+  function changePlan(id)
     {
         document.getElementById('plan_id').value = id;
     }
- 
-  const stripe = Stripe('{{ env('STRIPE_KEY') }}')
+    jQuery(document).ready(function($) {
+        $(document).on("click" , "#plan-choose-btn" , function(e){
+            let plan = document.getElementById("plan").value;
+            if(plan.trim())
+            {
+                document.getElementById('plan_id').value = plan;
+                $("#SubscriptionModal").modal("show");
+            }
+        })
+        
+    const stripe = Stripe('{{ env('STRIPE_KEY') }}')
   const elements = stripe.elements()
   const cardElement = elements.create('card')
 
@@ -194,6 +196,8 @@ Subscription Plan
             form.submit();
         }
     })
+  })
+ 
 
     $(document).on("change" , "#plan" , function(e){
         let plan_id = document.getElementById("plan").value;

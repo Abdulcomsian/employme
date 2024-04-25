@@ -334,7 +334,7 @@ class EmployerController extends Controller
         try {
             $subscriptions->cancelNow();
             toastr()->success('You have successfully canceled the subscription Subscribed');
-        return redirect()->back();
+        return redirect()->to('employer/employer-dashboard-subscription-plan');
             // Additional logic after canceling the subscription
         } catch (\Exception $e) {
             // Handle the exception (e.g., subscription not found, cancellation failed)
