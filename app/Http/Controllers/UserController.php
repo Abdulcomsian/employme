@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\{User, EmployerJob, EmployerDetails, CandidatePersonalDetails,
-     SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation, EmployerBusinessLicense, IntroductionVideo, JobInterview, Review };
+     SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation, EmployerBusinessLicense, IntroductionVideo, JobApplication, JobInterview, Review };
 use Illuminate\Support\Facades\Auth;
 use File;
 use Response;
@@ -304,7 +304,7 @@ class UserController extends Controller
     {
         $jobId = Crypt::decryptString($id);
         $jobDetails = EmployerJob::with('employerDetails')->find($jobId);
-        $appliedInterview = auth()->check() ? JobInterview::where(['employer_job_id' => $jobId , 'requested_to' => auth()->user()->id])->first() : null;
+        $appliedInterview = auth()->check() ? JobApplication::where(['employer_job_id' => $jobId , 'candidate_id' => auth()->user()->id])->first() : null;
         return view('job-details',compact('jobDetails' , 'appliedInterview'));
     }
     // public function employerjobListing()

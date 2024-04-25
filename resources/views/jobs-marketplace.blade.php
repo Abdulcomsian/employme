@@ -549,7 +549,7 @@ Job Marketplace
 
 									<div class="d-flex align-items-center justify-content-between mt-auto">
 										
-										@if($job->interview->count() == 1)
+										@if($job->applications->count() == 1)
 										<button class="apply-btn text-center tran3s">Interview Applied</button>
 										@else
 										<button class="apply-btn text-center tran3s apply-interview" data-job-id="{{$job->id}}">Interview Request</button>
