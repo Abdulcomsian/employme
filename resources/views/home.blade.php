@@ -316,7 +316,7 @@
                     <!-- <p class="price">$9<span class="span-small">/mo</span></p> -->
                     <p class="price">Apply </p>
 
-                    <p class="p-small">Begin your journey by signing up and completing your career profile to attract employers.</p>
+                    <p class="p-small set-size">Begin your journey by signing up and completing your career profile to attract employers.</p>
                   </div>
                   <div class="list-wrapper">
                     <a href="signup" class="button plan-button  plan margin-bottom-xsmall w-inline-block">
@@ -354,7 +354,7 @@
                   <p class="price">Connect</p>
 
 
-                  <p class="p-small">Apply for job opportunities or receive interview requests directly from employers</p>
+                  <p class="p-small set-size">Apply for job opportunities or receive interview requests directly from employers</p>
                 </div>
                 <div class="list-wrapper">
                   <a href="#" class="button plan-button plan margin-bottom-xsmall w-inline-block">
@@ -388,7 +388,7 @@
                   <h3 class="heading-small outline margin-bottom-small">Stage 3</h3>
                   <!-- <p class="price">$99<span class="span-small">/mo</span></p> -->
                   <p class="price">Prepare</p>
-                  <p class="p-small">Gather the necessary documents and make necessary arrangements for visa application and travel</p>
+                  <p class="p-small set-size">Gather the necessary documents and make necessary arrangements for visa application and travel</p>
                 </div>
                 <div class="list-wrapper">
                   <a href="#" class="button plan-button  plan margin-bottom-xsmall w-inline-block">
