@@ -581,7 +581,15 @@
         <div id="w-node-_4f0b7a0d-22b0-c5f9-47ab-22a9e9732807-e973279d" class="plan-column">
           <div class="w-layout-grid inner-grid-plan">
             <div class="content-wrapper">
-              <h3 class="heading-small outline margin-bottom-small">Freedom</h3>
+              <h3 class="heading-small outline margin-bottom-small" style="border:none;display: flex;width: 100%;justify-content: space-between;"> 
+              <span style="border: 1px solid rgba(0, 0, 0, .15);padding: 12px 20px;border-radius: 50px;line-height: 2;">Freedom</span>
+                <select class="form-control" name="" id="" style="width: 150px;">
+                  <option value="">1 Month</option>
+                  <option value="">3 Month</option>
+                  <option value="">6 Month</option>
+                  <option value="">12 Month</option>
+                </select>
+              </h3>
               <p class="price">300,000<span class="span-small">/1 mo</span></p>
               <p class="p-small min-h">Get started with a 1-month trial if you&#x27;re signing up for the first time</p>
             </div>

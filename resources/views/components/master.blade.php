@@ -58,7 +58,7 @@
     <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
       <div class="w-layout-grid navgrid">
 
-        <a href="/" class="grid-wrapper logo"><strong style="font-size:x-large;">EmployMe</strong></a>
+        <a href="/" class="grid-wrapper logo"><strong style="font-size:x-large;">employme</strong></a>
         <nav role="navigation" id="w-node-b2052354-5446-da9c-e906-f9d98118b8b3-8118b8ae" class="nav-menu w-nav-menu">
           <div class="w-layout-grid grid-nav">
             <div id="w-node-_669fac26-e732-4363-56e3-6eeefb7f56ee-8118b8ae" class="main-navbar">
@@ -183,8 +183,8 @@
       <div class="container footer w-container">
         <div class="w-layout-grid main-grid inner-padding-medium">
           <div id="w-node-_2bca43ef-7cde-b5da-b1b2-716107bf8e46-07bf8e43" class="grid-wrapper padding-bottom-small">
-            <strong data-w-id="abdbb472-4b00-3ed8-42ca-09cb022d060c" data-wf-id="[&quot;3bce2b2b-97ed-9e60-d10f-53aeb3201909&quot;,&quot;abdbb472-4b00-3ed8-42ca-09cb022d060c&quot;]" style="font-size:x-large;">EmployMe</strong>
-            <p class="main-paragraph margin-bottom-small">Uniting Korean Employers and International Talent</p>
+            <strong data-w-id="abdbb472-4b00-3ed8-42ca-09cb022d060c" data-wf-id="[&quot;3bce2b2b-97ed-9e60-d10f-53aeb3201909&quot;,&quot;abdbb472-4b00-3ed8-42ca-09cb022d060c&quot;]" style="font-size:x-large;">Employme</strong>
+            <p class="main-paragraph margin-bottom-small">All-in-one platform for careers and visas</p>
             <div class="form-wrapper">
               <div class="full-form w-form">
                 <form id="wf-form-Email-Hero" name="wf-form-Email-Hero" data-name="Email Hero" method="get" class="form single" data-wf-page-id="64cb35cd05058fe9b18f5848" data-wf-element-id="f74a4ca7-e334-6206-b99d-41381ef509ad"><input type="email" class="text-field small w-input" maxlength="256" name="Email-5" data-name="Email 5" placeholder="Enter your email" id="Email-5" required=""><input type="submit" value="" data-wait="Please wait..." class="button-circle-small w-button"></form>

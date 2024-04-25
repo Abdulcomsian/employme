@@ -96,7 +96,7 @@
         <div class="w-tab-content">
           <div data-w-tab="Tab 1" class="inner-tab-content w-tab-pane w--tab-active">
             <!-- <div class="w-layout-grid main-grid"> -->
-            <div class="w-layout-grid main-grid-stage">
+            <div class="w-layout-grid main-grid-stage" style="grid-template-columns: repeat(9, 1fr);">
               <div id="w-node-c5b919c5-032b-6440-d68e-ad49864afecb-b18f5803" class="gray-wrapper icons">
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box purple"><img loading="lazy" src="{{ asset('assets/images//ic-007-color.svg')}}" alt="" class="icon-content"></div>
@@ -179,7 +179,7 @@
           </div>
           <div data-w-tab="Tab 2" class="inner-tab-content w-tab-pane">
             <!-- <div class="w-layout-grid main-grid"> -->
-            <div class="w-layout-grid main-grid-stage">
+            <div class="w-layout-grid main-grid-stage" style="grid-template-columns: repeat(9, 1fr);">
               <div id="w-node-_1a50628a-ed47-ed56-647c-1adeadbf4b80-b18f5803" class="gray-wrapper">
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box purple"><img loading="lazy" src="{{ asset('assets/images/ic-007-color.svg')}}" alt="" class="icon-content"></div>
@@ -195,7 +195,7 @@
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box blue"><img loading="lazy" src="{{ asset('assets/images/ic-002-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
-                    <h3 class="heading-small">Step 5: Conditional Offer</h3>
+                    <h3 class="heading-small">Step 5: Negotiation</h3>
                     <p class="p-small">Communicate directly with candidates on the platform to discuss or negotiate terms before making an offer.
 
 
@@ -269,7 +269,7 @@
           </div>
           <div data-w-tab="Tab 3" class="inner-tab-content w-tab-pane">
             <!-- <div class="w-layout-grid main-grid"> -->
-            <div class="w-layout-grid main-grid-stage">
+            <div class="w-layout-grid main-grid-stage" style="grid-template-columns: repeat(9, 1fr);">
               <div id="w-node-_0d8afac7-704d-3a56-70c7-a006c660c347-b18f5803" class="gray-wrapper">
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box purple"><img loading="lazy" src="{{ asset('assets/images/ic-007-color.svg')}}" alt="" class="icon-content"></div>
@@ -628,7 +628,7 @@ Platform</h3>
       </div>
       <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6da4-b18f5803" data-w-id="38ef908f-3a6f-52eb-dadf-1fe2a34f6da4" class="box-wrapper auto no-hover">
         <div class="center _w-min">
-          <div class="tag">EMPLOYME</div>
+          <div class="tag">employme</div>
           <h3 class="heading-large">The all-in-one hiring solution</h3>
           <p class="p-small inner-padding-small">Say goodbye to recruiters and delays. Regain control and efficiently
             manage all your recruitment needs with ease and speed.</p>
@@ -645,41 +645,7 @@ Platform</h3>
       </div>
     </div>
 
-    <a href="contact" class="button-two ">Customer Support</a>
-    <div class="w-layout-grid main-grid">
-      <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6e43-b18f5803" data-w-id="38ef908f-3a6f-52eb-dadf-1fe2a34f6e43" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper icons">
-        <div class="icon-box yellow"><img src="{{asset('assets/images/ic-003-color.svg')}}" loading="lazy" alt="" class="icon-content">
-        </div>
-        <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-          <h3 class="heading-small">Visa Application Support</h3>
-          <p class="p-small">Expert assistance navigating your visa application journey.<br> <span style="color: white;">more content</span></p>
-        </div>
-      </div>
-      <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6e4b-b18f5803" data-w-id="38ef908f-3a6f-52eb-dadf-1fe2a34f6e4b" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper icons">
-        <div class="icon-box blue"><img src="{{asset('assets/images/ic-002-color.svg')}}" loading="lazy" alt="" class="icon-content">
-        </div>
-        <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-          <h3 class="heading-small">Essential Support</h3>
-          <p class="p-small">Get platform technical support for smooth user experience.<br> <span style="color: white;">more content</span></p>
-        </div>
-      </div>
-      <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6e53-b18f5803" data-w-id="38ef908f-3a6f-52eb-dadf-1fe2a34f6e53" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper icons">
-        <div class="icon-box green"><img src="{{asset('assets/images/ic-006-color.svg')}}" loading="lazy" alt="" class="icon-content">
-        </div>
-        <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-          <h3 class="heading-small">Premium Support</h3>
-          <p class="p-small">Priority care, recruitment strategies, tips, and custom solutions.<br> <span style="color: white;">more content</span></p>
-        </div>
-      </div>
-      <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6e5b-b18f5803" data-w-id="38ef908f-3a6f-52eb-dadf-1fe2a34f6e5b" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper icons">
-        <div class="icon-box purple"><img src="{{asset('assets/images/ic-007-color.svg')}}" loading="lazy" alt="" class="icon-content">
-        </div>
-        <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-          <h3 class="heading-small">Elite Support</h3>
-          <p class="p-small">Retention expertise, HR solutions, dedicated tailored partner for your unique needs </p>
-        </div>
-      </div>
-    </div>
+ 
 
     <!-- <div class="join">
         <h2 class="heading-large" style="text-align: center;  "> Join us Today</h2>
