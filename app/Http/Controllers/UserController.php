@@ -134,22 +134,41 @@ class UserController extends Controller
 
         //Searching Candidate with Different Visas Based
         $searchVisas = [];
-
-        //Search Candidate on No Visa Based
-        if(isset($request->SearchNoVisa) && $request->SearchNoVisa !='')
-            $searchVisas[] = $request->SearchNoVisa;
-
-        //Search Candidate on Student Visa Based
-        if(isset($request->SearchStudentVisa) && $request->SearchStudentVisa !='')
-            $searchVisas[] = $request->SearchStudentVisa;
-
-        //Search Candidate on Tourist Visa Based
-        if(isset($request->SearchTouristVisa) && $request->SearchTouristVisa !='')
-            $searchVisas[] = $request->SearchTouristVisa;
+        //Search Candidate on New To Apply Visa Based
+        if(isset($request->SearchNewToApply) && $request->SearchNewToApply !='')
+            $searchVisas[] = $request->SearchNewToApply;
 
         //Search Candidate on E2 Teaching Visa Based
         if(isset($request->SearchE2TeachingVisa) && $request->SearchE2TeachingVisa !='')
             $searchVisas[] = $request->SearchE2TeachingVisa;
+
+        //Search Candidate on E7 Special Occupation Visa Based
+        if(isset($request->SearchE7SpecialOccupation) && $request->SearchE7SpecialOccupation !='')
+            $searchVisas[] = $request->SearchE7SpecialOccupation;
+
+        //Search Candidate on  F2 Resident Visa Based
+        if(isset($request->SearchF2Resident) && $request->SearchF2Resident !='')
+            $searchVisas[] = $request->SearchF2Resident;
+
+         //Search Candidate on  F5 Permanent Resident Visa Based
+         if(isset($request->SearchF5PermanentResident) && $request->SearchF5PermanentResident !='')
+         $searchVisas[] = $request->SearchF5PermanentResident;
+        
+          //Search Candidate on F6 Marriage Migrant Visa Based
+        if(isset($request->SearchF6MarriageMigrant) && $request->SearchF6MarriageMigrant !='')
+        $searchVisas[] = $request->SearchF6MarriageMigrant;
+
+         //Search Candidate D8 Corporate Investment Visa Based
+         if(isset($request->SearchD8CorporateInvestment) && $request->SearchD8CorporateInvestment !='')
+         $searchVisas[] = $request->SearchD8CorporateInvestment;
+
+         //Search Candidate D9 Trade Management Visa Based
+         if(isset($request->SearchD9TradeManagement) && $request->SearchD9TradeManagement !='')
+         $searchVisas[] = $request->SearchD9TradeManagement;
+
+         //Search Candidate H1 Working Holiday Visa Based
+         if(isset($request->SearchH1WorkingHoliday) && $request->SearchH1WorkingHoliday !='')
+         $searchVisas[] = $request->SearchH1WorkingHoliday;
 
         if(!empty($searchVisas))
         {
