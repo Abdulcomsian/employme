@@ -100,7 +100,7 @@
             <div class="heading-small regular"> Step-By-Step </div>
           </div>
           <div class="h-wrapper">
-            <div class="heading-xlarge">How Employme <span class="span-scribble">Works</span></div>
+            <div class="heading-xlarge">How employme <span class="span-scribble">works</span></div>
           </div>
         </div>
       </div>
@@ -684,7 +684,7 @@
     <div class="rounded-block bg-dark-purple">
       <div class="w-layout-grid main-grid inner-padding-small">
         <div id="w-node-_18c00867-5105-dd4c-7885-49e6df7b98b8-b18f5804" class="center-wrapper gap">
-          <h2 class="heading-large">Get start with <span class="span-scribble"> employme</span></h2>
+          <h2 class="heading-large">Get started with <span class="span-scribble"> employme</span></h2>
           <div class="form-block w-form">
             <form action="signup" class="justify-center">
               <button type="submit" data-wait="Please wait..." class="button w-button">Join Now</button>
