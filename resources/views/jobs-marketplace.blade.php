@@ -152,7 +152,7 @@ Job Marketplace
 								<!-- /.filter-block -->
 								<div class="filter-block bottom-line pb-25 mt-25">
 									<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseJobType" role="button" aria-expanded="false">Job Type</a>
-									<div class="collapse {{(isset($_GET['SearchFixedPriceJob']) || isset($_GET['SearchFullTimeJob']) || isset($_GET['SearchPartTimeJob']) || isset($_GET['SearchFreelanceJob'])) ? 'show' : ''}}" id="collapseJobType">
+									<div class="collapse {{(isset($_GET['SearchFixedPriceJob']) || isset($_GET['SearchFullTimeJob']) || isset($_GET['SearchPartTimeJob']) || isset($_GET['SearchFixedTermContract'])) ? 'show' : ''}}" id="collapseJobType">
 										<div class="main-body">
 											<ul class="style-none filter-input">
 												{{--<li>
@@ -168,7 +168,7 @@ Job Marketplace
 													<label>Part Time<span>{{jobTypeCount('Part Time')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="SearchFreelanceJob" value="Fixed Term Contract" {{isset($_GET['SearchFreelanceJob']) ? 'checked' : ''}}>
+													<input type="checkbox" name="SearchFixedTermContract" value="Fixed Term Contract" {{isset($_GET['SearchFixedTermContract']) ? 'checked' : ''}}>
 													<label>Fixed Term Contract <span>{{jobTypeCount('Fixed Term Contract')}}</span></label>
 												</li>
 											</ul>
@@ -178,7 +178,7 @@ Job Marketplace
 								<!-- /.filter-block -->
 								<div class="filter-block bottom-line pb-25 mt-25">
 									<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp" role="button" aria-expanded="false">Experience</a>
-									<div class="collapse {{(isset($_GET['SearchFresher']) || isset($_GET['SearchIntermediate']) || isset($_GET['SearchNoExperience']) || isset($_GET['SearchExpert']) || isset($_GET['SearchExperience5'])) ? 'show' : ''}}" id="collapseExp">
+									<div class="collapse {{(isset($_GET['Search0To1Year']) || isset($_GET['Search1To3Years']) || isset($_GET['Search3To5Years']) || isset($_GET['Search5To7Years']) || isset($_GET['Search7To10Years']) || isset($_GET['Search10PlusYears'])) ? 'show' : ''}}" id="collapseExp">
 										<div class="main-body">
 											<ul class="style-none filter-input">
 												<li>
@@ -202,7 +202,7 @@ Job Marketplace
 													<label>7-10 Years <span>{{jobExperienceCount('7-10 Years')}}</span></label>
 												</li>
 												<li>
-													<input type="checkbox" name="Search10PlusYears" value="7-10 Years" {{isset($_GET['Search10PlusYears']) ? 'checked' : ''}}>
+													<input type="checkbox" name="Search10PlusYears" value="10+ Years" {{isset($_GET['Search10PlusYears']) ? 'checked' : ''}}>
 													<label>10+ Years <span>{{jobExperienceCount('10+ Years')}}</span></label>
 												</li>
 											</ul>
@@ -597,7 +597,7 @@ Job Marketplace
 					<ul class="btn-group style-none d-flex flex-wrap justify-content-center justify-content-lg-end">
 					@auth
 					@role('candidate')
-					<li class="me-2"><a href="{{route('candidatesMarketplace')}}" class="btn-three">Looking for job?</a></li>
+					<li class="me-2"><a href="{{route('jobMarketplace')}}" class="btn-three">Looking for job?</a></li>
 					@endrole
 					@role('employer')
 					<li class="ms-2"><a href="{{route('employer-jobs.create')}}" class="btn-four">Post a job</a></li>

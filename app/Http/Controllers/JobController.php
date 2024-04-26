@@ -56,8 +56,8 @@ class JobController extends Controller
          if(isset($request->SearchPartTimeJob) && $request->SearchPartTimeJob !='') {
              $jobTypes[] = $request->SearchPartTimeJob;
          }
-         if(isset($request->SearchFreelanceJob) && $request->SearchFreelanceJob !='') {
-             $jobTypes[] = $request->SearchFreelanceJob;
+         if(isset($request->SearchFixedTermContract) && $request->SearchFixedTermContract !='') {
+             $jobTypes[] = $request->SearchFixedTermContract;
          }
       
         if (!empty($jobTypes)) {

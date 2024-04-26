@@ -101,53 +101,74 @@ class UserController extends Controller
             });      
          }
 
-          //Search Job Experience
-          $jobExperience = [];
-
-        //Search Fresh Candidate
-        if(isset($request->SearchFresher) && $request->SearchFresher !='') 
-            $jobExperience[] = $request->SearchFresher;
-        //Search Candidate on  Intermediate Experience Based
-        if(isset($request->SearchIntermediateExperience) && $request->SearchIntermediateExperience !='')
-            $jobExperience[] = $request->SearchIntermediateExperience;
-
-        //Search Candidate with No Experience
-        if(isset($request->SearchNoExperience) && $request->SearchNoExperience !='') 
-           $jobExperience[] = $request->SearchNoExperience;
-
-        //Search Candidate on  Intership Experience Based
-        if(isset($request->SearcInternship) && $request->SearcInternship !='')
-            $jobExperience[] = $request->SearcInternship;
-
-        //Search Candidate on  Expert Experience Based
-        if(isset($request->SearchExpert) && $request->SearchExpert !='')
-            $jobExperience[] = $request->SearcInternship;
+          //Search Teaching  Experience
+          $teachingExperiences = [];
+          if(isset($request->SearchNoExperience) && $request->SearchNoExperience !='') {
+              $teachingExperiences[] = $request->SearchNoExperience;
+          }
+          if(isset($request->Search0To1Year) && $request->Search0To1Year !='') {
+            $teachingExperiences[] = $request->Search0To1Year;
+        }
+          if(isset($request->Search1To3Years) && $request->Search1To3Years !='') {
+              $teachingExperiences[] = $request->Search1To3Years;
+          }
+          if(isset($request->Search3To5Years) && $request->Search3To5Years !='') {
+              $teachingExperiences[] = $request->Search3To5Years;
+          }
+          if(isset($request->Search5To7Years) && $request->Search5To7Years !='') {
+              $teachingExperiences[] = $request->Search5To7Years;
+          }
+          if(isset($request->Search7To10Years) && $request->Search7To10Years !='') {
+             $teachingExperiences[] = $request->Search7To10Years;
+             }
+         if(isset($request->Search10PlusYears) && $request->Search10PlusYears !='') {
+             $teachingExperiences[] = $request->Search10PlusYears;
+             }
          
-        if(!empty($jobExperience))
+        if(!empty($teachingExperiences))
         {
-            $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($jobExperience){
-                $query->whereIn('experience_level',$jobExperience);
+            $candidates = $candidates->whereHas('candidatePreferences',function (Builder $query) use ($teachingExperiences){
+                $query->whereIn('experience_level',$teachingExperiences);
             });   
         }
 
         //Searching Candidate with Different Visas Based
         $searchVisas = [];
-
-        //Search Candidate on No Visa Based
-        if(isset($request->SearchNoVisa) && $request->SearchNoVisa !='')
-            $searchVisas[] = $request->SearchNoVisa;
-
-        //Search Candidate on Student Visa Based
-        if(isset($request->SearchStudentVisa) && $request->SearchStudentVisa !='')
-            $searchVisas[] = $request->SearchStudentVisa;
-
-        //Search Candidate on Tourist Visa Based
-        if(isset($request->SearchTouristVisa) && $request->SearchTouristVisa !='')
-            $searchVisas[] = $request->SearchTouristVisa;
+        //Search Candidate on New To Apply Visa Based
+        if(isset($request->SearchNewToApply) && $request->SearchNewToApply !='')
+            $searchVisas[] = $request->SearchNewToApply;
 
         //Search Candidate on E2 Teaching Visa Based
         if(isset($request->SearchE2TeachingVisa) && $request->SearchE2TeachingVisa !='')
             $searchVisas[] = $request->SearchE2TeachingVisa;
+
+        //Search Candidate on E7 Special Occupation Visa Based
+        if(isset($request->SearchE7SpecialOccupation) && $request->SearchE7SpecialOccupation !='')
+            $searchVisas[] = $request->SearchE7SpecialOccupation;
+
+        //Search Candidate on  F2 Resident Visa Based
+        if(isset($request->SearchF2Resident) && $request->SearchF2Resident !='')
+            $searchVisas[] = $request->SearchF2Resident;
+
+         //Search Candidate on  F5 Permanent Resident Visa Based
+         if(isset($request->SearchF5PermanentResident) && $request->SearchF5PermanentResident !='')
+         $searchVisas[] = $request->SearchF5PermanentResident;
+        
+          //Search Candidate on F6 Marriage Migrant Visa Based
+        if(isset($request->SearchF6MarriageMigrant) && $request->SearchF6MarriageMigrant !='')
+        $searchVisas[] = $request->SearchF6MarriageMigrant;
+
+         //Search Candidate D8 Corporate Investment Visa Based
+         if(isset($request->SearchD8CorporateInvestment) && $request->SearchD8CorporateInvestment !='')
+         $searchVisas[] = $request->SearchD8CorporateInvestment;
+
+         //Search Candidate D9 Trade Management Visa Based
+         if(isset($request->SearchD9TradeManagement) && $request->SearchD9TradeManagement !='')
+         $searchVisas[] = $request->SearchD9TradeManagement;
+
+         //Search Candidate H1 Working Holiday Visa Based
+         if(isset($request->SearchH1WorkingHoliday) && $request->SearchH1WorkingHoliday !='')
+         $searchVisas[] = $request->SearchH1WorkingHoliday;
 
         if(!empty($searchVisas))
         {
@@ -174,21 +195,36 @@ class UserController extends Controller
 
         //Search Canidate on Bachelor Degree Based
         $searchQualifications = [];
-        if(isset($request->SearchBachelorQualification) && $request->SearchBachelorQualification !='')
-            $searchQualifications[] = $request->SearchBachelorQualification;
+        if(isset($request->SearchSchoolDiploma) && $request->SearchSchoolDiploma !='')
+            $searchQualifications[] = $request->SearchSchoolDiploma;
+
+        //Search Canidate on Associate Degree Based
+        if(isset($request->SearchAssociate) && $request->SearchAssociate !='')
+            $searchQualifications[] = $request->SearchAssociate;
+
+        //Search Canidate on Bachelor Degree Based
+        if(isset($request->SearchBachelor) && $request->SearchBachelor !='')
+            $searchQualifications[] = $request->SearchBachelor;
+        //Search Canidate on Master Degree Based
+        if(isset($request->SearchMaster) && $request->SearchMaster !='')
+            $searchQualifications[] = $request->SearchMaster;
 
         //Search Canidate on Master Degree Based
-        if(isset($request->SearchMasterQualification) && $request->SearchMasterQualification !='')
-            $searchQualifications[] = $request->SearchMasterQualification;
+        if(isset($request->SearchDoctorate) && $request->SearchDoctorate !='')
+            $searchQualifications[] = $request->SearchDoctorate;
 
-        //Search Canidate on Doctorate Degree Based
-        if(isset($request->SearchDoctorateQualification) && $request->SearchDoctorateQualification !='')
-            $searchQualifications[] = $request->SearchDoctorateQualification;
+        //Search Canidate on Professional Certification Degree Based
+        if(isset($request->SearchProfessionalCertification) && $request->SearchProfessionalCertification !='')
+            $searchQualifications[] = $request->SearchProfessionalCertification;
+
+        //Search Canidate on Vocational Training Degree Based
+        if(isset($request->SearchVocationalTraining) && $request->SearchVocationalTraining !='')
+        $searchQualifications[] = $request->SearchVocationalTraining;
 
         if(!empty($searchQualifications))
         {
-            $candidates = $candidates->whereHas('candidateEducation',function (Builder $query) use ($searchQualifications){
-                $query->whereIn('highest_degree',$searchQualifications);
+            $candidates = $candidates->whereHas('candidateEducationalDetails',function (Builder $query) use ($searchQualifications){
+                $query->whereIn('degree',$searchQualifications);
             });         
         }
 

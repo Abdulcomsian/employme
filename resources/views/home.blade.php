@@ -173,7 +173,7 @@
         <div class="w-layout-grid main-grid">
           <div id="w-node-_1dc1b062-d679-2ced-19b1-9ba419d15dd6-b18f5798" class="box-wrapper-1  no-hover">
             <div class="center-wrapper _w-min">
-              <h2 class="heading-large ">Talk With Your <br> Future Employer</h2>
+              <h2 class="heading-large ">Talk with your <br> future employer</h2>
               <p class="main-paragraph inner-padding-small text-align-center">Job offers with transparency—no surprises. Build your profile and start messaging employers instantly.
 
 </p>
@@ -516,7 +516,7 @@
               <div class="heading-small regular"> Ready to get started?</div>
             </div>
             <div style="-webkit-transform:translate3d(0, 5em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 5em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 5em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 5em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="h-wrapper">
-              <div class="heading-large inner-padding-micro">Join The Platform Now</div>
+              <div class="heading-large inner-padding-micro">Join the platform now</div>
             </div>
             <div style="margin-top: 10px;  -webkit-transform:translate3d(0, 5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-wrapper">
               <!-- <a href="#" class="button-circle w-inline-block"><img src="../images/arrow-2.svg" loading="lazy" alt=""
