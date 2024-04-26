@@ -488,22 +488,23 @@
 								<span>Class Size</span>
 								<div>{{$jobDetails->class_size ?? ''}}</div>
 							</li>
-							<li class="col-xl-7 col-md-4 col-sm-6">
+							{{--<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Hours/Week</span>
 								<div>{{$jobDetails->hours_per_week ?? ''}}</div>
-							</li>
+							</li>--}}
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Teaching Hrs/Day</span>
 								<div>{{$jobDetails->teaching_hours_per_day ?? ''}}</div>
-							</li>
-							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Non-Teaching Hrs/Day</span>
-								<div>{{$jobDetails->non_teaching_hours_per_day ?? ''}}</div>
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Break Times</span>
 								<div>{{$jobDetails->break_times ?? ''}}</div>
 							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Non-Teaching Hrs/Day</span>
+								<div>{{$jobDetails->non_teaching_hours_per_day ?? ''}}</div>
+							</li>
+						
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Start Time</span>
 								<div>{{$jobDetails->start_time ?? ''}} </div>
@@ -522,14 +523,14 @@
 								<span>Education Grade</span>
 								<div>B+</div>
 							</li> -->
-							<li class="col-xl-12 col-md-4 col-sm-6">
+							{{--<li class="col-xl-12 col-md-4 col-sm-6">
 								<span>Materials & Resources Available</span>
 								<div>{{$jobDetails->material_resources_available ?? ''}}</div>
 							</li>
 							<li class="col-xl-12 col-md-4 col-sm-6">
 								<span>Teaching Aids</span>
 								<div>{{$jobDetails->teaching_aids ?? ''}} </div>
-							</li>
+							</li>--}}
 
 							
 							

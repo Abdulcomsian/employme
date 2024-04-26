@@ -237,7 +237,7 @@ Profile
                         </div> --}}
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="visa_eligibility_check">Submit</button>
+                            <button type="button" class="dash-btn-one" id="visa_eligibility_check">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-visa-eligibility-progress"></i></button>
                         </div>
                     </div>
                 </div>
@@ -611,7 +611,7 @@ Profile
                         </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="candidate-educational-details">Submit</button>
+                            <button type="button" class="dash-btn-one" id="candidate-educational-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-educational-progress"></i></button>
                         </div>
                     </div>
                 </div>
@@ -778,7 +778,7 @@ Profile
                                 <button type="button" class="dash-btn-one" id="add-more-experience" >add more</button>
                             </div>
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="candidate-professional-details">Submit</button>
+                            <button type="button" class="dash-btn-one" id="candidate-professional-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-professional-progress"></i></button>
                         </div>
                     </div>
                 </div>
@@ -891,7 +891,7 @@ Profile
                      
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id = "candidate-preferences-details">Submit</button>
+                            <button type="button" class="dash-btn-one" id = "candidate-preferences-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-preferences-progress"></i></button>
                         </div>
                     </div>
                 </div>
@@ -937,7 +937,7 @@ Profile
                         </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id= "candidate-introduction-details">Submit</button>
+                            <button type="button" class="dash-btn-one" id= "candidate-introduction-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-introduction-progress"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1205,7 +1205,7 @@ Profile
 
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="teaching-video-details">Submit</button>
+                            <button type="button" class="dash-btn-one" id="teaching-video-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-teaching-video-progress"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1252,7 +1252,7 @@ Profile
 
                 <div class="d-flex flex-row justify-content-end gap-3">
                     <button type="button" class="dash-btn-one" onclick="previousStep(8)">Previous</button>
-                    <button type="submit" class="dash-btn-one" id = "legal-verification-details">Submit</button>
+                    <button type="submit" class="dash-btn-one" id = "legal-verification-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none legal-verification-progress"></i></button>
                 </div>
             </div> --}}
         </form>
@@ -1458,6 +1458,8 @@ Profile
 
     $("#visa_eligibility_check").on("click", function(e) {
         e.preventDefault();
+        document.querySelector(".candidate-visa-eligibility-progress").classList.remove("d-none");
+        $("#visa_eligibility_check").attr('disabled',true);
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-1.save')}}",
@@ -1483,7 +1485,11 @@ Profile
                     });
                 }
                
-              }
+              },
+              complete: function(){
+                document.querySelector(".candidate-visa-eligibility-progress").classList.add("d-none");
+                $("#visa_eligibility_check").attr('disabled',false);
+            }
           });
   
           return false;
@@ -1492,6 +1498,7 @@ Profile
       $("#candidate-personal-details").on("click", function(e) {
         e.preventDefault();
         document.querySelector(".candidate-personal-details-progress").classList.remove("d-none")
+        $("#candidate-personal-details").attr('disabled',true);
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
         formData.append("middle_name", $("#multi-step-form").find("[name=middle_name]").val());
@@ -1513,16 +1520,24 @@ Profile
               contentType: false,
               processData: false,
               success: function (data) {
-                document.querySelector(".candidate-personal-details-progress").classList.add("d-none")
                 if (data.status) {
                     toastr.success(data.message);
                 }else{
                     $(".alert").remove();
-                    $.each(data.errors, function (key, val) {
-                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    $.each(data.errors, function(key, value) {
+                        if(key === 0)
+                        {
+                            toastr.error(value); // Display the first error for each field
+                        }
+                      
                     });
                 }
                
+              },
+              complete:function()
+              {
+                document.querySelector(".candidate-personal-details-progress").classList.add("d-none")
+                $("#candidate-personal-details").attr('disabled',false);
               }
           });
   
@@ -1536,6 +1551,7 @@ Profile
       // Canidate Educational and Professional Information
       $("#candidate-educational-details").on("click", function(e) {
         e.preventDefault();
+       
         // var experienceData = [];
     
         //     for (var i = 0; ; i++) {
@@ -1557,6 +1573,8 @@ Profile
         //         description: description
         //     });
         //     }
+        document.querySelector(".candidate-educational-progress").classList.remove("d-none")
+        $("#candidate-educational-details").attr('disabled',true);
                     var educationData = [];
                     var rowCount = $(".educational-details-row").length;
                      console.log(rowCount);
@@ -1606,6 +1624,12 @@ Profile
                     });
                 }
                
+              },
+              
+            complete:function()
+              {
+                document.querySelector(".candidate-educational-progress").classList.add("d-none")
+                $("#candidate-educational-details").attr('disabled',false);
               }
           });
   
@@ -1615,6 +1639,8 @@ Profile
        // Canidate  Professional Information
       $("#candidate-professional-details").on("click", function(e) {
         e.preventDefault();
+        document.querySelector(".candidate-professional-progress").classList.remove("d-none")
+        $("#candidate-professional-details").attr('disabled',true);
         var noteEditable = document.querySelector("#step-4").querySelectorAll(".note-editable");
         var experienceData = [];
     
@@ -1661,6 +1687,11 @@ Profile
                     });
                 }
                
+              },
+            complete:function()
+              {
+                document.querySelector(".candidate-professional-progress").classList.add("d-none")
+                $("#candidate-professional-details").attr('disabled',false);
               }
           });
   
@@ -1669,6 +1700,8 @@ Profile
       // Skills and Preferences save data
       $("#candidate-preferences-details").on("click", function(e) {
         e.preventDefault();
+        document.querySelector(".candidate-preferences-progress").classList.remove("d-none")
+        $("#candidate-preferences-details").attr('disabled',true);
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
        
@@ -1695,7 +1728,11 @@ Profile
                         $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
                     });
                 }
-               
+              }, 
+            complete:function()
+              {
+                document.querySelector(".candidate-preferences-progress").classList.add("d-none")
+                $("#candidate-preferences-details").attr('disabled',false);
               }
           });
   
@@ -1705,6 +1742,8 @@ Profile
       // Candidate Introduction Details
       $("#candidate-introduction-details").on("click", function(e) {
         e.preventDefault();
+        document.querySelector(".candidate-introduction-progress").classList.remove("d-none")
+        $("#candidate-introduction-details").attr('disabled',true);
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
         formData.append('introduction',$("#multi-step-form").find('[name=bioIntroduction]').val());
@@ -1728,7 +1767,10 @@ Profile
                         $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
                     });
                 }
-               
+              },
+            complete:function(){
+                document.querySelector(".candidate-introduction-progress").classList.add("d-none")
+                $("#candidate-introduction-details").attr('disabled',false);
               }
           });
   
@@ -1738,6 +1780,8 @@ Profile
       
       $("#teaching-video-details").on("click", function(e) {
         e.preventDefault();
+        document.querySelector(".candidate-teaching-video-progress").classList.remove("d-none")
+        $("#teaching-video-details").attr('disabled',true);
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
         formData.append("video_url", $('#teachingVideo')[0].files[0]);
@@ -1768,7 +1812,10 @@ Profile
                         $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
                     });
                 }
-               
+              },
+            complete:function(){
+                document.querySelector(".candidate-teaching-video-progress").classList.add("d-none")
+                $("#teaching-video-details").attr('disabled',false);
               }
           });
   

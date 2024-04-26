@@ -187,8 +187,8 @@ class UserController extends Controller
 
         if(!empty($searchQualifications))
         {
-            $candidates = $candidates->whereHas('candidateEducation',function (Builder $query) use ($searchQualifications){
-                $query->whereIn('highest_degree',$searchQualifications);
+            $candidates = $candidates->whereHas('candidateEducationalDetails',function (Builder $query) use ($searchQualifications){
+                $query->whereIn('degree',$searchQualifications);
             });         
         }
 

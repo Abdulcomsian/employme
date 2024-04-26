@@ -486,7 +486,11 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 									@else
 									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img rounded-circle"></a></div>
 									@endif
+									@if(auth()->check() && auth()->user()->hasRole('employer') && !$employerIsSubscribed)
+									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('getEmployerSubscriptionPlan', \Crypt::encryptString($candidate->id))}}" class="tran3s">{{$candidate->candidatePersonalDetails->first_name ?? ''}} {{$candidate->candidatePersonalDetails->middle_name ?? ''}} {{$candidate->candidatePersonalDetails->last_name ?? ''}}</a></h4>
+									@else
 									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="tran3s">{{$candidate->candidatePersonalDetails->first_name ?? ''}} {{$candidate->candidatePersonalDetails->middle_name ?? ''}} {{$candidate->candidatePersonalDetails->last_name ?? ''}}</a></h4>
+									@endif
 									<div class="candidate-post">{{$candidate->candidatePersonalDetails->designation ?? ''}}</div>
 									<ul class="cadidate-skills style-none d-flex flex-wrap align-items-center justify-content-center justify-content-md-between pt-30 sm-pt-20 pb-10">
 										@if(isset($candidate->candidatePreferences->skills) && !empty($candidate->candidatePreferences->skills))

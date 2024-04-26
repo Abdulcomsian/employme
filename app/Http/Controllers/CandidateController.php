@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Schema;
 use Notification;
 use App\Notifications\{InterviewRequestNotification, InterviewRescheduleNotification};
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 class CandidateController extends Controller
 {
     public function getCandidateDashboard()
@@ -63,6 +64,22 @@ class CandidateController extends Controller
     }
     public function saveProfile2(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            // 'license_number' => 'required',
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+        ],[
+            // 'license_number.required'=>'Business License Number is required',
+            'first_name.required'=>'First Name is required',
+            'middle_name.required'=>'Middle Name is required',
+            'last_name.required'=>'Last Name is required',
+        ]);
+       $isnewUser = null;
+       if($validator->fails())
+       {
+        return response()->json(['status'=>false,'errors'=>$validator->errors()->all()]);
+       }
         $updatePersonalDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
         $updatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
 
