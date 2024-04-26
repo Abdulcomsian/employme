@@ -5984,7 +5984,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .candidates-profile.bg-color {
-  background: #f6f6f6;
+  background: white;
 }
 
 .candidate-profile-card {
@@ -6168,6 +6168,7 @@ h3{
   background: #fff;
   border-radius: 10px;
   padding: 25px 35px 20px;
+  border: 1px solid rgba(0, 0, 0, .125);
 }
 .candidates-profile-details .inner-card.border-style {
   border: 1px solid #DEDEDE;

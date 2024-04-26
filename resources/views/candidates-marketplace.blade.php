@@ -75,7 +75,10 @@ a.btn.Interview-Modal-Button.subscribed-redirect {
 a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 	color:white!important;
 }
-
+.set-profile-img{
+	width: 100%;
+	height:100%;
+}
 </style>
 <!--
 		=============================================
@@ -526,7 +529,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 								<div class="candidate-profile-card favourite text-center grid-layout mb-25">
 									<a  class="save-btn tran3s save_candidate  save_candidate{{base64_encode($candidate->id)}}" id="{{base64_encode($candidate->id)}}" style="color:{{(savedCandidate($candidate->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
 									@if(isset($candidate->candidatePersonalDetails->profile_picture) && !empty($candidate->candidatePersonalDetails->profile_picture))
-									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
+									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle set-profile-img"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle set-profile-img"></a></div>
 									@else
 									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img rounded-circle"></a></div>
 									@endif

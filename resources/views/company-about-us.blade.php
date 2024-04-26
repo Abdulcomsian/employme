@@ -92,7 +92,7 @@
 				<div class="row mx-0">
 					
 
-					<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
+					<div class="col-xxl-12 col-xl-12 order-xl-first card  mb-60 mr-1 p-1 padding-box">
 						<div class="details-post-data me-xxl-5 pe-xxl-4">
 							<!-- <h3>Overview</h3> -->
 							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Vulputate odio ut enim blandit. Nibh ipsum consequat nisl vel pretium lectus quam.</p> -->
@@ -107,6 +107,79 @@
 					
 								<!-- <p><b>Teaching Philosophy:</b> (Details about the school's pedagogic beliefs and methods)</p> -->
 							</div>
+						</div>
+					</div>
+					
+					@if($introductionVideo)
+					<!-- <div class="inner-card mb-60 lg-mb-50">
+						<div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
+							<a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox="" href="http://127.0.0.1:8000/uploads/candidate/videos/171376439287871.mp4">
+								<i class="bi bi-play"></i>
+							</a>
+						</div>
+                    </div> -->
+					<div class="col-xxl-12 col-xl-12 order-xl-first card mb-60 mr-1 p-1 padding-box">
+							<h3 class="title mb-5">Introduction</h3>
+							<video width="100%" height="360" controls>
+								<source src="{{asset('uploads/employer/introduction-video/'.$introductionVideo->file_path)}}" type="video/mp4">
+							</video>
+						</div>
+					@endif
+					@if($galleryFiles && $galleryFiles->isNotEmpty())
+					<div class="col-xxl-12 col-xl-12 order-xl-first card mb-60 mr-1 p-1 padding-box">
+						<div class="details-post-data me-xxl-5 pe-xxl-4">
+							<!-- <h3>Overview</h3> -->
+							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Vulputate odio ut enim blandit. Nibh ipsum consequat nisl vel pretium lectus quam.</p> -->
+							<!-- <p> Nulla at volutpat diam ut. Lobortis feugiat vivamus at augue eget arcu. Urna condimentum mattis pellentesque id nibh tortor id aliquet. Dignissim cras tincidunt lobortis feugiat. Est sit amet facilisis magna etiam tempor. Eu augue ut lectus arcu bibendum at varius vel pharetra. Vel facilisis volutpat est velit egestas dui id. Ut pharetra sit amet aliquam. Elit at imperdiet dui accumsan sit amet nulla facilisi morbi. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Magna fringilla urna porttitor rhoncus. Et odio pellentesque diam volutpat. Congue eu consequat ac felis donec et odio pellentesque diam. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. </p> -->
+							<!-- <p>Felis eget velit aliquet sagittis id. Massa placerat duis ultricies lacus sed turpis tincidunt id. Vel eros donec ac odio tempor orci dapibus ultrices. Ipsum consequat nisl vel pretium lectus quam. Dignissim sodales ut eu sem. </p> -->
+
+
+							<div class="container">
+								<h3>Gallery</h3>
+								{{--<p>Photos: (Images of classrooms, events, staff, and students, housing)</p>
+								<p>Videos: (Short clips or promotional videos showcasing the school environment, events, or teaching methods)</p>--}}
+							</div>
+							<div class="row">
+							<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+								<div class="carousel-indicators">
+									<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+									<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+									<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+								</div>
+								<div class="carousel-inner">
+								@foreach($galleryFiles as $index =>  $gallery)
+									@if($gallery->file_extension != 'mp4')
+									<div class="carousel-item  @if($index == 0) active @endif">
+										1
+										<img class="d-block w-100"  src="{{asset($gallery->file_name)}}" alt="First slide">
+									</div>
+									@endif
+								@endforeach
+									
+								</div>
+								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+								</div>
+							
+								
+
+							</div>
+
+
+							
+						</div>
+					</div>
+					@endif
+
+					<div class="col-xxl-12 col-xl-12 order-xl-first card  mb-60 mr-1 p-1 padding-box">
+						<div class="details-post-data me-xxl-5 pe-xxl-4">
+							
 							<div class="details">
 								<h3>Company Reviews</h3>
 
@@ -203,73 +276,6 @@
 							</div>
 						</div>
 					</div>
-					
-					@if($introductionVideo)
-					<!-- <div class="inner-card mb-60 lg-mb-50">
-						<div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
-							<a class="fancybox rounded-circle video-icon tran3s text-center" data-fancybox="" href="http://127.0.0.1:8000/uploads/candidate/videos/171376439287871.mp4">
-								<i class="bi bi-play"></i>
-							</a>
-						</div>
-                    </div> -->
-					<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
-							<h3 class="title">Introduction</h3>
-							<video width="100%" height="360" controls>
-								<source src="{{asset('uploads/employer/introduction-video/'.$introductionVideo->file_path)}}" type="video/mp4">
-							</video>
-						</div>
-					@endif
-
-					<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
-						<div class="details-post-data me-xxl-5 pe-xxl-4">
-							<!-- <h3>Overview</h3> -->
-							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Vulputate odio ut enim blandit. Nibh ipsum consequat nisl vel pretium lectus quam.</p> -->
-							<!-- <p> Nulla at volutpat diam ut. Lobortis feugiat vivamus at augue eget arcu. Urna condimentum mattis pellentesque id nibh tortor id aliquet. Dignissim cras tincidunt lobortis feugiat. Est sit amet facilisis magna etiam tempor. Eu augue ut lectus arcu bibendum at varius vel pharetra. Vel facilisis volutpat est velit egestas dui id. Ut pharetra sit amet aliquam. Elit at imperdiet dui accumsan sit amet nulla facilisi morbi. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Magna fringilla urna porttitor rhoncus. Et odio pellentesque diam volutpat. Congue eu consequat ac felis donec et odio pellentesque diam. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. </p> -->
-							<!-- <p>Felis eget velit aliquet sagittis id. Massa placerat duis ultricies lacus sed turpis tincidunt id. Vel eros donec ac odio tempor orci dapibus ultrices. Ipsum consequat nisl vel pretium lectus quam. Dignissim sodales ut eu sem. </p> -->
-
-
-							<div class="container">
-								<h3>Gallery</h3>
-								{{--<p>Photos: (Images of classrooms, events, staff, and students, housing)</p>
-								<p>Videos: (Short clips or promotional videos showcasing the school environment, events, or teaching methods)</p>--}}
-							</div>
-							<div class="row">
-							<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-								<div class="carousel-indicators">
-									<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-									<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-									<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-								</div>
-								<div class="carousel-inner">
-								@foreach($galleryFiles as $index =>  $gallery)
-									@if($gallery->file_extension != 'mp4')
-									<div class="carousel-item  @if($index == 0) active @endif">
-										1
-										<img class="d-block w-100"  src="{{asset($gallery->file_name)}}" alt="First slide">
-									</div>
-									@endif
-								@endforeach
-									
-								</div>
-								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-								</button>
-								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-								</button>
-								</div>
-							
-								
-
-							</div>
-
-
-							
-						</div>
-					</div>
-
 					<!--<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
 						<div class="details-post-data me-xxl-5 pe-xxl-4">
 							 <h3>Overview</h3> 
@@ -308,7 +314,7 @@
 						</div>
 					</div>-->
 
-					<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
+					<div class="col-xxl-12 col-xl-12 order-xl-first card mb-60 mr-1 p-1 padding-box">
 						<div class="details-post-data me-xxl-5 pe-xxl-4">
 							<!-- <h3>Overview</h3> -->
 							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Vulputate odio ut enim blandit. Nibh ipsum consequat nisl vel pretium lectus quam.</p> -->
@@ -555,7 +561,7 @@
 
 					</div>
 				</div>
-				<div class="col-xxl-3 col-xl-4 order-xl-last my-3 mr-1 p-1">
+				<div class="col-xxl-3 col-xl-4 order-xl-last mb-60 mr-1 p-1">
 					<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mb-50">
 						@if(isset($employerDetails->institution_logo))
 						<img src="{{asset($employerDetails->institution_logo)}}" data-src="{{asset($employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto logo">
@@ -645,6 +651,7 @@
 						</div>
 					</div> -->
 				</div>
+				
 			</div>
 		</div>
 	</div>
