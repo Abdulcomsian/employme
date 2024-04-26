@@ -315,28 +315,36 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 							</div>
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp1" role="button" aria-expanded="false">Experience Level</a>
-								<div class="collapse {{(isset($_GET['SearchIntermediateExperience']) || isset($_GET['SearchFresher']) || isset($_GET['SearchNoExperience']) || isset($_GET['SearcInternship']) || isset($_GET['SearchExpert'])) ? 'show' : ''}}" id="collapseExp1">
+								<div class="collapse {{(isset($_GET['SearchNoExperience']) || isset($_GET['Search0To1Year']) || isset($_GET['Search1To3Years']) || isset($_GET['Search3To5Years']) || isset($_GET['Search5To7Years']) || isset($_GET['Search7To10Years']) || isset($_GET['Search10PlusYears'])) ? 'show' : ''}}" id="collapseExp1">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchFresher" value="Fresher" {{isset($_GET['SearchFresher']) ? 'checked' : ''}}>
-												<label>Fresher</label>
+												<input type="checkbox" name="SearchNoExperience" value="No Experience" {{isset($_GET['SearchNoExperience']) ? 'checked' : ''}}>
+												<label>No Experience <span>{{jobExperienceCount('0-1 Year')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchIntermediateExperience" value="Intermediate" {{isset($_GET['SearchIntermediateExperience']) ? 'checked' : ''}}>
-												<label>Intermediate</label>
+												<input type="checkbox" name="Search0To1Year" value="0-1 Year" {{isset($_GET['Search0To1Year']) ? 'checked' : ''}}>
+												<label>0-1 Year <span>{{jobExperienceCount('0-1 Year')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchNoExperience" value="No-Experience" {{isset($_GET['SearchNoExperience']) ? 'checked' : ''}}>
-												<label>No-Experience</label>
+												<input type="checkbox" name="Search1To3Years" value="1-3 Years" {{isset($_GET['Search1To3Years']) ? 'checked' : ''}}>
+												<label>1-3 Years <span>{{jobExperienceCount('Intermediate')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearcInternship" value="Internship" {{isset($_GET['SearcInternship']) ? 'checked' : ''}}>
-												<label>Internship</label>
+												<input type="checkbox" name="Search3To5Years" value="3-5 Years" {{isset($_GET['Search3To5Years']) ? 'checked' : ''}}>
+												<label>3-5 Years <span>{{jobExperienceCount('3-5 Years')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchExpert" value="Expert" {{isset($_GET['SearchExpert']) ? 'checked' : ''}}>
-												<label>Expert</label>
+												<input type="checkbox" name="Search5To7Years" value="5-7 Years" {{isset($_GET['Search5To7Years']) ? 'checked' : ''}}>
+												<label>5-7 Years <span>{{jobExperienceCount('5-7 Years')}}</span></label>
+											</li>
+											<li>
+												<input type="checkbox" name="Search7To10Years" value="7-10 Years" {{isset($_GET['Search7To10Years']) ? 'checked' : ''}}>
+												<label>7-10 Years <span>{{jobExperienceCount('7-10 Years')}}</span></label>
+											</li>
+											<li>
+												<input type="checkbox" name="Search10PlusYears" value="10+ Years" {{isset($_GET['Search10PlusYears']) ? 'checked' : ''}}>
+												<label>10+ Years <span>{{jobExperienceCount('10+ Years')}}</span></label>
 											</li>
 										</ul>
 									</div>
@@ -345,20 +353,36 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 							<!-- /.filter-block -->
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseQualification" role="button" aria-expanded="false">Qualification</a>
-								<div class="collapse {{(isset($_GET['SearchBachelorQualification']) || isset($_GET['SearchMasterQualification']) || isset($_GET['SearchDoctorateQualification'])) ? 'show' : ''}}" id="collapseQualification">
+								<div class="collapse {{(isset($_GET['SearchSchoolDiploma']) || isset($_GET['SearchAssociate']) || isset($_GET['SearchBachelor']) || isset($_GET['SearchMaster']) || isset($_GET['SearchDoctorate']) || isset($_GET['SearchProfessionalCertification']) || isset($_GET['SearchVocationalTraining'])) ? 'show' : ''}}" id="collapseQualification">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchBachelorQualification" value="Bachelor" {{isset($_GET['SearchBachelorQualification']) ? 'checked' : ''}}>
-												<label>Bachelor</label>
+												<input type="checkbox" name="SearchSchoolDiploma" value="High School Diploma/GED" {{isset($_GET['SearchSchoolDiploma']) ? 'checked' : ''}}>
+												<label>High School Diploma/GED</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchMasterQualification" value="Master" {{isset($_GET['SearchMasterQualification']) ? 'checked' : ''}}>
-												<label>Master</label>
+												<input type="checkbox" name="SearchAssociate" value="Associate's Degree" {{isset($_GET['SearchAssociate']) ? 'checked' : ''}}>
+												<label>Associate's Degree</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchDoctorateQualification" value="Doctorate" {{isset($_GET['SearchDoctorateQualification']) ? 'checked' : ''}}>
-												<label>Doctorate</label>
+												<input type="checkbox" name="SearchBachelor" value="Bachelor's Degree" {{isset($_GET['SearchBachelor']) ? 'checked' : ''}}>
+												<label>Bachelor's Degree</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchMaster" value="Master's Degree" {{isset($_GET['SearchMaster']) ? 'checked' : ''}}>
+												<label>Master's Degree</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchDoctorate" value="Doctorate/Ph.D." {{isset($_GET['SearchDoctorate']) ? 'checked' : ''}}>
+												<label>Doctorate/Ph.D.</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchProfessionalCertification" value="Professional Certification" {{isset($_GET['SearchProfessionalCertification']) ? 'checked' : ''}}>
+												<label>Professional Certification</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchVocationalTraining" value="Vocational Training" {{isset($_GET['SearchVocationalTraining']) ? 'checked' : ''}}>
+												<label>Vocational Training</label>
 											</li>
 										</ul>
 									</div>
