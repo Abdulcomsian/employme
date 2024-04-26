@@ -32,15 +32,15 @@ Subscription Plan
         @if($userSubscription && $userSubscription->plan)
         <div class="membership-plan-wrapper mb-20">
             <div class="row gx-0">
-                <div class="col-xxl-7 col-lg-6 d-flex flex-column">
+                <div class="col-xxl-6 col-lg-6 d-flex flex-column">
                     <div class="column w-100 h-100">
                         <h4>Current Plan ({{$userSubscription->plan->name}})</h4>
                         <p>Unlimited access to our legal document library and online rental application tool, billed monthly.</p>
                     </div>
                 </div>
-                <div class="col-xxl-5 col-lg-6 d-flex flex-column">
+                <div class="col-xxl-6 col-lg-6 d-flex flex-column">
                     <div class="column border-left w-100 h-100">
-                        <div class="d-flex">
+                        <div class="">
                             <h3 class="price m0">₩{{$userSubscription->plan->price}}</h3>
                             <div class="ps-4 flex-fill">
                                 <h6>Monthly Plan</h6>

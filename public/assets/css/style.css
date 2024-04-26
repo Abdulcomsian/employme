@@ -10873,8 +10873,9 @@ body.compensate-for-scrollbar {
   margin: 0;
 }
 .dashboard-body .membership-plan-wrapper h3 {
-  font-size: 60px;
+  font-size: 45px;
   color: #000;
+  margin-bottom: 20px !important;
 }
 .dashboard-body .membership-plan-wrapper h6 {
   font-family: "gordita";
