@@ -567,7 +567,7 @@
             <div class="heading-col-wrapper">
               <div class="flex-hat">
                 <div class="bullet"></div>
-                <div class="heading-small regular">EmployMe Blog</div>
+                <div class="heading-small regular">EmployMe</div>
               </div>
               <div class="overflow-heading">
                 <h2 class="heading-large margin-bottom-xsmall">Check out our blog for insights, tips and more</h2>
