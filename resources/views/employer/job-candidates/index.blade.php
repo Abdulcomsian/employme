@@ -120,14 +120,16 @@ Employer Saved Candidate
                                             <span></span>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
+                                        @if($jobApplicant->pivot->application_status != 1 && $jobApplicant->pivot->application_status != 2)
                                            {{-- <li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li> --}}
-                                            <li><a class="dropdown-item Interview-Modal-Button" href="#" data-bs-toggle="modal" data-bs-target="#InterviewModal" id = "{{$jobApplicant->pivot->employer_job_id ?? ''}}">Interview</a></li>
+                                            <li><a class="dropdown-item Interview-Modal-Button" href="#" data-bs-toggle="modal" data-bs-target="#InterviewModal" id = "{{$jobApplicant->pivot->id ?? ''}}">Interview</a></li>
                                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                 document.getElementById('reject-application-{{$jobApplicant->pivot->employer_job_id}}').submit();"> Reject</a></li>
                                             <form id="reject-application-{{$jobApplicant->pivot->employer_job_id ?? ''}}" action="{{ route('employer.rejectApplication', $jobApplicant->pivot->id) }}" method="POST" style="display: none;">
                                             @csrf
                                             @method('PUT')
                                             </form>
+                                        @endif
                                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                 document.getElementById('message-candidate-{{$jobApplicant->pivot->candidate_id}}').submit();"> Chat</a></li>
                                             <form id="message-candidate-{{$jobApplicant->pivot->candidate_id ?? ''}}" action="{{ route('employer.message_candidate', $jobApplicant->pivot->candidate_id) }}" method="POST" style="display: none;">
@@ -256,7 +258,7 @@ Employer Saved Candidate
                 <div class="form-wrapper m-auto">
                     <form  id = "Interview-Invitation-Form" action = "{{route('employer.interviewInvitation')}}" method = "POST">
                         @csrf
-                        <input type = "hidden" name = "employer_job_id" value = "">
+                        <input type = "hidden" name = "employer_job_application_id" value = "">
                         <div id="interview-request-errors-list"></div>
                         <div class="row">
                             <div class="col-md-6">
@@ -299,10 +301,12 @@ Employer Saved Candidate
 </div>
         @push('page-script')
         <script>
-         document.querySelector('.Interview-Modal-Button').addEventListener('click',function(){
-            document.querySelector('input[name=employer_job_id]').value = this.id;
-        });
-    </script>
+            document.querySelectorAll('.Interview-Modal-Button').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelector('input[name=employer_job_application_id]').value = this.id;
+                });
+            });
+        </script>
         <script>
             
             $(document).ready(function () {

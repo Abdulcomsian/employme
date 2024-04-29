@@ -56,8 +56,8 @@ class JobController extends Controller
          if(isset($request->SearchPartTimeJob) && $request->SearchPartTimeJob !='') {
              $jobTypes[] = $request->SearchPartTimeJob;
          }
-         if(isset($request->SearchFreelanceJob) && $request->SearchFreelanceJob !='') {
-             $jobTypes[] = $request->SearchFreelanceJob;
+         if(isset($request->SearchFixedTermContract) && $request->SearchFixedTermContract !='') {
+             $jobTypes[] = $request->SearchFixedTermContract;
          }
       
         if (!empty($jobTypes)) {
@@ -132,7 +132,7 @@ class JobController extends Controller
         $dt = Carbon::now();
         $dt2 = $dt->copy()->subWeek(); 
        
-        $allInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->whereNotNull('job_link')->where('requested_from',Auth::id())->paginate(10);
+        $allInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())->paginate(10);
         $latestInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())
         ->where('created_at', '>=', $dt2->copy()->startOfDay())
         ->where('created_at', '<=', $dt->copy()->endOfDay())

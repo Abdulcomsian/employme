@@ -355,15 +355,15 @@ Platform</h3>
             </div>
             <div class="list-wrapper">
                 <div class="list-flex">
-                  <div class="circle-check"><img src="../images/icon-check.svg" loading="lazy" alt="" class="icon-check"></div>
-                  <div>Unlimited job postings</div>
+                  <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
+                  <div>Job postings</div>
                 </div>
                 <div class="list-flex">
-                  <div class="circle-check"><img src="../images/icon-check.svg" loading="lazy" alt="" class="icon-check"></div>
+                  <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
                   <div>Access to a pool of qualified candidates</div>
                 </div>
                 <div class="list-flex">
-                  <div class="circle-check"><img src="../images/icon-check.svg" loading="lazy" alt="" class="icon-check"></div>
+                  <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
                   <div>Inbuilt direct messaging with candidates</div>
                 </div>
                 <div class="button-plan-wrapper">

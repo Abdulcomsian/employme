@@ -75,7 +75,10 @@ a.btn.Interview-Modal-Button.subscribed-redirect {
 a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 	color:white!important;
 }
-
+.set-profile-img{
+	width: 100%;
+	height:100%;
+}
 </style>
 <!--
 		=============================================
@@ -99,13 +102,13 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 						<div class="job-search-one position-relative">
 							<form action="{{route('candidatesMarketplace')}}" method="GET">
 								<div class="row">
-									<div class="col-md-5">
+									<div class="col-md-9">
 										<div class="input-box">
 											<div class="label">What are you looking for?</div>
 											<input type="text" class="form-control form-control-lg" name="SearchProfileTitle" placeholder = "Search Candidate" value="{{ isset($_GET['SearchProfileTitle']) ? $_GET['SearchProfileTitle'] : ''}}"/>
 										</div>
 									</div>
-									<div class="col-md-4">
+									{{--<div class="col-md-4">
 										<div class="input-box border-left">
 											<div class="label">Category</div>
 											<select name="SearchJobCategory" class="nice-select lg">
@@ -118,7 +121,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 													@endif
 											</select>
 										</div>
-									</div>
+									</div>--}}
 									<div class="col-md-3">
 										<button class="fw-500 text-uppercase h-100 tran3s search-btn">Search</button>
 									</div>
@@ -273,24 +276,44 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 									</div> -->
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp" role="button" aria-expanded="false">Visa Type</a>
-								<div class="collapse {{(isset($_GET['SearchNoVisa']) || isset($_GET['SearchTouristVisa']) || isset($_GET['SearchStudentVisa']) || isset($_GET['SearchE2TeachingVisa'])) ? 'show' : ''}}" id="collapseExp">
+								<div class="collapse {{(isset($_GET['SearchNewToApply']) || isset($_GET['SearchE2TeachingVisa']) || isset($_GET['SearchE7SpecialOccupation']) || isset($_GET['SearchF2Resident']) || isset($_GET['SearchF5PermanentResident']) || isset($_GET['SearchF6MarriageMigrant']) || isset($_GET['SearchD8CorporateInvestment']) || isset($_GET['SearchD9TradeManagement']) || isset($_GET['SearchD9TradeManagement']) || isset($_GET['SearchH1WorkingHoliday'])) ? 'show' : ''}}" id="collapseExp">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchNoVisa" value="No Visa" {{isset($_GET['SearchNoVisa']) ? 'checked' : ''}}>
-												<label>No Visa</label>
+												<input type="checkbox" name="SearchNewToApply" value="New To Apply" {{isset($_GET['SearchNewToApply']) ? 'checked' : ''}}>
+												<label>New To Apply</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchTouristVisa" value="Tourist Visa" {{isset($_GET['SearchTouristVisa']) ? 'checked' : ''}}>
-												<label>Tourist Visa</label>
+												<input type="checkbox" name="SearchE2TeachingVisa" value="E-2 (Teaching)" {{isset($_GET['SearchE2TeachingVisa']) ? 'checked' : ''}}>
+												<label>E-2 (Teaching)</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchStudentVisa" value="Student Visa" {{isset($_GET['SearchStudentVisa']) ? 'checked' : ''}}>
-												<label>Student Visa</label>
+												<input type="checkbox" name="SearchE7SpecialOccupation" value="E-7 (Special Occupation)" {{isset($_GET['SearchE7SpecialOccupation']) ? 'checked' : ''}}>
+												<label>E-7 (Special Occupation)</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchE2TeachingVisa" value="E2 Teaching Visa" {{isset($_GET['SearchE2TeachingVisa']) ? 'checked' : ''}}>
-												<label>E2 Teaching Visa</label>
+												<input type="checkbox" name="SearchF2Resident" value="F-2 (Resident)" {{isset($_GET['SearchF2Resident']) ? 'checked' : ''}}>
+												<label>F-2 (Resident)</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchF5PermanentResident" value="F-5 (Permanent Resident)" {{isset($_GET['SearchF5PermanentResident']) ? 'checked' : ''}}>
+												<label>F-5 (Permanent Resident)</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchF6MarriageMigrant" value="F-6 (Marriage Migrant)" {{isset($_GET['SearchF6MarriageMigrant']) ? 'checked' : ''}}>
+												<label>F-6 (Marriage Migrant)</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchD8CorporateInvestment" value="D-8 (Corporate Investment)" {{isset($_GET['SearchD8CorporateInvestment']) ? 'checked' : ''}}>
+												<label>D-8 (Corporate Investment)</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchD9TradeManagement" value="D-9 (Trade Management)" {{isset($_GET['SearchD9TradeManagement']) ? 'checked' : ''}}>
+												<label>D-9 (Trade Management)</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchH1WorkingHoliday" value="H-1 (Working Holiday)" {{isset($_GET['SearchH1WorkingHoliday']) ? 'checked' : ''}}>
+												<label>H-1 (Working Holiday)</label>
 											</li>
 										</ul>
 									</div>
@@ -315,28 +338,36 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 							</div>
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp1" role="button" aria-expanded="false">Experience Level</a>
-								<div class="collapse {{(isset($_GET['SearchIntermediateExperience']) || isset($_GET['SearchFresher']) || isset($_GET['SearchNoExperience']) || isset($_GET['SearcInternship']) || isset($_GET['SearchExpert'])) ? 'show' : ''}}" id="collapseExp1">
+								<div class="collapse {{(isset($_GET['SearchNoExperience']) || isset($_GET['Search0To1Year']) || isset($_GET['Search1To3Years']) || isset($_GET['Search3To5Years']) || isset($_GET['Search5To7Years']) || isset($_GET['Search7To10Years']) || isset($_GET['Search10PlusYears'])) ? 'show' : ''}}" id="collapseExp1">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchFresher" value="Fresher" {{isset($_GET['SearchFresher']) ? 'checked' : ''}}>
-												<label>Fresher</label>
+												<input type="checkbox" name="SearchNoExperience" value="No Experience" {{isset($_GET['SearchNoExperience']) ? 'checked' : ''}}>
+												<label>No Experience <span>{{jobExperienceCount('0-1 Year')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchIntermediateExperience" value="Intermediate" {{isset($_GET['SearchIntermediateExperience']) ? 'checked' : ''}}>
-												<label>Intermediate</label>
+												<input type="checkbox" name="Search0To1Year" value="0-1 Year" {{isset($_GET['Search0To1Year']) ? 'checked' : ''}}>
+												<label>0-1 Year <span>{{jobExperienceCount('0-1 Year')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchNoExperience" value="No-Experience" {{isset($_GET['SearchNoExperience']) ? 'checked' : ''}}>
-												<label>No-Experience</label>
+												<input type="checkbox" name="Search1To3Years" value="1-3 Years" {{isset($_GET['Search1To3Years']) ? 'checked' : ''}}>
+												<label>1-3 Years <span>{{jobExperienceCount('Intermediate')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearcInternship" value="Internship" {{isset($_GET['SearcInternship']) ? 'checked' : ''}}>
-												<label>Internship</label>
+												<input type="checkbox" name="Search3To5Years" value="3-5 Years" {{isset($_GET['Search3To5Years']) ? 'checked' : ''}}>
+												<label>3-5 Years <span>{{jobExperienceCount('3-5 Years')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchExpert" value="Expert" {{isset($_GET['SearchExpert']) ? 'checked' : ''}}>
-												<label>Expert</label>
+												<input type="checkbox" name="Search5To7Years" value="5-7 Years" {{isset($_GET['Search5To7Years']) ? 'checked' : ''}}>
+												<label>5-7 Years <span>{{jobExperienceCount('5-7 Years')}}</span></label>
+											</li>
+											<li>
+												<input type="checkbox" name="Search7To10Years" value="7-10 Years" {{isset($_GET['Search7To10Years']) ? 'checked' : ''}}>
+												<label>7-10 Years <span>{{jobExperienceCount('7-10 Years')}}</span></label>
+											</li>
+											<li>
+												<input type="checkbox" name="Search10PlusYears" value="10+ Years" {{isset($_GET['Search10PlusYears']) ? 'checked' : ''}}>
+												<label>10+ Years <span>{{jobExperienceCount('10+ Years')}}</span></label>
 											</li>
 										</ul>
 									</div>
@@ -345,20 +376,36 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 							<!-- /.filter-block -->
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseQualification" role="button" aria-expanded="false">Qualification</a>
-								<div class="collapse {{(isset($_GET['SearchBachelorQualification']) || isset($_GET['SearchMasterQualification']) || isset($_GET['SearchDoctorateQualification'])) ? 'show' : ''}}" id="collapseQualification">
+								<div class="collapse {{(isset($_GET['SearchSchoolDiploma']) || isset($_GET['SearchAssociate']) || isset($_GET['SearchBachelor']) || isset($_GET['SearchMaster']) || isset($_GET['SearchDoctorate']) || isset($_GET['SearchProfessionalCertification']) || isset($_GET['SearchVocationalTraining'])) ? 'show' : ''}}" id="collapseQualification">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchBachelorQualification" value="Bachelor" {{isset($_GET['SearchBachelorQualification']) ? 'checked' : ''}}>
-												<label>Bachelor</label>
+												<input type="checkbox" name="SearchSchoolDiploma" value="High School Diploma/GED" {{isset($_GET['SearchSchoolDiploma']) ? 'checked' : ''}}>
+												<label>High School Diploma/GED</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchMasterQualification" value="Master" {{isset($_GET['SearchMasterQualification']) ? 'checked' : ''}}>
-												<label>Master</label>
+												<input type="checkbox" name="SearchAssociate" value="Associate's Degree" {{isset($_GET['SearchAssociate']) ? 'checked' : ''}}>
+												<label>Associate's Degree</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchDoctorateQualification" value="Doctorate" {{isset($_GET['SearchDoctorateQualification']) ? 'checked' : ''}}>
-												<label>Doctorate</label>
+												<input type="checkbox" name="SearchBachelor" value="Bachelor's Degree" {{isset($_GET['SearchBachelor']) ? 'checked' : ''}}>
+												<label>Bachelor's Degree</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchMaster" value="Master's Degree" {{isset($_GET['SearchMaster']) ? 'checked' : ''}}>
+												<label>Master's Degree</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchDoctorate" value="Doctorate/Ph.D." {{isset($_GET['SearchDoctorate']) ? 'checked' : ''}}>
+												<label>Doctorate/Ph.D.</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchProfessionalCertification" value="Professional Certification" {{isset($_GET['SearchProfessionalCertification']) ? 'checked' : ''}}>
+												<label>Professional Certification</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchVocationalTraining" value="Vocational Training" {{isset($_GET['SearchVocationalTraining']) ? 'checked' : ''}}>
+												<label>Vocational Training</label>
 											</li>
 										</ul>
 									</div>
@@ -482,7 +529,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 								<div class="candidate-profile-card favourite text-center grid-layout mb-25">
 									<a  class="save-btn tran3s save_candidate  save_candidate{{base64_encode($candidate->id)}}" id="{{base64_encode($candidate->id)}}" style="color:{{(savedCandidate($candidate->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
 									@if(isset($candidate->candidatePersonalDetails->profile_picture) && !empty($candidate->candidatePersonalDetails->profile_picture))
-									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
+									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle set-profile-img"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle set-profile-img"></a></div>
 									@else
 									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img rounded-circle"></a></div>
 									@endif
@@ -727,7 +774,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 					<ul class="btn-group style-none d-flex flex-wrap justify-content-center justify-content-lg-end">
 						@auth
 						@role('candidate')
-						<li class="me-2"><a href="{{route('candidatesMarketplace')}}" class="btn-three">Looking for job?</a></li>
+						<li class="me-2"><a href="{{route('jobMarketplace')}}" class="btn-three">Looking for job?</a></li>
 						@endrole
 						@role('employer')
 						<li class="ms-2"><a href="{{route('employer-jobs.create')}}" class="btn-four">Post a job</a></li>
