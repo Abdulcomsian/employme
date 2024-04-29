@@ -5257,7 +5257,7 @@ figcaption {
 .button-circle-medium {
   width: 5.2em;
   height: 5.2em;
-  background-color: #244034;
+  background-color: #ff715b;
   background-image: url('../images/cta-arrow-white.svg');
   background-position: 50%;
   background-repeat: no-repeat;
@@ -5270,7 +5270,7 @@ figcaption {
 }
 
 .button-circle-medium:hover {
-  background-color: #ffdd79;
+  background-color: #b1b0eb;
 }
 
 .hr-flex {

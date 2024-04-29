@@ -276,11 +276,11 @@ hr {
   text-align: center;
   border-radius: 6px;
   color: #244034;
-  background: #D2F34C;
+  background: #ff715b;
   transition: all 0.3s ease-in-out 0s;
 }
 .btn-four:hover {
-  background: #244034;
+  background: #b1b0eb;
   color: #fff;
 }
 
