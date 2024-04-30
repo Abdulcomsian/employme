@@ -119,7 +119,7 @@
 						</div>
                     </div> -->
 					<div class="col-xxl-12 col-xl-12 order-xl-first card mb-60 mr-1 p-1 padding-box">
-							<h3 class="title mb-5">Introduction</h3>
+							<h3 class="title mb-5">Welcome Video</h3>
 							<video width="100%" height="360" controls>
 								<source src="{{asset('uploads/employer/introduction-video/'.$introductionVideo->file_path)}}" type="video/mp4">
 							</video>
