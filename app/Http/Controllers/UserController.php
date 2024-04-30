@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Crypt;
 
 use App\Models\{User, CandidateDocument, EmployerJob, EmployerDetails, CandidatePersonalDetails,
-     SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation, EmployerBusinessLicense, IntroductionVideo, JobApplication, JobInterview, Review };
+     SavedCandidate, JobCategory, Staff, Gallery, BusinessOperation, EmployerBusinessLicense, IntroductionVideo, JobApplication, JobInterview, Review, Housing };
 
 use Illuminate\Support\Facades\Auth;
 use File;
@@ -381,11 +381,12 @@ class UserController extends Controller
         $candidateReviews = Review::with('candidateDetails.candidatePersonalDetails')->where('employer_id',$id)->get();
         //new code starts here
         $businessOperationDetails  = BusinessOperation::where('employer_id',$id)->first();
-        $companyHousingsImages = Gallery::where('employer_id',$id)->get();
+        $companyHousingsImages = Housing::where('employer_id',$id)->get();
         $employerStaff = Staff::where('employer_id',$id)->get();
         $allJobs = EmployerJob::with('employerDetails')->where('posted_by',$id)->get();
         $galleryFiles = Gallery::where('employer_id',$id)->get();
         $introductionVideo = IntroductionVideo::where('employer_id' , $id)->first();
+        $employerLicenseDetails = EmployerBusinessLicense::where('employer_id',$id)->first();
         return view('company-about-us',compact( 
                                             'employerDetails', 
                                             'candidateReviews' ,
@@ -394,7 +395,8 @@ class UserController extends Controller
                                             'employerStaff',
                                             'allJobs',
                                             'galleryFiles',
-                                            'introductionVideo'
+                                            'introductionVideo',
+                                            'employerLicenseDetails'
                                         ));
     }
     public function companyBusinessOperation($id)

@@ -176,64 +176,24 @@
 
 						<div class="container overflow-hidden">
 							<div class="row gy-4 gy-lg-0 gx-xxl-5">
-							@isset($employerStaff)
-							@foreach($employerStaff as $employer_staff)
-							<div class="col-12 col-md-6 col-lg-3">
-								<div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
-									<div class="card-body p-0">
-										<figure class="m-0 p-0">
-										<img class="img-fluid" loading="lazy" src="{{asset($employer_staff->staff_image)}}" alt="">
-										<figcaption class="m-0 p-4">
-											<h4 class="mb-1">{{$employer_staff->title ?? '' }}</h4>
-											<p class="text-secondary mb-0">{{$employer_staff->year_started ?? ''}}</p>
-										</figcaption>
-										</figure>
+								@isset($employerStaff)
+								@foreach($employerStaff as $employer_staff)
+								<div class="col-12 col-md-6 col-lg-3">
+									<div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+										<div class="card-body p-0">
+											<figure class="m-0 p-0">
+											<img class="img-fluid" loading="lazy" src="{{asset($employer_staff->staff_image)}}" alt="">
+											<figcaption class="m-0 p-4">
+												<h4 class="mb-1">{{$employer_staff->title ?? '' }}</h4>
+												<p class="text-secondary mb-0">{{$employer_staff->year_started ?? ''}}</p>
+											</figcaption>
+											</figure>
+										</div>
 									</div>
 								</div>
+								@endforeach
+								@endisset
 							</div>
-							@endforeach
-							@endisset
-							{{--<div class="col-12 col-md-6 col-lg-3">
-								<div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
-								<div class="card-body p-0">
-									<figure class="m-0 p-0">
-									<img class="img-fluid" loading="lazy" src="{{asset('uploads/employer/staff_images/team-img-5.jpg')}}" alt="">
-									<figcaption class="m-0 p-4">
-										<h4 class="mb-1">Evander Mac</h4>
-										<p class="text-secondary mb-0">Art Director</p>
-									</figcaption>
-									</figure>
-								</div>
-								</div>
-							</div>
-							<div class="col-12 col-md-6 col-lg-3">
-								<div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
-								<div class="card-body p-0">
-									<figure class="m-0 p-0">
-									<img class="img-fluid" loading="lazy" src="{{asset('uploads/employer/staff_images/team-img-2.jpg')}}" alt="">
-									<figcaption class="m-0 p-4">
-										<h4 class="mb-1">Taytum Elia</h4>
-										<p class="text-secondary mb-0">Investment Planner</p>
-									</figcaption>
-									</figure>
-								</div>
-								</div>
-							</div>
-							<div class="col-12 col-md-6 col-lg-3">
-								<div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
-								<div class="card-body p-0">
-									<figure class="m-0 p-0">
-									<img class="img-fluid" loading="lazy" src="{{asset('uploads/employer/staff_images/team-img-4.jpg')}}" alt="">
-									<figcaption class="m-0 p-4">
-										<h4 class="mb-1">Wylder Elio</h4>
-										<p class="text-secondary mb-0">Financial Analyst</p>
-									</figcaption>
-									</figure>
-								</div>
-								</div>
-							</div>
-							</div>--}}
-						</div>
 
 
 						

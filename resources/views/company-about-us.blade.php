@@ -101,7 +101,7 @@
 
 
 							<div class="container">
-								<h3>Overview</h3>
+								<h3>About Us</h3>
 								{{--<p><b>School's Mission & Vision:</b> {{$employerDetails->school_vision_and_mission}}</p>--}}
 								<p>{!! $employerDetails->employer_details ?? '' !!}</p>
 					
@@ -140,34 +140,106 @@
 								<p>Videos: (Short clips or promotional videos showcasing the school environment, events, or teaching methods)</p>--}}
 							</div>
 							<div class="row">
-							<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-								<div class="carousel-indicators">
-									<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-									<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-									<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-								</div>
-								<div class="carousel-inner">
-								@foreach($galleryFiles as $index =>  $gallery)
-									@if($gallery->file_extension != 'mp4')
-									<div class="carousel-item  @if($index == 0) active @endif">
-										1
-										<img class="d-block w-100"  src="{{asset($gallery->file_name)}}" alt="First slide">
+								<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+									<div class="carousel-indicators">
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
 									</div>
-									@endif
+									<div class="carousel-inner">
+										@foreach($galleryFiles as $index =>  $gallery)
+											@if($gallery->file_extension != 'mp4')
+											<div class="carousel-item  @if($index == 0) active @endif">
+												1
+												<img class="d-block w-100"  src="{{asset($gallery->file_name)}}" alt="First slide">
+											</div>
+											@endif
+										@endforeach
+									</div>
+									<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Previous</span>
+									</button>
+									<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Next</span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					@endif
+					@if($employerStaff && $employerStaff->isNotEmpty())
+					<div class="col-xxl-12 col-xl-12 order-xl-first card mb-60 mr-1 p-1 padding-box">
+						<div class="details-post-data me-xxl-5 pe-xxl-4">
+							<!-- <h3>Overview</h3> -->
+							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Vulputate odio ut enim blandit. Nibh ipsum consequat nisl vel pretium lectus quam.</p> -->
+							<!-- <p> Nulla at volutpat diam ut. Lobortis feugiat vivamus at augue eget arcu. Urna condimentum mattis pellentesque id nibh tortor id aliquet. Dignissim cras tincidunt lobortis feugiat. Est sit amet facilisis magna etiam tempor. Eu augue ut lectus arcu bibendum at varius vel pharetra. Vel facilisis volutpat est velit egestas dui id. Ut pharetra sit amet aliquam. Elit at imperdiet dui accumsan sit amet nulla facilisi morbi. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Magna fringilla urna porttitor rhoncus. Et odio pellentesque diam volutpat. Congue eu consequat ac felis donec et odio pellentesque diam. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. </p> -->
+							<!-- <p>Felis eget velit aliquet sagittis id. Massa placerat duis ultricies lacus sed turpis tincidunt id. Vel eros donec ac odio tempor orci dapibus ultrices. Ipsum consequat nisl vel pretium lectus quam. Dignissim sodales ut eu sem. </p> -->
+
+
+							<div class="container">
+								<h3>Current Staff</h3>
+								{{--<p>Photos: (Images of classrooms, events, staff, and students, housing)</p>
+								<p>Videos: (Short clips or promotional videos showcasing the school environment, events, or teaching methods)</p>--}}
+							</div>
+							<div class="row">
+								@isset($employerStaff)
+								@foreach($employerStaff as $employer_staff)
+								<div class="col-12 col-md-6 col-lg-4 my-2">
+									<div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+										<div class="card-body p-0">
+											<figure class="m-0 p-0">
+											<img class="img-fluid" loading="lazy" src="{{asset($employer_staff->staff_image)}}" alt="">
+											<figcaption class="m-0 p-4">
+												<h4 class="mb-1">{{$employer_staff->title ?? '' }}</h4>
+												<p class="text-secondary mb-0">{{$employer_staff->year_started ?? ''}}</p>
+											</figcaption>
+											</figure>
+										</div>
+									</div>
+								</div>
 								@endforeach
-									
+								@endisset
+							</div>
+						</div>
+					</div>
+					@endif
+					@if($companyHousingsImages && $companyHousingsImages->isNotEmpty())
+					<div class="col-xxl-12 col-xl-12 order-xl-first card mb-60 mr-1 p-1 padding-box">
+						<div class="details-post-data me-xxl-5 pe-xxl-4">
+							<!-- <h3>Overview</h3> -->
+							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Vulputate odio ut enim blandit. Nibh ipsum consequat nisl vel pretium lectus quam.</p> -->
+							<!-- <p> Nulla at volutpat diam ut. Lobortis feugiat vivamus at augue eget arcu. Urna condimentum mattis pellentesque id nibh tortor id aliquet. Dignissim cras tincidunt lobortis feugiat. Est sit amet facilisis magna etiam tempor. Eu augue ut lectus arcu bibendum at varius vel pharetra. Vel facilisis volutpat est velit egestas dui id. Ut pharetra sit amet aliquam. Elit at imperdiet dui accumsan sit amet nulla facilisi morbi. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Magna fringilla urna porttitor rhoncus. Et odio pellentesque diam volutpat. Congue eu consequat ac felis donec et odio pellentesque diam. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. </p> -->
+							<!-- <p>Felis eget velit aliquet sagittis id. Massa placerat duis ultricies lacus sed turpis tincidunt id. Vel eros donec ac odio tempor orci dapibus ultrices. Ipsum consequat nisl vel pretium lectus quam. Dignissim sodales ut eu sem. </p> -->
+
+
+							<div class="container">
+								<h3>housings</h3>
+								{{--<p>Photos: (Images of classrooms, events, staff, and students, housing)</p>
+								<p>Videos: (Short clips or promotional videos showcasing the school environment, events, or teaching methods)</p>--}}
+							</div>
+							<div class="row">
+								@foreach($companyHousingsImages as $image)
+									<div class="col-md-4 mb-20">
+										<img src="{{asset($image->file_name)}}" alt="">
+									</div>
+								@endforeach
+								{{--<div class="col-md-4 mb-20">
+									<img src="http://127.0.0.1:8000/assets/images/assets/classroom-1.jpg" alt="">
 								</div>
-								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-								</button>
-								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-								</button>
+								<div class="col-md-4 mb-20">
+									<img src="http://127.0.0.1:8000/assets/images/assets/classroom-1.jpg" alt="">
 								</div>
-							
-								
+								<div class="col-md-4 mb-20">
+									<img src="http://127.0.0.1:8000/assets/images/assets/classroom-1.jpg" alt="">
+								</div>
+								<div class="col-md-4 mb-20">
+									<img src="http://127.0.0.1:8000/assets/images/assets/classroom-1.jpg" alt="">
+								</div>
+								<div class="col-md-4 mb-20">
+									<img src="http://127.0.0.1:8000/assets/images/assets/classroom-1.jpg" alt="">
+								</div>--}}
 
 							</div>
 
@@ -176,6 +248,43 @@
 						</div>
 					</div>
 					@endif
+					<div class="col-xxl-12 col-xl-12 order-xl-first card mb-60 mr-1 p-1 padding-box">
+						<div class="details-post-data me-xxl-5 pe-xxl-4">
+								<!-- <h3>Overview</h3> -->
+								<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Vulputate odio ut enim blandit. Nibh ipsum consequat nisl vel pretium lectus quam.</p> -->
+								<!-- <p> Nulla at volutpat diam ut. Lobortis feugiat vivamus at augue eget arcu. Urna condimentum mattis pellentesque id nibh tortor id aliquet. Dignissim cras tincidunt lobortis feugiat. Est sit amet facilisis magna etiam tempor. Eu augue ut lectus arcu bibendum at varius vel pharetra. Vel facilisis volutpat est velit egestas dui id. Ut pharetra sit amet aliquam. Elit at imperdiet dui accumsan sit amet nulla facilisi morbi. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Magna fringilla urna porttitor rhoncus. Et odio pellentesque diam volutpat. Congue eu consequat ac felis donec et odio pellentesque diam. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. </p> -->
+								<!-- <p>Felis eget velit aliquet sagittis id. Massa placerat duis ultricies lacus sed turpis tincidunt id. Vel eros donec ac odio tempor orci dapibus ultrices. Ipsum consequat nisl vel pretium lectus quam. Dignissim sodales ut eu sem. </p> -->
+
+
+							<div class="container" >
+								<h3>Curriculum</h3>
+								{{--<p><b>School's Mission & Vision:</b> {{$employerDetails->school_vision_and_mission}}</p>--}}
+								<p style = "font-family:gordita;font-weight: normal;font-size: 16px;position: relative; color: rgba(0, 0, 0, 0.7);">{!! $businessOperationDetails->curriculum ?? '' !!}</p>
+								<h4 style = "font-family:gordita">Work Hours</h4>
+								<div class = "row col-md-6">
+								<table class="table table-borderless">
+								
+								<tbody>
+								@isset($businessOperationDetails->operation_time)
+								@foreach($businessOperationDetails->operation_time as $operation_time)
+								@if(isset($operation_time['day']) && $operation_time['day'] !='')
+								<tr>
+									<td><b>{{$operation_time['day']}}</b></td>
+									<td>{{ isset($operation_time['start_time']) ? date('h:i A',strtotime($operation_time['start_time'])) : ''}} - {{ isset($operation_time['end_time']) ? date('h:i A',strtotime($operation_time['end_time'])) : ''}}</td>
+								</tr>
+								@endif
+								@endforeach
+								@endisset
+								</tbody>
+							</table>
+								</div>
+								
+
+								<!-- <p><b>Teaching Philosophy:</b> (Details about the school's pedagogic beliefs and methods)</p> -->
+							</div>
+							
+						</div>
+					</div>
 
 					<div class="col-xxl-12 col-xl-12 order-xl-first card  mb-60 mr-1 p-1 padding-box">
 						<div class="details-post-data me-xxl-5 pe-xxl-4">
@@ -576,8 +685,38 @@
 						<div class="border-top mt-35 lg-mt-20 pt-25">
 							<ul class="job-meta-data row style-none">
 								<li class="col-12">
-									<span>Business Hours:</span>
+									<span>Business Type:</span>
+									<div>{{$employerDetails->institution_type ?? ''}}</div>
+								</li>
+								<li class="col-12">
+									<span>Business License:</span>
+									@if($employerLicenseDetails)
+										@if($employerLicenseDetails->approval_status == 1)
+										<div>Verified</div>
+										@endif
+									@else
+									<div>Unverified</div>
+									@endif
+								</li>
+								<li class="col-12">
+									<span>Address Line 1:</span>
 									<div>{{$employerDetails->business_hours ?? ''}}</div>
+								</li>
+								<li class="col-12">
+									<span>Address Line 2:</span>
+									<div>{{$employerDetails->address_line_1 ?? ''}}</div>
+								</li>
+								<li class="col-12">
+									<span>State/Region/Province:</span>
+									<div>{{$employerDetails->state ?? ''}}</div>
+								</li>
+								<li class="col-12">
+									<span>Country:</span>
+									<div>{{$employerDetails->employerCountry->name ?? ''}}</div>
+								</li>
+								<li class="col-12">
+									<span>Business Hours:</span>
+									<div>{{$employerDetails->address_line_1 ?? ''}}</div>
 								</li>
 								<li class="col-12">
 									<span>Number of Students:</span>
@@ -586,6 +725,18 @@
 								<li class="col-12">
 									<span>Number of Teachers:</span>
 									<div>{{$employerDetails->number_of_teachers ?? ''}}</div>
+								</li>
+								<li class="col-12">
+									<span>Email:</span>
+									<div>{{$employerDetails->number_of_teachers ?? ''}}</div>
+								</li>
+								<li class="col-12">
+									<span>Contact Number:</span>
+									<div>{{$employerDetails->phone_number ?? ''}}</div>
+								</li>
+								<li class="col-12">
+									<span>Number of Foreign Staff:</span>
+									<div>{{$employerDetails->employed_foreign_staff_and_roles ?? ''}}</div>
 								</li>
 	
 								<!-- <li class="col-12">
