@@ -6,7 +6,7 @@ Profile
 @push('page-css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="{{asset('assets/css/select2.min.css')}}" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
     .step {
@@ -863,7 +863,7 @@ Profile
                                     <label for="">Salary Expectations</label>
                                     <select value= "" name="salaryExpectations" id="salaryExpectations" class="nice-select">
                                         <option value="Under 2,000,000 KRW/month" {{$candidatePreferencesDetails->expected_salary == 'Under 2,000,000 KRW/month' ? 'selected' : ''}}>Under 2,000,000 KRW/month</option>
-                                        <option value="2,000,000 - 2,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '2,000,000 - 2,999,999 KRW/month' ? 'selected' : ''}}>2,000,000 - 2,999,999 KRW/month/option>
+                                        <option value="2,000,000 - 2,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '2,000,000 - 2,999,999 KRW/month' ? 'selected' : ''}}>2,000,000 - 2,999,999 KRW/month</option>
                                         <option value="3,000,000 - 3,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '3,000,000 - 3,999,999 KRW/month' ? 'selected' : ''}}>3,000,000 - 3,999,999 KRW/month</option>
                                         <option value="4,000,000 - 4,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '4,000,000 - 4,999,999 KRW/month' ? 'selected' : ''}}>4,000,000 - 4,999,999 KRW/month</option>
                                         <option value="5,000,000 - 5,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '5,000,000 - 5,999,999 KRW/month' ? 'selected' : ''}}>5,000,000 - 5,999,999 KRW/month</option>
@@ -1383,10 +1383,10 @@ Profile
     </div>
 </div>
 @push('page-script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{asset('assets/js/select2.min.js')}}"></script>
 <script>
     let currentStep = 1;
 
@@ -1402,16 +1402,16 @@ Profile
     });
     $(document).ready(function() {
 
-        $('.summernote').summernote({
-            height: 300,
-            toolbar: [
-            ['style', ['bold', 'italic', 'underline', 'clear']],
-            ['font', ['strikethrough', 'superscript', 'subscript']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['height', ['height']],
-            ['view', ['fullscreen']],
-            ['insert', []] // Empty array to remove all insert options (including video, audio, and picture)
-        ]});
+        // $('.summernote').summernote({
+        //     height: 300,
+        //     toolbar: [
+        //     ['style', ['bold', 'italic', 'underline', 'clear']],
+        //     ['font', ['strikethrough', 'superscript', 'subscript']],
+        //     ['para', ['ul', 'ol', 'paragraph']],
+        //     ['height', ['height']],
+        //     ['view', ['fullscreen']],
+        //     ['insert', []] // Empty array to remove all insert options (including video, audio, and picture)
+        // ]});
 
         $("#preferredCityRegionInSouthKorea").select2();
 
@@ -1426,74 +1426,74 @@ Profile
                 fileReader.readAsDataURL(file[0]);
             }
             
-        })
+        });
 
-    $(".delete-doc").on("click" , function(e){
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let docId = e.target.dataset.docId;
-        let element = this;
-        if(docId !== undefined)
-        {
-            $.ajax({
-            type: "POST",
-              url: "{{route('deleteDocument')}}",
-              data: {
-                _token : "{{csrf_token()}}",
-                docId : docId
-              },
-              success:function(res){
-                if(res.status){
-                    toastr.success(res.message);
-                    element.classList.add("d-none");
-                    let uploadSection = element.closest(".upload-section");
-                    uploadSection.querySelector(".btn-file").remove();
-                }else{
-                    toastr.error(res.message)
+        $(".delete-doc").on("click" , function(e){
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            let docId = e.target.dataset.docId;
+            let element = this;
+            if(docId !== undefined)
+            {
+                $.ajax({
+                type: "POST",
+                url: "{{route('deleteDocument')}}",
+                data: {
+                    _token : "{{csrf_token()}}",
+                    docId : docId
+                },
+                success:function(res){
+                    if(res.status){
+                        toastr.success(res.message);
+                        element.classList.add("d-none");
+                        let uploadSection = element.closest(".upload-section");
+                        uploadSection.querySelector(".btn-file").remove();
+                    }else{
+                        toastr.error(res.message)
+                    }
                 }
-              }
-            })
-        }
-    });
-
-    $("#visa_eligibility_check").on("click", function(e) {
-        e.preventDefault();
-        document.querySelector(".candidate-visa-eligibility-progress").classList.remove("d-none");
-        $("#visa_eligibility_check").attr('disabled',true);
-          $.ajax({
-            type: "POST",
-              url: "{{route('candidate.profile-1.save')}}",
-              data: {
-                _token:"{{csrf_token()}}",
-                nationality: $("#multi-step-form").find("[name=nationality]").val(),
-                passport: $("#multi-step-form").find("[name=passport]").val(),
-                current_visa_status: $("#multi-step-form").find("[name=current_visa_status]").val(),
-                criminal_record: $("#multi-step-form").find("[name=criminal_record]").val(),
-                graduation: $("#multi-step-form").find("[name=graduation_from_accredited_university]").val(),
-                is_healthy: $("#multi-step-form").find("[name=is_healthy]").val(),
-                // health_declaration: document.querySelector("#step-1").querySelector(".note-editable").innerHTML,
-                        },
-              dataType: 'json',
-              success: function (data) {
-    
-                if (data.status) {
-                    toastr.success(data.message);
-                }else{
-                    $(".alert").remove();
-                    $.each(data.errors, function (key, val) {
-                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
-                    });
-                }
-               
-              },
-              complete: function(){
-                document.querySelector(".candidate-visa-eligibility-progress").classList.add("d-none");
-                $("#visa_eligibility_check").attr('disabled',false);
+                })
             }
-          });
-  
-          return false;
-      });
+        });
+
+        $("#visa_eligibility_check").on("click", function(e) {
+            e.preventDefault();
+            document.querySelector(".candidate-visa-eligibility-progress").classList.remove("d-none");
+            $("#visa_eligibility_check").attr('disabled',true);
+            $.ajax({
+                type: "POST",
+                url: "{{route('candidate.profile-1.save')}}",
+                data: {
+                    _token:"{{csrf_token()}}",
+                    nationality: $("#multi-step-form").find("[name=nationality]").val(),
+                    passport: $("#multi-step-form").find("[name=passport]").val(),
+                    current_visa_status: $("#multi-step-form").find("[name=current_visa_status]").val(),
+                    criminal_record: $("#multi-step-form").find("[name=criminal_record]").val(),
+                    graduation: $("#multi-step-form").find("[name=graduation_from_accredited_university]").val(),
+                    is_healthy: $("#multi-step-form").find("[name=is_healthy]").val(),
+                    // health_declaration: document.querySelector("#step-1").querySelector(".note-editable").innerHTML,
+                            },
+                dataType: 'json',
+                success: function (data) {
+        
+                    if (data.status) {
+                        toastr.success(data.message);
+                    }else{
+                        $(".alert").remove();
+                        $.each(data.errors, function (key, val) {
+                            $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                        });
+                    }
+                
+                },
+                complete: function(){
+                    document.querySelector(".candidate-visa-eligibility-progress").classList.add("d-none");
+                    $("#visa_eligibility_check").attr('disabled',false);
+                }
+            });
+    
+            return false;
+        });
 
       $("#candidate-personal-details").on("click", function(e) {
         e.preventDefault();
@@ -1855,6 +1855,7 @@ Profile
       });
 
     }); 
+    
 </script>
 <script>
      var i = 0;
@@ -1928,17 +1929,17 @@ const experienceArrLength = experienceArr.filter(name => /experience\[\d+\]\[rol
                             
                             )
 
-            $(".summernote").summernote({
-                height: 300,
-                toolbar: [
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough', 'superscript', 'subscript']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']],
-                    ['view', ['fullscreen']],
-                    ['insert', []] // Empty array to remove all insert options (including video, audio, and picture)
-                ]
-       });
+    //         $(".summernote").summernote({
+    //             height: 300,
+    //             toolbar: [
+    //                 ['style', ['bold', 'italic', 'underline', 'clear']],
+    //                 ['font', ['strikethrough', 'superscript', 'subscript']],
+    //                 ['para', ['ul', 'ol', 'paragraph']],
+    //                 ['height', ['height']],
+    //                 ['view', ['fullscreen']],
+    //                 ['insert', []] // Empty array to remove all insert options (including video, audio, and picture)
+    //             ]
+    //    });
        });
        $(document).on('click', '.remove-tr', function(){  
             $(this).parents('.candidate-experience-details').remove();

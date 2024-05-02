@@ -4,7 +4,7 @@
 Profile
 @endsection
 @push('page-css')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.css')}}" media="all">	
+<link href="{{asset('assets/css/select2.min.css')}}" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet">
 <style>
@@ -944,6 +944,7 @@ h3{
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
 
 <script src="https://js.stripe.com/v3/"></script>
+<script src="{{asset('assets/js/select2.min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
 

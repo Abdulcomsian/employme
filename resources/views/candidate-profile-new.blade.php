@@ -20,6 +20,15 @@ Candidate Profile Details
     color: #000;
     font-size: 15px;
 }
+.inner-banner-one .candidate-profile-card .cv-download-btn {
+    line-height: 38px;
+    border: 1px solid #ff715b;
+    border-radius: 40px;
+    color: #ff715b;
+    font-size: 13px;
+    letter-spacing: -0.5px;
+    padding: 0 20px;
+}
 </style>
 
         <!-- 
@@ -161,6 +170,12 @@ Candidate Profile Details
                                 @endif
                             </div>
                             @endif
+                            @isset($candidateDetails->candidatePersonalDetails->why_interested_teaching_in_korea)
+                            <div class="inner-card mb-65 lg-mb-40">
+                                <h3 class="title">Why I am interested in Teaching in South Korea ?</h3>
+                                <p>{{$candidateDetails->candidatePersonalDetails->why_interested_teaching_in_korea ?? ''}}</p>
+                            </div>
+                            @endisset
                             @if(isset($candidateDetails->candidateEducationalDetails) && count($candidateDetails->candidateEducationalDetails) > 0)
                             <div class="inner-card mb-75 lg-mb-50">
                                 <h3 class="title">Education</h3>
@@ -209,6 +224,38 @@ Candidate Profile Details
                         <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
                             <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
                                 <ul class="style-none">
+                                    <li>
+                                        <span>Nationality: </span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->getNationality->name ?? ''}}</div>
+                                    </li>
+                                    <li>
+                                        <span>Passport: </span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->getPassport->name ?? ''}}</div>
+                                    </li>
+                                    <li>
+                                        <span>Visa Status:</span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->current_visa_status ?? ''}}</div>
+                                    </li>
+                                    <li>
+                                        <span>Criminal Convictions: </span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->criminal_record ?? ''}}</div>
+                                    </li>
+                                    <li>
+                                        <span>Graduation from accredited university: </span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->graduation ?? ''}}</div>
+                                    </li>
+                                    <li>
+                                        <span>Health Declaration: </span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->is_healthy ?? ''}}</div>
+                                    </li>
+                                    <li>
+                                        <span>Gender: </span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->gender ?? ''}}</div>
+                                    </li>
+                                    <li>
+                                        <span>Date of birth: </span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->date_of_birth ?? ''}}</div>
+                                    </li>
                                         @isset($candidateDetails->candidateHighestQualification)
                                     <li>
                                         <span>Qualification: </span>
@@ -220,16 +267,32 @@ Candidate Profile Details
                                         <div>{{$candidateDetails->candidatePreferences->preferred_start_date ?? ''}}</div>
                                     </li>
                                     <li>
-                                        <span>Visa Status:</span>
-                                        <div>{{$candidateDetails->candidatePersonalDetails->current_visa_status ?? ''}}</div>
+                                        <span>Preferred City: </span>
+                                        <div>{{$candidateDetails->candidatePreferences->preferred_city_region ?? ''}}</div>
                                     </li>
                                     <li>
+                                        <span>Preferred School: </span>
+                                        <div>{{$candidateDetails->candidatePreferences->school_type ?? ''}}</div>
+                                    </li>
+                                    <li>
+                                        <span>Preferred Age Group: </span>
+                                        <div>{{$candidateDetails->candidatePreferences->age_group ?? ''}}</div>
+                                    </li>
+                                    <li>
+                                        <span>Expected Salary:</span>
+                                        <div>{{$candidateDetails->candidatePreferences->expected_salary ?? ''}}</div>
+                                    </li>
+                                    <li>
+                                        <span>Language Proficiency:</span>
+                                        <div>{{$candidateDetails->candidatePersonalDetails->language_proficiency ?? ''}}</div>
+                                    </li>
+                                    <!-- <li>
                                         <span>Apostille Status: </span>
                                         <div>Verified</div>
-                                    </li>
+                                    </li> -->
                                     <li>
                                         <span> Teaching Experience: </span>
-                                        <div>{{$candidateDetails->candidateEducation->teaching_experiance ?? ''}}</div>
+                                        <div>{{$candidateDetails->candidatePreferences->experience_level ?? ''}}</div>
                                     </li>
 
                                 </ul>
