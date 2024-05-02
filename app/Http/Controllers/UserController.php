@@ -549,7 +549,7 @@ class UserController extends Controller
             }
             $zip = new ZipArchive;
             $zipFileName = $filename.'.zip';
-            $candidateDocuments  = CandidateDocument::where('user_id',$candidate_id)->first();
+            $candidateDocuments  = CandidateDocument::where('user_id',$candidate_id)->get();
             if(!$candidateDocuments->isEmpty())
             {
                 foreach($candidateDocuments as $document)
