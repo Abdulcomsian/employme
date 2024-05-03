@@ -41,7 +41,7 @@ Candidate Profile Details
                 <div class="candidate-profile-card list-layout">
                     <div class="d-flex align-items-start align-items-xl-center">
                         @if(isset($candidateDetails->candidatePersonalDetails->profile_picture) && !empty($candidateDetails->candidatePersonalDetails->profile_picture))
-                        <div class="cadidate-avatar  position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidateDetails->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidateDetails->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
+                        <div class="cadidate-avatar  position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidateDetails->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidateDetails->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle" style = "width:80px;height:80px;object-fit:cover"></a></div>
                         @else
                         <div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidateDetails->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
                         @endif

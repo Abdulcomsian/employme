@@ -14,7 +14,7 @@
             <p class="p-medium min-w">Made for Korean Employers</p>
           </div>
           <div class="w-layout-grid grid-buttons">
-            <a href="services" class="link-block w-inline-block">
+            <a href="#our-services" class="link-block w-inline-block">
               <div class="btn-label-wrapper">
                 <div class="label-button">Our Services</div>
                 <div class="arrow-wrapper"><img src="{{asset('assets/images/cta-arrow-black.svg')}}" loading="lazy" alt="" class="icon-arrow-flip"><img src="{{asset('assets/images/cta-arrow-white.svg')}}" loading="lazy" alt="" class="icon-arrow-flip"></div>
@@ -95,19 +95,19 @@
       </div>
 
 
-      <div class="w-layout-grid main-grid-stage">
+      <div class="w-layout-grid main-grid-stage"  id= "our-services">
       <div id="w-node-_834df346-b183-6b86-9dc7-9e9a0dd4e30f-b18f57be" data-w-id="834df346-b183-6b86-9dc7-9e9a0dd4e30f" class="box-wrapper no-hover">
+          <div class="icon-box yellow">
+            <img src="{{asset('assets/images/ic-003-color.svg')}}" loading="lazy" alt="" class="icon-content"> 
+          </div>
+            <div class="icon-wrapper"></div>
+              <div class="content-wrapper">
+                  <h3 class="heading-small">Jobs Marketplace</h3>
+                  <p class="p-small">Once signed up, post jobs to allow candidates to initiate interview requests with you.
 
-<div class="icon-box yellow"><img src="{{asset('assets/images/ic-003-color.svg')}}" loading="lazy" alt="" class="icon-content">
-</div>
-<div class="icon-wrapper"></div>
-<div class="content-wrapper">
-  <h3 class="heading-small">Jobs Marketplace</h3>
-  <p class="p-small">Once signed up, post jobs to allow candidates to initiate interview requests with you.
-
-</p>
-</div>
-</div>
+                </p>
+            </div>
+        </div>
 
         <div id="w-node-_834df346-b183-6b86-9dc7-9e9a0dd4e30f-b18f57be" data-w-id="834df346-b183-6b86-9dc7-9e9a0dd4e30f" class="box-wrapper no-hover">
 
