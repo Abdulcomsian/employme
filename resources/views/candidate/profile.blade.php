@@ -663,7 +663,7 @@ Profile
                                 <div class="col-md-12">
                                     <div class="dash-input-wrapper mb-30">
                                         <label for="">Description</label>
-                                        <textarea  name="experience[{{$index}}][description]" value="" class="summernote">{!! $professional_details['description'] ?? '' !!}</textarea>
+                                        <textarea  name="experience[{{$index}}][description]" value="" class="description-summernote">{!! $professional_details['description'] ?? '' !!}</textarea>
                                         {{-- <input type="text" name="experience[{{$index}}][description]" placeholder="" value = "{{$professional_details['description'] ?? ''}}"> --}}
 
                                     </div>
@@ -710,7 +710,7 @@ Profile
                                 <div class="col-md-10">
                                     <div class="dash-input-wrapper mb-30">
                                         <label for="">Description</label>
-                                        <div  name="experience[{{$index}}][description]" value="" class="summernote">{!! $professional_details['description'] ?? '' !!}</div>
+                                        <textarea  name="experience[{{$index}}][description]" value="" class="description-summernote">{!! $professional_details['description'] ?? '' !!}</textarea>
                                         {{-- <input type="text" name="experience[{{$index}}][description]" placeholder="" value = "{{$professional_details['description'] ?? ''}}"> --}}
 
                                     </div>
@@ -740,7 +740,7 @@ Profile
                                 <div class="col-md-6">
                                     <div class="dash-input-wrapper mb-30">
                                         <label for="">Employer Name</label>
-                                        <input type="text" name="experience[0][employer_name]" placeholder="" value = "{{$professional_details['role'] ?? 'employer_name'}}">
+                                        <input type="text" name="experience[0][employer_name]" placeholder="Employer" value = "{{$professional_details['role'] ?? ''}}">
 
                                     </div>
                                 </div>
@@ -765,7 +765,7 @@ Profile
                                 <div class="col-md-12">
                                     <div class="dash-input-wrapper mb-30">
                                         <label for="">Description</label>
-                                        <div  name="experience[0][description]" value="" class="summernote">{!! $professional_details['description'] ?? '' !!}</div>
+                                        <textarea  name="experience[0][description]" value="" class="description-summernote">{!! $professional_details['description'] ?? '' !!}</textarea>
                                         {{-- <input type="text" name="experience[0][description]" placeholder="" value = "{{$professional_details['description'] ?? ''}}"> --}}
 
                                     </div>
@@ -1916,7 +1916,7 @@ const experienceArrLength = experienceArr.filter(name => /experience\[\d+\]\[rol
                                ' <div class="col-md-8">'+
                                     '<div class="dash-input-wrapper mb-30">'+
                                         '<label for="">Description</label>'+
-                                        '<div type="text" name="experience['+j+'][description]" placeholder="" value = "" class="summernote"></div>'+
+                                        '<textarea type="text" name="experience['+j+'][description]" placeholder="" value = "" class="description-summernote"></textarea>'+
                                     '</div>'+
                                 '</div>'+
                                 ' <div class="col-md-2 pt-4">'+

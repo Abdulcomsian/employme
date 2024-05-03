@@ -468,11 +468,21 @@ h3{
 												<input type="time" id="end-time" value="{{$employerDetails->business_hours && count($workingHours) > 1 ? $workingHours[1] : $currentTime}}">
 											  </div>
 										</div>
+										
 										{{-- <input type="number" class="number-input" name="businessHours" placeholder="4935" value="{{$employerDetails->business_hours ?? ''}}"> --}}
 									</div>
 								</div>
 							</div>
-
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="dash-input-wrapper mb-20">
+										<label for="">Overview</label>
+										<textarea  name="detailsDescription" value="" id="summernote" class = " @error('title') is-invalid @enderror" placeholder="Zubayer">{!! $employerDetails->employer_details ?? '' !!}</textarea>
+										
+									</div>
+									<!-- /.dash-input-wrapper -->
+								</div>
+							</div> 
 							<div class="d-flex flex-row justify-content-end gap-3">
 								{{-- <button type="button" class="dash-btn-one" onclick="previousStep(2)">Previous</button> --}}
 								<button type="submit" class="dash-btn-one" id ="operational-details" >Submit</button>
@@ -1050,7 +1060,7 @@ h3{
 
 
 		$('#summernote').summernote({
-			placeholder: 'Curriculum',
+			placeholder: 'Overview',
 			tabsize: 2,
 			height: 200
  			});
@@ -1108,6 +1118,7 @@ h3{
 				formData.append('employed_foreign_staff_and_roles',$("#operational-details-form").find('[name=numberofForeignStaffCurrentlyEmployed]').val());
 				formData.append("number_of_students", $("#operational-details-form").find("[name=numberOfStudents]").val());
 				formData.append("number_of_teachers", $("#operational-details-form").find("[name=numberOfTeachers]").val());
+				formData.append("employer_details", $("#operational-details-form").find("[name=detailsDescription]").val());
 				let startTime = $("#start-time").val();
 				let endTime = $("#end-time").val();
 				formData.append("business_hours", startTime+'-'+endTime);
@@ -1142,7 +1153,6 @@ h3{
 				formData.append("_token", "{{ csrf_token() }}");
 				/* formData.append('plan',$("#payment-details-form").find('[name=differentSubscriptionOptions]').val())
 				 */
-				// formData.append("employer_details", $("#payment-details-form").find("[name=detailsDescription]").val());
 				formData.append("introductry_video", $('#introductryVideo')[0].files[0]);
         		formData.append("video_thumbnail", $('#videoThumbnail')[0].files[0]);
 				// formData.append('terms_and_conditions_acceptance',$("#payment-details-form").find('[name=acceptanceOfTermsAndConditions]').val())

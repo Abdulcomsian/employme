@@ -18,7 +18,7 @@
     text-align: center;
     font-size: 16px;
     color: #fff;
-    background: #31795A;
+    background: #000;
     padding: 5px 15px;
 }
 </style>
@@ -78,20 +78,20 @@
 						
 					</div>
 					<h3 class="post-title">{{$jobDetails->job_title ?? ''}}</h3>
-					<ul class="share-buttons d-flex flex-wrap style-none">
-						<li><a href="#" class="d-flex align-items-center justify-content-center">
-								<i class="bi bi-facebook"></i>
-								<span>Facebook</span>
-							</a></li>
-						<li><a href="#" class="d-flex align-items-center justify-content-center">
-								<i class="bi bi-twitter"></i>
-								<span>Twitter</span>
-							</a></li>
-						<li><a href="#" class="d-flex align-items-center justify-content-center">
-								<i class="bi bi-link-45deg"></i>
-								<span>Copy</span>
-							</a></li>
-					</ul>
+						{{--<ul class="share-buttons d-flex flex-wrap style-none">
+							<li><a href="#" class="d-flex align-items-center justify-content-center">
+									<i class="bi bi-facebook"></i>
+									<span>Facebook</span>
+								</a></li>
+							<li><a href="#" class="d-flex align-items-center justify-content-center">
+									<i class="bi bi-twitter"></i>
+									<span>Twitter</span>
+								</a></li>
+							<li><a href="#" class="d-flex align-items-center justify-content-center">
+									<i class="bi bi-link-45deg"></i>
+									<span>Copy</span>
+								</a></li>
+						</ul>--}}
 					 @php $sectionNumber = 0; @endphp
 					 @if($jobDetails->job_description !='')
 					  @php $sectionNumber++; @endphp

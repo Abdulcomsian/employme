@@ -91,12 +91,7 @@
 						<h2 class="text-white"> {{$employerDetails->institution ?? ''}}</h2>
 					</div>
 					<div class="logo mt-10">
-					<span style="
-    font-size: 25px;
-    font-weight: bold;
-">employme
-
-</span>
+					 {{--<span style="font-size: 25px;font-weight: bold;">employme</span>--}}}
 					</div>
 					<!-- <p class="text-lg text-white mt-10 lg-mt-20">Find company details here</p> -->
 				</div>
@@ -349,7 +344,7 @@
 													@else
 													<img src="{{asset('assets/images/avatar_04.jpg')}}" data-src="{{asset('assets/images/avatar_04.jpg')}}" alt="avatar" class ="rounded-circle shadow-1-strong" style="width: 50px;margin-right:7px;">
 													@endif
-													<h5>{{$candidateReview->candidateDetails->candidatePersonalDetails->full_name ?? ''}}</h5>
+													<h5>{{$candidateReview->candidateDetails->candidatePersonalDetails->first_name ?? ''}} {{$candidateReview->candidateDetails->candidatePersonalDetails->middle_name ?? ''}} {{$candidateReview->candidateDetails->candidatePersonalDetails->last_name ?? ''}}</h5>
 												</div>
 											</div>
 										</div>
@@ -750,7 +745,8 @@
 								</li>
 								<li class="col-12">
 									<span>Business Hours:</span>
-									<div>{{$employerDetails->address_line_1 ?? ''}}</div>
+									@php $workingHours = explode("-" , $employerDetails->business_hours); @endphp
+									<div>{{date('h:i A',strtotime($workingHours[0]))}} - {{date('h:i A',strtotime($workingHours[1]))}}</div>
 								</li>
 								<li class="col-12">
 									<span>Number of Students:</span>
