@@ -94,7 +94,8 @@ class EmployerJob extends Model
         'job_status',
         'posted_by',
         'start_time',
-        'finish_time'
+        'finish_time',
+        'class_duration'
     ];
 
     public function employerDetails()

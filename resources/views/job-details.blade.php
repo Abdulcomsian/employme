@@ -21,6 +21,11 @@
     background: #000;
     padding: 5px 15px;
 }
+
+.job-description-details{
+	padding-top: 36px;
+    padding-left: 40px;
+}
 </style>
 <div class="inner-banner-one position-relative">
 	<div class="container">
@@ -49,11 +54,11 @@
 			<div class="col-xxl-8 col-xl-8">
 				<div class="details-post-data me-xxl-5 pe-xxl-4">
 					<!-- <div class="post-date">{{date('d M Y',strtotime($jobDetails->created_at))}} by <a href="#" class="fw-500 text-dark">{{$jobDetails->employerDetails->institution ?? ''}}</a></div> -->
-					<div class="post-date d-flex justify-content-between">
-						<div>
+					<div class="post-date d-flex justify-content-end">
+						{{--<div>
 							{{date('d M Y',strtotime($jobDetails->created_at))}} by
 							<a href="#" class="fw-500 text-dark">{{$jobDetails->employerDetails->institution ?? ''}}</a>
-						</div>
+						</div>--}}
 						@if($jobDetails->job_status == 0)
 							<button class="btn-one " >Job Expired</button>
 						@else
@@ -77,7 +82,11 @@
 							</form> -->
 						
 					</div>
-					<h3 class="post-title">{{$jobDetails->job_title ?? ''}}</h3>
+					<div class="post-block border-style mt-10">
+						<div class="d-flex align-items-center">
+							<h3 class="post-title">{{$jobDetails->job_title ?? ''}}</h3>
+						</div>
+					</div>
 						{{--<ul class="share-buttons d-flex flex-wrap style-none">
 							<li><a href="#" class="d-flex align-items-center justify-content-center">
 									<i class="bi bi-facebook"></i>
@@ -100,8 +109,69 @@
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Job Description</h4>
 						</div>
+						<div class = "job-description-details">
+							<h4>Job Description</h4>
+							<p>{!! $jobDetails->job_description !!}</p>
+						</div>
+						<div class = "job-description-details ">
+							<h4>Class Information</h4>
+								<ul class = "list-type-one style-none mb-15">
+									<li>Student Age Group: {{$jobDetails->student_age_group ?? ''}}</li>
+									<li>Class size: {{$jobDetails->class_size ?? ''}}</li>
+									<li>Classes each day: {{$jobDetails->teaching_hours_per_day ?? ''}}</li>
+									<li>Preparation time: {{$jobDetails->non_teaching_hours_per_day ?? ''}}</li>
+									<li>Break time: {{$jobDetails->break_times ?? ''}}</li>
+									<li>Curriculum overview: {{$jobDetails->curriculum_overview ?? ''}}</li>
+									<li>Class duration: {{$jobDetails->class_duration ?? ''}}</li>
+									<li>Class start time: {{date('h:i A',strtotime($jobDetails->start_time)) ?? ''}}</li>
+									<li>Class end time: {{date('h:i A',strtotime($jobDetails->finish_time)) ?? ''}}</li>
+								</ul>
+						</div>
 						<!-- <p>As a <a href="#">Product Designer</a> at WillowTree, you’ll give form to ideas by being the voice and owner of product decisions. You’ll drive the design direction, and then make it happen!</p> -->
-						<p>{!! $jobDetails->job_description !!}</p>
+					</div>
+					 @endif
+					 			<!---- Requirements and Qualifications ---->
+								 @if($jobDetails->education !='' ||
+								$jobDetails->teaching_certificate !='' ||       
+								$jobDetails->experience !='' ||       
+								$jobDetails->background_check !='' ||       
+								$jobDetails->health_check_requirement !='' ||       
+								$jobDetails->preferred_accent !='' ||       
+								$jobDetails->visa_type !='' ||       
+								$jobDetails->language_proficiency !=''     
+								)
+								@php $sectionNumber++; @endphp
+					<div class="post-block border-style mt-40 lg-mt-30">
+						<div class="d-flex align-items-center">
+							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
+							<h4 class="block-title">Requirements and Qualifications</h4>
+						</div>
+						<ul class="list-type-one style-none mb-15">
+							@if($jobDetails->ideal_candidate_profile)
+							<li>Key Candidate Qualifications: {{$jobDetails->ideal_candidate_profile ?? ''}}</li>
+							@endif
+							@if($jobDetails->education)
+							<li>Education level required: {{$jobDetails->education ?? ''}}</li>
+							@endif
+							@if($jobDetails->teaching_certificate)
+							<li>Teaching Certification required: {{$jobDetails->teaching_certificate ?? ''}}</li>
+							@endif
+							@if($jobDetails->experience_level)
+							<li>Teaching experience required: {{$jobDetails->experience_level ?? ''}}</li>
+							@endif
+							@if($jobDetails->background_check)
+							<li>Clean criminal record required: {{$jobDetails->background_check ?? ''}}</li>
+							@endif
+							@if($jobDetails->health_check_requirement)
+							<li>Health check required: {{$jobDetails->health_check_requirement ?? ''}}</li>
+							@endif
+							@if($jobDetails->preferred_accent)
+							<li>Preferred accent: {{$jobDetails->preferred_accent ?? ''}}</li>
+							@endif
+							@if($jobDetails->language_proficiency)
+							<li>Language proficiency: {{$jobDetails->language_proficiency ?? ''}}</li>
+							@endif
+						</ul>
 					</div>
 					 @endif
 					  @if(isset($jobDetails->employerDetails->employer_details) && $jobDetails->employerDetails->employer_details !='')
@@ -131,29 +201,29 @@
 							<h4 class="block-title">Requirements and Qualifications</h4>
 						</div>
 						<ul class="list-type-one style-none mb-15">
+							@if($jobDetails->ideal_candidate_profile)
+							<li>Key Candidate Qualifications: {{$jobDetails->ideal_candidate_profile ?? ''}}</li>
+							@endif
 							@if($jobDetails->education)
-							<li>Education: {{$jobDetails->education ?? ''}}</li>
+							<li>Education level required: {{$jobDetails->education ?? ''}}</li>
 							@endif
 							@if($jobDetails->teaching_certificate)
-							<li>Teaching Certificate: {{$jobDetails->teaching_certificate ?? ''}}</li>
+							<li>Teaching Certification required: {{$jobDetails->teaching_certificate ?? ''}}</li>
 							@endif
-							@if($jobDetails->experience)
-							<li>Experience: {{$jobDetails->experience ?? ''}}</li>
+							@if($jobDetails->experience_level)
+							<li>Teaching experience required: {{$jobDetails->experience_level ?? ''}}</li>
 							@endif
 							@if($jobDetails->background_check)
-							<li>Background Check: {{$jobDetails->background_check ?? ''}}</li>
+							<li>Clean criminal record required: {{$jobDetails->background_check ?? ''}}</li>
 							@endif
 							@if($jobDetails->health_check_requirement)
-							<li>Health: {{$jobDetails->health_check_requirement ?? ''}}</li>
+							<li>Health check required: {{$jobDetails->health_check_requirement ?? ''}}</li>
 							@endif
 							@if($jobDetails->preferred_accent)
-							<li>{{$jobDetails->preferred_accent ?? ''}}</li>
-							@endif
-							@if($jobDetails->visa_type)
-							<li>{{$jobDetails->visa_type ?? ''}}</li>
+							<li>Preferred accent: {{$jobDetails->preferred_accent ?? ''}}</li>
 							@endif
 							@if($jobDetails->language_proficiency)
-							<li>{{$jobDetails->language_proficiency ?? ''}}</li>
+							<li>Language proficiency: {{$jobDetails->language_proficiency ?? ''}}</li>
 							@endif
 						</ul>
 					</div>
