@@ -312,7 +312,7 @@
 							
 						</div>
 					</div>
-
+					@if($candidateReviews && $candidateReviews->isNotEmpty())
 					<div class="col-xxl-12 col-xl-12 order-xl-first card  mb-60 mr-1 p-1 padding-box">
 						<div class="details-post-data me-xxl-5 pe-xxl-4">
 							
@@ -320,7 +320,7 @@
 								<h3>Company Reviews</h3>
 
 									<div class="company-review-slider">
-										@isset($candidateReviews)
+										
 										@foreach($candidateReviews as $candidateReview)
 										<div class="item">
 											<div class="feedback-block-four">
@@ -347,7 +347,6 @@
 											</div>
 										</div>
 										@endforeach
-										@endisset
 										{{--<div class="item">
 											<div class="feedback-block-four">
 												<ul class="list-unstyled d-flex justify-content-start text-warning mb-0">
@@ -412,6 +411,8 @@
 							</div>
 						</div>
 					</div>
+					@endif
+
 					<!--<div class="col-xxl-12 col-xl-12 order-xl-first card my-3 mr-1 p-1 padding-box">
 						<div class="details-post-data me-xxl-5 pe-xxl-4">
 							 <h3>Overview</h3> 
