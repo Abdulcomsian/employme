@@ -12,10 +12,10 @@
             <div class="user-avatar online position-relative rounded-circle">
                 @if(auth()->user()->avatar != '')
                 <img src="{{ asset('assets/images/lazy.svg') }}" data-src="{{ asset(auth()->user()->avatar) }}"
-                    alt="" class="lazy-img">
+                    alt="" class="lazy-img round-avatar">
                 @else
                 <img src="{{ asset('assets/images/lazy.svg') }}" data-src="{{ asset('assets/images/avatar_03.jpg') }}"
-                    alt="" class="lazy-img">
+                    alt="" class="lazy-img round-avatar">
                 @endif
             </div>
             <!-- /.user-avatar -->

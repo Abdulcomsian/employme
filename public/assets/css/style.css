@@ -11282,5 +11282,15 @@ height: 15rem;
   width: 220px;
 }
 
+.round-avatar{
+  width:80px !important;
+  height:80px !important; 
+  object-fit: cover;
+}
 
-
+.chat-round-avatar{
+  width:45px !important;
+  height:45px !important; 
+  object-fit: cover;
+  border-radius:50%;
+}

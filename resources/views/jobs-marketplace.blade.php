@@ -308,16 +308,22 @@ Job Marketplace
 								<div class="col-md-5">
 									
 									<div class="job-title d-flex align-items-center">
-										<a href="javascript:void(0)" class="logo"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_23.png')}}" alt="" class="lazy-img m-auto"></a>
+										<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="round-circle">
+										@if(isset($job->employerDetails->institution_logo))
+										<img src="{{asset($job->employerDetails->institution_logo)}}" data-src="{{asset($job->employerDetails->institution_logo)}}" alt="" class="lazy-img rounded-circle round-avatar">
+										@else
+										<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto">
+										@endif
+										</a>
 										<div class="split-box1">
-											<a href="javascript:void(0)" class="job-duration fw-500">{{$job->job_type}}</a>
-											<a href="javascript:void(0)" class="title fw-500 tran3s">{{$job->job_title}}</a>
+											<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="job-duration fw-500">{{$job->job_type}}</a>
+											<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="title fw-500 tran3s">{{$job->job_title}}</a>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">
 									<div class="job-location">
-										<a href="javascript:void(0)">{{$job->city_town}}</a>
+										<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}">{{$job->city_town}}</a>
 									</div>
 									<div class="job-salary"><span class="fw-500 text-dark">{{$job->monthly_salary}} USD</span> / month . {{$job->experience_level ?? ''}}</div>
 								</div>
@@ -525,9 +531,9 @@ Job Marketplace
 						   @foreach($allJobs as $index=>$job)
 							<div class="col-sm-6 mb-30">
 								<div class="job-list-two style-two position-relative">
-									<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="logo">
+									<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="rounded-circle">
 										@if(isset($job->employerDetails->institution_logo))
-										<img src="{{asset($job->employerDetails->institution_logo)}}" data-src="{{asset($job->employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto">
+										<img src="{{asset($job->employerDetails->institution_logo)}}" data-src="{{asset($job->employerDetails->institution_logo)}}" alt="" class="lazy-img rounded-circle round-avatar">
 										@else
 										<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto">
 										@endif

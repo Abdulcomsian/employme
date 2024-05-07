@@ -312,9 +312,9 @@ h3{
 										<label for="">Logo</label>
 										<div class="user-avatar-setting d-flex align-items-center">
 											@if(!empty($employerDetails->institution_logo))
-											<img src="{{asset($employerDetails->institution_logo)}}" data-src="images/avatar_04.jpg" id="profile_image" alt="" class="lazy-img user-img">
+											<img src="{{asset($employerDetails->institution_logo)}}" data-src="images/avatar_04.jpg" id="profile_image" alt="" class="lazy-img user-img round-avatar">
 											@else
-											<img src="{{asset('assets/images/human-avatar.png')}}" data-src="images/avatar_04.jpg" id="profile_image" alt="" class="lazy-img user-img">
+											<img src="{{asset('assets/images/human-avatar.png')}}" data-src="images/avatar_04.jpg" id="profile_image" alt="" class="lazy-img user-img round-avatar">
 											@endif
 											<div class="upload-btn position-relative tran3s ms-4 me-3">
 												Upload Logo

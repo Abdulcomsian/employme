@@ -10,11 +10,11 @@
         <div class="user-data">
             @if(isset(auth()->user()->candidatePersonalDetails->profile_picture))
 			<div class="user-avatar online position-relative rounded-circle">
-				<img src="{{asset(auth()->user()->candidatePersonalDetails->profile_picture)}}" data-src="{{asset(auth()->user()->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img">
+				<img src="{{asset(auth()->user()->candidatePersonalDetails->profile_picture)}}" data-src="{{asset(auth()->user()->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img round-avatar">
 			</div>
             @else
             <div class="user-avatar online position-relative rounded-circle">
-				<img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img">
+				<img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img round-avatar">
 			</div>
             @endif
             <!-- /.user-avatar -->

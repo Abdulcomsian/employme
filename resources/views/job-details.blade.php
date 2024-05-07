@@ -174,6 +174,7 @@
 						</ul>
 					</div>
 					 @endif
+					 {{--
 					  @if(isset($jobDetails->employerDetails->employer_details) && $jobDetails->employerDetails->employer_details !='')
 					   @php $sectionNumber++; @endphp
 					<div class="post-block border-style mt-50 lg-mt-30">
@@ -183,51 +184,9 @@
 						</div>
 						<p>{!! $jobDetails->employerDetails->employer_details ?? '' !!}</p>
 					</div>
-					 @endif
-							<!---- Requirements and Qualifications ---->
-							@if($jobDetails->education !='' ||
-								$jobDetails->teaching_certificate !='' ||       
-								$jobDetails->experience !='' ||       
-								$jobDetails->background_check !='' ||       
-								$jobDetails->health_check_requirement !='' ||       
-								$jobDetails->preferred_accent !='' ||       
-								$jobDetails->visa_type !='' ||       
-								$jobDetails->language_proficiency !=''     
-								)
-								@php $sectionNumber++; @endphp
-					<div class="post-block border-style mt-40 lg-mt-30">
-						<div class="d-flex align-items-center">
-							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
-							<h4 class="block-title">Requirements and Qualifications</h4>
-						</div>
-						<ul class="list-type-one style-none mb-15">
-							@if($jobDetails->ideal_candidate_profile)
-							<li>Key Candidate Qualifications: {{$jobDetails->ideal_candidate_profile ?? ''}}</li>
-							@endif
-							@if($jobDetails->education)
-							<li>Education level required: {{$jobDetails->education ?? ''}}</li>
-							@endif
-							@if($jobDetails->teaching_certificate)
-							<li>Teaching Certification required: {{$jobDetails->teaching_certificate ?? ''}}</li>
-							@endif
-							@if($jobDetails->experience_level)
-							<li>Teaching experience required: {{$jobDetails->experience_level ?? ''}}</li>
-							@endif
-							@if($jobDetails->background_check)
-							<li>Clean criminal record required: {{$jobDetails->background_check ?? ''}}</li>
-							@endif
-							@if($jobDetails->health_check_requirement)
-							<li>Health check required: {{$jobDetails->health_check_requirement ?? ''}}</li>
-							@endif
-							@if($jobDetails->preferred_accent)
-							<li>Preferred accent: {{$jobDetails->preferred_accent ?? ''}}</li>
-							@endif
-							@if($jobDetails->language_proficiency)
-							<li>Language proficiency: {{$jobDetails->language_proficiency ?? ''}}</li>
-							@endif
-						</ul>
-					</div>
-					 @endif
+					 @endif  
+					           --}}
+					{{--
 							<!---- Position Overview ---->
 						@if($jobDetails->school_vision !='' ||
 							$jobDetails->unique_selling_point !='' ||       
@@ -252,6 +211,7 @@
 						</ul>
 					</div>
 					  @endif
+					           --}}
 							<!---- Onboarding Process ---->
 						@if($jobDetails->arrival_assitance !='' ||
 							$jobDetails->initial_accomodation !='' ||       
@@ -284,6 +244,7 @@
 						</ul>
 					</div>
 					  @endif
+					{{--
 						<!----Location & Environment ---->
 						@if($jobDetails->city_town !='' ||
 							$jobDetails->neighbourhood_description !='' ||       
@@ -327,6 +288,7 @@
 						</ul>
 					</div>
 					 @endif
+					        --}}
 						<!---- Support for Foreign Teachers -!---->
 						@if($jobDetails->orientation_and_training !='' ||
 							$jobDetails->culture_assimilation_program !='' ||       
@@ -359,6 +321,7 @@
 						</ul>
 					</div>
 					 @endif
+					{{--
 						<!---- Application & Recruitment Process -!---->
 						@if($jobDetails->required_documents !='' ||
 							$jobDetails->interview_process !='' ||       
@@ -391,6 +354,7 @@
 						</ul>
 					</div>
 					 @endif
+					          --}}
 						<!---- Application & Recruitment Process -!---->
 					  @if($jobDetails->orientation_and_training !='' ||
 					    $jobDetails->culture_assimilation_program !='' ||       
@@ -430,11 +394,11 @@
 
 			<div class="col-xxl-4 col-xl-4">
 				<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mt-50">
-						@if(isset($jobDetails->employerDetails->institution_logo))
-						<img src="{{asset($jobDetails->employerDetails->institution_logo)}}" data-src="{{asset($jobDetails->employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto logo">
-						@else
-						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto logo">
-						@endif
+				@if(isset($jobDetails->employerDetails->institution_logo))
+				<img src="{{asset($jobDetails->employerDetails->institution_logo)}}" data-src="{{asset($jobDetails->employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
+				@else
+				<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
+				@endif
 					<div class="text-md text-dark text-center mt-15 mb-20">{{$jobDetails->employerDetails->institution ?? ''}}</div>
 					<a href="{{route('companyAboutUs', \Crypt::encryptString($jobDetails->posted_by))}}" class="website-btn tran3s">About Company</a>
 
@@ -546,7 +510,7 @@
 					</div>
 				</div>
 				   	 <!---- Class Information ---->
-				<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mt-50 mt-20">
+				{{--<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mt-50 mt-20">
 					<div class="text-md text-dark text-center mt-15 mb-20">Class Information</div>
 					<div class="border-top mt-20 pt-40">
 						<ul class="job-meta-data row style-none">
@@ -558,10 +522,7 @@
 								<span>Class Size</span>
 								<div>{{$jobDetails->class_size ?? ''}}</div>
 							</li>
-							{{--<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Hours/Week</span>
-								<div>{{$jobDetails->hours_per_week ?? ''}}</div>
-							</li>--}}
+							
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Teaching Hrs/Day</span>
 								<div>{{$jobDetails->teaching_hours_per_day ?? ''}}</div>
@@ -593,16 +554,6 @@
 								<span>Education Grade</span>
 								<div>B+</div>
 							</li> -->
-							{{--<li class="col-xl-12 col-md-4 col-sm-6">
-								<span>Materials & Resources Available</span>
-								<div>{{$jobDetails->material_resources_available ?? ''}}</div>
-							</li>
-							<li class="col-xl-12 col-md-4 col-sm-6">
-								<span>Teaching Aids</span>
-								<div>{{$jobDetails->teaching_aids ?? ''}} </div>
-							</li>--}}
-
-							
 							
 						</ul>
 
@@ -615,7 +566,7 @@
 						</div> -->
 						<!-- <a href="#" class="btn-one w-100 mt-25">Request An Interview </a> -->
 					</div>
-				</div>
+				</div>--}}
 					<!---- Compensations & Benefits ---->
 				<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mt-50 mt-20">
 					<div class="text-md text-dark text-center mt-15 mb-20">Compensation & Benefits</div>

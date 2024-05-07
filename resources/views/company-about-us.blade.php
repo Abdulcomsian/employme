@@ -91,7 +91,7 @@
 						<h2 class="text-white"> {{$employerDetails->institution ?? ''}}</h2>
 					</div>
 					<div class="logo mt-10">
-					 {{--<span style="font-size: 25px;font-weight: bold;">employme</span>--}}}
+					 {{--<span style="font-size: 25px;font-weight: bold;">employme</span>--}}
 					</div>
 					<!-- <p class="text-lg text-white mt-10 lg-mt-20">Find company details here</p> -->
 				</div>
@@ -244,7 +244,7 @@
 
 
 							<div class="container">
-								<h3>housings</h3>
+								<h3>Housing</h3>
 								{{--<p>Photos: (Images of classrooms, events, staff, and students, housing)</p>
 								<p>Videos: (Short clips or promotional videos showcasing the school environment, events, or teaching methods)</p>--}}
 							</div>
@@ -296,12 +296,10 @@
 								<tbody>
 								@isset($businessOperationDetails->operation_time)
 								@foreach($businessOperationDetails->operation_time as $operation_time)
-								@if(isset($operation_time['day']) && $operation_time['day'] !='')
 								<tr>
 									<td><b>{{$operation_time['day']}}</b></td>
 									<td>{{ isset($operation_time['start_time']) ? date('h:i A',strtotime($operation_time['start_time'])) : ''}} - {{ isset($operation_time['end_time']) ? date('h:i A',strtotime($operation_time['end_time'])) : ''}}</td>
 								</tr>
-								@endif
 								@endforeach
 								@endisset
 								</tbody>
@@ -475,9 +473,9 @@
 										<div class="job-title d-flex align-items-center">
 										<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="logo">
 											@if(isset($job->employerDetails->institution_logo))
-											<img src="{{asset($job->employerDetails->institution_logo)}}" data-src="{{asset($job->employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto">
+											<img src="{{asset($job->employerDetails->institution_logo)}}" data-src="{{asset($job->employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
 											@else
-											<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto">
+											<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
 											@endif
 										</a>
 											<div class="split-box1">
@@ -701,10 +699,10 @@
 				</div>
 				<div class="col-xxl-3 col-xl-4 order-xl-last mb-60 mr-1 p-1">
 					<div class="job-company-info ms-xl-5 ms-xxl-0 lg-mb-50">
-						@if(isset($employerDetails->institution_logo))
-						<img src="{{asset($employerDetails->institution_logo)}}" data-src="{{asset($employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto logo">
+						@if(isset($job->employerDetails->institution_logo))
+						<img src="{{asset($employerDetails->institution_logo)}}" data-src="{{asset($employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
 						@else
-						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_37.png')}}" alt="" class="lazy-img m-auto logo">
+						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
 						@endif
 						<!-- <img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto logo"> -->
 						<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">{{$employerDetails->institution ?? ''}}</div>

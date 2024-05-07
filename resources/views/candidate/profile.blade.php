@@ -342,9 +342,9 @@ Profile
                                         <label for="">Profile Photo</label>
                                         <div class="user-avatar-setting d-flex align-items-center">
                                             @if($candidatePersonalDetails->profile_picture)
-                                            <img src="{{asset($candidatePersonalDetails->profile_picture)}}"  data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img profile-photo" >
+                                            <img src="{{asset($candidatePersonalDetails->profile_picture)}}"  data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img profile-photo round-avatar" >
                                             @else
-                                            <img src="{{asset('assets/images/avatar_04.jpg')}}"  data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img profile-photo">
+                                            <img src="{{asset('assets/images/avatar_04.jpg')}}"  data-src="images/avatar_04.jpg" alt="" class="lazy-img user-img profile-photo round-avatar">
                                             @endif
                                             <div class="upload-btn position-relative tran3s ms-4 me-3">
                                                 Upload profile photo
