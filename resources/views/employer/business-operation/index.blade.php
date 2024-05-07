@@ -260,9 +260,10 @@ $('#summernote').summernote({
         height: 200
  });
 
- var i = $(".time-field-row").length;
-       
+ var i = $(".time-field-row").length - 1;
        $("#add").click(function(){
+        i++
+       console.log(i);
         //    $("#add-skill-field").append('<tr><td><input type="text" name="addmore['+i+'][name]" placeholder="Enter your Name" class="form-control" /></td><td><input type="text" name="addmore['+i+'][qty]" placeholder="Enter your Qty" class="form-control" /></td><td><input type="text" name="addmore['+i+'][price]" placeholder="Enter your Price" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
            $("#add-time-field").append('<div class="row time-field-row"><div class="col-lg-3"><div class="dash-input-wrapper mb-20"><select class="form-select"  name="operation_time['+i+'][day]" ><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select></div></div><div class="col-lg-3"><div class="dash-input-wrapper mb-20"><input type="time" name="operation_time['+i+'][start_time]"  placeholder="Add Skill" value = ""></div></div><div class="col-lg-3"><div class="dash-input-wrapper mb-20"><input type="time" name="operation_time['+i+'][end_time]"  placeholder="Add Skill" value = ""></div></div><div class="col-lg-3"><div class="dash-input-wrapper mb-20"><button type="button" class="btn btn-danger remove-tr">Remove</button></div></div></div>')
        });
