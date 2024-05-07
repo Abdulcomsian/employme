@@ -62,7 +62,7 @@ Post A Job
                         </div> --}}
                         <div class="col-md-6">
                             <div class="dash-input-wrapper mb-30">
-                                <label for="">Unique Selling Points:</label>
+                                <label for="">Benefits:</label>
                                 <input type="hidden" name="unique_selling_point">
                                 @php
                                     $uniqueSellingPoints = $employerJob->unique_selling_point ? explode(',' , $employerJob->unique_selling_point) : [];
@@ -780,7 +780,7 @@ Post A Job
                             <input type="text" name="interview_process" placeholder="" value="{{$employerJob->interview_process ?? ''}}"></input>
                         </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Application Deadline:</label>
+                            <label for="">Document submission deadline:</label>
                             <input type="date" name="application_deadline" placeholder="" value="{{$employerJob->application_deadline ?? ''}}"></input>
                         </div>
                         {{-- <div class="dash-input-wrapper mb-30 col-md-6">

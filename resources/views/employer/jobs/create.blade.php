@@ -709,7 +709,7 @@ Post A Job
                             <input type="text" name="interview_process" placeholder=""></input>
                         </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Visa Document Submission Deadline:</label>
+                            <label for="">Document submission deadline:</label>
                             <input type="date" name="application_deadline" placeholder=""></input>
                         </div>
                         {{-- <div class="dash-input-wrapper mb-30 col-md-6">

@@ -227,20 +227,27 @@
 						</div>
 						<ul class="list-type-one style-none mb-15">
 							@if($jobDetails->arrival_assitance)
-							<li>{{$jobDetails->arrival_assitance ?? ''}}</li>
+							<li>Arrival assistance provided: {{$jobDetails->arrival_assitance ?? ''}}</li>
+							@endif
+							
+							@if($jobDetails->initial_accomodation)
+							<li>Temporary accomodation provided: {{$jobDetails->initial_accomodation ?? ''}}</li>
 							@endif
 							@if($jobDetails->initial_accomodation)
-							<li>Initial Accomodation: {{$jobDetails->initial_accomodation ?? ''}}</li>
+							<li>Training duration:</li>
 							@endif
-							@if($jobDetails->first_week_structure)
-							<li>First Week Structure: {{$jobDetails->first_week_structure ?? ''}}</li>
+							@if($jobDetails->initial_accomodation)
+							<li>Training compensation: </li>
+							@endif
+						{{-- @if($jobDetails->first_week_structure)
+							<li>{{$jobDetails->first_week_structure ?? ''}}</li>
 							@endif
 							@if($jobDetails->induction_programs)
 							<li>{{$jobDetails->induction_programs ?? ''}}</li>
 							@endif
 							@if($jobDetails->mentorship)
 							<li>{{$jobDetails->mentorship ?? ''}}</li>
-							@endif
+							@endif --}}
 						</ul>
 					</div>
 					  @endif
@@ -397,7 +404,7 @@
 				@if(isset($jobDetails->employerDetails->institution_logo))
 				<img src="{{asset($jobDetails->employerDetails->institution_logo)}}" data-src="{{asset($jobDetails->employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
 				@else
-				<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
+				<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
 				@endif
 					<div class="text-md text-dark text-center mt-15 mb-20">{{$jobDetails->employerDetails->institution ?? ''}}</div>
 					<a href="{{route('companyAboutUs', \Crypt::encryptString($jobDetails->posted_by))}}" class="website-btn tran3s">About Company</a>
@@ -405,13 +412,10 @@
 					<div class="border-top mt-40 pt-40">
 						<ul class="job-meta-data row style-none">
 							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Job Title</span>
-								<div>{{$jobDetails->job_title ?? ''}}</div>
+								<span>Job Type</span>
+								<div>{{$jobDetails->job_type ?? ''}}</div>
 							</li>
-							<li class="col-xl-5 col-md-4 col-sm-6">
-								<span>Contract Duration</span>
-								<div>{{$jobDetails->contract_duration ?? ''}}</div>
-							</li>
+						
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Start Date</span>
 								<div>{{date('d M, Y',strtotime($jobDetails->start_date)) ?? ''}}</div>
@@ -421,14 +425,24 @@
 								<div>{{date('d M, Y',strtotime($jobDetails->end_date)) ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Experience Level</span>
-								<div>{{$jobDetails->experience_level ?? ''}}</div>
+								<span>Contract Duration</span>
+								<div>{{$jobDetails->contract_duration ?? ''}}</div>
 							</li>
-							<li class="col-xl-5 col-md-4 col-sm-6">
-								<span>Job Type</span>
-								<div>{{$jobDetails->job_type ?? ''}}</div>
+							@php $documentType = explode("," , $jobDetails->document_type); @endphp
+							<li class="col-xl-12 col-md-4 col-sm-6 mb-4">
+								<span>Visa Documents Required </span>
+								<ol>
+									@if($documentType && count($documentType) > 0)
+									@foreach($documentType as $document)
+									@endforeach
+									@endif
+								</ol>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Documents submission deadline</span>
+								<div>{{$jobDetails->application_deadline ?? ''}}</div>
+							</li>
+							{{--<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Renewal Possiblities</span>
 								<div>{{$jobDetails->renewal_possibilities ?? ''}}</div>
 							</li>
@@ -444,10 +458,10 @@
 								<span>Insurance Included</span>
 								<div>{{$jobDetails->Insurance_included ?? ''}}</div>
 							</li>
-							{{-- <li class="col-xl-7 col-md-4 col-sm-6">
+							 <li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Allowances & Other Incentives</span>
 								<div>{{$jobDetails->allownces_other_incentives ?? ''}}</div>
-							</li> --}}
+							</li>
 							<!-- <li class="col-xl-7 col-md-4 col-sm-6">
 
 								<span>Education Grade</span>
@@ -465,14 +479,14 @@
 								<span>Location</span>
 								<div>{{$jobDetails->employerDetails->city.','.$jobDetails->employerDetails->state}}</div>
 							</li>
-							{{-- <li class="col-xl-7 col-md-4 col-sm-6">
+							 <li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Specification</span>
 								<div>{{$jobDetails->specify ?? ''}} </div>
-							</li> --}}
-							{{-- <li class="col-xl-5 col-md-4 col-sm-6">
+							</li> 
+							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Tax Deductions</span>
 								<div>{{$jobDetails->tax_deductions ?? ''}}</div>
-							</li> --}}
+							</li> 
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Flights</span>
 								<div>{{$jobDetails->airfare ?? ''}}</div>
@@ -487,7 +501,7 @@
 								<span>Furnished Housing</span>
 								<div>no</div>
 							</li>
-							
+							--}}
 							{{-- <li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Bonuses</span>
 								<div>{{$jobDetails->bonuses ?? ''}}</div>
@@ -573,8 +587,19 @@
 					<div class="border-top mt-20 pt-40">
 						<ul class="job-meta-data row style-none">
 							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Monthly Salary</span>
+								<span>Monthly Pay</span>
 								<div>{{$jobDetails->monthly_salary ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Monthly Payment Date</span>
+								<div>{{$jobDetails->monthly_salary ?? ''}}</div>
+							</li>
+								@php
+                                    $uniqueSellingPoints = $jobDetails->unique_selling_point ? explode(',' , $jobDetails->unique_selling_point) : [];
+                                @endphp
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Unique selling points</span>
+								<div>@if(count($uniqueSellingPoints) > 0) @foreach($uniqueSellingPoints as $usp){{$usp}},@endforeach @endif</div>
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Relocation Allowance</span>
@@ -648,7 +673,7 @@
 			<div class="related-job-slider">
 				<div class="item">
 					<div class="job-list-two style-two position-relative">
-						<a href="{{route('jobDetails',$jobDetails->id)}}" class="logo"><img src="images/logo/media_22.png" alt="" class="m-auto"></a>
+						<a href="{{route('jobDetails',$jobDetails->id)}}" class="logo"><img src="images/human-avatar.png" alt="" class="m-auto"></a>
 						<a href="{{route('jobDetails',$jobDetails->id)}}" class="save-btn text-center rounded-circle tran3s" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
 						<div><a href="{{route('jobDetails',$jobDetails->id)}}" class="job-duration fw-500">Fulltime</a></div>
 						<div><a href="{{route('jobDetails',$jobDetails->id)}}" class="title fw-500 tran3s">Lead designer & expert in maya 3D</a></div>
