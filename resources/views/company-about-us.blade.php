@@ -301,7 +301,7 @@
 									<td>{{ isset($operation_time['start_time']) ? date('h:i A',strtotime($operation_time['start_time'])) : ''}} - {{ isset($operation_time['end_time']) ? date('h:i A',strtotime($operation_time['end_time'])) : ''}}</td>
 								</tr>
 								@endforeach
-								@endisset
+								@endif
 								</tbody>
 							</table>
 								</div>
