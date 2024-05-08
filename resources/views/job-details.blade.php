@@ -226,19 +226,11 @@
 							<h4 class="block-title">Onboarding Process</h4>
 						</div>
 						<ul class="list-type-one style-none mb-15">
-							@if($jobDetails->arrival_assitance)
 							<li>Arrival assistance provided: {{$jobDetails->arrival_assitance ?? ''}}</li>
-							@endif
-							
-							@if($jobDetails->initial_accomodation)
 							<li>Temporary accomodation provided: {{$jobDetails->initial_accomodation ?? ''}}</li>
-							@endif
-							@if($jobDetails->initial_accomodation)
-							<li>Training duration:</li>
-							@endif
-							@if($jobDetails->initial_accomodation)
-							<li>Training compensation: </li>
-							@endif
+							<li>Training provided: {{$jobDetails->first_week_structure ?? ''}}</li>
+							<li>Training duration: {{$jobDetails->induction_programs ?? ''}}</li>
+							<li>Training compensation: {{$jobDetails->tax_deduction ?? ''}}</li>
 						{{-- @if($jobDetails->first_week_structure)
 							<li>{{$jobDetails->first_week_structure ?? ''}}</li>
 							@endif
@@ -428,17 +420,21 @@
 								<span>Contract Duration</span>
 								<div>{{$jobDetails->contract_duration ?? ''}}</div>
 							</li>
-							@php $documentType = explode("," , $jobDetails->document_type); @endphp
+								@php
+                                    $documentType = $jobDetails->document_type ? explode(',' , $jobDetails->document_type) : [];
+                                @endphp
+
 							<li class="col-xl-12 col-md-4 col-sm-6 mb-4">
 								<span>Visa Documents Required </span>
 								<ol>
 									@if($documentType && count($documentType) > 0)
 									@foreach($documentType as $document)
+									 <li>{{$document}}</li>
 									@endforeach
 									@endif
 								</ol>
 							</li>
-							<li class="col-xl-7 col-md-4 col-sm-6">
+							<li class="col-xl-12 col-md-4 col-sm-6">
 								<span>Documents submission deadline</span>
 								<div>{{$jobDetails->application_deadline ?? ''}}</div>
 							</li>
@@ -592,7 +588,7 @@
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Monthly Payment Date</span>
-								<div>{{$jobDetails->monthly_salary ?? ''}}</div>
+								<div>{{$jobDetails->payday_details ?? ''}}</div>
 							</li>
 								@php
                                     $uniqueSellingPoints = $jobDetails->unique_selling_point ? explode(',' , $jobDetails->unique_selling_point) : [];
@@ -601,46 +597,55 @@
 								<span>Unique selling points</span>
 								<div>@if(count($uniqueSellingPoints) > 0) @foreach($uniqueSellingPoints as $usp){{$usp}},@endforeach @endif</div>
 							</li>
-							<li class="col-xl-5 col-md-4 col-sm-6">
-								<span>Relocation Allowance</span>
-								<div>{{$jobDetails->relocation_allowance ?? ''}}</div>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Renewal</span>
+								<div>{{$jobDetails->renewal_possibilities ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Health & Dental Insurance</span>
-								<div>{{$jobDetails->health_dental_insurance ?? ''}}</div>
+								<span>Housing provided:</span>
+								<div>{{$jobDetails->housing_included ?? ''}}</div>
 							</li>
-							<li class="col-xl-5 col-md-4 col-sm-6">
-								<span>Airfare</span>
-								<div>{{$jobDetails->airfare ?? ''}}</div>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Housing details:</span>
+								<div>{{$jobDetails->housing_details ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Insurance included:</span>
+								<div>{{$jobDetails->Insurance_included ?? ''}}</div>
+							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Pension included:</span>
+								<div>{{$jobDetails->pension ?? ''}}</div>
+							</li>
+							
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>National Holidays</span>
+								<div>{{$jobDetails->national_holidays ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Paid Vacation</span>
 								<div>{{$jobDetails->vacation_leave ?? ''}}</div>
 							</li>
-							<li class="col-xl-5 col-md-4 col-sm-6">
+							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Sick Leave</span>
 								<div>{{$jobDetails->sick_leave ?? ''}}</div>
 							</li>
-							<li class="col-xl-5 col-md-4 col-sm-6">
+							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Pension</span>
 								<div>{{$jobDetails->pension ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>National Holidays</span>
-								<div>{{$jobDetails->national_holidays ?? ''}}</div>
-							</li>
-							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Overtime Pay</span>
 								<div>{{$jobDetails->overtime_pay ?? ''}}</div>
+							</li>
+							<li class="col-xl-12 col-md-4 col-sm-6">
+								<span>Contact current/past teachers</span>
+								<div>{{$jobDetails->option_to_current_past_foreign_teachers ?? ''}}</div>
 							</li>
 							{{-- <li class="col-xl-12 col-md-4 col-sm-6">
 								<span>Professional Development Opportunities</span>
 								<div>{{$jobDetails->professional_development_opportunities ?? ''}} </div>
 							</li> --}}
-							<li class="col-xl-5 col-md-4 col-sm-6">
-								<span>Housing Details</span>
-								<div>{{$jobDetails->housing_details ?? ''}}</div>
-							</li>
 						</ul>
 
 						<!-- <div class="job-tags d-flex flex-wrap pt-15">

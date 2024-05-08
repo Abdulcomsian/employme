@@ -75,6 +75,7 @@ select.form-select {
                         <!-- /.dash-input-wrapper -->
                     </div>
                 </div>
+                {{--
                 <div class="row mt-4 mb-2">
                     <div class="col-lg-3">
                         <div class="dash-input-wrapper mb-20">
@@ -95,6 +96,7 @@ select.form-select {
                         <!-- /.dash-input-wrapper -->
                     </div>
                 </div>
+            
                 @isset($businessOperationDetails->operation_time)
                 @foreach($businessOperationDetails->operation_time as $index => $operationTime)
                 @if($index == 0)
@@ -154,7 +156,6 @@ select.form-select {
                                 <option value="Saturday" {{$operationTime['day'] == 'Saturday' ? 'selected' : ''}}>Saturday</option>
                                 <option value="Sunday" {{$operationTime['day'] == 'Sunday' ? 'selected' : ''}}>Sunday</option>
                             </select>
-                            {{-- <input type="text" name="operation_time[$index][day]" value="{{$operationTime['start_time']}}" class = " @error('monday_start_time') is-invalid @enderror" placeholder="Day"> --}}
                         </div>
                         <!-- /.dash-input-wrapper -->
                     </div>
@@ -232,10 +233,9 @@ select.form-select {
                     </div>
                 </div>
                 @endisset
-                    <div id="add-time-field">
-                   
-                    </div>
-               
+                <div id="add-time-field">
+                </div>
+                        --}}
              
                 <div class="button-group d-inline-flex align-items-center mt-20 mb-20">
                     <button type="submit" class="dash-btn-two tran3s me-3 rounded-3">Save</button>

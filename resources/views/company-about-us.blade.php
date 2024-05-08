@@ -289,22 +289,21 @@
 								<h3>Curriculum</h3>
 								{{--<p><b>School's Mission & Vision:</b> {{$employerDetails->school_vision_and_mission}}</p>--}}
 								<p style = "font-family:gordita;font-weight: normal;font-size: 16px;position: relative; color: rgba(0, 0, 0, 0.7);">{!! $businessOperationDetails->curriculum ?? '' !!}</p>
-								<h4 style = "font-family:gordita">Work Hours</h4>
+								{{--<h4 style = "font-family:gordita">Work Hours</h4>
 								<div class = "row col-md-6">
 								<table class="table table-borderless">
-								
-								<tbody>
-								@isset($businessOperationDetails->operation_time)
-								@foreach($businessOperationDetails->operation_time as $operation_time)
-								<tr>
-									<td><b>{{$operation_time['day']}}</b></td>
-									<td>{{ isset($operation_time['start_time']) ? date('h:i A',strtotime($operation_time['start_time'])) : ''}} - {{ isset($operation_time['end_time']) ? date('h:i A',strtotime($operation_time['end_time'])) : ''}}</td>
-								</tr>
-								@endforeach
-								@endif
-								</tbody>
-							</table>
-								</div>
+									<tbody>
+									@isset($businessOperationDetails->operation_time)
+									@foreach($businessOperationDetails->operation_time as $operation_time)
+									<tr>
+										<td><b>{{$operation_time['day']}}</b></td>
+										<td>{{ isset($operation_time['start_time']) ? date('h:i A',strtotime($operation_time['start_time'])) : ''}} - {{ isset($operation_time['end_time']) ? date('h:i A',strtotime($operation_time['end_time'])) : ''}}</td>
+									</tr>
+									@endforeach
+									@endif
+									</tbody>
+								</table>
+								</div>--}}
 								
 
 								<!-- <p><b>Teaching Philosophy:</b> (Details about the school's pedagogic beliefs and methods)</p> -->
@@ -472,11 +471,11 @@
 								<div class="row justify-content-between align-items-center">
 									<div class="col-md-5">
 										<div class="job-title d-flex align-items-center">
-										<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="logo">
+										<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" >
 											@if(isset($job->employerDetails->institution_logo))
 											<img src="{{asset($job->employerDetails->institution_logo)}}" data-src="{{asset($job->employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
 											@else
-											<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
+											<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
 											@endif
 										</a>
 											<div class="split-box1">
@@ -703,7 +702,7 @@
 						@if(isset($job->employerDetails->institution_logo))
 						<img src="{{asset($employerDetails->institution_logo)}}" data-src="{{asset($employerDetails->institution_logo)}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
 						@else
-						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/logo/media_22.png')}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
+						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img m-auto rounded-circle round-avatar">
 						@endif
 						<!-- <img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto logo"> -->
 						<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">{{$employerDetails->institution ?? ''}}</div>
@@ -726,7 +725,7 @@
 									<div>Unverified</div>
 									@endif
 								</li>
-								<li class="col-12">
+								{{--<li class="col-12">
 									<span>Address Line 1:</span>
 									<div>{{$employerDetails->business_hours ?? ''}}</div>
 								</li>
@@ -741,7 +740,7 @@
 								<li class="col-12">
 									<span>Country:</span>
 									<div>{{$employerDetails->employerCountry->name ?? ''}}</div>
-								</li>
+								</li>--}}
 								<li class="col-12">
 									<span>Business Hours:</span>
 									@php $workingHours = explode("-" , $employerDetails->business_hours); @endphp
@@ -755,14 +754,14 @@
 									<span>Number of Teachers:</span>
 									<div>{{$employerDetails->number_of_teachers ?? ''}}</div>
 								</li>
-								<li class="col-12">
+								{{--<li class="col-12">
 									<span>Email:</span>
 									<div>{{$employerDetails->number_of_teachers ?? ''}}</div>
 								</li>
 								<li class="col-12">
 									<span>Contact Number:</span>
 									<div>{{$employerDetails->phone_number ?? ''}}</div>
-								</li>
+								</li>--}}
 								<li class="col-12">
 									<span>Number of Foreign Staff:</span>
 									<div>{{$employerDetails->employed_foreign_staff_and_roles ?? ''}}</div>

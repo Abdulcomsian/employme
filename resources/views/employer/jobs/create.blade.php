@@ -59,7 +59,7 @@ Post A Job
                         </div> --}}
                         <div class="col-md-6">
                             <div class="dash-input-wrapper mb-30">
-                                <label for="">Unique Selling Points:</label>
+                                <label for="">Benefits:</label>
                                 <input type="hidden" name="unique_selling_point">
                                 <select name="unique_selling_point" id="unique_selling_point" multiple>
                                     <option value="Proximit to Subway">Proximit to Subway</option>
@@ -83,7 +83,7 @@ Post A Job
 
                         <div class="col-md-6">
                             <div class="dash-input-wrapper mb-30">
-                                <label for="">Key Candidate Qualifications:</label>
+                                <label for="">Candidate qualifications:</label>
                                 <input type="hidden" name="ideal_candidate_profile">
                                 <select id="ideal_candidate_profile" multiple>
                                     <option value="1 Year Teaching Experience">1 Year Teaching Experience</option>
@@ -364,14 +364,13 @@ Post A Job
                             </select>
                             {{-- <textarea type="text" name="housing_details" placeholder="Size, type, furnished/unfurnished, utilities covered, etc."></textarea> --}}
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{--<div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Health Insurance:</label>
-                            {{--<textarea type="text" name="health_dental_insurance" placeholder="Insurance Details"></textarea>--}}
                             <select class="nice-select" name="health_dental_insurance">
                                 <option value="Yes" selected>Yes</option>
                                 <option value="No">No</option>
                             </select>
-                        </div>
+                        </div>--}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Airfare: </label>
                             <select class="nice-select specify">
@@ -429,6 +428,13 @@ Post A Job
                             <label for="">Overtime Pay:</label>
                             {{--<input type="text" name="overtime_pay" placeholder="">--}}
                             <select class="nice-select" name="overtime_pay">
+                                <option value="Yes" selected>Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Option to Contact Current/Past Foreign Teachers:</label>
+                            <select class="nice-select" name="option_to_current_past_foreign_teachers">
                                 <option value="Yes" selected>Yes</option>
                                 <option value="No">No</option>
                             </select>
@@ -596,6 +602,10 @@ Post A Job
                             </select>
                             {{-- <input type="text" name="induction_programs" placeholder="Training, school's philosophy, methodologies, etc."> --}}
                         </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Training compensation:</label>
+                            <input type="text" name="tax_deduction" placeholder="" value="">
+                        </div>
                         {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Mentorship:</label>
                             <input type="text" name="mentorship" placeholder="">
@@ -709,7 +719,7 @@ Post A Job
                             <input type="text" name="interview_process" placeholder=""></input>
                         </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Document submission deadline:</label>
+                            <label for="">Visa document submission deadline:</label>
                             <input type="date" name="application_deadline" placeholder=""></input>
                         </div>
                         {{-- <div class="dash-input-wrapper mb-30 col-md-6">
@@ -724,7 +734,7 @@ Post A Job
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
-                        <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
+                        <button type="submit" id="nextBtn" class="dash-btn-two tran3s job-submit-btn">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none job-submit-progress"></i></button>
                     </div>
                 </div>
 
@@ -751,11 +761,11 @@ Post A Job
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
-                        <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
+                        <button type="submit" id="nextBtn" class="dash-btn-two tran3s job-submit-btn">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none job-submit-progress"></i></button>
                     </div>
                 </div> --}}
 
-                <div class="bg-white card-box border-20 hide section" id="step8">
+                {{--<div class="bg-white card-box border-20 hide section" id="step8">
                     <h4 class="dash-title-three">Reviews & Testimonials</h4>
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
@@ -764,13 +774,7 @@ Post A Job
                             <input type="file" name="company_introduction" id="" accept=".mp4, .asf, .mov , .webm ,.avi , .mkv">
                             <textarea class="size-lg summernote" name="company_detail" placeholder="company_detail"></textarea>
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Option to Contact Current/Past Foreign Teachers:</label>
-                            <select class="nice-select" name="option_to_current_past_foreign_teachers">
-                                <option value="Yes" selected>Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </div>
+                        
 
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
@@ -778,7 +782,7 @@ Post A Job
                         <button type="submit" id="nextBtn" class="dash-btn-two tran3s job-submit-btn">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none job-submit-progress"></i></button>
                     </div>
 
-                </div>
+                </div>--}}
  
                 <!-- <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                     <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3 hide" onclick="nextPrev(-1)">Previous</button>

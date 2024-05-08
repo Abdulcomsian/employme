@@ -97,7 +97,7 @@ Post A Job
 
                         <div class="col-md-6">
                             <div class="dash-input-wrapper mb-30">
-                                <label for="">Key Candidate Qualifications:</label>
+                                <label for="">Candidate qualifications:</label>
                                 <input type="hidden" name="ideal_candidate_profile">
                                 @php
                 
@@ -398,14 +398,13 @@ Post A Job
                             </select>
                             {{-- <textarea type="text" name="housing_details" placeholder="Size, type, furnished/unfurnished, utilities covered, etc.">{{$employerJob->housing_details ?? ''}}</textarea> --}}
                         </div>
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{--<div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Health Insurance:</label>
-                            {{--<textarea type="text" name="health_dental_insurance" placeholder="Size, type, furnished/unfurnished, utilities covered, etc.">{{$employerJob->health_dental_insurance ?? ''}}</textarea>--}}
                             <select class="nice-select" name="health_dental_insurance">
                                 <option value="Yes" {{$employerJob->health_dental_insurance == 'Yes' ?  'selected' : ''}} >Yes</option>
                                 <option value="No"{{$employerJob->health_dental_insurance == 'No' ?  'selected' : ''}}>No</option>
                             </select>
-                        </div>
+                        </div>--}}
                      
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Airfare: </label>
@@ -472,6 +471,13 @@ Post A Job
                             <select class="nice-select" name="overtime_pay">
                                 <option value="Yes" {{$employerJob->overtime_pay == 'Yes' ? 'selected' : ''}}>Yes</option>
                                 <option value="No"{{$employerJob->overtime_pay == 'No' ? 'selected' : ''}}>No</option>
+                            </select>
+                        </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Option to Contact Current/Past Foreign Teachers:</label>
+                            <select class="nice-select" name="option_to_current_past_foreign_teachers">
+                                <option value="Yes" @if($employerJob->option_to_current_past_foreign_teachers == "Yes") selected @endif>Yes</option>
+                                <option value="No" @if($employerJob->option_to_current_past_foreign_teachers == "No") selected @endif>No</option>
                             </select>
                         </div>
                     </div>
@@ -649,7 +655,7 @@ Post A Job
                             {{-- <input type="text" name="first_week_structure" placeholder="Orientation, training, introductions, etc." value="{{$employerJob->first_week_structure ?? ''}}"></input> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Induction Programs:</label>
+                            {{--<label for="">Induction Programs:</label>--}}
                             <label for="">Traning Duration:</label>
                             <select class="nice-select" id="induction_programs" name="induction_programs">
                                 <option value="1 Week"  {{$employerJob->induction_programs == "1 Week" ? 'selected' : ''}} >1 Week</option>
@@ -658,6 +664,11 @@ Post A Job
                                 <option value="4 Weeks" {{$employerJob->induction_programs == "4 Weeks" ? 'selected' : ''}} >4 Weeks</option>
                             </select>
                             {{-- <input type="text" name="induction_programs" placeholder="Training, school's philosophy, methodologies, etc." value="{{$employerJob->induction_programs ?? ''}}"> --}}
+                        </div>
+                        <div class="dash-input-wrapper mb-30 col-md-6">
+                            <label for="">Training compensation:</label>
+                            <input type="text" name="tax_deduction" placeholder="" value="{{$employerJob->tax_deduction ?? ''}}">
+
                         </div>
                         {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Mentorship:</label>
@@ -760,13 +771,13 @@ Post A Job
                                 @endphp
                                 <input type="hidden" name="document_type">
                                 <select class="my-2" id="document_type" multiple>
-                                    <option value="@if(in_array("Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)", $documentType)) selected @endif" >Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)</option>
-                                    <option value="@if(in_array("Criminal Background Check Apostile", $documentType)) selected @endif" >Criminal Background Check Apostile</option>
-                                    <option value="@if(in_array("Completed Visa Application Form", $documentType)) selected @endif" >Completed Visa Application Form</option>
-                                    <option value="@if(in_array("Copy of Passport" , $documentType)) selected @endif" >Copy of Passport</option>
-                                    <option value="@if(in_array("Recent Passport-Sized photos" , $documentType)) selected @endif" >Recent Passport-Sized photos</option>
-                                    <option value="@if(in_array("Self Health Statement" , $documentType)) selected @endif" >Self Health Statement</option>
-                                    <option value="@if(in_array("Other documents may be required" , $documentType)) selected @endif" >Other documents may be required</option>
+                                    <option value="Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)" >Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)</option>
+                                    <option value="Criminal Background Check Apostile" >Criminal Background Check Apostile</option>
+                                    <option value="Completed Visa Application Form"  >Completed Visa Application Form</option>
+                                    <option value="Copy of Passport"  >Copy of Passport</option>
+                                    <option value="Recent Passport-Sized photos"  >Recent Passport-Sized photos</option>
+                                    <option value="Self Health Statement"  >Self Health Statement</option>
+                                    <option value="Other documents may be required" >Other documents may be required</option>
                                 </select>
                             </div>
                             {{-- <input type="text" name="required_documents" placeholder=""> --}}
@@ -780,22 +791,22 @@ Post A Job
                             <input type="text" name="interview_process" placeholder="" value="{{$employerJob->interview_process ?? ''}}"></input>
                         </div> --}}
                         <div class="dash-input-wrapper mb-30 col-md-6">
-                            <label for="">Document submission deadline:</label>
+                            <label for="">Visa document submission deadline:</label>
                             <input type="date" name="application_deadline" placeholder="" value="{{$employerJob->application_deadline ?? ''}}"></input>
                         </div>
                         {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Contract Review Process:</label>
                             <input type="text" name="contact_review_process" placeholder="" value="{{$employerJob->contact_review_process ?? ''}}">
                         </div> --}}
-                        <div class="dash-input-wrapper mb-30 col-md-6">
+                        {{--<div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Decision Deadline:</label>
                             <input type="date" name="decision_deadline" placeholder="" value="{{$employerJob->decision_deadline ?? ''}}">
-                        </div>
+                        </div>--}}
 
                     </div>
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
-                        <button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
+                        <button type="submit" id="nextBtn" class="dash-btn-two tran3s">Submit</button>
                     </div>
                 </div>
 
@@ -826,7 +837,7 @@ Post A Job
                     </div>
                 </div> --}}
 
-                <div class="bg-white card-box border-20 hide section" id="step8">
+                {{--<div class="bg-white card-box border-20 hide section" id="step8">
                     <h4 class="dash-title-three">Reviews & Testimonials</h4>
                     <div class="dash-input-wrapper mb-30 col-md-6">
                         <label for="">Company Introduction</label>
@@ -852,14 +863,13 @@ Post A Job
                                 <option value="Other documents may be required" @if($employerJob->document_type == "Other documents may be required" ) selected @endif>Other documents may be required</option>
                             </select>
                         </div>
-
                     </div>
 
                     <div class="dash-input-wrapper mb-30 col-md-6">
                         <label for="">Visa Document Submission Deadline:</label>
                         <input type="date" name="application_deadline" value="{{$employerJob->application_deadline}}" placeholder=""></input>
                     </div>
-                    {{-- <div class="row">
+                    <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Links to Teacher Testimonials or Reviews:</label>
                             <textarea type="text" name="links_to_teacher_testimonials_or_reviews" placeholder="" >{{$employerJob->links_to_teacher_testimonials_or_reviews ?? ''}}</textarea>
@@ -869,13 +879,13 @@ Post A Job
                             <textarea type="text" name="option_to_current_past_foreign_teachers" placeholder="" >{{$employerJob->option_to_current_past_foreign_teachers ?? ''}}</textarea>
                         </div>
 
-                    </div> --}}
+                    </div> 
                     <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                         <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3" onclick="nextPrev(-1)">Previous</button>
                         <button type="submit" id="nextBtn" class="dash-btn-two tran3s">Submit</button>
                     </div>
 
-                </div>
+                </div>--}}
                 <!-- <div class="button-group d-inline-flex align-items-center mt-30" style="width:100%;justify-content: flex-end;">
                     <button type="button" id="prevBtn" class="dash-cancel-btn tran3s  me-3 hide" onclick="nextPrev(-1)">Previous</button>
 					<button type="button" id="nextBtn" class="dash-btn-two tran3s" onclick="nextPrev(1)">Next</button>
@@ -960,7 +970,7 @@ Post A Job
                 document.querySelector("input[name='curriculum_overview']").value = $("#curriculum_overview").val();
                 document.querySelector("input[name='preferred_accent']").value = $("#preferred_accent").val();
                 document.querySelector("input[name='arrival_assitance']").value = $("#arrival_assitance").val();
-                document.querySelector("input[name='document_type']").value = $("#document_type").val();
+               document.querySelector("input[name='document_type']").value = $("#document_type").val();
                 this.submit();
                 
             })
