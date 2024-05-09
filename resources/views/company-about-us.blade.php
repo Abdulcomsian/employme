@@ -178,7 +178,7 @@
 											@if($gallery->file_extension != 'mp4')
 									<div class="swiper-slide">
 									
-												<img class="d-block w-100"  src="{{asset($gallery->file_name)}}" alt="First slide">
+												<img class="d-block w-100 img-round"  src="{{asset($gallery->file_name)}}" alt="First slide">
 											
 									</div>
 									@endif
@@ -216,12 +216,12 @@
 								@isset($employerStaff)
 								@foreach($employerStaff as $employer_staff)
 								<div class="col-12 col-md-6 col-lg-4 my-2">
-									<div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+									<div class="card border-0 border-bottom shadow-sm overflow-hidden">
 										<div class="card-body p-0">
 											<figure class="m-0 p-0">
-											<img class="img-fluid" loading="lazy" src="{{asset($employer_staff->staff_image)}}" alt="">
+											<img class="img-fluid img-round" loading="lazy" src="{{asset($employer_staff->staff_image)}}" alt="">
 											<figcaption class="m-0 p-4">
-												<h4 class="mb-1">{{$employer_staff->title ?? '' }}</h4>
+												<p class="mb-1" style = "font-weight:500; font-size:17px;font-family:gordita !important;">{{$employer_staff->title ?? '' }}</p>
 												<p class="text-secondary mb-0">{{$employer_staff->year_started ?? ''}}</p>
 											</figcaption>
 											</figure>
@@ -251,7 +251,7 @@
 							<div class="row">
 								@foreach($companyHousingsImages as $image)
 									<div class="col-md-4 mb-20">
-										<img src="{{asset($image->file_name)}}" alt="">
+										<img src="{{asset($image->file_name)}}" alt="" class = "img-round">
 									</div>
 								@endforeach
 								{{--<div class="col-md-4 mb-20">
@@ -488,11 +488,11 @@
 										<div class="job-location">
 											<a href="javascript;;">{{$job->city_town}}</a>
 										</div>
-										<div class="job-salary"><span class="fw-500 text-dark">{{$job->monthly_salary}} USD</span> / month . {{$job->experience_level ?? ''}}</div>
+										<div class="job-salary"><span class="fw-500 text-dark">{{$job->monthly_salary}}</div>
 									</div>
 									<div class="col-md-3 col-sm-6">
 										<div class="btn-group d-flex align-items-center justify-content-sm-end xs-mt-20">
-											<a  class="save-btn text-center rounded-circle tran3s {{(savedJob($job->id) == 1 ? 'bg-black' : '')}} save_job save_job{{base64_encode($job->id)}}" id="{{base64_encode($job->id)}}" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
+											<a  class="save-btn mx-2 text-center rounded-circle tran3s {{(savedJob($job->id) == 1 ? 'bg-black' : '')}} save_job save_job{{base64_encode($job->id)}}" id="{{base64_encode($job->id)}}" title="Save Job"><i class="bi bi-bookmark-dash"></i></a>
 											@if($job->job_status == 1)
 											<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="apply-btn text-center tran3s">APPLY</a>
 											@else

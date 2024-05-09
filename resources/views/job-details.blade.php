@@ -24,8 +24,8 @@
 
 .job-description-details{
 	padding-top: 36px;
-    padding-left: 40px;
 }
+
 </style>
 <div class="inner-banner-one position-relative">
 	<div class="container">
@@ -33,9 +33,9 @@
 			<div class="row">
 				<div class="col-xl-6 m-auto text-center">
 					<div class="title-two">
-						<h2 class="text-white">Job Details</h2>
+						<h2 class="text-white">{{$jobDetails->employerDetails->institution ?? ''}}</h2>
 					</div>
-					<p class="text-lg text-white mt-30 lg-mt-20">Here will be your company job details & requirements</p>
+					<p class="text-lg text-white mt-30 lg-mt-20">{{$jobDetails->job_title ?? ''}}</p>
 				</div>
 			</div>
 		</div>
@@ -110,12 +110,25 @@
 							<h4 class="block-title">Job Description</h4>
 						</div>
 						<div class = "job-description-details">
-							<h4>Job Description</h4>
+							{{--<h4>Job Description</h4>--}}
 							<p>{!! $jobDetails->job_description !!}</p>
 						</div>
 						<div class = "job-description-details ">
+							<h4>Visa Documents Requirement</h4>
+								<ul class = "list-type-one  mb-15">
+								@php
+                                    $documentType = $jobDetails->document_type ? explode(',' , $jobDetails->document_type) : [];
+                                @endphp
+									@if($documentType && count($documentType) > 0)
+									@foreach($documentType as $document)
+									 <li>{{$document}}</li>
+									@endforeach
+									@endif								
+								</ul>
+						</div>
+						<div class = "job-description-details ">
 							<h4>Class Information</h4>
-								<ul class = "list-type-one style-none mb-15">
+								<ul class = "list-type-one  mb-15">
 									<li>Student Age Group: {{$jobDetails->student_age_group ?? ''}}</li>
 									<li>Class size: {{$jobDetails->class_size ?? ''}}</li>
 									<li>Classes each day: {{$jobDetails->teaching_hours_per_day ?? ''}}</li>
@@ -146,31 +159,15 @@
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Requirements and Qualifications</h4>
 						</div>
-						<ul class="list-type-one style-none mb-15">
-							@if($jobDetails->ideal_candidate_profile)
+						<ul class="list-type-one  mb-15">
 							<li>Key Candidate Qualifications: {{$jobDetails->ideal_candidate_profile ?? ''}}</li>
-							@endif
-							@if($jobDetails->education)
 							<li>Education level required: {{$jobDetails->education ?? ''}}</li>
-							@endif
-							@if($jobDetails->teaching_certificate)
 							<li>Teaching Certification required: {{$jobDetails->teaching_certificate ?? ''}}</li>
-							@endif
-							@if($jobDetails->experience_level)
 							<li>Teaching experience required: {{$jobDetails->experience_level ?? ''}}</li>
-							@endif
-							@if($jobDetails->background_check)
 							<li>Clean criminal record required: {{$jobDetails->background_check ?? ''}}</li>
-							@endif
-							@if($jobDetails->health_check_requirement)
 							<li>Health check required: {{$jobDetails->health_check_requirement ?? ''}}</li>
-							@endif
-							@if($jobDetails->preferred_accent)
 							<li>Preferred accent: {{$jobDetails->preferred_accent ?? ''}}</li>
-							@endif
-							@if($jobDetails->language_proficiency)
 							<li>Language proficiency: {{$jobDetails->language_proficiency ?? ''}}</li>
-							@endif
 						</ul>
 					</div>
 					 @endif
@@ -198,7 +195,7 @@
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Position Overview:</h4>
 						</div>
-						<ul class="list-type-two style-none mb-15">
+						<ul class="list-type-one  mb-15">
 							@if($jobDetails->school_vision)
 							<li>{{$jobDetails->school_vision ?? ''}}</li>
 							@endif
@@ -225,7 +222,7 @@
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Onboarding Process</h4>
 						</div>
-						<ul class="list-type-one style-none mb-15">
+						<ul class="list-type-one  mb-15">
 							<li>Arrival assistance provided: {{$jobDetails->arrival_assitance ?? ''}}</li>
 							<li>Temporary accomodation provided: {{$jobDetails->initial_accomodation ?? ''}}</li>
 							<li>Training provided: {{$jobDetails->first_week_structure ?? ''}}</li>
@@ -259,7 +256,7 @@
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Location & Environment</h4>
 						</div>
-						<ul class="list-type-one style-none mb-15">
+						<ul class="list-type-one mb-15">
 							@if($jobDetails->city_town)
 							<li>{{$jobDetails->city_town ?? ''}}</li>
 							@endif
@@ -301,7 +298,7 @@
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Support for Foreign Teachers:</h4>
 						</div>
-						<ul class="list-type-two style-none mb-15">
+						<ul class="list-type-one mb-15">
 							@if($jobDetails->orientation_and_training)
 							<li>{{$jobDetails->orientation_and_training ?? ''}}</li>
 							@endif
@@ -334,7 +331,7 @@
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Application & Recruitment Process</h4>
 						</div>
-						<ul class="list-type-one style-none mb-15">
+						<ul class="list-type-one mb-15">
 							@if($jobDetails->required_documents)
 							<li>{{$jobDetails->required_documents ?? ''}}</li>
 							@endif
@@ -367,7 +364,7 @@
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
 							<h4 class="block-title">Additional Information:</h4>
 						</div>
-						<ul class="list-type-two style-none mb-15">
+						<ul class="list-type-two mb-15">
 							@if($jobDetails->orientation_and_training)
 							<li>{{$jobDetails->orientation_and_training ?? ''}}</li>
 							@endif
@@ -420,20 +417,7 @@
 								<span>Contract Duration</span>
 								<div>{{$jobDetails->contract_duration ?? ''}}</div>
 							</li>
-								@php
-                                    $documentType = $jobDetails->document_type ? explode(',' , $jobDetails->document_type) : [];
-                                @endphp
-
-							<li class="col-xl-12 col-md-4 col-sm-6 mb-4">
-								<span>Visa Documents Required </span>
-								<ol>
-									@if($documentType && count($documentType) > 0)
-									@foreach($documentType as $document)
-									 <li>{{$document}}</li>
-									@endforeach
-									@endif
-								</ol>
-							</li>
+								
 							<li class="col-xl-12 col-md-4 col-sm-6">
 								<span>Documents submission deadline</span>
 								<div>{{$jobDetails->application_deadline ?? ''}}</div>
@@ -747,9 +731,9 @@
 		<div class="wrapper bottom-border pt-65 md-pt-50 pb-65 md-pb-50">
 			<div class="row align-items-center">
 				<div class="col-lg-7">
-					<div class="text-center text-lg-start">
-						<h2>Most complete job portal.</h2>
-						<p class="text-md m0 md-pb-20">Signup and start find your job or talents.</p>
+					<div class="text-center text-md-start">
+						<h2 style = "font-size:32px !important;">Most complete recruitment and visa platform.</h2>
+						<p class="text-md m0 md-pb-20">Sign up and find your next job or candidate.</p>
 					</div>
 				</div>
 				<div class="col-lg-5">
