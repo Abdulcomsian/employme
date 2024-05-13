@@ -81,6 +81,9 @@
     font-family: "gordita" !important;
     margin-bottom: 22px !important;
 }
+ .single-job:hover{
+    box-shadow: 0 0 12px 6px rgba(0, 0, 0, 0.2);
+}
 </style>
 <div class="inner-banner-one position-relative">
 	<div class="container">
@@ -451,7 +454,7 @@
 					</div>-->
 
 					<div class="col-xxl-12 col-xl-12 order-xl-first card mb-60 mr-1 p-1 padding-box">
-						<div class="details-post-data me-xxl-5 pe-xxl-4">
+						<div class="details-post-data">
 							<!-- <h3>Overview</h3> -->
 							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Vulputate odio ut enim blandit. Nibh ipsum consequat nisl vel pretium lectus quam.</p> -->
 							<!-- <p> Nulla at volutpat diam ut. Lobortis feugiat vivamus at augue eget arcu. Urna condimentum mattis pellentesque id nibh tortor id aliquet. Dignissim cras tincidunt lobortis feugiat. Est sit amet facilisis magna etiam tempor. Eu augue ut lectus arcu bibendum at varius vel pharetra. Vel facilisis volutpat est velit egestas dui id. Ut pharetra sit amet aliquam. Elit at imperdiet dui accumsan sit amet nulla facilisi morbi. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Magna fringilla urna porttitor rhoncus. Et odio pellentesque diam volutpat. Congue eu consequat ac felis donec et odio pellentesque diam. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. </p> -->
@@ -462,7 +465,7 @@
 								<h3>Jobs</h3>
 								{{--<p>Photos: (Images of classrooms, events, staff, and students, housing)</p>
 								<p>Videos: (Short clips or promotional videos showcasing the school environment, events, or teaching methods)</p>--}}
-								<div class="accordion-box list-style show">
+								<div class="accordion-box list-style show single-job">
 							
 							<!-- /Grid Job Listings -->
 							@isset($allJobs)
@@ -846,8 +849,8 @@
 			<div class="row align-items-center">
 				<div class="col-lg-7">
 					<div class="text-center text-lg-start">
-						<h2>Most complete job portal.</h2>
-						<p class="text-md m0 md-pb-20">Signup and start find your job or talents.</p>
+						<h2 style = "font-size:32px !important;">Most complete recruitment and visa platform.</h2>
+						<p class="text-md m0 md-pb-20">Sign up and find your next job or candidate.</p>
 					</div>
 				</div>
 				<div class="col-lg-5">

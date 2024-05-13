@@ -43,7 +43,7 @@ Subscription Plan
                         <div class="">
                             <h3 class="price m0">₩{{$userSubscription->plan->price}}</h3>
                             <div class="ps-4 flex-fill">
-                                <h6>Monthly Plan</h6>
+                                <p>Duration:</p>
                                 <span class="text1 d-block">Your subscription renews <span class="fw-500">{{$userSubscription->renewal_date}}</span></span>
                                 <a href="#" onclick="event.preventDefault();
                                                                 document.getElementById('destroy-form').submit();" class="cancel-plan tran3s">Cancel Current Plan</a>

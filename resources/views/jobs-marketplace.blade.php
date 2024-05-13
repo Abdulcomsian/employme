@@ -595,8 +595,8 @@ Job Marketplace
 			<div class="row align-items-center">
 				<div class="col-lg-7">
 					<div class="text-center text-lg-start">
-						<h2>Most complete job portal.</h2>
-						<p class="text-md m0 md-pb-20">Signup and start find your job or talents.</p>
+						<h2 style = "font-size:32px !important;">Most complete recruitment and visa platform.</h2>
+						<p class="text-md m0 md-pb-20">Sign up and find your next job or candidate.</p>
 					</div>
 				</div>
 				<div class="col-lg-5">
