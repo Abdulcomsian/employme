@@ -29,6 +29,9 @@ Candidate Profile Details
     letter-spacing: -0.5px;
     padding: 0 20px;
 }
+video {
+    border-radius: 16px;
+}
 </style>
 
         <!-- 
@@ -172,7 +175,7 @@ Candidate Profile Details
                             @endif
                             @isset($candidateDetails->candidatePersonalDetails->why_interested_teaching_in_korea)
                             <div class="inner-card mb-65 lg-mb-40">
-                                <h3 class="title">Why I am interested in Teaching in South Korea ?</h3>
+                                <h3 class="title">Why I'm interested in Teaching in South Korea ?</h3>
                                 <p>{{$candidateDetails->candidatePersonalDetails->why_interested_teaching_in_korea ?? ''}}</p>
                             </div>
                             @endisset
@@ -187,9 +190,9 @@ Candidate Profile Details
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
                                             {{$index+1}}
                                         </div>
-                                        <div class="text_1 fw-500">{{$educational_detail->institute_name ?? ''}} ({{$educational_detail->instituteCountry->name ?? ''}}-{{$educational_detail->year_of_study ?? ''}})</div>
-                                        <h4>{{$educational_detail->degree ?? ''}}</h4>
-                                        <p>{{$educational_detail->field_of_study ?? ''}}</p>
+                                        <h4 >{{$educational_detail->institute_name ?? ''}} ({{$educational_detail->instituteCountry->name ?? ''}}-{{$educational_detail->year_of_study ?? ''}})</h4>
+                                        <div><p class="text_1 fw-500">Graduation Year: {{$educational_detail->year_of_study ?? ''}}</p></div>
+                                        <div><p class="text_1 fw-500"> {{$educational_detail->degree ?? ''}}</p></div>
                                     </div>
                                     @endforeach
                                 </div>
@@ -206,8 +209,9 @@ Candidate Profile Details
                                             <div class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
                                                 {{$index+1}}
                                             </div>
-                                            <div class="text_1 fw-500">{{ $professional_details['date_from']}} - {{$professional_details['date_to']}}</div>
-                                            <h4>{{ $professional_details['role']}} ({{$professional_details['employer_name']}})</h4>
+                                            <h4>{{ $professional_details['role']}}</h4>
+                                            <div class="text_1 fw-500">Start Date: {{ $professional_details['date_from']}} - End Date: {{$professional_details['date_to']}}</div>
+                                            <div><p class="text_1 fw-500"> {{$professional_details['employer_name']}}</p></div>
                                             <p>{!! $professional_details['description'] !!}</p>
                                         </div>
                                     @endif

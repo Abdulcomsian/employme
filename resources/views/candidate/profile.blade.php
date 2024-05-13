@@ -862,16 +862,16 @@ Profile
                                     <div class="dash-input-wrapper mb-30">
                                         <label for="">Salary Expectations</label>
                                         <select value= "" name="salaryExpectations" id="salaryExpectations" class="nice-select">
-                                            <option value="Under 2,000,000 KRW/month" {{$candidatePreferencesDetails->expected_salary == 'Under 2,000,000 KRW/month' ? 'selected' : ''}}>Under 2,000,000 KRW/month</option>
-                                            <option value="2,000,000 - 2,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '2,000,000 - 2,999,999 KRW/month' ? 'selected' : ''}}>2,000,000 - 2,999,999 KRW/month</option>
-                                            <option value="3,000,000 - 3,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '3,000,000 - 3,999,999 KRW/month' ? 'selected' : ''}}>3,000,000 - 3,999,999 KRW/month</option>
-                                            <option value="4,000,000 - 4,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '4,000,000 - 4,999,999 KRW/month' ? 'selected' : ''}}>4,000,000 - 4,999,999 KRW/month</option>
-                                            <option value="5,000,000 - 5,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '5,000,000 - 5,999,999 KRW/month' ? 'selected' : ''}}>5,000,000 - 5,999,999 KRW/month</option>
-                                            <option value="6,000,000 - 6,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '6,000,000 - 6,999,999 KRW/month' ? 'selected' : ''}}>6,000,000 - 6,999,999 KRW/month</option>
-                                            <option value="7,000,000 - 7,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '7,000,000 - 7,999,999 KRW/month' ? 'selected' : ''}}>7,000,000 - 7,999,999 KRW/month</option>
-                                            <option value="8,000,000 - 8,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '8,000,000 - 8,999,999 KRW/month' ? 'selected' : ''}}>8,000,000 - 8,999,999 KRW/month</option>
-                                            <option value="9,000,000 - 9,999,999 KRW/month" {{$candidatePreferencesDetails->expected_salary == '9,000,000 - 9,999,999 KRW/month' ? 'selected' : ''}}>9,000,000 - 9,999,999 KRW/month</option>
-                                            <option value="10,000,000 KRW and above/month" {{$candidatePreferencesDetails->expected_salary == '10,000,000 KRW and above/month' ? 'selected' : ''}}>10,000,000 KRW and above/month</option>
+                                            <option value="Under 2K KRW/month" {{$candidatePreferencesDetails->expected_salary == 'Under 2K KRW/month' ? 'selected' : ''}}>Under 2K KRW/month</option>
+                                            <option value="2k - 2.9K KRW/month" {{$candidatePreferencesDetails->expected_salary == '2k - 2.9K KRW/month' ? 'selected' : ''}}>2k - 2.9K KRW/month</option>
+                                            <option value="3K - 3.9K KRW/month" {{$candidatePreferencesDetails->expected_salary == '3K - 3.9K KRW/month' ? 'selected' : ''}}>3K - 3.9K KRW/month</option>
+                                            <option value="4K - 4.9K KRW/month" {{$candidatePreferencesDetails->expected_salary == '4K - 4.9K KRW/month' ? 'selected' : ''}}>4K - 4.9K KRW/month</option>
+                                            <option value="5K - 5.9K KRW/month" {{$candidatePreferencesDetails->expected_salary == '5K - 5.9K KRW/month' ? 'selected' : ''}}>5K - 5.9K KRW/month</option>
+                                            <option value="6K - 6.9K KRW/month" {{$candidatePreferencesDetails->expected_salary == '6K - 6.9K KRW/month' ? 'selected' : ''}}>6K - 6.9K KRW/month</option>
+                                            <option value="7K - 7.9K KRW/month" {{$candidatePreferencesDetails->expected_salary == '7K - 7.9K KRW/month' ? 'selected' : ''}}>7K - 7.9K KRW/month</option>
+                                            <option value="8K - 8.9K KRW/month" {{$candidatePreferencesDetails->expected_salary == '8K - 8.9K KRW/month' ? 'selected' : ''}}>8K - 8.9K KRW/month</option>
+                                            <option value="9K - 9.9K KRW/month" {{$candidatePreferencesDetails->expected_salary == '9K - 9.9K KRW/month' ? 'selected' : ''}}>9K - 9.9K KRW/month</option>
+                                            <option value="10K KRW and above/month" {{$candidatePreferencesDetails->expected_salary == '10K KRW and above/month' ? 'selected' : ''}}>10K KRW and above/month</option>
                                             <option value="Negotiable" {{$candidatePreferencesDetails->expected_salary == 'Negotiable' ? 'selected' : ''}}>Negotiable</option>
                                             <option value="Other (Please Specify)" {{$candidatePreferencesDetails->expected_salary == 'Other (Please Specify)' ? 'selected' : ''}}>Other (Please Specify)</option>
                                         </select>
