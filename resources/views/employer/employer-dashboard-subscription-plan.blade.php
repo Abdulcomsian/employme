@@ -34,8 +34,16 @@ Subscription Plan
             <div class="row gx-0">
                 <div class="col-xxl-6 col-lg-6 d-flex flex-column">
                     <div class="column w-100 h-100">
-                        <h4>Current Plan ({{$userSubscription->plan->name}})</h4>
+                        <h4>Freedom Plan</h4>
                         <p>Unlimited access to our legal document library and online rental application tool, billed monthly.</p>
+                        <p>Duration: {{$userSubscription->plan->duration > 11 ? '1 Year' : $userSubscription->plan->duration.' Month'}}</p>
+                        <p>Allowed Jobs: {{$userSubscription->plan->allowed_jobs}}</p>
+                        <p>Access to a pool of qualified candidates</p>
+                        <p>Inbuilt direct messaging with candidates </p>
+                        <p>Schedule interviews and send employment contracts directly</p>
+                        <p>Streamlined recruitment and visa process</p>
+                        <p>Company page to promote your business</p>
+                        
                     </div>
                 </div>
                 <div class="col-xxl-6 col-lg-6 d-flex flex-column">
@@ -43,7 +51,7 @@ Subscription Plan
                         <div class="">
                             <h3 class="price m0">₩{{$userSubscription->plan->price}}</h3>
                             <div class="ps-4 flex-fill">
-                                <p>Duration:</p>
+                                <!-- <p>Duration: {{$userSubscription->plan->duration}}</p> -->
                                 <span class="text1 d-block">Your subscription renews <span class="fw-500">{{$userSubscription->renewal_date}}</span></span>
                                 <a href="#" onclick="event.preventDefault();
                                                                 document.getElementById('destroy-form').submit();" class="cancel-plan tran3s">Cancel Current Plan</a>
