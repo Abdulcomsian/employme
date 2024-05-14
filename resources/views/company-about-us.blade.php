@@ -470,7 +470,7 @@
 							<!-- /Grid Job Listings -->
 							@isset($allJobs)
 							@foreach($allJobs as $index=>$job)
-							<div class="job-list-one style-two position-relative border-style mb-20">
+							<div class="job-list-one style-two position-relative mb-20">
 								<div class="row justify-content-between align-items-center">
 									<div class="col-md-5">
 										<div class="job-title d-flex align-items-center">

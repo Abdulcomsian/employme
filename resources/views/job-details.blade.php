@@ -630,10 +630,6 @@
 								<div>{{$jobDetails->sick_leave ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Pension</span>
-								<div>{{$jobDetails->pension ?? ''}}</div>
-							</li>
-							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Overtime Pay</span>
 								<div>{{$jobDetails->overtime_pay ?? ''}}</div>
 							</li>
