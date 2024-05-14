@@ -26,6 +26,13 @@
 	padding-top: 36px;
 }
 
+.list-type-one li{
+	font-family: "gordita"!important;
+	line-height: 14px!important;
+	font-weight: 400!important;
+}
+
+
 </style>
 <div class="inner-banner-one position-relative">
 	<div class="container">
@@ -114,7 +121,10 @@
 							<p>{!! $jobDetails->job_description !!}</p>
 						</div>
 						<div class = "job-description-details ">
-							<h4>Visa Documents Requirement</h4>
+							<div class="d-flex align-items-center">
+								<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
+								<h4 class="block-title">Visa Documents Requirement</h4>
+							</div>
 								<ul class = "list-type-one  mb-15">
 								@php
                                     $documentType = $jobDetails->document_type ? explode(',' , $jobDetails->document_type) : [];
@@ -126,15 +136,20 @@
 									@endif								
 								</ul>
 						</div>
+					
 						<div class = "job-description-details ">
-							<h4>Class Information</h4>
+							<div class="d-flex align-items-center">
+								<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
+								<h4 class="block-title">Class Informatio</h4>
+							</div>
+							
 								<ul class = "list-type-one  mb-15">
 									<li>Student Age Group: {{$jobDetails->student_age_group ?? ''}}</li>
 									<li>Class size: {{$jobDetails->class_size ?? ''}}</li>
 									<li>Classes each day: {{$jobDetails->teaching_hours_per_day ?? ''}}</li>
 									<li>Preparation time: {{$jobDetails->non_teaching_hours_per_day ?? ''}}</li>
 									<li>Break time: {{$jobDetails->break_times ?? ''}}</li>
-									<li>Curriculum overview: {{$jobDetails->curriculum_overview ?? ''}}</li>
+									<li>Teaching Subjects: {{$jobDetails->curriculum_overview ?? ''}}</li>
 									<li>Class duration: {{$jobDetails->class_duration ?? ''}}</li>
 									<li>Class start time: {{date('h:i A',strtotime($jobDetails->start_time)) ?? ''}}</li>
 									<li>Class end time: {{date('h:i A',strtotime($jobDetails->finish_time)) ?? ''}}</li>
@@ -582,7 +597,7 @@
 								<div>@if(count($uniqueSellingPoints) > 0) @foreach($uniqueSellingPoints as $usp){{$usp}},@endforeach @endif</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Renewal</span>
+								<span>Contract Renewal</span>
 								<div>{{$jobDetails->renewal_possibilities ?? ''}}</div>
 							</li>
 							<li class="col-xl-7 col-md-4 col-sm-6">

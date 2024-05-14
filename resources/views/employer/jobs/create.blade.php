@@ -451,7 +451,7 @@ Post A Job
                     <div class="row">
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Education:</label>
-                            <select class="nice-select" name="education">
+                            <select class="nice-select specify">
                                 <option value="High School Diploma/GED" selected>High School Diploma/GED</option>
                                 <option value="Associate's Degree">Associate's Degree</option>
                                 <option value="Bachelor's Degree">Bachelor's Degree</option>
@@ -467,7 +467,7 @@ Post A Job
                             <label for="">Teaching Certificate:</label>
                             <select class="nice-select specify">
                                 <option value="">Select Certificate</option>
-                                <option value="TESOL" selected>TESOL</option>
+                                <option value="TESOL">TESOL</option>
                                 <option value="TEFL">TEFL</option>
                                 <option value="CELTA">CELTA</option>
                                 <option value="DELTA">DELTA</option>
@@ -475,7 +475,6 @@ Post A Job
                                 <option value="Other">Other (Please Specify)</option>
                             </select>
                             <input type="hidden" class="select-hidden-input" name="teaching_certificate" placeholder="Certificate">
-                            {{-- <input type="text" name="teaching_certificate" placeholder=""></input> --}}
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Teaching Experience:</label>
