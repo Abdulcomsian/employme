@@ -603,7 +603,7 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Training compensation:</label>
-                            <input type="text" name="tax_deduction" placeholder="" value="">
+                            <input type="text" name="mentorship" placeholder="" value="">
                         </div>
                         {{-- <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Mentorship:</label>

@@ -667,7 +667,7 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Training compensation:</label>
-                            <input type="text" name="tax_deduction" placeholder="" value="{{$employerJob->tax_deduction ?? ''}}">
+                            <input type="text" name="mentorship" placeholder="" value="{{$employerJob->mentorship ?? ''}}">
 
                         </div>
                         {{-- <div class="dash-input-wrapper mb-30 col-md-6">

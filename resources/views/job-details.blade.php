@@ -242,7 +242,7 @@
 							<li>Temporary accomodation provided: {{$jobDetails->initial_accomodation ?? ''}}</li>
 							<li>Training provided: {{$jobDetails->first_week_structure ?? ''}}</li>
 							<li>Training duration: {{$jobDetails->induction_programs ?? ''}}</li>
-							<li>Training compensation: {{$jobDetails->tax_deduction ?? ''}}</li>
+							<li>Training compensation: {{$jobDetails->mentorship ?? ''}}</li>
 						{{-- @if($jobDetails->first_week_structure)
 							<li>{{$jobDetails->first_week_structure ?? ''}}</li>
 							@endif
