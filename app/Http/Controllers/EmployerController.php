@@ -43,15 +43,6 @@ class EmployerController extends Controller
     }
     public function getEmployerSubscription()
     {
-        // $user = User::find(Auth::id());
-        // if ($user->subscribed('prod_Or5sOemrKGQMth')) { // Replace with the actual plan name
-        //     dd('Subscribed');
-
-        // } else {
-        //    dd('Un Subscribed');
-        // }
-        // $subscription=User::find(Auth::id())->subscriptions('default')->first();
-        // $subscription->swap('price_1O45OVIWh0YxdiV2lbhYthVN');
         $intent = auth()->user()->createSetupIntent();
         $allPlans = Plan::all();
         $userSubscription = User::find(Auth::id())->subscriptions('default')->first();

@@ -190,8 +190,8 @@ video {
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
                                             {{$index+1}}
                                         </div>
-                                        <h4 >{{$educational_detail->institute_name ?? ''}} ({{$educational_detail->instituteCountry->name ?? ''}}-{{$educational_detail->year_of_study ?? ''}})</h4>
-                                        <div><p class="text_1 fw-500">Graduation Year: {{$educational_detail->year_of_study ?? ''}}</p></div>
+                                        <h4>{{$educational_detail->institute_name ?? ''}} ({{$educational_detail->instituteCountry->name ?? ''}})</h4>
+                                        <div><p class="text_1 fw-500 m-0">Graduation Year: {{$educational_detail->year_of_study ?? ''}}</p></div>
                                         <div><p class="text_1 fw-500"> {{$educational_detail->degree ?? ''}}</p></div>
                                     </div>
                                     @endforeach
@@ -261,10 +261,10 @@ video {
                                         <div>{{$candidateDetails->candidatePersonalDetails->date_of_birth ?? ''}}</div>
                                     </li>
                                         @isset($candidateDetails->candidateHighestQualification)
-                                    <li>
-                                        <span>Qualification: </span>
-                                        <div>{{$candidateDetails->candidateHighestQualification->degree ?? ''}}</div>
-                                    </li>
+                                        <li>
+                                            <span>Qualification: </span>
+                                            <div>{{$candidateDetails->candidateHighestQualification->degree ?? ''}}</div>
+                                        </li>
                                         @endisset
                                     <li>
                                         <span>Preferred Start Date: </span>
