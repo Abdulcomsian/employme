@@ -558,7 +558,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span	class="text-start fw-500">Salary</span>
-												<div	class="text-end">{{$candidate->candidatePreferences->expected_salary ?? ''}}{{!empty($candidate->candidatePreferences->expected_salary) ? '/mo' : ''}}</div>
+												<div	class="text-end">{{$candidate->candidatePreferences->expected_salary ?? ''}}</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>

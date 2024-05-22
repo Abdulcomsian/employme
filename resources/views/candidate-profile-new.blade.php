@@ -32,6 +32,9 @@ Candidate Profile Details
 video {
     border-radius: 16px;
 }
+.education-detail{
+    line-height: 20px;
+}
 </style>
 
         <!-- 
@@ -190,10 +193,10 @@ video {
                                             class="numb fw-500 rounded-circle d-flex align-items-center justify-content-center">
                                             {{$index+1}}
                                         </div>
-                                        <h4 >{{$educational_detail->institute_name ?? ''}} ({{$educational_detail->instituteCountry->name ?? ''}}-{{$educational_detail->year_of_study ?? ''}})</h4>
-                                        <div><p class="text_1 fw-500 mb-0">Graduation Year: {{$educational_detail->year_of_study ?? ''}}</p></div>
-                                        <div><p class="text_1 fw-500 mb-0"> {{$educational_detail->degree ?? ''}}</p></div>
-                                        <div><p class="text_1 fw-500 mb-0"> {{$educational_detail->field_of_study ?? ''}}</p></div>
+                                        <h4 >{{$educational_detail->institute_name ?? ''}} ({{$educational_detail->instituteCountry->name ?? ''}})</h4>
+                                        <div><p class="text_1 fw-500 mb-0 education-detail">Graduation Year: {{$educational_detail->year_of_study ?? ''}}</p></div>
+                                        <div><p class="text_1 fw-500 mb-0 education-detail"> {{$educational_detail->degree ?? ''}}</p></div>
+                                        <div><p class="text_1 fw-500 mb-0 education-detail"> {{$educational_detail->field_of_study ?? ''}}</p></div>
 
                                     </div>
                                     @endforeach
@@ -212,7 +215,8 @@ video {
                                                 {{$index+1}}
                                             </div>
                                             <h4>{{ $professional_details['role']}}</h4>
-                                            <div class="text_1 fw-500">Start Date: {{ $professional_details['date_from']}} - End Date: {{$professional_details['date_to']}}</div>
+                                            <div class="text_1 fw-500">Start Date: {{ $professional_details['date_from']}} </div>
+                                            <div class="text_1 fw-500">End Date: {{$professional_details['date_to']}}</div>
                                             <div><p class="text_1 fw-500"> {{$professional_details['employer_name']}}</p></div>
                                             <p>{!! $professional_details['description'] !!}</p>
                                         </div>
@@ -266,6 +270,7 @@ video {
                                         <li>
                                             <span>Qualification: </span>
                                             <div>{{$candidateDetails->candidateHighestQualification->degree ?? ''}}</div>
+                                            <div>{{$candidateDetails->candidateHighestQualification->field_of_study ?? ''}}</div>
                                         </li>
                                         @endisset
                                     <li>
