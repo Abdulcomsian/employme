@@ -191,8 +191,9 @@ video {
                                             {{$index+1}}
                                         </div>
                                         <h4 >{{$educational_detail->institute_name ?? ''}} ({{$educational_detail->instituteCountry->name ?? ''}}-{{$educational_detail->year_of_study ?? ''}})</h4>
-                                        <div><p class="text_1 fw-500">Graduation Year: {{$educational_detail->year_of_study ?? ''}}</p></div>
-                                        <div><p class="text_1 fw-500"> {{$educational_detail->degree ?? ''}}</p></div>
+                                        <div><p class="text_1 fw-500 mb-0">Graduation Year: {{$educational_detail->year_of_study ?? ''}}</p></div>
+                                        <div><p class="text_1 fw-500 mb-0"> {{$educational_detail->degree ?? ''}}</p></div>
+                                        <div><p class="text_1 fw-500 mb-0"> {{$educational_detail->field_of_study ?? ''}}</p></div>
                                     </div>
                                     @endforeach
                                 </div>

@@ -5705,13 +5705,15 @@ input[type="range"]::-webkit-slider-thumb {
 
 .job-details .list-type-one li {
   position: relative;
-  font-size: 17px;
+  font-size: 15px;
   margin-top: 20px;
   padding-left: 6px;
   font-weight: 500;
   line-height: 0.882em;
-  font-family: "EB Garamond", serif;
+  /* font-family: "EB Garamond", serif; */
   color: #000;
+  font-weight: 300;
+  line-height: 19px;
 }
 .job-details .list-type-one li:before {
   /* content: "\f26a"; */

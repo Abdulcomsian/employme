@@ -81,7 +81,8 @@
     font-family: "gordita" !important;
     margin-bottom: 22px !important;
 }
- .single-job:hover{
+
+ .job-list-one:hover{
     box-shadow: 0 0 12px 6px rgba(0, 0, 0, 0.2);
 }
 </style>

@@ -209,7 +209,7 @@
 			<div class="row align-items-center">
 				<div class="col-lg-7">
 					<div class="text-center text-lg-start">
-						<h2>Most complete job portal.</h2>
+						<h2>Most complete recruitment platform.</h2>
 						<p class="text-md m0 md-pb-20">Signup and start find your job or talents.</p>
 					</div>
 				</div>

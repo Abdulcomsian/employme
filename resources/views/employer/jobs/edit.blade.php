@@ -771,8 +771,8 @@ Post A Job
                                 @endphp
                                 <input type="hidden" name="document_type">
                                 <select class="my-2" id="document_type" multiple>
-                                    <option value="Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)" >Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)</option>
-                                    <option value="Criminal Background Check Apostile" >Criminal Background Check Apostile</option>
+                                    <option value="Degree Apostille (For South African candidate: Letter from SAQA authorizing degree)" >Degree Apostille (For South African candidate: Letter from SAQA authorizing degree)</option>
+                                    <option value="Criminal Background Check Apostille" >Criminal Background Check Apostille</option>
                                     <option value="Completed Visa Application Form"  >Completed Visa Application Form</option>
                                     <option value="Copy of Passport"  >Copy of Passport</option>
                                     <option value="Recent Passport-Sized photos"  >Recent Passport-Sized photos</option>
@@ -854,8 +854,8 @@ Post A Job
                         <div>
                             <select class="form-select @if($employerJob->option_to_current_past_foreign_teachers == "Yes") d-none @endif my-2" id="document_type" name="document_type">
                                 <option value="">Select Document Type</option>
-                                <option value="Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)" @if($employerJob->document_type == "Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)" ) selected @endif>Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)</option>
-                                <option value="Criminal Background Check Apostile" @if($employerJob->document_type == "Criminal Background Check Apostile" ) selected @endif>Criminal Background Check Apostile</option>
+                                <option value="Degree Apostille (For South African candidate: Letter from SAQA authorizing degree)" @if($employerJob->document_type == "Degree Apostille (For South African candidate: Letter from SAQA authorizing degree)" ) selected @endif>Degree Apostille (For South African candidate: Letter from SAQA authorizing degree)</option>
+                                <option value="Criminal Background Check Apostille" @if($employerJob->document_type == "Criminal Background Check Apostille" ) selected @endif>Criminal Background Check Apostille</option>
                                 <option value="Completed Visa Application Form" @if($employerJob->document_type == "Completed Visa Application Form" ) selected @endif>Completed Visa Application Form</option>
                                 <option value="Copy of Passport" @if($employerJob->document_type == "Copy of Passport" ) selected @endif>Copy of Passport</option>
                                 <option value="Recent Passport-Sized photos" @if($employerJob->document_type == "Recent Passport-Sized photos" ) selected @endif>Recent Passport-Sized photos</option>

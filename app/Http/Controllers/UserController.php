@@ -562,10 +562,10 @@ class UserController extends Controller
                         $filename = "Copy-of-Police-Certificate";
                           break;
                         case 3:
-                        $filename = "Copy-of-Degree-Apostile";
+                        $filename = "Copy-of-Degree-Apostille";
                           break;
                         case 4:
-                        $filename = "Copy-of-Police-Certificate-Apostile";
+                        $filename = "Copy-of-Police-Certificate-Apostille";
                           break;
                         case 5:
                         $filename = "Copy-of-Saqa-Letter";

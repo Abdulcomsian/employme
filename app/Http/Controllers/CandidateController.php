@@ -116,6 +116,7 @@ class CandidateController extends Controller
 
     public function saveProfile3(Request $request)
     {
+        dd("here");
         $input = $request->except('_token','educational_details');
         $updateEducationalDetails = CandidateEducation::where('user_id',Auth::id());
         if(isset($request->educational_details))
