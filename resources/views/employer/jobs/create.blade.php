@@ -703,8 +703,8 @@ Post A Job
                             <div class="document_type_box d-none">
                                 <input type="hidden" name="document_type">
                                 <select class="my-2" id="document_type" multiple>
-                                    <option value="Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)" >Degree Apostile (For South African candidate: Letter from SAQA authorizing degree)</option>
-                                    <option value="Criminal Background Check Apostile" >Criminal Background Check Apostile</option>
+                                    <option value="Degree Apostille (For South African candidate: Letter from SAQA authorizing degree)" >Degree Apostille (For South African candidate: Letter from SAQA authorizing degree)</option>
+                                    <option value="Criminal Background Check Apostille" >Criminal Background Check Apostille</option>
                                     <option value="Completed Visa Application Form" >Completed Visa Application Form</option>
                                     <option value="Copy of Passport" >Copy of Passport</option>
                                     <option value="Recent Passport-Sized photos" >Recent Passport-Sized photos</option>

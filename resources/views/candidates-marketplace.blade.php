@@ -93,7 +93,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 					<div class="title-two">
 						<h2 class="text-white">Candidate Marketplace</h2>
 					</div>
-					<p class="text-lg text-white mt-30 lg-mt-20 mb-35 lg-mb-20">Find you desire talents & make your work done</p>
+					<p class="text-lg text-white mt-30 lg-mt-20 mb-35 lg-mb-20">Find the best candidate for your workplace</p>
 				</div>
 			</div>
 			<div class="position-relative">
@@ -766,7 +766,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 			<div class="row align-items-center">
 				<div class="col-lg-7">
 					<div class="text-center text-lg-start">
-						<h2>Most complete job portal.</h2>
+						<h2>Most complete recruitment platform.</h2>
 						<p class="text-md m0 md-pb-20">Signup and start find your job or talents.</p>
 					</div>
 				</div>

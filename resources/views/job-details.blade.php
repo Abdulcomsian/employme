@@ -26,6 +26,10 @@
 	padding-top: 36px;
 }
 
+.job-description-details h4, .job-description-details h4{
+	font-family: "gordita";
+}
+
 </style>
 <div class="inner-banner-one position-relative">
 	<div class="container">

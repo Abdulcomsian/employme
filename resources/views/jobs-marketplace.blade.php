@@ -52,7 +52,7 @@ Job Marketplace
 					<div class="title-two">
 						<h2 class="text-white">Jobs Marketplace</h2>
 					</div>
-					<p class="text-lg text-white mt-30 lg-mt-20 mb-35 lg-mb-20">Find the best candidate for your company</p>
+					<p class="text-lg text-white mt-30 lg-mt-20 mb-35 lg-mb-20">Making smarter career choices with our Job Marketplace</p>
 				</div>
 			</div>
 			<div class="position-relative">

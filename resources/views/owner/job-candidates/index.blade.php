@@ -117,7 +117,7 @@ Job Candidates
                             <div class="col-xl-3 col-md-4 col-sm-6">
                                 <div class="candidate-info">
                                     <span>Salary</span>
-                                    <div>{{$jobApplicant->candidatePreferences->expected_salary ?? ''}}{{!empty($jobApplicant->candidatePreferences->expected_salary) ? '/mo' : ''}}</div>
+                                    <div>{{$jobApplicant->candidatePreferences->expected_salary ?? ''}}</div>
                                 </div>
                                 <!-- /.candidate-info -->
                             </div>
