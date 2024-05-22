@@ -35,21 +35,24 @@ Subscription Plan
                 <div class="col-xxl-6 col-lg-6 d-flex flex-column">
                     <div class="column w-100 h-100">
                         <h4>Freedom Plan</h4>
-                        <p>Unlimited access to our legal document library and online rental application tool, billed monthly.</p>
-                        <p>Duration: {{$userSubscription->plan->duration > 11 ? '1 Year' : $userSubscription->plan->duration.' Month'}}</p>
-                        <p>Allowed Jobs: {{$userSubscription->plan->allowed_jobs}}</p>
-                        <p>Access to a pool of qualified candidates</p>
-                        <p>Inbuilt direct messaging with candidates </p>
-                        <p>Schedule interviews and send employment contracts directly</p>
-                        <p>Streamlined recruitment and visa process</p>
-                        <p>Company page to promote your business</p>
+                        <ul>
+                            <li>Unlimited access to our legal document library and online rental application tool, billed monthly.</li>
+                            <li>Duration: {{$userSubscription->plan->duration > 11 ? '1 Year' : $userSubscription->plan->duration.' Month'}}</li>
+                            <li>Allowed Jobs: {{$userSubscription->plan->allowed_jobs}}</li>
+                            <li>Access to a pool of qualified candidates</li>
+                            <li>Inbuilt direct messaging with candidates </li>
+                            <li>Schedule interviews and send employment contracts directly</li>
+                            <li>Streamlined recruitment and visa process</li>
+                            <li>Company page to promote your business</li>
+                        
+                        </ul>
                         
                     </div>
                 </div>
                 <div class="col-xxl-6 col-lg-6 d-flex flex-column">
                     <div class="column border-left w-100 h-100">
                         <div class="">
-                            <h3 class="price m0">₩{{$userSubscription->plan->price}}</h3>
+                            <h3 class="price m0">₩{{number_format($userSubscription->plan->price , 2)}}</h3>
                             <div class="ps-4 flex-fill">
                                 <!-- <p>Duration: {{$userSubscription->plan->duration}}</p> -->
                                 <span class="text1 d-block">Your subscription renews <span class="fw-500">{{$userSubscription->renewal_date}}</span></span>

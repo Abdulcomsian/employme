@@ -591,38 +591,38 @@ Interview Request
         document.querySelector('input[name=reschedule_interview_id]').value = id;
      }
     const stars = document.querySelectorAll(".stars i");
-stars.forEach((star, index1) => {
-    star.addEventListener("click", () => {
-        stars.forEach((star, index2) => {
-            index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+    stars.forEach((star, index1) => {
+        star.addEventListener("click", () => {
+            stars.forEach((star, index2) => {
+                index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+            });
+            const rating = document.querySelectorAll(".stars i.active").length;
+            const hiddenInput = modal.querySelector('input[name="rating"]');
+            hiddenInput.value = rating;
         });
-        const rating = document.querySelectorAll(".stars i.active").length;
-        const hiddenInput = modal.querySelector('input[name="rating"]');
-        hiddenInput.value = rating;
     });
-});
 
 function employerData(interviewId)
 {
     document.getElementById('interview_id').value = interviewId;
 }
 const modal = document.getElementById('reviewModal');
-            modal.addEventListener('hidden.bs.modal', function() {
-                // Clear the select element
-                const selectElement = modal.querySelector('select');
-                selectElement.selectedIndex = 0; // Set it to the default option
+modal.addEventListener('hidden.bs.modal', function() {
+    // Clear the select element
+    const selectElement = modal.querySelector('select');
+    selectElement.selectedIndex = 0; // Set it to the default option
 
-                // Clear the textarea
-                const textareaElement = modal.querySelector('textarea');
-                textareaElement.value = '';
+    // Clear the textarea
+    const textareaElement = modal.querySelector('textarea');
+    textareaElement.value = '';
 
-                const hiddenInput = modal.querySelector('input[name="rating"]');
-                hiddenInput.value = 0;
+    const hiddenInput = modal.querySelector('input[name="rating"]');
+    hiddenInput.value = 0;
 
-                // Clear the star ratings (remove the "active" class)
-                const stars = modal.querySelectorAll('.stars i');
-                stars.forEach(star => star.classList.remove('active'));
-            });
+    // Clear the star ratings (remove the "active" class)
+    const stars = modal.querySelectorAll('.stars i');
+    stars.forEach(star => star.classList.remove('active'));
+});
 </script>
 @endpush
 @endsection

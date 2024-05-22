@@ -194,6 +194,7 @@ video {
                                         <div><p class="text_1 fw-500 mb-0">Graduation Year: {{$educational_detail->year_of_study ?? ''}}</p></div>
                                         <div><p class="text_1 fw-500 mb-0"> {{$educational_detail->degree ?? ''}}</p></div>
                                         <div><p class="text_1 fw-500 mb-0"> {{$educational_detail->field_of_study ?? ''}}</p></div>
+
                                     </div>
                                     @endforeach
                                 </div>
@@ -262,10 +263,10 @@ video {
                                         <div>{{$candidateDetails->candidatePersonalDetails->date_of_birth ?? ''}}</div>
                                     </li>
                                         @isset($candidateDetails->candidateHighestQualification)
-                                    <li>
-                                        <span>Qualification: </span>
-                                        <div>{{$candidateDetails->candidateHighestQualification->degree ?? ''}}</div>
-                                    </li>
+                                        <li>
+                                            <span>Qualification: </span>
+                                            <div>{{$candidateDetails->candidateHighestQualification->degree ?? ''}}</div>
+                                        </li>
                                         @endisset
                                     <li>
                                         <span>Preferred Start Date: </span>
