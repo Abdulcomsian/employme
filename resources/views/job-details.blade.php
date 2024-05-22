@@ -144,7 +144,7 @@
 						<div class = "job-description-details ">
 							<div class="d-flex align-items-center">
 								<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>
-								<h4 class="block-title">Class Informatio</h4>
+								<h4 class="block-title">Class Information</h4>
 							</div>
 							
 								<ul class = "list-type-one  mb-15">
