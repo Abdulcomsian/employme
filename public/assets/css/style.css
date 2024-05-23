@@ -5255,8 +5255,8 @@ iframe {
   color: #CBCBCB;
 }
 .job-list-one .save-btn:hover {
-  background: #E7F6EF;
-  border-color: #E7F6EF;
+  background: #e6e0fc;
+  border-color: #e6e0fc;
   color: rgb(255 113 91);
 }
 .job-list-one .apply-btn {
@@ -5348,7 +5348,7 @@ iframe {
   font-size: 13px;
   color: #00BF58;
   padding: 2px 12px;
-  background: #E7F6EF;
+  background: #e6e0fc;
   border-radius: 3px;
   margin: 54px 0 16px;
 }
@@ -5409,8 +5409,8 @@ iframe {
   background: #fff;
 }
 .job-list-two .save-btn:hover {
-  background: #E7F6EF;
-  border-color: #E7F6EF;
+  background: #e6e0fc;
+  border-color: #e6e0fc;
   color: #ff715b;
 }
 .job-list-two.style-two {
@@ -5527,8 +5527,8 @@ input[type="range"]::-webkit-slider-thumb {
   background: #fff;
 }
 .job-list-three .main-wrapper .save-btn:hover {
-  background: #E7F6EF;
-  border-color: #E7F6EF;
+  background: #e6e0fc;
+  border-color: #e6e0fc;
   color: #ff715b;
 }
 .job-list-three .main-wrapper p {
@@ -5918,8 +5918,8 @@ input[type="range"]::-webkit-slider-thumb {
   color: #CBCBCB;
 }
 .company-list-layout .save-btn:hover {
-  background: #E7F6EF;
-  border-color: #E7F6EF;
+  background: #e6e0fc;
+  border-color: #e6e0fc;
   color: #ff715b;
 }
 .company-list-layout .open-job-btn {
