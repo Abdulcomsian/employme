@@ -428,7 +428,7 @@ hr {
   line-height: 1.333em;
 }
 .title-one h2.main-font.color-blue {
-  color: #005025;
+  color: #ff715b;
 }
 
 .title-one span img {
@@ -462,7 +462,7 @@ hr {
   margin: 0;
 }
 .title-two h2.color-blue {
-  color: #005025;
+  color: #ff715b;
 }
 .title-two h2 span {
   color: #D2F34C;
@@ -490,7 +490,7 @@ hr {
   color: #000;
 }
 .title-three h2.color-blue {
-  color: #005025;
+  color: #ff715b;
 }
 
 .title-four h2 {
@@ -2364,7 +2364,7 @@ iframe {
   font-family: "gordita";
   font-size: 14px;
   font-weight: 500;
-  color: #005025;
+  color: #ff715b;
   display: inline-block;
   position: relative;
   margin: 0 0 5px;
@@ -2735,7 +2735,7 @@ iframe {
 .hero-banner-three h1 {
   font-weight: 700;
   letter-spacing: -1px;
-  color: #005025;
+  color: #ff715b;
 }
 .hero-banner-three .partner-title {
   font-family: "EB Garamond", serif;
@@ -3348,7 +3348,7 @@ iframe {
 }
 .slick-arrow-two li:hover {
   background: #F5F5F5;
-  color: #005025;
+  color: #ff715b;
 }
 .slick-arrow-two li .bi:before {
   font-weight: bold !important;
@@ -3826,7 +3826,7 @@ iframe {
   margin-left: auto;
 }
 .job-search-one form .search-btn-two:hover {
-  background: #005025;
+  background: #ff715b;
   color: #fff;
 }
 .job-search-one .tags li {
@@ -3979,7 +3979,7 @@ iframe {
 }
 
 .accordion-style-one.color-two .accordion-button {
-  color: #005025;
+  color: #ff715b;
 }
 
 .accordion-style-one.color-two .accordion-button::after {
@@ -5271,7 +5271,7 @@ iframe {
   background: #00BF58;
 }
 .job-list-one .apply-btn:hover {
-  background: #005025;
+  background: #ff715b;
 }
 .job-list-one.style-two {
   padding-top: 35px;
@@ -5395,7 +5395,7 @@ iframe {
   background: #00BF58;
 }
 .job-list-two .apply-btn:hover {
-  background: #005025;
+  background: #ff715b;
 }
 .job-list-two .save-btn {
   position: absolute;
@@ -5411,7 +5411,7 @@ iframe {
 .job-list-two .save-btn:hover {
   background: #E7F6EF;
   border-color: #E7F6EF;
-  color: #005025;
+  color: #ff715b;
 }
 .job-list-two.style-two {
   border: 1px solid #EBEBEB;
@@ -5529,7 +5529,7 @@ input[type="range"]::-webkit-slider-thumb {
 .job-list-three .main-wrapper .save-btn:hover {
   background: #E7F6EF;
   border-color: #E7F6EF;
-  color: #005025;
+  color: #ff715b;
 }
 .job-list-three .main-wrapper p {
   font-size: 14px;
@@ -5562,7 +5562,7 @@ input[type="range"]::-webkit-slider-thumb {
   background: #000;
 }
 .job-list-three .main-wrapper .apply-btn:hover {
-  background: #005025;
+  background: #ff715b;
 }
 
 .job-company-info {
@@ -5920,7 +5920,7 @@ input[type="range"]::-webkit-slider-thumb {
 .company-list-layout .save-btn:hover {
   background: #E7F6EF;
   border-color: #E7F6EF;
-  color: #005025;
+  color: #ff715b;
 }
 .company-list-layout .open-job-btn {
   width: 120px;
@@ -6256,7 +6256,7 @@ h3{
 }
 .candidates-profile-details .skill-tags li {
   font-size: 16px;
-  color: #005025;
+  color: #ff715b;
   margin: 18px 8px 0;
   line-height: 45px;
   padding: 0 30px;
@@ -11128,7 +11128,7 @@ table{
 
 .interview{
   font-weight: bold;
-  color: #005025;
+  color: #ff715b;
   text-decoration: underline;
 }
 .interview:hover{
