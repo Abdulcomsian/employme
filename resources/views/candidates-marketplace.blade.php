@@ -767,7 +767,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 				<div class="col-lg-7">
 					<div class="text-center text-lg-start">
 						<h2>Most complete recruitment platform.</h2>
-						<p class="text-md m0 md-pb-20">Signup and start find your job or talents.</p>
+						<p class="text-md m0 md-pb-20">Sign up and find your next job or candidate.</p>
 					</div>
 				</div>
 				<div class="col-lg-5">

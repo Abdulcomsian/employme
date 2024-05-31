@@ -548,8 +548,8 @@
         border: 1px solid #D6D6D6;
         color: #CBCBCB;
         &:hover {
-            background: #E7F6EF;
-            border-color: #E7F6EF;
+            background: #e6e0fc;
+            border-color: #e6e0fc;
             color: $color-four;
         }
     }
@@ -638,7 +638,7 @@
        font-size: 13px;
        color: $color-three;
        padding: 2px 12px;
-       background: #E7F6EF;
+       background: #e6e0fc;
        border-radius: 3px;
        margin: 54px 0 16px;
        &.part-time {
@@ -697,8 +697,8 @@
         color: #CBCBCB;
         background: #fff;
         &:hover {
-            background: #E7F6EF;
-            border-color: #E7F6EF;
+            background: #e6e0fc;
+            border-color: #e6e0fc;
             color: $color-four;
         }
     }
@@ -711,7 +711,7 @@
             box-shadow: none;
         }
         .job-duration {
-            background: #E7F6EF;
+            background: #e6e0fc;
             color: $color-five;
             &.part-time {
                 background: rgba($color: #FF5757, $alpha: 0.08);
@@ -797,8 +797,8 @@
             color: #CBCBCB;
             background: #fff;
             &:hover {
-                background: #E7F6EF;
-                border-color: #E7F6EF;
+                background: #e6e0fc;
+                border-color: #e6e0fc;
                 color: $color-four;
             }
         }
