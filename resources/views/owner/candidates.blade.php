@@ -17,7 +17,45 @@ Candidates
     /* background-color: #04AA6D; */
     color: black !important;
 }
+
+
+.table-responsive {
+        overflow-y: auto; 
+        height: 800px; 
+      }
+      .table-responsive thead th {
+        position: sticky;
+        top: 0px; 
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+      }
+      th {
+        background: #eee;
+      }
+
+      .document-verification-dropdown{
+        background: #ff715b;
+        color: white;
+      }
+
+
+      select.form-select.certificate-status {
+        width: 130px;
+    }
+
+    p.certificate-title {
+    width: 230px;
+}
+
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 @endpush
 @section('content')
 <div class="dashboard-body">
@@ -98,12 +136,12 @@ Candidates
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Verification Status</th>
-                            {{--<th scope="col">Action</th>--}}
+                            <th scope="col">Verify Documents</th>
                         </tr>
                     </thead>
                     <tbody class="border-0">
                     @isset($candidates)
-                    @foreach($candidates as $index=>$candidate)
+                    @foreach($candidates as $index => $candidate)
                         <tr class="active">
                             <td>{{$index+1}}</td>
                             <td>
@@ -120,6 +158,92 @@ Candidates
                                 <div class="job-status"  >Unverified</div>
                             </td>
                             @endif
+                            <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn document-verification-dropdown dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Documents
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="d-flex justify-content-between px-2 my-1">
+                                        <p class="certificate-title" >Degree</p>
+                                        @if($candidate->degree)
+                                            <a href="{{asset($candidate->degree->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                        @endif
+                                        <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" data-certificate-type="{{AppConst::DEGREE}}" name="candidate-degree" id="" @if(!$candidate->degree) disabled @endif>
+                                            <option value="pending" @if($candidate->degree && $candidate->degree->status == 'pending' ) @endif>Pending</option>
+                                            <option value="verified" @if($candidate->degree && $candidate->degree->status == 'verified' ) @endif>Verified</option>
+                                            <option value="rejected" @if($candidate->degree && $candidate->degree->status == 'rejected' ) @endif>Rejected</option>
+                                            <option value="ineligible" @if($candidate->degree && $candidate->degree->status == 'ineligible' ) @endif>Ineligible</option>
+                                        </select>
+                                    </li>
+                                    <li class="d-flex justify-content-between px-2 my-1">
+                                        <p class="certificate-title"  >Police Certificate</p>
+                                        @if($candidate->policeCertificate)
+                                            <a href="{{asset($candidate->policeCertificate->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                        @endif
+                                        <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" data-certificate-type="{{AppConst::POLICE_CERTIFICATE}}" name="police-certificate" id="" @if(!$candidate->policeCertificate) disabled @endif>
+                                            <option value="pending" @if($candidate->policeCertificate && $candidate->policeCertificate->status == 'pending' ) @endif>Pending</option>
+                                            <option value="verified" @if($candidate->policeCertificate && $candidate->policeCertificate->status == 'verified' ) @endif>Verified</option>
+                                            <option value="rejected" @if($candidate->policeCertificate && $candidate->policeCertificate->status == 'rejected' ) @endif>Rejected</option>
+                                            <option value="ineligible" @if($candidate->policeCertificate && $candidate->policeCertificate->status == 'ineligible' ) @endif>Ineligible</option>
+                                        </select>
+                                    </li>
+                                    <li class="d-flex justify-content-between px-2 my-1">
+                                        <p class="certificate-title"  >Passport</p>
+
+                                        @if($candidate->passport)
+                                            <a href="{{asset($candidate->passport->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                        @endif
+                                        <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" name="police-certificate" data-certificate-type="{{AppConst::PASSPORT}}" id="" @if(!$candidate->passport) disabled @endif>
+                                            <option value="pending" @if($candidate->passport && $candidate->passport->status == 'pending' ) @endif>Pending</option>
+                                            <option value="verified" @if($candidate->passport && $candidate->passport->status == 'verified' ) @endif>Verified</option>
+                                            <option value="rejected" @if($candidate->passport && $candidate->passport->status == 'rejected' ) @endif>Rejected</option>
+                                            <option value="ineligible" @if($candidate->passport && $candidate->passport->status == 'ineligible' ) @endif>Ineligible</option>
+                                        </select>
+                                    </li>                      
+                                    <li class="d-flex justify-content-between px-2 my-1">
+                                        <p class="certificate-title" >Apostilled Degree Copy</p>
+                                        @if($candidate->degreeApostilled)
+                                            <a href="{{asset($candidate->degreeApostilled->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                        @endif
+                                        <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" name="police-certificate" data-certificate-type="{{AppConst::DEGREE_APOSTILED}}" id="" @if(!$candidate->degreeApostilled) disabled @endif>
+                                            <option value="pending" @if($candidate->degreeApostilled && $candidate->degreeApostilled->status == 'pending' ) @endif>Pending</option>
+                                            <option value="verified" @if($candidate->degreeApostilled && $candidate->degreeApostilled->status == 'verified' ) @endif>Verified</option>
+                                            <option value="rejected" @if($candidate->degreeApostilled && $candidate->degreeApostilled->status == 'rejected' ) @endif>Rejected</option>
+                                            <option value="ineligible" @if($candidate->degreeApostilled && $candidate->degreeApostilled->status == 'ineligible' ) @endif>Ineligible</option>
+                                        </select>
+                
+                                    </li>
+                                    <li class="d-flex justify-content-between px-2 my-1">
+                                        <p class="certificate-title" >Apostilled Certificate Copy</p>
+                                        @if($candidate->policeApostilled)
+                                            <a href="{{asset($candidate->policeApostilled->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                        @endif
+                                        <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" name="police-certificate" data-certificate-type="{{AppConst::POLICE_APOSTILLED}}" id="" @if(!$candidate->policeApostilled) disabled @endif>
+                                            <option value="pending" @if($candidate->policeApostilled && $candidate->policeApostilled->status == 'pending' ) @endif>Pending</option>
+                                            <option value="verified" @if($candidate->policeApostilled && $candidate->policeApostilled->status == 'verified' ) @endif>Verified</option>
+                                            <option value="rejected" @if($candidate->policeApostilled && $candidate->policeApostilled->status == 'rejected' ) @endif>Rejected</option>
+                                            <option value="ineligible" @if($candidate->policeApostilled && $candidate->policeApostilled->status == 'ineligible' ) @endif>Ineligible</option>
+                                        </select>
+                                    </li>
+                                    <li class="d-flex justify-content-between px-2 my-1">
+                                        <p class="certificate-title" >SAQA Letter</p>
+                                        @if($candidate->saqaLetter)
+                                            <a href="{{asset($candidate->saqaLetter->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                        @endif
+                                        <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" name="police-certificate" data-certificate-type="{{AppConst::SAQA_LETTER}}" id="" @if(!$candidate->saqaLetter) disabled @endif>
+                                            <option value="pending" @if($candidate->saqaLetter && $candidate->saqaLetter->status == 'pending' ) @endif>Pending</option>
+                                            <option value="verified" @if($candidate->saqaLetter && $candidate->saqaLetter->status == 'verified' ) @endif>Verified</option>
+                                            <option value="rejected" @if($candidate->saqaLetter && $candidate->saqaLetter->status == 'rejected' ) @endif>Rejected</option>
+                                            <option value="ineligible" @if($candidate->saqaLetter && $candidate->saqaLetter->status == 'ineligible' ) @endif>Ineligible</option>
+                                        </select>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li class="d-flex justify-content-between px-2"><strong>Ineligible</strong><div class="form-check form-switch"><input class="form-check-input ineligible" type="checkbox" role="switch" data-candidate-id="{{$candidate->id}}"></div></li>
+                                </ul>
+                            </div>
+
+                            </td>
                             {{--<td>
                                 <div class="action-dots float-end">
                                     <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -155,4 +279,51 @@ Candidates
 
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    $(document).on("change" , ".certificate-status" , function(e){
+        let certificateType = this.dataset.certificateType;
+        let candidateId = this.dataset.candidateId;
+        let status = this.value;
+        $.ajax({
+            type : "post",
+            url : "{{route('changeCertificateStatus')}}",
+            data : {
+                certificateType : certificateType,
+                candidateId : candidateId,
+                status : status,
+                _token : "{{csrf_token()}}",
+            },
+            success:function(res){
+                if(res.status){
+                    toastr.success(res.msg)
+                }else{
+                    toastr.error(res.error)
+                }
+            }
+        })
+    })
+
+    $(document).on("change" , ".ineligible" , function(e){
+        let candidateId = this.dataset.candidateId;
+        let status = this.checked == true ? 1 : 0;
+        $.ajax({
+            type : "post",
+            url : "{{route('updateCandidateEligibily')}}",
+            data : {
+                candidateId : candidateId,
+                status : status,
+                _token : "{{csrf_token()}}",
+            },
+            success:function(res){
+                if(res.status){
+                    toastr.success(res.msg)
+                }else{
+                    toastr.error(res.error)
+                }
+            }
+        })
+    })
+</script>
 @endsection

@@ -342,16 +342,48 @@ video {
                         <div class="cadidate-profile-sidebar ms-xl-5 ms-xxl-0 md-mt-60">
                             <div class="cadidate-bio bg-wrapper mb-60 md-mb-40">
                                 <ul class="style-none">
-                                    @foreach($candidateDetails->documents as $document)
+                                    <li >
+                                        @php
+                                            $degreeUrl = $candidateDetails->degree ? asset($candidateDetails->degree->url) : "javascript:void(0)";
+                                        @endphp
+                                        <div class="d-flex justify-content-between"><a href="{{$degreeUrl}}" target="_blank">Copy of Degree</a><span>{{ $candidateDetails->degree ? ucfirst($candidateDetails->degree->status) : ''}}</span></div>
+                                    </li>
+                                    <li >
+                                        @php
+                                            $policeCertificateUrl = $candidateDetails->policeCertificate ? asset($candidateDetails->policeCertificate->url) : "javascript:void(0)";
+                                        @endphp
+                                        <div class="d-flex justify-content-between"><a href="{{$policeCertificateUrl}}" target="_blank">Copy of Police Certificate</a><span>{{ $candidateDetails->policeCertificate ? ucfirst($candidateDetails->policeCertificate->status) : ''}}</span></div>
+                                    </li>
+                                    <li >
+                                        @php
+                                            $degreeApostilledUrl = $candidateDetails->degreeApostilled ? asset($candidateDetails->degreeApostilled->url) : "javascript:void(0)";
+                                        @endphp
+                                        <div class="d-flex justify-content-between"><a href="{{$degreeApostilledUrl}}" target="_blank">Copy of Degree Apostille</a><span>{{ $candidateDetails->degreeApostilled ? ucfirst($candidateDetails->degreeApostilled->status) : ''}}</span></div>
+                                    </li>
+                                    <li >
+                                        @php
+                                            $policeApostilledUrl = $candidateDetails->policeApostilled ? asset($candidateDetails->policeApostilled->url) : "javascript:void(0)";
+                                        @endphp
+                                        <div class="d-flex justify-content-between"><a href="{{$policeApostilledUrl}}" target="_blank">Copy of Police Apostille</a><span>{{ $candidateDetails->policeApostilled ? ucfirst($candidateDetails->policeApostilled->status) : ''}}</span></div>
+                                    </li>
+                                    <li >
+                                        @php
+                                            $saqaLetterUrl = $candidateDetails->saqaLetter ? asset($candidateDetails->saqaLetter->url) : "javascript:void(0)";
+                                        @endphp
+                                        <div class="d-flex justify-content-between"><a href="{{$saqaLetterUrl}}" target="_blank">Copy of SAQA Letter</a><span>{{$candidateDetails->saqaLetter ? ucfirst($candidateDetails->saqaLetter->status) : ''}}</span></div>
+                                    </li>
+                                    <li >
+                                        @php
+                                            $passportUrl = $candidateDetails->passport ? asset($candidateDetails->passport->url) : "javascript:void(0)";
+                                        @endphp
+                                        <div class="d-flex justify-content-between"><a href="{{$passportUrl}}" target="_blank">Copy of Passport</a><span>{{ $candidateDetails->passport ?  ucfirst($candidateDetails->passport->status) : ''}}</span></div>
+                                    </li>
+                                    <!--@foreach($candidateDetails->documents as $document)
                                     @if($document->document_type == 1)
-                                    <li class="border-0">
+                                     <li class="border-0">
                                         {{--<span>Copy of Degree: </span>--}}
                                         <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Degree</a></div>
                                     </li>
-                                    <!-- <li>
-                                        <span>Age: </span>
-                                        <div>28</div>
-                                    </li> -->
                                     @elseif($document->document_type == 2)
                                     <li >
                                         <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Police Certificate</a></div>
@@ -372,10 +404,10 @@ video {
                                         <div><a href = "{{asset($document->url)}}" target="_blank">Copy of Passport</a></div>
                                     </li>
                                     @endif
-                                    @endforeach
+                                    @endforeach -->
 
                                 </ul>
-                                <a href="#" class="btn-ten download-candidate-docs-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download Docs</a>
+                                <!-- <a href="#" class="btn-ten download-candidate-docs-btn fw-500 text-white w-100 text-center tran3s mt-15" id="{{base64_encode($candidateDetails->id)}}">Download Docs</a> -->
                             </div>
                         </div> 
                         @endif

@@ -121,6 +121,37 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     public function intro()
     {
         return $this->hasOne(IntroductionVideo::class , 'employer_id' , 'id');
+    } 
+
+    //document type
+    public function degree()
+    {
+        return $this->hasOne(CandidateDocument::class , 'user_id' , 'id')->where('document_type' , 1);
+    }
+
+    public function policeCertificate()
+    {
+        return $this->hasOne(CandidateDocument::class , 'user_id' , 'id')->where('document_type' , 2);
+    }
+
+    public function degreeApostilled()
+    {
+        return $this->hasOne(CandidateDocument::class , 'user_id' , 'id')->where('document_type' , 3);
+    }
+
+    public function policeApostilled()
+    {
+        return $this->hasOne(CandidateDocument::class , 'user_id' , 'id')->where('document_type' , 4);
+    }
+
+    public function saqaLetter()
+    {
+        return $this->hasOne(CandidateDocument::class , 'user_id' , 'id')->where('document_type' , 5);
+    }
+
+    public function passport()
+    {
+        return $this->hasOne(CandidateDocument::class , 'user_id' , 'id')->where('document_type' , 6);
     }
 
     

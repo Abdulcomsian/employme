@@ -213,6 +213,8 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('plans/{plan}', [SubscriptionController::class, 'show'])->name("plans.show");
     Route::resource('job-categories', JobCategoryController::class);
     Route::post('update-certificate-approval-status' , [EmployerJobController::class , 'updateCertificateApprovalStatus'])->name('updateCertificateApprovalStatus');
+    Route::post('update-certificate-status' , [OwnerController::class , 'changeCertificateStatus'])->name('changeCertificateStatus');
+    Route::post('update-eligibility' , [OwnerController::class ,'updateCandidateEligibily'])->name('updateCandidateEligibily');
 });
 //owner dashboard route ends here
 // Auth::routes();

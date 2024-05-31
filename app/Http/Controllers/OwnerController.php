@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProfessionalSkills;
-use App\Models\{EmployerJob, User, JobInterview, EmployerBusinessLicense};
+use App\Models\{CandidateDocument, EmployerJob, User, JobInterview, EmployerBusinessLicense};
 use Carbon\Carbon;
 use Auth;
 use Notification;
 use App\Notifications\{BusinessLicenseNotification,InterviewRescheduleNotification};
+use Illuminate\Support\Facades\Validator;
 class OwnerController extends Controller
 {
 
@@ -76,7 +77,15 @@ class OwnerController extends Controller
 
     public function getCandidates()
     {
-           $candidates =User::with('candidatePersonalDetails')->role('candidate')->paginate(10);
+
+            $candidates = User::with('candidatePersonalDetails')
+                                ->with('degree' , 'policeCertificate' , 'degreeApostilled' , 'policeApostilled' , 'passport', 'saqaLetter')
+                                ->whereHas('roles' , function($query){
+                                                        $query->where('name' , 'candidate');
+                                                    })
+                                                    ->orderBy('id' , 'desc')
+                                                    ->paginate(10);
+
            return view('owner.candidates',compact('candidates'));
     }
     public function getEmployers()
@@ -144,4 +153,60 @@ class OwnerController extends Controller
         $allInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails','employer.employerDetails')->paginate(10);
         return view('owner.interview-requests.index',compact('allInterviews'));
     }
+
+    public function changeCertificateStatus(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            'certificateType' => 'required|numeric',
+            'candidateId' => 'required|numeric',
+            'status' => 'required|string',
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['status' => false , 'error' => implode(' ,' , $validator->errors()->all())]);
+        }
+
+        try{
+            $candidateDocument = CandidateDocument::where('user_id' , $request->candidateId)
+                                                    ->where('document_type' , $request->certificateType)
+                                                    ->first();
+            $candidateDocument->status = $request->status;
+            $candidateDocument->save();
+            $this->verifyEligibility($request);
+            return response()->json(['status' => true , 'msg' => 'Document status updated successfully']);
+
+        }catch(\Exception $e){
+            return response()->json(['status' => false , 'error' => $e->getMessage()]);
+        }
+    }
+
+    public function verifyEligibility($request)
+    {
+        $candidateDocuments = CandidateDocument::where('user_id' , $request->candidateId)->where('status' , 'verified')->get();
+        if($candidateDocuments->count() == 6){
+            User::where('id' , $request->candidateId)->update(['is_eligible' =>  1]);
+        }
+
+        return true;
+    }
+
+    public function updateCandidateEligibily(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            'candidateId' => 'required|numeric',
+            'status' => 'required|boolean',
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['status' => false , 'error' => implode(' ,' , $validator->errors()->all())]);
+        }
+
+        try{
+            User::where('id' , $request->candidateId)->update(['is_eligible' => $request->status]);
+            return response()->json(['status' => true , 'msg' => 'Eligibilty updated successfully']);
+        }catch(\Exception $e){
+            return response()->json(['status' => false , 'error' => $e->getMessage()]);
+        }
+    }
+
 }

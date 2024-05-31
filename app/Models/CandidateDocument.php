@@ -16,7 +16,8 @@ class CandidateDocument extends Model
     protected $fillable = [
         'document_type',
         'url',   
-        'user_id'
+        'user_id',
+        'status'
     ];
 
     public function user()
