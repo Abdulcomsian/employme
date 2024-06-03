@@ -167,7 +167,7 @@ Candidates
                                     <li class="d-flex justify-content-between px-2 my-1">
                                         <p class="certificate-title" >Degree</p>
                                         @if($candidate->degree)
-                                            <a href="{{asset($candidate->degree->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                            <a href="{{asset($candidate->degree->url)}}" target='_blank'><i class="fa-regular fa-file mx-3"></i></a>
                                         @endif
                                         <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" data-certificate-type="{{AppConst::DEGREE}}" name="candidate-degree" id="" @if(!$candidate->degree) disabled @endif>
                                             <option value="pending" @if($candidate->degree && $candidate->degree->status == 'pending' ) @endif>Pending</option>
@@ -179,7 +179,7 @@ Candidates
                                     <li class="d-flex justify-content-between px-2 my-1">
                                         <p class="certificate-title"  >Police Certificate</p>
                                         @if($candidate->policeCertificate)
-                                            <a href="{{asset($candidate->policeCertificate->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                            <a href="{{asset($candidate->policeCertificate->url)}}" target='_blank'><i class="fa-regular fa-file mx-3"></i></a>
                                         @endif
                                         <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" data-certificate-type="{{AppConst::POLICE_CERTIFICATE}}" name="police-certificate" id="" @if(!$candidate->policeCertificate) disabled @endif>
                                             <option value="pending" @if($candidate->policeCertificate && $candidate->policeCertificate->status == 'pending' ) @endif>Pending</option>
@@ -192,7 +192,7 @@ Candidates
                                         <p class="certificate-title"  >Passport</p>
 
                                         @if($candidate->passport)
-                                            <a href="{{asset($candidate->passport->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                            <a href="{{asset($candidate->passport->url)}}" target='_blank'><i class="fa-regular fa-file mx-3"></i></a>
                                         @endif
                                         <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" name="police-certificate" data-certificate-type="{{AppConst::PASSPORT}}" id="" @if(!$candidate->passport) disabled @endif>
                                             <option value="pending" @if($candidate->passport && $candidate->passport->status == 'pending' ) @endif>Pending</option>
@@ -204,7 +204,7 @@ Candidates
                                     <li class="d-flex justify-content-between px-2 my-1">
                                         <p class="certificate-title" >Apostilled Degree Copy</p>
                                         @if($candidate->degreeApostilled)
-                                            <a href="{{asset($candidate->degreeApostilled->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                            <a href="{{asset($candidate->degreeApostilled->url)}}" target='_blank'><i class="fa-regular fa-file mx-3"></i></a>
                                         @endif
                                         <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" name="police-certificate" data-certificate-type="{{AppConst::DEGREE_APOSTILED}}" id="" @if(!$candidate->degreeApostilled) disabled @endif>
                                             <option value="pending" @if($candidate->degreeApostilled && $candidate->degreeApostilled->status == 'pending' ) @endif>Pending</option>
@@ -217,7 +217,7 @@ Candidates
                                     <li class="d-flex justify-content-between px-2 my-1">
                                         <p class="certificate-title" >Apostilled Certificate Copy</p>
                                         @if($candidate->policeApostilled)
-                                            <a href="{{asset($candidate->policeApostilled->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                            <a href="{{asset($candidate->policeApostilled->url)}}" target='_blank'><i class="fa-regular fa-file mx-3"></i></a>
                                         @endif
                                         <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" name="police-certificate" data-certificate-type="{{AppConst::POLICE_APOSTILLED}}" id="" @if(!$candidate->policeApostilled) disabled @endif>
                                             <option value="pending" @if($candidate->policeApostilled && $candidate->policeApostilled->status == 'pending' ) @endif>Pending</option>
@@ -229,7 +229,7 @@ Candidates
                                     <li class="d-flex justify-content-between px-2 my-1">
                                         <p class="certificate-title" >SAQA Letter</p>
                                         @if($candidate->saqaLetter)
-                                            <a href="{{asset($candidate->saqaLetter->url)}}"><i class="fa-regular fa-file mx-3"></i></a>
+                                            <a href="{{asset($candidate->saqaLetter->url)}}" target='_blank'><i class="fa-regular fa-file mx-3"></i></a>
                                         @endif
                                         <select class="form-select certificate-status" data-candidate-id="{{$candidate->id}}" name="police-certificate" data-certificate-type="{{AppConst::SAQA_LETTER}}" id="" @if(!$candidate->saqaLetter) disabled @endif>
                                             <option value="pending" @if($candidate->saqaLetter && $candidate->saqaLetter->status == 'pending' ) @endif>Pending</option>
