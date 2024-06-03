@@ -358,7 +358,7 @@ Profile
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="dash-input-wrapper mb-30 upload-section">
                                         <label for="">Resume</label>
                                         <div class="user-avatar-setting d-flex align-items-center mb-30">
@@ -378,7 +378,7 @@ Profile
                                         </div>
                                         @endif
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             
 
@@ -947,7 +947,7 @@ Profile
             </form>
 
             <!-- Step 7 -->
-            <form id = "upload-documents-form" enctype = "multipart/form-data">
+            <!-- <form id = "upload-documents-form" enctype = "multipart/form-data">
                 <div class="bg-white card-box border-20 mb-40">
                 <h4 class="dash-title-three">Uploads</h4>
                     <div class="candidate-sign-up">
@@ -1214,7 +1214,7 @@ Profile
                         </div>
                     </div>
                 </div>
-            </form>
+            </form> -->
 
             <!-- Step 8 -->
             {{-- <div class="card my-3 p-3" id="step-8">
@@ -1391,7 +1391,7 @@ Profile
         formData.append("current_location", $("#personal-details-form").find("[name=currentLocation]").val());
         formData.append("date_of_birth", $("#personal-details-form").find("[name=dateOfBirth]").val());
         formData.append("profile_picture", $('#uploadImg')[0].files[0]);
-        formData.append("candidate_resume", $('#candidate_resume')[0].files[0]);
+        // formData.append("candidate_resume", $('#candidate_resume')[0].files[0]);
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-2.save')}}",
@@ -1663,13 +1663,6 @@ Profile
         formData.append("video_url", $('#teachingVideo')[0].files[0]);
         formData.append("video_thumbnail", $('#videoThumbnail')[0].files[0]);
 
-        formData.append("degree", document.getElementById("degree").files[0]);
-        formData.append("police_certificate", document.getElementById("policeCertificate").files[0]);
-        formData.append("degree_apostille", document.getElementById("degreeApostille").files[0]);
-        formData.append("certificate_apostille", document.getElementById("certificateApostille").files[0]);
-        formData.append("saqa_letter", document.getElementById("saqaLetter").files[0]);
-        formData.append("passport", document.getElementById("userPassport").files[0]);
-        formData.append('terms_and_conditions' , document.getElementById("preferences_terms_and_conditions").checked == true ? 1 : 0);
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-6.save')}}",

@@ -516,4 +516,13 @@ class CandidateController extends Controller
         }
    }
 
+   public function getVerificationDocumentPage()
+   {
+        $candidateDocumentDetail = User::with('degree' , 'policeCertificate' , 'degreeApostilled' , 'policeApostilled' , 'saqaLetter' , 'passport')
+                                            ->where('id' , auth()->user()->id)
+                                            ->first();
+        $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
+        return view('candidate.document-verification')->with(['candidateDocumentDetail' => $candidateDocumentDetail , 'candidatePreferencesDetails' => $candidatePreferencesDetails]);
+   }
+
 }

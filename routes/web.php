@@ -91,6 +91,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     Route::get('dashboard', [CandidateController::class, 'getCandidateDashboard'])->name('getCandidateDashboard');
     Route::get('profile', [CandidateController::class, 'getProfilePage'])->name('getCandidateProfile');
     Route::get('resume', [CandidateController::class, 'getResumePage'])->name('getResumePage');
+    Route::get('verified', [CandidateController::class, 'getVerificationDocumentPage'])->name('verified');
     Route::get('messages', [MessageController::class, 'getCandidateMessagePage'])->name('getCandidateMessages');
     Route::get('get-employer-chat/{id}',[MessageController::class,'getEmployerChat'])->name('candidate.get_employer_chat');
     Route::post('send-text-to-employer',[MessageController::class,'sendTextToEmployer'])->name('employer.sendTextToEmployer');

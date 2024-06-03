@@ -54,6 +54,10 @@
                     <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/job-applications') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
                     <span>My Applications</span>
                 </a></li>
+                <li><a href="{{route('verified')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/verified') ? 'active' : ''}}">
+                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/job-applications') ? asset('assets/images/dashboard-icon/verified.png') : asset('assets/images/dashboard-icon/verified.png')}}" alt="" class="lazy-img">
+                    <span>Verified</span>
+                </a></li>
                 <li><a href="{{route('candidateInterviewRequests')}}" class="d-flex w-100 align-items-center {{request()->is('candidate/interview-requests') ? 'active' : ''}}">
                     <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('candidate/interview-requests') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg')}}" alt="" class="lazy-img">
                     <span>Interview Request</span>
