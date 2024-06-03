@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_eligible')->default(0)->after('email');
+            $table->integer('is_eligible')->default(2)->after('email');
         });
     }
 

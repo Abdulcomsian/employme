@@ -10,6 +10,7 @@ use Auth;
 use Notification;
 use App\Notifications\{BusinessLicenseNotification,InterviewRescheduleNotification};
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 class OwnerController extends Controller
 {
 
@@ -83,8 +84,9 @@ class OwnerController extends Controller
                                 ->whereHas('roles' , function($query){
                                                         $query->where('name' , 'candidate');
                                                     })
-                                                    ->orderBy('id' , 'desc')
-                                                    ->paginate(10);
+                                ->where('is_eligible' , '!=' , 0 )
+                                ->orderBy('id' , 'desc')
+                                ->paginate(10);
 
            return view('owner.candidates',compact('candidates'));
     }
@@ -203,6 +205,13 @@ class OwnerController extends Controller
 
         try{
             User::where('id' , $request->candidateId)->update(['is_eligible' => $request->status]);
+            if(!$request->status)
+            {  
+                    $user = User::where('id' , $request->candidateId)->first();
+                    Mail::to($user->email)->send(new \App\Mail\CandidateEligibilityMail());
+
+            }
+
             return response()->json(['status' => true , 'msg' => 'Eligibilty updated successfully']);
         }catch(\Exception $e){
             return response()->json(['status' => false , 'error' => $e->getMessage()]);
