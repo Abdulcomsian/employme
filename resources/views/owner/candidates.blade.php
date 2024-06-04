@@ -54,10 +54,28 @@ Candidates
     width: 230px;
 }
 
+h4 {
+    font-family: "gordita";
+}
+
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 @endpush
 @section('content')
+<div class="modal" id="confirmation-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <input type="hidden" name="user_id" value="" id="candidate_eligible_id">
+        <p class="text-center"><b>Are you sure you want to close this account.</b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger update-user-eligibility">Save changes <i class="fas fa-circle-notch mx-2 fa-spin d-none progress"></i></button>
+        <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="dashboard-body">
     <div class="position-relative">
         <!-- ************************ Header **************************** -->
@@ -110,25 +128,12 @@ Candidates
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">Candidates</h2>
-            {{--<div class="d-flex ms-auto xs-mt-30">
-                <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
-                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab" aria-selected="true">All</button>
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#a2" type="button" role="tab" aria-selected="false">New</button>
-                </div>
-                <div class="short-filter d-flex align-items-center ms-auto">
-                    <div class="text-dark fw-500 me-2">Short by:</div>
-                    <select class="nice-select">
-                        <option value="0">Verified</option>
-                        <option value="1">Unverified</option>
-                        <option value="2">Active</option>
-                        <option value="2">Disabled</option>
-                    </select>
-                </div>
-            </div>--}}
+          
         </div>
 
         <div class="bg-white card-box border-20">
             <div class="table-responsive">
+                
                 <table class="table job-alert-table">
                     <thead>
                         <tr>
@@ -305,9 +310,10 @@ Candidates
         })
     })
 
-    $(document).on("change" , ".ineligible" , function(e){
-        let candidateId = this.dataset.candidateId;
-        let status = this.checked == true ? 0 : 1;
+    $(document).on("click" , ".update-user-eligibility" ,function(e){
+        document.querySelector(".progress").classList.remove("d-none")
+        let candidateId = document.getElementById("candidate_eligible_id").value;
+        let status = 0;
         $.ajax({
             type : "post",
             url : "{{route('updateCandidateEligibily')}}",
@@ -319,11 +325,22 @@ Candidates
             success:function(res){
                 if(res.status){
                     toastr.success(res.msg)
+                    location.reload();
                 }else{
                     toastr.error(res.error)
                 }
             }
         })
+    })
+
+    $(document).on("click" , ".close-modal" , function(e){
+        $("#confirmation-modal").modal("hide");
+    })
+
+    $(document).on("change" , ".ineligible" , function(e){
+        let candidateId = this.dataset.candidateId;
+        document.getElementById("candidate_eligible_id").value = candidateId;
+        $("#confirmation-modal").modal("show");
     })
 </script>
 @endsection

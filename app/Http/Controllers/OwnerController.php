@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\AppConst;
 use Illuminate\Http\Request;
 use App\Models\ProfessionalSkills;
 use App\Models\{CandidateDocument, EmployerJob, User, JobInterview, EmployerBusinessLicense};
@@ -84,7 +85,7 @@ class OwnerController extends Controller
                                 ->whereHas('roles' , function($query){
                                                         $query->where('name' , 'candidate');
                                                     })
-                                ->where('is_eligible' , '!=' , 0 )
+                                ->where('is_eligible' , AppConst::ELIGIBILITY_PENDING )
                                 ->orderBy('id' , 'desc')
                                 ->paginate(10);
 

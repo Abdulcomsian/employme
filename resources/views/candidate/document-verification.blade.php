@@ -123,7 +123,18 @@ File verification
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card p-4">
+                        <div>
+                            <h4>Disclaimer for E2 Visa Document Verification</h4>
+                            <p>By uploading your authorize "Employme" to verify your documents. They will not be shared with third parties and will only be used for E2 visa eligibility verification</p>
+                            <div class="my-3">
+                                <p class="p-0 m-0"><strong>Verified </strong>Documents are eligible for visa application.</p>
+                                <p class="p-0 m-0"><strong>Rejected </strong>Issue found (e.g expired criminal record, Invalid apostille).</p>
+                                <p class="p-0 m-0"><strong>Pending </strong>Under review by our verification team.</p>
+                                <p class="p-0 m-0"><strong>Ineligible </strong>Do not meet E2 visa requirement.</p>
+                            </div>
+                            <p>Verification does not gurantee a visa but increase your chances, immigration may required additional requirement.</p>
+                        </div>
                         <form id = "upload-documents-form" enctype = "multipart/form-data">
                             <table class="table table-striped">
                             <thead>
@@ -180,15 +191,8 @@ File verification
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12">
-                                            <p>Please note: If all the above documents are uploaded and approved, your account will considered "verified". 
-                                                This means employers can feel confident that they are serious and ready to start.
-                                            </p>
-                                    </div>
-                                    <div class="col-12">
-                                        <p>Documents are only for verfication and visa purposes. If you have not obtained the documents, we suggest doing
-                                            doing so visa applications can be a lengthy process.
-
-                                        </p>
+                                            <p><strong>What Happens After Verification and Singing a Contract</strong></p>
+                                            <p><strong>Mail Documents </strong>After signing a contract, send the physical verified documents to your school. They will apply for your visa and give you an approval number. Use this number to finalize your visa at your nearest Korean Embassy. This process can take a minimum of one month or more.</p>
                                     </div>
                                     <div class="col-12">
                                             <input type="checkbox" name="terms_and_conditions" id="preferences_terms_and_conditions" @if($candidatePreferencesDetails->terms_and_conditions) checked @endif>

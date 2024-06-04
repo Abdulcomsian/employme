@@ -16,4 +16,9 @@ class AppConst{
     public const DEGREE_APOSTILED = 3;
     public const POLICE_APOSTILLED = 4;
     public const SAQA_LETTER = 5;
+
+    //reference table user column is_eligible
+    public const ELIGIBILITY_PENDING = 2;
+    public const ELIGIBILITY_REJECTED = 0;
+    public const ELIGIBILITY_APPROVED = 1;
 }
