@@ -131,14 +131,14 @@ button.dash-btn-one:disabled {
                         <div class="card p-4">
                         <div>
                             <h4>Disclaimer for E2 Visa Document Verification</h4>
-                            <p>By uploading you authorize "Employme" to verify your documents. They will not be shared with third parties and will only be used for E2 visa eligibility verification.</p>
+                            <p>By uploading, you authorize "Employme" to verify your documents. They will not be shared with third parties and will only be used for E2 visa eligibility verification.</p>
                             <div class="my-3">
                                 <p class="p-0 m-0"><strong>Verified: </strong>Documents are eligible for visa application.</p>
-                                <p class="p-0 m-0"><strong>Rejected: </strong>Issue found (e.g expired criminal record, Invalid apostille).</p>
+                                <p class="p-0 m-0"><strong>Rejected: </strong>Issues found (e.g., expired criminal record, invalid apostille).</p>
                                 <p class="p-0 m-0"><strong>Pending: </strong>Under review by our verification team.</p>
-                                <p class="p-0 m-0"><strong>Ineligible: </strong>Do not meet E2 visa requirement.</p>
+                                <p class="p-0 m-0"><strong>Ineligible: </strong>Do not meet E2 visa requirements.</p>
                             </div>
-                            <p>Verification does not gaurentee a visa but increase your chances, immigration may require additional documents.</p>
+                            <p>Verification does not guarantee a visa but increases your chances. Immigration may require additional documents.</p>
                         </div>
                         <form id = "upload-documents-form" enctype = "multipart/form-data">
                             <table class="table table-striped">
