@@ -126,14 +126,14 @@ File verification
                         <div class="card p-4">
                         <div>
                             <h4>Disclaimer for E2 Visa Document Verification</h4>
-                            <p>By uploading your authorize "Employme" to verify your documents. They will not be shared with third parties and will only be used for E2 visa eligibility verification</p>
+                            <p>By uploading you authorize "Employme" to verify your documents. They will not be shared with third parties and will only be used for E2 visa eligibility verification.</p>
                             <div class="my-3">
-                                <p class="p-0 m-0"><strong>Verified </strong>Documents are eligible for visa application.</p>
-                                <p class="p-0 m-0"><strong>Rejected </strong>Issue found (e.g expired criminal record, Invalid apostille).</p>
-                                <p class="p-0 m-0"><strong>Pending </strong>Under review by our verification team.</p>
-                                <p class="p-0 m-0"><strong>Ineligible </strong>Do not meet E2 visa requirement.</p>
+                                <p class="p-0 m-0"><strong>Verified: </strong>Documents are eligible for visa application.</p>
+                                <p class="p-0 m-0"><strong>Rejected: </strong>Issue found (e.g expired criminal record, Invalid apostille).</p>
+                                <p class="p-0 m-0"><strong>Pending: </strong>Under review by our verification team.</p>
+                                <p class="p-0 m-0"><strong>Ineligible: </strong>Do not meet E2 visa requirement.</p>
                             </div>
-                            <p>Verification does not gurantee a visa but increase your chances, immigration may required additional requirement.</p>
+                            <p>Verification does not gaurentee a visa but increase your chances, immigration may require additional documents.</p>
                         </div>
                         <form id = "upload-documents-form" enctype = "multipart/form-data">
                             <table class="table table-striped">
@@ -148,7 +148,7 @@ File verification
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>
-                                        <td><div class="d-flex flex-column"><h5>Degree</h5><small>Baschelors or higher</small></div></td>
+                                        <td><div class="d-flex flex-column"><h5>Degree</h5><small>Bachelors or higher</small></div></td>
                                         <td><div class="d-flex flex-column"><input  class="form-control" type="file" name="degree" id="degree" accept="image/jpeg,image/png,.docx,.doc,.txt,.pdf">@if($candidateDocumentDetail->degree) <small><a href="{{url($candidateDocumentDetail->degree->url)}}" target="_blank">view: degree</a></small>@endif</div></td>
                                         <td class="ms-3">@if($candidateDocumentDetail->degree) {{ucfirst($candidateDocumentDetail->degree->status)}} @else Pending @endif</td>
                                 </tr>
