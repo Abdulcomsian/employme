@@ -13,11 +13,12 @@ use Illuminate\Contracts\Auth\CanResetPassword ;
 use Laravel\Cashier\Billable;
 use App\Models\Subscription;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, Billable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, Billable , SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -31,7 +32,8 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'first_name',
         'last_name',
         'avatar',
-        'phone_number'
+        'phone_number',
+        'is_eligible'
     ];
 
     /**

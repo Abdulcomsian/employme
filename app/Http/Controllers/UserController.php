@@ -64,7 +64,9 @@ class UserController extends Controller
     public function candidatesMarketplace(Request $request)
     {
         // dd($request->all());
-        $candidates = User::where('account_status',1)->role('candidate')->with('candidatePreferences','candidateEducation','candidatePersonalDetails','candidatePersonalDetails.getNationality','candidatePersonalDetails.getPassport');
+        $candidates = User::where('account_status', 1)
+                                    ->role('candidate')
+                                    ->with('candidatePreferences','candidateEducation','candidatePersonalDetails','candidatePersonalDetails.getNationality','candidatePersonalDetails.getPassport');
         $jobCategories = JobCategory::all();
         //Search Candidate on  Location Based
         if(isset($request->SearchCandidateLocation) && $request->SearchCandidateLocation !='')

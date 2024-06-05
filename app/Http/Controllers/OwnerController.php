@@ -187,7 +187,7 @@ class OwnerController extends Controller
     {
         $candidateDocuments = CandidateDocument::where('user_id' , $request->candidateId)->where('status' , 'verified')->get();
         if($candidateDocuments->count() == 6){
-            User::where('id' , $request->candidateId)->update(['is_eligible' =>  1]);
+            User::where('id' , $request->candidateId)->update(['is_eligible' =>  AppConst::ELIGIBILITY_APPROVED]);
         }
 
         return true;
@@ -210,7 +210,7 @@ class OwnerController extends Controller
             {  
                     $user = User::where('id' , $request->candidateId)->first();
                     Mail::to($user->email)->send(new \App\Mail\CandidateEligibilityMail());
-
+                    User::where('id' , $user->id)->delete();
             }
 
             return response()->json(['status' => true , 'msg' => 'Eligibilty updated successfully']);
