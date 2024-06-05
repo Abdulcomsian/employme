@@ -111,6 +111,11 @@ File verification
 .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, h5, .h6, h6 {
     font-family: 'gordita';
 }
+
+button.dash-btn-one:disabled {
+  background: #dddddd;
+}
+
 </style>
 @endpush
 @section('content')
@@ -201,7 +206,7 @@ File verification
                                 </div>
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-end">
-                                    <button type="submit" class="dash-btn-one" id="teaching-video-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-teaching-video-progress"></i></button>
+                                    <button type="submit" class="dash-btn-one" id="teaching-video-details"  @if(!$candidatePreferencesDetails->terms_and_conditions) disabled @endif>Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-teaching-video-progress"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -217,6 +222,11 @@ File verification
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
+    $(document).on("change" , 'input[name="terms_and_conditions"]' , function(e){
+        this.checked == true ? document.querySelector(".dash-btn-one").removeAttribute('disabled') : document.querySelector(".dash-btn-one").setAttribute('disabled' , true); 
+    })
+
+
     $("#upload-documents-form").on("submit", function(e) {
         e.preventDefault();
         document.querySelector(".candidate-teaching-video-progress").classList.remove("d-none")
