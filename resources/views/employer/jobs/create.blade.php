@@ -181,7 +181,7 @@ Post A Job
                         </div>
                         <div class="dash-input-wrapper mb-30 col-md-6">
                             <label for="">Monthly Pay:</label>
-                            <input type="text" patter="^[0-9.-]*$" list="monthly_amount" name="monthly_salary"/>
+                            <input type="text" patter="^[0-9.-]" list="monthly_amount" name="monthly_salary"/>
                             {{-- <datalist id="monthly_amount">
                                 <option>Negotiation</option>
                                 <option>2.5k - 3k</option>
