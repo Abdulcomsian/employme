@@ -544,7 +544,7 @@ Job Marketplace
 									<!-- <div class="company-detail my-3"><span class="title fw-200 tran3s">{{$job->employerDetails->institution_type}}</span></div> -->
 									<div><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="title fw-500 tran3s">{{$job->job_title}}</a></div>
 									<!-- <div class="job-salary"><span class="fw-500 text-dark">$300-$450</span> / Week</div> -->
-									<div class="salary"><span class="fw-500 text-dark my-2">{{$job->monthly_salary}} USD</span></div>
+									<div class="salary"><span class="fw-500 text-dark my-2">{{$job->monthly_salary}}</span></div>
 									<div class="starting-date mt-2"><span class="fw-100 text-dark"><i>Starting Date: </i>{{date("d-m-Y" , strtotime($job->start_date))}}</span></div>
 									<div class="application-date"><span class="fw-100 text-dark"><i>Application Deadline: {{$job->application_deadline}}</i></span></div>
 									<div class="row">
