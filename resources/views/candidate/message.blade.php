@@ -102,7 +102,6 @@ small {
                         </div>
 
                         <div class="d-flex align-items-center">
-                            <a href="#" class="delete-mail me-3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_35.svg')}}" alt="" class="lazy-img"></a>
                             <a href="#" class="reply-btn tran3s">Reply</a>
                         </div>
                     </div>
@@ -473,7 +472,6 @@ small {
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['height', ['height']],
-                    ['view', ['fullscreen']],
                     ['insert', []] // Empty array to remove all insert options (including video, audio, and picture)
                 ]
        });
