@@ -9,7 +9,7 @@
             <div class="date">@isset($conversations->lastChat->created_at){{date('d M',strtotime($conversations->lastChat->created_at))}}@endisset</div>
         </div>
         {{--<div class="mail-sub">Work inquiry from google.</div>--}}
-        <div class="mail-text">{{$lastChat->message ?? ''}}</div>
+        <div class="mail-text">{!! $lastChat->message ?? '' !!}</div>
         @isset($lastChat->chatFiles)
         @foreach($lastChat->chatFiles as $file)
         <div class="attached-file-preview d-flex align-items-center mt-15">
