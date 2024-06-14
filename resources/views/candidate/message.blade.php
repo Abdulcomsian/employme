@@ -435,7 +435,6 @@ small {
                                                 </div>
 
                                                 <div class="d-flex align-items-center">
-                                                    <a href="#" class="delete-mail me-3"><img src="{{asset('assets/images/icon/icon_35.svg')}}" data-src="{{asset('assets/images/icon/icon_35.svg')}}" alt="" class="lazy-img"></a>
                                                     <button type = "submit"  class="reply-btn tran3s">Send</button>
                                                 </div>
                                             </div>
