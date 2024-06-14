@@ -19,6 +19,7 @@ class MessageController extends Controller
         $allConversations = $allConversations->get();
         return view('candidate.message',compact('allConversations'));
     }
+
     public function getEmployerMessage(Request $request){
         $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat.chatFiles')->where('employer_id',\Auth::id());
         if(isset($request->searchUser) && $request->searchUser != '')
@@ -61,6 +62,9 @@ class MessageController extends Controller
             $create->conversation_id = $request->conversation_id;
             $create->user_id = \Auth::id();
             $create->save();
+
+            $chatFlag = Chat::where('conversation_id' , $request->conversation_id)->whereDate('created_at' , date('Y-m-d'))->count() > 1 ? false : true;
+
             if(isset($request->chat_files))
             {
                 foreach($request->chat_files as $index=>$chatFile)
@@ -84,9 +88,9 @@ class MessageController extends Controller
             $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
             $lastChat = $conversations->lastChat()->with('chatFiles')->find($create->id);
             $type = 0;
-            $html =  view('components.chats.employer-sent-message',compact('conversations','chatDetails','type'))->render();
+            $html =  view('components.chats.employer-sent-message',compact('conversations','chatDetails', 'type','chatFlag'))->render();
             $type = 1;
-            $tocandidate = view('components.chats.employer-sent-message',compact('conversations','chatDetails','type'))->render();
+            $tocandidate = view('components.chats.employer-sent-message',compact('conversations','chatDetails','type', 'chatFlag'))->render();
             $newemployer= view('components.chats.new-employer',compact('lastChat','conversations'))->render();
             event(new \App\Events\EmployerEvent($conversations->id,$conversations->candidate_id,$tocandidate,$newemployer));
 
@@ -108,6 +112,9 @@ class MessageController extends Controller
             $create->conversation_id = $request->conversation_id;
             $create->user_id = \Auth::id();
             $create->save();
+            
+            $chatFlag = Chat::where('conversation_id' , $request->conversation_id)->whereDate('created_at' , date('Y-m-d'))->count() > 1 ? false : true;
+
             if(isset($request->chat_files))
             {
                 foreach($request->chat_files as $index=>$chatFile)
@@ -131,10 +138,10 @@ class MessageController extends Controller
             $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
             $lastChat = $conversations->lastChat()->with('chatFiles')->find($create->id);
             $type = 0;
-            $html =  view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type'))->render();
+            $html =  view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type' , 'chatFlag'))->render();
             $type = 1;
-            $toemployer = view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type'))->render();
-            $newcandidate= view('components.chats.new-candidate',compact('lastChat','conversations'))->render();
+            $toemployer = view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type', 'chatFlag'))->render();
+            $newcandidate= view('components.chats.new-candidate',compact('lastChat','conversations', 'chatFlag'))->render();
             event(new \App\Events\CandidateEvent($conversations->id,$conversations->employer_id,$toemployer,$newcandidate));
 
         }

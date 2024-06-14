@@ -1,25 +1,33 @@
-  
-        <div class = "row col-md-4" style = "padding-left:35px;">
-        <div class="sender-info d-flex align-items-center">
-            @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
-            <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo chat-round-avatar" style = "max-width:30%;">
-            @else
-            <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar" style = "max-width:30%;">
-            @endif            
-            <div class="ps-3">
-                @if($type == 0)
-                <div class="sender-name">You</div>
-                @else
-                <div class="sender-name">{{$conversations->employer->employerDetails->institution ?? ''}}</div>
-                @endif
-                <!-- <div class="sender-email">{{$conversations->employer->email ?? ''}}</div> -->
+    @if($chatFlag)
+        <div>
+            <p class = "text-start ms-3" style = "font-size:12px; font-weight:600;">{{$chatDetails->created_at->format('d F Y')}}</p>
+        </div>
+    @endif
+        
+        <div class = "row" style = "padding-left:35px;">
+            <div class="col-12">
+                <div class="sender-info d-flex align-items-center">
+                    <div class="d-flex">
+                        @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
+                        <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo chat-round-avatar">
+                        @else
+                        <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar">
+                        @endif            
+                    </div>
+                    <div class="ps-3 d-flex flex-column">
+                        @if($type == 0)
+                        <div class="sender-name"><p>You  <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
+                        @else
+                        <div class="sender-name"><p>{{$conversations->employer->employerDetails->institution ?? ''}} <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
+                        @endif
+                        <div class="pe-4 pe-xxl-5">
+                            <p>{!! $chatDetails->message !!}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
-            <p>{!! $chatDetails->message !!}</p>
-        </div>
-        <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+        <div class=" pe-4 pe-xxl-5">
             <div class="attachments mb-30 d-flex">
                 @isset($chatDetails->chatFiles)
                 @foreach($chatDetails->chatFiles as $file)
@@ -33,5 +41,4 @@
                 @endforeach
                 @endisset
             </div>
-            <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chatDetails->created_at))}}</p>
         </div>

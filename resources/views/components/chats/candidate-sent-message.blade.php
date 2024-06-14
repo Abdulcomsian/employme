@@ -1,28 +1,39 @@
   
-        <div class = "row col-md-4" style = "padding-left:35px;">
-        <div class="sender-info d-flex align-items-center">
-            @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
-            <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo chat-round-avatar" style = "max-width:30%;">
-            @else
-            <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar" style = "max-width:30%;">
-            @endif            
-            <div class="ps-3">
-                @if($type == 0)
-                <div class="sender-name">You</div>
-                @else
-                <div class="sender-name">
-                {{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
-                {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
-                {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}
+        @if($chatFlag)
+        <div>
+            <p class = "text-start ms-3" style = "font-size:12px; font-weight:600;">{{$chatDetails->created_at->format('d F Y')}}</p>
+        </div>
+        @endif
+        <div class="row" style = "padding-left:35px;">
+            <div class='col-12'>
+                <div class="sender-info d-flex align-items-center">
+                    <div class="d-flex">
+                        <div>
+                            @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
+                            <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo chat-round-avatar">
+                            @else
+                            <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar">
+                            @endif            
+                        </div>
+                    </div>
+                    <div class="ps-3 d-flex flex-column">
+                        @if($type == 0)
+                        <div class="sender-name"><p>You  <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
+                        @else
+                        <div class="sender-name">
+                        <p>{{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
+                        {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
+                        {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}  <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></p>
+                        </div>
+                        @endif
+                        <div class="pe-4 pe-xxl-5">
+                            <p>{!! $chatDetails->message !!}</p>
+                        </div>
+                    </div>
                 </div>
-                @endif
-                <!-- <div class="sender-email">{{$conversations->employer->email ?? ''}}</div> -->
             </div>
         </div>
-        </div>
-        <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
-            <p>{!! $chatDetails->message !!}</p>
-        </div>
+       
         <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
             <div class="attachments mb-30 d-flex">
                 @isset($chatDetails->chatFiles)
@@ -37,5 +48,5 @@
                 @endforeach
                 @endisset
             </div>
-            <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chatDetails->created_at))}}</p>
+            <!-- <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chatDetails->created_at))}}</p> -->
         </div>
