@@ -8,7 +8,7 @@
             <div class='col-12'>
                 <div class="sender-info d-flex align-items-center">
                     <div class="d-flex">
-                        <div>
+                        <div  class="avatar-section">
                             @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
                             <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo chat-round-avatar">
                             @else
@@ -18,7 +18,7 @@
                     </div>
                     <div class="ps-3 d-flex flex-column">
                         @if($type == 0)
-                        <div class="sender-name"><p>You  <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
+                        <div class="sender-name"><p>{{auth()->user()->name}} <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
                         @else
                         <div class="sender-name">
                         <p>{{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
@@ -26,7 +26,7 @@
                         {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}  <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></p>
                         </div>
                         @endif
-                        <div class="pe-4 pe-xxl-5">
+                        <div class="pe-4 pe-xxl-5 single-message">
                             <p>{!! $chatDetails->message !!}</p>
                         </div>
                     </div>

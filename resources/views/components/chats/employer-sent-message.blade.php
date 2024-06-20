@@ -7,7 +7,7 @@
         <div class = "row" style = "padding-left:35px;">
             <div class="col-12">
                 <div class="sender-info d-flex align-items-center">
-                    <div class="d-flex">
+                    <div class="d-flex  avatar-section">
                         @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
                         <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo chat-round-avatar">
                         @else
@@ -16,11 +16,11 @@
                     </div>
                     <div class="ps-3 d-flex flex-column">
                         @if($type == 0)
-                        <div class="sender-name"><p>You  <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
+                        <div class="sender-name"><p>{{auth()->user()->name}}  <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
                         @else
                         <div class="sender-name"><p>{{$conversations->employer->employerDetails->institution ?? ''}} <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
                         @endif
-                        <div class="pe-4 pe-xxl-5">
+                        <div class="pe-4 pe-xxl-5 single-message">
                             <p>{!! $chatDetails->message !!}</p>
                         </div>
                     </div>

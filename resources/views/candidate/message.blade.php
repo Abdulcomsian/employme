@@ -43,10 +43,25 @@ small {
 
 .sender-name {
     height: 23px;
+    width: 300px;
 }
 .compose-new-email-container {
     border: none;
 }
+
+.avatar-section {
+    width: 44px;
+}
+
+.pe-4.pe-xxl-5.single-message p {
+    margin: 0;
+    line-height: 18px;
+}
+
+.email-header .sender-name {
+    line-height: 84px;
+}
+
 </style>
 @endpush
 <div class="dashboard-body">
@@ -172,7 +187,7 @@ small {
                                             <div class="date">@isset($conversation->lastChat->created_at){{date('d M',strtotime($conversation->lastChat->created_at))}}@endisset</div>
                                         </div>
                                         {{--<div class="mail-sub">Work inquiry from google.</div>--}}
-                                        <div class="mail-text">{{$conversation->lastChat->message ?? ''}}</div>
+                                        <div class="mail-text">{!! $conversation->lastChat->message ?? '' !!}</div>
                                         @isset($conversation->lastChat->chatFiles)
                                         @foreach($conversation->lastChat->chatFiles as $file)
                                         <div class="attached-file-preview d-flex align-items-center mt-15">
@@ -255,7 +270,7 @@ small {
                         @if($index==0)
                         <div class="open-email-container pb-40">
                             <div class="email-header divider d-flex justify-content-between ps-4 pe-4 ps-xxl-5 pe-xxl-5">
-                                <div class="sender-info d-flex align-items-center ">
+                                <div class="sender-info d-flex align-items-center">
                                     <div class="d-flex">
                                         <div>
                                             @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
@@ -317,9 +332,9 @@ small {
                                 @if($chat->user_id == auth()->user()->id)
                                 <div class="row" style = "padding-left:35px;">
                                     <div class="col-12">
-                                        <div class="sender-info d-flex align-items-center ">
+                                        <div class="sender-info d-flex align-items-center">
                                             <div class="d-flex">
-                                                <div>
+                                                <div class="avatar-section">
                                                     @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
                                                     <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo chat-round-avatar">
                                                     @else
@@ -327,8 +342,8 @@ small {
                                                     @endif            
                                                 </div>
                                                 <div class="ps-3 d-flex flex-column">
-                                                    <div class="sender-name"><p>You  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
-                                                    <div class="pe-4 pe-xxl-5">
+                                                    <div class="sender-name"><p>{{auth()->user()->name}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
+                                                    <div class="pe-4 pe-xxl-5 single-message">
                                                         <p>{!! $chat->message !!}</p>
                                                     </div>
                                                     <!-- <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div> -->
@@ -341,9 +356,9 @@ small {
                                 @else
                                 <div class = "row" style = "padding-left:35px;">
                                 <div class="col-12">
-                                    <div class="sender-info d-flex align-items-center ">
+                                    <div class="sender-info d-flex align-items-center avatar-section">
                                         <div class="d-flex">
-                                            <div>
+                                            <div class="avatar-section">
                                                 @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
                                                 <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo chat-round-avatar " >
                                                 @else
@@ -352,7 +367,7 @@ small {
                                             </div>
                                             <div class="ps-3 d-flex flex-column">
                                                 <div class="sender-name"><p class="d-flex">{{$conversations->employer->employerDetails->institution ?? ''}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
-                                                <div class="pe-4 pe-xxl-5">
+                                                <div class="pe-4 pe-xxl-5 single-message">
                                                     <p>{!! $chat->message !!}</p>
                                                 </div>
                                                 <!-- <div class="sender-email">{{$conversations->employer->email ?? ''}}</div> -->
@@ -471,7 +486,7 @@ small {
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['height', ['height']],
-                    ['insert', []] // Empty array to remove all insert options (including video, audio, and picture)
+                    ['insert', ['picture']] // Empty array to remove all insert options (including video, audio, and picture)
                 ]
        });
 

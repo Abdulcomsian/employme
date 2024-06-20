@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\{Conversation, Chat, ChatAttachment};
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use DOMDocument;
 
 class MessageController extends Controller
 {
@@ -57,8 +58,29 @@ class MessageController extends Controller
         $html = '';
         if($request->message !='' || isset($request->chat_files))
         {
+            $message = $request->message;
+            $dom = new DOMDocument();
+            libxml_use_internal_errors(true);
+            $dom->loadHTML(mb_convert_encoding($message, 'HTML-ENTITIES', 'UTF-8'));
+            libxml_clear_errors();
+            $images = $dom->getElementsByTagName('img');
+            foreach($images as $index => $img)
+            {
+                $imageLink = $img->getAttribute('src');
+                $image = explode(',' , $imageLink);
+                $image = base64_decode(str_replace(' ', '' , $image[1]));
+                $imageName = time().$index.'-chat-image.png';
+                $imagePath = public_path('uploads/chat/'.$imageName);
+                file_put_contents($imagePath , $image);
+                $img->setAttribute('src' , asset('uploads/chat/'.$imageName));
+            }
+
+
+            $message = $dom->saveHTML();
+
+
             $create = new Chat;
-            $create->message = $request->message;
+            $create->message = $message;
             $create->conversation_id = $request->conversation_id;
             $create->user_id = \Auth::id();
             $create->save();
@@ -107,8 +129,28 @@ class MessageController extends Controller
         $html = '';
         if($request->message !='' || isset($request->chat_files))
         {
+            $message = $request->message;
+            $dom = new DOMDocument();
+            libxml_use_internal_errors(true);
+            $dom->loadHTML(mb_convert_encoding($message, 'HTML-ENTITIES', 'UTF-8'));
+            libxml_clear_errors();
+            $images = $dom->getElementsByTagName('img');
+            foreach($images as $index => $img)
+            {
+                $imageLink = $img->getAttribute('src');
+                $image = explode(',' , $imageLink);
+                $image = base64_decode(str_replace(' ', '' , $image[1]));
+                $imageName = time().$index.'-chat-image.png';
+                $imagePath = public_path('uploads/chat/'.$imageName);
+                file_put_contents($imagePath , $image);
+                $img->setAttribute('src' , asset('uploads/chat/'.$imageName));
+            }
+
+
+            $message = $dom->saveHTML();
+
             $create = new Chat;
-            $create->message = $request->message;
+            $create->message = $message;
             $create->conversation_id = $request->conversation_id;
             $create->user_id = \Auth::id();
             $create->save();
