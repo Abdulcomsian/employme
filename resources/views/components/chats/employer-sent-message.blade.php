@@ -6,8 +6,8 @@
         
         <div class = "row" style = "padding-left:35px;">
             <div class="col-12">
-                <div class="sender-info d-flex align-items-center">
-                    <div class="d-flex  avatar-section">
+                <div class="d-flex">
+                    <div class="avatar-section">
                         @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
                         <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo chat-round-avatar">
                         @else

@@ -52,12 +52,14 @@
         </div>
         @else
         <div class = "row col-md-4" style = "padding-left:35px;">
-        <div class="sender-info d-flex align-items-center avatar-section">
-            @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
-            <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo chat-round-avatar" style = "max-width:30%;">
-            @else
-            <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar" style = "max-width:30%;">
-            @endif            
+        <div class="d-flex">
+            <div class="avatar-section">
+                @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
+                <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo chat-round-avatar" style = "max-width:30%;">
+                @else
+                <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar" style = "max-width:30%;">
+                @endif            
+            </div>
             <div class="ps-3">
                 <div class="sender-name">{{$conversations->employer->employerDetails->institution ?? ''}}</div>
                 <!-- <div class="sender-email">{{$conversations->employer->email ?? ''}}</div> -->

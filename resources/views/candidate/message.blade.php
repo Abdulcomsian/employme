@@ -356,7 +356,7 @@ small {
                                 @else
                                 <div class = "row" style = "padding-left:35px;">
                                 <div class="col-12">
-                                    <div class="sender-info d-flex align-items-center avatar-section">
+                                    <div class="sender-info">
                                         <div class="d-flex">
                                             <div class="avatar-section">
                                                 @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
