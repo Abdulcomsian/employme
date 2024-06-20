@@ -62,6 +62,15 @@ small {
     line-height: 84px;
 }
 
+.email-body.divider .row{
+    padding: 10px 10px;
+}
+.email-body.divider .row:hover{
+    background-color: #f2f2f2;
+}
+.single-message p {
+    word-break: break-word !important;
+}
 </style>
 @endpush
 <div class="dashboard-body">
@@ -560,6 +569,7 @@ small {
                     $("#send-text-to-employer-form").find("textarea[name=message]").val('');
                     $(".compose-new-email-container").find(".compose-body textarea").focus();
                     $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+                    $(".summernote").summernote('reset');
                 }else{
                     $.each(data.errors, function (key, val) {
                         $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
