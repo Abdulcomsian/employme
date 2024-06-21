@@ -55,57 +55,69 @@ class MessageController extends Controller
 
     public function sendTextToCandidate(Request $request)
     {
-        $html = '';
-        if($request->message !='' || isset($request->chat_files))
-        {
-            $message = $request->message;
-            $dom = new DOMDocument();
-            libxml_use_internal_errors(true);
-            $dom->loadHTML(mb_convert_encoding($message, 'HTML-ENTITIES', 'UTF-8'));
-            libxml_clear_errors();
-            $images = $dom->getElementsByTagName('img');
-            foreach($images as $index => $img)
-            {
-                $imageLink = $img->getAttribute('src');
-                $image = explode(',' , $imageLink);
-                $image = base64_decode(str_replace(' ', '' , $image[1]));
-                $imageName = time().$index.'-chat-image.png';
-                $imagePath = public_path('uploads/chat/'.$imageName);
-                file_put_contents($imagePath , $image);
-                $img->setAttribute('src' , asset('uploads/chat/'.$imageName));
-            }
-
-
-            $message = $dom->saveHTML();
-
-
-            $create = new Chat;
-            $create->message = $message;
-            $create->conversation_id = $request->conversation_id;
-            $create->user_id = \Auth::id();
-            $create->save();
-
-            $chatFlag = Chat::where('conversation_id' , $request->conversation_id)->whereDate('created_at' , date('Y-m-d'))->count() > 1 ? false : true;
-
-            if(isset($request->chat_files))
-            {
-                foreach($request->chat_files as $index=>$chatFile)
+        $html = $message = '';
+        if(!$request->haveAttachment){
+                $message = $request->message;
+                $dom = new DOMDocument();
+                libxml_use_internal_errors(true);
+                $dom->loadHTML(mb_convert_encoding($message, 'HTML-ENTITIES', 'UTF-8'));
+                libxml_clear_errors();
+                $images = $dom->getElementsByTagName('img');
+                foreach($images as $index => $img)
                 {
-                    $imageName = '';
-                    $imageExt = '';
-                    $file = $chatFile;
-                    $imageExt = $file->getClientOriginalExtension();
-                    $originalName = $file->getClientOriginalName();
-                    $filePath = getChatFilePath();
-                    $imageName = saveFile($filePath, $file,null);
-                    $addAttachment = new ChatAttachment;
-                    $addAttachment->original_name = $originalName;
-                    $addAttachment->file_path = $imageName;
-                    $addAttachment->extension = $imageExt;
-                    $addAttachment->chat_id = $create->id;
-                    $addAttachment->save();
+                    $imageLink = $img->getAttribute('src');
+                    $image = explode(',' , $imageLink);
+                    $image = base64_decode(str_replace(' ', '' , $image[1]));
+                    $imageName = time().$index.'-chat-image.png';
+                    $imagePath = public_path('uploads/chat/'.$imageName);
+                    file_put_contents($imagePath , $image);
+                    $img->setAttribute('src' , asset('uploads/chat/'.$imageName));
                 }
+
+
+                $message = $dom->saveHTML();
+            } else {
+                $message = "<div class='d-flex'>";
+                foreach($request->attachment_file as $file)
+                {
+                    $fileOriginalName = $file->getClientOriginalName();
+                    $filename = time().'-'.$fileOriginalName;
+                    $file->move(public_path('uploads/chat') , $filename);
+                    $filePath = asset("uploads/chat/$filename");
+                    $attachmentIcon = asset("assets/images/assets/attachment.png"); 
+                    $message .= "<a href='$filePath' target='_blank' title=''><img src='$attachmentIcon' class='message-attachment' ></a>";
+                }
+                $message .= "</div>";
             }
+
+                $create = new Chat;
+                $create->message = $message;
+                $create->conversation_id = $request->conversation_id;
+                $create->user_id = \Auth::id();
+                $create->save();
+
+
+                $chatFlag = Chat::where('conversation_id' , $request->conversation_id)->whereDate('created_at' , date('Y-m-d'))->count() > 1 ? false : true;
+
+                // if(isset($request->chat_files))
+                // {
+                //     foreach($request->chat_files as $index=>$chatFile)
+                //     {
+                //         $imageName = '';
+                //         $imageExt = '';
+                //         $file = $chatFile;
+                //         $imageExt = $file->getClientOriginalExtension();
+                //         $originalName = $file->getClientOriginalName();
+                //         $filePath = getChatFilePath();
+                //         $imageName = saveFile($filePath, $file,null);
+                //         $addAttachment = new ChatAttachment;
+                //         $addAttachment->original_name = $originalName;
+                //         $addAttachment->file_path = $imageName;
+                //         $addAttachment->extension = $imageExt;
+                //         $addAttachment->chat_id = $create->id;
+                //         $addAttachment->save();
+                //     }
+                // }
             $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails')->find($request->conversation_id);
             $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
             $lastChat = $conversations->lastChat()->with('chatFiles')->find($create->id);
@@ -116,7 +128,6 @@ class MessageController extends Controller
             $newemployer= view('components.chats.new-employer',compact('lastChat','conversations'))->render();
             event(new \App\Events\EmployerEvent($conversations->id,$conversations->candidate_id,$tocandidate,$newemployer));
 
-        }
        
         return response()->json([
             "status" => true, 
@@ -126,9 +137,10 @@ class MessageController extends Controller
     }
     public function sendTextToEmployer(Request $request)
     {
-        $html = '';
-        if($request->message !='' || isset($request->chat_files))
-        {
+        try{
+        $html = $message = '';
+        if(!$request->haveAttachment){
+        
             $message = $request->message;
             $dom = new DOMDocument();
             libxml_use_internal_errors(true);
@@ -149,6 +161,45 @@ class MessageController extends Controller
 
             $message = $dom->saveHTML();
 
+            
+
+            // if(isset($request->chat_files))
+            // {
+            //     foreach($request->chat_files as $index=>$chatFile)
+            //     {
+            //         $imageName = '';
+            //         $imageExt = '';
+            //         $file = $chatFile;
+            //         $imageExt = $file->getClientOriginalExtension();
+            //         $originalName = $file->getClientOriginalName();
+            //         $filePath = getChatFilePath();
+            //         $imageName = saveFile($filePath, $file,null);
+            //         $addAttachment = new ChatAttachment;
+            //         $addAttachment->original_name = $originalName;
+            //         $addAttachment->file_path = $imageName;
+            //         $addAttachment->extension = $imageExt;
+            //         $addAttachment->chat_id = $create->id;
+            //         $addAttachment->save();
+            //     }
+            // }
+
+
+
+            } else {
+                $message = "<div class='d-flex'>";
+                foreach($request->attachment_file as $file)
+                {
+                    $fileOriginalName = $file->getClientOriginalName();
+                    $filename = time().'-'.$fileOriginalName;
+                    $file->move(public_path('uploads/chat') , $filename);
+                    $filePath = asset("uploads/chat/$filename");
+                    $attachmentIcon = asset("assets/images/assets/attachment.png"); 
+                    $message .= "<a href='$filePath' target='_blank' title=''><img src='$attachmentIcon' class='message-attachment' ></a>";
+                }
+                $message .= "</div>";
+            }
+
+
             $create = new Chat;
             $create->message = $message;
             $create->conversation_id = $request->conversation_id;
@@ -157,25 +208,7 @@ class MessageController extends Controller
             
             $chatFlag = Chat::where('conversation_id' , $request->conversation_id)->whereDate('created_at' , date('Y-m-d'))->count() > 1 ? false : true;
 
-            if(isset($request->chat_files))
-            {
-                foreach($request->chat_files as $index=>$chatFile)
-                {
-                    $imageName = '';
-                    $imageExt = '';
-                    $file = $chatFile;
-                    $imageExt = $file->getClientOriginalExtension();
-                    $originalName = $file->getClientOriginalName();
-                    $filePath = getChatFilePath();
-                    $imageName = saveFile($filePath, $file,null);
-                    $addAttachment = new ChatAttachment;
-                    $addAttachment->original_name = $originalName;
-                    $addAttachment->file_path = $imageName;
-                    $addAttachment->extension = $imageExt;
-                    $addAttachment->chat_id = $create->id;
-                    $addAttachment->save();
-                }
-            }
+
             $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails')->find($request->conversation_id);
             $chatDetails = $conversations->chats()->with('chatFiles')->find($create->id);
             $lastChat = $conversations->lastChat()->with('chatFiles')->find($create->id);
@@ -186,12 +219,15 @@ class MessageController extends Controller
             $newcandidate= view('components.chats.new-candidate',compact('lastChat','conversations', 'chatFlag'))->render();
             event(new \App\Events\CandidateEvent($conversations->id,$conversations->employer_id,$toemployer,$newcandidate));
 
-        }
         
         return response()->json([
             "status" => true, 
             "message" => 'message sent successfully',
             'html'=>$html,
+
         ]);
+        }catch(\Exception $e){
+            dd($e->getMessage());
+        }
     }
 }

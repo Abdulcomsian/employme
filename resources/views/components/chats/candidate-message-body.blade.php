@@ -1,5 +1,5 @@
 <div class="open-email-container pb-40">
-    <div class="email-header divider d-flex justify-content-between ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+    <div class="email-header divider d-flex justify-content-between d-flex flex-column flex-grow-1">
         <div class="sender-info d-flex align-items-center">
             @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
             <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo round-avatar">
@@ -76,12 +76,12 @@
         </div>
         </div>
         @endif
-        <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+        <div class="d-flex flex-column flex-grow-1">
             <p>{!! $chat->message !!}</p>
         </div>
-        <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+        @isset($chat->chatFiles)
+        <div class="d-flex flex-column flex-grow-1">
             <div class="attachments mb-30 d-flex">
-                @isset($chat->chatFiles)
                 @foreach($chat->chatFiles as $file)
                 <a href="javascript:void(0)" class="file tran3s d-flex align-items-center mt-10" onclick= "downloadFile('{{asset($file->file_path)}}', '{{$file->original_name}}')">
                     <div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset($file->file_path)}}" data-src="{{asset($file->file_path)}}" alt="" class="lazy-img"></div>
@@ -91,10 +91,10 @@
                     </div>
                 </a>
                 @endforeach
-                @endisset
             </div>
             <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chat->created_at))}}</p>
         </div>
+        @endisset
         
 
         @endforeach
@@ -103,7 +103,7 @@
     <!-- /.email-body -->
 
     <div class="email-footer">
-        <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+        <div class="d-flex flex-column flex-grow-1">
             <div class="compose-new-email-container">
                 <div class="new-email-header position-relative">
                     {{--<div class="btn-group">

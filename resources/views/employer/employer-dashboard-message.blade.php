@@ -5,6 +5,7 @@ Messages
 @section('content')
 @push('page-css')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
     .dashboard-body .message-wrapper .open-email-container .email-body .attachments .file {
     padding: 9px 15px;
@@ -50,27 +51,71 @@ small {
 }
 
 .avatar-section {
-    width: 44px;
+    flex-basis: 70px;
+    flex-shrink: 0;
 }
 
 .pe-4.pe-xxl-5.single-message p {
     margin: 0;
+    margin-top: 8px;
     line-height: 18px;
-    }
+}
 
-.avatar-section {
-    width: 44px;
+.email-body.divider .row{
+    padding: 5px 0px;
+    margin: 7px 0px;
 }
 .email-body.divider .row:hover{
     background-color: #f2f2f2;
-    padding: 10px 10px;
+}
+
+.email-body > div.row:hover{
+    background: #d3d3d373 !important;
 }
 .single-message p {
     word-break: break-word !important;
 }
+
+.attachment-submit-btn{
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    min-width: 90px;
+    text-align: center;
+    padding: 0 15px;
+    line-height: 35px;
+    border-radius: 50px;
+    background: #ff715b;
+}
+
+.message-attachment{
+    width: 20px;
+    height: 20px;
+}
 </style>
 @endpush
 <div class="dashboard-body">
+    <div class="modal attachment-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <form action="#" id="attachment-form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Upload File</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="close-modal">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <input type="file" name="attachment_file[]" accept=".pdf,.doc,.docx,.txt,.xlsx,.csv,.zip,.rar,.ppt,.pptx" id="attachment_file" multiple>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn upload-file attachment-submit-btn">Send Files</button>
+                        <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="position-relative">
         <!-- ************************ Header **************************** -->
 			{{--@include('employer.layout.header_menu')--}}
@@ -281,7 +326,7 @@ small {
                         @foreach($allConversations as $index=>$conversations)
                         @if($index==0)
                         <div class="open-email-container pb-40">
-                            <div class="email-header divider d-flex justify-content-between ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+                            <div class="email-header divider d-flex justify-content-between d-flex flex-column flex-grow-1">
                                 <div class="sender-info d-flex align-items-center">
                                     @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
                                     <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo round-avatar">
@@ -327,24 +372,24 @@ small {
 
                                 @isset($conversations->chats)
                                 @foreach($conversations->chats as $chat)
-                                <div>
-                                    @php
-                                        $previousCarbonDate = !$previousDate ? \Carbon\Carbon::createFromFormat('Y-m-d' , $chat->created_at->format('Y-m-d')) : $previousDate;
-                                        $newDate = \Carbon\Carbon::createFromFormat('Y-m-d' ,$chat->created_at->format('Y-m-d'));
+                                @php
+                                $previousCarbonDate = !$previousDate ? \Carbon\Carbon::createFromFormat('Y-m-d' , $chat->created_at->format('Y-m-d')) : $previousDate;
+                                $newDate = \Carbon\Carbon::createFromFormat('Y-m-d' ,$chat->created_at->format('Y-m-d'));
                                 
-                                        
-                                    @endphp
-                                    @if(!$previousDate || !$previousCarbonDate->isSameDay($newDate))
-                                        @php
-                                            $previousDate = $chat->created_at;
-                                        @endphp
+                                
+                                @endphp
+                                @if(!$previousDate || !$previousCarbonDate->isSameDay($newDate))
+                                @php
+                                $previousDate = $chat->created_at;
+                                @endphp
+                                <div>
                                     <p class = "text-start ms-3" style = "font-size:12px; font-weight:600;">{{date('d F Y',strtotime($chat->created_at))}}</p>
-                                    @endif    
                                 </div>
+                                    @endif    
                                 @if($chat->user_id == auth()->user()->id)
                                 <div class = "row" style = "padding-left:35px;">
                                     <div class="col-12">
-                                        <div class="sender-info d-flex align-items-center">
+                                        <div class="sender-info ">
                                             <div class="d-flex">
                                                 <div class=" avatar-section">
                                                     @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
@@ -353,7 +398,7 @@ small {
                                                     <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar">
                                                     @endif
                                                 </div>           
-                                                <div class="ps-3 d-flex flex-column">
+                                                <div class="d-flex flex-column">
                                                     <div class="sender-name"><p>{{auth()->user()->name}}<small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
                                                     <div class="pe-4 pe-xxl-5 single-message">
                                                         <p>{!! $chat->message !!}</p>
@@ -366,7 +411,7 @@ small {
                                 @else
                                 <div class = "row" style = "padding-left:35px;">
                                     <div class="col-12">
-                                        <div class="sender-info d-flex align-items-center">
+                                        <div class="sender-info">
                                             <div class="d-flex">
                                                 <div class=" avatar-section">
                                                     @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
@@ -375,7 +420,7 @@ small {
                                                     <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar">
                                                     @endif
                                                 </div>            
-                                                <div class="ps-3 d-flex flex-column">
+                                                <div class="d-flex flex-column flex-grow-1">
                                                     <div class="sender-name">
                                                         <p> {{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
                                                             {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
@@ -391,21 +436,7 @@ small {
                                 </div>
                                 @endif
                                 
-                                <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
-                                    <div class="attachments mb-30 d-flex">
-                                        @isset($chat->chatFiles)
-                                        @foreach($chat->chatFiles as $file)
-                                        <a href="javascript:void(0)" class="file tran3s d-flex align-items-center mt-10" onclick= "downloadFile('{{asset($file->file_path)}}', '{{$file->original_name}}')">
-                                            <div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset($file->file_path)}}" data-src="{{asset($file->file_path)}}" alt="" class="lazy-img"></div>
-                                            <div class="ps-2">
-                                                <div class="file-name">{{$file->original_name}}</div>
-                                                {{--<div class="file-size">2.3mb</div>--}}
-                                            </div>
-                                        </a>
-                                        @endforeach
-                                        @endisset
-                                    </div>
-                                </div>
+                             
                                 
 
                                 @endforeach
@@ -414,7 +445,7 @@ small {
                             <!-- /.email-body -->
 
                             <div class="email-footer">
-                                <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+                                <div class="d-flex flex-column">
                                     <div class="compose-new-email-container">
                                         <div class="new-email-header position-relative">
                                             {{--<div class="btn-group">
@@ -487,6 +518,7 @@ small {
 
 @push('page-script')
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $(document).ready(function(){
         $(".compose-new-email-container").find(".compose-body textarea").focus();
@@ -497,11 +529,67 @@ small {
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['height', ['height']],
-                    ['insert', ['picture']] // Empty array to remove all insert options (including video, audio, and picture)
-                ]
+                    ['insert', ['picture' , 'link' , 'file']],
+                    ['mybutton' , ['fileUpload']]
+                ],
+                buttons: {
+                    fileUpload : fileUploadBtn
+                }
        });
 
     });
+
+
+    var fileUploadBtn = (context)=>{
+        fileDestination = '{{asset("assets/images/assets/file-icon.png")}}'; 
+        var ui = $.summernote.ui;
+        var button = ui.button({
+            contents : `<img src="${fileDestination}" width="18" height="20">`,
+            tooltip : 'upload file',
+            className: 'upload-chat-files',
+        })
+        return button.render();
+    }
+
+    $(document).on("click" , '.upload-chat-files' , function(){
+        $(".attachment-modal").modal("show");
+    })
+
+
+    $(document).on("click" , ".attachment-submit-btn" , function(){
+        let attachmentForm = document.querySelector("#attachment-form");
+        let form = new FormData(attachmentForm);
+        let conversationId = '{{$conversation->id}}';
+        form.append('_token' , '{{csrf_token()}}');
+        form.append('haveAttachment' , true);
+        form.append('conversation_id' , $("input[name=conversation_id]").val());
+        var apiUrl = '{{route("employer.sendTextToCandidate")}}';
+        $.ajax({
+            type: "POST",
+            url: apiUrl,
+            data: form ,
+            contentType: false,
+            processData: false,
+            success: function(res){
+                if(res.status){
+                    toastr.success(res.message);
+                    attachmentForm.reset();
+                    $(".conversation-"+conversationId).append(res.html);
+                    $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+                    $(".attachment-modal").modal("hide");
+                }else{
+                    toastr.error(res.error);
+                }
+            }
+        })
+     
+    })
+
+    $(document).on("click" , ".close-modal" , function(){
+        $(".attachment-modal").modal("hide");
+    })
+
+
     let conversationId = $(".email-list-item.selected").data("user-id");
     $(document).on('click', '.users', function() {
      $('.users').removeClass('selected');

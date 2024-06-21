@@ -1,5 +1,5 @@
 <div class="open-email-container pb-40">
-    <div class="email-header divider d-flex justify-content-between ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+    <div class="email-header divider d-flex justify-content-between d-flex flex-column flex-grow-1">
         <div class="sender-info d-flex align-items-center">
             @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
             <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo round-avatar">
@@ -67,32 +67,32 @@
         </div>
         </div>
         @endif
-        <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+        <div class="d-flex flex-column flex-grow-1">
             <p>{!! $chat->message !!}</p>
         </div>
-        <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
-            <div class="attachments mb-30 d-flex">
-                @isset($chat->chatFiles)
-                @foreach($chat->chatFiles as $file)
-                <a href="javascript:void(0)" class="file tran3s d-flex align-items-center mt-10" onclick= "downloadFile('{{asset($file->file_path)}}', '{{$file->original_name}}')">
-                    <div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset($file->file_path)}}" data-src="{{asset($file->file_path)}}" alt="" class="lazy-img"></div>
-                    <div class="ps-2">
-                        <div class="file-name">{{$file->original_name}}</div>
-                        {{--<div class="file-size">2.3mb</div>--}}
-                    </div>
-                </a>
-                @endforeach
-                @endisset
+            @isset($chat->chatFiles)
+            <div class="d-flex flex-column flex-grow-1">
+                <div class="attachments mb-30 d-flex">
+                    @foreach($chat->chatFiles as $file)
+                    <a href="javascript:void(0)" class="file tran3s d-flex align-items-center mt-10" onclick= "downloadFile('{{asset($file->file_path)}}', '{{$file->original_name}}')">
+                        <div class="icon rounded-circle d-flex align-items-center justify-content-center"><img src="{{asset($file->file_path)}}" data-src="{{asset($file->file_path)}}" alt="" class="lazy-img"></div>
+                        <div class="ps-2">
+                            <div class="file-name">{{$file->original_name}}</div>
+                            {{--<div class="file-size">2.3mb</div>--}}
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+                <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chat->created_at))}}</p>
             </div>
-            <p class = "text-center" style = "font-size:12px">{{date('d M, g:i A',strtotime($chat->created_at))}}</p>
-        </div>
+            @endisset
         @endforeach
         @endisset
     </div>
     <!-- /.email-body -->
 
     <div class="email-footer">
-        <div class="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
+        <div class="d-flex flex-column flex-grow-1">
         
 
             <div class="compose-new-email-container">
