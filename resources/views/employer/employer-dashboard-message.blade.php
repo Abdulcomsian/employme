@@ -106,7 +106,7 @@ small {
                         </button>
                     </div>
                     <div class="modal-body">
-                            <input type="file" name="attachment_file[]" accept=".pdf,.doc,.docx,.txt,.xlsx,.csv,.zip,.rar,.ppt,.pptx" id="attachment_file" multiple>
+                            <input type="file" name="attachment_file[]" id="attachment_file" multiple>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn upload-file attachment-submit-btn">Send Files</button>

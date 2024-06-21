@@ -17,7 +17,7 @@
                         @if($type == 0)
                         <div class="sender-name"><p>{{auth()->user()->name}}  <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
                         @else
-                        <div class="sender-name"><p>{{$conversations->employer->employerDetails->institution ?? ''}} <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
+                        <div class="sender-name"><p>{{$conversations->employer->name ?? ''}} <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
                         @endif
                         <div class="pe-4 pe-xxl-5 single-message">
                             <p>{!! $chatDetails->message !!}</p>

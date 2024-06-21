@@ -110,7 +110,7 @@ small {
                         </button>
                     </div>
                     <div class="modal-body">
-                            <input type="file" name="attachment_file[]" accept=".pdf,.doc,.docx,.txt,.xlsx,.csv,.zip,.rar,.ppt,.pptx" id="attachment_file" multiple>
+                            <input type="file" name="attachment_file[]" id="attachment_file" multiple>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn upload-file attachment-submit-btn">Send Files</button>
@@ -337,7 +337,7 @@ small {
                                             @endif
                                         </div>
                                         <div class="ps-3">
-                                            <div class="sender-name">{{$conversations->employer->employerDetails->institution ?? ''}}</div>
+                                            <div class="sender-name">{{$conversations->employer->name ?? ''}}</div>
                                             <!-- <div class="sender-email">{{$conversations->employer->email ?? ''}}</div> -->
                                         </div>
                                     </div>
@@ -382,7 +382,7 @@ small {
                                                     @endif            
                                                 </div>
                                                 <div class="d-flex flex-column flex-grow-1">
-                                                    <div class="sender-name"><p>{{auth()->user()->name}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
+                                                    <div class="sender-name"><p>{{auth()->user()->candidatePersonalDetails->first_name}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
                                                     <div class="pe-4 pe-xxl-5 single-message">
                                                         <p>{!! $chat->message !!}</p>
                                                     </div>
@@ -406,7 +406,7 @@ small {
                                                     @endif            
                                                 </div>
                                                 <div class="d-flex flex-column flex-grow-1">
-                                                    <div class="sender-name"><p class="d-flex">{{$conversations->employer->employerDetails->institution ?? ''}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
+                                                    <div class="sender-name"><p class="d-flex">{{$conversations->employer->name ?? ''}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
                                                     <div class="pe-4 pe-xxl-5 single-message">
                                                         <p>{!! $chat->message !!}</p>
                                                     </div>
@@ -438,7 +438,7 @@ small {
                                             </div>--}}
                                             {{--<div class="input-group d-flex align-items-center">
                                                 <div class="text-center" style="width: 60px;">To</div>
-                                                <input type="email" class="flex-fill" placeholder="{{$conversations->employer->employerDetails->institution ?? ''}}">
+                                                <input type="email" class="flex-fill" placeholder="{{$conversations->employer->name ?? ''}}">
                                             </div>--}}
                                             {{--<div class="collapse" id="CC-input">
                                                 <div class="input-group d-flex align-items-center">

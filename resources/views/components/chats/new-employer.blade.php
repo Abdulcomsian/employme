@@ -1,7 +1,7 @@
 <div class="email-list-item users ps-3 pe-3 ps-xxl-4 pe-xxl-4 unread " data-user-id = "{{$conversations->id}}">
     <div class="email-short-preview position-relative">
         <div class="d-flex align-items-center justify-content-between">
-            <div class="sender-name">{{$conversations->employer->employerDetails->institution}}</div>
+            <div class="sender-name">{{$conversations->employer->name}}</div>
             <div class="date">@isset($conversations->lastChat->created_at){{date('d M',strtotime($conversations->lastChat->created_at))}}@endisset</div>
         </div>
         {{--<div class="mail-sub">Work inquiry from google.</div>--}}

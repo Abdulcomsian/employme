@@ -7,7 +7,7 @@
             <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo round-avatar">
             @endif
             <div class="ps-3">
-                <div class="sender-name">{{$conversations->employer->employerDetails->institution ?? ''}}</div>
+                <div class="sender-name">{{$conversations->employer->name ?? ''}}</div>
                 <div class="sender-email">payoneer@inquiry.com</div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                 @endif            
             </div>
             <div class="ps-3">
-                <div class="sender-name">{{$conversations->employer->employerDetails->institution ?? ''}}</div>
+                <div class="sender-name">{{$conversations->employer->name ?? ''}}</div>
                 <!-- <div class="sender-email">{{$conversations->employer->email ?? ''}}</div> -->
             </div>
         </div>
@@ -103,7 +103,7 @@
                     </div>--}}
                     {{--<div class="input-group d-flex align-items-center">
                         <div class="text-center" style="width: 60px;">To</div>
-                        <input type="email" class="flex-fill" placeholder="{{$conversations->employer->employerDetails->institution ?? ''}}">
+                        <input type="email" class="flex-fill" placeholder="{{$conversations->employer->name ?? ''}}">
                     </div>--}}
                     {{--<div class="collapse" id="CC-input">
                         <div class="input-group d-flex align-items-center">

@@ -17,7 +17,7 @@
                         </div>
                         <div class="d-flex flex-column flex-grow-1">
                             @if($type == 0)
-                            <div class="sender-name"><p>{{auth()->user()->name}} <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
+                            <div class="sender-name"><p>{{auth()->user()->candidatePersonalDetails->first_name}} <small> &nbsp;&nbsp;&nbsp;{{$chatDetails->created_at->format('g:i A')}}</small></p></div>
                             @else
                             <div class="sender-name">
                             <p>{{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
