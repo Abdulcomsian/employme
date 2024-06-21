@@ -92,6 +92,9 @@ small {
     width: 20px;
     height: 20px;
 }
+.sender-name {
+    font-weight: 500;
+}
 </style>
 @endpush
 <div class="dashboard-body">
