@@ -63,6 +63,7 @@ class UserController extends Controller
    }
     public function candidatesMarketplace(Request $request)
     {
+        $openJobs = auth()->check() && auth()->user()->hasRole('employer') ? EmployerJob::where(['job_status' => 1 , 'posted_by' => auth()->user()->id ])->get() : [];
         // dd($request->all());
         $candidates = User::where('account_status', 1)
                                     ->role('candidate')
@@ -234,7 +235,7 @@ class UserController extends Controller
 
         $verifiedCertificate = auth()->check() && auth()->user()->hasRole('employer') ? EmployerBusinessLicense::where('employer_id' , auth()->user()->id)->where('approval_status' , 1)->count() : 0;
         $employerIsSubscribed = auth()->check() &&  auth()->user()->lastSubscription && is_null(auth()->user()->lastSubscription->ends_at) ? true : false;
-        return view('candidates-marketplace',compact('candidates','jobCategories','verifiedCertificate' , 'employerIsSubscribed'));
+        return view('candidates-marketplace',compact('candidates','jobCategories','verifiedCertificate' , 'employerIsSubscribed' , 'openJobs'));
     }
 
     public function getEmployerAccountSettingpage()

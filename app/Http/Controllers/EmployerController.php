@@ -341,7 +341,7 @@ class EmployerController extends Controller
             $regexPattern = '/\b(?:(?:http?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i';
         }
         $validator = Validator::make($request->all(), [
-            'meeting_media'=>'required',
+            'meeting_media'=>'string|nullable',
             'interview_date'=>'required',
             'interview_time'=>'required',
             'job_link' => ['url', 'regex:'.$regexPattern],

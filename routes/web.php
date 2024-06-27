@@ -58,7 +58,9 @@ Route::get('get-cities/{id}', [HomeController::class, 'getCities'])->name('getCi
 // dashboard routes starts here/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('job-marketplace', [JobController::class, 'jobMarketplace'])->name('jobMarketplace');
 Route::get('search/job-marketplace', [JobController::class, 'SearchjobMarketplace'])->name('SearchjobMarketplace');
-Route::post('job/apply', [JobController::class, 'jobApplicationRequest'])->name('jobApplicationRequest')->middleware('auth');
+Route::post('job/apply', [JobController::class, 'jobInterviewRequest'])->name('jobInterviewRequest')->middleware('auth');
+Route::post('job/apply/application', [JobController::class, 'jobApplicationRequest'])->name('jobApplicationRequest')->middleware('auth');
+
 Route::post('save-job', [JobController::class, 'saveJob'])->name('saveJob')->middleware(['auth','role:candidate']);
 // Route::get('candidate-profile' , [UserController::class , 'candidateProfile'])->name('candidateProfile');
 Route::get('company', [UserController::class, 'company'])->name('company');

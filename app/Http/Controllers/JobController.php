@@ -141,68 +141,137 @@ class JobController extends Controller
     }
 
 
-    public function jobApplicationRequest(Request $request)
+    public function jobInterviewRequest(Request $request)
     {
        
-        $checkExistingApplication = JobApplication::where('candidate_id',Auth::id())->where('employer_job_id',$request->job_id)->first();
-        if($checkExistingApplication)
-        {
+        // $checkExistingApplication = JobApplication::where('candidate_id',Auth::id())->where('employer_job_id',$request->job_id)->first();
+        // exiting request interview
+        $jobEmployerDetail = EmployerJob::find($request->job_id);
+        $existingInterviewRequest = JobInterview::where([
+                                                        'employer_job_id' => $request->job_id,
+                                                        'requested_to' => $jobEmployerDetail->posted_by,
+                                                        'requested_from' => auth()->user()->id
+                                                        ])->count();
+
+        if($existingInterviewRequest){
+            return response()->json(['status' => false , 'errors' => 'You have already requested an interview for the job']);
+        }
+
+
+        JobInterview::create([
+                    'job_link' => $request->job_link,
+                    'requested_to'=>$jobEmployerDetail->posted_by,
+                    'requested_from'=> auth()->user()->id,
+                    'interview_date'=>$request->interview_date,
+                    'interview_time'=>$request->interview_time,
+                    'meeting_media'=>$request->meeting_media,
+                    'status' => 0,
+                    'employer_job_id'=>$request->job_id,
+                    'candidate_profile_url' => $request->candidate_url
+        ]);
+
+
+        $subject = 'Job Application';
+        $text = '';
+        $employer_notify_message = [
+            'greeting' => 'Job Appication Alert',
+            'subject' => $subject,
+            'body' => [
+                'text' => $text,
+                'links' =>  '',
+                'candidate_full_name'=>auth()->user()->full_name,
+                'candidate_email'=>auth()->user()->email,
+                'job_title'=>$jobEmployerDetail->job_title,
+                'city_town'=>$jobEmployerDetail->city_town,
+            ],
+            'thanks_text' => 'Thanks For Using our site',
+            'action_text' => '',
+            'action_url' => '',
+        ];
+
+
+        Notification::route('mail',  $jobEmployerDetail->email ?? '')->notify(new JobApplicationNotification($employer_notify_message));
+        toastr()->success('Interview has been requested from employer ');
+        // return redirect()->back();
+        return response()->json([
+            "status" => true, 
+            "redirect" => url("job-details/". \Crypt::encryptString($request->job_id))
+        ]);
+
+
+        
+
+        // if($checkExistingApplication)
+        // {
             // toastr()->info('You have already Applied for this Job');
             // return redirect()->back();
-            return response()->json([
-                "status" => false,
-                "errors" => ["You Already Applied for this Job"]
-            ]);
+        //     return response()->json([
+        //         "status" => false,
+        //         "errors" => ["You Already Applied for this Job"]
+        //     ]);
           
-        }
-        else
-        {
-            if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('employer'))
-            {
-                return response()->json([
-                    "status" => false,
-                    "errors" => ["Only Candidate can Apply for Job"]
-                ]);
-            }else{
-                $jobDetails = EmployerJob::find($request->job_id);
-                $applyForJob = JobApplication::create([
-                    'candidate_id'=>Auth::id(),
-                    'employer_id'=>$jobDetails->posted_by,
-                    'employer_job_id'=>$request->job_id,
-                    'application_status'=>0,
-                    'application_date'=>$request->application_date
-                ]);
-                $jobDetails = EmployerJob::find($request->job_id);
-                $candidateDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
-                $employerDetails = User::find($jobDetails->posted_by);
-                // JobInterview::create(['requested_from' =>  $jobDetails->posted_by , 'requested_to' =>auth()->user()->id , 'employer_job_id' => $request->job_id  , 'interview_date' => $request->application_date]);
-                $subject = 'Job Application';
-                $text = '';
-                $employer_notify_message = [
-                    'greeting' => 'Job Appication Alert',
-                    'subject' => $subject,
-                    'body' => [
-                        'text' => $text,
-                        'links' =>  '',
-                        'candidate_full_name'=>$candidateDetails->full_name,
-                        'candidate_email'=>auth()->user()->email,
-                        'job_title'=>$jobDetails->job_title,
-                        'city_town'=>$jobDetails->city_town,
-                    ],
-                    'thanks_text' => 'Thanks For Using our site',
-                    'action_text' => '',
-                    'action_url' => '',
-                ];
-                Notification::route('mail',  $employerDetails->email ?? '')->notify(new JobApplicationNotification($employer_notify_message));
-                toastr()->success('You have successfully Applied for this Job');
-                // return redirect()->back();
-                return response()->json([
-                    "status" => true, 
-                    "redirect" => url("job-details/". \Crypt::encryptString($request->job_id))
-                ]);
+        // }
+        // else
+        // {
+        //     if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('employer'))
+        //     {
+        //         return response()->json([
+        //             "status" => false,
+        //             "errors" => ["Only Candidate can Apply for Job"]
+        //         ]);
+        //     }else{
 
-            }
-        }
+                // JobInterview::create([
+                //     'job_link' => $request->job_link,
+                //     'requested_to'=>$request->candidate_id,
+                //     'requested_from'=>Auth::id(),
+                //     'interview_date'=>$request->interview_date,
+                //     'interview_time'=>$request->interview_time,
+                //     'meeting_media'=>$request->meeting_media,
+                //     'status'=>0,
+                //     'employer_job_id'=>$jobId
+        
+                // ]);
+
+                // $jobDetails = EmployerJob::find($request->job_id);
+                // $applyForJob = JobApplication::create([
+                //     'candidate_id'=>Auth::id(),
+                //     'employer_id'=>$jobDetails->posted_by,
+                //     'employer_job_id'=>$request->job_id,
+                //     'application_status'=>0,
+                //     'application_date'=>$request->application_date
+                // ]);
+                // $jobDetails = EmployerJob::find($request->job_id);
+                // $candidateDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
+                // $employerDetails = User::find($jobDetails->posted_by);
+                // // JobInterview::create(['requested_from' =>  $jobDetails->posted_by , 'requested_to' =>auth()->user()->id , 'employer_job_id' => $request->job_id  , 'interview_date' => $request->application_date]);
+                // $subject = 'Job Application';
+                // $text = '';
+                // $employer_notify_message = [
+                //     'greeting' => 'Job Appication Alert',
+                //     'subject' => $subject,
+                //     'body' => [
+                //         'text' => $text,
+                //         'links' =>  '',
+                //         'candidate_full_name'=>$candidateDetails->full_name,
+                //         'candidate_email'=>auth()->user()->email,
+                //         'job_title'=>$jobDetails->job_title,
+                //         'city_town'=>$jobDetails->city_town,
+                //     ],
+                //     'thanks_text' => 'Thanks For Using our site',
+                //     'action_text' => '',
+                //     'action_url' => '',
+                // ];
+                // Notification::route('mail',  $employerDetails->email ?? '')->notify(new JobApplicationNotification($employer_notify_message));
+                // toastr()->success('You have successfully Applied for this Job');
+                // // return redirect()->back();
+                // return response()->json([
+                //     "status" => true, 
+                //     "redirect" => url("job-details/". \Crypt::encryptString($request->job_id))
+                // ]);
+
+            //}
+        // }
  
     }
 

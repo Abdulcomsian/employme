@@ -161,6 +161,19 @@ Job Listing
                                                 @method('DELETE')
 
                                         </form>
+                                        <form id="inactive-form-{{$employerJob->id}}" action="{{ route('employer.deactivate-job', $employerJob->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('PUT')
+                                        </form>
+                                        <form id="latest-destroy-form-{{$employerJob->id}}" action="{{ route('employer-jobs.destroy', $employerJob->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+
+                                        </form>
+                                        <form id="active-form-{{$employerJob->id}}" action="{{ route('employer.activate-job', $employerJob->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('PUT')
+                                        </form>
                                        
                                     </td>
                                 </tr>
@@ -301,14 +314,13 @@ Job Listing
                                                                 document.getElementById('latest-destroy-form-{{$employerJob->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_8.svg')}}" alt="" class="lazy-img"> Delete</a></li>
                                             </ul>
                                         </div>
-                                        <form id="latest-destroy-form-{{$employerJob->id}}" action="{{ route('employer-jobs.destroy', $employerJob->id) }}" method="POST" style="display: none;">
-                                                @csrf
-                                                @method('DELETE')
-
-                                        </form>
                                         <form id="inactive-form-{{$employerJob->id}}" action="{{ route('employer.deactivate-job', $employerJob->id) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('PUT')
+                                        </form>
+                                        <form id="latest-destroy-form-{{$employerJob->id}}" action="{{ route('employer-jobs.destroy', $employerJob->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
 
                                         </form>
                                         <form id="active-form-{{$employerJob->id}}" action="{{ route('employer.activate-job', $employerJob->id) }}" method="POST" style="display: none;">

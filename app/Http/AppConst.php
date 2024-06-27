@@ -21,4 +21,8 @@ class AppConst{
     public const ELIGIBILITY_PENDING = 2;
     public const ELIGIBILITY_REJECTED = 0;
     public const ELIGIBILITY_APPROVED = 1;
+
+    //reference table employer_jobs column job_status
+    public const STATUS_ACTIVE = 1;
+    public const STATUS_INACTIVE = 0;
 }
