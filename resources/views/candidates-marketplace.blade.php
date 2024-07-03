@@ -851,7 +851,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 							</div>
 							<div class="col-12">
 								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch" id="meeting-invitation-link" name="meeting-invitation-link">
+									<input class="form-check-input" type="checkbox" role="switch" id="meeting-invitation-link" name="meeting_invitation_link">
 									<label class="form-check-label" for="meeting-invitation-link">Do you want to send a meeting invitation</label>
 								</div>
 								<div class="w-100">
@@ -934,7 +934,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
                 _token:"{{csrf_token()}}",
                 interview_date: $("#Interview-Request-Form").find('input[name=interview_date]').val(),
                 interview_time: $("#Interview-Request-Form").find('input[name=interview_time]').val(),
-                meeting_media: $("#Interview-Request-Form").find('select[name=meeting_media]').val(),
+                meeting_media: $("#Interview-Request-Form").find('input[name=meeting_media]').val(),
                 job_link: $("#Interview-Request-Form").find('select[name=job_link]').val(),
 				candidate_id : candidate_id
                         },
