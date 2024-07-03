@@ -7,6 +7,7 @@ Interview Request
 @section('content')
 @push('page-css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
  
 
@@ -83,10 +84,38 @@ Interview Request
 .btn-submit:hover {
     background:#b1b0eb;
 }
+
+.interview-link-information{
+	position: relative;
+    cursor: pointer;
+    bottom: 20px;
+}
+.interview-link-information p{
+	display: none;
+	position: absolute;
+    background-color: #ff715b;
+    color: #f2f2f2;
+    font-family: 'gordita';
+    bottom: 5px;
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 10px;
+    width: 370px;
+    right: 4px;
+    font-weight: 400;
+
+}
+
+.interview-link-information:hover p{
+	display: block;
+
+}
 </style>
 @endpush
 
+
 <div class="dashboard-body">
+    
     <div class="position-relative">
         <!-- ************************ Header **************************** -->
 		 	@include('candidate.layout.header_menu')
@@ -122,7 +151,6 @@ Interview Request
                                     <th scope="col">Date</th>
                                     <th scope="col">Time</th>
                                     <th scope="col">Meeting Media</th>
-                                    <th scope="col">Applicants</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -165,7 +193,15 @@ Interview Request
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
                                         <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>
                                     </td>
-                                    <td>{{$interview->employer->employerDetails->institution ?? ''}} </td>
+                                    
+                                    @php
+                                     $employerInformation = $interview->requestTo->id !== auth()->user()->id ? $interview->requestTo : $interview->requestFrom;
+                                    @endphp 
+
+
+                                    <td>{{$employerInformation->employerDetails->institution ?? ''}} </td>
+
+
                                     @if($interview->reschedule_status ==1 && $interview->status == 0)
                                     <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}</td>
                                     <td>{{date('h:i A',strtotime($interview->reschedule_time))}}</td>
@@ -176,13 +212,12 @@ Interview Request
                                     <td>{{$interview->meeting_media}}</td>
                                     @endif
                                     
-                                    <td><div class="job-application">{{totalApplicants($interview->jobDetails->id)}} Applications<div></td>
+                                
                                     <td>
                                         <div class="job-status">{{$message}}</div>
                                     </td>
-                                  @if($interview->reschedule_status != 1 && $interview->status == 0)
                                     <td>
-                                        <div class="action-dots float-end">
+                                        <div class="action-dots float-center">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>
@@ -198,22 +233,14 @@ Interview Request
                                                 @csrf
                                                 </form>
                                                 <li><a class="dropdown-item " href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" id = "{{$interview->id}}" onclick="getInterviewId({{$interview->id}})"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
-                                                {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>--}}
-                                            </ul>
-                                        </div>
-                                    </td>
-                                    @elseif($interview->reschedule_status == 0 && $interview->status == 3)
-                                    <td>
-                                        <div class="action-dots float-end">
-                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#reviewModal" onclick="employerData({{$interview->id}})"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img" > Review</a></li>
+                                                @if(in_array($interview->status , [ 1 , 4]))
+                                                <li><a class="dropdown-item add-to-chat" href="javascript:void(0)" data-employer-id="{{$interview->employer->id}}" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/chat.png')}}" height="22px" data-src="{{asset('assets/images/chat.png')}}" alt="" class="lazy-img"> Add to Chat</a></li>
+                                                @endif
                                             </ul>
                                         </div>
                                     </td>
-                                  @endif 
+                                    
                                 </tr>
                                 @endforeach
                                 @endisset
@@ -503,31 +530,53 @@ Interview Request
                 <div class="form-wrapper m-auto">
                     <form  id = "Interview-Request-Form" action = "{{route('candidate.reschedule_interview')}}" method = "POST">
                         @csrf
-                        <input type = "hidden" name = "reschedule_interview_id" value = "">
+                        <input type = "hidden" name="reschedule_interview_id" value="">
                         <div id="interview-request-errors-list"></div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group-meta position-relative mb-25">
                                     <label>Date*</label>
-                                    <input type="date" name = "reschedule_date" placeholder="" required>
+                                    <input type="date" min="{{date('Y-m-d')}}" name="reschedule_date" placeholder="" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-group-meta position-relative mb-20" required>
                                     <label>Time*</label>
-                                    <input type="time" name = "reschedule_time" placeholder="Enter Password" class="pass_log_id" required>
+                                    <input type="time" name="reschedule_time" placeholder="Enter Password" class="pass_log_id" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                            <div class="input-group-meta position-relative mb-20">
-                                <label for="">Select Meeting Media</label>
-                                <select name="reschedule_meeting" id="reschedule_meeting" class="nice-select">
-                                    <option value="Skype" selected>Skype</option>
-                                    <option value="Google Meet" >Google Meet</option>
-                                    <option value="Zoom">Zoom</option>
-                                </select>
-                        </div>
-                            </div>
+                            
+                            <div class="col-12">
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" role="switch" id="meeting-invitation-link" name="meeting-invitation-link">
+									<label class="form-check-label" for="meeting-invitation-link">Do you want to send a meeting invitation</label>
+								</div>
+								<div class="w-100">
+										<div class="interview-disagreed my-3">
+											Interviews detail will be provided after the candidate accepts the request via the messenger function. 
+										</div>
+										<div class="interview-agreed my-3 d-none">
+											<div>
+												<div class="row">
+													<div class="col-12">
+													<div class="d-flex justify-content-end">
+															<i class="fa-solid fa-circle-info interview-link-information  fa-lg"> 
+															<p>Create a video meeting link using Google Meet, Zoom, or Skype and paste it into the provided fields.
+															   Acceptance of the request by the employer means they intend to attend the schedule interview via the link provided. 
+															   For rescheduling, use the messenger to communicate with the employer after sending the interview request.
+															</p>
+														</i>
+													</div>
+													<input class="form-control" type="url" name="meeting_media" id="invitation-link" placeholder="Add Invitation Link">
+														
+													</div>
+												</div>
+											</div>
+											
+										</div>
+								</div>
+							</div>
+
                         
                             <div class="col-md-6">
                                 <button class="btn-submit fw-500 tran3s d-block mt-20" type = "submit" >
@@ -584,6 +633,7 @@ Interview Request
         </div>
 
 @push('page-script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
    
      function getInterviewId(id)
@@ -623,6 +673,42 @@ modal.addEventListener('hidden.bs.modal', function() {
     const stars = modal.querySelectorAll('.stars i');
     stars.forEach(star => star.classList.remove('active'));
 });
+
+$(document).on("click" , ".add-to-chat" , function(e){
+        let employerId = this.dataset.employerId;
+        let url = "{{route('contact.employer')}}";
+        $.ajax({
+            type : 'POST',
+            url : url,
+            data : {
+                _token : '{{csrf_token()}}',
+                employerId : employerId
+            },
+            success : function(res){
+                if(res.status)
+                {
+                    toastr.success(res.msg);
+                }else{
+                    toastr.error(res.error)
+                }
+            }
+        })
+
+    })
+
+    $(document).on("change" , "#meeting-invitation-link" , function(e){
+		if(e.target.checked === true ){
+			document.querySelector(".interview-disagreed").classList.add("d-none");
+			document.querySelector(".interview-agreed").classList.remove("d-none");
+		}else {
+			document.querySelector(".interview-disagreed").classList.remove("d-none");
+			document.querySelector(".interview-agreed").classList.add("d-none");
+			document.querySelector("#invitation-link").value = "";
+		}
+	  })
+
+
+
 </script>
 @endpush
 @endsection

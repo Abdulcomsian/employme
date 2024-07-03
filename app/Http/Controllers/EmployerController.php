@@ -444,5 +444,36 @@ class EmployerController extends Controller
 
         return response()->json(['status' => true , 'message' => 'logo deleted successfully']);
     }
+
+
+    public function rescheduleInterview(Request $request)
+   {    
+        $rescheduleInterview = JobInterview::find($request->reschedule_interview_id);
+        $candidateId = $rescheduleInterview->requested_to !== auth()->user()->id ? $rescheduleInterview->requested_to : $rescheduleInterview->requested_from;
+        $employerId =  $rescheduleInterview->requested_from == auth()->user()->id ? $rescheduleInterview->requested_from : $rescheduleInterview->requested_to;
+
+        $candidateDetails = User::with('candidatePersonalDetails')->find($candidateId);
+        $employerDetails = User::with('employerDetails')->find($employerId);
+        $jobDetails = EmployerJob::find($rescheduleInterview->employer_job_id);
+        $rescheduleInterview->reschedule_date = $request->reschedule_date;
+        $rescheduleInterview->reschedule_time = $request->reschedule_time;
+        $rescheduleInterview->reschedule_meeting = $request->reschedule_meeting;
+        $rescheduleInterview->status = 0;
+        $rescheduleInterview->reschedule_status = 1;
+        
+        if($request->meeting_invitation_link == "on" && !empty($request->meeting_media))
+        {
+            $rescheduleInterview->meeting_media = $request->meeting_media; 
+        }
+        
+        if($rescheduleInterview->save())
+        {
+            Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRescheduleNotification($candidateDetails,$employerDetails,$jobDetails,$type=1,$interviewStatus=2));
+            toastr()->success('Interview rescheduled successfully');
+            // toastr()->success('Request Sent Successfully');
+            return redirect()->back();
+        }
+        
+   }
     
 }

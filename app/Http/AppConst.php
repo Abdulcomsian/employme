@@ -25,4 +25,11 @@ class AppConst{
     //reference table employer_jobs column job_status
     public const STATUS_ACTIVE = 1;
     public const STATUS_INACTIVE = 0;
+
+    //reference table job_interview column status
+    public const INTERVIEW_SCHEDULED = 1;
+    public const INTERVIEW_REJECTED = 2;
+    public const INTERVIEW_CONDUCTED = 3;
+
+
 }

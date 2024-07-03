@@ -346,7 +346,8 @@ class UserController extends Controller
     {
         $jobId = Crypt::decryptString($id);
         $jobDetails = EmployerJob::with('employerDetails')->find($jobId);
-        $appliedInterview = auth()->check() ? JobApplication::where(['employer_job_id' => $jobId , 'candidate_id' => auth()->user()->id])->first() : null;
+        // $appliedInterview = auth()->check() ? JobApplication::where(['employer_job_id' => $jobId , 'candidate_id' => auth()->user()->id])->first() : null;
+        $appliedInterview = auth()->check() ? JobInterview::where(['employer_job_id' => $jobId , 'requested_from' => auth()->user()->id])->first() : null;
         return view('job-details',compact('jobDetails' , 'appliedInterview'));
     }
     // public function employerjobListing()

@@ -549,7 +549,7 @@ small {
     $(document).on("click" , ".attachment-submit-btn" , function(){
         let attachmentForm = document.querySelector("#attachment-form");
         let form = new FormData(attachmentForm);
-        let conversationId = '{{$conversation->id}}';
+        let conversationId = $("input[name=conversation_id]").val();
         form.append('_token' , '{{csrf_token()}}');
         form.append('haveAttachment' , true);
         form.append('conversation_id' , $("input[name=conversation_id]").val());

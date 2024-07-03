@@ -26,7 +26,7 @@ class JobController extends Controller
         if(auth()->check())
         {
             $allJobs->with(['interview' => function($query){
-                $query->where('requested_to' , auth()->user()->id);
+                $query->where('requested_from' , auth()->user()->id);
             }])->with(['applications' => function($query){
                 $query->where('candidate_id' , auth()->user()->id);
             }]);
@@ -131,12 +131,26 @@ class JobController extends Controller
     public function getInterviewpage(){
         $dt = Carbon::now();
         $dt2 = $dt->copy()->subWeek(); 
-       
-        $allInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())->paginate(10);
-        $latestInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())
-        ->where('created_at', '>=', $dt2->copy()->startOfDay())
-        ->where('created_at', '<=', $dt->copy()->endOfDay())
-        ->paginate(10);
+        $allInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails' , 'requestFrom' , 'requestTo')
+                                        ->where(function($query){
+                                            $query->where('requested_from',Auth::id())
+                                                  ->orWhere('requested_to' , Auth::id());
+                                        })
+                                        ->paginate(10);
+        // $latestInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())
+        // ->where('created_at', '>=', $dt2->copy()->startOfDay())
+        // ->where('created_at', '<=', $dt->copy()->endOfDay())
+        // ->paginate(10);
+
+        $latestInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails' , 'requestFrom' , 'requestTo')
+                                        ->where( function($query){
+                                            $query->where('requested_from',Auth::id())
+                                                ->orWhere('requested_to' , Auth::id());
+                                        })
+                                        ->where('created_at', '>=', $dt2->copy()->startOfDay())
+                                        ->where('created_at', '<=', $dt->copy()->endOfDay())
+                                        ->paginate(10);
+                      
         return view('employer.employer-interview-request',compact('allInterviews','latestInterviews'));
     }
 
@@ -147,19 +161,21 @@ class JobController extends Controller
         // $checkExistingApplication = JobApplication::where('candidate_id',Auth::id())->where('employer_job_id',$request->job_id)->first();
         // exiting request interview
         $jobEmployerDetail = EmployerJob::find($request->job_id);
+        $candidateProfileUrl = route('candidateProfileNew' , \Crypt::encryptString(auth()->user()->id));
+        $jobLink = route('jobDetails' , \Crypt::encryptString($request->job_id));
         $existingInterviewRequest = JobInterview::where([
-                                                        'employer_job_id' => $request->job_id,
-                                                        'requested_to' => $jobEmployerDetail->posted_by,
-                                                        'requested_from' => auth()->user()->id
+                                                            'employer_job_id' => $request->job_id,
+                                                            'requested_to' => $jobEmployerDetail->posted_by,
+                                                            'requested_from' => auth()->user()->id,
                                                         ])->count();
-
+            
         if($existingInterviewRequest){
             return response()->json(['status' => false , 'errors' => 'You have already requested an interview for the job']);
         }
 
 
         JobInterview::create([
-                    'job_link' => $request->job_link,
+                    'job_link' => $jobLink,
                     'requested_to'=>$jobEmployerDetail->posted_by,
                     'requested_from'=> auth()->user()->id,
                     'interview_date'=>$request->interview_date,
@@ -167,7 +183,7 @@ class JobController extends Controller
                     'meeting_media'=>$request->meeting_media,
                     'status' => 0,
                     'employer_job_id'=>$request->job_id,
-                    'candidate_profile_url' => $request->candidate_url
+                    'candidate_profile_url' => $candidateProfileUrl
         ]);
 
 

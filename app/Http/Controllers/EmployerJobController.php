@@ -198,12 +198,15 @@ class EmployerJobController extends Controller
 
     }
 
-    public function cantactCandidate($id)
+    public function cantactCandidate($id , Request $request)
     {
         
         $checkConversation = Conversation::where(['employer_id'=>Auth::id(),'candidate_id'=>$id])->first();
         if($checkConversation)
         {
+            if($request->ajax()){
+                return response()->json(["status" => false , 'error' => "User already added to chat"]);
+            }
             return redirect()->route('getEmployerDashboardMessage');
         }else{
             $create =  new Conversation;
@@ -211,11 +214,18 @@ class EmployerJobController extends Controller
             $create->candidate_id = $id;
             if($create->save())
             {
+                if($request->ajax()){
+                    return response()->json(["status" => true , 'msg' => "User added to chat"]);
+                }
                 return redirect()->route('getEmployerDashboardMessage');
             }
         }
 
     }
+
+
+   
+
 
     public function getSubscriptionPlan(Request $request)
     {

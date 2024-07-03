@@ -12,6 +12,7 @@ use Notification;
 use App\Notifications\{InterviewRequestNotification, InterviewRescheduleNotification};
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Conversation;
 class CandidateController extends Controller
 {
     public function getCandidateDashboard()
@@ -359,11 +360,23 @@ class CandidateController extends Controller
     {
         $dt = Carbon::now();
         $dt2 = $dt->copy()->subWeek();   // or whatever you're using to set it
-        $allInterviews = JobInterview::with('jobDetails','employer','employer.employerDetails')->where('requested_to',Auth::id())->paginate(5);
-        $latestInterviews = JobInterview::with('jobDetails','employer','employer.employerDetails')->where('requested_to',Auth::id())
-        ->where('created_at','>=',$dt2->copy()->startOfDay())
-        ->where('created_at','<=',$dt->copy()->endOfDay())
-        ->paginate(5);
+        $allInterviews = JobInterview::with('jobDetails','employer.employerDetails' , 'requestTo.employerDetails' , 'requestFrom.employerDetails')
+                                        ->where(function($query){
+                                            $query->where('requested_to' , auth()->user()->id)
+                                                  ->orWhere('requested_from' , auth()->user()->id);
+                                        })
+                                        ->orderBy('id','desc')
+                                        ->paginate(5);
+        $latestInterviews = JobInterview::with('jobDetails','employer.employerDetails' , 'requestTo.employerDetails' , 'requestFrom.employerDetails')
+                                            ->where(function($query){
+                                                $query->where('requested_to' , auth()->user()->id)
+                                                    ->orWhere('requested_from' , auth()->user()->id);
+                                            })
+                                            ->where('created_at','>=',$dt2->copy()->startOfDay())
+                                            ->where('created_at','<=',$dt->copy()->endOfDay())
+                                            ->orderBy('id' ,'desc')
+                                            ->paginate(5);
+                                            
         return view('candidate.interview.index',compact('allInterviews','latestInterviews'));
     }
 
@@ -399,8 +412,11 @@ class CandidateController extends Controller
    public function rescheduleInterview(Request $request)
    {
         $rescheduleInterview = JobInterview::find($request->reschedule_interview_id);
-        $candidateDetails = User::with('candidatePersonalDetails')->find($rescheduleInterview->requested_to);
-        $employerDetails = User::with('employerDetails')->find($rescheduleInterview->requested_from);
+        $employerId = $rescheduleInterview->requested_to !== auth()->user()->id ? $rescheduleInterview->requested_to : $rescheduleInterview->requested_from;
+        $candidateId =  $rescheduleInterview->requested_from == auth()->user()->id ? $rescheduleInterview->requested_from : $rescheduleInterview->requested_to;
+
+        $candidateDetails = User::with('candidatePersonalDetails')->find($candidateId);
+        $employerDetails = User::with('employerDetails')->find($employerId);
         $jobDetails = EmployerJob::find($rescheduleInterview->employer_job_id);
 
         $rescheduleInterview->reschedule_date = $request->reschedule_date;
@@ -408,12 +424,17 @@ class CandidateController extends Controller
         $rescheduleInterview->reschedule_meeting = $request->reschedule_meeting;
         $rescheduleInterview->status = 0;
         $rescheduleInterview->reschedule_status = 1;
+        
+        if($request->meeting_invitation_link == "on" && !empty($request->meeting_media))
+        {
+            $rescheduleInterview->meeting_media = $request->meeting_media; 
+        }
+
         if($rescheduleInterview->save())
         {
             Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRescheduleNotification($candidateDetails,$employerDetails,$jobDetails,$type=1,$interviewStatus=2));
             toastr()->success('Request Sent Successfully');
             return redirect()->back();
-
         }
         
    }
@@ -523,6 +544,23 @@ class CandidateController extends Controller
                                             ->first();
         $candidatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
         return view('candidate.document-verification')->with(['candidateDocumentDetail' => $candidateDocumentDetail , 'candidatePreferencesDetails' => $candidatePreferencesDetails]);
+   }
+
+
+   public function contactEmployer(Request $request)
+   {
+       $checkConversation = Conversation::where(['employer_id'=>$request->employerId,'candidate_id'=>auth()->user()->id])->first();
+       if($checkConversation){
+           return response()->json(['status' => false , 'error' => 'Employer already added to chat']);
+       }
+
+
+       $conversation =  new Conversation;
+       $conversation->employer_id = Auth::id();
+       $conversation->candidate_id = $request->employerId;
+       $conversation->save();
+
+       return response()->json(['status' => true , 'msg' => 'Employer added to chat']);
    }
 
 }

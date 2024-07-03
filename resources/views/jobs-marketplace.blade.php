@@ -74,9 +74,6 @@ Job Marketplace
 											<input type="time" name = "interview_time" placeholder="Enter Password" class="pass_log_id" required>
 										</div>
 									</div>
-									<div class="col-12 my-3">
-										<input class="form-control" type="url" name="candidate_url" id="candidate_url" value="{{route('candidateProfileNew' , \Crypt::encryptString(auth()->user()->id))}}" readonly/>
-									</div>
 									<div class="col-12">
 										<div class="form-check form-switch">
 											<input class="form-check-input" type="checkbox" role="switch" id="meeting-invitation-link" name="meeting-invitation-link">
@@ -110,12 +107,6 @@ Job Marketplace
 										</div>
 									</div>
 								
-									<!-- <div class="col-md-6 mb-30">
-										<button class="btn-submit fw-500 tran3s d-block" type = "submit" >
-											<span id="buttonText" type="submit">Submit</span>
-											<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
-										</button>
-									</div> -->
 								</div>
 						</div>
 
@@ -123,11 +114,6 @@ Job Marketplace
 				</div>
 				
 			</div>
-					<!-- <div id="errors-list"></div>
-                    <div class="mb-3">
-                        <label class="col-form-label" for="Major Name">Interview Date</label>
-						<input type="date" name="application_date" id="application_date" class="form-control" min="{{date('Y-m-d')}}">
-                    </div> -->
              
             </div>
             <div class="modal-footer">
@@ -629,6 +615,7 @@ Job Marketplace
 						<div class="row">
 						   @isset($allJobs)
 						   @foreach($allJobs as $index=>$job)
+
 							<div class="col-sm-6 mb-30">
 								<div class="job-list-two style-two position-relative">
 									<a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}" class="rounded-circle">
@@ -657,7 +644,7 @@ Job Marketplace
 
 									<div class="d-flex align-items-center justify-content-between mt-auto">
 										
-										@if($job->applications->count() == 1)
+										@if($job->interview->count() == 1)
 										<button class="apply-btn text-center tran3s">Interview Applied</button>
 										@else
 										<button class="apply-btn text-center tran3s apply-interview" data-job-id="{{$job->id}}">Interview Request</button>
