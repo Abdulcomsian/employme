@@ -11304,3 +11304,21 @@ height: 15rem;
 .img-round{
     border-radius: .75rem !important;
 }
+
+.interview-request {
+  position: relative;
+  top: 6px;
+  left: 10px;
+  color : #ff715b;
+}
+
+
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}

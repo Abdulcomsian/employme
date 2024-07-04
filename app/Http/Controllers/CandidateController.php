@@ -427,7 +427,7 @@ class CandidateController extends Controller
         
         if($request->meeting_invitation_link == "on" && !empty($request->meeting_media))
         {
-            $rescheduleInterview->meeting_media = $request->meeting_media; 
+            $rescheduleInterview->reschedule_meeting = $request->meeting_media; 
         }
 
         if($rescheduleInterview->save())

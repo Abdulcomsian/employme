@@ -460,3 +460,12 @@ function employerSpentAmount()
         $totalAmountSpent = number_format($totalAmountSpent/100, 2);
         return $totalAmountSpent;
 }
+
+
+function pendingInterviewInvitationCount()
+{
+    $inteviewRequestCount = \App\Models\JobInterview::where('requested_to' , auth()->user()->id)
+                                                      ->whereIn('status' , [ 0 ])
+                                                      ->count();
+    return $inteviewRequestCount;
+}
