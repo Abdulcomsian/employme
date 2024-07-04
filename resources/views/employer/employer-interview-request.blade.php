@@ -94,7 +94,7 @@ Interview Request
                             
                             <div class="col-12">
 								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch" id="meeting-invitation-link" name="meeting-invitation-link">
+									<input class="form-check-input" type="checkbox" role="switch" id="meeting-invitation-link" name="meeting_invitation_link">
 									<label class="form-check-label" for="meeting-invitation-link">Do you want to send a meeting invitation</label>
 								</div>
 								<div class="w-100">
@@ -267,7 +267,7 @@ Interview Request
                                                 <li class="dropdown-item reject-interview interview-status" data-interview-id="{{$interview->id}}" data-status="5"><img src="{{asset('assets/images/reject.png')}}" data-src="{{asset('assets/images/icon/reject.png')}}" alt="" class="lazy-img">Mark As Reject</li>
                                                 <li><a class="dropdown-item conduct-interview interview-status" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Mark as Conducted</a></li>
                                                 
-                                                <li><a class="dropdown-item " href="#" data-bs-toggle="modal"  id="{{$interview->id}}" onclick="resheduleInterview({{$interview->id}})"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
+                                                <li><a class="dropdown-item reschedule-interview" href="#" data-bs-toggle="modal"  id="{{$interview->id}}" data-interview-id="{{$interview->id}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
                                                 
                                                 @if($interview->status === 4)                                                    
                                                     <li><a class="dropdown-item add-to-chat" href="javascript:void(0)" data-candidate-id="{{$candidateId}}" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/chat.png')}}" data-src="{{asset('assets/images/chat.png')}}" alt="" class="lazy-img"> Add to Chat</a></li>
@@ -436,11 +436,11 @@ Interview Request
                                         <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>
                                     </td>
                                     @if($interview->reschedule_status ==1 && $interview->status == 0)
-                                    <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}</td>
+                                    <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}Here1</td>
                                     <td>{{date('h:i A',strtotime($interview->reschedule_time))}}</td>
-                                    <td>{{$interview->reschedule_meeting}}</tdjo>
+                                    <td>{{$interview->meeting_media}}</td>
                                     @else
-                                    <td>{{date('d M, Y',strtotime($interview->interview_date))}}</td>
+                                    <td>{{date('d M, Y',strtotime($interview->interview_date))}}here2</td>
                                     <td>{{date('h:i A',strtotime($interview->interview_time))}}</td>
                                     <td>{{$interview->meeting_media}}</td>
                                     @endif
@@ -589,77 +589,86 @@ Interview Request
         </div> -->
     </div>
 </div>
+
+@push('page-script')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 
+    $(document).ready(function(){
+        
+            $(document).on("click" , ".interview-status" , function(e){
+                let status = this.dataset.status;
+                let interviewId = this.dataset.interviewId;
+                $.ajax({
+                    type : 'POST',
+                    url : '{{route("employer.changeInterviewStatus")}}',
+                    data : {
+                        _token : '{{csrf_token()}}',
+                        status : status,
+                        interviewId : interviewId
+                    },
+                    success : function(res){
+                        if(res.status)
+                        {
+                            toastr.success(res.message);
+                            location.reload();
+                        }else{
+                            toastr.error(res.error)
+                        }
+                    }
+                })
+        
+            })
+        
+            $(document).on("click" , ".add-to-chat" , function(e){
+                let candidateId = this.dataset.candidateId;
+                let url = "{{url('employer/contact-candidate')}}"+`/${candidateId}`;
+                $.ajax({
+                    type : 'PUT',
+                    url : url,
+                    data : {
+                        _token : '{{csrf_token()}}',
+                        candidateId : candidateId
+                    },
+                    success : function(res){
+                        if(res.status)
+                        {
+                            toastr.success(res.msg);
+                        }else{
+                            toastr.error(res.error)
+                        }
+                    }
+                })
+        
+            })
+        
+            $(document).on("click" , ".reschedule-interview" , function(e){
+                document.querySelector("input[name='reschedule_interview_id']").value = this.dataset.interviewId; 
+                $("#RescheduleRequestModal").modal("show");
 
-    $(document).on("click" , ".interview-status" , function(e){
-        let status = this.dataset.status;
-        let interviewId = this.dataset.interviewId;
-        $.ajax({
-            type : 'POST',
-            url : '{{route("employer.changeInterviewStatus")}}',
-            data : {
-                _token : '{{csrf_token()}}',
-                status : status,
-                interviewId : interviewId
-            },
-            success : function(res){
-                if(res.status)
-                {
-                    toastr.success(res.message);
-                    location.reload();
-                }else{
-                    toastr.error(res.error)
-                }
+            })
+        
+            function resheduleInterview(interviewId){
             }
-        })
-
-    })
-
-    $(document).on("click" , ".add-to-chat" , function(e){
-        let candidateId = this.dataset.candidateId;
-        let url = "{{url('employer/contact-candidate')}}"+`/${candidateId}`;
-        $.ajax({
-            type : 'PUT',
-            url : url,
-            data : {
-                _token : '{{csrf_token()}}',
-                candidateId : candidateId
-            },
-            success : function(res){
-                if(res.status)
-                {
-                    toastr.success(res.msg);
-                }else{
-                    toastr.error(res.error)
+        
+            
+            $(document).on("change" , "#meeting-invitation-link" , function(e){
+                if(e.target.checked === true ){
+                    document.querySelector(".interview-disagreed").classList.add("d-none");
+                    document.querySelector(".interview-agreed").classList.remove("d-none");
+                }else {
+                    document.querySelector(".interview-disagreed").classList.remove("d-none");
+                    document.querySelector(".interview-agreed").classList.add("d-none");
+                    document.querySelector("#invitation-link").value = "";
                 }
-            }
-        })
-
-    })
+              })
 
 
-    function resheduleInterview(interviewId){
-        document.querySelector("input[name='reschedule_interview_id']").value = interviewId; 
-        $("#RescheduleRequestModal").modal("show");
-    }
-
+    })    
     
-    $(document).on("change" , "#meeting-invitation-link" , function(e){
-		if(e.target.checked === true ){
-			document.querySelector(".interview-disagreed").classList.add("d-none");
-			document.querySelector(".interview-agreed").classList.remove("d-none");
-		}else {
-			document.querySelector(".interview-disagreed").classList.remove("d-none");
-			document.querySelector(".interview-agreed").classList.add("d-none");
-			document.querySelector("#invitation-link").value = "";
-		}
-	  })
-
-
-
+    
 </script>
+    @endpush
 
 @endsection

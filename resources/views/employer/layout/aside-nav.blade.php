@@ -133,7 +133,7 @@
 					</a></li> -->
 				<li><a href="{{route('getEmployerInterviewRequest')}}" class="d-flex w-100 align-items-center {{request()->is('employer/interview-requests') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/interview-requests') ? asset('assets/images/dashboard-icon/icon_40_active.svg') : asset('assets/images/dashboard-icon/icon_40.svg')}}" alt="" class="lazy-img">
-						<span>Interview Request</span>
+						<span class="d-flex">Interview Request @if(pendingInterviewInvitationCount())<i class="fa-solid fa-bell interview-request blink"></i>@endif</span>
 					</a></li>
 			
 				<li><a href="{{route('getEmployerDashboardMessage')}}" class="d-flex w-100 align-items-center {{request()->is('employer/employer-dashboard-message') ? 'active' : ''}}">

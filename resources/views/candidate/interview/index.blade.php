@@ -547,7 +547,7 @@ Interview Request
                             
                             <div class="col-12">
 								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch" id="meeting-invitation-link" name="meeting-invitation-link">
+									<input class="form-check-input" type="checkbox" role="switch" id="meeting-invitation-link" name="meeting_invitation_link">
 									<label class="form-check-label" for="meeting-invitation-link">Do you want to send a meeting invitation</label>
 								</div>
 								<div class="w-100">
