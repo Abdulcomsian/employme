@@ -458,8 +458,8 @@ class EmployerController extends Controller
         $rescheduleInterview->reschedule_date = $request->reschedule_date;
         $rescheduleInterview->reschedule_time = $request->reschedule_time;
         $rescheduleInterview->reschedule_meeting = $request->reschedule_meeting;
-        $rescheduleInterview->status = 0;
         $rescheduleInterview->reschedule_status = 1;
+        $rescheduleInterview->status = 5;
         
         if($request->meeting_invitation_link == "on" && !empty($request->meeting_media))
         {

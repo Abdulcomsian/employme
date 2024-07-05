@@ -117,7 +117,6 @@ class CandidateController extends Controller
 
     public function saveProfile3(Request $request)
     {
-        dd("here");
         $input = $request->except('_token','educational_details');
         $updateEducationalDetails = CandidateEducation::where('user_id',Auth::id());
         if(isset($request->educational_details))
@@ -365,7 +364,7 @@ class CandidateController extends Controller
                                             $query->where('requested_to' , auth()->user()->id)
                                                   ->orWhere('requested_from' , auth()->user()->id);
                                         })
-                                        ->orderBy('id','desc')
+                                        ->latest()
                                         ->paginate(5);
         $latestInterviews = JobInterview::with('jobDetails','employer.employerDetails' , 'requestTo.employerDetails' , 'requestFrom.employerDetails')
                                             ->where(function($query){
@@ -374,7 +373,7 @@ class CandidateController extends Controller
                                             })
                                             ->where('created_at','>=',$dt2->copy()->startOfDay())
                                             ->where('created_at','<=',$dt->copy()->endOfDay())
-                                            ->orderBy('id' ,'desc')
+                                            ->latest()
                                             ->paginate(5);
                                             
         return view('candidate.interview.index',compact('allInterviews','latestInterviews'));
@@ -422,8 +421,8 @@ class CandidateController extends Controller
         $rescheduleInterview->reschedule_date = $request->reschedule_date;
         $rescheduleInterview->reschedule_time = $request->reschedule_time;
         $rescheduleInterview->reschedule_meeting = $request->reschedule_meeting;
-        $rescheduleInterview->status = 0;
         $rescheduleInterview->reschedule_status = 1;
+        $rescheduleInterview->status = 5;
         
         if($request->meeting_invitation_link == "on" && !empty($request->meeting_media))
         {

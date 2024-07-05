@@ -94,7 +94,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate','em
     Route::get('profile', [CandidateController::class, 'getProfilePage'])->name('getCandidateProfile');
     Route::get('resume', [CandidateController::class, 'getResumePage'])->name('getResumePage');
     Route::get('verified', [CandidateController::class, 'getVerificationDocumentPage'])->name('verified');
-    Route::get('messages', [MessageController::class, 'getCandidateMessagePage'])->name('getCandidateMessages');
+    Route::get('messages/{employerId?}', [MessageController::class, 'getCandidateMessagePage'])->name('getCandidateMessages');
     Route::get('get-employer-chat/{id}',[MessageController::class,'getEmployerChat'])->name('candidate.get_employer_chat');
     Route::post('send-text-to-employer',[MessageController::class,'sendTextToEmployer'])->name('employer.sendTextToEmployer');
 
@@ -138,7 +138,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::get('interview-requests', [JobController::class, 'getInterviewpage'])->name('getEmployerInterviewRequest');
     Route::get('get-candidate-chat/{id}',[MessageController::class,'getCandidateChat'])->name('employer.get_candidate_chat');
     Route::post('send-text-to-candidate',[MessageController::class,'sendTextToCandidate'])->name('employer.sendTextToCandidate');
-    Route::get('employer-dashboard-message', [MessageController::class, 'getEmployerMessage'])->name('getEmployerDashboardMessage');
+    Route::get('employer-dashboard-message/{candidateId?}', [MessageController::class, 'getEmployerMessage'])->name('getEmployerDashboardMessage');
     Route::get('employer-dashboard-saved-candidate', [EmployerController::class, 'getEmployerCandidate'])->name('getEmployerDashboardSavedCandidate');
     Route::get('subscriptions', [EmployerController::class, 'employerSubscriptions'])->name('employerSubscriptions');
     Route::post('cancel-subscription', [EmployerController::class, 'cancelSubscription'])->name('cancelSubscription');

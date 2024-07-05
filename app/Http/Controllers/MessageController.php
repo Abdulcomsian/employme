@@ -17,11 +17,17 @@ class MessageController extends Controller
                 $query->where('institution','like', '%'.$searchUser.'%');
              });
         }
+
+        $allConversations->when(isset($request->employerId)  && !empty($request->employerId) , function($query) use($request){
+            $query->orderByRaw("FIELD(employer_id , $request->employerId) DESC, id");
+        });
+
         $allConversations = $allConversations->get();
         return view('candidate.message',compact('allConversations'));
     }
 
     public function getEmployerMessage(Request $request){
+        
         $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat.chatFiles')->where('employer_id',\Auth::id());
         if(isset($request->searchUser) && $request->searchUser != '')
         {
@@ -30,7 +36,11 @@ class MessageController extends Controller
                 $query->where('full_name','like', '%'.$searchUser.'%');
              });
         }
+        $allConversations->when(isset($request->candidateId)  && !empty($request->candidateId) , function($query) use($request){
+            $query->orderByRaw("FIELD(candidate_id , $request->candidateId) DESC, id");
+        });
         $allConversations = $allConversations->get();
+
         return view('employer.employer-dashboard-message',compact('allConversations'));
     }
 

@@ -136,6 +136,7 @@ class JobController extends Controller
                                             $query->where('requested_from',Auth::id())
                                                   ->orWhere('requested_to' , Auth::id());
                                         })
+                                        ->latest()
                                         ->paginate(10);
         // $latestInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())
         // ->where('created_at', '>=', $dt2->copy()->startOfDay())
@@ -149,6 +150,7 @@ class JobController extends Controller
                                         })
                                         ->where('created_at', '>=', $dt2->copy()->startOfDay())
                                         ->where('created_at', '<=', $dt->copy()->endOfDay())
+                                        ->latest()
                                         ->paginate(10);
                       
         return view('employer.employer-interview-request',compact('allInterviews','latestInterviews'));

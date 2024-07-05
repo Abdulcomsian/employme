@@ -30,6 +30,6 @@ class AppConst{
     public const INTERVIEW_SCHEDULED = 1;
     public const INTERVIEW_REJECTED = 2;
     public const INTERVIEW_CONDUCTED = 3;
-
+    public const INTERVIEW_RESCHEDULE = 5;
 
 }

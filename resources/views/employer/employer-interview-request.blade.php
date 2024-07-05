@@ -191,37 +191,32 @@ Interview Request
                                 @php 
                                      $status = 'pending';
                                      $message = 'Pending';
-                                     if($interview->reschedule_status == 0)
-                                     {
-                                            if($interview->status == 1)
-                                        {
-                                            $status = 'active';
-                                            $message = 'Scheduled';
-                                        }elseif($interview->status == 2)
-                                        {
-                                            $status = 'expired';
-                                            $message = 'Rejected';
-                                        }
-                                        elseif($interview->status == 3)
-                                        {
-                                            $status = 'active';
-                                            $message = 'Conducted';
-                                        }
-                                        elseif($interview->status == 4)
-                                        {
-                                            $status = 'active';
-                                            $message = 'Approved';
-                                        }
-                                        elseif($interview->status ==5)
-                                        {
-                                            $status = 'active';
-                                            $message = 'Rejected';
-                                        }
-                                     }else
-                                     {
-                                        $status = 'pending';
-                                            $message = 'Reschedule Request';
-                                     }
+                                     
+                                    if($interview->status == 1)
+                                    {
+                                        $status = 'active';
+                                        $message = 'Scheduled';
+                                    }elseif($interview->status == 2)
+                                    {
+                                        $status = 'expired';
+                                        $message = 'Rejected';
+                                    }
+                                    elseif($interview->status == 3)
+                                    {
+                                        $status = 'active';
+                                        $message = 'Conducted';
+                                    }
+                                    elseif($interview->status == 4)
+                                    {
+                                        $status = 'active';
+                                        $message = 'Approved';
+                                    }
+                                    elseif($interview->status == 5)
+                                    {
+                                        $status = 'active';
+                                        $message = 'Reschedule Request';
+                                    }
+                                     
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
@@ -248,7 +243,7 @@ Interview Request
                                     @endif
                                     <!-- <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$interview->jobDetails->id])}}">{{totalApplicants($interview->jobDetails->id)}} Applications</a><div></td> -->
                                     <td>
-                                        <div class="job-status">{{$message}}</div>
+                                        <div class="job-status @if($interview->status == 0 && $interview->requested_from != auth()->user()->id) blink text-danger @endif">{{$message}}</div>
                                     </td>
                                  
                                     <td>
@@ -263,13 +258,15 @@ Interview Request
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                     document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a>
                                                 </li>  -->
+                                                @if($interview->requested_to == auth()->user()->id)
                                                 <li class="dropdown-item approve-interview interview-status" data-interview-id="{{$interview->id}}" data-status="4" ><img src="{{asset('assets/images/accept.png')}}" data-src="{{asset('assets/images/icon/accept.png')}}" alt="" class="lazy-img">Mark As Approve</li>
-                                                <li class="dropdown-item reject-interview interview-status" data-interview-id="{{$interview->id}}" data-status="5"><img src="{{asset('assets/images/reject.png')}}" data-src="{{asset('assets/images/icon/reject.png')}}" alt="" class="lazy-img">Mark As Reject</li>
+                                                <li class="dropdown-item reject-interview interview-status" data-interview-id="{{$interview->id}}" data-status="2"><img src="{{asset('assets/images/reject.png')}}" data-src="{{asset('assets/images/icon/reject.png')}}" alt="" class="lazy-img">Mark As Reject</li>
                                                 <li><a class="dropdown-item conduct-interview interview-status" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Mark as Conducted</a></li>
+                                                @endif
                                                 
                                                 <li><a class="dropdown-item reschedule-interview" href="#" data-bs-toggle="modal"  id="{{$interview->id}}" data-interview-id="{{$interview->id}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
                                                 
-                                                @if($interview->status === 4)                                                    
+                                                @if(!in_array($interview->status , [0 , 2]))                                                    
                                                     <li><a class="dropdown-item add-to-chat" href="javascript:void(0)" data-candidate-id="{{$candidateId}}" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/chat.png')}}" data-src="{{asset('assets/images/chat.png')}}" alt="" class="lazy-img"> Add to Chat</a></li>
                                                 @endif
                                                 
@@ -399,33 +396,33 @@ Interview Request
                                 @foreach($latestInterviews as $interview)
                                 @php 
                                 $status = 'pending';
-                                     $message = 'Pending';
-                                     if($interview->reschedule_status == 0)
-                                     {
-                                            if($interview->status == 1)
-                                        {
-                                            $status = 'active';
-                                            $message = 'Scheduled';
-                                        }elseif($interview->status == 2)
-                                        {
-                                            $status = 'expired';
-                                            $message = 'Rejected';
-                                        }
-                                        elseif($interview->status == 3)
-                                        {
-                                            $status = 'active';
-                                            $message = 'Conducted';
-                                        }
-                                        elseif($interview->status == 4)
-                                        {
-                                            $status = 'active';
-                                            $message = 'Conducted';
-                                        }
-                                     }else
-                                     {
-                                        $status = 'pending';
-                                            $message = 'Reschedule Request';
-                                     }
+                                $message = 'Pending';
+                                     
+                                if($interview->status == 1)
+                                {
+                                    $status = 'active';
+                                    $message = 'Scheduled';
+                                }elseif($interview->status == 2)
+                                {
+                                    $status = 'expired';
+                                    $message = 'Rejected';
+                                }
+                                elseif($interview->status == 3)
+                                {
+                                    $status = 'active';
+                                    $message = 'Conducted';
+                                }
+                                elseif($interview->status == 4)
+                                {
+                                    $status = 'active';
+                                    $message = 'Conducted';
+                                }
+                                elseif($interview->status == 5)
+                                {
+                                    $status = 'active';
+                                    $message = 'Reschedule Request';
+                                }
+                                     
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
@@ -634,10 +631,11 @@ Interview Request
                     success : function(res){
                         if(res.status)
                         {
-                            toastr.success(res.msg);
+                            toastr.success(res.msg);    
                         }else{
                             toastr.error(res.error)
                         }
+                        window.location = "{{route('getEmployerDashboardMessage')}}"+"/"+candidateId;
                     }
                 })
         

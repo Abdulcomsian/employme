@@ -161,32 +161,29 @@ Interview Request
                                 @php 
                                     $status = 'pending';
                                      $message = 'Pending';
-                                     if($interview->reschedule_status == 0)
-                                     {
-                                            if($interview->status == 1)
-                                        {
-                                            $status = 'active';
-                                            $message = 'Scheduled';
-                                        }elseif($interview->status == 2)
-                                        {
-                                            $status = 'expired';
-                                            $message = 'Rejected';
-                                        }
-                                        elseif($interview->status == 3)
-                                        {
-                                            $status = 'active';
-                                            $message = 'Conducted';
-                                        }
-                                        elseif($interview->status == 4)
-                                        {
-                                            $status = 'active';
-                                            $message = 'Conducted';
-                                        }
-                                     }else
-                                     {
+                                    if($interview->status == 1)
+                                    {
+                                        $status = 'active';
+                                        $message = 'Scheduled';
+                                    }elseif($interview->status == 2)
+                                    {
+                                        $status = 'expired';
+                                        $message = 'Rejected';
+                                    }
+                                    elseif($interview->status == 3)
+                                    {
+                                        $status = 'active';
+                                        $message = 'Conducted';
+                                    }
+                                    elseif($interview->status == 4)
+                                    {
+                                        $status = 'active';
+                                        $message = 'Conducted';
+                                    }elseif($interview->status == 5){
                                         $status = 'pending';
-                                            $message = 'Reschedule Request';
-                                     }
+                                        $message = "Reschedule Request";
+                                    }
+                                     
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
@@ -214,30 +211,34 @@ Interview Request
                                     
                                 
                                     <td>
-                                        <div class="job-status">{{$message}}</div>
+                                        <div class="job-status @if($interview->status == 0 && $interview->requested_from != auth()->user()->id) blink text-danger @endif">{{$message}}</div>
                                     </td>
                                     <td>
+                                        @if(!in_array($interview->status , [\AppConst::INTERVIEW_CONDUCTED , \AppConst::INTERVIEW_REJECTED]))
                                         <div class="action-dots float-center">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Accept</a></li>
-                                                <form id="accept-form-{{$interview->id}}" action="{{ route('candidate.acceptInterview', $interview->id) }}" method="POST" style="display: none;">
-                                                @csrf
-                                                </form>
-                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a></li>
-                                                <form id="reject-form-{{$interview->id}}" action="{{ route('candidate.rejectInterview', $interview->id) }}" method="POST" style="display: none;">
-                                                @csrf
-                                                </form>
+                                                @if($interview->requested_to == auth()->user()->id)
+                                                    <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                    document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Accept</a></li>
+                                                    <form id="accept-form-{{$interview->id}}" action="{{ route('candidate.acceptInterview', $interview->id) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    </form>
+                                                    <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                    document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a></li>
+                                                    <form id="reject-form-{{$interview->id}}" action="{{ route('candidate.rejectInterview', $interview->id) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    </form>
+                                                @endif
                                                 <li><a class="dropdown-item " href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" id = "{{$interview->id}}" onclick="getInterviewId({{$interview->id}})"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
                                                 @if(in_array($interview->status , [ 1 , 4]))
                                                 <li><a class="dropdown-item add-to-chat" href="javascript:void(0)" data-employer-id="{{$interview->employer->id}}" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/chat.png')}}" height="22px" data-src="{{asset('assets/images/chat.png')}}" alt="" class="lazy-img"> Add to Chat</a></li>
                                                 @endif
                                             </ul>
                                         </div>
+                                        @endif
                                     </td>
                                     
                                 </tr>
@@ -252,7 +253,7 @@ Interview Request
                                     <td>05 Jun, 2022</td>
                                     <td>20 Applicants</td>
                                     <td>
-                                        <div class="job-status">Pending</div>
+                                        <div class="job-status @if($interview->requested_from != auth()->user()->id ) blink text-danger @endif">Pending</div>
                                     </td>
                                     <td>
                                         <div class="action-dots float-end">
@@ -344,9 +345,8 @@ Interview Request
                                 @php 
                                      $status = 'pending';
                                      $message = 'Pending';
-                                     if($interview->reschedule_status == 0)
-                                     {
-                                            if($interview->status == 1)
+                                     
+                                        if($interview->status == 1)
                                         {
                                             $status = 'active';
                                             $message = 'Scheduled';
@@ -365,11 +365,11 @@ Interview Request
                                             $status = 'active';
                                             $message = 'Conducted';
                                         }
-                                     }else
-                                     {
-                                        $status = 'pending';
+                                        elseif($interview->status == 5)
+                                        {
+                                            $status = 'active';
                                             $message = 'Reschedule Request';
-                                     }
+                                        }
                                     @endphp
                                     <tr class="{{$status}}">
                                         <td>
@@ -388,7 +388,7 @@ Interview Request
                                         @endif
                                         <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$interview->jobDetails->id])}}">{{totalApplicants($interview->jobDetails->id)}} Applications</a><div></td>
                                         <td>
-                                            <div class="job-status">{{$message}}</div>
+                                            <div class="job-status @if($interview->status == 0 && $interview->requested_from != auth()->user()->id) blink text-danger @endif">{{$message}}</div>
                                         </td>
                                         @if($interview->reschedule_status != 1 && $interview->status == 0)
                                         <td>
@@ -397,18 +397,22 @@ Interview Request
                                                     <span></span>
                                                 </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Accept</a></li>
-                                                <form id="accept-form-{{$interview->id}}" action="{{ route('candidate.acceptInterview', $interview->id) }}" method="POST" style="display: none;">
-                                                @csrf
-                                                </form>
-                                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                                document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a></li>
-                                                <form id="reject-form-{{$interview->id}}" action="{{ route('candidate.rejectInterview', $interview->id) }}" method="POST" style="display: none;">
-                                                @csrf
-                                                </form>
+                                                @if($interview->requested_to == auth()->user()->id)
+                                                    <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                    document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Accept</a></li>
+                                                    <form id="accept-form-{{$interview->id}}" action="{{ route('candidate.acceptInterview', $interview->id) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    </form>
+                                                    <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                                    document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a></li>
+                                                    <form id="reject-form-{{$interview->id}}" action="{{ route('candidate.rejectInterview', $interview->id) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    </form>
+                                                @endif
+
+
                                                 <li><a class="dropdown-item " href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" id = "{{$interview->id}}" onclick="getInterviewId({{$interview->id}})"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
-                                                {{--<li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>--}}
+                                                
                                             </ul>
                                             </div>
                                         </td>
@@ -690,6 +694,8 @@ $(document).on("click" , ".add-to-chat" , function(e){
                 }else{
                     toastr.error(res.error)
                 }
+
+                window.location = "{{route('getCandidateMessages')}}"+"/"+employerId;
             }
         })
 
