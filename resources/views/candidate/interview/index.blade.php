@@ -199,7 +199,7 @@ Interview Request
                                     <td>{{$employerInformation->employerDetails->institution ?? ''}} </td>
 
 
-                                    @if($interview->reschedule_status ==1 && $interview->status == 0)
+                                    @if($interview->reschedule_status ==1)
                                     <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}</td>
                                     <td>{{date('h:i A',strtotime($interview->reschedule_time))}}</td>
                                     <td>{{$interview->reschedule_meeting}}</td>
@@ -220,7 +220,7 @@ Interview Request
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                @if($interview->requested_to == auth()->user()->id)
+                                                @if($interview->requested_to == auth()->user()->id || $interview->reschedule_status == 1)
                                                     <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                                     document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Accept</a></li>
                                                     <form id="accept-form-{{$interview->id}}" action="{{ route('candidate.acceptInterview', $interview->id) }}" method="POST" style="display: none;">
@@ -377,7 +377,7 @@ Interview Request
                                             <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>
                                         </td>
                                         <td>{{$interview->employer->employerDetails->institution ?? ''}} </td>
-                                        @if($interview->reschedule_status ==1 && $interview->status == 0)
+                                        @if($interview->reschedule_status == 1)
                                         <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}</td>
                                         <td>{{date('h:i A',strtotime($interview->reschedule_time))}}</td>
                                         <td>{{$interview->reschedule_meeting}}</td>
@@ -397,7 +397,8 @@ Interview Request
                                                     <span></span>
                                                 </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                @if($interview->requested_to == auth()->user()->id)
+                            
+                                                @if($interview->requested_to == auth()->user()->id || $interview->reschedule_status == 1)
                                                     <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                                     document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Accept</a></li>
                                                     <form id="accept-form-{{$interview->id}}" action="{{ route('candidate.acceptInterview', $interview->id) }}" method="POST" style="display: none;">

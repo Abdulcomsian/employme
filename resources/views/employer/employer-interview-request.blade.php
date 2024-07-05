@@ -232,7 +232,7 @@ Interview Request
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
                                         <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>
                                     </td>
-                                    @if($interview->reschedule_status ==1 && $interview->status == 0)
+                                    @if($interview->reschedule_status == 1)
                                     <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}</td>
                                     <td>{{date('h:i A',strtotime($interview->reschedule_time))}}</td>
                                     <td>{{$interview->reschedule_meeting}}</tdjo>
@@ -258,7 +258,7 @@ Interview Request
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                     document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a>
                                                 </li>  -->
-                                                @if($interview->requested_to == auth()->user()->id)
+                                                @if($interview->requested_to == auth()->user()->id || $interview->reschedule_status ==1)
                                                 <li class="dropdown-item approve-interview interview-status" data-interview-id="{{$interview->id}}" data-status="4" ><img src="{{asset('assets/images/accept.png')}}" data-src="{{asset('assets/images/icon/accept.png')}}" alt="" class="lazy-img">Mark As Approve</li>
                                                 <li class="dropdown-item reject-interview interview-status" data-interview-id="{{$interview->id}}" data-status="2"><img src="{{asset('assets/images/reject.png')}}" data-src="{{asset('assets/images/icon/reject.png')}}" alt="" class="lazy-img">Mark As Reject</li>
                                                 <li><a class="dropdown-item conduct-interview interview-status" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Mark as Conducted</a></li>
@@ -432,12 +432,12 @@ Interview Request
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
                                         <div class="info1">{{$interview->jobDetails->job_type ?? ''}} . {{$interview->jobDetails->city_town}}</div>
                                     </td>
-                                    @if($interview->reschedule_status ==1 && $interview->status == 0)
-                                    <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}Here1</td>
+                                    @if($interview->reschedule_status == 1)
+                                    <td>{{date('d M, Y',strtotime($interview->reschedule_date))}}</td>
                                     <td>{{date('h:i A',strtotime($interview->reschedule_time))}}</td>
                                     <td>{{$interview->meeting_media}}</td>
                                     @else
-                                    <td>{{date('d M, Y',strtotime($interview->interview_date))}}here2</td>
+                                    <td>{{date('d M, Y',strtotime($interview->interview_date))}}</td>
                                     <td>{{date('h:i A',strtotime($interview->interview_time))}}</td>
                                     <td>{{$interview->meeting_media}}</td>
                                     @endif
@@ -445,7 +445,7 @@ Interview Request
                                     <td>
                                         <div class="job-status">{{$message}}</div>
                                     </td>
-                                    @if($interview->reschedule_status == 1 && $interview->status == 0)
+                                    @if($interview->reschedule_status == 1)
                                     <td>
                                         <div class="action-dots float-end">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
