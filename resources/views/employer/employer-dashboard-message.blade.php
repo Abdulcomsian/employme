@@ -329,125 +329,127 @@ small {
                         @foreach($allConversations as $index=>$conversations)
                         @if($index==0)
                         <div class="open-email-container pb-40">
-                            <div class="email-header divider d-flex justify-content-between d-flex flex-column flex-grow-1">
-                                <div class="sender-info d-flex align-items-center">
-                                    @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
-                                    <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo round-avatar">
+                            <div class="user-chat-section">
+                                <div class="email-header divider d-flex justify-content-between d-flex flex-column flex-grow-1">
+                                    <div class="sender-info d-flex align-items-center">
+                                        @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
+                                        <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo round-avatar">
+                                        @else
+                                        <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo round-avatar">
+                                        @endif            
+                                        <div class="ps-3">
+                                            <div class="sender-name">
+                                            {{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
+                                            {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
+                                            {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}
+                                            </div>
+                                            <!-- <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div> -->
+                                        </div>
+                                    </div>
+                                    {{--
+                                    <div class="email-info">
+                                        <div class="time">4:45AM (3 hours ago)</div>
+                                        <div class="d-flex align-items-center justify-content-end">
+                                            <button class="delete-email"><img src="{{asset('assets/images/icon/icon_29.svg')}}" data-src="{{asset('assets/images/icon/icon_29.svg')}}" alt="" class="lazy-img"></button>
+                                            <button class="reply-email ms-3 me-3"><img src="{{asset('assets/images/icon/icon_30.svg')}}" data-src="{{asset('assets/images/icon/icon_30.svg')}}" alt="" class="lazy-img"></button>
+                                            <div class="action-dots float-end">
+                                                <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <span></span>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li><a class="dropdown-item" href="#">Reply</a></li>
+                                                    <li><a class="dropdown-item" href="#">Fowrward</a></li>
+                                                    <li><a class="dropdown-item" href="#">Block</a></li>
+                                                    <li><a class="dropdown-item" href="#">Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                           --}}
+                                </div>
+                                <!-- /.email-header -->
+    
+                                <div class="email-body divider conversation-{{$conversations->id}}">
+                                    @php
+                                        $previousDate = null;
+                                    @endphp
+    
+                                    @isset($conversations->chats)
+                                    @foreach($conversations->chats as $chat)
+                                    @php
+                                    $previousCarbonDate = !$previousDate ? \Carbon\Carbon::createFromFormat('Y-m-d' , $chat->created_at->format('Y-m-d')) : $previousDate;
+                                    $newDate = \Carbon\Carbon::createFromFormat('Y-m-d' ,$chat->created_at->format('Y-m-d'));
+                                    
+                                    
+                                    @endphp
+                                    @if(!$previousDate || !$previousCarbonDate->isSameDay($newDate))
+                                    @php
+                                    $previousDate = $chat->created_at;
+                                    @endphp
+                                    <div>
+                                        <p class = "text-start ms-3" style = "font-size:12px; font-weight:600;">{{date('d F Y',strtotime($chat->created_at))}}</p>
+                                    </div>
+                                        @endif    
+                                    @if($chat->user_id == auth()->user()->id)
+                                    <div class = "row" style = "padding-left:35px;">
+                                        <div class="col-12">
+                                            <div class="sender-info ">
+                                                <div class="d-flex">
+                                                    <div class=" avatar-section">
+                                                        @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
+                                                        <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo chat-round-avatar">
+                                                        @else
+                                                        <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar">
+                                                        @endif
+                                                    </div>           
+                                                    <div class="d-flex flex-column">
+                                                        <div class="sender-name"><p>{{auth()->user()->name}}<small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
+                                                        <div class="pe-4 pe-xxl-5 single-message">
+                                                            <p>{!! $chat->message !!}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                       </div>
+                                    </div>
                                     @else
-                                    <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo round-avatar">
-                                    @endif            
-                                    <div class="ps-3">
-                                        <div class="sender-name">
-                                        {{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
-                                        {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
-                                        {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}
-                                        </div>
-                                        <!-- <div class="sender-email">{{$conversations->candidate->email ?? ''}}</div> -->
-                                    </div>
-                                </div>
-                                {{--
-                                <div class="email-info">
-                                    <div class="time">4:45AM (3 hours ago)</div>
-                                    <div class="d-flex align-items-center justify-content-end">
-                                        <button class="delete-email"><img src="{{asset('assets/images/icon/icon_29.svg')}}" data-src="{{asset('assets/images/icon/icon_29.svg')}}" alt="" class="lazy-img"></button>
-                                        <button class="reply-email ms-3 me-3"><img src="{{asset('assets/images/icon/icon_30.svg')}}" data-src="{{asset('assets/images/icon/icon_30.svg')}}" alt="" class="lazy-img"></button>
-                                        <div class="action-dots float-end">
-                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#">Reply</a></li>
-                                                <li><a class="dropdown-item" href="#">Fowrward</a></li>
-                                                <li><a class="dropdown-item" href="#">Block</a></li>
-                                                <li><a class="dropdown-item" href="#">Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                       --}}
-                            </div>
-                            <!-- /.email-header -->
-
-                            <div class="email-body divider conversation-{{$conversations->id}}">
-                                @php
-                                    $previousDate = null;
-                                @endphp
-
-                                @isset($conversations->chats)
-                                @foreach($conversations->chats as $chat)
-                                @php
-                                $previousCarbonDate = !$previousDate ? \Carbon\Carbon::createFromFormat('Y-m-d' , $chat->created_at->format('Y-m-d')) : $previousDate;
-                                $newDate = \Carbon\Carbon::createFromFormat('Y-m-d' ,$chat->created_at->format('Y-m-d'));
-                                
-                                
-                                @endphp
-                                @if(!$previousDate || !$previousCarbonDate->isSameDay($newDate))
-                                @php
-                                $previousDate = $chat->created_at;
-                                @endphp
-                                <div>
-                                    <p class = "text-start ms-3" style = "font-size:12px; font-weight:600;">{{date('d F Y',strtotime($chat->created_at))}}</p>
-                                </div>
-                                    @endif    
-                                @if($chat->user_id == auth()->user()->id)
-                                <div class = "row" style = "padding-left:35px;">
-                                    <div class="col-12">
-                                        <div class="sender-info ">
-                                            <div class="d-flex">
-                                                <div class=" avatar-section">
-                                                    @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
-                                                    <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo chat-round-avatar">
-                                                    @else
-                                                    <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar">
-                                                    @endif
-                                                </div>           
-                                                <div class="d-flex flex-column">
-                                                    <div class="sender-name"><p>{{auth()->user()->name}}<small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
-                                                    <div class="pe-4 pe-xxl-5 single-message">
-                                                        <p>{!! $chat->message !!}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                   </div>
-                                </div>
-                                @else
-                                <div class = "row" style = "padding-left:35px;">
-                                    <div class="col-12">
-                                        <div class="sender-info">
-                                            <div class="d-flex">
-                                                <div class=" avatar-section">
-                                                    @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
-                                                    <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo chat-round-avatar">
-                                                    @else
-                                                    <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar">
-                                                    @endif
-                                                </div>            
-                                                <div class="d-flex flex-column flex-grow-1">
-                                                    <div class="sender-name">
-                                                        <p> {{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
-                                                            {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
-                                                            {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}<small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p>
-                                                    </div>
-                                                    <div class="pe-4 pe-xxl-5 single-message">
-                                                        <p>{!! $chat->message !!}</p>
+                                    <div class = "row" style = "padding-left:35px;">
+                                        <div class="col-12">
+                                            <div class="sender-info">
+                                                <div class="d-flex">
+                                                    <div class=" avatar-section">
+                                                        @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
+                                                        <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo chat-round-avatar">
+                                                        @else
+                                                        <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar">
+                                                        @endif
+                                                    </div>            
+                                                    <div class="d-flex flex-column flex-grow-1">
+                                                        <div class="sender-name">
+                                                            <p> {{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
+                                                                {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
+                                                                {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}<small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p>
+                                                        </div>
+                                                        <div class="pe-4 pe-xxl-5 single-message">
+                                                            <p>{!! $chat->message !!}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
+                                    
+                                 
+                                    
+    
+                                    @endforeach
+                                    @endisset
                                 </div>
-                                @endif
-                                
-                             
-                                
-
-                                @endforeach
-                                @endisset
                             </div>
                             <!-- /.email-body -->
 
-                            <div class="email-footer">
+                            <div class="email-footer Here">
                                 <div class="d-flex flex-column">
                                     <div class="compose-new-email-container">
                                         <div class="new-email-header position-relative">
@@ -614,10 +616,11 @@ small {
 						// window.location = data.redirect;
 						if(data.html !='')
                         {
-                            $(".candidate-message-body").empty();
-                            $(".candidate-message-body").html(data.html);
+                            // $(".candidate-message-body").empty();
+                            $(".user-chat-section").html(data.html);
                             $(".compose-new-email-container").find(".compose-body textarea").focus();
                             $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+                            document.querySelector("input[name='conversation_id']").value = conversationId;
                         }
 					}else{
 						$.each(data.errors, function (key, val) {

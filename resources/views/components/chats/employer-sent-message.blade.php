@@ -1,4 +1,4 @@
-    @if($chatFlag)
+     @if($chatFlag)
         <div>
             <p class = "text-start ms-3" style = "font-size:12px; font-weight:600;">{{$chatDetails->created_at->format('d F Y')}}</p>
         </div>

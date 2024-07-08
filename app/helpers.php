@@ -466,6 +466,10 @@ function pendingInterviewInvitationCount()
 {
     $inteviewRequestCount = \App\Models\JobInterview::where('requested_to' , auth()->user()->id)
                                                       ->whereIn('status' , [ 0 ])
+                                                      ->orWhere(function($query){
+                                                            $query->where('status' , 5)
+                                                                  ->where('rescheduled_by' , '!=' , auth()->user()->id);
+                                                      })
                                                       ->count();
     return $inteviewRequestCount;
 }
