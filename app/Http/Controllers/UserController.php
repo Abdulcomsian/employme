@@ -46,6 +46,7 @@ class UserController extends Controller
     ]);
     $user = User::find(Auth::id());
 
+    
     // Update email
     $user->update([
         'email' => $request->email,
