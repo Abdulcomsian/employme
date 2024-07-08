@@ -423,6 +423,7 @@ class CandidateController extends Controller
         $rescheduleInterview->reschedule_meeting = $request->reschedule_meeting;
         $rescheduleInterview->reschedule_status = 1;
         $rescheduleInterview->status = 5;
+        $rescheduleInterview->rescheduled_by = auth()->user()->id;
         
         if($request->meeting_invitation_link == "on" && !empty($request->meeting_media))
         {

@@ -49,6 +49,7 @@ class UserController extends Controller
     // Update email
     $user->update([
         'email' => $request->email,
+        'name' => $request->first_name,
     ]);
    
     
@@ -257,6 +258,7 @@ class UserController extends Controller
         // Update email
         $user->update([
             'email' => $request->email,
+            'name' => $request->institution
         ]);
         
       

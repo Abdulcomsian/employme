@@ -55,4 +55,9 @@ class JobInterview extends Model
     {
         return $this->belongsTo(User::class,'requested_to');
     }
+
+    public function rescheduledBy()
+    {
+        return $this->belongsTo(User::class,'resheduled_by');
+    }
 }

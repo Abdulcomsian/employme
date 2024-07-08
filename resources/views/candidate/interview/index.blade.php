@@ -178,7 +178,8 @@ Interview Request
                                     elseif($interview->status == 4)
                                     {
                                         $status = 'active';
-                                        $message = 'Conducted';
+                                        $message = 'Approved';
+                                        
                                     }elseif($interview->status == 5){
                                         $status = 'pending';
                                         $message = "Reschedule Request";
@@ -215,12 +216,13 @@ Interview Request
                                     </td>
                                     <td>
                                         @if(!in_array($interview->status , [\AppConst::INTERVIEW_CONDUCTED , \AppConst::INTERVIEW_REJECTED]))
+                                        
                                         <div class="action-dots float-center">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                @if($interview->requested_to == auth()->user()->id || $interview->reschedule_status == 1)
+                                                @if($interview->requested_to == auth()->user()->id && $interview->rescheduled_by != auth()->user()->id && in_array($interview->status , [0 , 5 ]) )
                                                     <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                                     document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Accept</a></li>
                                                     <form id="accept-form-{{$interview->id}}" action="{{ route('candidate.acceptInterview', $interview->id) }}" method="POST" style="display: none;">
@@ -232,8 +234,12 @@ Interview Request
                                                     @csrf
                                                     </form>
                                                 @endif
+                                                
+                                                @if(in_array($interview->status , [0 , 1 , 4 , 5]) )
                                                 <li><a class="dropdown-item " href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" id = "{{$interview->id}}" onclick="getInterviewId({{$interview->id}})"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
-                                                @if(in_array($interview->status , [ 1 , 4]))
+                                                @endif
+                                                
+                                                @if(in_array($interview->status , [1 ,  4 , 5]))
                                                 <li><a class="dropdown-item add-to-chat" href="javascript:void(0)" data-employer-id="{{$interview->employer->id}}" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/chat.png')}}" height="22px" data-src="{{asset('assets/images/chat.png')}}" alt="" class="lazy-img"> Add to Chat</a></li>
                                                 @endif
                                             </ul>

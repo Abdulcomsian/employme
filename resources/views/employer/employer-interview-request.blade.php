@@ -4,6 +4,7 @@
 Interview Request
 @endsection
 
+
 @section('content')
 @push('page-css')
 <style>
@@ -188,6 +189,7 @@ Interview Request
                             <tbody class="border-0">
                                 @isset($allInterviews)
                                 @foreach($allInterviews as $interview)
+                               
                                 @php 
                                      $status = 'pending';
                                      $message = 'Pending';
@@ -258,16 +260,23 @@ Interview Request
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                     document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a>
                                                 </li>  -->
-                                                @if($interview->requested_to == auth()->user()->id || $interview->reschedule_status ==1)
-                                                <li class="dropdown-item approve-interview interview-status" data-interview-id="{{$interview->id}}" data-status="4" ><img src="{{asset('assets/images/accept.png')}}" data-src="{{asset('assets/images/icon/accept.png')}}" alt="" class="lazy-img">Mark As Approve</li>
-                                                <li class="dropdown-item reject-interview interview-status" data-interview-id="{{$interview->id}}" data-status="2"><img src="{{asset('assets/images/reject.png')}}" data-src="{{asset('assets/images/icon/reject.png')}}" alt="" class="lazy-img">Mark As Reject</li>
-                                                <li><a class="dropdown-item conduct-interview interview-status" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Mark as Conducted</a></li>
+                                               
+                                                @if(($interview->requested_to == auth()->user()->id || in_array($interview->status ,[ 0 , 5])) && !in_array($interview->status ,[ 4, 2]) && $interview->rescheduled_by != auth()->user()->id)
+                                                <li class="dropdown-item approve-interview interview-status" data-interview-id="{{$interview->id}}" data-status="4" ><img src="{{asset('assets/images/accept.png')}}" data-src="{{asset('assets/images/icon/accept.png')}}" alt="" class="lazy-img">Approve</li> 
+                                                <li class="dropdown-item reject-interview interview-status" data-interview-id="{{$interview->id}}" data-status="2"><img src="{{asset('assets/images/reject.png')}}" data-src="{{asset('assets/images/icon/reject.png')}}" alt="" class="lazy-img"> Reject</li>
+                                                @endif   
+
+                                                @if(in_array($interview->status , [4])  && $interview->rescheduled_by != auth()->user()->id)
+                                                <li><a class="dropdown-item conduct-interview interview-status" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Conducted</a></li>    
                                                 @endif
-                                                
+
+
+                                                @if(in_array($interview->status , [0, 1 , 2 ,  4 , 5]) )
                                                 <li><a class="dropdown-item reschedule-interview" href="#" data-bs-toggle="modal"  id="{{$interview->id}}" data-interview-id="{{$interview->id}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
-                                                
-                                                @if(!in_array($interview->status , [0 , 2]))                                                    
-                                                    <li><a class="dropdown-item add-to-chat" href="javascript:void(0)" data-candidate-id="{{$candidateId}}" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/chat.png')}}" data-src="{{asset('assets/images/chat.png')}}" alt="" class="lazy-img"> Add to Chat</a></li>
+                                                @endif
+
+                                                @if(in_array($interview->status , [1 , 4 , 2 , 3 , 5]))
+                                                <li><a class="dropdown-item add-to-chat" href="javascript:void(0)" data-candidate-id="{{$candidateId}}" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/chat.png')}}" data-src="{{asset('assets/images/chat.png')}}" alt="" class="lazy-img"> Add to Chat</a></li>
                                                 @endif
                                                 
 
@@ -597,9 +606,34 @@ Interview Request
             $(document).on("click" , ".interview-status" , function(e){
                 let status = this.dataset.status;
                 let interviewId = this.dataset.interviewId;
+                
+                if(status == 2){
+                    Swal.fire({
+                    title: "Are you sure you wanted to reject it?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Reject it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                         changeInterviewStatus(status , interviewId)  
+                        }
+                    });
+
+                }else{
+                    changeInterviewStatus(status , interviewId)
+                }
+
+        
+            })
+
+            function changeInterviewStatus(status , interviewId){
                 $.ajax({
                     type : 'POST',
                     url : '{{route("employer.changeInterviewStatus")}}',
+                    async : false,
                     data : {
                         _token : '{{csrf_token()}}',
                         status : status,
@@ -615,8 +649,9 @@ Interview Request
                         }
                     }
                 })
-        
-            })
+
+                return true;
+            }
         
             $(document).on("click" , ".add-to-chat" , function(e){
                 let candidateId = this.dataset.candidateId;
