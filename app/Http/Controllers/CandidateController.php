@@ -357,6 +357,7 @@ class CandidateController extends Controller
 
     public function candidateInterviewRequests()
     {
+        try{
         $dt = Carbon::now();
         $dt2 = $dt->copy()->subWeek();   // or whatever you're using to set it
         $allInterviews = JobInterview::with('jobDetails','employer.employerDetails' , 'requestTo.employerDetails' , 'requestFrom.employerDetails')
@@ -377,6 +378,9 @@ class CandidateController extends Controller
                                             ->paginate(5);
                                             
         return view('candidate.interview.index',compact('allInterviews','latestInterviews'));
+        }catch(\Exception $e){
+            dd($e->getMessage());
+        }
     }
 
     public function acceptInterview($id)
