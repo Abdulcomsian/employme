@@ -42,6 +42,12 @@ Job Marketplace
 #User-Edit-Modal{
 	font-family: "gordita";
 }
+
+div#JobApplicationModal .modal-dialog {
+    width: 600px;
+    position: relative;
+    top: 25%;
+}
 </style>
 <div class="modal fade" id="JobApplicationModal" tabindex="-1" role="dialog" aria-labelledby="Edit User"
     aria-hidden="true">
@@ -65,13 +71,13 @@ Job Marketplace
 									<div class="col-md-6">
 										<div class="input-group-meta position-relative mb-25">
 											<label>Date*</label>
-											<input type="date" name = "interview_date" min="{{date('Y-m-d')}}" placeholder="" required>
+											<input type="date" class="form-control" name="interview_date" min="{{date('Y-m-d')}}" placeholder="" required>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="input-group-meta position-relative mb-20" required>
 											<label>Time*</label>
-											<input type="time" name = "interview_time" placeholder="Enter Password" class="pass_log_id" required>
+											<input type="time" class="form-control"  name="interview_time" placeholder="Enter Password" class="pass_log_id" required>
 										</div>
 									</div>
 									<div class="col-12">
@@ -89,11 +95,8 @@ Job Marketplace
 															<div class="col-12">
 															<div class="d-flex justify-content-end">
 																	<i class="fa-solid fa-circle-info interview-link-information  fa-lg"> 
-																	<p>Create a video meeting link using Google Meet, Zoom, or Skype and paste it into the provided fields.
-																	   Acceptance of the request by the employer means they intend to attend the schedule interview via the link provided. 
-																	   For rescheduling, use the messenger to communicate with the employer after sending the interview request.
-																	</p>
-																</i>
+																		<p>Please generate a video meeting link using Google Meet, Zoom, or Skype and paste it into the specified field. The employer's acceptance of the request indicates their intention to attend the scheduled interview via the provided link. Chat can be initiated after the request is accepted.</p>
+																	</i>
 															</div>
 															<input class="form-control" type="url" name="meeting_media" id="invitation-link" placeholder="Add Invitation Link">
 																

@@ -1,5 +1,6 @@
 @extends('layout.main')
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- 
 		=============================================
 			Inner Banner
@@ -11,6 +12,32 @@
     width: 20px; /* Adjust as needed */
     height: 20px; /* Adjust as needed */
 }
+.interview-link-information{
+	position: relative;
+    cursor: pointer;
+    bottom: 20px;
+}
+.interview-link-information p{
+	display: none;
+	position: absolute;
+    background-color: #ff715b;
+    color: #f2f2f2;
+    font-family: 'gordita';
+    bottom: 5px;
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 10px;
+    width: 370px;
+    right: 4px;
+    font-weight: 400;
+
+}
+
+.interview-link-information:hover p{
+	display: block;
+
+}
+
 .remove-account-popup .confirm-btn {
     width: unset;
     line-height: 40px;
@@ -37,7 +64,14 @@
 	font-family: "gordita";
 }
 
+div#JobApplicationModal .modal-dialog {
+    width: 600px;
+    position: relative;
+    top: 25%;
+}
+
 </style>
+
 <div class="inner-banner-one position-relative">
 	<div class="container">
 		<div class="position-relative">
@@ -60,97 +94,93 @@
 		============================================== 
 		-->
 
-		<div class="modal fade" id="JobApplicationModal" tabindex="-1" role="dialog" aria-labelledby="Edit User"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg " role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="User-Edit-Modal">Interview Request</h5>
-                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-			<form  id="Interview-Request-Form">
-            <div class="modal-body">
-					
-					<div class="form-wrapper m-auto">
-				<div class="container">
-					<div class="row">
-						<div class="col-12">
-							
-							<input id="interview-job-id" type="hidden" name="job_id" value="{{$jobDetails->id}}">
-								<div id="interview-request-errors-list"></div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="input-group-meta position-relative mb-25">
-											<label>Date*</label>
-											<input type="date" name = "interview_date" min="{{date('Y-m-d')}}" placeholder="" required>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="input-group-meta position-relative mb-20" required>
-											<label>Time*</label>
-											<input type="time" name = "interview_time" placeholder="Enter Password" class="pass_log_id" required>
-										</div>
-									</div>
-									<div class="col-12">
-										<div class="form-check form-switch">
-											<input class="form-check-input" type="checkbox" role="switch" id="meeting-invitation-link" name="meeting-invitation-link">
-											<label class="form-check-label" for="meeting-invitation-link">Do you want to send a meeting invitation</label>
-										</div>
-										<div class="w-100">
-												<div class="interview-disagreed my-3">
-													Interviews detail will be provided after the candidate accepts the request via the messenger function. 
-												</div>
-												<div class="interview-agreed my-3 d-none">
-													<div>
-														<div class="row">
-															<div class="col-12">
-															<div class="d-flex justify-content-end">
-																	<i class="fa-solid fa-circle-info interview-link-information  fa-lg"> 
-																	<p>Create a video meeting link using Google Meet, Zoom, or Skype and paste it into the provided fields.
-																	   Acceptance of the request by the employer means they intend to attend the schedule interview via the link provided. 
-																	   For rescheduling, use the messenger to communicate with the employer after sending the interview request.
-																	</p>
-																</i>
-															</div>
-															<input class="form-control" type="url" name="meeting_media" id="invitation-link" placeholder="Add Invitation Link">
-																
-															</div>
-															
 		
-														</div>
-													</div>
-													
-												</div>
-										</div>
-									</div>
+		
+		
+<section class="job-details pt-100 lg-pt-80 pb-130 lg-pb-80">
+	<div class="modal fade" id="JobApplicationModal" tabindex="-1" role="dialog" aria-labelledby="Edit User" aria-hidden="true">
+		<div class="modal-dialog modal-lg " role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="User-Edit-Modal">Interview Request</h5>
+					<button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<form  id="Interview-Request-Form">
+				<div class="modal-body">
+						
+						<div class="form-wrapper m-auto">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
 								
-								</div>
+								<input id="interview-job-id" type="hidden" name="job_id" value="{{$jobDetails->id}}">
+									<div id="interview-request-errors-list"></div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="input-group-meta position-relative mb-25">
+												<label>Date*</label>
+												<input type="date" class="form-control" name="interview_date" min="{{date('Y-m-d')}}" placeholder="" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="input-group-meta position-relative mb-20" required>
+												<label>Time*</label>
+												<input type="time" class="form-control"  name="interview_time" placeholder="Enter Password" class="pass_log_id" required>
+											</div>
+										</div>
+										<div class="col-12">
+											<div class="form-check form-switch">
+												<input class="form-check-input" type="checkbox" role="switch" id="meeting-invitation-link" name="meeting-invitation-link">
+												<label class="form-check-label" for="meeting-invitation-link">Do you want to send a meeting invitation</label>
+											</div>
+											<div class="w-100">
+													<div class="interview-disagreed my-3">
+														Interviews detail will be provided after the candidate accepts the request via the messenger function. 
+													</div>
+													<div class="interview-agreed my-3 d-none">
+														<div>
+															<div class="row">
+																<div class="col-12">
+																<div class="d-flex justify-content-end">
+																		<i class="fa-solid fa-circle-info interview-link-information  fa-lg"> 
+																		<p>Please generate a video meeting link using Google Meet, Zoom, or Skype and paste it into the specified field. The employer's acceptance of the request indicates their intention to attend the scheduled interview via the provided link. Chat can be initiated after the request is accepted.</p>
+																	</i>
+																</div>
+																<input class="form-control" type="url" name="meeting_media" id="invitation-link" placeholder="Add Invitation Link">
+																	
+																</div>
+																
+			
+															</div>
+														</div>
+														
+													</div>
+											</div>
+										</div>
+									
+									</div>
+							</div>
+	
 						</div>
-
 					</div>
+					
+				</div>
+				 
+				</div>
+				<div class="modal-footer">
+					<button class="btn-one" type="button" data-bs-dismiss="modal">
+						Close
+					</button>
+					<button class=" btn-submit btn-one" type="submit" name="submit">
+						<span id="buttonText">Apply</span>
+						<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
+					</button>
 				</div>
 				
+				</form>
 			</div>
-             
-            </div>
-            <div class="modal-footer">
-                <button class="btn-one" type="button" data-bs-dismiss="modal">
-					Close
-                </button>
-                <button class=" btn-submit btn-one" type="submit" name="submit">
-					<span id="buttonText">Apply</span>
-					<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
-				</button>
-            </div>
-			
-            </form>
-        </div>
-    </div>
-</div>
-
-
-
-<section class="job-details pt-100 lg-pt-80 pb-130 lg-pb-80">
+		</div>
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-xxl-8 col-xl-8">

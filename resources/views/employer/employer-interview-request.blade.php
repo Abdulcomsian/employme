@@ -61,6 +61,13 @@ Interview Request
 	display: block;
 
 }
+
+.reshedule-btn{
+    background: #ff715b;
+    color: white;
+    border-radius: 8px;
+}
+
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
@@ -108,9 +115,7 @@ Interview Request
 													<div class="col-12">
 													<div class="d-flex justify-content-end">
 															<i class="fa-solid fa-circle-info interview-link-information  fa-lg"> 
-															<p>Create a video meeting link using Google Meet, Zoom, or Skype and paste it into the provided fields.
-															   Acceptance of the request by the employer means they intend to attend the schedule interview via the link provided. 
-															   For rescheduling, use the messenger to communicate with the employer after sending the interview request.
+															<p>Please generate a video meeting link using Google Meet, Zoom, or Skype and paste it into the provided field. The candidate's acceptance of the request indicates their intention to attend the scheduled interview via the provided link. Chat can be initiated after the request is accepted.
 															</p>
 														</i>
 													</div>
@@ -126,7 +131,7 @@ Interview Request
 
                         
                             <div class="col-md-6">
-                                <button class="btn-submit fw-500 tran3s d-block mt-20" type = "submit" >
+                                <button class="btn-submit reshedule-btn fw-500 tran3s d-block px-3 py-3" type = "submit" >
                                     Submit
                                 </button>
                             </div>

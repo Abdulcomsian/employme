@@ -864,11 +864,8 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 													<div class="col-12">
 													<div class="d-flex justify-content-end">
 															<i class="fa-solid fa-circle-info interview-link-information  fa-lg"> 
-															<p>Create a video meeting link using Google Meet, Zoom, or Skype and paste it into the provided fields.
-															   Acceptance of the request by the employer means they intend to attend the schedule interview via the link provided. 
-															   For rescheduling, use the messenger to communicate with the employer after sending the interview request.
-															</p>
-														</i>
+																<p>Please generate a video meeting link using Google Meet, Zoom, or Skype and paste it into the provided field. The candidate's acceptance of the request indicates their intention to attend the scheduled interview via the provided link. Chat can be initiated after the request is accepted.</p>
+														    </i>
 													</div>
 													<input class="form-control" type="url" name="meeting_media" id="invitation-link" placeholder="Add Invitation Link">
 														
@@ -946,9 +943,11 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 					toastr.success("Invitation link sent successfully")
                     window.location = data.redirect;
                 }else{
-                    $.each(data.errors, function (key, val) {
-                        $("#interview-request-errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
-                    });
+					toastr.error(data.errors.job_link);
+					$("#InterviewRequestModal").modal("hide");
+                    // $.each(data.errors, function (key, val) {
+                    //     $("#interview-request-errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    // });
                 }
                
               },

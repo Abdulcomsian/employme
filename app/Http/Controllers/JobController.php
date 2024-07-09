@@ -159,9 +159,6 @@ class JobController extends Controller
 
     public function jobInterviewRequest(Request $request)
     {
-       
-        // $checkExistingApplication = JobApplication::where('candidate_id',Auth::id())->where('employer_job_id',$request->job_id)->first();
-        // exiting request interview
         $jobEmployerDetail = EmployerJob::find($request->job_id);
         $candidateProfileUrl = route('candidateProfileNew' , \Crypt::encryptString(auth()->user()->id));
         $jobLink = route('jobDetails' , \Crypt::encryptString($request->job_id));

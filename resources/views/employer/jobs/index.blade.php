@@ -107,7 +107,7 @@ Job Listing
                                 <tr>
                                     <th scope="col">Title</th>
                                     <th scope="col">Job Created</th>
-                                    <th scope="col">Applicants</th>
+                                    <!-- <th scope="col">Applicants</th> -->
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -130,7 +130,7 @@ Job Listing
                                         <div class="info1">{{$employerJob->city_town}}</div>
                                     </td>
                                     <td>{{date('d M, Y',strtotime($employerJob->created_at))}}</td>
-                                    <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$employerJob->id])}}">{{totalApplicants($employerJob->id)}} Applications</a><div></td>
+                                    <!-- <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$employerJob->id])}}">{{totalApplicants($employerJob->id)}} Applications</a><div></td> -->
                                     <td>
                                         <div class="job-status">{{$message}}</div>
                                     </td>

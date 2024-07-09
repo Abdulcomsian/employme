@@ -712,6 +712,36 @@ small {
             $(".email-read-panel").prepend(e.newCandidate);
         }
     });
+
+
+    document.querySelector("input[name='searchUser']").addEventListener("keyup" , function(e){
+        e.preventDefault()
+        let element = this;
+        let value = element.value;
+        let chatUserList = document.querySelectorAll(".email-list-item");
+
+        if(value.trim().length !== 0 )
+        {
+            chatUserList.forEach( user => {
+                
+                let senderName = user.querySelector(".sender-name").innerText.toLowerCase();
+                if(senderName.includes(value.trim().toLowerCase())) {
+                    user.classList.remove("d-none") 
+                }else { 
+                    user.classList.add("d-none")
+                }
+            
+            })
+        }else{
+            chatUserList.forEach( user => {
+                user.classList.remove("d-none") 
+            })
+        }
+
+
+    })
+
+    
 </script>
 @endpush
 @endsection

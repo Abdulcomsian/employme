@@ -571,9 +571,7 @@ Interview Request
 													<div class="col-12">
 													<div class="d-flex justify-content-end">
 															<i class="fa-solid fa-circle-info interview-link-information  fa-lg"> 
-															<p>Create a video meeting link using Google Meet, Zoom, or Skype and paste it into the provided fields.
-															   Acceptance of the request by the employer means they intend to attend the schedule interview via the link provided. 
-															   For rescheduling, use the messenger to communicate with the employer after sending the interview request.
+															<p>Please generate a video meeting link using Google Meet, Zoom, or Skype and paste it into the specified field. The employer's acceptance of the request indicates their intention to attend the scheduled interview via the provided link. Chat can be initiated after the request is accepted.
 															</p>
 														</i>
 													</div>
@@ -698,8 +696,6 @@ $(document).on("click" , ".add-to-chat" , function(e){
                 if(res.status)
                 {
                     toastr.success(res.msg);
-                }else{
-                    toastr.error(res.error)
                 }
 
                 window.location = "{{route('getCandidateMessages')}}"+"/"+employerId;
