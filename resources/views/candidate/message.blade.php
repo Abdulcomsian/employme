@@ -623,6 +623,11 @@ small {
         formData.append("_token", "{{ csrf_token() }}");
         formData.append("conversation_id", $("#send-text-to-employer-form").find("input[name=conversation_id]").val());
         var filesInput = $('#chatFiles')[0];
+
+        if(document.querySelector('textarea[name="message"]').value.trim().length === 0){
+            return;
+        }
+
         // Check if the file input element and its files property are defined
         if (filesInput && filesInput.files && filesInput.files.length > 0) {
             var files = filesInput.files;

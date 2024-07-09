@@ -347,41 +347,52 @@ class EmployerController extends Controller
             'job_link' => ['url', 'regex:'.$regexPattern],
             'job_link' => ['required', new ValidateJobLink($request->candidate_id)]
         ]);
+
         if ($validator->fails()){
             return response()->json([
                     "status" => false,
-                    "errors" => $validator->errors()
+                    "error" => implode(", " , $validator->errors()->all())
                 ]);
             }
            
 
         $urlParts = explode('/', $request->job_link);
         $jobId = end($urlParts);
-        try {
-            $jobId = Crypt::decryptString($jobId);
-        } catch (DecryptException $e) {
-            dd($e);
-        }
-        $candidateDetails = User::with('candidatePersonalDetails')->find($request->candidate_id);
-        $employerDetails = User::with('employerDetails')->find(Auth::id());
-        $jobDetails = EmployerJob::find($jobId);
-        $createRequest = JobInterview::create([
-            'job_link' => $request->job_link,
-            'requested_to'=>$request->candidate_id,
-            'requested_from'=>Auth::id(),
-            'interview_date'=>$request->interview_date,
-            'interview_time'=>$request->interview_time,
-            'meeting_media'=>$request->meeting_media,
-            'status'=>0,
-            'employer_job_id'=>$jobId
+        $jobId = Crypt::decryptString($jobId);
 
-        ]);
-        Notification::route('mail',  $candidateDetails->email ?? '')->notify(new InterviewRequestNotification($candidateDetails,$employerDetails,$jobDetails));
-        return response()->json([
-            "status" => true, 
-            "message" => 'Request Sent Successfully',
-            "redirect" => url("candidates-marketplace")
-        ]);
+        $existingInterviewRequest = JobInterview::where(function($query1) use($request) { 
+                                                        $query1->where('requested_to' , $request->candidate_id)->where('requested_from' ,auth()->user()->id);
+                                                    }) 
+                                                    ->orWhere(function($query1) use($request) { 
+                                                            $query1->where('requested_to' , auth()->user()->id)->where('requested_from' ,$request->candidate_id);
+                                                    })->where('employer_job_id' , $jobId)->count();
+
+        if($existingInterviewRequest === 0 ){
+
+            $candidateDetails = User::with('candidatePersonalDetails')->find($request->candidate_id);
+            $employerDetails = User::with('employerDetails')->find(Auth::id());
+            $jobDetails = EmployerJob::find($jobId);
+            JobInterview::create([
+                'job_link' => $request->job_link,
+                'requested_to'=>$request->candidate_id,
+                'requested_from'=>Auth::id(),
+                'interview_date'=>$request->interview_date,
+                'interview_time'=>$request->interview_time,
+                'meeting_media'=>$request->meeting_media,
+                'status'=>0,
+                'employer_job_id'=>$jobId
+    
+            ]);
+            Notification::route('mail',  $candidateDetails->email ?? '')->notify(new InterviewRequestNotification($candidateDetails,$employerDetails,$jobDetails));
+            return response()->json([
+                "status" => true, 
+                "message" => 'Request Sent Successfully',
+                "redirect" => url("candidates-marketplace")
+            ]);
+        }else{
+            return response()->json(['status' => false , 'error' => 'Already Requested']);
+        }
+       
     }
 
     public function acceptRescheduleRequest($id)

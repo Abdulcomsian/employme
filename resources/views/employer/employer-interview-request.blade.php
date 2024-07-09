@@ -196,34 +196,40 @@ Interview Request
                                 @foreach($allInterviews as $interview)
                                
                                 @php 
-                                     $status = 'pending';
-                                     $message = 'Pending';
-                                     
-                                    if($interview->status == 1)
-                                    {
-                                        $status = 'active';
-                                        $message = 'Scheduled';
-                                    }elseif($interview->status == 2)
-                                    {
-                                        $status = 'expired';
-                                        $message = 'Rejected';
-                                    }
-                                    elseif($interview->status == 3)
-                                    {
-                                        $status = 'active';
-                                        $message = 'Conducted';
-                                    }
-                                    elseif($interview->status == 4)
-                                    {
-                                        $status = 'active';
-                                        $message = 'Approved';
-                                    }
-                                    elseif($interview->status == 5)
-                                    {
-                                        $status = 'active';
-                                        $message = 'Reschedule Request';
-                                    }
-                                     
+                                    switch($interview->status){
+                                            case 1:
+                                                $status = 'active';
+                                                $message = 'Scheduled';
+                                            break;
+                                            case 2:
+                                                $status = 'expired';
+                                                $message = 'Rejected';
+                                            break;
+                                            case 3:
+                                                $status = 'active';
+                                                $message = 'Conducted';
+                                            break;
+                                            case 4:
+                                                $status = 'expired';
+                                                $message = 'Approved';
+                                            break;
+                                            case 5:
+                                                $status = 'active';
+                                                $message = 'Reschedule Request';
+                                            break;
+                                            case 6:
+                                                $status = 'expired';
+                                                $message = 'Decline';
+                                            break;
+                                            case 7:
+                                                $status = 'expired';
+                                                $message = 'Selected';
+                                            break;
+                                            default:
+                                                $status = 'active';
+                                                $message = 'Scheduled';
+                                        }
+
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
@@ -265,8 +271,8 @@ Interview Request
                                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                     document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a>
                                                 </li>  -->
-                                               
-                                                @if(($interview->requested_to == auth()->user()->id || in_array($interview->status ,[ 0 , 5])) && !in_array($interview->status ,[ 4, 2]) && $interview->rescheduled_by != auth()->user()->id)
+
+                                                @if(($interview->requested_to == auth()->user()->id || in_array($interview->status ,[ 0 , 5 ])) && !in_array($interview->status ,[ 3,  4, 2 , 6 , 7]) && $interview->rescheduled_by != auth()->user()->id)
                                                 <li class="dropdown-item approve-interview interview-status" data-interview-id="{{$interview->id}}" data-status="4" ><img src="{{asset('assets/images/accept.png')}}" data-src="{{asset('assets/images/icon/accept.png')}}" alt="" class="lazy-img">Approve</li> 
                                                 <li class="dropdown-item reject-interview interview-status" data-interview-id="{{$interview->id}}" data-status="2"><img src="{{asset('assets/images/reject.png')}}" data-src="{{asset('assets/images/icon/reject.png')}}" alt="" class="lazy-img"> Reject</li>
                                                 @endif   
@@ -276,11 +282,17 @@ Interview Request
                                                 @endif
 
 
-                                                @if(in_array($interview->status , [0, 1 , 2 ,  4 , 5]) )
+                                                @if(in_array($interview->status , [3]))
+                                                <li><a class="dropdown-item conduct-interview interview-status" data-interview-id="{{$interview->id}}" data-status="6"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Selected</a></li>    
+                                                <li><a class="dropdown-item conduct-interview interview-status" data-interview-id="{{$interview->id}}" data-status="7"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Decline</a></li>   
+                                                @endif
+
+
+                                                @if(in_array($interview->status , [0, 1 , 2 ,  4 , 5 ]) )
                                                 <li><a class="dropdown-item reschedule-interview" href="#" data-bs-toggle="modal"  id="{{$interview->id}}" data-interview-id="{{$interview->id}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
                                                 @endif
 
-                                                @if(in_array($interview->status , [1 , 4 , 2 , 3 , 5]))
+                                                @if(in_array($interview->status , [1 , 4 , 2 , 3 , 5 , 6 , 7]))
                                                 <li><a class="dropdown-item add-to-chat" href="javascript:void(0)" data-candidate-id="{{$candidateId}}" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/chat.png')}}" data-src="{{asset('assets/images/chat.png')}}" alt="" class="lazy-img"> Add to Chat</a></li>
                                                 @endif
                                                 
@@ -409,33 +421,40 @@ Interview Request
                                 @isset($latestInterviews)
                                 @foreach($latestInterviews as $interview)
                                 @php 
-                                $status = 'pending';
-                                $message = 'Pending';
-                                     
-                                if($interview->status == 1)
-                                {
-                                    $status = 'active';
-                                    $message = 'Scheduled';
-                                }elseif($interview->status == 2)
-                                {
-                                    $status = 'expired';
-                                    $message = 'Rejected';
-                                }
-                                elseif($interview->status == 3)
-                                {
-                                    $status = 'active';
-                                    $message = 'Conducted';
-                                }
-                                elseif($interview->status == 4)
-                                {
-                                    $status = 'active';
-                                    $message = 'Conducted';
-                                }
-                                elseif($interview->status == 5)
-                                {
-                                    $status = 'active';
-                                    $message = 'Reschedule Request';
-                                }
+                                switch($interview->status){
+                                            case 1:
+                                                $status = 'active';
+                                                $message = 'Scheduled';
+                                            break;
+                                            case 2:
+                                                $status = 'expired';
+                                                $message = 'Rejected';
+                                            break;
+                                            case 3:
+                                                $status = 'active';
+                                                $message = 'Conducted';
+                                            break;
+                                            case 4:
+                                                $status = 'expired';
+                                                $message = 'Approved';
+                                            break;
+                                            case 5:
+                                                $status = 'active';
+                                                $message = 'Reschedule Request';
+                                            break;
+                                            case 6:
+                                                $status = 'expired';
+                                                $message = 'Rejected';
+                                            break;
+                                            case 7:
+                                                $status = 'expired';
+                                                $message = 'Selected';
+                                            break;
+                                            default:
+                                                $status = 'active';
+                                                $message = 'Scheduled';
+                                        }
+
                                      
                                 @endphp
                                 <tr class="{{$status}}">
@@ -502,80 +521,7 @@ Interview Request
                                 </tr>
                                 @endforeach
                                 @endisset
-                                {{--
-                                    <tr class="active">
-                                        <td>
-                                            <div class="job-name fw-500">Brand & Producr Designer</div>
-                                            <div class="info1">Fulltime . Spain</div>
-                                        </td>
-                                        <td>13 Aug, 2022</td>
-                                        <td>130 Applications</td>
-                                        <td>
-                                            <div class="job-status">Active</div>
-                                        </td>
-                                        <td>
-                                            <div class="action-dots float-end">
-                                                <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <span></span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="active">
-                                        <td>
-                                            <div class="job-name fw-500">Developer for IT company</div>
-                                            <div class="info1">Fulltime . Germany</div>
-                                        </td>
-                                        <td>14 Feb, 2021</td>
-                                        <td>70 Applicants</td>
-                                        <td>
-                                            <div class="job-status">Active</div>
-                                        </td>
-                                        <td>
-                                            <div class="action-dots float-end">
-                                                <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <span></span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="expired">
-                                        <td>
-                                            <div class="job-name fw-500">Accounting Manager</div>
-                                            <div class="info1">Fulltime . USA</div>
-                                        </td>
-                                        <td>27 Sep, 2021</td>
-                                        <td>273 Applicants</td>
-                                        <td>
-                                            <div class="job-status">Expired</div>
-                                        </td>
-                                        <td>
-                                            <div class="action-dots float-end">
-                                                <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <span></span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                        --}}
+                             
                             </tbody>
                         </table>
                         <!-- /.table job-alert-table -->

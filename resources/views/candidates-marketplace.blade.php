@@ -943,7 +943,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 					toastr.success("Invitation link sent successfully")
                     window.location = data.redirect;
                 }else{
-					toastr.error(data.errors.job_link);
+					toastr.error(data.error);
 					$("#InterviewRequestModal").modal("hide");
                     // $.each(data.errors, function (key, val) {
                     //     $("#interview-request-errors-list").append("<div class='alert alert-danger'>" + val + "</div>");

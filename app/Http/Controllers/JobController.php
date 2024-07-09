@@ -112,7 +112,7 @@ class JobController extends Controller
             $allJobs = $allJobs->where('monthly_salary', '<=', $request->SearchRangeMax);
         }
         
-        $allJobs = $allJobs->paginate(10);
+        $allJobs = $allJobs->orderBy('id' , 'desc')->paginate(10);
         return view('jobs-marketplace',compact('allJobs','jobCategories'));
     }
 
@@ -162,11 +162,17 @@ class JobController extends Controller
         $jobEmployerDetail = EmployerJob::find($request->job_id);
         $candidateProfileUrl = route('candidateProfileNew' , \Crypt::encryptString(auth()->user()->id));
         $jobLink = route('jobDetails' , \Crypt::encryptString($request->job_id));
-        $existingInterviewRequest = JobInterview::where([
-                                                            'employer_job_id' => $request->job_id,
-                                                            'requested_to' => $jobEmployerDetail->posted_by,
-                                                            'requested_from' => auth()->user()->id,
-                                                        ])->count();
+        $existingInterviewRequest = JobInterview::where(function($query1) use($jobEmployerDetail) { 
+                                                        $query1->where('requested_to' , $jobEmployerDetail->posted_by)->where('requested_from' ,auth()->user()->id);
+                                                    }) 
+                                                 ->orWhere(function($query1) use($jobEmployerDetail) { 
+                                                            $query1->where('requested_to' , auth()->user()->id)->where('requested_from' ,$jobEmployerDetail->posted_by);
+                                                    })->where('employer_job_id' , $request->job_id)->count();
+        // $existingInterviewRequest = JobInterview::where([
+        //                                                     'employer_job_id' => $request->job_id,
+        //                                                     'requested_to' => $jobEmployerDetail->posted_by,
+        //                                                     'requested_from' => auth()->user()->id,
+        //                                                 ])->count();
             
         if($existingInterviewRequest){
             return response()->json(['status' => false , 'errors' => 'You have already requested an interview for the job']);
