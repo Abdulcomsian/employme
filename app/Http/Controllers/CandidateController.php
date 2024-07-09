@@ -376,6 +376,7 @@ class CandidateController extends Controller
                                             ->where('created_at','<=',$dt->copy()->endOfDay())
                                             ->latest()
                                             ->paginate(5);
+
         return view('candidate.interview.index',compact('allInterviews','latestInterviews'));
         }catch(\Exception $e){
             dd($e->getMessage());
@@ -384,10 +385,12 @@ class CandidateController extends Controller
 
     public function acceptInterview($id)
     {
-        $updateInterview = JobInterview::where('id',$id)->first();
-          $candidateDetails = User::with('candidatePersonalDetails')->find($updateInterview->requested_to);
-          $employerDetails = User::with('employerDetails')->find($updateInterview->requested_from);
-            $jobDetails = EmployerJob::find($updateInterview->employer_job_id);
+         $updateInterview = JobInterview::where('id',$id)->first();
+         $jobDetails = EmployerJob::find($updateInterview->employer_job_id);
+         $employerId = $jobDetails->posted_by; 
+         $candidateId = $updateInterview->requested_to == $employerId ? $updateInterview->requested_from : $updateInterview->requested_to;
+          $candidateDetails = User::with('candidatePersonalDetails')->find($candidateId);
+          $employerDetails = User::with('employerDetails')->find($employerId);
             $updateInterview->status = 1;
           if($updateInterview->save())
           {
@@ -399,10 +402,12 @@ class CandidateController extends Controller
     public function rejectInterview($id)
     {
         $updateInterview = JobInterview::where('id',$id)->first();
-        $candidateDetails = User::with('candidatePersonalDetails')->find($updateInterview->requested_to);
-        $employerDetails = User::with('employerDetails')->find($updateInterview->requested_from);
-          $jobDetails = EmployerJob::find($updateInterview->employer_job_id);
-          $updateInterview->status = 2;
+        $jobDetails = EmployerJob::find($updateInterview->employer_job_id);
+        $employerId = $jobDetails->posted_by; 
+        $candidateId = $updateInterview->requested_to == $employerId ? $updateInterview->requested_from : $updateInterview->requested_to;
+        $candidateDetails = User::with('candidatePersonalDetails')->find($candidateId);
+        $employerDetails = User::with('employerDetails')->find($employerId);
+        $updateInterview->status = 2;
         if($updateInterview->save())
         {
           toastr()->success('Interview Rejected Successfully');
