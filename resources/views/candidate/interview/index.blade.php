@@ -232,7 +232,7 @@ Interview Request
                                                 <span></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                @if($interview->requested_to == auth()->user()->id && $interview->rescheduled_by != auth()->user()->id && in_array($interview->status , [0 , 5 ]) )
+                                                @if(($interview->requested_from != auth()->user()->id && $interview->status == 0) || ($interview->rescheduled_by != auth()->user()->id && $interview->status == 5 ))
                                                     <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                                     document.getElementById('accept-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Accept</a></li>
                                                     <form id="accept-form-{{$interview->id}}" action="{{ route('candidate.acceptInterview', $interview->id) }}" method="POST" style="display: none;">
