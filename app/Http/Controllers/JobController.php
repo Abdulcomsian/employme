@@ -162,12 +162,12 @@ class JobController extends Controller
         $jobEmployerDetail = EmployerJob::find($request->job_id);
         $candidateProfileUrl = route('candidateProfileNew' , \Crypt::encryptString(auth()->user()->id));
         $jobLink = route('jobDetails' , \Crypt::encryptString($request->job_id));
-        $existingInterviewRequest = JobInterview::where(function($query1) use($jobEmployerDetail) { 
-                                                        $query1->where('requested_to' , $jobEmployerDetail->posted_by)->where('requested_from' ,auth()->user()->id);
-                                                    }) 
-                                                 ->orWhere(function($query1) use($jobEmployerDetail) { 
-                                                            $query1->where('requested_to' , auth()->user()->id)->where('requested_from' ,$jobEmployerDetail->posted_by);
-                                                    })->where('employer_job_id' , $request->job_id)->count();
+        $existingInterviewRequest = JobInterview::where(function($query){
+                                                                $query->where('requested_to' , auth()->user()->id)
+                                                                    ->orWhere('requested_from' , auth()->user()->id);
+                                                        })
+                                                        ->where('employer_job_id' , $request->job_id)
+                                                        ->count();
         // $existingInterviewRequest = JobInterview::where([
         //                                                     'employer_job_id' => $request->job_id,
         //                                                     'requested_to' => $jobEmployerDetail->posted_by,
