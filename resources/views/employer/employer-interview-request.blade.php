@@ -272,7 +272,7 @@ Interview Request
                                                     document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a>
                                                 </li>  -->
 
-                                                @if(($interview->requested_to == auth()->user()->id || in_array($interview->status ,[ 0 , 5 ])) && !in_array($interview->status ,[ 3,  4, 2 , 6 , 7]) && $interview->rescheduled_by != auth()->user()->id)
+                                                @if( ($interview->requested_from != auth()->user()->id && $interview->status == 0 ) || ($interview->rescheduled_by != auth()->user()->id && $interview->status ==  5) )
                                                 <li class="dropdown-item approve-interview interview-status" data-interview-id="{{$interview->id}}" data-status="4" ><img src="{{asset('assets/images/accept.png')}}" data-src="{{asset('assets/images/icon/accept.png')}}" alt="" class="lazy-img">Approve</li> 
                                                 <li class="dropdown-item reject-interview interview-status" data-interview-id="{{$interview->id}}" data-status="2"><img src="{{asset('assets/images/reject.png')}}" data-src="{{asset('assets/images/icon/reject.png')}}" alt="" class="lazy-img"> Reject</li>
                                                 @endif   
