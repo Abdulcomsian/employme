@@ -367,7 +367,6 @@ class CandidateController extends Controller
                                         })
                                         ->latest()
                                         ->paginate(5);
-                                        dd("first half");
         $latestInterviews = JobInterview::with('jobDetails','employer.employerDetails' , 'requestTo.employerDetails' , 'requestFrom.employerDetails')
                                             ->where(function($query){
                                                 $query->where('requested_to' , auth()->user()->id)
