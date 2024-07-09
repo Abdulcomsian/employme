@@ -199,7 +199,7 @@ Interview Request
                                     switch($interview->status){
                                             case 1:
                                                 $status = 'active';
-                                                $message = 'Scheduled';
+                                                $message = 'Pending';
                                             break;
                                             case 2:
                                                 $status = 'expired';
@@ -210,7 +210,7 @@ Interview Request
                                                 $message = 'Conducted';
                                             break;
                                             case 4:
-                                                $status = 'expired';
+                                                $status = 'active';
                                                 $message = 'Approved';
                                             break;
                                             case 5:
@@ -424,7 +424,7 @@ Interview Request
                                 switch($interview->status){
                                             case 1:
                                                 $status = 'active';
-                                                $message = 'Scheduled';
+                                                $message = 'Pending';
                                             break;
                                             case 2:
                                                 $status = 'expired';
@@ -435,7 +435,7 @@ Interview Request
                                                 $message = 'Conducted';
                                             break;
                                             case 4:
-                                                $status = 'expired';
+                                                $status = 'active';
                                                 $message = 'Approved';
                                             break;
                                             case 5:
