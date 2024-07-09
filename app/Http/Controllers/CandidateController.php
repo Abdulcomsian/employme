@@ -367,6 +367,7 @@ class CandidateController extends Controller
                                         })
                                         ->latest()
                                         ->paginate(5);
+                                        dd("first half");
         $latestInterviews = JobInterview::with('jobDetails','employer.employerDetails' , 'requestTo.employerDetails' , 'requestFrom.employerDetails')
                                             ->where(function($query){
                                                 $query->where('requested_to' , auth()->user()->id)
@@ -376,7 +377,7 @@ class CandidateController extends Controller
                                             ->where('created_at','<=',$dt->copy()->endOfDay())
                                             ->latest()
                                             ->paginate(5);
-                                            
+                                            dd("second half");
         return view('candidate.interview.index',compact('allInterviews','latestInterviews'));
         }catch(\Exception $e){
             dd($e->getMessage());
