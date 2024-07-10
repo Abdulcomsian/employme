@@ -167,7 +167,7 @@ class EmployerJobController extends Controller
                 'interview_date'=>$request->interview_date,
                 'interview_time'=>$request->interview_time,
                 'meeting_media'=>$request->reschedule_meeting,
-                'status'=>0,
+                'status'=> 1,
                 'employer_job_id'=>$jobApplicationDetails->employer_job_id
     
             ]);    

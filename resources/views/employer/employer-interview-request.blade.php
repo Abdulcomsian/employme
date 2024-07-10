@@ -194,7 +194,6 @@ Interview Request
                             <tbody class="border-0">
                                 @isset($allInterviews)
                                 @foreach($allInterviews as $interview)
-                               
                                 @php 
                                     switch($interview->status){
                                             case 1:
@@ -219,11 +218,11 @@ Interview Request
                                             break;
                                             case 6:
                                                 $status = 'expired';
-                                                $message = 'Decline';
+                                                $message = 'Selected';
                                             break;
                                             case 7:
                                                 $status = 'expired';
-                                                $message = 'Selected';
+                                                $message = 'Decline';
                                             break;
                                             default:
                                                 $status = 'active';
@@ -256,7 +255,7 @@ Interview Request
                                     @endif
                                     <!-- <td><div class="job-application"><a href="{{route('employer.JobListingCandidate', ['id'=>$interview->jobDetails->id])}}">{{totalApplicants($interview->jobDetails->id)}} Applications</a><div></td> -->
                                     <td>
-                                        <div class="job-status @if($interview->status == 0 && $interview->requested_from != auth()->user()->id) blink text-danger @endif">{{$message}}</div>
+                                        <div class="job-status @if($interview->status == 1 && $interview->requested_from != auth()->user()->id) blink text-danger @endif">{{$message}}</div>
                                     </td>
                                  
                                     <td>
@@ -272,12 +271,12 @@ Interview Request
                                                     document.getElementById('reject-form-{{$interview->id}}').submit();"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Reject</a>
                                                 </li>  -->
 
-                                                @if( ($interview->requested_from != auth()->user()->id && $interview->status == 0 ) || ($interview->rescheduled_by != auth()->user()->id && $interview->status ==  5) )
+                                                @if( ($interview->requested_from != auth()->user()->id && $interview->status == 1 ) || ($interview->rescheduled_by != auth()->user()->id && $interview->status ==  5) )
                                                 <li class="dropdown-item approve-interview interview-status" data-interview-id="{{$interview->id}}" data-status="4" ><img src="{{asset('assets/images/accept.png')}}" data-src="{{asset('assets/images/icon/accept.png')}}" alt="" class="lazy-img">Approve</li> 
                                                 <li class="dropdown-item reject-interview interview-status" data-interview-id="{{$interview->id}}" data-status="2"><img src="{{asset('assets/images/reject.png')}}" data-src="{{asset('assets/images/icon/reject.png')}}" alt="" class="lazy-img"> Reject</li>
                                                 @endif   
 
-                                                @if(in_array($interview->status , [4])  && $interview->rescheduled_by != auth()->user()->id)
+                                                @if(in_array($interview->status , [4]))
                                                 <li><a class="dropdown-item conduct-interview interview-status" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/Accept.svg')}}" alt="" class="lazy-img"> Conducted</a></li>    
                                                 @endif
 
@@ -288,11 +287,11 @@ Interview Request
                                                 @endif
 
 
-                                                @if(in_array($interview->status , [0, 1 , 2 ,  4 , 5 ]) )
+                                                @if(in_array($interview->status , [1 , 2 , 3,  4 , 5 ]) )
                                                 <li><a class="dropdown-item reschedule-interview" href="#" data-bs-toggle="modal"  id="{{$interview->id}}" data-interview-id="{{$interview->id}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
                                                 @endif
 
-                                                @if(in_array($interview->status , [1 , 4 , 2 , 3 , 5 , 6 , 7]))
+                                                @if(!($interview->requested_from == auth()->user()->id && $interview->status == 1)  &&   !($interview->requested_from == auth()->user()->id && $interview->status == 2)  )
                                                 <li><a class="dropdown-item add-to-chat" href="javascript:void(0)" data-candidate-id="{{$candidateId}}" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/chat.png')}}" data-src="{{asset('assets/images/chat.png')}}" alt="" class="lazy-img"> Add to Chat</a></li>
                                                 @endif
                                                 
@@ -615,12 +614,6 @@ Interview Request
                         candidateId : candidateId
                     },
                     success : function(res){
-                        if(res.status)
-                        {
-                            toastr.success(res.msg);    
-                        }else{
-                            toastr.error(res.error)
-                        }
                         window.location = "{{route('getEmployerDashboardMessage')}}"+"/"+candidateId;
                     }
                 })

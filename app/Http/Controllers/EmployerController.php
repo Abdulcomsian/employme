@@ -380,7 +380,7 @@ class EmployerController extends Controller
                 'interview_date'=>$request->interview_date,
                 'interview_time'=>$request->interview_time,
                 'meeting_media'=>$request->meeting_media,
-                'status'=>0,
+                'status'=> 1,
                 'employer_job_id'=>$jobId
     
             ]);

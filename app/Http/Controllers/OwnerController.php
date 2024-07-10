@@ -108,6 +108,7 @@ class OwnerController extends Controller
         $latestJobs = EmployerJob::with('employerDetails','employerInfo')
         ->where('created_at', '>=', $dt2->copy()->startOfDay())
         ->where('created_at', '<=', $dt->copy()->endOfDay())
+        ->orderBy('id' , 'desc')
         ->paginate(5);
         return view('owner.jobs.index',get_defined_vars());
     }

@@ -389,9 +389,9 @@ class CandidateController extends Controller
          $jobDetails = EmployerJob::find($updateInterview->employer_job_id);
          $employerId = $jobDetails->posted_by; 
          $candidateId = $updateInterview->requested_to == $employerId ? $updateInterview->requested_from : $updateInterview->requested_to;
-          $candidateDetails = User::with('candidatePersonalDetails')->find($candidateId);
-          $employerDetails = User::with('employerDetails')->find($employerId);
-            $updateInterview->status = 1;
+         $candidateDetails = User::with('candidatePersonalDetails')->find($candidateId);
+         $employerDetails = User::with('employerDetails')->find($employerId);
+         $updateInterview->status = 4;
           if($updateInterview->save())
           {
             toastr()->success('Interview Accepted Successfully');

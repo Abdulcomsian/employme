@@ -11317,6 +11317,11 @@ height: 15rem;
   animation: blinker 1s linear infinite;
 }
 
+.active .blink {
+  color : white;
+  margin-left: -6px;
+}
+
 @keyframes blinker {
   50% {
     opacity: 0;
