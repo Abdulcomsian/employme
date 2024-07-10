@@ -1,4 +1,3 @@
-@dd("Hello")
 <div class="email-header divider d-flex justify-content-between d-flex flex-column flex-grow-1">
     <div class="sender-info d-flex align-items-center">
         @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
