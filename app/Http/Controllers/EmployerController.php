@@ -357,14 +357,14 @@ class EmployerController extends Controller
         $urlParts = explode('/', $request->job_link);
         $jobId = end($urlParts);
         $jobId = Crypt::decryptString($jobId);
+        $candidateId = $request->candidate_id;
 
-        $existingInterviewRequest = JobInterview::where(function($query){
-                                                        $query->where('requested_to' , auth()->user()->id)
-                                                            ->orWhere('requested_from' , auth()->user()->id);
+        $existingInterviewRequest = JobInterview::where(function($query) use ($candidateId){
+                                                        $query->where('requested_to' , $candidateId)
+                                                            ->orWhere('requested_from' , $candidateId);
                                                 })
                                                 ->where('employer_job_id' , $jobId)
                                                 ->get();
-        dd($existingInterviewRequest);
 
         if($existingInterviewRequest === 0 ){
 
