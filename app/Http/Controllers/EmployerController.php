@@ -335,6 +335,7 @@ class EmployerController extends Controller
 
     public function jobInterviewRequest(Request $request)
     {
+        dd($request->all());
         if (\App::environment('local')) {
             $regexPattern = '/\b(?:(?:http?|ftp):\/\/|www\.)((localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})|[-a-z0-9+&@#\/%?=~_|!:,.;])*[-a-z0-9+&@#\/%=~_|]/i';
         } else {
