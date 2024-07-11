@@ -347,14 +347,14 @@ class EmployerController extends Controller
             'interview_time'=>'required',
         ]);
         
-        dd("now here 1");
         if ($validator->fails()){
             return response()->json([
-                    "status" => false,
-                    "error" => implode(", " , $validator->errors()->all())
-                ]);
-            }
-           
+                "status" => false,
+                "error" => implode(", " , $validator->errors()->all())
+            ]);
+        }
+        
+        dd("Hi man");
         $urlParts = explode('/', $request->job_link);
         $jobId = end($urlParts);
         $jobId = Crypt::decryptString($jobId);
