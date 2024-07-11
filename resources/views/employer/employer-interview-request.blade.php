@@ -193,7 +193,10 @@ Interview Request
                             </thead>
                             <tbody class="border-0">
                                 @isset($allInterviews)
-                                @foreach($allInterviews as $interview)
+                                @foreach($allInterviews as $index =>  $interview)
+                                @if($index == 2)
+                                    @dd($interview)
+                                @endif
                                 @php 
                                     switch($interview->status){
                                             case 1:
@@ -238,7 +241,7 @@ Interview Request
                                             $candidateId = $interview->requestFrom->id !== auth()->user()->id ? $interview->requestFrom->id : $interview->requestTo->id;
                                             $profileUrl = route('candidateProfileNew', \Crypt::encryptString($candidateId));
                                         @endphp 
-                                        <div class="job-name job-title fw-500"><a href="{{$profileUrl}}">{{$interview->jobCandidate->candidatePersonalDetails->first_name ?? $candidateName}} here1</a></div>
+                                        <div class="job-name job-title fw-500"><a href="{{$profileUrl}}">{{$interview->jobCandidate->candidatePersonalDetails->first_name ?? $candidateName}}</a></div>
                                     </td>
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
@@ -458,7 +461,7 @@ Interview Request
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
-                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->first_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->middle_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->last_name ?? ''}} here2</a></div>
+                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->first_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->middle_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->last_name ?? ''}}</a></div>
                                     </td>
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
