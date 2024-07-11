@@ -194,9 +194,6 @@ Interview Request
                             <tbody class="border-0">
                                 @isset($allInterviews)
                                 @foreach($allInterviews as $index =>  $interview)
-                                @if($index == 2)
-                                    @dd($interview)
-                                @endif
                                 @php 
                                     switch($interview->status){
                                             case 1:
