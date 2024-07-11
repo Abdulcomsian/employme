@@ -363,7 +363,7 @@ class EmployerController extends Controller
                                                             ->orWhere('requested_from' , auth()->user()->id);
                                                 })
                                                 ->where('employer_job_id' , $jobId)
-                                                ->count();
+                                                ->get();
         dd($existingInterviewRequest);
 
         if($existingInterviewRequest === 0 ){
