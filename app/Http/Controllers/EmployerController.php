@@ -354,7 +354,6 @@ class EmployerController extends Controller
             ]);
         }
         
-        dd("Hi man");
         $urlParts = explode('/', $request->job_link);
         $jobId = end($urlParts);
         $jobId = Crypt::decryptString($jobId);
