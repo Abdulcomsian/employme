@@ -238,7 +238,7 @@ Interview Request
                                             $candidateId = $interview->requestFrom->id !== auth()->user()->id ? $interview->requestFrom->id : $interview->requestTo->id;
                                             $profileUrl = route('candidateProfileNew', \Crypt::encryptString($candidateId));
                                         @endphp 
-                                        <div class="job-name job-title fw-500"><a href="{{$profileUrl}}">{{$candidateName}}</a></div>
+                                        <div class="job-name job-title fw-500"><a href="{{$profileUrl}}">{{$interview->jobCandidate->candidatePersonalDetails->first_name ?? $candidateName}}</a></div>
                                     </td>
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
