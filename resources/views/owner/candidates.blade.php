@@ -79,7 +79,7 @@ h4 {
 <div class="dashboard-body">
     <div class="position-relative">
         <!-- ************************ Header **************************** -->
-        <header class="dashboard-header">
+        <!-- <header class="dashboard-header">
             <div class="d-flex align-items-center justify-content-end">
                 <button class="dash-mobile-nav-toggler d-block d-md-none me-auto">
                     <span></span>
@@ -124,7 +124,7 @@ h4 {
                 </div>
                 <div><a href="{{ route('postAJob') }}" class="job-post-btn tran3s">Post a Job</a></div>
             </div>
-        </header>
+        </header> -->
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">Candidates</h2>

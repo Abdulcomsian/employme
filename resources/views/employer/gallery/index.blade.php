@@ -64,7 +64,7 @@ Interview Request
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">Gallery</h2>
-            {{--<div class="d-flex ms-auto xs-mt-30">
+            <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab" aria-selected="true">All</button>
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#a2" type="button" role="tab" aria-selected="false">New</button>
@@ -77,7 +77,7 @@ Interview Request
                         <option value="2">Expired</option>
                     </select>
                 </div>
-            </div>--}}
+            </div>
         </div>
 
         <div class="bg-white card-box border-20">

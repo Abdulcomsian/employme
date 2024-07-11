@@ -23,7 +23,7 @@
 				<button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="background: transparent !important;color:#000;">
 					{{auth()->user()->name}}
 				</button>
-				<ul class="dropdown-menu" aria-labelledby="profile-dropdown">
+				<ul class="dropdown-menu" id="profile-dropdown-menu" aria-labelledby="profile-dropdown">
 					<li>
 					<a class="dropdown-item d-flex align-items-center" href="{{url('company-about-us/'.\Crypt::encryptString(auth()->user()->id))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>
 						<!-- <a class="dropdown-item d-flex align-items-center" href="{{route('getEmployerProfile')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a> -->
@@ -31,10 +31,6 @@
 					<li>
 						<a class="dropdown-item d-flex align-items-center" href="{{route('getEmployerDashboardSettings')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_24.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Account Settings</span></a>
 					</li>
-				{{--
-					<li>
-						<a class="dropdown-item d-flex align-items-center" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_25.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Notification</span></a>
-					</li>--}}
 				</ul>
 			</div>
 		</div>

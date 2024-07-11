@@ -10,7 +10,7 @@ Saved Candidate
 		 	@include('employer.layout.header_menu')
         <!-- End Header -->
 
-        <div class="d-flex align-items-center justify-content-between mb-40 lg-mb-30">
+        <!-- <div class="d-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">Saved Candidate</h2>
             <div class="short-filter d-flex align-items-center">
                 <div class="text-dark fw-500 me-2">Short by:</div>
@@ -20,7 +20,7 @@ Saved Candidate
                     <option value="2">Expired</option>
                 </select>
             </div>
-        </div>
+        </div> -->
 
         <div class="wrapper">
         @if(!$employerSavedCandidates->isEmpty())

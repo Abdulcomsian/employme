@@ -24,7 +24,7 @@ Savced Jobs
          @include('candidate.layout.header_menu')
          <!-- End Header -->
 
-        <div class="d-flex align-items-center justify-content-between mb-40 lg-mb-30">
+        <!-- <div class="d-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">Saved Jobs</h2>
             <div class="short-filter d-flex align-items-center">
                 <div class="text-dark fw-500 me-2">Short by:</div>
@@ -34,7 +34,7 @@ Savced Jobs
                     <option value="2">Job Type</option>
                 </select>
             </div>
-        </div>
+        </div> -->
 
         <div class="wrapper">
             @if(!$candidateSavedJobs->isEmpty())

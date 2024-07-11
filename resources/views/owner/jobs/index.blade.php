@@ -41,11 +41,11 @@ Job Listing
                 <button class="dash-mobile-nav-toggler d-block d-md-none me-auto">
                     <span></span>
                 </button>
-                <form action="#" class="search-form">
+                <!-- <form action="#" class="search-form">
                     <input type="text" placeholder="Search here..">
                     <button><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_10.svg')}}" alt="" class="lazy-img m-auto"></button>
-                </form>
-                <div class="profile-notification ms-2 ms-md-5 me-4">
+                </form> -->
+                <!-- <div class="profile-notification ms-2 ms-md-5 me-4">
                     <button class="noti-btn dropdown-toggle" type="button" id="notification-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                         <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_11.svg')}}" alt="" class="lazy-img">
                         <div class="badge-pill"></div>
@@ -78,13 +78,13 @@ Job Listing
                             </ul>
                         </li>
                     </ul>
-                </div>
+                </div> -->
                 <div><a href="{{route('jobMarketplace')}}" class="job-post-btn tran3s">Job Marketplace</a></div>
             </div>
         </header>
         <!-- End Header -->
 
-        <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
+        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">Jobs</h2>
             <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
@@ -100,7 +100,7 @@ Job Listing
                     </select>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="bg-white card-box border-20">
             <div class="tab-content" id="nav-tabContent">
@@ -111,7 +111,7 @@ Job Listing
                                 <tr>
                                     <th scope="col">Title</th>
                                     <th scope="col">Job Created</th>
-                                    <th scope="col">Applicants</th>
+                                    <!-- <th scope="col">Applicants</th> -->
                                     <th scope="col">Posted by</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
@@ -127,12 +127,11 @@ Job Listing
                                     </td>
                                     <td>{{date('d M, Y',strtotime($employerJob->created_at))}}</td>
                                     <td>{{$employerJob->employerDetails->institution ?? ''}}</td>
-                                    <td><div class="job-title"><a href="{{route('owner.JobListingCandidate', ['id'=>$employerJob->id])}}">{{totalApplicants($employerJob->id) ?? ''}} Applications</a></div></td>
                                     <td>
                                         <div class="job-status">Active</div>
                                     </td>
                                     <td>
-                                        <div class="action-dots float-end">
+                                        <div class="action-dots float-center">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>

@@ -156,7 +156,7 @@ Interview Request
 		 	@include('employer.layout.header_menu')
         <!-- End Header -->
 
-        <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
+        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">Interview Requests</h2>
             <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
@@ -172,7 +172,7 @@ Interview Request
                     </select>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="bg-white card-box border-20">
             <div class="tab-content" id="nav-tabContent">

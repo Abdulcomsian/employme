@@ -10,7 +10,7 @@ Job Categories
 <div class="dashboard-body">
     <div class="position-relative">
         <!-- ************************ Header **************************** -->
-        <header class="dashboard-header">
+        <!-- <header class="dashboard-header">
             <div class="d-flex align-items-center justify-content-end">
                 <button class="dash-mobile-nav-toggler d-block d-md-none me-auto">
                     <span></span>
@@ -55,15 +55,15 @@ Job Categories
                 </div>
                 <div><a href="{{ route('postAJob') }}" class="job-post-btn tran3s">Post a Job</a></div>
             </div>
-        </header>
+        </header> -->
 
-        <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
+        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">Job Categories</h2>
             <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab" aria-selected="true">All</button>
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#a2" type="button" role="tab" aria-selected="false">New</button>
-                </div>
+            </div>
                 <div class="short-filter d-flex align-items-center ms-auto">
                     <div class="text-dark fw-500 me-2">Short by:</div>
                     <select class="nice-select">
@@ -74,7 +74,7 @@ Job Categories
                     </select>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="bg-white card-box border-20">
         <a href="#" class="dash-btn-one Add-Module-Button m-2" type="button" data-bs-toggle="modal" data-bs-target="#Add-Job-Category-Modal"><i class="bi bi-plus"></i> Job-Category</a>

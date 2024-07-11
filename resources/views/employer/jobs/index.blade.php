@@ -79,7 +79,7 @@ Job Listing
             @include('employer.layout.header_menu')
         <!-- End Header -->
 
-        <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
+        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">My Jobs</h2>
             <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
@@ -95,7 +95,7 @@ Job Listing
                     </select>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="bg-white card-box border-20">
                 <div><a href="{{route('employer-jobs.create')}}" class="job-post-btn create-job-btn">Post a Job</a></div>
@@ -179,78 +179,7 @@ Job Listing
                                 </tr>
                                 @endforeach
                                 @endisset
-                                <!-- <tr class="pending">
-                                    <td>
-                                        <div class="job-name fw-500">Marketing Specialist</div>
-                                        <div class="info1">Part-time . Uk</div>
-                                    </td>
-                                    <td>05 Jun, 2022</td>
-                                    <td>20 Applicants</td>
-                                    <td>
-                                        <div class="job-status">Pending</div>
-                                    </td>
-                                    <td>
-                                        <div class="action-dots float-end">
-                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="expired">
-                                    <td>
-                                        <div class="job-name fw-500">Accounting Manager</div>
-                                        <div class="info1">Fulltime . USA</div>
-                                    </td>
-                                    <td>27 Sep, 2021</td>
-                                    <td>273 Applicants</td>
-                                    <td>
-                                        <div class="job-status">Expired</div>
-                                    </td>
-                                    <td>
-                                        <div class="action-dots float-end">
-                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="active">
-                                    <td>
-                                        <div class="job-name fw-500">Developer for IT company</div>
-                                        <div class="info1">Fulltime . Germany</div>
-                                    </td>
-                                    <td>14 Feb, 2021</td>
-                                    <td>70 Applicants</td>
-                                    <td>
-                                        <div class="job-status">Active</div>
-                                    </td>
-                                    <td>
-                                        <div class="action-dots float-end">
-                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr> -->
+                               
                             </tbody>
                         </table>
                         <!-- /.table job-alert-table -->
@@ -332,80 +261,7 @@ Job Listing
                                 </tr>
                                 @endforeach
                                 @endisset
-                                {{--
-                                <tr class="active">
-                                    <td>
-                                        <div class="job-name fw-500">Brand & Producr Designer</div>
-                                        <div class="info1">Fulltime . Spain</div>
-                                    </td>
-                                    <td>13 Aug, 2022</td>
-                                    <td>130 Applications</td>
-                                    <td>
-                                        <div class="job-status">Active</div>
-                                    </td>
-                                    <td>
-                                        <div class="action-dots float-end">
-                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="active">
-                                    <td>
-                                        <div class="job-name fw-500">Developer for IT company</div>
-                                        <div class="info1">Fulltime . Germany</div>
-                                    </td>
-                                    <td>14 Feb, 2021</td>
-                                    <td>70 Applicants</td>
-                                    <td>
-                                        <div class="job-status">Active</div>
-                                    </td>
-                                    <td>
-                                        <div class="action-dots float-center">
-                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="expired">
-                                    <td>
-                                        <div class="job-name fw-500">Accounting Manager</div>
-                                        <div class="info1">Fulltime . USA</div>
-                                    </td>
-                                    <td>27 Sep, 2021</td>
-                                    <td>273 Applicants</td>
-                                    <td>
-                                        <div class="job-status">Expired</div>
-                                    </td>
-                                    <td>
-                                        <div class="action-dots float-end">
-                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                     --}}
+                               
 
                             </tbody>
                         </table>

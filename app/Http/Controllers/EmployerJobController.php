@@ -26,6 +26,7 @@ class EmployerJobController extends Controller
         $latestJobs = EmployerJob::where('posted_by',Auth::id())
         ->where('created_at', '>=', $dt2->copy()->startOfDay())
         ->where('created_at', '<=', $dt->copy()->endOfDay())
+        ->orderBy('id' , 'desc')
         ->paginate(5);
         return view('employer.jobs.index',get_defined_vars());
     }
