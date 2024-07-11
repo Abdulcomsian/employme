@@ -366,8 +366,8 @@ class EmployerController extends Controller
                                                 })
                                                 ->where('employer_job_id' , $jobId)
                                                 ->count();
+        dd($existingInterviewRequest);
 
-dd($existingInterviewRequest );
         if($existingInterviewRequest === 0 ){
 
             $candidateDetails = User::with('candidatePersonalDetails')->find($request->candidate_id);
