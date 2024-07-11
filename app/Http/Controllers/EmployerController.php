@@ -345,10 +345,9 @@ class EmployerController extends Controller
             'meeting_media'=>'string|nullable',
             'interview_date'=>'required',
             'interview_time'=>'required',
-            'job_link' => ['url', 'regex:'.$regexPattern],
-            'job_link' => ['required', new ValidateJobLink($request->candidate_id)]
         ]);
-
+        
+        dd("now here 1");
         if ($validator->fails()){
             return response()->json([
                     "status" => false,
@@ -356,7 +355,6 @@ class EmployerController extends Controller
                 ]);
             }
            
-            dd("now here 1");
         $urlParts = explode('/', $request->job_link);
         $jobId = end($urlParts);
         $jobId = Crypt::decryptString($jobId);
