@@ -224,6 +224,10 @@ Interview Request
                                                 $status = 'expired';
                                                 $message = 'Decline';
                                             break;
+                                            case 9:
+                                                $status = 'expired';
+                                                $message = 'Canceled';
+                                            break;
                                             default:
                                                 $status = 'active';
                                                 $message = 'Scheduled';
@@ -287,22 +291,19 @@ Interview Request
                                                 @endif
 
 
-                                                @if(in_array($interview->status , [1 , 2 , 3,  4 , 5 ]) )
+                                                @if(in_array($interview->status , [1 , 2 , 3,  4 , 5 ]) || ($interview->requested_from  == auth()->user()->id && $interview->status == 9))
                                                 <li><a class="dropdown-item reschedule-interview" href="#" data-bs-toggle="modal"  id="{{$interview->id}}" data-interview-id="{{$interview->id}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
                                                 @endif
 
-                                                @if(!($interview->requested_from == auth()->user()->id && $interview->status == 1)  &&   !($interview->requested_from == auth()->user()->id && $interview->status == 2)  )
+                                                @if(!($interview->requested_from == auth()->user()->id && $interview->status == 1)  &&   !($interview->requested_from == auth()->user()->id && $interview->status == 2) &&  !($interview->requested_from == auth()->user()->id && $interview->status == 9)  )
                                                 <li><a class="dropdown-item add-to-chat" href="javascript:void(0)" data-candidate-id="{{$candidateId}}" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/chat.png')}}" data-src="{{asset('assets/images/chat.png')}}" alt="" class="lazy-img"> Add to Chat</a></li>
                                                 @endif
                                                 
 
+                                                @if($interview->requested_from  == auth()->user()->id && $interview->status != 9)
+                                                <li><a class="dropdown-item cancel-request" href="javascript:void(0)" data-employer-id="{{$interview->employer->id}}" data-interview-id="{{$interview->id}}" data-status="9"><img src="{{asset('assets/images/icon/Reject.svg')}}" height="22px" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Cancel</a></li>
+                                                @endif
 
-                                                <!-- <form id="accept-form-{{$interview->id}}" action="{{ route('employer.accept_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form>
-                                                <form id="reject-form-{{$interview->id}}" action="{{ route('employer.reject_reschedule_request', $interview->id) }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form> -->
                                             </ul>
                                         </div>
                                     </td>
@@ -449,6 +450,10 @@ Interview Request
                                                 $status = 'expired';
                                                 $message = 'Selected';
                                             break;
+                                            case 9:
+                                                $status = 'expired';
+                                                $message = 'Canceled';
+                                            break;
                                             default:
                                                 $status = 'active';
                                                 $message = 'Scheduled';
@@ -512,6 +517,10 @@ Interview Request
                                                 <form id="conducted-form-{{$interview->id}}" action="{{ route('employer.interview.conducted', $interview->id) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 </form>
+
+                                                @if($interview->requested_from  == auth()->user()->id && $interview->status != 9)
+                                                <li><a class="dropdown-item cancel-request" href="javascript:void(0)" data-employer-id="{{$interview->employer->id}}" data-interview-id="{{$interview->id}}" data-status="9"><img src="{{asset('assets/images/icon/Reject.svg')}}" height="22px" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Cancel</a></li>
+                                                @endif
                                                
                                             </ul>
                                         </div>
@@ -602,6 +611,48 @@ Interview Request
 
                 return true;
             }
+
+
+            
+    $(document).on("click" , ".cancel-request" ,  function(e){
+        let interviewId = this.dataset.interviewId;
+
+            Swal.fire({
+            title: "Are you sure you wanted to cancel it?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, cancel it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    cancelInterviewStatus( interviewId)  
+                }
+            });
+
+    
+        
+    })
+
+    function cancelInterviewStatus(interviewId)
+    {
+        $.ajax({
+            url : '{{route("employer.cancelInterviewRequest")}}',
+            type : 'Post',
+            data : {
+                interviewId : interviewId, 
+                _token : '{{csrf_token()}}',
+            },
+            success : function(res){
+                if(res.status){
+                    toastr.success(res.msg)
+                } else {
+                    toastr.error(res.error)
+                    location.reload();
+                }
+            }
+        })
+    }
         
             $(document).on("click" , ".add-to-chat" , function(e){
                 let candidateId = this.dataset.candidateId;

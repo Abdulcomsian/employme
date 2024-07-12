@@ -22,7 +22,10 @@ class JobInterview extends Model
         'reschedule_status',
         'requested_to',
         'status',
-        'candidate_profile_url'
+        'candidate_profile_url',
+        'employer_id',
+        'candidate_id'
+
     ];
     protected $casts = [
         'interview_date'=> 'datetime',
@@ -38,12 +41,12 @@ class JobInterview extends Model
 
     public function jobCandidate()
     {
-        return $this->belongsTo(User::class,'requested_to');
+        return $this->belongsTo(User::class,'candidate_id' , 'id');
     }
 
     public function employer()
     {
-        return $this->belongsTo(User::class,'requested_from');
+        return $this->belongsTo(User::class,'employer_id' , 'id');
     }
 
     public function requestFrom()

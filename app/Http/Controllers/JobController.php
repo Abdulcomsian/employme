@@ -188,7 +188,9 @@ class JobController extends Controller
                     'meeting_media'=>$request->meeting_media,
                     'status' => 1,
                     'employer_job_id'=>$request->job_id,
-                    'candidate_profile_url' => $candidateProfileUrl
+                    'candidate_profile_url' => $candidateProfileUrl,
+                    'employer_id' => $jobEmployerDetail->posted_by,
+                    'candidate_id'=> auth()->user()->id,
         ]);
 
 

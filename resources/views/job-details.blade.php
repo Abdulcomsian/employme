@@ -990,10 +990,12 @@ div#JobApplicationModal .modal-dialog {
 					toastr.success("Invterview request sent successfully");
                     window.location = data.redirect;
                 }else{
-                    $.each(data.errors, function (key, val) {
-                        $("#interview-request-errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
-                    });
-                }
+                    toastr.error(data.errors);
+					document.querySelector("#loadingIcon").classList.add("d-none")
+					document.querySelector("#buttonText").classList.remove("d-none")
+					
+					$("#JobApplicationModal").modal("hide");
+                }	
                
               },
 			  complete: function(){

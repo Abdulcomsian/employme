@@ -365,7 +365,7 @@ class EmployerController extends Controller
                                                 })
                                                 ->where('employer_job_id' , $jobId)
                                                 ->count();
-                                                
+
         if($existingInterviewRequest === 0 ){
 
             $candidateDetails = User::with('candidatePersonalDetails')->find($request->candidate_id);
@@ -379,7 +379,9 @@ class EmployerController extends Controller
                 'interview_time'=>$request->interview_time,
                 'meeting_media'=>$request->meeting_media,
                 'status'=>1,
-                'employer_job_id'=>$jobId
+                'employer_job_id'=>$jobId,
+                'employer_id' => auth()->user()->id,
+                'candidate_id' => $request->candidate_id
     
             ]);
             Notification::route('mail',  $candidateDetails->email ?? '')->notify(new InterviewRequestNotification($candidateDetails,$employerDetails,$jobDetails));
@@ -484,6 +486,17 @@ class EmployerController extends Controller
             return redirect()->back();
         }
         
+   }
+
+   public function cancelInterviewRequest(Request $request)
+   {
+        try{
+            $interviewId = $request->interviewId;
+            JobInterview::where('id' , $interviewId)->update(['status' => 9]);
+            return response()->json(['status' => true , 'msg' => 'Interview cancelled successfully']);
+        }catch(\Exception $e){
+            return response()->json(['status' => false , 'error' => $e->getMessage()]);
+        }
    }
     
 }

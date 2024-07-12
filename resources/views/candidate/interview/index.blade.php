@@ -191,6 +191,10 @@ Interview Request
                                              $status = 'expired';
                                              $message = 'Decline';
                                          break;
+                                         case 9:
+                                            $status = 'expired';
+                                            $message = 'Canceled';
+                                         break;
                                          default:
                                              $status = 'active';
                                              $message = 'Scheduled';
@@ -226,7 +230,7 @@ Interview Request
                                         <div class="job-status @if($interview->status == 1 && $interview->requested_from != auth()->user()->id) blink text-danger @endif">{{$message}}</div>
                                     </td>
                                     <td>
-                                        @if(!in_array($interview->status , [ \AppConst::INTERVIEW_REJECTED]) && !($interview->status === 1 && $interview->requested_from === auth()->user()->id))
+                                        @if(!(in_array($interview->status , [ \AppConst::INTERVIEW_REJECTED]) && $interview->requested_from === auth()->user()->id))
                                         
                                         <div class="action-dots float-center">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -246,12 +250,16 @@ Interview Request
                                                     </form>
                                                 @endif
                                                 
-                                                @if(in_array($interview->status , [ 1 , 4 , 5]) )
+                                                @if(in_array($interview->status , [ 1 , 4 , 5 ])  || ($interview->status == 9 && $interview->requested_from == auth()->user()->id))
                                                 <li><a class="dropdown-item " href="#" data-bs-toggle="modal" data-bs-target="#RescheduleRequestModal" id = "{{$interview->id}}" onclick="getInterviewId({{$interview->id}})"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/reschedule.svg')}}" alt="" class="lazy-img"> Reschedule</a></li>
                                                 @endif
                                                 
-                                                @if(!($interview->requested_from == auth()->user()->id && $interview->status == 1)  &&   !($interview->requested_from == auth()->user()->id && $interview->status == 2) )
+                                                @if(!($interview->requested_from == auth()->user()->id && $interview->status == 1)  &&   !($interview->requested_from == auth()->user()->id && $interview->status == 2)  && !($interview->status == 9 &&  $interview->requested_from == auth()->user()->id))
                                                 <li><a class="dropdown-item add-to-chat" href="javascript:void(0)" data-employer-id="{{$interview->employer->id}}" data-interview-id="{{$interview->id}}" data-status="3"><img src="{{asset('assets/images/chat.png')}}" height="22px" data-src="{{asset('assets/images/chat.png')}}" alt="" class="lazy-img"> Add to Chat</a></li>
+                                                @endif
+
+                                                @if($interview->requested_from  == auth()->user()->id && $interview->status != 9)
+                                                <li><a class="dropdown-item cancel-request" href="javascript:void(0)" data-employer-id="{{$interview->employer->id}}" data-interview-id="{{$interview->id}}" data-status="9"><img src="{{asset('assets/images/icon/Reject.svg')}}" height="22px" data-src="{{asset('assets/images/icon/Reject.svg')}}" alt="" class="lazy-img"> Cancel</a></li>
                                                 @endif
                                             </ul>
                                         </div>
@@ -261,80 +269,7 @@ Interview Request
                                 </tr>
                                 @endforeach
                                 @endisset
-                            {{--
-                                <tr class="pending">
-                                    <td>
-                                        <div class="job-name fw-500">Marketing Specialist</div>
-                                        <div class="info1">Part-time . Uk</div>
-                                    </td>
-                                    <td>05 Jun, 2022</td>
-                                    <td>20 Applicants</td>
-                                    <td>
-                                        <div class="job-status @if($interview->requested_from != auth()->user()->id ) blink text-danger @endif">Pending</div>
-                                    </td>
-                                    <td>
-                                        <div class="action-dots float-end">
-                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="expired">
-                                    <td>
-                                        <div class="job-name fw-500">Accounting Manager</div>
-                                        <div class="info1">Fulltime . USA</div>
-                                    </td>
-                                    <td>27 Sep, 2021</td>
-                                    <td>273 Applicants</td>
-                                    <td>
-                                        <div class="job-status">Expired</div>
-                                    </td>
-                                    <td>
-                                        <div class="action-dots float-end">
-                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="active">
-                                    <td>
-                                        <div class="job-name fw-500">Developer for IT company</div>
-                                        <div class="info1">Fulltime . Germany</div>
-                                    </td>
-                                    <td>14 Feb, 2021</td>
-                                    <td>70 Applicants</td>
-                                    <td>
-                                        <div class="job-status">Active</div>
-                                    </td>
-                                    <td>
-                                        <div class="action-dots float-end">
-                                            <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                       --}}
+                            
                             </tbody>
                         </table>
                         <!-- /.table job-alert-table -->
@@ -390,6 +325,10 @@ Interview Request
                                             case 7:
                                                 $status = 'expired';
                                                 $message = 'Decline';
+                                            break;
+                                            case 9:
+                                                $status = 'expired';
+                                                $message = 'Canceled';
                                             break;
                                             default:
                                                 $status = 'active';
@@ -460,80 +399,7 @@ Interview Request
                                     </tr>
                                     @endforeach
                                     @endisset
-                                {{--
-                                    <tr class="active">
-                                        <td>
-                                            <div class="job-name fw-500">Brand & Producr Designer</div>
-                                            <div class="info1">Fulltime . Spain</div>
-                                        </td>
-                                        <td>13 Aug, 2022</td>
-                                        <td>130 Applications</td>
-                                        <td>
-                                            <div class="job-status">Active</div>
-                                        </td>
-                                        <td>
-                                            <div class="action-dots float-end">
-                                                <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <span></span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="active">
-                                        <td>
-                                            <div class="job-name fw-500">Developer for IT company</div>
-                                            <div class="info1">Fulltime . Germany</div>
-                                        </td>
-                                        <td>14 Feb, 2021</td>
-                                        <td>70 Applicants</td>
-                                        <td>
-                                            <div class="job-status">Active</div>
-                                        </td>
-                                        <td>
-                                            <div class="action-dots float-end">
-                                                <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <span></span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="expired">
-                                        <td>
-                                            <div class="job-name fw-500">Accounting Manager</div>
-                                            <div class="info1">Fulltime . USA</div>
-                                        </td>
-                                        <td>27 Sep, 2021</td>
-                                        <td>273 Applicants</td>
-                                        <td>
-                                            <div class="job-status">Expired</div>
-                                        </td>
-                                        <td>
-                                            <div class="action-dots float-end">
-                                                <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <span></span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_18.svg')}}" alt="" class="lazy-img"> View</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_19.svg')}}" alt="" class="lazy-img"> Share</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_20.svg')}}" alt="" class="lazy-img"> Edit</a></li>
-                                                    <li><a class="dropdown-item" href="#"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_21.svg')}}" alt="" class="lazy-img"> Delete</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                        --}}
+                               
                             </tbody>
                         </table>
                         <!-- /.table job-alert-table -->
@@ -702,6 +568,47 @@ modal.addEventListener('hidden.bs.modal', function() {
     const stars = modal.querySelectorAll('.stars i');
     stars.forEach(star => star.classList.remove('active'));
 });
+
+$(document).on("click" , ".cancel-request" ,  function(e){
+    let interviewId = this.dataset.interviewId;
+
+        Swal.fire({
+        title: "Are you sure you wanted to cancel it?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, cancel it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                cancelInterviewStatus( interviewId)  
+            }
+        });
+
+ 
+    
+})
+
+function cancelInterviewStatus(interviewId)
+{
+    $.ajax({
+        url : '{{route("candidate.cancelInterviewRequest")}}',
+        type : 'Post',
+        data : {
+            interviewId : interviewId, 
+            _token : '{{csrf_token()}}',
+        },
+        success : function(res){
+            if(res.status){
+                toastr.success(res.msg)
+            } else {
+                toastr.error(res.error)
+                location.reload();
+            }
+        }
+    })
+}
+
 
 $(document).on("click" , ".add-to-chat" , function(e){
         let employerId = this.dataset.employerId;

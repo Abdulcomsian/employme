@@ -13,16 +13,20 @@ return new class extends Migration
     {
         Schema::create('job_interviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employer_job_id')->nullable();
+            $table->unsignedBigInteger('employer_job_id');
+            $table->unsignedBigInteger('employer_id');
+            $table->unsignedBigInteger('candidate_id');
+            $table->unsignedBigInteger('requested_from');
+            $table->unsignedBigInteger('requested_to');
             $table->longText('job_link')->nullable();
             $table->datetime('interview_date')->nullable();
             $table->time('interview_time')->nullable();
             $table->longText('meeting_media')->nullable();
             $table->foreign('employer_job_id')->references('id')->on('employer_jobs')->cascadeOnDelete();
-            $table->unsignedBigInteger('requested_from');
             $table->foreign('requested_from')->references('id')->on('users')->cascadeOnDelete();
-            $table->unsignedBigInteger('requested_to');
             $table->foreign('requested_to')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('employer_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('candidate_id')->references('id')->on('users')->cascadeOnDelete();
             $table->integer('status')->default(0);
             $table->timestamps();
         });

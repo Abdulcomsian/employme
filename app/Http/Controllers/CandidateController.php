@@ -571,4 +571,16 @@ class CandidateController extends Controller
        return response()->json(['status' => true , 'msg' => 'Employer added to chat']);
    }
 
+
+   public function cancelInterviewRequest(Request $request)
+   {
+        try{
+            $interviewId = $request->interviewId;
+            JobInterview::where('id' , $interviewId)->update(['status' => 9]);
+            return response()->json(['status' => true , 'msg' => 'Interview cancelled successfully']);
+        }catch(\Exception $e){
+            return response()->json(['status' => false , 'error' => $e->getMessage()]);
+        }
+   }
+
 }
