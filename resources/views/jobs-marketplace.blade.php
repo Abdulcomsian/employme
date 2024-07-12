@@ -646,13 +646,13 @@ div#JobApplicationModal .modal-dialog {
 									
 
 									<div class="d-flex align-items-center justify-content-between mt-auto">
-										
-										@if($job->interview->count() == 1)
-										<button class="apply-btn text-center tran3s">Interview Applied</button>
-										@else
-										<button class="apply-btn text-center tran3s apply-interview" data-job-id="{{$job->id}}">Interview Request</button>
+										@if(auth()->check() && auth()->user()->hasRole('candidate'))
+											@if($job->interview->count() == 1)
+											<button class="apply-btn text-center tran3s">Interview Applied</button>
+											@else
+											<button class="apply-btn text-center tran3s apply-interview" data-job-id="{{$job->id}}">Interview Request</button>
+											@endif
 										@endif
-										
 										<div class="job-location"><a href="{{route('jobDetails', \Crypt::encryptString($job->id))}}">{{$job->city_town}}</a></div>
 									</div>
 								</div> <!-- /.job-list-two -->
