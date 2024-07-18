@@ -716,7 +716,29 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 										<div class="col-xl-3 col-md-4">
 											<div class="d-flex justify-content-lg-end">
 												<a  class="save-btn text-center rounded-circle tran3s mt-10 save_candidate  save_candidate{{base64_encode($candidate->id)}}" id="{{base64_encode($candidate->id)}}" style="color:{{(savedCandidate($candidate->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
-												<a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
+												<div class="d-flex flex-column">
+													<a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="profile-btn tran3s ms-md-2 mt-10 sm-mt-20">View Profile</a>
+													@if(\Auth::check())
+														@role('admin')
+															<button class="msg-btn tran3s w-100 mt-5 NonEmployerButton" >Request Interview</button>
+														@endrole
+														@role('candidate')
+														<button class="msg-btn tran3s w-100 mt-5 NonEmployerButton" >Request Interview</button>
+														@endrole
+														@role('employer')
+															@if($employerIsSubscribed)
+															<button class=" msg-btn tran3s w-100 mt-5 Interview-Modal-Button" data-bs-toggle="modal" data-bs-target="#InterviewRequestModal" value = "{{$candidate->id}}">Request Interview</button>
+															@else
+															<a href="{{route('getEmployerSubscriptionPlan')}}" class="btn Interview-Modal-Button subscribed-redirect">Request Interview</a>
+															@endif
+														@endrole
+													@else
+													<button class=" msg-btn tran3s w-100 mt-5 PleaseLoginButton" >Request Interview</button>
+													<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
+												@endif
+
+												</div>
+											
 											</div>
 										</div>
 									</div>

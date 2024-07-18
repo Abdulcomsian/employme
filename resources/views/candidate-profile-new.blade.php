@@ -35,6 +35,10 @@ video {
 .education-detail{
     line-height: 20px;
 }
+
+.break-word {
+    word-break: break-all;
+}
 </style>
 
         <!-- 
@@ -145,13 +149,13 @@ video {
                 <div class="row">
                     <div class="col-xxl-9 col-lg-8">
                         <div class="candidates-profile-details me-xxl-5 pe-xxl-4">
-                            <div class="inner-card mb-65 lg-mb-40">
+                            <div class="inner-card break-word mb-65 lg-mb-40">
                                 <h3 class="title">Overview</h3>
                                 <p>{{$candidateDetails->candidatePersonalDetails->introduction ?? ''}}</p>
                             </div>
-                            <!-- /.inner-card -->
+                            <!-- /.inner-card break-word -->
                             @if(isset($candidateDetails->candidatePreferences->video_url) || isset($candidateDetails->candidatePreferences->other_platform_video_url) && $candidateDetails->candidatePreferences->other_platform_video_url != 'undefined' && $candidateDetails->candidatePreferences->video_url != 'undefined')
-                            <div class="inner-card mb-60 lg-mb-50">
+                            <div class="inner-card break-word mb-60 lg-mb-50">
                                 <h3 class="title">Introduction</h3>
                                 @if(!empty($candidateDetails->candidatePreferences->video_url))
                                 <!-- <div class="video-post d-flex align-items-center justify-content-center mt-25 lg-mt-20 mb-75 lg-mb-50">
@@ -177,13 +181,13 @@ video {
                             </div>
                             @endif
                             @isset($candidateDetails->candidatePersonalDetails->why_interested_teaching_in_korea)
-                            <div class="inner-card mb-65 lg-mb-40">
+                            <div class="inner-card break-word mb-65 lg-mb-40">
                                 <h3 class="title">Why I'm interested in Teaching in South Korea ?</h3>
                                 <p>{{$candidateDetails->candidatePersonalDetails->why_interested_teaching_in_korea ?? ''}}</p>
                             </div>
                             @endisset
                             @if(isset($candidateDetails->candidateEducationalDetails) && count($candidateDetails->candidateEducationalDetails) > 0)
-                            <div class="inner-card mb-75 lg-mb-50">
+                            <div class="inner-card break-word mb-75 lg-mb-50">
                                 <h3 class="title">Education</h3>
                                 <div class="time-line-data position-relative pt-15">
                             
@@ -204,7 +208,7 @@ video {
                                 <!-- /.time-line-data -->
                             </div>
                             @endif 
-                            <div class="inner-card mb-60 lg-mb-50">
+                            <div class="inner-card break-word mb-60 lg-mb-50">
                                 <h3 class="title">Work Experience</h3>
                                 <div class="time-line-data position-relative pt-15">
                                     @if(isset($candidateDetails->candidateEducation->professional_details) && !empty($candidateDetails->candidateEducation->professional_details))
