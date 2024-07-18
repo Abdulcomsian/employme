@@ -179,6 +179,21 @@ class CandidateController extends Controller
     }
     public function saveProfile6(Request $request)
     {
+        $validator = Validator::make($request->all() , [
+            'degree' => 'file|max:1024',
+            'police_certificate' =>'file|max:1024',
+            'degree_apostille' =>  'file|max:1024',
+            'certificate_apostille' => 'file|max:1024',
+            'saqa_letter' =>'file|max:1024',
+            'passport' =>  'file|max:1024',
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json(['status' => false , 'msg' => implode(', ' ,$validator->errors()->all())]);
+        }
+
+
         $updatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
         // save candidate profile code
         $video_url = $updatePreferencesDetails->video_url;

@@ -218,7 +218,7 @@ Interview Request
                                             break;
                                             case 6:
                                                 $status = 'expired';
-                                                $message = 'Selected';
+                                                $message = 'Hired';
                                             break;
                                             case 7:
                                                 $status = 'expired';
@@ -448,7 +448,7 @@ Interview Request
                                             break;
                                             case 7:
                                                 $status = 'expired';
-                                                $message = 'Selected';
+                                                $message = 'Hired';
                                             break;
                                             case 9:
                                                 $status = 'expired';
