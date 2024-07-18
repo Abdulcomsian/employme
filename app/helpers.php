@@ -465,11 +465,14 @@ function employerSpentAmount()
 function pendingInterviewInvitationCount()
 {
     $inteviewRequestCount = \App\Models\JobInterview::where('requested_to' , auth()->user()->id)
-                                                      ->whereIn('status' , [ 1 ])
-                                                      ->orWhere(function($query){
-                                                            $query->where('status' , 5)
-                                                                  ->where('rescheduled_by' , '!=' , auth()->user()->id);
-                                                      })
-                                                      ->count();
+                                                    ->where(function($query){
+                                                        $query->whereIn('status' , [ 1 ])
+                                                                ->orWhere(function($query1){
+                                                                    $query1->where('status' , 5)
+                                                                            ->where('rescheduled_by' , '!=' , auth()->user()->id);
+                                                                });
+
+                                                    })
+                                                    ->count();
     return $inteviewRequestCount;
 }

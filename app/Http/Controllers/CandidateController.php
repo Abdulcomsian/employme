@@ -180,19 +180,19 @@ class CandidateController extends Controller
     public function saveProfile6(Request $request)
     {
         $validator = Validator::make($request->all() , [
-            'degree' => 'file|max:1024',
-            'police_certificate' =>'file|max:1024',
-            'degree_apostille' =>  'file|max:1024',
-            'certificate_apostille' => 'file|max:1024',
-            'saqa_letter' =>'file|max:1024',
-            'passport' =>  'file|max:1024',
+            'degree' => 'nullable|file|max:1024',
+            'police_certificate' =>'nullable|file|max:1024',
+            'degree_apostille' =>  'nullable|file|max:1024',
+            'certificate_apostille' => 'nullable|file|max:1024',
+            'saqa_letter' =>'nullable|file|max:1024',
+            'passport' =>  'nullable|file|max:1024',
         ]);
 
         if($validator->fails())
         {
             return response()->json(['status' => false , 'msg' => implode(', ' ,$validator->errors()->all())]);
         }
-
+       
 
         $updatePreferencesDetails = CandidatePreferences::where('user_id',Auth::id())->first();
         // save candidate profile code
@@ -382,6 +382,7 @@ class CandidateController extends Controller
                                         })
                                         ->latest()
                                         ->paginate(5);
+
         $latestInterviews = JobInterview::with('jobDetails','employer.employerDetails' , 'requestTo.employerDetails' , 'requestFrom.employerDetails')
                                             ->where(function($query){
                                                 $query->where('requested_to' , auth()->user()->id)
@@ -393,6 +394,7 @@ class CandidateController extends Controller
                                             ->paginate(5);
 
         return view('candidate.interview.index',compact('allInterviews','latestInterviews'));
+
         }catch(\Exception $e){
             dd($e->getMessage());
         }
@@ -573,14 +575,15 @@ class CandidateController extends Controller
    public function contactEmployer(Request $request)
    {
        $checkConversation = Conversation::where(['employer_id'=>$request->employerId,'candidate_id'=>auth()->user()->id])->first();
+       
        if($checkConversation){
            return response()->json(['status' => false , 'error' => 'Employer already added to chat']);
        }
 
 
        $conversation =  new Conversation;
-       $conversation->employer_id = Auth::id();
-       $conversation->candidate_id = $request->employerId;
+       $conversation->employer_id = $request->employerId;
+       $conversation->candidate_id = Auth::id();
        $conversation->save();
 
        return response()->json(['status' => true , 'msg' => 'Employer added to chat']);

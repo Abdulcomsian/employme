@@ -233,13 +233,33 @@ button.dash-btn-one:disabled {
         $("#teaching-video-details").attr('disabled',true);
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
-        formData.append("degree", document.getElementById("degree").files[0]);
-        formData.append("police_certificate", document.getElementById("police_certificate").files[0]);
-        formData.append("degree_apostille", document.getElementById("degree_apostille").files[0]);
-        formData.append("certificate_apostille", document.getElementById("police_apostille").files[0]);
-        formData.append("saqa_letter", document.getElementById("saqa_letter").files[0]);
-        formData.append("passport", document.getElementById("passport").files[0]);
+        if(document.getElementById("degree").files.length > 0){
+            formData.append("degree", document.getElementById("degree").files[0]);
+        }
+
+        if(document.getElementById("police_certificate").files.length > 0){
+            formData.append("police_certificate", document.getElementById("police_certificate").files[0]);
+        }
+
+        if(document.getElementById("degree_apostille").files.length > 0){
+            formData.append("degree_apostille", document.getElementById("degree_apostille").files[0]);
+        }
+
+        if(document.getElementById("police_apostille").files.length > 0){
+            formData.append("certificate_apostille", document.getElementById("police_apostille").files[0]);
+        }
+
+
+        if(document.getElementById("saqa_letter").files.length > 0){
+            formData.append("saqa_letter", document.getElementById("saqa_letter").files[0]);
+        }
+
+        if(document.getElementById("passport").files.length > 0){
+            formData.append("passport", document.getElementById("passport").files[0]);
+        }
+
         formData.append('terms_and_conditions' , document.getElementById("preferences_terms_and_conditions").checked == true ? 1 : 0);
+
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-6.save')}}",
@@ -250,6 +270,7 @@ button.dash-btn-one:disabled {
               success: function (data) {
     
                 if (data.status) {
+                    
                     // toastr.success(data.message)
                     location.reload();
                 }else{

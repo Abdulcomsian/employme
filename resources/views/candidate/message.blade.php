@@ -214,32 +214,17 @@ small {
                             <div class="ps-3 pe-3 ps-xxl-4 pe-xxl-4">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="page-title fw-500">Inbox</div>
-                                    {{--<div class="action-dots float-end">
-                                        <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <span></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="#">Sent</a></li>
-                                            <li><a class="dropdown-item" href="#">Important</a></li>
-                                            <li><a class="dropdown-item" href="#">Draft</a></li>
-                                            <li><a class="dropdown-item" href="#">Trash</a></li>
-                                        </ul>
-                                    </div>--}}
+                                    
                                 </div>
                                 <form action="{{route('getCandidateMessages')}}" method = "get" class="search-form mt-20 mb-20">
                                     <input type="text" name = "searchUser" placeholder="Search contacts">
                                     <button type = "submit"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/icon_10.svg')}}" alt="" class="lazy-img m-auto"></button>
                                 </form>
 
-                                {{--<div class="message_filter d-flex align-items-center justify-content-between mb-20" id="module_btns">
-                                    <button class="filter_btn active">All</button>
-                                    <button class="filter_btn"><span style="background:#FF4545;"></span> Read</button>
-                                    <button class="filter_btn"><span style="background:#3BDA84;"></span> Unread</button>
-                                    <button class="filter_btn"><span style="background:#50C0FF;"></span> Primary</button>
-                                </div>--}}
+                               
                             </div>
                             <div class="email-read-panel">
-                                 @isset($allConversations)
+                                @isset($allConversations)
                                  @foreach($allConversations as $index=>$conversation)
                                 <div class="email-list-item users ps-3 pe-3 ps-xxl-4 pe-xxl-4 read {{$index==0 ? 'selected' : ''}}" data-user-id = "{{$conversation->id}}">
                                     <div class="email-short-preview position-relative">
@@ -337,9 +322,9 @@ small {
                                         <div class="d-flex">
                                             <div>
                                                 @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
-                                                <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo round-avatar" style = "body-fit:cover">
+                                                <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo round-avatar ms-3" style = "body-fit:cover">
                                                 @else
-                                                <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo round-avatar" style = "body-fit:cover">
+                                                <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo round-avatar ms-3" style = "body-fit:cover">
                                                 @endif
                                             </div>
                                             <div class="ps-3">

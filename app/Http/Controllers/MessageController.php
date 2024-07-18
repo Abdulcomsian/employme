@@ -8,8 +8,10 @@ use DOMDocument;
 
 class MessageController extends Controller
 {
-    public function getCandidateMessagePage(Request $request){
-        $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat','lastChat.chatFiles')->where('candidate_id',\Auth::id());
+    public function getCandidateMessagePage(Request $request)
+    {
+        $allConversations = Conversation::select('conversations.*')->where('candidate_id',\Auth::id());
+        
         if(isset($request->searchUser) && $request->searchUser != '')
         {
             $searchUser = $request->searchUser;
@@ -22,24 +24,51 @@ class MessageController extends Controller
             $query->orderByRaw("FIELD(employer_id , $request->employerId) DESC, id");
         });
 
+        $allConversations->when(!isset($request->candidateId), function ($query) {
+            $latestChatSubquery = Chat::select('conversation_id', \DB::raw('MAX(id) as latest_chat_id'))
+                ->groupBy('conversation_id');
+
+            $query->leftJoinSub($latestChatSubquery, 'latest_chats', function ($join) {
+                $join->on('conversations.id', '=', 'latest_chats.conversation_id');
+            })->orderBy('latest_chats.latest_chat_id', 'desc');
+        });
+
         $allConversations = $allConversations->get();
+
+        $allConversations->load(['employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat.chatFiles']);
+        
         return view('candidate.message',compact('allConversations'));
     }
 
-    public function getEmployerMessage(Request $request){
-        
-        $allConversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat.chatFiles')->where('employer_id',\Auth::id());
-        if(isset($request->searchUser) && $request->searchUser != '')
-        {
+    public function getEmployerMessage(Request $request)
+    {
+
+        $allConversations = Conversation::select('conversations.*')->where('employer_id', \Auth::id());
+
+        if (isset($request->searchUser) && $request->searchUser != '') {
             $searchUser = $request->searchUser;
-            $allConversations = $allConversations->whereHas('candidate.candidatePersonalDetails', function($query) use ($searchUser){
-                $query->where('full_name','like', '%'.$searchUser.'%');
-             });
+            $allConversations->whereHas('candidate.candidatePersonalDetails', function ($query) use ($searchUser) {
+                $query->where('full_name', 'like', '%' . $searchUser . '%');
+            });
         }
-        $allConversations->when(isset($request->candidateId)  && !empty($request->candidateId) , function($query) use($request){
-            $query->orderByRaw("FIELD(candidate_id , $request->candidateId) DESC, id");
+
+        $allConversations->when(isset($request->candidateId) && !empty($request->candidateId), function ($query) use ($request) {
+            $query->orderByRaw("FIELD(candidate_id, " . $request->candidateId . ") DESC, id");
         });
+
+        $allConversations->when(!isset($request->candidateId), function ($query) {
+            $latestChatSubquery = Chat::select('conversation_id', \DB::raw('MAX(id) as latest_chat_id'))
+                ->groupBy('conversation_id');
+
+            $query->leftJoinSub($latestChatSubquery, 'latest_chats', function ($join) {
+                $join->on('conversations.id', '=', 'latest_chats.conversation_id');
+            })->orderBy('latest_chats.latest_chat_id', 'desc');
+        });
+
+
         $allConversations = $allConversations->get();
+
+        $allConversations->load(['employer.employerDetails', 'candidate.candidatePersonalDetails', 'chats', 'lastChat.chatFiles']);
 
         return view('employer.employer-dashboard-message',compact('allConversations'));
     }

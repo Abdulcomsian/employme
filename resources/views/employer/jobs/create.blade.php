@@ -45,6 +45,7 @@ Post A Job
 
         <h2 class="main-title">Post a New Job</h2>
         <div>
+            @if(!$isSubscriptionJobCountCompleted)
             <form id="employer-job-form" action="{{route('employer-jobs.store')}}" enctype="multipart/form-data" method = "POST" class="search-form">
                  @csrf
                 <div class="bg-white card-box border-20 section" id="step1">
@@ -792,6 +793,16 @@ Post A Job
         <!-- /.card-box -->
 
         </form>
+
+        @else
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                   <h4 class="fs-4" style="font-family: gordita; font-weight: 400; line-height: 30px; text-align: center;">Your current subscription has reached its job limit. To continue, please renew your subscription plan or delete an existing job.</h4>
+                            </div>
+                        </div>
+                    </div>
+        @endif
     </div>
   
 

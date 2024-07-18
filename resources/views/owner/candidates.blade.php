@@ -58,6 +58,11 @@ h4 {
     font-family: "gordita";
 }
 
+h2#swal2-title {
+    font-family: "gordita";
+    font-weight: 500;
+}
+
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 @endpush

@@ -23,10 +23,10 @@ class Conversation extends Model
     }
     public function chats()
     {
-        return $this->hasMany(Chat::class);
+        return $this->hasMany(Chat::class , 'conversation_id' , 'id');
     }
     public function lastChat()
     {
-        return $this->hasOne(Chat::class)->latest();
+        return $this->hasOne(Chat::class , 'conversation_id' , 'id')->latest();
     }
 }

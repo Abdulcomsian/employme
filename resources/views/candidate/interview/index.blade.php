@@ -110,6 +110,11 @@ Interview Request
 	display: block;
 
 }
+
+h2#swal2-title {
+    font-family: "gordita";
+    font-weight: 500;
+}
 </style>
 @endpush
 

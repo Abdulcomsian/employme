@@ -54,7 +54,7 @@ class SubscriptionController extends Controller
             if($userSubscription->stripe_price != $plan->stripe_plan)
             {
                 $userSubscription->swap($plan->stripe_plan);
-                $updateEmployerDetails->update(['subscription_plan_id'=>$request->plan_id]);
+                $updateEmployerDetails->update(['subscription_plan_id' => $request->plan_id]);
             }
         }else{
             $subscription = $request->user()->newSubscription($request->plan_id, $plan->stripe_plan)
