@@ -135,7 +135,10 @@
 			
 				<li><a href="{{route('getEmployerDashboardMessage')}}" class="d-flex w-100 align-items-center {{request()->is('employer/employer-dashboard-message') ? 'active' : ''}}">
 						<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{request()->is('employer/employer-dashboard-message') ? asset('assets/images/dashboard-icon/icon_4_active.svg') : asset('assets/images/dashboard-icon/icon_4.svg')}}" alt="" class="lazy-img">
-						<span>Messages</span>
+						@php 
+                            $unseenMessages = unseenMessageCount();
+                        @endphp
+                        <span class="message-nav">Messages @if($unseenMessages) <i class="fa-solid fa-envelope user-message blink mx-2"><span class="unseen-message-count">{{$unseenMessages}}</span> </i> @endif</span>
 					</a></li>
 
 			

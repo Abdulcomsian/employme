@@ -42,7 +42,6 @@ class MessageController extends Controller
 
     public function getEmployerMessage(Request $request)
     {
-
         $allConversations = Conversation::select('conversations.*')->where('employer_id', \Auth::id());
 
         if (isset($request->searchUser) && $request->searchUser != '') {
@@ -77,6 +76,8 @@ class MessageController extends Controller
     {
         $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','chats.chatFiles')->find($id);
         $html =  view('components.chats.employer-message-body',compact('conversations'))->render();
+        Chat::where('conversation_id' , $id)->where('user_id' , '!=' , auth()->user()->id)->update(['is_seen' => 1]);
+        event(new \App\Events\MessageNotificationEvent(auth()->user()->id));
         return response()->json([
             "status" => true, 
             "html" => $html
@@ -86,6 +87,8 @@ class MessageController extends Controller
     {
         $conversations = Conversation::with('employer.employerDetails','candidate.candidatePersonalDetails','chats','chats.chatFiles')->find($id);
         $html =  view('components.chats.candidate-message-body',compact('conversations'))->render();
+        Chat::where('conversation_id' , $id)->where('user_id' , '!=' , auth()->user()->id)->update(['is_seen' => 1]);
+        event(new \App\Events\MessageNotificationEvent(auth()->user()->id));
         return response()->json([
             "status" => true, 
             "html" => $html
@@ -166,7 +169,7 @@ class MessageController extends Controller
             $tocandidate = view('components.chats.employer-sent-message',compact('conversations','chatDetails','type', 'chatFlag'))->render();
             $newemployer= view('components.chats.new-employer',compact('lastChat','conversations'))->render();
             event(new \App\Events\EmployerEvent($conversations->id,$conversations->candidate_id,$tocandidate,$newemployer));
-
+            event(new \App\Events\MessageNotificationEvent($conversations->candidate_id));
        
         return response()->json([
             "status" => true, 
@@ -257,7 +260,7 @@ class MessageController extends Controller
             $toemployer = view('components.chats.candidate-sent-message',compact('conversations','chatDetails','type', 'chatFlag'))->render();
             $newcandidate= view('components.chats.new-candidate',compact('lastChat','conversations', 'chatFlag'))->render();
             event(new \App\Events\CandidateEvent($conversations->id,$conversations->employer_id,$toemployer,$newcandidate));
-
+            event(new \App\Events\MessageNotificationEvent($conversations->employer_id));
         
         return response()->json([
             "status" => true, 

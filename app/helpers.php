@@ -476,3 +476,26 @@ function pendingInterviewInvitationCount()
                                                     ->count();
     return $inteviewRequestCount;
 }
+
+function unseenMessageCount()
+{
+    $messageCount = 0;
+    if(auth()->user()->hasRole('employer')){
+        $messageCount = \App\Models\Chat::whereHas('conversation' , function($query){
+                                                $query->where('employer_id' ,  auth()->user()->id);
+                                            })
+                                            ->where('user_id' , '!=' , auth()->user()->id)
+                                            ->where('is_seen' , 0)
+                                            ->count();
+    } else {
+        $messageCount = \App\Models\Chat::whereHas('conversation' , function($query){
+                                                $query->where('candidate_id' , auth()->user()->id);
+                                            })
+                                            ->where('user_id' , '!=' , auth()->user()->id)
+                                            ->where('is_seen' , 0)
+                                            ->count();
+    }
+
+
+    return $messageCount;
+}

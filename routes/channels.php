@@ -29,3 +29,7 @@ Broadcast::channel('employer-chat.{candidateId}', function (User $user, $candida
 Broadcast::channel('candidate-chat.{employerId}', function (User $user, $employerId) {
     return $user->id = $employerId;
 });
+
+Broadcast::channel('user-notification-{userId}' , function(User $user, $userId){
+    return $user->id == $userId;
+});

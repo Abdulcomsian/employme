@@ -73,7 +73,45 @@
 		<!-- Optional JavaScript _____________________________  -->
 
 		@include('employer.layout.footer')
+		<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+		@vite('resources/js/app.js')
+		<script type="module">
+				@if(request()->is('employer/employer-dashboard-message'))
+				Echo.private(`candidate-chat.{{auth()->user()->id}}`)
+					.listen('CandidateEvent', (e) => {
+						if(e.conversationId == conversationId)
+						{
+							$(".conversation-"+e.conversationId).append(e.html);
+							$(".compose-new-email-container").find(".compose-body textarea").focus();
+							$(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+						}
+						else
+						{
+							$(".users[data-user-id='" + e.conversationId + "']").remove();
+							$(".email-read-panel").prepend(e.newCandidate);
+						}
+					});
+				@endif
+ 
 
+
+				Echo.private(`user-notification-{{auth()->user()->id}}`)
+					.listen('MessageNotificationEvent' , (e)=>{
+						let unseenMessagesCount = e.unseenMessagesCount;
+						let messageNav = document.querySelector(".message-nav");
+						let userMessage = document.querySelector(".user-message");
+						if(userMessage){
+							userMessage.remove();
+						}
+						if(unseenMessagesCount != 0){
+							let html = `<i class="fa-solid fa-envelope user-message blink mx-2"><span class="unseen-message-count">${unseenMessagesCount}</span> </i>`;
+							messageNav.insertAdjacentHTML("beforeend", html)
+						}
+					});
+
+			
+
+		</script>
 		@stack('page-script')
 
 	</div> <!-- /.main-page-wrapper -->

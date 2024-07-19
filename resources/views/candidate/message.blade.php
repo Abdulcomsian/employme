@@ -668,30 +668,9 @@ small {
         document.body.removeChild(link);
     }
 </script>
-<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-
-@vite('resources/js/app.js')
-
-
 <script type="module">
-      Echo.private(`employer-chat.{{auth()->user()->id}}`)
-    .listen('EmployerEvent', (e) => {
-        console.log(e.conversationId);
-        if(e.conversationId == conversationId)
-        {
-            $(".conversation-"+e.conversationId).append(e.html);
-            $(".compose-new-email-container").find(".compose-body textarea").focus();
-            $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
-        }
-        else
-        {
-            $(".users[data-user-id='" + e.conversationId + "']").remove();
-            $(".email-read-panel").prepend(e.newEmployer);
-        }
-       
-    });
-
 
     document.querySelector("input[name='searchUser']").addEventListener("keyup" , function(e){
         e.preventDefault()
