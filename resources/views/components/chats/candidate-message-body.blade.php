@@ -56,7 +56,7 @@
                         @endif            
                     </div>
                     <div class="d-flex flex-column flex-grow-1">
-                        <div class="sender-name"><p>{{auth()->user()->candidatePersonalDetails->first_name ?? auth()->user()->name}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
+                        <div class="sender-name"><p>{{auth()->user()->employerDetails->first_name ?? auth()->user()->name}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
                         <div class="pe-4 pe-xxl-5 single-message">
                             <p>{!! $chat->message !!}</p>
                         </div>
@@ -80,7 +80,7 @@
                         @endif            
                     </div>
                     <div class="d-flex flex-column flex-grow-1">
-                        <div class="sender-name"><p class="d-flex">{{$conversations->employer->name ?? ''}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
+                        <div class="sender-name"><p class="d-flex">{{$conversations->candidate->candidateDetails->first_name ?? $conversations->candidate->name}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
                         <div class="pe-4 pe-xxl-5 single-message">
                             <p>{!! $chat->message !!}</p>
                         </div>
