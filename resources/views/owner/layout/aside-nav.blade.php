@@ -48,6 +48,7 @@
             </div>
         </div>
         <!-- /.user-data -->
+         <div class="d-flex flex-column justify-content-between">
         <nav class="dasboard-main-nav">
             <ul class="style-none">
                 <li><a href="{{ route('getOwnerDashboard') }}"
@@ -88,14 +89,14 @@
                         <span>Employers Licenses</span>
                     </a>
                 </li> -->
-                <li><a href="{{ route('interviewRequests') }}"
+                <!-- <li><a href="{{ route('interviewRequests') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/interview-requests') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
                             data-src="{{ request()->is('owner/interview-requests') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
                         <span>Interview Requests</span>
                     </a>
-                </li>
+                </li> -->
                 <li><a href="{{ route('admin.getEmployersJobs') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/employers-jobs') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
@@ -229,19 +230,16 @@
             </ul>
         </nav>
         <!-- /.dasboard-main-nav -->
-        <div class="profile-complete-status">
-            <div class="progress-value fw-500">87%</div>
-            <div class="progress-line position-relative">
-                <div class="inner-line" style="width:80%;"></div>
-            </div>
-            <p>Profile Complete</p>
-        </div>
+        
         <!-- /.profile-complete-status -->
+        <div style="margin-top: 100px;">
+            <a href="{{route('authLogout')}}" class="d-flex w-100 align-items-center logout-btn">
+                <img src="{{ asset('assets/images/lazy.svg') }}" data-src="{{ asset('assets/images/icon/icon_9.svg') }}"
+                    alt="" class="lazy-img">
+                <span>Logout</span>
+            </a>
 
-        <a href="{{route('authLogout')}}" class="d-flex w-100 align-items-center logout-btn">
-            <img src="{{ asset('assets/images/lazy.svg') }}" data-src="{{ asset('assets/images/icon/icon_9.svg') }}"
-                alt="" class="lazy-img">
-            <span>Logout</span>
-        </a>
+        </div>
+        </div>
     </div>
 </aside>
