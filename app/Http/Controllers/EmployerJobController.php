@@ -43,7 +43,9 @@ class EmployerJobController extends Controller
         }
 
         $jobCategories = JobCategory::all();
-        $employerSubscriptionPlan = Plan::where('id' , auth()->user()->id)->first();
+        $userSubscription = User::find(Auth::id())->subscriptions('default')->first();
+
+        $employerSubscriptionPlan = Plan::where('stripe_plan' , $userSubscription->stripe_price)->first();
         $userActiveJobsCount = EmployerJob::where('posted_by' , auth()->user()->id)->count();
         $isSubscriptionJobCountCompleted  = $userActiveJobsCount == $employerSubscriptionPlan->allowed_jobs ? true : false; 
         return view('employer.jobs.create',get_defined_vars());

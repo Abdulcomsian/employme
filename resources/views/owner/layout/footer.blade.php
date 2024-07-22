@@ -2,7 +2,7 @@
 <!-- jQuery -->
 <script src="{{asset('assets/vendor/jquery.min.js')}}"></script>
 <!-- Bootstrap JS -->
-<script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script> -->
 <!-- WOW js -->
 <script src="{{asset('assets/vendor/wow/wow.min.js')}}"></script>
 <!-- Slick Slider -->
@@ -21,3 +21,12 @@
 
 <!-- Theme js -->
 <script src="{{asset('assets/js/theme.js')}}"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    $(document).on("click" , ".dropdown-toggle" , function(e){
+			let nextElement = this.nextElementSibling;
+			$(nextElement).toggleClass("show");
+		})
+</script>

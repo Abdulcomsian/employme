@@ -527,7 +527,7 @@ small {
 <script>
     $(document).ready(function(){
         $(".compose-new-email-container").find(".compose-body textarea").focus();
-        $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
+        // $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
         $(".summernote").summernote({
                 height: 300,
                 toolbar: [

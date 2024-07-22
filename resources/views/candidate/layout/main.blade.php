@@ -111,6 +111,7 @@
 				});
 
 		
+		
 	</script>
 
 		@stack('page-script')

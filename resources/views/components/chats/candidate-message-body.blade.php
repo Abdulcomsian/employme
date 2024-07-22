@@ -49,11 +49,11 @@
             <div class="sender-info d-flex align-items-center if">
                 <div class="d-flex">
                     <div class="avatar-section">
-                        @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
-                        <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo chat-round-avatar">
+                        @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
+                        <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo chat-round-avatar">
                         @else
-                        <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar" >
-                        @endif            
+                        <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar">
+                        @endif         
                     </div>
                     <div class="d-flex flex-column flex-grow-1">
                         <div class="sender-name"><p>{{auth()->user()->employerDetails->first_name ?? auth()->user()->name}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
@@ -73,18 +73,21 @@
             <div class="sender-info d-flex align-items-center else">
                 <div class="d-flex">
                     <div class="avatar-section">
-                        @if(isset($conversations->employer->employerDetails->institution_logo) && !empty($conversations->employer->employerDetails->institution_logo))
-                        <img src="{{asset($conversations->employer->employerDetails->institution_logo)}}" data-src="{{asset($conversations->employer->employerDetails->institution_logo)}}" alt="" class="lazy-img logo chat-round-avatar " >
+                        @if(isset($conversations->candidate->candidatePersonalDetails->profile_picture) && !empty($conversations->candidate->candidatePersonalDetails->profile_picture))
+                        <img src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" data-src="{{asset($conversations->candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img logo chat-round-avatar">
                         @else
-                        <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar" >
-                        @endif            
+                        <img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img logo chat-round-avatar">
+                        @endif           
                     </div>
                     <div class="d-flex flex-column flex-grow-1">
-                        <div class="sender-name"><p class="d-flex">{{$conversations->candidate->candidateDetails->first_name ?? $conversations->candidate->name}}  <small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p></div>
+                        <div class="sender-name">
+                            <p> {{$conversations->candidate->candidatePersonalDetails->first_name ?? ''}}
+                                {{$conversations->candidate->candidatePersonalDetails->middle_name ?? ''}}
+                                {{$conversations->candidate->candidatePersonalDetails->last_name ?? ''}}<small> &nbsp;&nbsp;&nbsp;{{$chat->created_at->format('g:i A')}}</small></p>
+                        </div>
                         <div class="pe-4 pe-xxl-5 single-message">
                             <p>{!! $chat->message !!}</p>
                         </div>
-                        <!-- <div class="sender-email">{{$conversations->employer->email ?? ''}}</div> -->
                     </div>
                 </div>
             </div>
