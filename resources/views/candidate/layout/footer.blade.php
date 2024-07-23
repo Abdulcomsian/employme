@@ -27,8 +27,15 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
+     $(document).on("click", function(e) {
+        if (!$(e.target).closest('.dropdown-toggle').length && !$(e.target).closest('.dropdown-menu').length) {
+            $(".dropdown-menu.show").removeClass("show");
+        }
+    });
+
     $(document).on("click" , ".dropdown-toggle" , function(e){
-			let nextElement = this.nextElementSibling;
-			$(nextElement).toggleClass("show");
-		})
+        let nextElement = this.nextElementSibling;
+        $(".dropdown-menu.show").removeClass("show");
+        $(nextElement).toggleClass("show");
+    })
 </script>

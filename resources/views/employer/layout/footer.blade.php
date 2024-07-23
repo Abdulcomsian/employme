@@ -29,8 +29,15 @@
 
 
 <script>
+    $(document).on("click", function(e) {
+        if (!$(e.target).closest('.dropdown-toggle').length && !$(e.target).closest('.dropdown-menu').length) {
+            $(".dropdown-menu.show").removeClass("show");
+        }
+    });
+
     $(document).on("click" , ".dropdown-toggle" , function(e){
         let nextElement = this.nextElementSibling;
+        $(".dropdown-menu.show").removeClass("show");
         $(nextElement).toggleClass("show");
     })
 </script>
