@@ -83,6 +83,8 @@ class EmployerController extends Controller
     
     public function saveProfile1(Request $request)
     {
+        // dd($request->all());
+        $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
         $user = User::find(Auth::id());
 
         // Update email
@@ -90,8 +92,6 @@ class EmployerController extends Controller
             'name' => $request->institution,
             
         ]);
-        $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
-
           // save employer Company Logo  code
           $imagename = $updateEmployerDetails->institution_logo;
           if ($request->file('institution_logo')) {
