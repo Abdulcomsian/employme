@@ -83,7 +83,13 @@ class EmployerController extends Controller
     
     public function saveProfile1(Request $request)
     {
-        // dd($request->all());
+        $user = User::find(Auth::id());
+
+        // Update email
+        $user->update([
+            'name' => $request->institution,
+            
+        ]);
         $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
 
           // save employer Company Logo  code
