@@ -85,7 +85,13 @@ class EmployerController extends Controller
     {
         // dd($request->all());
         $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
+        $user = User::find(Auth::id());
 
+        // Update email
+        $user->update([
+            'name' => $request->institution,
+            
+        ]);
           // save employer Company Logo  code
           $imagename = $updateEmployerDetails->institution_logo;
           if ($request->file('institution_logo')) {
