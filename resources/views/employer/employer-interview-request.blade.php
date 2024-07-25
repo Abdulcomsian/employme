@@ -573,7 +573,7 @@ h2#swal2-title {
                 
                 if(status == 2){
                     Swal.fire({
-                    title: "Are you sure you wanted to reject it?",
+                    title: "Are you sure you want to reject it?",
                     text: "You won't be able to revert this!",
                     icon: "warning",
                     showCancelButton: true,
@@ -623,11 +623,11 @@ h2#swal2-title {
         let interviewId = this.dataset.interviewId;
 
             Swal.fire({
-            title: "Are you sure you wanted to cancel it?",
+            title: "Are you sure you want to cancel it?",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
+            confirmButtonColor: "#ff715b",
+            cancelButtonColor: "#b1b0eb",
             confirmButtonText: "Yes, cancel it!"
             }).then((result) => {
                 if (result.isConfirmed) {
