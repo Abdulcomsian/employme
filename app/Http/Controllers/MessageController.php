@@ -36,6 +36,12 @@ class MessageController extends Controller
         $allConversations = $allConversations->get();
 
         $allConversations->load(['employer.employerDetails','candidate.candidatePersonalDetails','chats','lastChat.chatFiles']);
+
+        if($allConversations->count())
+        {
+            $RecentConversation = $allConversations[0];
+            Chat::where('conversation_id' , $RecentConversation->id)->where('user_id' , '!=' , auth()->user()->id)->update([ 'is_seen' => 1]);
+        }
         
         return view('candidate.message',compact('allConversations'));
     }
@@ -68,6 +74,12 @@ class MessageController extends Controller
         $allConversations = $allConversations->get();
 
         $allConversations->load(['employer.employerDetails', 'candidate.candidatePersonalDetails', 'chats', 'lastChat.chatFiles']);
+
+        if($allConversations->count())
+        {
+            $RecentConversation = $allConversations[0];
+            Chat::where('conversation_id' , $RecentConversation->id)->where('user_id' , '!=' , auth()->user()->id)->update([ 'is_seen' => 1]);
+        }
 
         return view('employer.employer-dashboard-message',compact('allConversations'));
     }
