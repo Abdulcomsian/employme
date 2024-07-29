@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\{EmployerBusinessLicense};
-
+use Carbon\carbon;
 class VerifySubscriptionMiddleware
 {
     /**
@@ -17,10 +17,12 @@ class VerifySubscriptionMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $employerLicenseDetails =  EmployerBusinessLicense::where('employer_id',\Auth::id())->first();
-        if($employerLicenseDetails && $employerLicenseDetails->approval_status == 1 && (!auth()->user()->lastSubscription || !is_null(auth()->user()->lastSubscription->ends_at)))
+                
+        if($employerLicenseDetails && $employerLicenseDetails->approval_status == 1 && (!auth()->user()->lastApprovedSubscription || Carbon::now()->gt(Carbon::parse(auth()->user()->lastApprovedSubscription->ends_at))))
         {
             return redirect()->route('getEmployerSubscriptionPlan');    
         }
+        
         return $next($request);
     }
 }

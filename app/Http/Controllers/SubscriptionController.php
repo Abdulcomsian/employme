@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\EmployerDetails;
 use Illuminate\Support\Facades\Validator;
+use App\Models\UserSubscription;
 class SubscriptionController extends Controller
 {
     public function index()
@@ -35,41 +36,56 @@ class SubscriptionController extends Controller
      */
     public function subscription(Request $request)
     {
-        // dd($request->all());
-        // $validator = Validator::make($request->all(), [
-        //     'terms_and_conditions_acceptance' => 'required|in:I Accept',
-        // ]);
-  
-        // if ($validator->fails()){
-        //     return response()->json([
-        //             "status" => false,
-        //             "errors" => $validator->errors()
-        //         ]);
-        // }
+        $request->validate([
+            'payment_type' => 'required|string',
+            'reciept' => 'required|file',
+            'duration' => 'required|numeric',
+        ]);
+
+
         $plan = Plan::find($request->plan_id);
-        $userSubscription = User::find(Auth::id())->subscriptions('default')->where('stripe_status',"!=","canceled")->first();
-        $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
-        if(!empty($userSubscription))
+
+        if(!$request->hasFile('reciept'))
         {
-            if($userSubscription->stripe_price != $plan->stripe_plan)
-            {
-                $userSubscription->swap($plan->stripe_plan);
-                $updateEmployerDetails->update(['subscription_plan_id' => $request->plan_id]);
-            }
-        }else{
-            $subscription = $request->user()->newSubscription($request->plan_id, $plan->stripe_plan)
-            ->create($request->token);
-            $updateEmployerDetails->update(['subscription_plan_id'=>$request->plan_id]);
+            toastr()->error('Please add reciept');
+            return redirect()->back();
         }
+
+        $file = $request->file('reciept');
+        $filename = time().'-'.str_replace(" ", "_" , $file->getClientOriginalExtension());
+        $file->move(public_path('uploads/reciept') , $filename);
+
         
+        UserSubscription::create([
+                        'plan_id' => $plan->id, 
+                        'payment_type' => $request->payment_type,
+                        'user_id' => auth()->user()->id , 
+                        'reciept' => $filename , 
+                        'duration' => $request->duration
+                    ]);
+
+
+                
+
+        // previous stripe subscription code starts here
+        // $userSubscription = User::find(Auth::id())->subscriptions('default')->where('stripe_status',"!=","canceled")->first();
+        // $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
+        // if(!empty($userSubscription))
+        // {
+        //     if($userSubscription->stripe_price != $plan->stripe_plan)
+        //     {
+        //         $userSubscription->swap($plan->stripe_plan);
+        //         $updateEmployerDetails->update(['subscription_plan_id' => $request->plan_id]);
+        //     }
+        // }else{
+        //     $subscription = $request->user()->newSubscription($request->plan_id, $plan->stripe_plan)
+        //     ->create($request->token);
+        //     $updateEmployerDetails->update(['subscription_plan_id'=>$request->plan_id]);
+        // }
+        // subscription code ends here
   
-        // return view("subscription_success");
-        toastr()->success('Your have successfully Subscribed the Plan');
+        toastr()->success('Your subscription has been added wait until approved by admin');
         return redirect()->back();
-        // return response()->json([
-        //     "status" => true, 
-        //     "message" => "Subscribed Sucessfulyy",
-        //     "redirect" => url("employer/employer-profile")
-        // ]);
+      
     }
 }

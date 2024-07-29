@@ -116,10 +116,10 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     {
         return $this->hasOne(EmployerBusinessLicense::class , 'employer_id' , 'id');
     }
-    public function lastSubscription()
-    {
-        return $this->hasOne(Subscription::class , 'user_id' , 'id')->orderBy('id' , 'desc');
-    }
+    // public function lastSubscription()
+    // {
+    //     return $this->hasOne(Subscription::class , 'user_id' , 'id')->orderBy('id' , 'desc');
+    // }
     public function intro()
     {
         return $this->hasOne(IntroductionVideo::class , 'employer_id' , 'id');
@@ -159,6 +159,21 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     public function passport()
     {
         return $this->hasOne(CandidateDocument::class , 'user_id' , 'id')->where('document_type' , 6);
+    }
+
+    public function lastSubscription()
+    {
+        return $this->hasOne(UserSubscription::class , 'user_id' , 'id')->orderBy('id' , 'desc');
+    }
+
+    public function lastApprovedSubscription()
+    {
+        return $this->hasOne(UserSubscription::class , 'user_id' , 'id')->where('is_approved' , 1 )->orderBy('id' , 'desc');
+    }
+
+    public function subscriptionList()
+    {
+        return $this->hasMany(UserSubscription::class , 'user_id' , 'id');
     }
 
     

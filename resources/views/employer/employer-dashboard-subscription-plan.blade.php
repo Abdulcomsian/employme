@@ -17,6 +17,12 @@ Subscription Plan
         .nice-select {
             width: 300px;
         }
+
+        .btn-submit{
+            width: 130px!important;
+            background: #ff715b;
+            color: white;
+        }
     </style>
 @endsection
 @section('content')
@@ -126,16 +132,77 @@ Subscription Plan
                     <h3>Subscription Form</h3>
                 </div>
                 <div class="form-wrapper p-5">
-                    <form  id="payment-form" action = "{{route('subscription.create')}}" method="POST">
+                    <form  id="payment-form" enctype="multipart/form-data" action = "{{route('subscription.create')}}" method="POST">
                         @csrf
                         <input type="hidden" id="plan_id" name="plan_id" value="">
                         <div id="interview-request-errors-list"></div>
                         <div class="row">
-                                    <div class="col-md-12 my-2"><label for="">Card details</label><div id="card-element"></div></div>
-                          
+                            <!-- <div class="col-md-12 my-2"><label for="">Card details</label><div id="card-element"></div></div> -->
+                            <div class="col-md-12 my-2">
+                                <label for="">Plan Name</label>
+                                    <input type="text" class="form-control" readonly name="plan_name">
+                            </div>
+
+                            <div class="col-md-12 my-2">
+                                <label for="">Choose Payment Type</label>
+                                    <select name="payment_type" id="" class="form-select">
+                                        <option value="bank-transfer">Bank Transfer</option>
+                                        <option value="card-payment">Card Payment</option>
+                                    </select>
+                            </div>
+
+
+                            <div class="col-md-12 my-2">
+                                <label for="">Choose Duration</label>
+                                    <select name="duration" id="" class="form-select">
+                                        <option value="1">Monthly</option>
+                                        <option value="3">3 Month</option>
+                                        <option value="6">6 Month</option>
+                                        <option value="12">12 Month</option>
+                                    </select>
+                            </div>
+
+
+
+                            <div data-payment-type="bank-transfer" class="payment-type">
+                                <div class="col-md-12 my-2">
+                                    <label for="">Bank Name</label>
+                                    <input type="text" name="bank_name" id="bank_name" class="form-control" value="Kookmin Bank" disabled>
+                                </div>
+    
+                                <div class="col-md-12 my-2">
+                                    <label for="">Account Title</label>
+                                    <input type="text" name="account_title" id="account_title" class="form-control" value="Major Recruitment" disabled>
+                                </div>
+    
+                                <div class="col-md-12 my-2">
+                                    <label for="">Account Number</label>
+                                    <input type="text" name="bank_name" id="account_number" class="form-control" value="697601-01-714510" disabled>
+                                </div>
+
+                            </div>
+
+
+                            <div data-payment-type="card-payment" class="payment-type d-none">
+                                <div class="card-detail">
+                                    <h1>Card Payment Detail</h1>
+                                </div>
+                            </div>
+
+                            <div class="reciept">
+                                <div class="col-md-12 my-2">
+                                    <label for="">Add Reciept</label>
+                                    <input type="file" class="form-control" name="reciept">
+                                </div>
+                            </div>
+
+                            
+
+
+                            
                         
                             <div class="col-md-6">
-                                <button class="btn-submit fw-500 tran3s d-block mt-20" id="card-button" data-secret="{{ $intent->client_secret }}" type = "submit" >
+                                <button class="btn btn-submit fw-500 tran3s d-block mt-20" id="card-button" data-secret="{{ $intent->client_secret }}" type = "submit" >
                                     Submit
                                 </button>
                             </div>
@@ -151,7 +218,7 @@ Subscription Plan
 </div>
 
 @push('page-script')
-<script src="https://js.stripe.com/v3/"></script>
+<!-- <script src="https://js.stripe.com/v3/"></script> -->
 <script>
 
    
@@ -167,45 +234,54 @@ Subscription Plan
             let plan = document.getElementById("plan").value;
             if(plan.trim())
             {
+                document.querySelector('input[name="plan_name"]').value= document.querySelector('select[name="plan"]').options[document.querySelector('select[name="plan"]').selectedIndex].innerText;
                 document.getElementById('plan_id').value = plan;
                 $("#SubscriptionModal").modal("show");
             }
         })
         
-        const stripe = Stripe('{{ env('STRIPE_KEY') }}')
-        const elements = stripe.elements()
-        const cardElement = elements.create('card')
-        cardElement.mount('#card-element')
+        // stripe code starts here
+        // const stripe = Stripe('{{ env('STRIPE_KEY') }}')
+        // const elements = stripe.elements()
+        // const cardElement = elements.create('card')
+        // cardElement.mount('#card-element')
 
        const form = document.getElementById('payment-form')
        const cardBtn = document.getElementById('card-button')
-    // const cardHolderName = document.getElementById('card-holder-name')
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
-    
             cardBtn.disabled = true
-            const { setupIntent, error } = await stripe.confirmCardSetup(
-                cardBtn.dataset.secret, {
-                    payment_method: {
-                        card: cardElement,
-                        billing_details: {
-                            name: '{{auth()->user()->name}}'
-                        }   
-                    }
-                }
-            )
+            form.submit();
+            // const { setupIntent, error } = await stripe.confirmCardSetup(
+            //     cardBtn.dataset.secret, {
+            //         payment_method: {
+            //             card: cardElement,
+            //             billing_details: {
+            //                 name: '{{auth()->user()->name}}'
+            //             }   
+            //         }
+            //     }
+            // )
   
-            if(error) {
-                cardBtn.disable = false
-            } else {
-                let token = document.createElement('input')
-                token.setAttribute('type', 'hidden')
-                token.setAttribute('name', 'token')
-                token.setAttribute('value', setupIntent.payment_method)
-                form.appendChild(token)
-                form.submit();
-            }
+            // if(error) {
+            //     cardBtn.disable = false
+            // } else {
+            //     let token = document.createElement('input')
+            //     token.setAttribute('type', 'hidden')
+            //     token.setAttribute('name', 'token')
+            //     token.setAttribute('value', setupIntent.payment_method)
+            //     form.appendChild(token)
+            //     form.submit();
+            // }
          })
+    });
+
+
+    document.querySelector("select[name='payment_type']").addEventListener("change" , function(e){
+        let value = this.value;
+        document.querySelector(".payment-type:not(.d-none)").classList.add("d-none");
+        document.querySelector(`.payment-type[data-payment-type='${value}']`).classList.remove("d-none");
     });
  
 
