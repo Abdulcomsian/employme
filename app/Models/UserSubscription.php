@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\{Plan , User};
 class UserSubscription extends Model
 {
     use HasFactory;
@@ -25,5 +25,10 @@ class UserSubscription extends Model
     public function user()
     {
         return $this->belongsTo(User::class , 'user_id' , 'id');
+    }
+
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class , 'plan_id' , 'id');
     }
 }

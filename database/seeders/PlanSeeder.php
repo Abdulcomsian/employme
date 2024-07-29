@@ -22,7 +22,7 @@ class PlanSeeder extends Seeder
                 'price' => 300000, 
                 'description' => '',
                 'allowed_jobs' => 1,
-                'duration' => 1
+                // 'duration' => 1
             ],
             [
                 'name' => 'Premium', 
@@ -31,7 +31,7 @@ class PlanSeeder extends Seeder
                 'price' => 810000, 
                 'description' => '',
                 'allowed_jobs' => 2,
-                'duration' => 3
+                // 'duration' => 3
             ],
             [
                 'name' => 'Platinum', 
@@ -40,7 +40,7 @@ class PlanSeeder extends Seeder
                 'price' => 1530000, 
                 'description' => '',
                 'allowed_jobs' => 5,
-                'duration' => 6
+                // 'duration' => 6
             ],
             [
                 'name' => 'Gold', 
@@ -49,7 +49,7 @@ class PlanSeeder extends Seeder
                 'price' => 2880000, 
                 'description' => '',
                 'allowed_jobs' => 8,
-                'duration' => 12
+                // 'duration' => 12
             ]
         ];
   

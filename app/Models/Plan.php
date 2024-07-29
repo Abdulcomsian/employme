@@ -22,7 +22,7 @@ class Plan extends Model
         'price',
         'description',
         'allowed_jobs',
-        'duration',
+        // 'duration',
     ];
   
     /**

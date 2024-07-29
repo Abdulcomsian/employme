@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\AppConst;
 use Illuminate\Http\Request;
 use App\Models\ProfessionalSkills;
-use App\Models\{CandidateDocument, EmployerJob, User, JobInterview, EmployerBusinessLicense};
+use App\Models\{CandidateDocument, EmployerJob, User, JobInterview, EmployerBusinessLicense, UserSubscription};
 use Carbon\Carbon;
 use Auth;
 use Notification;
@@ -96,6 +96,14 @@ class OwnerController extends Controller
         $employers =User::with('employerDetails' , 'license')->role('employer')->paginate(10);
         return view('owner.employers',compact('employers'));
     }
+
+    public function getSubscriptions()
+    {
+        $subscriptions = UserSubscription::with('user')->orderBy('id' , 'desc')->paginate(10);
+        return view('owner.user-subscriptions',compact('subscriptions'));
+    }
+
+
     public function getEmployerDetails()
     {
         return view('owner.employer-details');

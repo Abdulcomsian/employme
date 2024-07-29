@@ -20,7 +20,8 @@ return new class extends Migration
             $table->date('ends_at')->nullable();
             $table->date('starts_from')->nullable();
             $table->integer('duration');
-            $table->longText('reciept');
+            $table->longText('reciept')->nullable();
+            $table->string('mobile_number')->nullable();
             $table->boolean('is_approved')->default(0);
             $table->foreign('approved_by')->references('id')->on('users');
             $table->foreign('plan_id')->references('id')->on('plans');

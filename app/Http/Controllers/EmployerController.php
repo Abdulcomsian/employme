@@ -8,7 +8,6 @@ use App\Models\EmployerDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use App\Models\{Plan, User, SubscriptionItem, Subscription, EmployerJob, SavedCandidate, JobInterview, JobApplication, EmployerBusinessLicense};
-use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use App\Rules\ValidateJobLink;
 use App\Rules\BusinessLicenseRule;
@@ -17,6 +16,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 use App\Notifications\{BusinessLicenseNotification, InterviewRequestNotification,InterviewRescheduleNotification};
+use Carbon\Carbon;
 class EmployerController extends Controller
 {
 
@@ -46,24 +46,27 @@ class EmployerController extends Controller
         $intent = auth()->user()->createSetupIntent();
         $allPlans = Plan::all();
         $userSubscription = User::find(Auth::id())->subscriptions('default')->first();
-        
-        $renewalTimestamp=null;
-        $planDetails=null;
-        // dd("Subscription renews on ". $formattedDate);
-        if(isset($userSubscription) && $userSubscription->stripe_status !='canceled')
+        $userSubscription = auth()->user()->lastApprovedSubscription;
+        if($userSubscription && $userSubscription->ends_at && Carbon::parse($userSubscription->ends_at)->gte(Carbon::now()))
         {
-            $planDetails =\App\Models\Plan::where('stripe_plan',$userSubscription->stripe_price)->first();
-                $userSubscription->plan = $planDetails;
-
-                // Get the renewal timestamp from the Stripe subscription
-                $stripeSubscription = $userSubscription->asStripeSubscription();
-                $renewalTimestamp = $stripeSubscription->current_period_end;
-                // Convert the timestamp to a Carbon instance
-                $carbonDate = Carbon::createFromTimestamp($renewalTimestamp);
-                // Format the Carbon instance as a string (e.g., 'Y-m-d H:i:s')
-                $formattedDate = $carbonDate->format('d M, Y');
-                $userSubscription->renewal_date =  $formattedDate;
+            $planDetails =\App\Models\Plan::where('stripe_plan',$userSubscription->plan_id)->first();  
+            $userSubscription->plan = $planDetails;
+            $userSubscription->renewal_date =  Carbon::parse($userSubscription->ends_at)->addDay(1)->format('d M, Y');
         }
+
+        // $renewalTimestamp=null;
+        // $planDetails=null;
+        
+        // if(isset($userSubscription) && $userSubscription->stripe_status !='canceled')
+        // {
+        //     $planDetails =\App\Models\Plan::where('stripe_plan',$userSubscription->stripe_price)->first();
+        //     $userSubscription->plan = $planDetails;
+        //     $stripeSubscription = $userSubscription->asStripeSubscription();
+        //     $renewalTimestamp = $stripeSubscription->current_period_end;
+        //     $carbonDate = Carbon::createFromTimestamp($renewalTimestamp);
+        //     $formattedDate = $carbonDate->format('d M, Y');
+        //     $userSubscription->renewal_date =  $formattedDate;
+        // }
         return view('employer.employer-dashboard-subscription-plan',compact('userSubscription','allPlans','intent'));
     }
 

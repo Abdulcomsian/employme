@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\EmployerDetails;
 use Illuminate\Support\Facades\Validator;
 use App\Models\UserSubscription;
+use Carbon\Carbon;
 class SubscriptionController extends Controller
 {
     public function index()
@@ -36,11 +37,21 @@ class SubscriptionController extends Controller
      */
     public function subscription(Request $request)
     {
-        $request->validate([
+
+        $validator = Validator::make( $request->all() , [
             'payment_type' => 'required|string',
-            'reciept' => 'required|file',
+            'reciept' => 'required_if:payment_type,bank-transfer|file',
             'duration' => 'required|numeric',
+            'payee_number' => 'required_if:payment_type,card-payment'
         ]);
+        
+
+        if($validator->fails())
+        {
+            $errors = implode(", ", $validator->errors()->all());
+            toastr()->error($errors);
+            return redirect()->back();
+        }
 
 
         $plan = Plan::find($request->plan_id);
@@ -51,21 +62,24 @@ class SubscriptionController extends Controller
             return redirect()->back();
         }
 
-        $file = $request->file('reciept');
-        $filename = time().'-'.str_replace(" ", "_" , $file->getClientOriginalExtension());
-        $file->move(public_path('uploads/reciept') , $filename);
+        $userSubscription = new UserSubscription();
+        $userSubscription->user_id =auth()->user()->id;
+        $userSubscription->plan_id = $plan->id;
+        $userSubscription->duration = $request->duration;
+        $userSubscription->payment_type = $request->payment_type;
 
-        
-        UserSubscription::create([
-                        'plan_id' => $plan->id, 
-                        'payment_type' => $request->payment_type,
-                        'user_id' => auth()->user()->id , 
-                        'reciept' => $filename , 
-                        'duration' => $request->duration
-                    ]);
+        if($request->payment_type === "bank-transfer"){
+            $file = $request->file('reciept');
+            $filename = time().'-'.str_replace(" ", "_" , $file->getClientOriginalName());
+            $file->move(public_path('uploads/reciept') , $filename);
+            $userSubscription->reciept = $filename;
+        }else{
+            $userSubscription->mobile_number = $request->payee_number;
+        }
+
+        $userSubscription->save();
 
 
-                
 
         // previous stripe subscription code starts here
         // $userSubscription = User::find(Auth::id())->subscriptions('default')->where('stripe_status',"!=","canceled")->first();
@@ -84,8 +98,36 @@ class SubscriptionController extends Controller
         // }
         // subscription code ends here
   
-        toastr()->success('Your subscription has been added wait until approved by admin');
+        toastr()->success('You subscription has been submitted and is pending approval. We will update you via email once it is approved.');
         return redirect()->back();
       
+    }
+
+    public function updateSubscriptionStatus(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            'subscriptionId' => 'numeric|required|exists:user_subscriptions,id',
+            'status' => 'numeric|required'
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json(['status' => false , 'error' => $validator->errors()->all()]);
+        }
+
+        $userSubscription = UserSubscription::where('id' , $request->subscriptionId)->first();
+        if($userSubscription->status == 1){
+            $duration = $userSubscription->duration;
+            $userSubscription->starts_from = Carbon::now()->format('Y-m-d');
+            $userSubscription->ends_at = Carbon::now()->addMonth($duration)->format('Y-m-d');
+        }else{
+            $userSubscription->starts_from = null;
+            $userSubscription->ends_at = null;
+        }
+        $userSubscription->is_approved = $request->status;
+        $userSubscription->save();
+
+        return response()->json(['status' => true , 'msg' => 'Subscription status updated successfully']);
+
     }
 }

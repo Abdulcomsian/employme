@@ -203,6 +203,7 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('users', [OwnerController::class, 'getUserProfile'])->name('getUserProfile');
     Route::get('candidates', [OwnerController::class, 'getCandidates'])->name('getCandidates');
     Route::get('employers', [OwnerController::class, 'getEmployers'])->name('getEmployers');
+    Route::get('subscriptions' , [OwnerController::class , 'getSubscriptions'])->name('getSubscriptions');
     Route::get('employers/employer-details', [OwnerController::class, 'getEmployerDetails'])->name('getEmployerDetails');
     Route::get('employer-business-licenses', [OwnerController::class, 'employerBusinessLicenses'])->name('owner.employerBusinessLicenses');
     Route::post('employer-reject-license/{id}', [OwnerController::class, 'employerRejectLicense'])->name('owner.employerRejectLicense');
@@ -221,6 +222,7 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::get('plans/{plan}', [SubscriptionController::class, 'show'])->name("plans.show");
     Route::resource('job-categories', JobCategoryController::class);
     Route::post('update-certificate-approval-status' , [EmployerJobController::class , 'updateCertificateApprovalStatus'])->name('updateCertificateApprovalStatus');
+    Route::post('update-subscription-status' , [SubscriptionController::class , 'updateSubscriptionStatus'])->name('updateSubscriptionStatus');
     Route::post('update-certificate-status' , [OwnerController::class , 'changeCertificateStatus'])->name('changeCertificateStatus');
     Route::post('update-eligibility' , [OwnerController::class ,'updateCandidateEligibily'])->name('updateCandidateEligibily');
 });

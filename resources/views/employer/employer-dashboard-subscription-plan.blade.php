@@ -62,8 +62,8 @@ Subscription Plan
                             <div class="ps-4 flex-fill">
                                 <!-- <p>Duration: {{$userSubscription->plan->duration}}</p> -->
                                 <span class="text1 d-block">Your subscription renews <span class="fw-500">{{$userSubscription->renewal_date}}</span></span>
-                                <a href="#" onclick="event.preventDefault();
-                                                                document.getElementById('destroy-form').submit();" class="cancel-plan tran3s">Cancel Current Plan</a>
+                                <!-- <a href="#" onclick="event.preventDefault();
+                                                                document.getElementById('destroy-form').submit();" class="cancel-plan tran3s">Cancel Current Plan</a> -->
                             </div>
                             <form id="destroy-form" action="{{route('cancelSubscription')}}" method="POST" style="display: none;">
                                     @csrf
@@ -180,21 +180,21 @@ Subscription Plan
                                     <input type="text" name="bank_name" id="account_number" class="form-control" value="697601-01-714510" disabled>
                                 </div>
 
+                                <div class="col-md-12 my-2">
+                                    <label for="">Add Reciept</label>
+                                    <input type="file" class="form-control" name="reciept">
+                                </div>
+
                             </div>
 
 
                             <div data-payment-type="card-payment" class="payment-type d-none">
                                 <div class="card-detail">
-                                    <h1>Card Payment Detail</h1>
+                                    <label for="">Payee Number</label>
+                                    <input type="text" class="form-control" name="payee_number" />
                                 </div>
                             </div>
 
-                            <div class="reciept">
-                                <div class="col-md-12 my-2">
-                                    <label for="">Add Reciept</label>
-                                    <input type="file" class="form-control" name="reciept">
-                                </div>
-                            </div>
 
                             
 

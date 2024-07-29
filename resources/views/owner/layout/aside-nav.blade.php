@@ -81,6 +81,15 @@
                         <span>Employers</span>
                     </a>
                 </li>
+
+                <li><a href="{{ route('getSubscriptions') }}"
+                        class="d-flex w-100 align-items-center {{ request()->is('owner/subscriptions') ? 'active' : '' }}">
+                        <img src="{{ asset('assets/images/lazy.svg') }}"
+                            data-src="{{ request()->is('owner/employers') ? asset('assets/images/dashboard-icon/subscription.png') : asset('assets/images/dashboard-icon/subscription.png') }}"
+                            alt="" class="lazy-img">
+                        <span>Subscription</span>
+                    </a>
+                </li>
                 <!-- <li><a href="{{ route('owner.employerBusinessLicenses') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/employer-business-licenses') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
