@@ -578,11 +578,11 @@ $(document).on("click" , ".cancel-request" ,  function(e){
     let interviewId = this.dataset.interviewId;
 
         Swal.fire({
-        title: "Are you sure you wanted to cancel it?",
+        title: "Are you sure you want to cancel it?",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#ff715b",
+            cancelButtonColor: "#b1b0eb",
         confirmButtonText: "Yes, cancel it!"
         }).then((result) => {
             if (result.isConfirmed) {
