@@ -34,7 +34,7 @@ Subscription Plan
         <!-- End Header -->
 
         <h2 class="main-title">Membership</h2>
-        <span><b>Total Spent: </b></span><spa>{{employerSpentAmount()}} ₩</span>
+        <!-- <span><b>Total Spent: </b></span><spa>{{employerSpentAmount()}} ₩</span> -->
         @if($userSubscription && $userSubscription->plan)
         <div class="membership-plan-wrapper mb-20">
             <div class="row gx-0">
