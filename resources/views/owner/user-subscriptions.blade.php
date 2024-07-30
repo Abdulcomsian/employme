@@ -132,9 +132,9 @@ Employers
                             </td>
                             <td>
                                 <select class="form-select subscription-approval-status" name="" id="" data-subscription-id="{{$subscription->id}}">
-                                    <option value="0" @if($subscription->is_approved == 0) selected @endif>Pending</option>
-                                    <option value="1" @if($subscription->is_approved == 1) selected @endif>Approved</option>
-                                  
+                                    <option value="0" @if($subscription->is_approved == AppConst::SUBSCRIPTION_PENDING) selected @endif>Pending</option>
+                                    <option value="1" @if($subscription->is_approved == AppConst::SUBSCRIPTION_APPROVED) selected @endif>Approve</option>
+                                    <option value="2" @if($subscription->is_approved == AppConst::SUBSCRIPTION_DISABLE) selected @endif>Disable</option>
                                 </select>
                             </td>
                           

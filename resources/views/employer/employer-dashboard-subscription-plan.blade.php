@@ -61,7 +61,36 @@ Subscription Plan
                             <h3 class="price m0">₩{{number_format($userSubscription->plan->price , 2)}}</h3>
                             <div class="ps-4 flex-fill">
                                 <!-- <p>Duration: {{$userSubscription->plan->duration}}</p> -->
-                                <span class="text1 d-block">Your subscription renews <span class="fw-500">{{$userSubscription->renewal_date}}</span></span>
+                                 @if( \Carbon\Carbon::parse(auth()->user()->lastApprovedSubscription->ends_at)->gte(\Carbon\Carbon::now()))
+                                   <span class="text1 d-block">Your subscription renews <span class="fw-500">{{\Carbon\Carbon::parse(auth()->user()->lastApprovedSubscription->ends_at)->format('jS F Y') }}</span></span>
+                                 @else
+                                 <span class="text1 d-block">Your subscription expires <span class="fw-500">{{\Carbon\Carbon::parse(auth()->user()->lastApprovedSubscription->ends_at)->format('jS F Y') }}</span></span>
+                                 @endif
+
+                                <div>
+                                    <h4>Change Subscription</h4>
+                                    <div class="row my-5">
+                                        <div class="col-md-12">
+                                            <div class="d-flex justify-content-center">
+                                                <div class="d-flex flex-column">
+                                                    <label for="plan" class="text-start my-2"><strong>Update Plan</strong></label><br>
+                                                    <div class="d-flex">
+                                                        <select name="plan" id="plan" class="nice-select">
+                                                            <option value="">Select Plan</option>
+                                                            @foreach($allPlans as $index => $plan)
+                                                            <option value="{{$plan->id}}">{{$plan->price/1000}}K</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <button class="btn mx-3" id="plan-choose-btn">Choose</button>
+                                                    </div>
+                                                    <div id="plan-detail">
+                                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- <a href="#" onclick="event.preventDefault();
                                                                 document.getElementById('destroy-form').submit();" class="cancel-plan tran3s">Cancel Current Plan</a> -->
                             </div>
@@ -147,7 +176,7 @@ Subscription Plan
                                 <label for="">Choose Payment Type</label>
                                     <select name="payment_type" id="" class="form-select">
                                         <option value="bank-transfer">Bank Transfer</option>
-                                        <option value="card-payment">Card Payment</option>
+                                        <!-- <option value="card-payment">Card Payment</option> -->
                                     </select>
                             </div>
 

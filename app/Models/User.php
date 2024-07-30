@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Http\AppConst;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -168,7 +170,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 
     public function lastApprovedSubscription()
     {
-        return $this->hasOne(UserSubscription::class , 'user_id' , 'id')->where('is_approved' , 1 )->orderBy('id' , 'desc');
+        return $this->hasOne(UserSubscription::class , 'user_id' , 'id')->where('is_approved' , AppConst::SUBSCRIPTION_APPROVED )->orderBy('id' , 'desc');
     }
 
     public function subscriptionList()

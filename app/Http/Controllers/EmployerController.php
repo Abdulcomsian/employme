@@ -7,7 +7,7 @@ use App\Models\Countries;
 use App\Models\EmployerDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
-use App\Models\{Plan, User, SubscriptionItem, Subscription, EmployerJob, SavedCandidate, JobInterview, JobApplication, EmployerBusinessLicense};
+use App\Models\{Plan, User, SubscriptionItem, Subscription, EmployerJob, SavedCandidate, JobInterview, JobApplication, EmployerBusinessLicense, UserSubscription};
 use Illuminate\Validation\Rule;
 use App\Rules\ValidateJobLink;
 use App\Rules\BusinessLicenseRule;
@@ -45,14 +45,17 @@ class EmployerController extends Controller
     {
         $intent = auth()->user()->createSetupIntent();
         $allPlans = Plan::all();
-        $userSubscription = User::find(Auth::id())->subscriptions('default')->first();
-        $userSubscription = auth()->user()->lastApprovedSubscription;
-        if($userSubscription && $userSubscription->ends_at && Carbon::parse($userSubscription->ends_at)->gte(Carbon::now()))
-        {
-            $planDetails =\App\Models\Plan::where('stripe_plan',$userSubscription->plan_id)->first();  
-            $userSubscription->plan = $planDetails;
-            $userSubscription->renewal_date =  Carbon::parse($userSubscription->ends_at)->addDay(1)->format('d M, Y');
-        }
+        // $userSubscription = User::where(Auth::id())->subscriptions('default')->first();
+        // $userSubscription = auth()->user()->lastApprovedSubscription;
+        $userSubscription = UserSubscription::with('plan')
+                                              ->where('user_id' , auth()->user()->id)
+                                              ->where('is_approved' , \AppConst::SUBSCRIPTION_APPROVED)
+                                              ->orderBy('id' , 'desc')
+                                              ->first();
+        // if($userSubscription && $userSubscription->ends_at && Carbon::parse($userSubscription->ends_at)->gte(Carbon::now()))
+        // {
+        //     $userSubscription->renewal_date =  Carbon::parse($userSubscription->ends_at)->addDay(1)->format('d M, Y');
+        // }
 
         // $renewalTimestamp=null;
         // $planDetails=null;

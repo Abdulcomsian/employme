@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\AppConst;
 use Illuminate\Http\Request;
 use App\Models\Plan;
 use App\Models\User;
@@ -116,10 +117,17 @@ class SubscriptionController extends Controller
         }
 
         $userSubscription = UserSubscription::where('id' , $request->subscriptionId)->first();
-        if($userSubscription->status == 1){
+        if($request->status == AppConst::SUBSCRIPTION_APPROVED )
+        {
+            UserSubscription::where('user_id' , $userSubscription->user_id)
+                            ->where('is_approved' , \App\Http\AppConst::SUBSCRIPTION_APPROVED)
+                            ->where('id' , '!=', $request->subscriptionId )
+                            ->delete();
+
             $duration = $userSubscription->duration;
             $userSubscription->starts_from = Carbon::now()->format('Y-m-d');
             $userSubscription->ends_at = Carbon::now()->addMonth($duration)->format('Y-m-d');
+
         }else{
             $userSubscription->starts_from = null;
             $userSubscription->ends_at = null;

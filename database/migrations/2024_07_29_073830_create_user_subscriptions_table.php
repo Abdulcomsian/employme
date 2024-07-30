@@ -17,16 +17,17 @@ return new class extends Migration
             $table->unsignedBigInteger('plan_id');
             $table->unsignedBigInteger('approved_by')->nullable();
             $table->enum('payment_type' , ['bank-transfer' , 'card-payment']);
-            $table->date('ends_at')->nullable();
             $table->date('starts_from')->nullable();
+            $table->date('ends_at')->nullable();
             $table->integer('duration');
             $table->longText('reciept')->nullable();
             $table->string('mobile_number')->nullable();
-            $table->boolean('is_approved')->default(0);
+            $table->integer('is_approved')->default(0);
             $table->foreign('approved_by')->references('id')->on('users');
             $table->foreign('plan_id')->references('id')->on('plans');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

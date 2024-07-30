@@ -32,4 +32,9 @@ class AppConst{
     public const INTERVIEW_CONDUCTED = 3;
     public const INTERVIEW_RESCHEDULE = 5;
 
+    //reference table user_subscriptions column is_approved
+    public const SUBSCRIPTION_PENDING = 0;
+    public const SUBSCRIPTION_APPROVED = 1;
+    public const SUBSCRIPTION_DISABLE = 2;
+
 }

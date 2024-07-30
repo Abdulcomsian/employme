@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\{Plan , User};
+use Illuminate\Database\Eloquent\SoftDeletes;
 class UserSubscription extends Model
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes;
 
     protected $table = "user_subscriptions";
     protected $fillable = [
