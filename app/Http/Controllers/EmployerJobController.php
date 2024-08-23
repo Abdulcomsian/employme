@@ -37,15 +37,13 @@ class EmployerJobController extends Controller
     public function create()
     {
         $employerLicenseDetails =  EmployerBusinessLicense::where('employer_id',auth()->user()->id)->first();
-        if($employerLicenseDetails && $employerLicenseDetails->approval_status == 1 && (!auth()->user()->lastSubscription || !is_null(auth()->user()->lastSubscription->ends_at)))
-        {
-            return redirect()->route('getEmployerSubscriptionPlan');    
-        }
-
+        // if($employerLicenseDetails && $employerLicenseDetails->approval_status == 1 && (!auth()->user()->lastSubscription || !is_null(auth()->user()->lastSubscription->ends_at)))
+        // {
+        //     return redirect()->route('getEmployerSubscriptionPlan');    
+        // }
         $jobCategories = JobCategory::all();
         $userSubscription = User::find(Auth::id())->subscriptions('default')->first();
-
-        $employerSubscriptionPlan = Plan::where('stripe_plan' , $userSubscription->stripe_price)->first();
+        $employerSubscriptionPlan = Plan::where('id' , auth()->user()->lastSubscription->plan_id)->first();
         $userActiveJobsCount = EmployerJob::where('posted_by' , auth()->user()->id)->count();
         $isSubscriptionJobCountCompleted  = $userActiveJobsCount == $employerSubscriptionPlan->allowed_jobs ? true : false; 
         return view('employer.jobs.create',get_defined_vars());

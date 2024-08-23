@@ -107,7 +107,6 @@ Job Listing
                                 <tr>
                                     <th scope="col">Title</th>
                                     <th scope="col">Job Created</th>
-                                    <!-- <th scope="col">Applicants</th> -->
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>

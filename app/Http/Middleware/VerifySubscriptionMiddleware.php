@@ -17,12 +17,13 @@ class VerifySubscriptionMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $employerLicenseDetails =  EmployerBusinessLicense::where('employer_id',\Auth::id())->first();
-                
-        if($employerLicenseDetails && $employerLicenseDetails->approval_status == 1 && (!auth()->user()->lastApprovedSubscription || Carbon::now()->gt(Carbon::parse(auth()->user()->lastApprovedSubscription->ends_at))))
-        {
-            return redirect()->route('getEmployerSubscriptionPlan');    
-        }
         
-        return $next($request);
+        if($employerLicenseDetails && $employerLicenseDetails->approval_status == 1 && auth()->user()->lastApprovedSubscription && Carbon::now()->lte(Carbon::parse(auth()->user()->lastApprovedSubscription->ends_at)))
+        {
+            return $next($request);
+        }
+
+        return redirect()->route('getEmployerSubscriptionPlan');    
+        
     }
 }
