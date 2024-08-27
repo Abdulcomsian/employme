@@ -64,7 +64,7 @@ Route::post('job/apply/application', [JobController::class, 'jobApplicationReque
 Route::post('save-job', [JobController::class, 'saveJob'])->name('saveJob')->middleware(['auth','role:candidate']);
 // Route::get('candidate-profile' , [UserController::class , 'candidateProfile'])->name('candidateProfile');
 Route::get('company', [UserController::class, 'company'])->name('company');
-Route::get('candidates-marketplace', [UserController::class, 'candidatesMarketplace'])->name('candidatesMarketplace');
+Route::get('candidates-marketplace', [UserController::class, 'candidatesMarketplace'])->name('candidatesMarketplace')->middleware(['auth','verify_subscription']);
 Route::get('job-details/{id}', [UserController::class, 'jobDetails'])->name('jobDetails');
 Route::post('save-candidate', [UserController::class, 'saveCandidate'])->name('saveCandidate')->middleware(['auth','role:employer']);
 Route::post('download-resume', [UserController::class, 'downloadResume'])->name('downloadResume');

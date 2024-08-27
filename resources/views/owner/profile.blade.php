@@ -396,3 +396,18 @@
 	</div>
 </div>
 @endsection
+@push('page-script')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function(){
+		$(document).on("change" , "#uploadImg" , function(e){
+			let reader = new FileReader();
+			reader.onload = function (e) {
+				$('.user-img').attr('src', e.target.result);
+			}
+        	reader.readAsDataURL(this.files[0]);
+		})
+	})
+</script>
+
+@endphp

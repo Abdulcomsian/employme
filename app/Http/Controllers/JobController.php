@@ -19,7 +19,11 @@ class JobController extends Controller
                                     $query->whereHas('license', function($query){
                                         $query->where('approval_status' , \App\Http\AppConst::LICENSE_APPROVED);
                                     });
+                                    $query->whereHas('lastSubscription' , function($query){
+                                        $query->whereDate('ends_at' , '>=' , date('Y-m-d'));
+                                    });
                                 })
+                                
                                 ->with('employerDetails');
         $jobCategories = JobCategory::all();
        

@@ -234,8 +234,23 @@ div#JobApplicationModal .modal-dialog {
 								</a></li>
 						</ul>--}}
 					 @php $sectionNumber = 0; @endphp
+
+					<!-- intro video -->
+					 @if($introductionVideo)
+						<div class="container">
+							<div class="row">
+								<div class="col-xxl-12 col-xl-12 order-xl-first my-5 mr-1 p-1 padding-box">
+
+									<video width="100%" height="360" controls>
+										<source src="{{asset('uploads/employer/introduction-video/'.$introductionVideo->file_path)}}" type="video/mp4">
+									</video>
+								</div>
+							</div>
+						</div>
+					@endif
+					<!-- intro video ends here -->
 					 @if($jobDetails->job_description !='')
-					  @php $sectionNumber++; @endphp
+					@php $sectionNumber++; @endphp
 					<div class="post-block border-style mt-30">
 						<div class="d-flex align-items-center">
 							<div class="block-numb text-center fw-500 text-white rounded-circle me-2">{{$sectionNumber}}</div>

@@ -591,7 +591,7 @@ a.btn.Interview-Modal-Button.subscribed-redirect:hover{
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
 												<span	class="text-start fw-500"> Document Status</span>
-												<div class="doc-v text-end">Verified</div>
+												<div class="doc-v text-end">@if($candidate->is_eligible == \AppConst::ELIGIBILITY_PENDING) Pending @elseif($candidate->is_eligible == \AppConst::ELIGIBILITY_REJECTED) Rejected @else Verified  @endif </div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>

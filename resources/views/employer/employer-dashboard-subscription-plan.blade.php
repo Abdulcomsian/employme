@@ -64,7 +64,7 @@ Subscription Plan
                                  @if( \Carbon\Carbon::parse(auth()->user()->lastApprovedSubscription->ends_at)->gte(\Carbon\Carbon::now()))
                                    <span class="text1 d-block">Your subscription renews <span class="fw-500">{{\Carbon\Carbon::parse(auth()->user()->lastApprovedSubscription->ends_at)->format('jS F Y') }}</span></span>
                                  @else
-                                 <span class="text1 d-block">Your subscription expires <span class="fw-500">{{\Carbon\Carbon::parse(auth()->user()->lastApprovedSubscription->ends_at)->format('jS F Y') }}</span></span>
+                                 <span class="text1 d-block">Your subscription expires <span class="fw-500 text-danger">{{\Carbon\Carbon::parse(auth()->user()->lastApprovedSubscription->ends_at)->format('jS F Y') }}</span></span>
                                  @endif
 
                                 <div>

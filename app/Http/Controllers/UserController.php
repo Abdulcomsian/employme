@@ -236,7 +236,7 @@ class UserController extends Controller
         $candidates = $candidates->paginate(10);
 
         $verifiedCertificate = auth()->check() && auth()->user()->hasRole('employer') ? EmployerBusinessLicense::where('employer_id' , auth()->user()->id)->where('approval_status' , 1)->count() : 0;
-        $employerIsSubscribed = auth()->check() &&  auth()->user()->lastSubscription && is_null(auth()->user()->lastSubscription->ends_at) ? true : false;
+        $employerIsSubscribed = auth()->check() &&  auth()->user()->lastSubscription && \Carbon\Carbon::now()->lte(auth()->user()->lastSubscription->ends_at) ? true : false;
         return view('candidates-marketplace',compact('candidates','jobCategories','verifiedCertificate' , 'employerIsSubscribed' , 'openJobs'));
     }
 
@@ -348,10 +348,11 @@ class UserController extends Controller
     public function jobDetails($id)
     {
         $jobId = Crypt::decryptString($id);
-        $jobDetails = EmployerJob::with('employerDetails')->find($jobId);
+        $jobDetails = EmployerJob::with('employerDetails' )->find($jobId);
+        $introductionVideo = IntroductionVideo::where('employer_id' , $jobDetails->posted_by)->first();
         // $appliedInterview = auth()->check() ? JobApplication::where(['employer_job_id' => $jobId , 'candidate_id' => auth()->user()->id])->first() : null;
         $appliedInterview = auth()->check() ? JobInterview::where(['employer_job_id' => $jobId , 'requested_from' => auth()->user()->id])->first() : null;
-        return view('job-details',compact('jobDetails' , 'appliedInterview'));
+        return view('job-details',compact('jobDetails' , 'appliedInterview' , 'introductionVideo'));
     }
     // public function employerjobListing()
     // {
