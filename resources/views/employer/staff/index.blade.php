@@ -111,7 +111,7 @@ Interview Request
                                     <td>{{$staffMember->title}}</td>
                                     <td>{{$staffMember->year_started}}</td>
                                     <td>
-                                        <div class="action-dots float-end">
+                                        <div class="action-dots float-center">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>

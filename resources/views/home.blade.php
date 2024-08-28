@@ -1,5 +1,11 @@
 @extends('components.master')
-
+@push('extra-style')
+<style>
+  #toast-container{
+    margin-right: 300px!important;
+  }
+</style>
+@endpush
 @section('content')
 
 <div class="main-hero bg-purple">

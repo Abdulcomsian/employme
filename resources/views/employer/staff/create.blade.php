@@ -5,6 +5,11 @@ Account Settings
 @section('content')
 @push('page-css')
 <link rel="stylesheet" href="{{asset('assets/css/yearpicker.css')}}" />
+<style>
+    .invalid-feedback{
+        width: 400px;
+    }
+</style>
 @endpush
 <div class="dashboard-body">
     <div class="position-relative">
@@ -62,7 +67,7 @@ Account Settings
                                             <input type="file" id="uploadImage" class = "@error('staff_image') is-invalid @enderror" name="staff_image" placeholder="" accept="image/jpeg,image/png">
                                             @error('staff_image')
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                                    <strong class=" staff-image-error">{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
@@ -109,6 +114,8 @@ $(document).ready(function() {
           imagePreview.classList.remove('d-none');
         }
         reader.readAsDataURL(file);
+
+        document.querySelector(".staff-image-error").innerText = "";
       }
       else{
             imagePreview.classList.add('d-none');

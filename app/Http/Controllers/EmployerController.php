@@ -43,7 +43,7 @@ class EmployerController extends Controller
     }
     public function getEmployerSubscription()
     {
-        $intent = auth()->user()->createSetupIntent();
+        // $intent = auth()->user()->createSetupIntent();
         $allPlans = Plan::all();
         // $userSubscription = User::where(Auth::id())->subscriptions('default')->first();
         // $userSubscription = auth()->user()->lastApprovedSubscription;
@@ -70,7 +70,7 @@ class EmployerController extends Controller
         //     $formattedDate = $carbonDate->format('d M, Y');
         //     $userSubscription->renewal_date =  $formattedDate;
         // }
-        return view('employer.employer-dashboard-subscription-plan',compact('userSubscription','allPlans','intent'));
+        return view('employer.employer-dashboard-subscription-plan',compact('userSubscription','allPlans'));
     }
 
     public function postAJob()

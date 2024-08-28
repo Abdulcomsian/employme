@@ -14,9 +14,13 @@ class HousingController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'housing_images' => 'required'
+        ]);
+
         if(isset($request->housing_images))
         {
-            foreach($request->housing_images as $index=>$galleryFile)
+            foreach($request->housing_images as $galleryFile)
             {
                 $imageName = '';
                 $file = $galleryFile;

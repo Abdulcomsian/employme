@@ -109,7 +109,7 @@ Interview Request
                                     </td>
                                   
                                     <td>
-                                        <div class="action-dots float-end">
+                                        <div class="action-dots float-center">
                                             <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <span></span>
                                             </button>

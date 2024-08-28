@@ -227,11 +227,10 @@ Subscription Plan
 
                             
 
-
                             
-                        
+                            <!-- data-secret="{  $intent->client_secret }" -->
                             <div class="col-md-6">
-                                <button class="btn btn-submit fw-500 tran3s d-block mt-20" id="card-button" data-secret="{{ $intent->client_secret }}" type = "submit" >
+                                <button class="btn btn-submit fw-500 tran3s d-block mt-20" id="card-button"  type = "submit" >
                                     Submit
                                 </button>
                             </div>

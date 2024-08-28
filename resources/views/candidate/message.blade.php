@@ -117,7 +117,7 @@ small {
                             <input type="file" name="attachment_file[]" id="attachment_file" multiple>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn upload-file attachment-submit-btn">Send Files</button>
+                        <button type="button" class="btn upload-file attachment-submit-btn">Send Files <i class="fa-solid fa-spinner fa-spin d-none attachment-loader"></i></button>
                         <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -541,6 +541,7 @@ small {
         form.append('haveAttachment' , true);
         form.append('conversation_id' , $("input[name=conversation_id]").val());
         var apiUrl = '{{route("employer.sendTextToEmployer")}}';
+        document.querySelector(".attachment-loader").classList.remove('d-none');
         $.ajax({
             type: "POST",
             url: apiUrl,
@@ -554,6 +555,7 @@ small {
                     $(".conversation-"+conversationId).append(res.html);
                     $(".email-body").scrollTop($(".email-body")[0].scrollHeight);
                     $(".attachment-modal").modal("hide");
+                    document.querySelector(".attachment-loader").classList.add('d-none');
                 }else{
                     toastr.error(res.error);
                 }

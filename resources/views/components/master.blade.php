@@ -44,6 +44,8 @@
     }
   </style>
 
+  @stack('extra-style')
+
 </head>
 
 <body>

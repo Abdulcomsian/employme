@@ -31,23 +31,22 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
+        $request->validate([
             'title'=>'required',
             'year_started'=>'required',
-            'staff_image' => 'required',        
-        ];
-        $validator = Validator::make($request->all(),$rules);
-        $validator->validated();
-        $imageName = '';
+            'staff_image' => 'required',   
+        ]);
+     
+        $create = new Staff;
+        $create->title = $request->title;
+        $create->year_started = $request->year_started;
+
         if ($request->file('staff_image')) {
             $file = $request->file('staff_image');
             $filePath = employerStaffPicturePath();
             $imageName = saveFile($filePath, $file,null);
+            $create->staff_image = $imageName;
         }
-        $create = new Staff;
-        $create->title = $request->title;
-        $create->year_started = $request->year_started;
-        $create->staff_image = $imageName;
         $create->employer_id = \Auth::id();
         if($create->save())
         {
