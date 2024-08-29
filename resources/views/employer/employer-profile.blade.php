@@ -561,7 +561,7 @@ h3{
 								<div class="row">
 									<div class="col-md-6">
 										<div class="dash-input-wrapper mb-30">
-											<label for="">Upload Business License Certificate</label>
+											<label for="">Upload Business License Certificate Here1</label>
 											<div class="user-avatar-setting d-flex align-items-center">
 												<div class="upload-btn position-relative tran3s ms-4 me-3">
 													Upload
@@ -641,15 +641,15 @@ h3{
 								</div>--}}
 
 								<div class="d-flex flex-row justify-content-end gap-3">
-									{{-- <button type="button" class="dash-btn-one" onclick="previousStep(3)">Previous</button> --}}
+									
 									@isset($employerLicenseDetails)
 									@if($employerLicenseDetails->approval_status == 0 || $employerDetails->approval_status == 1)
-									<button type="submit" class="dash-btn-one" >Submit</button>
+										<button type="submit" class="dash-btn-one" >Submit <i class="fa-solid fa-spinner mx-2 fa-spin d-none"></i></button>
 									@else
-									<button type="submit" class="dash-btn-one"  >Submit</button>
+										<button type="submit" class="dash-btn-one"  >Submit <i class="fa-solid fa-spinner mx-2 fa-spin d-none"></i></button>
 									@endif
 									@else
-									<button type="submit" class="dash-btn-one"  >Submit</button>
+										<button type="submit" class="dash-btn-one"  >Submit <i class="fa-solid fa-spinner mx-2 fa-spin d-none"></i></button>
 									@endif
 								</div>
 							</div>
@@ -1181,50 +1181,16 @@ h3{
 				}
 			});
 		});
-			// Canidate Educational and Professional Information
-			//   $("#subscription-details").on("click", function(e) {
-			//     e.preventDefault();
-			//     var formData = new FormData();
-			//     formData.append("_token", "{{ csrf_token() }}");
-			//     formData.append('subscription_plan_id',$("#multi-step-form").find('[name=differentSubscriptionOptions]').val())
-			//     formData.append('terms_and_conditions_acceptance',$("#multi-step-form").find('[name=acceptanceOfTermsAndConditions]').val())
-			//       $.ajax({
-			//         type: "POST",
-			//           url: "{{route('employer.profile-3.save')}}",
-			//           data: formData,
-			//           dataType: 'json',
-			//           contentType: false,
-			//           processData: false,
-			//           success: function (data) {
 			
-			//             if (data.status) {
-			//                 // window.location = data.redirect;
-			//             }else{
-			//                 $(".alert").remove();
-			//                 $.each(data.errors, function (key, val) {
-			//                     $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
-			//                 });
-			//             }
-					
-			//           }
-			//       });
-		
-			//       return false;
-			//   });
 
-			// Historical Recruitment Details
 		$("#employer-verification-form").on("submit", function(e) {
 			e.preventDefault();
+			let loader = this.querySelector(".fa-spin");
+			var licenseFile = $('#legalDisputesConfirmationDocument')[0].files[0];
 			var formData = new FormData();
 			formData.append("_token", "{{ csrf_token() }}");
-			// formData.append('license_number',$("#employer-verification-form").find('[name=proofOfRegistration]').val())
-			// formData.append('south_korea_laws_acknowledgement',$("#employer-verification-form").find('[name=southKoreaLawAcknowledgement]').val())
-			var licenseFile = $('#legalDisputesConfirmationDocument')[0].files[0];
 			formData.append('license_file', licenseFile ? licenseFile : '');
-			/*
-			formData.append('ability_willingness_assurance',$("#multi-step-form").find('[name=abilityWillingnessAssurance]').val())
-			formData.append('financial_health',$("#multi-step-form").find('[name=financialHealthToEnsure]').val()) */
-		
+			loader.classList.remove('d-none');
 			$.ajax({
 				type: "POST",
 				url: "{{route('employer.profile-4.save')}}",
@@ -1233,7 +1199,7 @@ h3{
 				contentType: false,
 				processData: false,
 				success: function (data) {
-		
+					loader.classList.add('d-none');
 					if (data.status) {
 						toastr.success(data.message);
 						// window.location = data.redirect;

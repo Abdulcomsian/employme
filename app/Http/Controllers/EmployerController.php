@@ -32,9 +32,9 @@ class EmployerController extends Controller
     {
         $plans = Plan::get();
         $countries = Countries::where('name' , 'South Korea')->get();
-        // $intent = auth()->user()->createSetupIntent();
         $employerDetails = EmployerDetails::where('user_id',Auth::id())->first();
         $employerLicenseDetails = EmployerBusinessLicense::where('employer_id',Auth::id())->first();
+
         return view('employer.employer-profile',compact('countries','employerDetails','plans','employerLicenseDetails'));
     }
     public function getEmployerCandidate()
@@ -145,19 +145,19 @@ class EmployerController extends Controller
     public function saveProfile4(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            // 'license_number' => 'required',
             'license_file' => 'required',
-        ],[
-            // 'license_number.required'=>'Business License Number is required',
-            'license_number.required'=>'Business License Certificate is required',
         ]);
+
        $isnewUser = null;
+
        if($validator->fails())
        {
         return response()->json(['status'=>false,'errors'=>$validator->errors()->all()]);
        }
-        $imagename = '';
+        
         $checkDetails = EmployerBusinessLicense::where('employer_id',Auth::id())->first();
+        $updateDetails = $imagename = null;
+    
         if($checkDetails)
         {
             $updateDetails = $checkDetails;
@@ -168,26 +168,32 @@ class EmployerController extends Controller
             $updateDetails = new EmployerBusinessLicense;
             $isnewUser = 1;
         }
+       
+        $input = $request->except('_token','license_file');
+
+
         if ($request->file('license_file')) {
             $file = $request->file('license_file');
             $filePath = employerBusinessLicenseDocumentPath();
             $imagename = saveFile($filePath, $file, $imagename);
+            $updateDetails->license_file = $imagename;
         }
-        $input = $request->except('_token','license_file');
-        $updateDetails->license_file = $imagename;
-        // $updateDetails->license_number = $request->license_number;
+    
         $updateDetails->employer_id = Auth::id();
         $updateDetails->approval_status = 0;
         $updateDetails->save();
+       
         $employerDetails = User::with('employerDetails')->find(Auth::id());
-        Notification::route('mail','admin@admin.com')->notify(new BusinessLicenseNotification($employerDetails, $type=2,$status=1));
+        Notification::route('mail','admin@gmail.com')->notify(new BusinessLicenseNotification($employerDetails, $type=2,$status=1));
 
-        if($isnewUser == 1)
-        {
-            $employerDetails = User::with('employerDetails')->find($updateDetails->employer_id);
-            $view = view('components.admin.business_license',compact('updateDetails','employerDetails'));
-            event(new \App\Events\BusinessLicense($view));
-        }
+       
+        // if($isnewUser == 1)
+        // {
+        //     $employerDetails = User::with('employerDetails')->find($updateDetails->employer_id);
+        //     $view = view('components.admin.business_license',compact('updateDetails','employerDetails'));
+        //     event(new \App\Events\BusinessLicense($view));
+        // }
+      
         return response()->json([
                         "status" => true, 
                         "message" => "Employer License Updated Successfully"

@@ -119,7 +119,7 @@ Employers
                                 <div class="job-status"  >{{auth()->user()->email_verified_at ? 'Verified' : 'Unverified'}}</div>
                             </td>
                             <td>
-                                <div class="license ps-4"  >@if($employer->license) <a href="{{asset($employer->license->license_file)}}"><i class="fa-regular fa-file"></i></a> @else <i title="No Certificate Added" class="fa-solid fa-file-circle-xmark"></i> @endif </div>
+                                <div class="license ps-4"  >@if($employer->license && $employer->license->license_file) <a href="{{asset($employer->license->license_file)}}"><i class="fa-regular fa-file"></i></a> @else <i title="No Certificate Added" class="fa-solid fa-file-circle-xmark"></i> @endif </div>
                             </td>
                             <td>
                                 <select class="form-select employer-approval-status" name="" id="" data-employer-id="{{$employer->id}}">
@@ -137,16 +137,7 @@ Employers
                 <!-- /.table job-alert-table -->
             </div>
         </div>
-        <!-- <div class="dash-pagination d-flex justify-content-end mt-30">
-            <ul class="style-none d-flex align-items-center">
-                <li><a href="#" class="active">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li>..</li>
-                <li><a href="#">7</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-            </ul>
-        </div> -->
+     
         {{ $employers->links('vendor.pagination.custom-pagination-2') }}
 
         @push('page-script')
