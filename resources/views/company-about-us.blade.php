@@ -710,9 +710,9 @@
 						@endif
 						<!-- <img src="images/lazy.svg" data-src="images/logo/media_37.png" alt="" class="lazy-img m-auto logo"> -->
 						<div class="text-md text-dark text-center mt-15 mb-20 lg-mb-10">{{$employerDetails->institution ?? ''}}</div>
-						<div class="text-center"><a href="#" class="website-btn-two tran3s" target="_blank">Visit
-								our website</a></div>
-	
+						@if($job->employerDetails->website_url)
+						<div class="text-center"><a href="{{$job->employerDetails->website_url}}" class="website-btn-two tran3s" target="_blank">Visit our website</a></div>
+						@endif
 						<div class="border-top mt-35 lg-mt-20 pt-25">
 							<ul class="job-meta-data row style-none">
 								<li class="col-12">

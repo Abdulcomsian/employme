@@ -233,7 +233,7 @@ h3{
 							</div>
 
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="dash-input-wrapper mb-30">
 										<label for="country">Country</label>
 										<select name="country" id="country" class="nice-select ">
@@ -247,30 +247,29 @@ h3{
 									</div>
 								</div>
 								
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="dash-input-wrapper mb-30">
 										<label for="">State/Region/Province</label>
 										<input type="text" name="state" id="state" placeholder="65 Hansen Way" value="{{$employerDetails->state ?? ''}}">
 									
 									</div>
 								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="dash-input-wrapper mb-30">
 										<label for="">City/Town</label>
 										<input type="text" name="city" id="city" placeholder="65 Hansen Way" value="{{$employerDetails->city ?? ''}}">
 									
 									</div>
 								</div>
-								{{-- <div class="col-md-6">
+							</div>
+
+							<div class="row">
+								<div class="col-12">
 									<div class="dash-input-wrapper mb-30">
-										<label for="">Zip/Post code</label>
-										<input type="number" name="zipPostCode" placeholder="94304" value="{{$employerDetails->zip_code ?? ''}}">
+										<label for="">Website Link</label>
+										<input type="url" name="website_url" id="website_url" placeholder="Website Url" value="{{$employerDetails->website_url ?? ''}}">
 									</div>
-								</div> --}}
-								
+								</div>
 							</div>
 
 							<div class="row">
@@ -1080,6 +1079,7 @@ h3{
 			formData.append("phone_number", $("#basic-information-form").find("[name=phoneNumber]").val());
 			formData.append("email", $("#basic-information-form").find("[name=email]").val());
 			formData.append("institution_logo", $('#institution_logo')[0].files[0]);
+			formData.append('website_url' , $('#website_url').val());
 
 			$.ajax({
 				type: "POST",

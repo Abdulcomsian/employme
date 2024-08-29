@@ -89,7 +89,6 @@ class EmployerController extends Controller
     
     public function saveProfile1(Request $request)
     {
-        // dd($request->all());
         $updateEmployerDetails = EmployerDetails::where('user_id',Auth::id())->first();
         $user = User::find(Auth::id());
 

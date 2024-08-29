@@ -12,6 +12,7 @@ class EmployerDetails extends Model
         'institution',
         'institution_type',
         'institution_logo',
+        'website_url',
         'employer_details',
         'address_line_1',
         'address_line_2',
