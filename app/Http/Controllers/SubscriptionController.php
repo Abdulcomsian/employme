@@ -138,4 +138,50 @@ class SubscriptionController extends Controller
         return response()->json(['status' => true , 'msg' => 'Subscription status updated successfully']);
 
     }
+
+    public function updatePlan(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            'id' => 'required|numeric|exists:plans,id',
+            'name' => 'required',
+            'amount' => 'required|numeric'
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json(['status' => false , 'error' => $validator->errors()->all()]);
+        }
+
+        try{
+            $plan = Plan::where('id' , $request->id)->first();
+            $plan->name = $request->name;
+            $plan->price = $request->amount;
+            $plan->save();
+
+            return response()->json(['status' => true, 'msg' => 'Plan updated successfully']);
+        }catch(\Exception $e){
+            return response()->json(['status' => false , 'error' => $e->getMessage()]);
+        }
+    }
+
+    public function planDetail(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            'id' => 'required|exists:plans,id',
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json(['status' => false , 'error' => $validator->errors()->all()]);
+        }
+
+        try{
+            $plan = Plan::where('id' , $request->id)->first();
+            $html = view('owner.plan-detail' , ['plan' => $plan])->render();
+
+            return response()->json(['status' => true, 'html' => $html]);
+        }catch(\Exception $e){
+            return response()->json(['status' => false , 'error' => $e->getMessage()]);
+        }   
+    }
 }

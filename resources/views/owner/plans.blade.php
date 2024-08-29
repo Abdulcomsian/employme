@@ -2,6 +2,21 @@
 @section('title')
 Plans
 @endsection
+@push('page-css')
+<style>
+    i.fa-solid.fa-ellipsis-vertical.plan-detail {
+        font-size: 20px;
+        color: grey;
+        cursor: pointer;
+    }
+    .modal-title {
+        font-family: "gordita";
+    }
+
+    
+</style>
+
+@endphp
 @section('content')
 <div class="dashboard-body">
     <div class="position-relative">
@@ -14,30 +29,32 @@ Plans
               
             </div>
         </header>
-
+        <div class="modal" id="plan-detail-modal" tabindex="-1" role="dialog">
+            <form action="{{route('update.plan')}}" method="post" id="update-plan-form">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Update Plan</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body plan-detail-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn update-plan-btn" style="background: #ff715b; color:white;">Update</button>
+                            <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
             <h2 class="main-title m0">Plans</h2>
         </div>
 
         <div class="bg-white card-box border-20">
-            <!-- <div class="row">
-                @foreach($plans as $plan)
-                    <div class="col-md-6">
-                        <div class="card mb-3">
-                            <div class="card-header"> 
-                                ${{ $plan->price }}/Mo
-                            </div>
-                            <div class="card-body">
-                            <h5 class="card-title">{{ $plan->name }}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                            <a href="{{ route('plans.show', $plan->slug) }}" class="btn btn-primary pull-right">Choose</a>
-
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div> -->
+           
             <div class="table-responsive">
                 <table class="table job-alert-table">
                     <thead>
@@ -46,35 +63,21 @@ Plans
                             <th scope="col">Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Duration</th>
-                            {{--<th scope="col">Action</th>--}}
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="border-0">
                     @foreach($plans as $index=>$plan)
                         <tr class="active">
                             <td>{{$index+1}}</td>
-                            <td>
-                                <div class="job-name " style = "color:black">{{$plan->name}}</div>
-                                <!-- <div class="info1">Fulltime . Spain</div> -->
-                            </td>
+                            <td><div class="job-name " style = "color:black">{{$plan->name}}</div></td>
                             <td style = "color:black">₩ {{$plan->price}}</td>
                             <td style = "color:black">{{$plan->duration}} months</td>
-                            <!-- <td>
-                                <div class="job-status"  >Verified</div>
-                            </td> -->
-                            {{--<td>
-                                <div class="action-dots float-end">
-                                    <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span></span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
-                                    </ul>
-                                </div>
-                            </td>--}}
+                            <td style = "color:black">
+                                <i class="fa-solid fa-ellipsis-vertical plan-detail" data-plan-id="{{$plan->id}}"></i>
+                            
+                            </td>
+                      
                         </tr>
                         @endforeach
                     </tbody>
@@ -82,18 +85,81 @@ Plans
                 <!-- /.table job-alert-table -->
             </div>
         </div>
-        {{--
-            <div class="dash-pagination d-flex justify-content-end mt-30">
-                <ul class="style-none d-flex align-items-center">
-                    <li><a href="#" class="active">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li>..</li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-                </ul>
-            </div>
-                --}}
+   
     </div>
 </div>
 @endsection
+@push('page-script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click', '.plan-detail' , function (e) {
+            e.preventDefault();
+            let id = this.dataset.planId;
+            $.ajax({
+                type: "POST",
+                url: "{{route('plan.detail')}}",
+                data: {
+                    _token : "{{csrf_token()}}",
+                   id : id
+                },
+                success:function(res){
+                        if(res.status){
+                            $('#plan-detail-modal').modal('show');
+                            document.querySelector('.plan-detail-body').innerHTML = res.html;
+                        }else{
+                            toastr.error(res.message)
+                        }
+                    }
+                })
+        })
+
+
+        $(document).on('click', '.plan-detail' , function (e) {
+            e.preventDefault();
+            let id = this.dataset.planId;
+            $.ajax({
+                type: "POST",
+                url: "{{route('plan.detail')}}",
+                data: {
+                    _token : "{{csrf_token()}}",
+                   id : id
+                },
+                success:function(res){
+                        if(res.status){
+                            $('#plan-detail-modal').modal('show');
+                            document.querySelector('.plan-detail-body').innerHTML = res.html;
+                        }else{
+                            toastr.error(res.message)
+                        }
+                    }
+                })
+        })
+
+        $(document).on('click', '.update-plan-btn' , function (e) {
+           e.preventDefault();
+           let updateForm = document.querySelector("#update-plan-form")
+           let form = new FormData(updateForm);
+           form.append('_token' , "{{csrf_token()}}")
+           let url = updateForm.getAttribute('action');
+           $.ajax({
+                type: "POST",
+                url: url,
+                data: form ,
+                contentType: false,
+                processData: false,
+                success: function(res){
+                    if(res.status){
+                        toastr.success(res.msg);
+                        $('#plan-detail-modal').modal('hide');
+                        location.reload();
+                    }else{
+                        toastr.error(res.error);
+                    }
+                }
+            })
+        })
+
+    })
+</script>
+@endpush

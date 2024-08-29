@@ -220,6 +220,8 @@ Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function
     Route::post('update-account-details',[UserController::class,'udpateOwnerAccountDetails'])->name('owner.updateOwnerAccount');
     Route::post('update-password',[UserController::class,'ownerUpdatePassword'])->name('owner.updatePassword');
     Route::get('plans/{plan}', [SubscriptionController::class, 'show'])->name("plans.show");
+    Route::post('update-plan' , [SubscriptionController::class , 'updatePlan'])->name('update.plan');
+    Route::post('get-plan-detail' , [SubscriptionController::class , 'planDetail'])->name('plan.detail');
     Route::resource('job-categories', JobCategoryController::class);
     Route::post('update-certificate-approval-status' , [EmployerJobController::class , 'updateCertificateApprovalStatus'])->name('updateCertificateApprovalStatus');
     Route::post('update-subscription-status' , [SubscriptionController::class , 'updateSubscriptionStatus'])->name('updateSubscriptionStatus');
