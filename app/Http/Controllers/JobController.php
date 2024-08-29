@@ -164,6 +164,7 @@ class JobController extends Controller
     public function jobInterviewRequest(Request $request)
     {
         $jobEmployerDetail = EmployerJob::find($request->job_id);
+        $employer = User::where('id' , $jobEmployerDetail->posted_by)->first();
         $candidateProfileUrl = route('candidateProfileNew' , \Crypt::encryptString(auth()->user()->id));
         $jobLink = route('jobDetails' , \Crypt::encryptString($request->job_id));
         $existingInterviewRequest = JobInterview::where(function($query){
@@ -195,6 +196,7 @@ class JobController extends Controller
                     'candidate_profile_url' => $candidateProfileUrl,
                     'employer_id' => $jobEmployerDetail->posted_by,
                     'candidate_id'=> auth()->user()->id,
+                    
         ]);
 
 
@@ -210,6 +212,8 @@ class JobController extends Controller
                 'candidate_email'=>auth()->user()->email,
                 'job_title'=>$jobEmployerDetail->job_title,
                 'city_town'=>$jobEmployerDetail->city_town,
+                'employer_email' => $employer->email,
+                'employer_name' => $employer->name
             ],
             'thanks_text' => 'Thanks For Using our site',
             'action_text' => '',
@@ -217,7 +221,7 @@ class JobController extends Controller
         ];
 
 
-        Notification::route('mail',  $jobEmployerDetail->email ?? '')->notify(new JobApplicationNotification($employer_notify_message));
+        Notification::route('mail',  $employer->email)->notify(new JobApplicationNotification($employer_notify_message));
         toastr()->success('Interview has been requested from employer ');
         // return redirect()->back();
         return response()->json([
