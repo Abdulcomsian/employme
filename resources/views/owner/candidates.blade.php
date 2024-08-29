@@ -145,7 +145,8 @@ h2#swal2-title {
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Verification Status</th>
+                            <th scope="col">Email Verification</th>
+                            <th scope="col">Document</th>
                             <th scope="col">Verify Documents</th>
                         </tr>
                     </thead>
@@ -168,6 +169,25 @@ h2#swal2-title {
                                 <div class="job-status"  >Unverified</div>
                             </td>
                             @endif
+                            @php
+                            
+                                $documentVerificationStatus = null;
+                                switch($candidate->is_eligible)
+                                {
+                                    case \AppConst::ELIGIBILITY_PENDING:
+                                        $documentVerificationStatus = 'Pending';
+                                    break;
+                                    case \AppConst::ELIGIBILITY_REJECTED:
+                                        $documentVerificationStatus = 'Rejected';
+                                    break;
+                                    default:
+                                        $documentVerificationStatus = 'Accepted';
+                                } 
+                            @endphp 
+
+                            <td>
+                                {{  $documentVerificationStatus }}
+                            </td>
                             <td>
                             <div class="btn-group">
                                 <button type="button" class="btn document-verification-dropdown dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -254,19 +274,7 @@ h2#swal2-title {
                             </div>
 
                             </td>
-                            {{--<td>
-                                <div class="action-dots float-end">
-                                    <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span></span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_19.svg" alt="" class="lazy-img"> Share</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_20.svg" alt="" class="lazy-img"> Edit</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../images/lazy.svg" data-src="images/icon/icon_21.svg" alt="" class="lazy-img"> Delete</a></li>
-                                    </ul>
-                                </div>
-                            </td>--}}
+                            
                         </tr>
                         @endforeach
                         @endisset

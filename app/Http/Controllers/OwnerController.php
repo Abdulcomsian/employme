@@ -85,7 +85,6 @@ class OwnerController extends Controller
                                 ->whereHas('roles' , function($query){
                                                         $query->where('name' , 'candidate');
                                                     })
-                                ->where('is_eligible' , AppConst::ELIGIBILITY_PENDING )
                                 ->orderBy('id' , 'desc')
                                 ->paginate(10);
 
