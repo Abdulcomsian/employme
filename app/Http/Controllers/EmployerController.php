@@ -472,6 +472,7 @@ class EmployerController extends Controller
 
     public function rescheduleInterview(Request $request)
    {        
+    // dd($request->all());
         $rescheduleInterview = JobInterview::find($request->reschedule_interview_id);
         $candidateId = $rescheduleInterview->requested_to !== auth()->user()->id ? $rescheduleInterview->requested_to : $rescheduleInterview->requested_from;
         $employerId =  $rescheduleInterview->requested_from == auth()->user()->id ? $rescheduleInterview->requested_from : $rescheduleInterview->requested_to;
@@ -493,7 +494,7 @@ class EmployerController extends Controller
         
         if($rescheduleInterview->save())
         {
-            Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRescheduleNotification($candidateDetails,$employerDetails,$jobDetails,$type=1,$interviewStatus=2));
+            Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRescheduleNotification($candidateDetails,$employerDetails,$jobDetails,$type=5,$interviewStatus=2));
             toastr()->success('Interview rescheduled successfully');
             return redirect()->back();
         }

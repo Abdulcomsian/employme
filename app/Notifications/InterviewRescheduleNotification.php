@@ -18,7 +18,7 @@ class InterviewRescheduleNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct($candidateDetails, $employerDetails, $jobDetails, $type=0,$interviewStatus=0)
+    public function __construct($candidateDetails, $employerDetails, $jobDetails, $type=0, $interviewStatus=0)
     {
         $this->candidateDetails = $candidateDetails;
         $this->employerDetails = $employerDetails;
@@ -43,7 +43,18 @@ class InterviewRescheduleNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        if($this->type == 1)
+
+        if($this->type == 0){
+            $subject = "Interview Request Notification";
+            if(auth()->user()->hasRole('employer')){
+                $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->first_name;
+                $message = $this->employerDetails->employerDetails->institution.' has requested you to interview for the position of  '.$this->jobDetails->job_title;
+            } else { 
+                $greetings = 'Dear '.$this->employerDetails->employerDetails->institution;
+                $message = $this->candidateDetails->candidatePersonalDetails->first_name.' has requested you to interview for the position of  '.$this->jobDetails->job_title;
+            }
+        }
+        elseif($this->type == 1)
         {
             $status = '';
             $subject = "Interview Reschedule Notification";
@@ -53,17 +64,34 @@ class InterviewRescheduleNotification extends Notification
             }elseif($this->interviewStatus == 2){
                 $status = 'rejected';
             }
-            $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->full_name;
-            $message = $this->employerDetails->employerDetails->institution.' has '.$status.' your request to reschedule the interview for the position of '.$this->jobDetails->job_title;
+
+            if(auth()->user()->hasRole('employer')){
+                $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->full_name;
+                $message = $this->employerDetails->employerDetails->institution.' has '.$status.' your request to reschedule the interview for the position of '.$this->jobDetails->job_title;
+            } else {
+                $greetings = 'Dear '.$this->employerDetails->employerDetails->institution;
+                $message = $this->candidateDetails->candidatePersonalDetails->first_name.' has '.$status.' your request to reschedule the interview for the position of '.$this->jobDetails->job_title;
+            }
         }elseif($this->type == 2){
+
             $subject = "Interview Conducted";
-            $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->full_name;
-            $message = $this->employerDetails->employerDetails->institution.' has  marked your interview as conducted for the position of  '.$this->jobDetails->job_title;
+            if(auth()->user()->hasRole('employer')){
+                $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->first_name;
+                $message = $this->employerDetails->employerDetails->institution.' has  marked your interview as conducted for the position of  '.$this->jobDetails->job_title;
+            } else {
+                $greetings = 'Dear '.$this->employerDetails->employerDetails->institution;
+                $message = $this->candidateDetails->candidatePersonalDetails->first_name.' has  marked your interview as conducted for the position of  '.$this->jobDetails->job_title;
+            }
         }else{
             $subject = "Interview Reschedule Notification";
-            $greetings = 'Dear '.$this->employerDetails->employerDetails->institution;
-            $message = $this->candidateDetails->candidatePersonalDetails->full_name.' has requested to reschedule the interview for the position of  '.$this->jobDetails->job_title;
+            if(auth()->user()->hasRole('employer')){
+                $greetings = 'Dear '.$this->candidateDetails->candidatePersonalDetails->first_name;
+                $message = $this->employerDetails->employerDetails->institution.' has requested to reschedule the interview for the position of  '.$this->jobDetails->job_title;
+            } else {
+                $greetings = 'Dear '.$this->employerDetails->employerDetails->institution;
+                $message = $this->candidateDetails->candidatePersonalDetails->first_name.' has requested to reschedule the interview for the position of  '.$this->jobDetails->job_title;
             }
+        }
         return (new MailMessage)
                     ->subject($subject)
                     ->greeting($greetings)

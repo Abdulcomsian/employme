@@ -457,7 +457,7 @@ class CandidateController extends Controller
 
         if($rescheduleInterview->save())
         {
-            Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRescheduleNotification($candidateDetails,$employerDetails,$jobDetails,$type=1,$interviewStatus=2));
+            Notification::route('mail',  $employerDetails->email ?? '')->notify(new InterviewRescheduleNotification($candidateDetails,$employerDetails,$jobDetails,$type=5,$interviewStatus=2));
             toastr()->success('Request Sent Successfully');
             return redirect()->back();
         }
