@@ -1992,7 +1992,7 @@ figcaption {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #244034;
+  background-color: #ff715b;
   border-radius: 100px;
   justify-content: center;
   align-items: center;
@@ -2008,7 +2008,7 @@ figcaption {
 
 .button:hover {
   color: #616161;
-  background-color: #efffa6;
+  background-color: #b1b0eb;
 }
 
 
@@ -2239,7 +2239,8 @@ figcaption {
   align-items: flex-start;
   margin-bottom: 0;
   /* padding: 3.5em 3em 4em; */
-  padding: 1.5em 1.6em 2em;
+ 
+  padding: 3.5em 3em 4em;
   display: flex;
   position: relative;
 }
@@ -2789,7 +2790,7 @@ figcaption {
 .circle-check {
   width: 24px;
   height: 24px;
-  background-color: rgba(147, 255, 65, .2);
+  background-color:rgb(26 26 26 / 20%);
   border-radius: 100px;
   flex: none;
   justify-content: center;
@@ -4789,6 +4790,7 @@ figcaption {
 
 
 .box-wrapper.auto {
+  align-items: center;
   width: 100%;
   height: auto;
 }
@@ -4834,7 +4836,7 @@ figcaption {
   height: 7em; */
   width: 8em;
   height: 8em;
-  background-color: #244034;
+  background-color: #ff715b;
   border-radius: 100%;
   flex: none;
   justify-content: center;
@@ -5058,7 +5060,7 @@ figcaption {
 .button-circle-small {
   width: 3.2em;
   height: 3.2em;
-  background-color: #244034;
+  background-color: #ff715b;
   background-image: url('../images/cta-arrow-white.svg');
   background-position: 50%;
   background-repeat: no-repeat;
@@ -5071,7 +5073,7 @@ figcaption {
 }
 
 .button-circle-small:hover {
-  background-color: #ffdd79;
+  background-color: #b1b0eb;
 }
 
 .span-asteriks {
@@ -5408,7 +5410,7 @@ figcaption {
 .divider {
   width: 200vw;
   height: 200vh;
-  border-radius: 100%;
+  border-radius: 0;
   position: absolute;
   top: 0%;
   bottom: auto;
@@ -10265,7 +10267,7 @@ figcaption {
 #w-node-_90465754-6dad-8e72-5bb4-7dddaf123132-b18f57be,
 #w-node-_834df346-b183-6b86-9dc7-9e9a0dd4e30f-b18f57be,
 #w-node-_2e990165-170c-49c3-20b2-ef776733984f-b18f57be {
-  grid-area: span 1 / span 3 / span 1 / span 3;
+  /* grid-area: span 1 / span 3 / span 1 / span 3; */
   align-self: stretch;
 }
 
@@ -14275,9 +14277,12 @@ input[type="file"] {
 }
 
 .bg-remove-hover:hover {
-  background-color: #244034;
+  background-color: #b1b0eb;
 }
-
+.set-size{
+  font-size: 19px;
+  line-height: 29px;
+}
 .no-hover:hover {
   border: none;
   background-color: white;
@@ -14427,7 +14432,7 @@ input[type="file"] {
   grid-column-gap: 2.2em;
   grid-row-gap: 2.2em;
   grid-template-rows: auto;
-  grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
+  grid-template-columns: repeat(4, 1fr);
   align-items: start;
   position: relative;
 }

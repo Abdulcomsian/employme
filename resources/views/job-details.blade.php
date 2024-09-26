@@ -11,7 +11,16 @@
     width: 20px; /* Adjust as needed */
     height: 20px; /* Adjust as needed */
 }
-
+.remove-account-popup .confirm-btn {
+    width: unset;
+    line-height: 40px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    background: #31795A;
+    padding: 5px 15px;
+}
 </style>
 <div class="inner-banner-one position-relative">
 	<div class="container">
@@ -479,22 +488,23 @@
 								<span>Class Size</span>
 								<div>{{$jobDetails->class_size ?? ''}}</div>
 							</li>
-							<li class="col-xl-7 col-md-4 col-sm-6">
+							{{--<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Hours/Week</span>
 								<div>{{$jobDetails->hours_per_week ?? ''}}</div>
-							</li>
+							</li>--}}
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Teaching Hrs/Day</span>
 								<div>{{$jobDetails->teaching_hours_per_day ?? ''}}</div>
-							</li>
-							<li class="col-xl-7 col-md-4 col-sm-6">
-								<span>Non-Teaching Hrs/Day</span>
-								<div>{{$jobDetails->non_teaching_hours_per_day ?? ''}}</div>
 							</li>
 							<li class="col-xl-5 col-md-4 col-sm-6">
 								<span>Break Times</span>
 								<div>{{$jobDetails->break_times ?? ''}}</div>
 							</li>
+							<li class="col-xl-7 col-md-4 col-sm-6">
+								<span>Non-Teaching Hrs/Day</span>
+								<div>{{$jobDetails->non_teaching_hours_per_day ?? ''}}</div>
+							</li>
+						
 							<li class="col-xl-7 col-md-4 col-sm-6">
 								<span>Start Time</span>
 								<div>{{$jobDetails->start_time ?? ''}} </div>
@@ -513,14 +523,14 @@
 								<span>Education Grade</span>
 								<div>B+</div>
 							</li> -->
-							<li class="col-xl-12 col-md-4 col-sm-6">
+							{{--<li class="col-xl-12 col-md-4 col-sm-6">
 								<span>Materials & Resources Available</span>
 								<div>{{$jobDetails->material_resources_available ?? ''}}</div>
 							</li>
 							<li class="col-xl-12 col-md-4 col-sm-6">
 								<span>Teaching Aids</span>
 								<div>{{$jobDetails->teaching_aids ?? ''}} </div>
-							</li>
+							</li>--}}
 
 							
 							
@@ -694,9 +704,11 @@
 				<div class="col-lg-5">
 					<ul class="btn-group style-none d-flex flex-wrap justify-content-center justify-content-lg-end">
 					@auth
+					@role('candidate')
+					<li class="me-2"><a href="{{route('jobMarketplace')}}" class="btn-three">Looking for job?</a></li>
+					@endrole
 					@role('employer')
-					<li class="me-2"><a href="{{route('candidatesMarketplace')}}" class="btn-three">Looking for job?</a></li>
-					<li class="ms-2"><a href="{{route('candidatesMarketplace')}}" class="btn-four">Post a job</a></li>
+					<li class="ms-2"><a href="{{route('employer-jobs.create')}}" class="btn-four">Post a job</a></li>
 					@endrole
 					@endauth
 					</ul>
@@ -706,34 +718,26 @@
 	</div>
 </section>
 <!-- /.job-portal-intro -->
-<div class="modal fade" id="JobApplicationModal" tabindex="-1" role="dialog" aria-labelledby="Edit User"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg " role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="User-Edit-Modal">{{__('Job Application')}}</h5>
-                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id='Job-Application-Form' method="POST" class="clearfix" enctype="multipart/form-data">
-					<input type = "hidden" name = "job_id" value = "{{$jobDetails->id}}">
-					<div id="errors-list"></div>
-                    <div class="mb-3">
-                        <label class="col-form-label" for="Major Name">Interview Date</label>
-						<input type="date" name="application_date" id="application_date" class="form-control" min="{{date('Y-m-d')}}">
+<div class="modal fade" id="JobApplicationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+        <div class="container">
+            <form id='Job-Application-Form' method="POST" class="clearfix" enctype="multipart/form-data">
+				<input type = "hidden" name = "job_id" value = "{{$jobDetails->id}}">
+                <div class="remove-account-popup text-center modal-content">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <img src="{{asset('assets/images/apply-job.png')}}" data-src="{{asset('assets/images/apply-job.png')}}" alt="" class="lazy-img m-auto">
+                    <h3 style = "font-family:gordita;">Are you sure you want to apply ?</h3>
+                    <p>Your profile will be shared with the Employer.</p>
+                    <div class="button-group d-inline-flex justify-content-center align-items-center pt-15">
+                        <button  type="submit" name="submit" class="btn-submit confirm-btn fw-500 tran3s me-3">
+						<span id="buttonText">Apply</span>
+						<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
+						</button>
+                        <button type="button" class="btn-close fw-500 ms-3" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
                     </div>
-             
-            </div>
-            <div class="modal-footer">
-                <button class="btn-one" type="button" data-bs-dismiss="modal">
-					Close
-                </button>
-                <button class=" btn-submit btn-one" type="submit" name="submit">
-					<span id="buttonText">Apply</span>
-					<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
-				</button>
-            </div>
+                </div>
             </form>
+            <!-- /.remove-account-popup -->
         </div>
     </div>
 </div>
@@ -757,7 +761,7 @@
               data: {
                 _token:"{{csrf_token()}}",
                 job_id: $("#Job-Application-Form").find('input[name=job_id]').val(),
-                application_date: $("#Job-Application-Form").find('input[name="application_date"]').val(),
+                cover_letter: $("#Job-Application-Form").find('textarea[name=cover_letter]').val(),
                         },
               type: "POST",
               dataType: 'json',

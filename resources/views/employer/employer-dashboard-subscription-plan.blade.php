@@ -32,15 +32,15 @@ Subscription Plan
         @if($userSubscription && $userSubscription->plan)
         <div class="membership-plan-wrapper mb-20">
             <div class="row gx-0">
-                <div class="col-xxl-7 col-lg-6 d-flex flex-column">
+                <div class="col-xxl-6 col-lg-6 d-flex flex-column">
                     <div class="column w-100 h-100">
                         <h4>Current Plan ({{$userSubscription->plan->name}})</h4>
                         <p>Unlimited access to our legal document library and online rental application tool, billed monthly.</p>
                     </div>
                 </div>
-                <div class="col-xxl-5 col-lg-6 d-flex flex-column">
+                <div class="col-xxl-6 col-lg-6 d-flex flex-column">
                     <div class="column border-left w-100 h-100">
-                        <div class="d-flex">
+                        <div class="">
                             <h3 class="price m0">₩{{$userSubscription->plan->price}}</h3>
                             <div class="ps-4 flex-fill">
                                 <h6>Monthly Plan</h6>
@@ -106,13 +106,13 @@ Subscription Plan
         <!-- ./pricing-section -->
     </div>
 </div>
-<div class="modal fade" id="RescheduleRequestModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="SubscriptionModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen modal-dialog-centered">
         <div class="container">
             <div class="user-data-form modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="text-center">
-                    <h3>Reschedule Form</h3>
+                    <h3>Subscription Form</h3>
                 </div>
                 <div class="form-wrapper p-5">
                     <form  id="payment-form" action = "{{route('subscription.create')}}" method="POST">
@@ -143,23 +143,25 @@ Subscription Plan
 <script src="https://js.stripe.com/v3/"></script>
 <script>
 
-    $(document).on("click" , "#plan-choose-btn" , function(e){
-        let plan = document.getElementById("plan").value;
-        if(plan.trim())
-        {
-            document.getElementById('plan_id').value = plan;
-            $("#RescheduleRequestModal").modal("show");
-        }
-    })
+   
     
     
   // const form = document.getElementById('payment-form')
-    function changePlan(id)
+  function changePlan(id)
     {
         document.getElementById('plan_id').value = id;
     }
- 
-  const stripe = Stripe('{{ env('STRIPE_KEY') }}')
+    jQuery(document).ready(function($) {
+        $(document).on("click" , "#plan-choose-btn" , function(e){
+            let plan = document.getElementById("plan").value;
+            if(plan.trim())
+            {
+                document.getElementById('plan_id').value = plan;
+                $("#SubscriptionModal").modal("show");
+            }
+        })
+        
+    const stripe = Stripe('{{ env('STRIPE_KEY') }}')
   const elements = stripe.elements()
   const cardElement = elements.create('card')
 
@@ -194,6 +196,8 @@ Subscription Plan
             form.submit();
         }
     })
+  })
+ 
 
     $(document).on("change" , "#plan" , function(e){
         let plan_id = document.getElementById("plan").value;

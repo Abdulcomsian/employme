@@ -96,14 +96,13 @@
         <div class="w-tab-content">
           <div data-w-tab="Tab 1" class="inner-tab-content w-tab-pane w--tab-active">
             <!-- <div class="w-layout-grid main-grid"> -->
-            <div class="w-layout-grid main-grid-stage">
+            <div class="w-layout-grid main-grid-stage" style="grid-template-columns: repeat(9, 1fr);">
               <div id="w-node-c5b919c5-032b-6440-d68e-ad49864afecb-b18f5803" class="gray-wrapper icons">
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box purple"><img loading="lazy" src="{{ asset('assets/images//ic-007-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
                     <h3 class="heading-small">Step 1: Sign Up</h3>
-                    <p class="p-small">Complete the sign-up process, choose your desired subscription plan, and get
-                      access to the marketplaces.</p>
+                    <p class="p-small">Complete sign-up, choose your payment cycle, and gain access to pre-vetted candidates.</p>
                   </div>
                 </div>
               </div>
@@ -112,9 +111,7 @@
                   <div class="icon-box blue"><img loading="lazy" src="{{ asset('assets/images/ic-002-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
                     <h3 class="heading-small">Step 2: List Your Job</h3>
-                    <p class="p-small">Fill in the job listing form to showcase what's available for candidates.
-                      Depending on your access candidates will be able to see your job listing or you'll have to
-                      request an interview with a candidate for it to be visible to them.</p>
+                    <p class="p-small">Create a job post advertised on our marketplace for candidates to view.</p>
                   </div>
                 </div>
               </div>
@@ -123,8 +120,7 @@
                   <div class="icon-box green"><img loading="lazy" src="{{ asset('assets/images/ic-006-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
                     <h3 class="heading-small">Step 3: Candidate Search</h3>
-                    <p class="p-small">Based on your subscription, you'll be able to search through pre-vetted
-                      candidate profiles or shortlist applicants who have applied through your job listing.</p>
+                    <p class="p-small">Quickly discover qualified candidates matching your requirements on the Candidate Marketplace.</p>
                   </div>
                 </div>
               </div>
@@ -183,14 +179,15 @@
           </div>
           <div data-w-tab="Tab 2" class="inner-tab-content w-tab-pane">
             <!-- <div class="w-layout-grid main-grid"> -->
-            <div class="w-layout-grid main-grid-stage">
+            <div class="w-layout-grid main-grid-stage" style="grid-template-columns: repeat(9, 1fr);">
               <div id="w-node-_1a50628a-ed47-ed56-647c-1adeadbf4b80-b18f5803" class="gray-wrapper">
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box purple"><img loading="lazy" src="{{ asset('assets/images/ic-007-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
                     <h3 class="heading-small">Step 4: Interviewing</h3>
-                    <p class="p-small">Initiate the process of scheduling online interviews with your preferred
-                      candidates.</p>
+                    <p class="p-small">Search and send interview request to  candidates you like, or let candidates request interviews through your job post.
+
+</p>
                   </div>
                 </div>
               </div>
@@ -198,9 +195,10 @@
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box blue"><img loading="lazy" src="{{ asset('assets/images/ic-002-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
-                    <h3 class="heading-small">Step 5: Conditional Offer</h3>
-                    <p class="p-small">Create a conditional job offer that delineates the job's perks and terms, along
-                      with the prerequisites a candidate must satisfy before receiving a definitive employment offer.
+                    <h3 class="heading-small">Step 5: Negotiation</h3>
+                    <p class="p-small">Communicate directly with candidates on the platform to discuss or negotiate terms before making an offer.
+
+
                     </p>
                   </div>
                 </div>
@@ -210,8 +208,9 @@
                   <div class="icon-box green"><img loading="lazy" src="{{ asset('assets/images/ic-006-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
                     <h3 class="heading-small">Step 6: Documentation & Final Offer</h3>
-                    <p class="p-small">Once all Step 5 documents and requirements are met, issue the final employment
-                      contract and request the candidate's signature.</p>
+                    <p class="p-small">Complete the employment contract and request the documents needed to begin the visa application.
+
+</p>
                   </div>
                 </div>
               </div>
@@ -270,14 +269,16 @@
           </div>
           <div data-w-tab="Tab 3" class="inner-tab-content w-tab-pane">
             <!-- <div class="w-layout-grid main-grid"> -->
-            <div class="w-layout-grid main-grid-stage">
+            <div class="w-layout-grid main-grid-stage" style="grid-template-columns: repeat(9, 1fr);">
               <div id="w-node-_0d8afac7-704d-3a56-70c7-a006c660c347-b18f5803" class="gray-wrapper">
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box purple"><img loading="lazy" src="{{ asset('assets/images/ic-007-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
-                    <h3 class="heading-small">Step 7: Visa Processing</h3>
-                    <p class="p-small">Gather materials from Steps 5 and 6 to submit a visa application for your
-                      candidate, with an approximate processing time of two weeks.</p>
+                    <h3 class="heading-small">Step 7: Visa Immigration</h3>
+                    <p class="p-small">Once you have the documents, visit the nearest immigration office to apply for your employee's visa. This process typically takes around 2 weeks.
+
+
+</p>
                   </div>
                 </div>
               </div>
@@ -285,9 +286,10 @@
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box blue"><img loading="lazy" src="{{ asset('assets/images/ic-002-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
-                    <h3 class="heading-small">Step 8: Visa Approval</h3>
-                    <p class="p-small"> Upon visa approval, share the visa issuance number with the candidate for
-                      their final visa processing at their local Korean embassy, which typically takes two weeks.</p>
+                    <h3 class="heading-small">Step 8: Visa Confirmation Number</h3>
+                    <p class="p-small"> Give the candidate the visa confirmation number. They should then visit the nearest Korean embassy to finalize the visa approval, which usually takes 1-2 weeks.
+
+</p>
                   </div>
                 </div>
               </div>
@@ -295,9 +297,10 @@
                 <div class="w-layout-grid content-grid">
                   <div class="icon-box green"><img loading="lazy" src="{{ asset('assets/images/ic-006-color.svg')}}" alt="" class="icon-content"></div>
                   <div class="small-paragraph-wrapper">
-                    <h3 class="heading-small">Step 9: Finalization of Employment</h3>
-                    <p class="p-small">Upon arrival, the candidate must undergo a health check and apply for their
-                      alien registration card to finalize the visa application proces</p>
+                    <h3 class="heading-small">Step 9: Health Check & ARC Card</h3>
+                    <p class="p-small">After arrival, the candidate must undergo a health examination. Once the results are received, they can visit immigration to apply for their ARC card.
+
+</p>
                   </div>
                 </div>
               </div>
@@ -454,8 +457,8 @@
       <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6d40-b18f58033" class="box-wrapper list no-hover">
         <div class="icon-box  blue"><img src="{asset('assets/images/ic-002-color.svg')}}" loading="lazy" alt="" class="icon-content">
         </div>
-        <h3 class="heading-medium">Recruitment <br>
-          Platform</h3>
+        <h3 class="heading-medium">Recruitment & Visa <br>
+Platform</h3>
         <div class="list-wrapper">
           <div class="list-flex">
             <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
@@ -470,12 +473,7 @@
           <div class="list-flex">
             <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
             </div>
-            <div>Conditional offer and employment contract generator</div>
-          </div>
-          <div class="list-flex">
-            <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-            </div>
-            <div>Create tasks for candidates</div>
+            <div>Step-by-step visa application process</div>
           </div>
           <div class="list-flex">
             <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
@@ -630,7 +628,7 @@
       </div>
       <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6da4-b18f5803" data-w-id="38ef908f-3a6f-52eb-dadf-1fe2a34f6da4" class="box-wrapper auto no-hover">
         <div class="center _w-min">
-          <div class="tag">EMPLOYME</div>
+          <div class="tag">employme</div>
           <h3 class="heading-large">The all-in-one hiring solution</h3>
           <p class="p-small inner-padding-small">Say goodbye to recruiters and delays. Regain control and efficiently
             manage all your recruitment needs with ease and speed.</p>
@@ -647,41 +645,7 @@
       </div>
     </div>
 
-    <a href="contact" class="button-two ">Customer Support</a>
-    <div class="w-layout-grid main-grid">
-      <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6e43-b18f5803" data-w-id="38ef908f-3a6f-52eb-dadf-1fe2a34f6e43" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper icons">
-        <div class="icon-box yellow"><img src="{{asset('assets/images/ic-003-color.svg')}}" loading="lazy" alt="" class="icon-content">
-        </div>
-        <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-          <h3 class="heading-small">Visa Application Support</h3>
-          <p class="p-small">Expert assistance navigating your visa application journey.<br> <span style="color: white;">more content</span></p>
-        </div>
-      </div>
-      <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6e4b-b18f5803" data-w-id="38ef908f-3a6f-52eb-dadf-1fe2a34f6e4b" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper icons">
-        <div class="icon-box blue"><img src="{{asset('assets/images/ic-002-color.svg')}}" loading="lazy" alt="" class="icon-content">
-        </div>
-        <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-          <h3 class="heading-small">Essential Support</h3>
-          <p class="p-small">Get platform technical support for smooth user experience.<br> <span style="color: white;">more content</span></p>
-        </div>
-      </div>
-      <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6e53-b18f5803" data-w-id="38ef908f-3a6f-52eb-dadf-1fe2a34f6e53" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper icons">
-        <div class="icon-box green"><img src="{{asset('assets/images/ic-006-color.svg')}}" loading="lazy" alt="" class="icon-content">
-        </div>
-        <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-          <h3 class="heading-small">Premium Support</h3>
-          <p class="p-small">Priority care, recruitment strategies, tips, and custom solutions.<br> <span style="color: white;">more content</span></p>
-        </div>
-      </div>
-      <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6e5b-b18f5803" data-w-id="38ef908f-3a6f-52eb-dadf-1fe2a34f6e5b" style="opacity:0;-webkit-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="gray-wrapper icons">
-        <div class="icon-box purple"><img src="{{asset('assets/images/ic-007-color.svg')}}" loading="lazy" alt="" class="icon-content">
-        </div>
-        <div style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="content-wrapper">
-          <h3 class="heading-small">Elite Support</h3>
-          <p class="p-small">Retention expertise, HR solutions, dedicated tailored partner for your unique needs </p>
-        </div>
-      </div>
-    </div>
+ 
 
     <!-- <div class="join">
         <h2 class="heading-large" style="text-align: center;  "> Join us Today</h2>

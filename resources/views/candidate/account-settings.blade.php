@@ -12,6 +12,7 @@ Account Settings
         <h2 class="main-title">Account Settings</h2>
 
         <div class="bg-white card-box border-20">
+            <h4 class="dash-title-three">Update Account Details</h4>
                 @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -36,24 +37,38 @@ Account Settings
                         </div>
                     </div>
                     @endif
-            <h4 class="dash-title-three">Update Account Details</h4>
             <form action="{{route('candidate.updateAccountSettingpage')}}" method="POST">
                 @csrf
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="dash-input-wrapper mb-20">
-                            <label for="">Name</label>
-                            <input type="text" name="institution" value="{{$candidateDetails->full_name}}" placeholder="Zubayer">
+                            <label for="">First Name</label>
+                            <input type="text" name="first_name" class = "@error('first_name') is-invalid @enderror" value="{{$candidateDetails->first_name}}" placeholder="Zubayer">
+                            @error('first_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
+                        <!-- /.dash-input-wrapper -->
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="dash-input-wrapper mb-20">
+                            <label for="">Middle Name</label>
+                            <input type="text" name="middle_name"  value="{{$candidateDetails->middle_name}}" placeholder="Zubayer">
                         </div>
                         <!-- /.dash-input-wrapper -->
                     </div>
-                    <!-- <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="dash-input-wrapper mb-20">
                             <label for="">Last Name</label>
-                            <input type="text" placeholder="Hasan">
+                            <input type="text" name="last_name"  value="{{$candidateDetails->last_name}}" placeholder="Zubayer">
                         </div>
-                        /.dash-input-wrapper
-                    </div> -->
+                        <!-- /.dash-input-wrapper -->
+                    </div>
+                  
+                </div>
+                <div class="row">
                     <div class="col-6">
                         <div class="dash-input-wrapper mb-20">
                             <label for="">Email</label>
@@ -74,6 +89,9 @@ Account Settings
                     {{--<a href="#" class="dash-cancel-btn tran3s">Cancel</a>--}}
                 </div>
             </form>
+        </div>
+        <div class="bg-white card-box border-20 mt-4">
+             
             <h4 class="dash-title-three">Change Password</h4>
              <form method = "POST" action  = "{{route('candidate.updatePassword')}}">
                     @csrf

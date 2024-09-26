@@ -92,7 +92,14 @@ Profile
 .alert-danger {
 	width: max-content;
 }
-
+.btn-file{
+	color: #fff;
+    background: #ff715b;
+}
+.btn-file:hover{
+	background: #b1b0eb;
+    color: #fff;
+}
 input[type='checkbox']{
 	width: 20px!important;
 }
@@ -187,9 +194,9 @@ h3{
 						<div class="text">Introductry Video</div>
 					</div> --}}
 				</div>
-					<form id="basic-information-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
+					<form id="basic-information-form" class="mt-4" method="post" enctype="multipart/form-data">
 						<!-- Step 1 -->
-						<div class="bg-white card-box" id="step-1">
+						<div class="bg-white card-box border-20" id="step-1">
 							<h3 class="my-3">Account Information</h3>
 							<div class="row">
 								<div class="col-md-6">
@@ -313,7 +320,8 @@ h3{
 												Upload Logo
 												<input type="file" id="institution_logo" name="institution_logo" placeholder="">
 											</div>
-											<button class="delete-btn tran3s delete-profile-logo">Delete</button>
+											
+											<button type="button" class="tran3s delete-profile-logo @if(!$employerDetails || !$employerDetails->institution_logo) d-none @endif">Delete</button>
 										</div>
 									</div>
 								</div>
@@ -337,7 +345,7 @@ h3{
 
 					<!-- Step 2 -->
 					<form id="operational-details-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
-						<div class="bg-white card-box" id="step-2">
+						<div class="bg-white card-box border-20" id="step-2">
 							<h3 class="my-3">Company Information</h3>
 							<div class="row">
 								{{-- <div class="col-md-6">
@@ -373,7 +381,7 @@ h3{
 										</div>
 										@if(isset($employerDetails->international_accredition_or_certification) && !empty($employerDetails->international_accredition_or_certification))
 										<div style = "padding-left:20px;">
-											<a class="btn btn-primary" href = "{{asset($employerDetails->international_accredition_or_certification)}}" target = "_blank">File</a>
+											<a class="btn btn-file" href = "{{asset($employerDetails->international_accredition_or_certification)}}" target = "_blank">File</a>
 										</div>
 										@endif
 									</div>
@@ -477,42 +485,43 @@ h3{
 
 					<!-- Step 4 -->
 					<form id="employer-verification-form" class = "mt-4" method = "post" enctype = "multipart/form-data">
-						<div class="bg-white card-box" id="step-3">
-							<h3 class="my-3">Business License Certificate</h3>
+
+						<div class="bg-white card-box border-20" id="step-3">
+							<h3 class="my-3">Employer Verification</h3>
 							<div class = "mt-1" id ="license-document-error"></div>
 								@isset($employerLicenseDetails)
 								@if($employerLicenseDetails->approval_status == 0)
 								<div class="row">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<div class="dash-input-wrapper mb-30">
 										    <label for="">{{$employerLicenseDetails->license_number}}</label>
 											@if(isset($employerLicenseDetails->license_file) && !empty($employerLicenseDetails->license_file))
 											<div style = "padding-left:20px;">
-												<a class="btn btn-primary" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
+												<a class="btn btn-file" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
 											</div>
 											@endif
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="dash-input-wrapper mb-30">
+									<div class="col-md-6 px-0">
+										<div class="dash-input-wrapper mt-20">
 											<label for="">Waiting for an approval by Admin</label>
 										</div>
 									</div>
 								</div>
 								@elseif($employerLicenseDetails->approval_status == 1)
 								<div class="row">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<div class="dash-input-wrapper mb-30">
 										    <label for="">{{$employerLicenseDetails->license_number}}</label>
 											@if(isset($employerLicenseDetails->license_file) && !empty($employerLicenseDetails->license_file))
 											<div style = "padding-left:20px;">
-												<a class="btn btn-primary" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
+												<a class="btn btn-file" href = "{{asset($employerLicenseDetails->license_file)}}" target = "_blank">File</a>
 											</div>
 											@endif
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="dash-input-wrapper mb-30">
+									<div class="col-md-6 px-0">
+										<div class="dash-input-wrapper mt-15">
 											<label for="">Approved by Admin</label>
 										</div>
 									</div>
@@ -548,7 +557,7 @@ h3{
 												<div class="upload-btn position-relative tran3s ms-4 me-3">
 													Upload
 													<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">	
-													<button type = "button" class="delete-btn tran3s">Delete</button>
+													<button type="button" class="delete-btn tran3s d-none dispute-delete-btn">Delete</button>
 												</div>
 												<strong id="legalDisputesConfirmationDocumentFileName"></strong>										
 											</div>
@@ -588,7 +597,7 @@ h3{
 													Upload
 													<input type="file" id="legalDisputesConfirmationDocument" name="legalDisputesConfirmationDocument" placeholder="" value="">		
 												</div>
-												<button type = "button" class="delete-btn tran3s">Delete</button>
+												<button type = "button" class="delete-btn tran3s d-none dispute-delete-btn">Delete</button>
 											</div>
 											<strong id="legalDisputesConfirmationDocumentFileName"></strong>			
 										</div>
@@ -637,7 +646,7 @@ h3{
 							</div>
 						</form>
 					<form id="declaration-consent-form" class="mt-4" method="post">
-						<div class="bg-white card-box" id="step-4">
+						<div class="bg-white card-box border-20" id="step-4">
 							<h3 class="my-3">Terms And Condition</h3>
 							<div class="row">
 								<div class="col-md-6">
@@ -731,7 +740,7 @@ h3{
 										<video id="videoPreview" class = "d-none" width="320" height="240" controls></video>
 										@if(isset($employerDetails->introductry_video) && !empty($employerDetails->introductry_video))
 										<div style = "padding-left:20px;" class = "mt-2 video-url">
-											<a class="btn btn-primary" href = "{{asset($employerDetails->introductry_video)}}" target = "_blank">File</a>
+											<a class="btn btn-file" href = "{{asset($employerDetails->introductry_video)}}" target = "_blank">File</a>
 										</div>
 										@endif
 									</div>
@@ -749,7 +758,7 @@ h3{
 										</div>
 										@if(isset($employerDetails->video_thumbnail) && !empty($employerDetails->video_thumbnail))
 										<div style = "padding-left:20px;" class = "thumbnail-image">
-											<a class="btn btn-primary" href = "{{asset($employerDetails->video_thumbnail)}}" target = "_blank">File</a>
+											<a class="btn btn-file" href = "{{asset($employerDetails->video_thumbnail)}}" target = "_blank">File</a>
 										</div>
 										@endif
 									</div>
@@ -1034,6 +1043,7 @@ h3{
 		$(document).on("change" , "#legalDisputesConfirmationDocument" , function(e){
 			let filename = this.files[0].name;
 			document.querySelector("#legalDisputesConfirmationDocumentFileName").innerHTML = filename;
+			document.querySelector(".dispute-delete-btn").classList.add("remove");
 		})
 
 
@@ -1045,6 +1055,7 @@ h3{
  			});
 		$("#basic-information-form").on("submit", function(e) {
 			e.preventDefault();
+			let deleteBtn = this.querySelector(".delete-profile-logo");
 			var formData = new FormData();
 			formData.append("_token", "{{ csrf_token() }}");
 			formData.append("institution", $("#basic-information-form").find("[name=legalNameOfSchool]").val());
@@ -1058,11 +1069,6 @@ h3{
 			formData.append("phone_number", $("#basic-information-form").find("[name=phoneNumber]").val());
 			formData.append("email", $("#basic-information-form").find("[name=email]").val());
 			formData.append("institution_logo", $('#institution_logo')[0].files[0]);
-				/* 
-					formData.append("number_of_administrative_staff", $("#multi-step-form").find("[name=numberOfAdministrativeStaff]").val());
-					formData.append("established_date", $("#multi-step-form").find("[name=yearOfEstablished]").val());
-					formData.append("employer_details", $("#multi-step-form").find("[name=detailsDescription]").val());
-					*/
 
 			$.ajax({
 				type: "POST",
@@ -1075,7 +1081,7 @@ h3{
 		
 					if (data.status) {
 						toastr.success(data.message)
-						// window.location = data.redirect;
+						deleteBtn.classList.remove("d-none");
 					}else{
 						$(".alert").remove();
 						$.each(data.errors, function (key, val) {
@@ -1135,10 +1141,10 @@ h3{
 				formData.append("_token", "{{ csrf_token() }}");
 				/* formData.append('plan',$("#payment-details-form").find('[name=differentSubscriptionOptions]').val())
 				 */
-				formData.append("employer_details", $("#payment-details-form").find("[name=detailsDescription]").val());
+				// formData.append("employer_details", $("#payment-details-form").find("[name=detailsDescription]").val());
 				formData.append("introductry_video", $('#introductryVideo')[0].files[0]);
         		formData.append("video_thumbnail", $('#videoThumbnail')[0].files[0]);
-				formData.append('terms_and_conditions_acceptance',$("#payment-details-form").find('[name=acceptanceOfTermsAndConditions]').val())
+				// formData.append('terms_and_conditions_acceptance',$("#payment-details-form").find('[name=acceptanceOfTermsAndConditions]').val())
 				// formData.append('token',$("#multi-step-form").find('[name=token]').val())
 				// formData.append('token',token.value)
 				// form.submit();
@@ -1411,17 +1417,18 @@ h3{
     });
 
 	$(document).on("click" , ".delete-profile-logo" , function(e){
+		let element = this;
 		$.ajax({
 			type: "POST",
 			url: "{{route('employer.delete_profile')}}",
 			data: { '_token' : "{{csrf_token()}}"},
 			success: function (data) {
+				element.classList.add("d-none");
 	
 				if (data.status) {
 					toastr.success(data.message);
 					let src = "{{asset('assets/images/human-avatar.png')}}";
 					document.getElementById("profile_image").setAttribute("src" , src);
-					
 				}
 			
 			}

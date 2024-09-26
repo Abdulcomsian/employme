@@ -35,6 +35,12 @@ class EmployerJobController extends Controller
      */
     public function create()
     {
+        $employerLicenseDetails =  EmployerBusinessLicense::where('employer_id',auth()->user()->id)->first();
+        if($employerLicenseDetails && $employerLicenseDetails->approval_status == 1 && (!auth()->user()->lastSubscription || !is_null(auth()->user()->lastSubscription->ends_at)))
+        {
+            return redirect()->route('getEmployerSubscriptionPlan');    
+        }
+
         $jobCategories = JobCategory::all();
         return view('employer.jobs.create',get_defined_vars());
     }
@@ -141,12 +147,12 @@ class EmployerJobController extends Controller
 
     public function interviewInvitation(Request $request)
     {
-        $jobApplicationDetails = JobApplication::where('employer_job_id',$request->employer_job_id)->first();
+        $jobApplicationDetails = JobApplication::where('id',$request->employer_job_application_id)->first();
 
         $candidateDetails = User::with('candidatePersonalDetails')->find($jobApplicationDetails->candidate_id);
         $employerDetails = User::with('employerDetails')->find(Auth::id());
-        $jobDetails = EmployerJob::find($request->employer_job_id);
-        $interviewRequestExists = JobInterview::where(['employer_job_id'=>$request->employer_job_id,'requested_from'=>$jobApplicationDetails->employer_id,'requested_to'=>$jobApplicationDetails->candidate_id]);
+        $jobDetails = EmployerJob::find($jobApplicationDetails->employer_job_id);
+        $interviewRequestExists = JobInterview::where(['employer_job_id'=>$jobApplicationDetails->employer_job_id,'requested_from'=>$jobApplicationDetails->employer_id,'requested_to'=>$jobApplicationDetails->candidate_id]);
 
         if($interviewRequestExists->exists())
         {
@@ -161,9 +167,9 @@ class EmployerJobController extends Controller
                 'requested_from'=>$jobApplicationDetails->employer_id,
                 'interview_date'=>$request->interview_date,
                 'interview_time'=>$request->interview_time,
-                'meeting_media'=>$request->meeting_media,
+                'meeting_media'=>$request->reschedule_meeting,
                 'status'=>0,
-                'employer_job_id'=>$request->employer_job_id
+                'employer_job_id'=>$jobApplicationDetails->employer_job_id
     
             ]);    
             if($createRequest)

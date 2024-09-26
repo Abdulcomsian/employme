@@ -1,9 +1,9 @@
 <aside class="dash-aside-navbar">
     <div class="position-relative">
         <div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
-            <a href="{{route('getCandidateDashboard')}}">
+            <a href="{{route('home')}}">
                
-					<span style="font-size: 25px;font-weight: bold;">employme</span>
+					<span style="font-size: 25px;font-weight: bold;color:#000;">employme</span>
             </a>
             <button class="close-btn d-block d-md-none"><i class="bi bi-x-lg"></i></button>
         </div>
@@ -14,17 +14,19 @@
 			</div>
             @else
             <div class="user-avatar online position-relative rounded-circle">
-				<img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img">
+				<img src="{{asset('assets/images/human-avatar.png')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img">
 			</div>
             @endif
             <!-- /.user-avatar -->
             <div class="user-name-data d-flex justify-content-center">
-                <button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                 {{auth()->user()->name}}
+                <button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="background: transparent !important;color:#000;">
+
+                 {{auth()->user()->candidatePersonalDetails->first_name ?? ''}}
+
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="{{route('getCandidateProfile')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>
+                        <a class="dropdown-item d-flex align-items-center" href="{{route('candidateProfileNew', \Crypt::encryptString(\Auth::id()))}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_23.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>
                     </li>
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="{{route('getAccountSetting')}}"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/dashboard-icon/icon_24.svg')}}" alt="" class="lazy-img"><span class="ms-2 ps-1">Account Settings</span></a>

@@ -96,19 +96,18 @@
 
 
       <div class="w-layout-grid main-grid-stage">
-        <!-- <div id="w-node-_8b057110-0278-ed21-d38e-16c4950be6b8-b18f57be"
-            data-w-id="8b057110-0278-ed21-d38e-16c4950be6b8" class="box-wrapper no-hover">
-            <div class="icon-box yellow"><img src="../images/ic-003-color.svg" loading="lazy" alt=""
-                class="icon-content">
-            </div>
-            <div class="icon-wrapper"></div>
-            <div
-              style="-webkit-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -5em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
-              class="content-wrapper">
-              <h3 class="heading-small">Get it ready</h3>
-              <p class="p-small">Duis mollis, est non commodo luctus, nisi erat porttitor ligula</p>
-            </div>
-          </div> -->
+      <div id="w-node-_834df346-b183-6b86-9dc7-9e9a0dd4e30f-b18f57be" data-w-id="834df346-b183-6b86-9dc7-9e9a0dd4e30f" class="box-wrapper no-hover">
+
+<div class="icon-box yellow"><img src="{{asset('assets/images/ic-003-color.svg')}}" loading="lazy" alt="" class="icon-content">
+</div>
+<div class="icon-wrapper"></div>
+<div class="content-wrapper">
+  <h3 class="heading-small">Jobs Marketplace</h3>
+  <p class="p-small">Once signed up, post jobs to allow candidates to initiate interview requests with you.
+
+</p>
+</div>
+</div>
 
         <div id="w-node-_834df346-b183-6b86-9dc7-9e9a0dd4e30f-b18f57be" data-w-id="834df346-b183-6b86-9dc7-9e9a0dd4e30f" class="box-wrapper no-hover">
 
@@ -116,8 +115,11 @@
           </div>
           <div class="icon-wrapper"></div>
           <div class="content-wrapper">
-            <h3 class="heading-small">Jobs Marketplace</h3>
-            <p class="p-small">Let the world know what you're searching for and attract the talent you need.</p>
+            <h3 class="heading-small">Candidate Marketplace
+</h3>
+            <p class="p-small">Access talent that meets visa requirements and is ready to start working.
+
+</p>
           </div>
         </div>
 
@@ -126,9 +128,11 @@
           </div>
           <div class="icon-wrapper"></div>
           <div class="content-wrapper">
-            <h3 class="heading-small">Candidate Marketplace</h3>
-            <p class="p-small">Gain access to highly qualified talent that is pre-vetted and ready to hit the ground
-              running.</p>
+            <h3 class="heading-small">Recruitment & Visa
+Platform</h3>
+            <p class="p-small">Efficiently manage your hiring and visa application process in one centralized location and proactively stay ahead of your recruitment needs.
+
+</p>
           </div>
         </div>
         <div id="w-node-_2e990165-170c-49c3-20b2-ef776733984f-b18f57be" data-w-id="2e990165-170c-49c3-20b2-ef776733984f" class="box-wrapper no-hover">
@@ -137,152 +141,16 @@
           </div>
           <div class="icon-wrapper"></div>
           <div class="content-wrapper">
-            <h3 class="heading-small">Recruitment Platform</h3>
-            <p class="p-small">Efficiently manage your hiring process in one centralized location and proactively stay
-              ahead of your recruitment needs.</p>
+            <h3 class="heading-small">Customer Service Support
+</h3>
+            <p class="p-small">Contact our support team for any platform-related assistance or assistance with signing up.
+
+</p>
           </div>
         </div>
       </div>
 
 
-
-
-      <div class="button-width">
-        <a id="services-about-employer" href="contact" class="link-block green employer w-inline-block">
-          <div class="btn-label-wrapper">
-            <div class="label-button"> Customer Support
-            </div>
-            <div class="arrow-wrapper"></div>
-          </div>
-          <div class="button-hover-fill"></div>
-        </a>
-      </div>
-
-      <div class="w-layout-grid main-grid scroll-opacity">
-        <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6d40-b18f5803" class="box-wrapper list no-hover">
-          <div class="icon-box yellow"><img src="{{asset('assets/images/ic-003-color.svg')}}" loading="lazy" alt="" class="icon-content">
-          </div>
-          <h3 class="heading-small">Visa Support </h3>
-
-          <span class="support"> Visa assistance for
-            teacher hires varies based on the plan you select.</span>
-          <div class="list-wrapper neg-1half-margin">
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>Expert guidance in facilitating the visa application process</div>
-            </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>Provision of necessary documentation</div>
-            </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>
-                We can facilitate visa-related communication between you and the candidate if needed</div>
-            </div>
-          </div>
-        </div>
-
-        <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6d40-b18f5803" class="box-wrapper list no-hover">
-          <div class="icon-box blue"><img src="{{asset('assets/images/ic-002-color.svg')}}" loading="lazy" alt="" class="icon-content">
-          </div>
-          <h3 class="heading-small">Essential Support</h3>
-          <span class="support"> For Basic Candidate Access, Job Access, Advance Access, Flexi paid memberships</span>
-          <div class="list-wrapper neg-1half-margin">
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>
-                Technical support for the platform</div>
-            </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>
-                Platform demonstration and guidance</div>
-            </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>Assistance with setting up your company page </div>
-            </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div class="light-gray">Monday - Friday 9 - 6 pm</div>
-            </div>
-          </div>
-        </div>
-        <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6d40-b18f5803" class="box-wrapper list no-hover">
-          <div class="icon-box green"><img src="{{asset('assets/images/ic-006-color.svg')}}" loading="lazy" alt="" class="icon-content">
-          </div>
-          <h3 class="heading-small">Premium Support</h3>
-          <span class="support"> For Combined Marketplace Access and Enterprise Plan paid memberships </span>
-          <div class="list-wrapper neg-1half-margin">
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>
-
-                All essential support services</div>
-            </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>
-                Rapid response times: replies within 1 hour</div>
-            </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>
-                Assistance with job listing creation and interview requests</div>
-            </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>Recruiting strategy & development assistance</div>
-            </div>
-
-          </div>
-        </div>
-        <div id="w-node-_38ef908f-3a6f-52eb-dadf-1fe2a34f6d40-b18f5803" class="box-wrapper list no-hover">
-          <div class="icon-box  purple"><img src="{{asset('assets/images/ic-007-color.svg')}}" loading="lazy" alt="" class="icon-content">
-          </div>
-          <h3 class="heading-small">Elite Support</h3>
-          <span class="support">Exclusively for subscribers with 3+ months of paid membership</span>
-          <div class="list-wrapper neg-1half-margin">
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>All premium support services</div>
-            </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>Interview request options</div>
-            </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check">
-              </div>
-              <div>Workplace conflict resolution and mediation service</div>
-            </div>
-            <!-- <div class="list-flex">
-                <div class="circle-check"><img src="../images/icon-check.svg" loading="lazy" alt="" class="icon-check">
-                </div>
-                <div>Create tasks for candidates</div>
-              </div>
-              <div class="list-flex">
-                <div class="circle-check"><img src="../images/icon-check.svg" loading="lazy" alt="" class="icon-check">
-                </div>
-                <div>Effortlessly monitor your recruitment</div>
-              </div> -->
-          </div>
-        </div>
-      </div>
 
       <div class="w-layout-grid main-grid main-grid-4 no-gap inner-padding-small">
         <div id="w-node-_05fcaccd-c9fb-bc42-7aa9-cfa3a24ebae4-b18f5804">
@@ -418,14 +286,14 @@
           </div>
           <div id="w-node-_748029e7-6ea1-cfc2-d8f9-571f1eb0ab17-28bfa121" class="custom-wrapper">
             <div>
-              <h2 class="heading-medium margin-bottom-xsmall">Uniting Korean Employers and International Talent</h2>
-              <p class="main-paragraph">Employme is dedicated to bridging the gap between international talent and
-                South Korean employers. Our mission is to empower you with exceptional work opportunities and connect
-                employers with top-notch talent. Experience your career flourish or watch your business soar as we
-                unleash the transformative power of connection. <br><br>By providing a
-                We envision a seamless alliance between job seekers from diverse backgrounds and Korean companies in
-                search of unparalleled talent. Together, we're shaping a more equitable recruitment landscape <br>
-                <br> Join us now and unlock endless possibilities!
+              <h2 class="heading-medium margin-bottom-xsmall">All-in-one platform for careers and visas
+</h2>
+              <p class="main-paragraph">Employme was designed to connect Korean employers with international talent while simplify the recruitment and visa process by consolidating it into a single platform
+<br><br>To achieve this, Employme operates as a centralized Jobs and Talent marketplace, seamlessly integrating recruitment and visa process management into a single platform.
+ <br>
+                <br> Our vision entails forging a seamless partnership between job seekers from diverse backgrounds and Korean enterprises in search of qualified talent. By simplifying the recruitment and visa process, we aim to make Korea an attractive workplace for global talent.
+
+
               </p>
             </div>
           </div>
@@ -477,87 +345,36 @@
       </div>
     </div>
     <div class="plan-wrapper">
-      <div class="w-layout-grid main-grid-stage">
+      <div class="w-layout-grid main-grid-stage" style="grid-template-columns: repeat(1, 1fr);">
         <div id="w-node-_81b091a9-3344-4bc6-7449-45c9eac49795-b18f57be" class="gray-wrapper p1">
           <div class="w-layout-grid content-grid gap-short">
             <div class="price-wrapper margin-bottom-xsmall">
               <h3 class="heading-small outline">Basic Candidate</h3>
-              <p class="price">$59</p>
-              <div class="p-xsmall text-gray">Pay-Per-Hire Fee: $700 after visa approval</div>
+              <p class="price">300,000<span class="span-small">/1 mo</span></p>
+              <div class="p-xsmall text-gray">Free one-month trial for new employers.<br><strong>No other fees!</strong></div>
             </div>
             <div class="list-wrapper">
-              <div class="list-flex">
-                <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                <div>
-                  Candidate Marketplace access</div>
+                <div class="list-flex">
+                  <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
+                  <div>Job postings</div>
+                </div>
+                <div class="list-flex">
+                  <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
+                  <div>Access to a pool of qualified candidates</div>
+                </div>
+                <div class="list-flex">
+                  <div class="circle-check"><img src="{{ asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
+                  <div>Inbuilt direct messaging with candidates</div>
+                </div>
+                <div class="button-plan-wrapper">
+                  <a href="../company-pages/pricing-04.html" class="button w-inline-block">
+                    <div>See more</div>
+                  </a>
+                </div>
               </div>
-              <div class="list-flex">
-                <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                <div>Send interview requests</div>
-              </div>
-
-              <div class="button-plan-wrapper">
-                <a href="pricing" class="button w-inline-block">
-                  <div>See More</div>
-                </a>
-              </div>
-            </div>
           </div>
         </div>
-        <div id="w-node-_81b091a9-3344-4bc6-7449-45c9eac497c1-b18f57be" class="gray-wrapper p2">
-          <div class="w-layout-grid content-grid gap-short">
-            <div class="price-wrapper margin-bottom-xsmall">
-              <h3 class="heading-small outline">Jobs Marketplace</h3>
-              <p class="price">$69</p>
-              <div class="p-xsmall text-gray">Pay-Per-Hire Fee: $800 after visa approval</div>
-            </div>
-            <div class="list-wrapper">
-              <div class="list-flex">
-                <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                <div>Jobs Marketplace access</div>
-              </div>
-              <div class="list-flex">
-                <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                <div>Receive interview requests</div>
-              </div>
-
-              <div class="button-plan-wrapper">
-                <a href="pricing" class="button w-inline-block">
-                  <div>See More</div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="w-node-_81b091a9-3344-4bc6-7449-45c9eac497ed-b18f57be" class="gray-wrapper selected-plan p3">
-          <div class="w-layout-grid content-grid gap-short">
-            <div class="price-wrapper margin-bottom-xsmall">
-              <h3 class="heading-small outline">Combined Marketplace Access</h3>
-              <p class="price">$129</p>
-              <div class="p-xsmall text-gray">Pay-Per-Hire Fee: $600 after visa approval</div>
-            </div>
-            <div class="list-wrapper">
-              <div class="list-flex">
-                <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                <div>Jobs & Candidate Marketplace access</div>
-              </div>
-              <div class="list-flex">
-                <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-                <div>
-                  Rceived and send interview request</div>
-              </div>
-
-              <div class="button-plan-wrapper">
-                <a href="pricing" class="button w-inline-block">
-                  <div>See More</div>
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="promo-tag">
-              <div class="promo">Best Deal • Save 35%</div>
-            </div> -->
-        </div>
+        
         <!-- <div id="w-node-_81b091a9-3344-4bc6-7449-45c9eac49819-b18f57be" class="gray-wrapper p4">
             <div class="w-layout-grid content-grid gap-short">
               <div class="price-wrapper margin-bottom-xsmall">
@@ -674,30 +491,26 @@
   <div class="container inner-padding-medium w-container">
     <div class="rounded-block bg-white">
 
-      <div class="content-wrapper gap">
-        <div id="w-node-addbcfc5-0ac7-aafe-e535-c606f3a87fd8-28bfa121" class="content-wrapper gap">
-          <h3 data-w-id="addbcfc5-0ac7-aafe-e535-c606f3a87fd9" class="heading-large">Ready to get
-            started?</h3>
-          <div class="flex-col">
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-              <div>No credit card required</div>
+    <div class="content-wrapper gap">
+          <div id="w-node-addbcfc5-0ac7-aafe-e535-c606f3a87fd8-28bfa121" class="content-wrapper gap">
+            <h3 class="heading-large">Ready to get started?</h3>
+            <div class="flex-col">
+              <div class="list-flex">
+                <div class="circle-check"><img src="../images/icon-check.svg" loading="lazy" alt="" class="icon-check"></div>
+                <div>1 Month free trial available for new employers</div>
+              </div>
             </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-              <div>30-day trial</div>
+          </div>
+          <div id="w-node-addbcfc5-0ac7-aafe-e535-c606f3a87feb-28bfa121" class="form-block right w-form">
+            <form id="wf-form-Join-Musk-Form" name="wf-form-Join-Musk-Form" data-name="Join Musk Form" method="get" class="form gap" data-wf-page-id="64caf26142dffebe28bfa121" data-wf-element-id="addbcfc5-0ac7-aafe-e535-c606f3a87fec" aria-label="Join Musk Form" style="justify-content: space-between;"><input type="submit" data-wait="Please wait..." class="button-circle-medium w-button" value=""></form>
+            <div class="success rounded w-form-done" tabindex="-1" role="region" aria-label="Join Musk Form success">
+              <div>Thank you! Your submission has been received!</div>
             </div>
-            <div class="list-flex">
-              <div class="circle-check"><img src="{{asset('assets/images/icon-check.svg')}}" loading="lazy" alt="" class="icon-check"></div>
-              <div>Explore pre-vetted candidates</div>
+            <div class="error w-form-fail" tabindex="-1" role="region" aria-label="Join Musk Form failure">
+              <div>Oops! Something went wrong while submitting the form.</div>
             </div>
           </div>
         </div>
-        <div id="w-node-addbcfc5-0ac7-aafe-e535-c606f3a87feb-28bfa121" class="form-block right w-form">
-          <form method="get" name="wf-form-Join-Musk-Form" data-name="Join Musk Form" id="wf-form-Join-Musk-Form" class="form gap"><input class="text-field flex-gray w-input" maxlength="256" name="Name-2" data-name="Name 2" placeholder="Enter your name" type="text" id="Name-2" required=""><input class="text-field flex-gray w-input" maxlength="256" name="Email-6" data-name="Email 6" placeholder="Enter your email" type="email" id="Email-6" required=""><input type="submit" data-wait="Please wait..." class="button-circle-medium w-button" value=""></form>
-
-        </div>
-      </div>
     </div>
   </div>
 </div>

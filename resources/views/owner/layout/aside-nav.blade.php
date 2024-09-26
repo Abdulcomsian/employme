@@ -2,9 +2,9 @@
 <aside class="dash-aside-navbar">
     <div class="position-relative">
         <div class="logo text-md-center d-md-block d-flex align-items-center justify-content-between">
-            <a href="{{route('getEmployerDashboard')}}">
+            <a href="{{route('home')}}">
                 
-					<span style="font-size: 25px;font-weight: bold;">employme</span>
+					<span style="font-size: 25px;font-weight: bold;color:#000;">employme</span>
             </a>
             <button class="close-btn d-block d-md-none"><i class="bi bi-x-lg"></i></button>
         </div>
@@ -21,29 +21,29 @@
             <!-- /.user-avatar -->
             <div class="user-name-data d-flex justify-content-center">
                 <button class="user-name dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown"
-                    data-bs-auto-close="outside" aria-expanded="false">
+                    data-bs-auto-close="outside" aria-expanded="false" style="background: transparent !important;color:#000;">
                     {{auth()->user()->name}}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
-                    <li>
+                    {{--<li>
                         <a class="dropdown-item d-flex align-items-center" href="{{ route('getEmployerProfile') }}"><img
                                 src="{{ asset('assets/images/lazy.svg') }}"
                                 data-src="{{ asset('assets/images/dashboard-icon/icon_23.svg') }}" alt=""
                                 class="lazy-img"><span class="ms-2 ps-1">Profile</span></a>
-                    </li>
+                    </li>--}}
                     <li>
                         <a class="dropdown-item d-flex align-items-center"
-                            href="{{ route('getEmployerDashboardSettings') }}"><img
+                            href="{{ route('getOwnerProfile') }}"><img
                                 src="{{ asset('assets/images/lazy.svg') }}"
                                 data-src="{{ asset('assets/images/dashboard-icon/icon_24.svg') }}" alt=""
                                 class="lazy-img"><span class="ms-2 ps-1">Account Settings</span></a>
                     </li>
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#"><img
-                                src="{{ asset('assets/images/lazy.svg') }}"
-                                data-src="{{ asset('assets/images/dashboard-icon/icon_25.svg') }}" alt=""
-                                class="lazy-img"><span class="ms-2 ps-1">Notification</span></a>
-                    </li>
+                       {{-- <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#"><img
+                                    src="{{ asset('assets/images/lazy.svg') }}"
+                                    data-src="{{ asset('assets/images/dashboard-icon/icon_25.svg') }}" alt=""
+                                    class="lazy-img"><span class="ms-2 ps-1">Notification</span></a>
+                        </li>--}}
                 </ul>
             </div>
         </div>
@@ -57,9 +57,9 @@
                         <span>Dashboard</span>
                     </a></li>
                 <li><a href="{{ route('getOwnerProfile') }}"
-                        class="d-flex w-100 align-items-center {{ request()->is('owner/profile') ? 'active' : '' }}">
+                        class="d-flex w-100 align-items-center {{ request()->is('owner/account-settings') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
-                            data-src="{{ request()->is('owner/profile') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
+                            data-src="{{ request()->is('owner/account-settings') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
                         <span>My Profile</span>
                     </a>
@@ -80,12 +80,20 @@
                         <span>Employers</span>
                     </a>
                 </li>
-                <li><a href="{{ route('owner.employerBusinessLicenses') }}"
+                <!-- <li><a href="{{ route('owner.employerBusinessLicenses') }}"
                         class="d-flex w-100 align-items-center {{ request()->is('owner/employer-business-licenses') ? 'active' : '' }}">
                         <img src="{{ asset('assets/images/lazy.svg') }}"
                             data-src="{{ request()->is('owner/employer-business-licenses') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
                             alt="" class="lazy-img">
                         <span>Employers Licenses</span>
+                    </a>
+                </li> -->
+                <li><a href="{{ route('interviewRequests') }}"
+                        class="d-flex w-100 align-items-center {{ request()->is('owner/interview-requests') ? 'active' : '' }}">
+                        <img src="{{ asset('assets/images/lazy.svg') }}"
+                            data-src="{{ request()->is('owner/interview-requests') ? asset('assets/images/dashboard-icon/icon_2_active.svg') : asset('assets/images/dashboard-icon/icon_2.svg') }}"
+                            alt="" class="lazy-img">
+                        <span>Interview Requests</span>
                     </a>
                 </li>
                 <li><a href="{{ route('admin.getEmployersJobs') }}"
@@ -131,7 +139,7 @@
 
                  <!--- End of Moduels Code -->
                 <li>
-                    <a class="d-flex w-100 align-items-center" data-bs-toggle="collapse" href="#collapseJobType" role="button" aria-expanded="false"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/module.png')}}" alt="" class="lazy-img mx-1">Manage Modules</a>
+                    <a class="d-flex w-100 align-items-center" data-bs-toggle="collapse" href="#collapseJobType" role="button" aria-expanded="false"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/icon/module.png')}}" alt="" class="lazy-img pe-1 me-2">Manage Modules</a>
                     <div class="collapse " id="collapseJobType">
                         <div class="main-body">
                             <ul class="style-none filter-input">

@@ -7,6 +7,10 @@ Candidate Marketplace
 	.red-heart{
 		color:red;
 	}
+	.nice-select{
+		padding: 10px 15px;
+    	background: #f2f2f2;
+	}
 	.filter-area-tab .salary-slider .price-input input {
     width: 110px;
     height: 20px;
@@ -25,7 +29,7 @@ Candidate Marketplace
     text-transform: uppercase;
     letter-spacing: 0.88px;
     color: #fff;
-    background: #31795A;
+    background: #ff715b;
     width: auto;
     padding: 14px;
 }
@@ -51,6 +55,30 @@ Candidate Marketplace
     height: 20px; /* Adjust as needed */
 }
 
+.Interview-Modal-Button{
+	background-color: #ff715b;
+	color: white;
+}
+
+.Interview-Modal-Button:hover{
+	background-color: black!important;
+}
+
+a.btn.Interview-Modal-Button.subscribed-redirect {
+    font-size: 12px;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 18px;
+    width: 130px;
+}
+
+a.btn.Interview-Modal-Button.subscribed-redirect:hover{
+	color:white!important;
+}
+.set-profile-img{
+	width: 100%;
+	height:100%;
+}
 </style>
 <!--
 		=============================================
@@ -74,13 +102,13 @@ Candidate Marketplace
 						<div class="job-search-one position-relative">
 							<form action="{{route('candidatesMarketplace')}}" method="GET">
 								<div class="row">
-									<div class="col-md-5">
+									<div class="col-md-9">
 										<div class="input-box">
 											<div class="label">What are you looking for?</div>
 											<input type="text" class="form-control form-control-lg" name="SearchProfileTitle" placeholder = "Search Candidate" value="{{ isset($_GET['SearchProfileTitle']) ? $_GET['SearchProfileTitle'] : ''}}"/>
 										</div>
 									</div>
-									<div class="col-md-4">
+									{{--<div class="col-md-4">
 										<div class="input-box border-left">
 											<div class="label">Category</div>
 											<select name="SearchJobCategory" class="nice-select lg">
@@ -93,7 +121,7 @@ Candidate Marketplace
 													@endif
 											</select>
 										</div>
-									</div>
+									</div>--}}
 									<div class="col-md-3">
 										<button class="fw-500 text-uppercase h-100 tran3s search-btn">Search</button>
 									</div>
@@ -180,7 +208,7 @@ Candidate Marketplace
 									</div>
 								</div>
 							</div>
-							<div class="filter-block bottom-line pb-25 mt-25">
+							<!-- <div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark " data-bs-toggle="collapse" href="#collapseSalary" role="button" aria-expanded="false">Salary Range</a>
 								<div class="collapse show" id="collapseSalary">
 									<div class="main-body">
@@ -203,23 +231,9 @@ Candidate Marketplace
 												<input type="range" class="range-max" min="0" max="100000" value="30000" step="10">
 											</div>
 										</div>
-										<!-- <ul class="style-none d-flex flex-wrap justify-content-between radio-filter mb-5">
-											<li>
-												<input type="radio" name="jobDuration" value="01">
-												<label>Weekly</label>
-											</li>
-											<li>
-												<input type="radio" name="jobDuration" value="02">
-												<label>Monthly</label>
-											</li>
-											<li>
-												<input type="radio" name="jobDuration" value="03">
-												<label>Hourly</label>
-											</li>
-										</ul> -->
 									</div>
 								</div>
-							</div>
+							</div> -->
 
 							<!-- <div class="filter-block bottom-line pb-25  mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#EDUg" role="button" aria-expanded="false">Education Grade</a>
@@ -262,24 +276,44 @@ Candidate Marketplace
 									</div> -->
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp" role="button" aria-expanded="false">Visa Type</a>
-								<div class="collapse {{(isset($_GET['SearchNoVisa']) || isset($_GET['SearchTouristVisa']) || isset($_GET['SearchStudentVisa']) || isset($_GET['SearchE2TeachingVisa'])) ? 'show' : ''}}" id="collapseExp">
+								<div class="collapse {{(isset($_GET['SearchNewToApply']) || isset($_GET['SearchE2TeachingVisa']) || isset($_GET['SearchE7SpecialOccupation']) || isset($_GET['SearchF2Resident']) || isset($_GET['SearchF5PermanentResident']) || isset($_GET['SearchF6MarriageMigrant']) || isset($_GET['SearchD8CorporateInvestment']) || isset($_GET['SearchD9TradeManagement']) || isset($_GET['SearchD9TradeManagement']) || isset($_GET['SearchH1WorkingHoliday'])) ? 'show' : ''}}" id="collapseExp">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchNoVisa" value="No Visa" {{isset($_GET['SearchNoVisa']) ? 'checked' : ''}}>
-												<label>No Visa</label>
+												<input type="checkbox" name="SearchNewToApply" value="New To Apply" {{isset($_GET['SearchNewToApply']) ? 'checked' : ''}}>
+												<label>New To Apply</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchTouristVisa" value="Tourist Visa" {{isset($_GET['SearchTouristVisa']) ? 'checked' : ''}}>
-												<label>Tourist Visa</label>
+												<input type="checkbox" name="SearchE2TeachingVisa" value="E-2 (Teaching)" {{isset($_GET['SearchE2TeachingVisa']) ? 'checked' : ''}}>
+												<label>E-2 (Teaching)</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchStudentVisa" value="Student Visa" {{isset($_GET['SearchStudentVisa']) ? 'checked' : ''}}>
-												<label>Student Visa</label>
+												<input type="checkbox" name="SearchE7SpecialOccupation" value="E-7 (Special Occupation)" {{isset($_GET['SearchE7SpecialOccupation']) ? 'checked' : ''}}>
+												<label>E-7 (Special Occupation)</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchE2TeachingVisa" value="E2 Teaching Visa" {{isset($_GET['SearchE2TeachingVisa']) ? 'checked' : ''}}>
-												<label>E2 Teaching Visa</label>
+												<input type="checkbox" name="SearchF2Resident" value="F-2 (Resident)" {{isset($_GET['SearchF2Resident']) ? 'checked' : ''}}>
+												<label>F-2 (Resident)</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchF5PermanentResident" value="F-5 (Permanent Resident)" {{isset($_GET['SearchF5PermanentResident']) ? 'checked' : ''}}>
+												<label>F-5 (Permanent Resident)</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchF6MarriageMigrant" value="F-6 (Marriage Migrant)" {{isset($_GET['SearchF6MarriageMigrant']) ? 'checked' : ''}}>
+												<label>F-6 (Marriage Migrant)</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchD8CorporateInvestment" value="D-8 (Corporate Investment)" {{isset($_GET['SearchD8CorporateInvestment']) ? 'checked' : ''}}>
+												<label>D-8 (Corporate Investment)</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchD9TradeManagement" value="D-9 (Trade Management)" {{isset($_GET['SearchD9TradeManagement']) ? 'checked' : ''}}>
+												<label>D-9 (Trade Management)</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchH1WorkingHoliday" value="H-1 (Working Holiday)" {{isset($_GET['SearchH1WorkingHoliday']) ? 'checked' : ''}}>
+												<label>H-1 (Working Holiday)</label>
 											</li>
 										</ul>
 									</div>
@@ -304,28 +338,36 @@ Candidate Marketplace
 							</div>
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseExp1" role="button" aria-expanded="false">Experience Level</a>
-								<div class="collapse {{(isset($_GET['SearchIntermediateExperience']) || isset($_GET['SearchFresher']) || isset($_GET['SearchNoExperience']) || isset($_GET['SearcInternship']) || isset($_GET['SearchExpert'])) ? 'show' : ''}}" id="collapseExp1">
+								<div class="collapse {{(isset($_GET['SearchNoExperience']) || isset($_GET['Search0To1Year']) || isset($_GET['Search1To3Years']) || isset($_GET['Search3To5Years']) || isset($_GET['Search5To7Years']) || isset($_GET['Search7To10Years']) || isset($_GET['Search10PlusYears'])) ? 'show' : ''}}" id="collapseExp1">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchFresher" value="Fresher" {{isset($_GET['SearchFresher']) ? 'checked' : ''}}>
-												<label>Fresher</label>
+												<input type="checkbox" name="SearchNoExperience" value="No Experience" {{isset($_GET['SearchNoExperience']) ? 'checked' : ''}}>
+												<label>No Experience <span>{{jobExperienceCount('0-1 Year')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchIntermediateExperience" value="Intermediate" {{isset($_GET['SearchIntermediateExperience']) ? 'checked' : ''}}>
-												<label>Intermediate</label>
+												<input type="checkbox" name="Search0To1Year" value="0-1 Year" {{isset($_GET['Search0To1Year']) ? 'checked' : ''}}>
+												<label>0-1 Year <span>{{jobExperienceCount('0-1 Year')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchNoExperience" value="No-Experience" {{isset($_GET['SearchNoExperience']) ? 'checked' : ''}}>
-												<label>No-Experience</label>
+												<input type="checkbox" name="Search1To3Years" value="1-3 Years" {{isset($_GET['Search1To3Years']) ? 'checked' : ''}}>
+												<label>1-3 Years <span>{{jobExperienceCount('Intermediate')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearcInternship" value="Internship" {{isset($_GET['SearcInternship']) ? 'checked' : ''}}>
-												<label>Internship</label>
+												<input type="checkbox" name="Search3To5Years" value="3-5 Years" {{isset($_GET['Search3To5Years']) ? 'checked' : ''}}>
+												<label>3-5 Years <span>{{jobExperienceCount('3-5 Years')}}</span></label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchExpert" value="Expert" {{isset($_GET['SearchExpert']) ? 'checked' : ''}}>
-												<label>Expert</label>
+												<input type="checkbox" name="Search5To7Years" value="5-7 Years" {{isset($_GET['Search5To7Years']) ? 'checked' : ''}}>
+												<label>5-7 Years <span>{{jobExperienceCount('5-7 Years')}}</span></label>
+											</li>
+											<li>
+												<input type="checkbox" name="Search7To10Years" value="7-10 Years" {{isset($_GET['Search7To10Years']) ? 'checked' : ''}}>
+												<label>7-10 Years <span>{{jobExperienceCount('7-10 Years')}}</span></label>
+											</li>
+											<li>
+												<input type="checkbox" name="Search10PlusYears" value="10+ Years" {{isset($_GET['Search10PlusYears']) ? 'checked' : ''}}>
+												<label>10+ Years <span>{{jobExperienceCount('10+ Years')}}</span></label>
 											</li>
 										</ul>
 									</div>
@@ -334,20 +376,36 @@ Candidate Marketplace
 							<!-- /.filter-block -->
 							<div class="filter-block bottom-line pb-25 mt-25">
 								<a class="filter-title fw-500 text-dark collapsed" data-bs-toggle="collapse" href="#collapseQualification" role="button" aria-expanded="false">Qualification</a>
-								<div class="collapse {{(isset($_GET['SearchBachelorQualification']) || isset($_GET['SearchMasterQualification']) || isset($_GET['SearchDoctorateQualification'])) ? 'show' : ''}}" id="collapseQualification">
+								<div class="collapse {{(isset($_GET['SearchSchoolDiploma']) || isset($_GET['SearchAssociate']) || isset($_GET['SearchBachelor']) || isset($_GET['SearchMaster']) || isset($_GET['SearchDoctorate']) || isset($_GET['SearchProfessionalCertification']) || isset($_GET['SearchVocationalTraining'])) ? 'show' : ''}}" id="collapseQualification">
 									<div class="main-body">
 										<ul class="style-none filter-input">
 											<li>
-												<input type="checkbox" name="SearchBachelorQualification" value="Bachelor" {{isset($_GET['SearchBachelorQualification']) ? 'checked' : ''}}>
-												<label>Bachelor</label>
+												<input type="checkbox" name="SearchSchoolDiploma" value="High School Diploma/GED" {{isset($_GET['SearchSchoolDiploma']) ? 'checked' : ''}}>
+												<label>High School Diploma/GED</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchMasterQualification" value="Master" {{isset($_GET['SearchMasterQualification']) ? 'checked' : ''}}>
-												<label>Master</label>
+												<input type="checkbox" name="SearchAssociate" value="Associate's Degree" {{isset($_GET['SearchAssociate']) ? 'checked' : ''}}>
+												<label>Associate's Degree</label>
 											</li>
 											<li>
-												<input type="checkbox" name="SearchDoctorateQualification" value="Doctorate" {{isset($_GET['SearchDoctorateQualification']) ? 'checked' : ''}}>
-												<label>Doctorate</label>
+												<input type="checkbox" name="SearchBachelor" value="Bachelor's Degree" {{isset($_GET['SearchBachelor']) ? 'checked' : ''}}>
+												<label>Bachelor's Degree</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchMaster" value="Master's Degree" {{isset($_GET['SearchMaster']) ? 'checked' : ''}}>
+												<label>Master's Degree</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchDoctorate" value="Doctorate/Ph.D." {{isset($_GET['SearchDoctorate']) ? 'checked' : ''}}>
+												<label>Doctorate/Ph.D.</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchProfessionalCertification" value="Professional Certification" {{isset($_GET['SearchProfessionalCertification']) ? 'checked' : ''}}>
+												<label>Professional Certification</label>
+											</li>
+											<li>
+												<input type="checkbox" name="SearchVocationalTraining" value="Vocational Training" {{isset($_GET['SearchVocationalTraining']) ? 'checked' : ''}}>
+												<label>Vocational Training</label>
 											</li>
 										</ul>
 									</div>
@@ -456,7 +514,13 @@ Candidate Marketplace
 						</div>
 					</div>
 					<!-- /.upper-filter -->
-
+					@role('employer')
+						@if(!$employerIsSubscribed)
+						<div class="alert alert-danger" role="alert">
+							Please choose a subscription plan to view candidate profile and request interview.
+						</div>
+						@endif
+					@endrole
 					<div class="accordion-box grid-style show">
 						<div class="row">
 							@isset($candidates)
@@ -465,11 +529,15 @@ Candidate Marketplace
 								<div class="candidate-profile-card favourite text-center grid-layout mb-25">
 									<a  class="save-btn tran3s save_candidate  save_candidate{{base64_encode($candidate->id)}}" id="{{base64_encode($candidate->id)}}" style="color:{{(savedCandidate($candidate->id) == 1 ? 'red' : '')}}"><i class="bi bi-heart-fill"></i></a>
 									@if(isset($candidate->candidatePersonalDetails->profile_picture) && !empty($candidate->candidatePersonalDetails->profile_picture))
-									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
+									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle set-profile-img"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle set-profile-img"></a></div>
 									@else
-									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
+									<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img rounded-circle"></a></div>
 									@endif
-									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="tran3s">{{$candidate->candidatePersonalDetails->full_name ?? ''}}</a></h4>
+									@if(auth()->check() && auth()->user()->hasRole('employer') && !$employerIsSubscribed)
+									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('getEmployerSubscriptionPlan', \Crypt::encryptString($candidate->id))}}" class="tran3s">{{$candidate->candidatePersonalDetails->first_name ?? ''}} {{$candidate->candidatePersonalDetails->middle_name ?? ''}} {{$candidate->candidatePersonalDetails->last_name ?? ''}}</a></h4>
+									@else
+									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="tran3s">{{$candidate->candidatePersonalDetails->first_name ?? ''}} {{$candidate->candidatePersonalDetails->middle_name ?? ''}} {{$candidate->candidatePersonalDetails->last_name ?? ''}}</a></h4>
+									@endif
 									<div class="candidate-post">{{$candidate->candidatePersonalDetails->designation ?? ''}}</div>
 									<ul class="cadidate-skills style-none d-flex flex-wrap align-items-center justify-content-center justify-content-md-between pt-30 sm-pt-20 pb-10">
 										@if(isset($candidate->candidatePreferences->skills) && !empty($candidate->candidatePreferences->skills))
@@ -489,22 +557,22 @@ Candidate Marketplace
 									<div class="row gx-1">
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Salary</span>
-												<div>{{$candidate->candidatePreferences->expected_salary ?? ''}}{{!empty($candidate->candidatePreferences->expected_salary) ? '/mo' : ''}}</div>
+												<span	class="text-start fw-500">Salary</span>
+												<div	class="text-end">{{$candidate->candidatePreferences->expected_salary ?? ''}}{{!empty($candidate->candidatePreferences->expected_salary) ? '/mo' : ''}}</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span> Document Status</span>
-												<div class="doc-v">Verified</div>
+												<span	class="text-start fw-500"> Document Status</span>
+												<div class="doc-v text-end">Verified</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Current Location</span>
-												<div>{{$candidate->candidatePersonalDetails->current_location ?? ''}}</div>
+												<span	class="text-start fw-500">Current Location</span>
+												<div	class="text-end">{{$candidate->candidatePersonalDetails->current_location ?? ''}}</div>
 											</div>
 											<!-- /.candidate-info -->
 										</div>
@@ -516,15 +584,22 @@ Candidate Marketplace
 										</div> -->
 										<div class="col-md-12">
 											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Nationality</span>
-												<div>{{$candidate->candidatePersonalDetails->getNationality->name ?? ''}}</div>
+												<span class="text-start fw-500">Nationality</span>
+												<div	class="text-end">{{$candidate->candidatePersonalDetails->getNationality->name ?? ''}}</div>
 											</div>
 										</div>
 
 									</div>
+			
+
+									@if(auth()->check() && $verifiedCertificate)
 									<div class="row gx-2 pt-25 sm-pt-10">
 										<div class="col-md-6">
+											@if(auth()->check() && auth()->user()->hasRole('employer') && !$employerIsSubscribed)
+											<a href="{{route('getEmployerSubscriptionPlan')}}" class="btn Interview-Modal-Button subscribed-redirect">View Profile</a>
+											@else
 											<a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="profile-btn tran3s w-100 mt-5">View Profile</a>
+											@endif
 										</div>
 										<div class="col-md-6">
 										@if(\Auth::check())
@@ -535,22 +610,21 @@ Candidate Marketplace
 											<button class="msg-btn tran3s w-100 mt-5 NonEmployerButton" >Request Interview</button>
 											@endrole
 											@role('employer')
-									{{--		@if(jobApplicationStatus($jobDetails->id) == 1)
-													<button class="btn-one">Requested</button>
+												@if($employerIsSubscribed)
+												<button class=" msg-btn tran3s w-100 mt-5 Interview-Modal-Button" data-bs-toggle="modal" data-bs-target="#InterviewRequestModal" value = "{{$candidate->id}}">Request Interview</button>
 												@else
-													<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
-													<button class=" msg-btn tran3s w-100 mt-5" data-bs-toggle="modal" data-bs-target="#InterviewRequestModal">Request Interview</button>
-											@endif --}}
-											<button class=" msg-btn tran3s w-100 mt-5 Interview-Modal-Button" data-bs-toggle="modal" data-bs-target="#InterviewRequestModal" value = "{{$candidate->id}}">Request Interview</button>
-
+												<a href="{{route('getEmployerSubscriptionPlan')}}" class="btn Interview-Modal-Button subscribed-redirect">Request Interview</a>
+												@endif
 											@endrole
 											@else
+											
 												<button class=" msg-btn tran3s w-100 mt-5 PleaseLoginButton" >Request Interview</button>
 												<!-- <button class="btn-one" onclick="event.preventDefault(); document.getElementById('job-application-form').submit();">Apply</button> -->
 											@endif
 										</div>
 
 									</div>
+									@endif
 									<!-- <div class="row justify-content-center gx-2 pt-15 sm-pt-10">
 													<div class="col-md-10">
 													<a href="#" class="tran3s w-100 interview ">  Interview Request</a>
@@ -561,62 +635,7 @@ Candidate Marketplace
 							</div>
 							@endforeach
 							@endisset
-							<!-- <div class="col-xxl-4 col-sm-6 d-flex">
-								<div class="candidate-profile-card text-center grid-layout mb-25">
-									<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="save-btn tran3s"><i class="bi bi-heart"></i></a>
-									<div class="cadidate-avatar position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_02.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
-									<h4 class="candidate-name mt-15 mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">Juan Marko</a></h4>
-									<div class="candidate-post">Javascript Developer</div>
-									<ul class="cadidate-skills style-none d-flex flex-wrap align-items-center justify-content-center justify-content-md-between pt-30 sm-pt-20 pb-10">
-										<li>Java</li>
-										<li>Developer</li>
-										<li>code</li>
-										<li class="more">1+</li>
-									</ul>
-									<div class="row gx-1">
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Salary</span>
-												<div>$3k-$5k/m</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span> Document Status</span>
-												<div class="doc-v">Verified</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Current Location</span>
-												<div>California, US</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Start Date</span>
-												<div>30 Aug 2023</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="candidate-info mt-10 d-flex justify-content-between">
-												<span>Nationality</span>
-												<div>Pakistani</div>
-											</div>
-										</div>
-
-									</div>
-									<div class="row gx-2 pt-25 sm-pt-10">
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="profile-btn tran3s w-100 mt-5"> View Profile</a>
-										</div>
-										<div class="col-md-6">
-											<a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="msg-btn tran3s w-100 mt-5">Request Interview</a>
-										</div>
-									</div>
-									
-								</div>
-							</div> -->
+							
 						</div>
 					</div>
 
@@ -628,14 +647,14 @@ Candidate Marketplace
 								@if(isset($candidate->candidatePersonalDetails->profile_picture) && !empty($candidate->candidatePersonalDetails->profile_picture))
 								<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset($candidate->candidatePersonalDetails->profile_picture)}}" alt="" class="lazy-img rounded-circle"></a></div>
 								@else
-								<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div>
+								<div class="cadidate-avatar online position-relative d-block m-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/human-avatar.png')}}" alt="" class="lazy-img rounded-circle"></a></div>
 								@endif
 								<!-- <div class="cadidate-avatar online position-relative d-block me-auto ms-auto"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="rounded-circle"><img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/candidates/img_01.jpg')}}" alt="" class="lazy-img rounded-circle"></a></div> -->
 								<div class="right-side">
 									<div class="row gx-1 align-items-center">
 										<div class="col-xl-3">
 											<div class="position-relative">
-												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString(1))}}" class="tran3s">{{$candidate->candidatePersonalDetails->full_name ?? ''}}</a></h4>
+												<h4 class="candidate-name mb-0"><a href="{{route('candidateProfileNew', \Crypt::encryptString($candidate->id))}}" class="tran3s">{{$candidate->candidatePersonalDetails->first_name ?? ''}} {{$candidate->candidatePersonalDetails->middle_name ?? ''}} {{$candidate->candidatePersonalDetails->last_name ?? ''}}</a></h4>
 												<div class="candidate-post">{{$candidate->candidatePersonalDetails->designation ?? ''}}</div>
 												<ul class="cadidate-skills style-none d-flex align-items-center">
 													@if(isset($candidate->candidatePreferences->skills) && !empty($candidate->candidatePreferences->skills))
@@ -755,7 +774,7 @@ Candidate Marketplace
 					<ul class="btn-group style-none d-flex flex-wrap justify-content-center justify-content-lg-end">
 						@auth
 						@role('candidate')
-						<li class="me-2"><a href="{{route('candidatesMarketplace')}}" class="btn-three">Looking for job?</a></li>
+						<li class="me-2"><a href="{{route('jobMarketplace')}}" class="btn-three">Looking for job?</a></li>
 						@endrole
 						@role('employer')
 						<li class="ms-2"><a href="{{route('employer-jobs.create')}}" class="btn-four">Post a job</a></li>
@@ -774,7 +793,7 @@ Candidate Marketplace
 			<div class="user-data-form modal-content">
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				<div class="text-center">
-					<h3>Request Form</h3>
+					<h3 style="font-family:'gordita';">Request Interview</h3>
 				</div>
 				<div class="form-wrapper m-auto">
 					<form  id = "Interview-Request-Form">
@@ -783,7 +802,7 @@ Candidate Marketplace
 							<div class="col-md-6">
 								<div class="input-group-meta position-relative mb-25">
 									<label>Date*</label>
-									<input type="date" name = "interview_date" placeholder="" required>
+									<input type="date" name = "interview_date" min="{{date('Y-m-d')}}" placeholder="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -809,8 +828,8 @@ Candidate Marketplace
 						</div>
 							</div>
 						
-							<div class="col-md-6">
-								<button class="btn-submit fw-500 tran3s d-block mt-20" type = "submit" >
+							<div class="col-md-6 mb-30">
+								<button class="btn-submit fw-500 tran3s d-block" type = "submit" >
 									<span id="buttonText">Submit</span>
 									<span id="loadingIcon" class="d-none"><img src="{{asset('assets/images/loading.gif')}}" alt="Loading..."></span>
 								</button>

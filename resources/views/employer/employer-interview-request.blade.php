@@ -8,16 +8,17 @@ Interview Request
 @push('page-css')
 <style>
     .job-title, .job-application  {
-    color: #00BF58 !important;
+    color: #000 !important;
+    font-weight: 500;
     
  }
  .job-title a:hover{
-    color: #D2F34C !important;
+    color: #ff715b !important;
     
     /* color: #244034; */
  }
  .job-application a:hover{
-    color: #D2F34C !important;
+    color: #ff715b !important;
     
     /* color: #244034; */
  }
@@ -45,7 +46,7 @@ Interview Request
         <!-- End Header -->
 
         <div class="d-sm-flex align-items-center justify-content-between mb-40 lg-mb-30">
-            <h2 class="main-title m0">My Jobs</h2>
+            <h2 class="main-title m0">Interview Requests</h2>
             <div class="d-flex ms-auto xs-mt-30">
                 <div class="nav nav-tabs tab-filter-btn me-4" id="nav-tab" role="tablist">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#a1" type="button" role="tab" aria-selected="true">All</button>
@@ -119,7 +120,7 @@ Interview Request
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
-                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
+                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->first_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->middle_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->last_name ?? ''}}</a></div>
                                     </td>
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>
@@ -309,7 +310,7 @@ Interview Request
                                 @endphp
                                 <tr class="{{$status}}">
                                     <td>
-                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->full_name ?? ''}}</a></div>
+                                        <div class="job-name job-title fw-500"><a href="{{route('candidateProfileNew', \Crypt::encryptString($interview->jobCandidate->id))}}">{{$interview->jobCandidate->candidatePersonalDetails->first_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->middle_name ?? ''}} {{$interview->jobCandidate->candidatePersonalDetails->last_name ?? ''}}</a></div>
                                     </td>
                                     <td>
                                         <div class="job-name job-title fw-500"><a href="{{route('jobDetails',\Crypt::encryptString($interview->jobDetails->id))}}">{{$interview->jobDetails->job_title ?? ''}}</a></div>

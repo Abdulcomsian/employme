@@ -13,9 +13,7 @@
       <div class="container w-container">
         <div class="w-layout-grid main-grid padding-bottom-medium">
           <div id="w-node-eba92702-92ca-270d-eebc-7a643b4b8ef3-b18f5804" class="center-wrapper padding-bottom-small">
-            <h1 class="heading-xxlarge">Hello!<br></h1>
-            <h1 class="heading-xxlarge margin-bottom-xsmall">We<span class="span-smile sun"> </span>Are EmployMe.<br>
-            </h1>
+          <h1 class="heading-xxlarge margin-bottom-xsmall">How<span class="span-smile sun"> </span>employme works<br></h1>
             <a href="signup" class="rounded-button w-inline-block">
               <div class="button-label">Get Started</div>
               <div class="inner-circle-button"></div><img src="{{ asset('assets/images/arrow.svg')}}" loading="lazy" alt="" class="arrow-icon">
@@ -102,7 +100,7 @@
             <div class="heading-small regular"> Step-By-Step </div>
           </div>
           <div class="h-wrapper">
-            <div class="heading-xlarge">How Employme <span class="span-scribble">Works</span></div>
+            <div class="heading-xlarge">How employme <span class="span-scribble">works</span></div>
           </div>
         </div>
       </div>
@@ -121,12 +119,12 @@
           <h3 class="heading-medium">Apply</h3>
           <p class="main-paragraph">In Stage 1, you'll complete essential tasks listed below. Remember, Apostille
             documents should be ready by Stage 3.</p>
-          <div class="flex-features inner-padding-xsmall">
-            <div class="tag-features">Sign Up</div>
-            <div class="tag-features">Virtual Interview</div>
-            <div class="tag-features">Prepare Apostille Degree</div>
-            <div class="tag-features">Prepare Apostille Police Check</div>
-          </div>
+            <div class="flex-features inner-padding-xsmall">
+              <div class="tag-features">Complete your profile</div>
+              <div class="tag-features">Prepare apostille degree</div>
+              <div class="tag-features">Prepare apostille police check</div>
+              <div class="tag-features">Explore the "Jobs Marketplace'</div>
+            </div>
         </div>
         <div id="w-node-c0d053f0-8b8c-c1ff-1344-fe5cea251430-b18f5804" class="ui-wrapper scale-up"><img src="{{ asset('assets/images/ui-055.svg')}}" loading="lazy" alt="" class="contain-image"></div>
       </div>
@@ -157,7 +155,7 @@
       <div class="w-layout-grid main-grid main-grid-3 no-gap inner-padding-small">
         <div id="w-node-_05fcaccd-c9fb-bc42-7aa9-cfa3a24ebae4-b18f5804">
 
-          <div id="w-node-c0d053f0-8b8c-c1ff-1344-fe5cea251420-b18f5804" class="box-wrapper no-hover">
+          <div id="w-node-c0d053f0-8b8c-c1ff-1344-fe5cea251420-b18f5804" class="box-wrapper auto no-hover">
             <!-- <div class="stage">
                 <div class=" bullet how-it-works"> </div>
                 <div class="text"> Stage 2</div>
@@ -169,11 +167,11 @@
             <h3 class="heading-medium">Connect</h3>
             <p class="main-paragraph">Moving to Stage 2! Explore job listings on the marketplace, request interviews,
               or let employers reach out to you. Your choices, your journey.</p>
-            <div class="flex-features inner-padding-xsmall">
-              <div class="tag-features">Interview With Employers</div>
-              <div class="tag-features">Respond To Requests</div>
-              <div class="tag-features">Negotiate Terms</div>
-              <div class="tag-features">Review Contract</div>
+              <div class="flex-features inner-padding-xsmall">
+              <div class="tag-features">Interview with employers</div>
+              <div class="tag-features">Respond to interview requests</div>
+              <div class="tag-features">Discuss terms</div>
+              <div class="tag-features">Review the employment contract</div>
             </div>
           </div>
 
@@ -204,12 +202,12 @@
           <p class="main-paragraph">Exciting times! Send visa docs to your employer. They'll handle the issuance
             process. Once approved, you'll get an issuance number. Visit your local Korean embassy for the final
             touch</p>
-          <div class="flex-features inner-padding-xsmall">
-            <div class="tag-features">Mail Documents</div>
-            <div class="tag-features">Employer Applies for Visa</div>
-            <div class="tag-features">Submit Visa Issuance</div>
-            <div class="tag-features">Depart For South Korea</div>
-          </div>
+            <div class="flex-features inner-padding-xsmall">
+              <div class="tag-features">Mail documents</div>
+              <div class="tag-features">Employer applies for visa in Korea</div>
+              <div class="tag-features">Visit your Korean&nbsp;Embassy with your Visa number</div>
+              <div class="tag-features">After arriving complete the Health Check &amp; ARC application</div>
+            </div>
         </div>
         <div id="w-node-c0d053f0-8b8c-c1ff-1344-fe5cea251430-b18f5804" class="ui-wrapper scale-up"><img src="{{ asset('assets/images/ui-057.svg')}}" loading="lazy" alt="" class="contain-image"></div>
       </div>
@@ -399,7 +397,7 @@
           <p class="p-small">Duis mollis, est non commodo luctus, nisi erat porttitor ligula</p>
         </div>
       </div> -->
-    <div class="w-layout-grid main-grid">
+    <!-- <div class="w-layout-grid main-grid">
       <div id="w-node-e1a6b6dc-5add-2945-1001-09a6b2499711-b18f5804" data-w-id="e1a6b6dc-5add-2945-1001-09a6b2499711" class="gray-wrapper icons bg-yellow">
         <div class="icon-box yellow"><img src="{{asset('assets/images/ic-003-color.svg')}}" loading="lazy" alt="" class="icon-content">
         </div>
@@ -427,7 +425,7 @@
             as we can easily review and address any issues within the platform.</p>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- <div class="ticker-logos-wrapper med">
     <div class="flex-scrolling">
@@ -529,7 +527,7 @@
       <!-- <div class="section gap">
         <div class="container gap-wrapper-1 w-container"> -->
 
-      <div class="rounded-block  bg-yellow-2">
+      <!-- <div class="rounded-block  bg-yellow-2">
         <div class="w-layout-grid main-grid main-grid-4 no-gap inner-padding-small ">
           <div id="w-node-_05fcaccd-c9fb-bc42-7aa9-cfa3a24ebae4-b18f5804">
             <div id="w-node-_1241f91e-a17a-ff8d-b94c-bfd00d0958fc-28bfa167" data-w-id="1241f91e-a17a-ff8d-b94c-bfd00d0958fc" class="box-wrapper auto no-hover">
@@ -545,12 +543,7 @@
                   the
                   platform, from employers to you. If anything trips up, let us know.</p>
                 <div class="button-wrapper">
-                  <!-- <a class="button-circle w-inline-block">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64caf26042dffebe28bfa043/64caf26142dffebe28bfa2d6_arrow-2.svg"
-                        loading="lazy" alt="" class="cta-arrow circle">
-                    </a> -->
-
+             
                   <a href="{{route('jobMarketplace')}}" class="button-circle w-inline-block hire bg-remove-hover">
                     <img src="{{asset('assets/images/arrow-2.svg')}}" loading="lazy" alt="" class="cta-arrow circle">
                     <div class="button-fill"></div>
@@ -561,7 +554,7 @@
           </div>
           <div id="w-node-_05fcaccd-c9fb-bc42-7aa9-cfa3a24ebae9-b18f5804" class="ui-wrapper scale-up"><img src="{{asset('assets/images/ui-045.png')}}" loading="lazy" alt="" class="full-image"></div>
         </div>
-      </div>
+      </div> -->
 
 
 
@@ -691,7 +684,7 @@
     <div class="rounded-block bg-dark-purple">
       <div class="w-layout-grid main-grid inner-padding-small">
         <div id="w-node-_18c00867-5105-dd4c-7885-49e6df7b98b8-b18f5804" class="center-wrapper gap">
-          <h2 class="heading-large">Get start with <span class="span-scribble"> EmployMe</span></h2>
+          <h2 class="heading-large">Get started with <span class="span-scribble"> employme</span></h2>
           <div class="form-block w-form">
             <form action="signup" class="justify-center">
               <button type="submit" data-wait="Please wait..." class="button w-button">Join Now</button>

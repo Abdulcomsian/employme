@@ -66,6 +66,7 @@ Route::get('candidates-marketplace', [UserController::class, 'candidatesMarketpl
 Route::get('job-details/{id}', [UserController::class, 'jobDetails'])->name('jobDetails');
 Route::post('save-candidate', [UserController::class, 'saveCandidate'])->name('saveCandidate')->middleware(['auth','role:employer']);
 Route::post('download-resume', [UserController::class, 'downloadResume'])->name('downloadResume');
+Route::post('download-candidate-documents', [UserController::class, 'downloadCandidateDocs'])->name('downloadCandidateDocs');
 // Route::get('employer-job-listing' , [UserController::class , 'employerjobListing'])->name('employerjobListing');
 Route::get('candidate-profile-new/{id}', [UserController::class, 'candidateProfileNew'])->name('candidateProfileNew');
 Route::get('candidate-profile-document', [UserController::class, 'candidateProfileDocument'])->name('candidateProfileDocument');
@@ -126,7 +127,7 @@ Route::group(['prefix'=>'candidate','middleware' => ['auth','role:candidate']], 
 
 //employer dashboard route starts here
 Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','email_verfication','profile_completion','employer_license']], function () {
-    Route::get('dashboard', [EmployerController::class, 'getEmployerDashboard'])->name('getEmployerDashboard');
+    Route::get('dashboard', [EmployerController::class, 'getEmployerDashboard'])->name('getEmployerDashboard')->middleware('verify_subscription');
     Route::get('employer-profile', [EmployerController::class, 'getEmployerProfilePage'])->name('getEmployerProfile');
     Route::get('job-listing', [JobController::class, 'getJobListing'])->name('getJobListing');
     Route::get('interview-requests', [JobController::class, 'getInterviewpage'])->name('getEmployerInterviewRequest');
@@ -143,7 +144,7 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer','emai
     Route::put('employer-jobs/activate-job/{id}', [JobController::class, 'activateJob'])->name('employer.activate-job');
     Route::put('employer-jobs/de-activate-job/{id}', [JobController::class, 'deactivateJob'])->name('employer.deactivate-job');
     Route::post('get-subscription-plan' , [EmployerJobController::class , 'getSubscriptionPlan'])->name('employer.subscription-plan');
-    Route::resource('employer-jobs', EmployerJobController::class);
+    Route::resource('employer-jobs', EmployerJobController::class)->middleware('verify_subscription');
     Route::resource('manage/staff',StaffController::class);
     Route::resource('manage/gallery',GalleryController::class);
     Route::get('manage/housings',[HousingController::class,'index'])->name('employer.housing.index');
@@ -181,13 +182,16 @@ Route::group(['prefix'=>'employer','middleware' => ['auth','role:employer']], fu
     Route::post('subscription', [SubscriptionController::class, 'subscription'])->name("subscription.create");
     Route::post('update-account-settings', [UserController::class, 'updateEmployerAccountSettingpage'])->name('employer.updateAccountSettingpage');
     Route::post('employer-update-password', [UserController::class, 'employerUpdatePassword'])->name('employer.employerUpdatePassword');
+    Route::view('introduction-video' , 'employer.introduction-video')->name('introduct.video');
+    Route::post('add-introduction-video' , [UserController::class , 'updateIntroVideo'])->name('add.introduct.video');
 });
 //employer dashboard route ends here
 
 //owner dashboard route starts here
 Route::group(['prefix'=>'owner','middleware' => ['auth','role:admin']], function () {
     Route::get('dashboard', [OwnerController::class, 'getOwnerDashboard'])->name('getOwnerDashboard');
-    Route::get('profile', [OwnerController::class, 'getOwnerProfile'])->name('getOwnerProfile');
+    Route::get('interview-requests', [OwnerController::class, 'interviewRequests'])->name('interviewRequests');
+    Route::get('account-settings', [OwnerController::class, 'getOwnerProfile'])->name('getOwnerProfile');
     Route::get('users', [OwnerController::class, 'getUserProfile'])->name('getUserProfile');
     Route::get('candidates', [OwnerController::class, 'getCandidates'])->name('getCandidates');
     Route::get('employers', [OwnerController::class, 'getEmployers'])->name('getEmployers');

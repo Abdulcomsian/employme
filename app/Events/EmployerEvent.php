@@ -14,17 +14,19 @@ class EmployerEvent implements ShouldBroadcast
 {
     public $html;
     public  $conversationId;
+    public  $newEmployer;
     protected $candidateId;
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($conversationId,$candidateId,$html)
+    public function __construct($conversationId,$candidateId,$html,$newEmployer)
     {
         $this->html = $html;
         $this->conversationId = $conversationId;
         $this->candidateId = $candidateId;
+        $this->newEmployer = $newEmployer;
     }
 
     /**

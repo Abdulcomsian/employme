@@ -11,6 +11,8 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\CanResetPassword ;
 use Laravel\Cashier\Billable;
+use App\Models\Subscription;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
@@ -52,6 +54,13 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'password' => 'hashed',
     ];
 
+    protected static function booted()
+    {
+        static::addGlobalScope('user_detail' , function (Builder $builder) {
+            $builder->with('lastSubscription' , 'intro');
+        });
+    }
+
     public function candidatePersonalDetails()
     {
         return $this->hasOne(CandidatePersonalDetails::class,'user_id');
@@ -71,6 +80,14 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     public function employerDetails()
     {
         return $this->hasOne(EmployerDetails::class,'user_id');
+    }
+    public function candidateEducationalDetails()
+    {
+        return $this->hasMany(CandidateEducationalDetail::class,'user_id');
+    }
+    public function candidateHighestQualification()
+    {
+        return $this->hasOne(CandidateEducationalDetail::class,'user_id');
     }
 
     public function jobsApplied()
@@ -93,10 +110,17 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     {
         return $this->hasMany(CandidateDocument::class , 'user_id' , 'id');
     }
-
     public function license()
     {
         return $this->hasOne(EmployerBusinessLicense::class , 'employer_id' , 'id');
+    }
+    public function lastSubscription()
+    {
+        return $this->hasOne(Subscription::class , 'user_id' , 'id')->orderBy('id' , 'desc');
+    }
+    public function intro()
+    {
+        return $this->hasOne(IntroductionVideo::class , 'employer_id' , 'id');
     }
 
     

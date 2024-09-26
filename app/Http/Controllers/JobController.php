@@ -14,13 +14,21 @@ class JobController extends Controller
 {
 
     public function jobMarketplace(Request $request){
-        $allJobs = EmployerJob::where('job_status',1)->with('employerDetails');
+        $allJobs = EmployerJob::where('job_status',1)
+                                ->whereHas('employerInfo' , function($query){
+                                    $query->whereHas('license', function($query){
+                                        $query->where('approval_status' , \App\Http\AppConst::LICENSE_APPROVED);
+                                    });
+                                })
+                                ->with('employerDetails');
         $jobCategories = JobCategory::all();
        
         if(auth()->check())
         {
             $allJobs->with(['interview' => function($query){
                 $query->where('requested_to' , auth()->user()->id);
+            }])->with(['applications' => function($query){
+                $query->where('candidate_id' , auth()->user()->id);
             }]);
         }
 
@@ -39,17 +47,17 @@ class JobController extends Controller
 
          /* Search Job on Type Based */
          $jobTypes = [];
-         if(isset($request->SearchFixedPriceJob) && $request->SearchFixedPriceJob !='') {
-             $jobTypes[] = $request->SearchFixedPriceJob;
-         }
+        //  if(isset($request->SearchFixedPriceJob) && $request->SearchFixedPriceJob !='') {
+        //      $jobTypes[] = $request->SearchFixedPriceJob;
+        //  }
          if(isset($request->SearchFullTimeJob) && $request->SearchFullTimeJob !='') {
              $jobTypes[] = $request->SearchFullTimeJob;
          }
          if(isset($request->SearchPartTimeJob) && $request->SearchPartTimeJob !='') {
              $jobTypes[] = $request->SearchPartTimeJob;
          }
-         if(isset($request->SearchFreelanceJob) && $request->SearchFreelanceJob !='') {
-             $jobTypes[] = $request->SearchFreelanceJob;
+         if(isset($request->SearchFixedTermContract) && $request->SearchFixedTermContract !='') {
+             $jobTypes[] = $request->SearchFixedTermContract;
          }
       
         if (!empty($jobTypes)) {
@@ -70,21 +78,24 @@ class JobController extends Controller
 
         /* Search Jobs on Fresher, Intermediate, Intership, No Experience and Expert Based */
         $jobExperiences = [];
-         if(isset($request->SearchFresher) && $request->SearchFresher !='') {
-             $jobExperiences[] = $request->SearchFresher;
+         if(isset($request->Search0To1Year) && $request->Search0To1Year !='') {
+             $jobExperiences[] = $request->Search0To1Year;
          }
-         if(isset($request->SearchIntermediate) && $request->SearchIntermediate !='') {
-             $jobExperiences[] = $request->SearchIntermediate;
+         if(isset($request->Search1To3Years) && $request->Search1To3Years !='') {
+             $jobExperiences[] = $request->Search1To3Years;
          }
-         if(isset($request->SearchInternship) && $request->SearchInternship !='') {
-             $jobExperiences[] = $request->SearchInternship;
+         if(isset($request->Search3To5Years) && $request->Search3To5Years !='') {
+             $jobExperiences[] = $request->Search3To5Years;
          }
-         if(isset($request->SearchExpert) && $request->SearchExpert !='') {
-             $jobExperiences[] = $request->SearchExpert;
+         if(isset($request->Search5To7Years) && $request->Search5To7Years !='') {
+             $jobExperiences[] = $request->Search5To7Years;
          }
-         if(isset($request->SearchNoExperience) && $request->SearchNoExperience !='') {
-            $jobExperiences[] = $request->SearchNoExperience;
-        }
+         if(isset($request->Search7To10Years) && $request->Search7To10Years !='') {
+            $jobExperiences[] = $request->Search7To10Years;
+            }
+        if(isset($request->Search10PlusYears) && $request->Search10PlusYears !='') {
+            $jobExperiences[] = $request->Search10PlusYears;
+            }
         if (!empty($jobExperiences))
         {
             $allJobs = $allJobs->whereIn('experience_level',$jobExperiences);
@@ -121,7 +132,7 @@ class JobController extends Controller
         $dt = Carbon::now();
         $dt2 = $dt->copy()->subWeek(); 
        
-        $allInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->whereNotNull('job_link')->where('requested_from',Auth::id())->paginate(10);
+        $allInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())->paginate(10);
         $latestInterviews = JobInterview::with('jobDetails','jobCandidate.candidatePersonalDetails')->where('requested_from',Auth::id())
         ->where('created_at', '>=', $dt2->copy()->startOfDay())
         ->where('created_at', '<=', $dt->copy()->endOfDay())
@@ -132,15 +143,7 @@ class JobController extends Controller
 
     public function jobApplicationRequest(Request $request)
     {
-       $validator = Validator::make($request->all(), [
-        'application_date' => 'required',
-        ]);
-        if ($validator->fails()){
-            return response()->json([
-                    "status" => false,
-                    "errors" => $validator->errors()
-                ]);
-        }
+       
         $checkExistingApplication = JobApplication::where('candidate_id',Auth::id())->where('employer_job_id',$request->job_id)->first();
         if($checkExistingApplication)
         {
@@ -172,7 +175,7 @@ class JobController extends Controller
                 $jobDetails = EmployerJob::find($request->job_id);
                 $candidateDetails = CandidatePersonalDetails::where('user_id',Auth::id())->first();
                 $employerDetails = User::find($jobDetails->posted_by);
-                JobInterview::create(['requested_from' =>  $jobDetails->posted_by , 'requested_to' =>auth()->user()->id , 'employer_job_id' => $request->job_id  , 'interview_date' => $request->application_date]);
+                // JobInterview::create(['requested_from' =>  $jobDetails->posted_by , 'requested_to' =>auth()->user()->id , 'employer_job_id' => $request->job_id  , 'interview_date' => $request->application_date]);
                 $subject = 'Job Application';
                 $text = '';
                 $employer_notify_message = [

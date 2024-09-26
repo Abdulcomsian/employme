@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('candidate_preferences', function (Blueprint $table) {
             $table->id();
-            $table->json('skills')->nullable();
             $table->text('preferred_city_region')->nullable();
             $table->text('school_type')->nullable();
             $table->text('age_group')->nullable();

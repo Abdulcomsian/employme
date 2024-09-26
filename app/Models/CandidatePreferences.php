@@ -9,7 +9,6 @@ class CandidatePreferences extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'skills',
         'preferred_city_region',
         'school_type',
         'age_group',
@@ -24,7 +23,4 @@ class CandidatePreferences extends Model
         'preferred_start_date',
         'terms_and_conditions'
     ];
-    protected $casts = [
-        'skills' => 'array',
-      ];
 }

@@ -2,50 +2,67 @@
     <div class="container">
         <div class="inner-wrapper">
             <div class="row">
-                <div class="col-lg-2 col-md-3 footer-intro mb-15">
-                    <div class="logo mb-15">
-                        <a href="/" class="d-flex align-items-center">
-                            <img src="{{asset('assets/images/logo/logo_03.png')}} " alt="">
-                        </a>
-                    </div> 
-                    <img src="{{asset('assets/images/lazy.svg')}}" data-src="{{asset('assets/images/shape/shape_28.svg')}}" alt="" class="lazy-img mt-80 sm-mt-30 sm-mb-20">
-                    <!-- logo -->
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
-                    <h5 class="footer-title">Services​</h5>
-                    <ul class="footer-nav-link style-none">
-                        <li><a href="{{route('jobMarketplace')}}">Browse Jobs</a></li>
-                        <li><a href="/">Companies</a></li>
-                        <li><a href="candidates-marketplace">Candidates</a></li>
-                        <li><a href="{{route('pricing')}}">Pricing</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
-                    <h5 class="footer-title">Company</h5>
-                    <ul class="footer-nav-link style-none">
-                        <li><a href="{{route('about')}}">About us</a></li>
-                        <li><a href="{{route('blog')}}">Blogs</a></li>
-                        <li><a href="{{route('faq')}}">FAQ’s</a></li>
-                        <li><a href="{{route('contact')}}">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
-                    <h5 class="footer-title">Support</h5>
-                    <ul class="footer-nav-link style-none">
-                        <li><a href="/">Terms of use</a></li>
-                        <li><a href="terms-of-services">Terms of service</a></li>
-                        <li><a href="/">Privacy</a></li>
-                        <li><a href="/">Cookie policy</a></li>
-                    </ul>
-                </div>
                 <div class="col-lg-4 mb-20 footer-newsletter">
-                    <h5 class="footer-title">Newsletter</h5>
-                    <p>Join & get important new regularly</p>
+                    <h5 class="footer-title">Employme</h5>
+                    <p>All-in-one platform for careers and visas</p>
                     <form action="#" class="d-flex">
                         <input type="email" placeholder="Enter your email*">
                         <button>Send</button>
                     </form>
                     <p class="note">We only send interesting and relevant emails.</p>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
+                    <h5 class="footer-title">Job Seekers</h5>
+                    <ul class="footer-nav-link style-none">
+                        <li><a href="{{route('howItWorks')}}">How it works</a></li>
+                        <li><a href="job-marketplace">Jobs Marketplace</a></li>
+                        <li>
+                  <a href="about-us">About us</a>
+                </li>
+                <li>
+                  <a href="faq">FAQ</a>
+                </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
+                    <h5 class="footer-title">Employers</h5>
+                    <ul class="footer-nav-link style-none">
+                    <li>
+                  <a href="how-it-works-employer">How it works</a>
+                </li>
+                <li>
+                  <a href="{{route('candidatesMarketplace')}}">Candidate Marketplace</a>
+                </li>
+                <li>
+                  <a href="about-us-employer">About us</a>
+                </li>
+                <li>
+                  <a href="faq">FAQ</a>
+                </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 mb-20">
+                    <h5 class="footer-title">Help Center</h5>
+                    <ul class="footer-nav-link style-none">
+                    <li>
+                    <a href="terms-of-services">Terms of service</a>
+                    </li>
+                    <li>
+                    <a href="visa-support">Visa Support</a>
+                    </li>
+                    <li>
+                    <a href="/">Privacy policy</a>
+                    </li>
+                    <li>
+                    <a href="/">Incident report</a>
+                    </li>
+                    <li>
+                    <a href="contact">Contact</a>
+                    </li>
+                    </ul>
                 </div>
             </div>
         </div> <!-- /.inner-wrapper -->
@@ -53,22 +70,17 @@
     <div class="bottom-footer">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-4 order-lg-3 mb-15">
+                
+                <div class="col-lg-4">
+                    <p class="text-start mb-15">© Employme — South Korea</p>
+                </div>
+                <div class="col-lg-8">
                     <ul class="style-none d-flex order-lg-last justify-content-center justify-content-lg-end social-icon">
-                        <li><a href="#"><i class="bi bi-whatsapp"></i></a></li>
-                        <li><a href="#"><i class="bi bi-dribbble"></i></a></li>
-                        <li><a href="#"><i class="bi bi-google"></i></a></li>
                         <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+                        <li><a href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
+                        <li><a href="#"><i class="bi bi-twitter"></i></a></li>
                     </ul>
-                </div>
-                <div class="col-lg-4 order-lg-1 mb-15">
-                    <ul class="d-flex style-none bottom-nav justify-content-center justify-content-lg-start">
-                        <li><a href="{{route('termsOfServices')}}">Privacy & Terms.</a></li>
-                        <li><a href="{{route('contact')}}"> Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 order-lg-2">
-                    <p class="text-center mb-15">Copyright @2023 jobi inc.</p>
                 </div>
             </div>
         </div>

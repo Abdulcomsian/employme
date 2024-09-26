@@ -73,6 +73,17 @@ Profile
     .alert-danger {
         width: content-fit;
     }
+    .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: none;
+    border-radius: .25rem;
+}
 
     p.docname {
         width: 400px;
@@ -90,6 +101,14 @@ Profile
     h4{
         font-family: 'gordita';
     }
+    .btn-file{
+	color: #fff;
+    background: #ff715b;
+}
+.btn-file:hover{
+	background: #b1b0eb;
+    color: #fff;
+}
 </style>
 @endpush
 @section('content')
@@ -113,61 +132,11 @@ Profile
 				</div>
 		  @endif
         <h2 class="main-title">My Profile</h2>
-
-        <div class="bg-white card-box border-20 mb-40">
-            <div class="candidate-sign-up">
-                {{-- <div class="stepper">
-                    <div id="tag-step-1" class="step selected">
-                        <div class="icon">
-                            <div>1</div>
-                        </div>
-                        <div class="text">Visa Eligibility Check</div>
-                    </div>
-                    <div id="tag-step-2" class="step">
-                        <div class="icon">
-                            <div>2</div>
-                        </div>
-                        <div class="text">Personal Details</div>
-                    </div>
-                    <div id="tag-step-3" class="step">
-                        <div class="icon">
-                            <div>3</div>
-                        </div>
-                        <div class="text">Education</div>
-                    </div>
-                    <div id="tag-step-4" class="step">
-                        <div class="icon">
-                            <div>4</div>
-                        </div>
-                        <div class="text">Professional Details</div>
-                    </div>
-                    <div id="tag-step-5" class="step">
-                        <div class="icon">
-                            <div>5</div>
-                        </div>
-                        <div class="text">Skills & Preferences</div>
-                    </div>
-                    <div id="tag-step-6" class="step">
-                        <div class="icon">
-                            <div>6</div>
-                        </div>
-                        <div class="text">Introduce Yourself</div>
-                    </div>
-                    <div id="tag-step-7" class="step">
-                        <div class="icon">
-                            <div>7</div>
-                        </div>
-                        <div class="text">Teaching Video & Interview (optional)</div>
-                    </div>
-                    <div id="tag-step-8" class="step">
-                        <div class="icon">
-                            <div>8</div>
-                        </div>
-                        <div class="text">Legal & Verification</div>
-                    </div>
-                </div> --}}
-                <form id="multi-step-form" enctype = "multipart/form-data">
-                    <!-- Step 1 -->
+        <form id="multi-step-form" enctype = "multipart/form-data">
+            <!-- Step 1 -->
+            <div class="bg-white card-box border-20 mb-40">
+                <h4 class="dash-title-three">Visa Eligibility</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-1">
                         <div class="row">
                             <div class="col-md-6">
@@ -235,18 +204,29 @@ Profile
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            {{-- <div class="col-md-12">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Health Declaration</label>
                                     <div id="note" class="summernote">{!! $candidatePersonalDetails->health_declaration !!}</div>
-                                    {{-- <select name="is_healthy" id="is_healthy" class="nice-select">
+                                     <select name="is_healthy" id="is_healthy" class="nice-select">
                                         <option value="Yes" {{$candidatePersonalDetails->is_healthy == 'Yes' ? 'selected' : ''}}>Yes</option>
                                         <option value="No" {{$candidatePersonalDetails->is_healthy == 'No' ? 'selected' : ''}}>No</option>
-                                    </select> --}}
+                                    </select>
+                                </div>
+                            </div> --}}
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="dash-input-wrapper mb-30">
+                                    <p>Please confirm that you are in good health and fitness, and that you have no health issues that could affect the approval of your visa</p>
+                                    <label for="">Health Declaration </label>
+                                    <select name="is_healthy" id="is_healthy" class="nice-select">
+                                        <option value="Yes" {{$candidatePersonalDetails->is_healthy == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                        <option value="No" {{$candidatePersonalDetails->is_healthy == 'No' ? 'selected' : ''}}>No</option>
+                                    </select> 
                                 </div>
                             </div>
                         </div>
-
                         {{-- <div class="row">
                             <div class="col">
                                 <div class="dash-input-wrapper mb-30">
@@ -257,11 +237,16 @@ Profile
                         </div> --}}
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="visa_eligibility_check">Save</button>
+                            <button type="button" class="dash-btn-one" id="visa_eligibility_check">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-visa-eligibility-progress"></i></button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Step 2 -->
+            <!-- Step 2 -->
+            <div class="bg-white card-box border-20 mb-40">
+                <h4 class="dash-title-three">Personal Details</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-2">
                         <div class="row">
                             <div class="col-md-4">
@@ -297,7 +282,7 @@ Profile
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Date of Birth</label>
-                                    <input type="date" name="dateOfBirth" placeholder="Date of birth" value = "{{$candidatePersonalDetails->date_of_birth ?? ''}}">
+                                    <input type="date" name="dateOfBirth" placeholder="Date of birth" max="{{date('Y-m-d')}}" value="{{$candidatePersonalDetails->date_of_birth ?? ''}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -318,7 +303,7 @@ Profile
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Type</label>
                                     <select name="designationType" id="designationType" class="nice-select">
-                                       
+                                        
                                         @if(!$jobCategories->isEmpty())
                                             @foreach($jobCategories as $jobCategory)
                                             <option value="{{$jobCategory->id}}" {{$candidatePersonalDetails->job_category_id == $jobCategory->id ? 'selected' : ''}}>{{$jobCategory->name}}</option>
@@ -326,11 +311,11 @@ Profile
                                         @else
                                         <option value="" selected>Select</option>
                                         @endif
-                                     
+                                        
                                     </select>
                                 </div>
                             </div>
-                           
+                            
                         </div> --}}
                         <div class="row">
                             <div class="col-md-6">
@@ -347,7 +332,7 @@ Profile
                                     </select>
                                 </div>
                             </div>
-                           
+                            
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -363,12 +348,16 @@ Profile
                                             Upload profile photo
                                             <input type="file" id="uploadImg" name="profileImage" placeholder="" accept="image/png, image/jpeg">
                                         </div>
-                                        <button class="delete-btn tran3s " onclick = "deleteFile('profile-photo')">Delete</button>
+                                        @if($candidatePersonalDetails && $candidatePersonalDetails->profile_picture)
+                                        <div>
+                                            <button class="delete-btn tran3s " onclick = "deleteFile('profile-photo' , event.target)">Delete</button>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Resume</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s me-3">
@@ -377,11 +366,13 @@ Profile
                                             <strong class="candidate_resume_name text-dark text-start"></strong>
                                         </div>
 
-                                        <button class="delete-btn tran3s" onclick = "deleteFile('resume-file')">Delete</button>
                                     </div>
                                     @if(isset($candidatePersonalDetails->candidate_resume) && !empty($candidatePersonalDetails->candidate_resume))
-                                    <div style = "padding-left:20px;">
-                                        <a class="btn btn-primary resume-file" href = "{{asset($candidatePersonalDetails->candidate_resume)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="mx-2">
+                                            <a class="btn btn-file resume-file" href = "{{asset($candidatePersonalDetails->candidate_resume)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s" onclick = "deleteFile('resume-file' , event.target)">Delete</button>
                                     </div>
                                     @endif
                                 </div>
@@ -390,154 +381,136 @@ Profile
                         
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button"  class="dash-btn-one" id = "candidate-personal-details">Save <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-personal-details-progress"></i></button>
+                            <button type="button"  class="dash-btn-one" id = "candidate-personal-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-personal-details-progress"></i></button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Step 3 -->
+            <!-- Step 3 -->
+            <div class="bg-white card-box border-20 mb-40">
+                <h4 class="dash-title-three">Education</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Education</label>
-                                    <select name="highestDegreeObtained" id="highestDegreeObtained" class="nice-select">
-                                        <option value="High School Diploma/GED" {{$candidateEducationalDetails->highest_degree == 'High School Diploma/GED' ? 'selected' : ''}}>High School Diploma/GED</option>
-                                        <option value="Associate's Degree" {{$candidateEducationalDetails->highest_degree == "Associate's Degree" ? 'selected' : ''}}>Associate's Degree</option>
-                                        <option value="Bachelor's Degree" {{$candidateEducationalDetails->highest_degree == "Bachelor's Degree" ? 'selected' : ''}}>Bachelor's Degree</option>
-                                        <option value="Master's Degree" {{$candidateEducationalDetails->highest_degree == "Master's Degree" ? 'selected' : ''}}>Master's Degree</option>
-                                        <option value="Doctorate/Ph.D." {{$candidateEducationalDetails->highest_degree == "Doctorate/Ph.D." ? 'selected' : ''}}>Doctorate/Ph.D.</option>
-                                        <option value="Professional Certification" {{$candidateEducationalDetails->highest_degree == "Professional Certification" ? 'selected' : ''}}>Professional Certification</option>
-                                        <option value="Vocational Training" {{$candidateEducationalDetails->highest_degree == 'Vocational Training' ? 'selected' : ''}}>Vocational Training</option>
-                                        <option value="Other (Please Specify)" {{$candidateEducationalDetails->highest_degree == "Other (Please Specify)" ? 'selected' : ''}}>Other (Please Specify)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Qualification Obtained</label>
-                                    <input type="text" name="fieldOfStudy" id="fieldOfStudy" value="{{$candidateEducationalDetails->field_of_study ?? ''}}">
-
-                                    {{-- <select name="fieldOfStudy" id="fieldOfStudy" class="nice-select">
-                                        <option value="Bachelor Of Arts" {{$candidateEducationalDetails->field_of_study == 'Bachelor Of Arts' ? 'selected' : ''}}>Bachelor Of Arts</option>
-                                        <option value="Engineering" {{$candidateEducationalDetails->field_of_study == 'Engineering' ? 'selected' : ''}}>Engineering</option>
-                                        <option value="MBBS" {{$candidateEducationalDetails->field_of_study == 'MBBS' ? 'selected' : ''}}>MBBS</option>
-                                        <option value="Business" {{$candidateEducationalDetails->field_of_study == 'Business' ? 'selected' : ''}}>Business</option>
-                                        <option value="Arts" {{$candidateEducationalDetails->field_of_study == 'Arts' ? 'selected' : ''}}>Arts</option>
-                                    </select> --}}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">University/College Name</label>
-                                    <input type="text" name="universityCollegeNameCountry" placeholder="Name of College or Univesity" value = "{{$candidateEducationalDetails->institute_name ?? ''}}">
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Country</label>
-                                    <select name="instituteCountry" id="instituteCountry" class="nice-select">
-                                        @foreach($countries as $country)
-                                        <option value="{{$country->id}}" {{$candidateEducationalDetails->country_id == $country->id ? 'selected' : ''}}>{{$country->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-4">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Year Graduated</label>
-                                    <input type="number" name="yearsOfTeachingExperience" class="number-input" placeholder="Year Graduated" value = "{{$candidateEducationalDetails->teaching_experiance ?? ''}}">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">TEFL/TESOL Certification</label>
-                                    <select name="TEFLTESOLCertification" id="TEFLTESOLCertification" class="nice-select">
-                                        <option value="Yes" {{$candidateEducationalDetails->tefl_tesol_clarification == 'Yes' ? 'selected' : ''}}>Yes</option>
-                                        <option value="No" {{$candidateEducationalDetails->tefl_tesol_clarification == 'No' ? 'selected' : ''}}>No</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Previous Teaching in Korea</label>
-                                    <select name="previousTeachingInKorea" id="previousTeachingInKorea" class="nice-select">
-                                        <option value="Yes" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'Yes' ? 'selected' : ''}}>Yes</option>
-                                        <option value="No" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'No' ? 'selected' : ''}}>No</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        @if(isset($candidateEducationalDetails->educational_details))
-                        @foreach($candidateEducationalDetails->educational_details as $index=>$educational_detail)
-                          @if($index == 0)
-                            <div  id="candidate-education" class="educational-details-row">
-                                    <center><h3>Educational Details</h3></center>
+                        @if(isset($candidateEducations) && $candidateEducations != "" && count($candidateEducations) > 0)
+                        @foreach($candidateEducations as $index=>$education)
+                            @if($index == 0)
+                            <div class = "educational-details-row">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Degree</label>
-                                            <input type="text" name="education[{{$index}}][degree]" placeholder="" value = "{{$educational_detail['degree'] ?? ''}}">
-
+                                            <label for="">Education</label>
+                                            <select name="education[{{$index}}][degree]" id="highestDegreeObtained" class="nice-select">
+                                                <option value="High School Diploma/GED" {{$education->degree == 'High School Diploma/GED' ? 'selected' : ''}}>High School Diploma/GED</option>
+                                                <option value="Associate's Degree" {{$education->degree == "Associate's Degree" ? 'selected' : ''}}>Associate's Degree</option>
+                                                <option value="Bachelor's Degree" {{$education->degree == "Bachelor's Degree" ? 'selected' : ''}}>Bachelor's Degree</option>
+                                                <option value="Master's Degree" {{$education->degree == "Master's Degree" ? 'selected' : ''}}>Master's Degree</option>
+                                                <option value="Doctorate/Ph.D." {{$education->degree == "Doctorate/Ph.D." ? 'selected' : ''}}>Doctorate/Ph.D.</option>
+                                                <option value="Professional Certification" {{$education->degree == "Professional Certification" ? 'selected' : ''}}>Professional Certification</option>
+                                                <option value="Vocational Training" {{$education->degree == 'Vocational Training' ? 'selected' : ''}}>Vocational Training</option>
+                                                <option value="Other (Please Specify)" {{$education->degree == "Other (Please Specify)" ? 'selected' : ''}}>Other (Please Specify)</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Institution</label>
-                                            <input type="text" name="education[{{$index}}][institution]" placeholder="" value = "{{$educational_detail['institution'] ?? ''}}">
-
+                                            <label for="">Qualification Obtained</label>
+                                            <input type="text" name="education[{{$index}}][field_of_study]" id="fieldOfStudy" value="{{$education->field_of_study ?? ''}}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-4">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Description</label>
-                                            <input type="text" name="education[{{$index}}][description]" placeholder="" value = "{{$educational_detail['description'] ?? ''}}">
+                                            <label for="">University/College Name</label>
+                                            <input type="text" name="education[{{$index}}][institute_name]" placeholder="Name of College or Univesity" value = "{{$education->institute_name ?? ''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Country</label>
+                                            <select name="education[{{$index}}][institute_place]" id="instituteCountry" class="nice-select">
+                                                @foreach($countries as $country)
+                                                <option value="{{$country->id}}" {{$education->institute_place == $country->id ? 'selected' : ''}}>{{$country->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Year Graduated</label>
+                                            <input type="number" name="education[{{$index}}][year_of_study]" class="number-input" placeholder="Year Graduated" value = "{{$education->year_of_study ?? ''}}">
 
                                         </div>
                                     </div>
-                                    <div class="col-md-2 pt-4">
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
-                                            <button type="button" class="btn btn-danger remove-tr" >Remove</button>
+                                            <label for="">TEFL/TESOL Certification</label>
+                                            <select name="TEFLTESOLCertification" id="TEFLTESOLCertification" class="nice-select">
+                                                <option value="Yes" {{$candidateEducationalDetails->tefl_tesol_clarification == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                <option value="No" {{$candidateEducationalDetails->tefl_tesol_clarification == 'No' ? 'selected' : ''}}>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Previous Teaching in Korea</label>
+                                            <select name="previousTeachingInKorea" id="previousTeachingInKorea" class="nice-select">
+                                                <option value="Yes" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                <option value="No" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'No' ? 'selected' : ''}}>No</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                             @else
-                            <div  class="educational-details-row">
-                                    <center><h3>Educational Details</h3></center>
+                            <div class = "educational-details-row">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Degree</label>
-                                            <input type="text" name="education[{{$index}}][degree]" placeholder="" value = "{{$educational_detail['degree'] ?? ''}}">
-
+                                            <label for="">Education</label>
+                                            <select name="education[{{$index}}][degree]" id="highestDegreeObtained" class="nice-select">
+                                                <option value="High School Diploma/GED" {{$education->degree == 'High School Diploma/GED' ? 'selected' : ''}}>High School Diploma/GED</option>
+                                                <option value="Associate's Degree" {{$education->degree == "Associate's Degree" ? 'selected' : ''}}>Associate's Degree</option>
+                                                <option value="Bachelor's Degree" {{$education->degree == "Bachelor's Degree" ? 'selected' : ''}}>Bachelor's Degree</option>
+                                                <option value="Master's Degree" {{$education->degree == "Master's Degree" ? 'selected' : ''}}>Master's Degree</option>
+                                                <option value="Doctorate/Ph.D." {{$education->degree == "Doctorate/Ph.D." ? 'selected' : ''}}>Doctorate/Ph.D.</option>
+                                                <option value="Professional Certification" {{$education->degree == "Professional Certification" ? 'selected' : ''}}>Professional Certification</option>
+                                                <option value="Vocational Training" {{$education->degree == 'Vocational Training' ? 'selected' : ''}}>Vocational Training</option>
+                                                <option value="Other (Please Specify)" {{$education->degree == "Other (Please Specify)" ? 'selected' : ''}}>Other (Please Specify)</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Institution</label>
-                                            <input type="text" name="education[{{$index}}][institution]" placeholder="" value = "{{$educational_detail['institution'] ?? ''}}">
-
+                                            <label for="">Qualification Obtained</label>
+                                            <input type="text" name="education[{{$index}}][field_of_study]" id="fieldOfStudy" value="{{$education->field_of_study ?? ''}}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-4">
                                         <div class="dash-input-wrapper mb-30">
-                                            <label for="">Description</label>
-                                            <input type="text" name="education[{{$index}}][description]" placeholder="" value = "{{$educational_detail['description'] ?? ''}}">
+                                            <label for="">University/College Name</label>
+                                            <input type="text" name="education[{{$index}}][institute_name]" placeholder="Name of College or Univesity" value = "{{$education->institute_name ?? ''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Country</label>
+                                            <select name="education[{{$index}}][institute_place]" id="instituteCountry" class="nice-select">
+                                                @foreach($countries as $country)
+                                                <option value="{{$country->id}}" {{$education->institute_place == $country->id ? 'selected' : ''}}>{{$country->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="dash-input-wrapper mb-30">
+                                            <label for="">Year Graduated</label>
+                                            <input type="number" name="education[{{$index}}][year_of_study]" class="number-input" placeholder="Year Graduated" value = "{{$education->year_of_study ?? ''}}">
 
                                         </div>
                                     </div>
@@ -547,29 +520,111 @@ Profile
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
-                        @endif
+                            @endif
                         @endforeach
                         @else
+                        <div class = "educational-details-row">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Education</label>
+                                        <select name="education[0][degree]" id="highestDegreeObtained" class="nice-select">
+                                            <option value="High School Diploma/GED" {{$candidateEducationalDetails->highest_degree == 'High School Diploma/GED' ? 'selected' : ''}}>High School Diploma/GED</option>
+                                            <option value="Associate's Degree" {{$candidateEducationalDetails->highest_degree == "Associate's Degree" ? 'selected' : ''}}>Associate's Degree</option>
+                                            <option value="Bachelor's Degree" {{$candidateEducationalDetails->highest_degree == "Bachelor's Degree" ? 'selected' : ''}}>Bachelor's Degree</option>
+                                            <option value="Master's Degree" {{$candidateEducationalDetails->highest_degree == "Master's Degree" ? 'selected' : ''}}>Master's Degree</option>
+                                            <option value="Doctorate/Ph.D." {{$candidateEducationalDetails->highest_degree == "Doctorate/Ph.D." ? 'selected' : ''}}>Doctorate/Ph.D.</option>
+                                            <option value="Professional Certification" {{$candidateEducationalDetails->highest_degree == "Professional Certification" ? 'selected' : ''}}>Professional Certification</option>
+                                            <option value="Vocational Training" {{$candidateEducationalDetails->highest_degree == 'Vocational Training' ? 'selected' : ''}}>Vocational Training</option>
+                                            <option value="Other (Please Specify)" {{$candidateEducationalDetails->highest_degree == "Other (Please Specify)" ? 'selected' : ''}}>Other (Please Specify)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Qualification Obtained</label>
+                                        <input type="text" name="education[0][field_of_study]" id="fieldOfStudy" value="{{$candidateEducationalDetails->field_of_study ?? ''}}">
+
+                                        {{-- <select name="fieldOfStudy" id="fieldOfStudy" class="nice-select">
+                                            <option value="Bachelor Of Arts" {{$candidateEducationalDetails->field_of_study == 'Bachelor Of Arts' ? 'selected' : ''}}>Bachelor Of Arts</option>
+                                            <option value="Engineering" {{$candidateEducationalDetails->field_of_study == 'Engineering' ? 'selected' : ''}}>Engineering</option>
+                                            <option value="MBBS" {{$candidateEducationalDetails->field_of_study == 'MBBS' ? 'selected' : ''}}>MBBS</option>
+                                            <option value="Business" {{$candidateEducationalDetails->field_of_study == 'Business' ? 'selected' : ''}}>Business</option>
+                                            <option value="Arts" {{$candidateEducationalDetails->field_of_study == 'Arts' ? 'selected' : ''}}>Arts</option>
+                                        </select> --}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">University/College Name</label>
+                                        <input type="text" name="education[0][institute_name]" placeholder="Name of College or Univesity" value = "{{$candidateEducationalDetails->institute_name ?? ''}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Country</label>
+                                        <select name="education[0][institute_place]" id="instituteCountry" class="nice-select">
+                                            @foreach($countries as $country)
+                                            <option value="{{$country->id}}" {{$candidateEducationalDetails->country_id == $country->id ? 'selected' : ''}}>{{$country->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Year Graduated</label>
+                                        <input type="number" name="education[0][year_of_study]" class="number-input" placeholder="Year Graduated" value = "{{$candidateEducationalDetails->teaching_experiance ?? ''}}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">TEFL/TESOL Certification</label>
+                                        <select name="TEFLTESOLCertification" id="TEFLTESOLCertification" class="nice-select">
+                                            <option value="Yes" {{$candidateEducationalDetails->tefl_tesol_clarification == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                            <option value="No" {{$candidateEducationalDetails->tefl_tesol_clarification == 'No' ? 'selected' : ''}}>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dash-input-wrapper mb-30">
+                                        <label for="">Previous Teaching in Korea</label>
+                                        <select name="previousTeachingInKorea" id="previousTeachingInKorea" class="nice-select">
+                                            <option value="Yes" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'Yes' ? 'selected' : ''}}>Yes</option>
+                                            <option value="No" {{$candidateEducationalDetails->prevous_teaching_in_korea == 'No' ? 'selected' : ''}}>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                         <div  id="candidate-education">
                             
                         </div>
-                        @endif
                         <div class="d-flex flex-row justify-content-start gap-3">
                                 <button type="button" class="dash-btn-one" id="add-more-education" >add more</button>
                         </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="candidate-educational-details">Save</button>
+                            <button type="button" class="dash-btn-one" id="candidate-educational-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-educational-progress"></i></button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Step 4 -->
+            <!-- Step 4 -->
+            <div class="bg-white card-box border-20 mb-40">
+                <h4 class="dash-title-three">Professional Details</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-4">
                         @if(isset($candidateEducationalDetails->professional_details))
                         @foreach($candidateEducationalDetails->professional_details as $index=>$professional_details)
-                         @if($index==0)
+                            @if($index==0)
                         <div id="candidate-experience" >
                                 {{-- <center><h3>Experience Details</h3></center> --}}
                             <div class="row">
@@ -723,11 +778,17 @@ Profile
                                 <button type="button" class="dash-btn-one" id="add-more-experience" >add more</button>
                             </div>
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="candidate-professional-details">Save</button>
+                            <button type="button" class="dash-btn-one" id="candidate-professional-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-professional-progress"></i></button>
                         </div>
                     </div>
-                    <!-- Step 5 -->
-                    <div class="card my-3 p-3" id="step-5">  
+                </div>
+            </div>
+            <!-- Step 5 -->
+            <div class="bg-white card-box border-20 mb-40">
+                <h4 class="dash-title-three">Preferences</h4>
+                <div class="candidate-sign-up">
+                    <div class="card my-3 p-3" id="step-5">
+                            
                         <div class="row">
                             <!-- <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
@@ -783,7 +844,7 @@ Profile
                         </div>
 
                         <div class="row">
-                         
+                            
                             <div class="col-md-6">
                                 <div class="dash-input-wrapper mb-30">
                                     <label for="">Age Group Preference</label>
@@ -827,61 +888,19 @@ Profile
                             </div>
                             
                         </div>
-                        {{-- <div class="row " id="add-skill-field">
-                             @if(isset($candidatePreferencesDetails->skills))
-                             @foreach($candidatePreferencesDetails->skills as $index=>$skill)
-                              @if($index==0)
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <label for="">Skills</label>
-                                            <input type="text" name="skill[]" id="professionalSkills" placeholder="Add Skill" value = "{{$skill ?? ''}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mt-4">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                @else
-                                <div class="row skill-field-row">
-                                    <div class="col-md-6">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <input type="text" name="skill[]"  placeholder="Add Skill" value = "{{$skill ?? ''}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <button type="button" class="btn btn-danger remove-tr">Remove</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endif
-                                @endforeach
-                               @else
-                               <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <label for="">Skills</label>
-                                            <input type="text" name="skill[]" id="professionalSkills" placeholder="Add Skill" value = "{{$candidatePersonalDetails->preferred_city_region ?? ''}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mt-4">
-                                        <div class="dash-input-wrapper mb-30">
-                                            <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
-                                        </div>
-                                    </div>
-                                </div>
-                               @endif
-                        </div> --}}
+                     
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id = "candidate-preferences-details">Save</button>
+                            <button type="button" class="dash-btn-one" id = "candidate-preferences-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-preferences-progress"></i></button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Step 6 -->
+            <!-- Step 6 -->
+            <div class="bg-white card-box border-20 mb-40">
+             <h4 class="dash-title-three">Introduction</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-6">
                         <div class="row">
                             <div class="col-md-12">
@@ -918,18 +937,23 @@ Profile
                         </div>
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id= "candidate-introduction-details">Save</button>
+                            <button type="button" class="dash-btn-one" id= "candidate-introduction-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-introduction-progress"></i></button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Step 7 -->
+            <!-- Step 7 -->
+            <div class="bg-white card-box border-20 mb-40">
+               <h4 class="dash-title-three">Uploads</h4>
+                <div class="candidate-sign-up">
                     <div class="card my-3 p-3" id="step-7">
                         <div class="row">
                             <div class="col-12">
                                 <p>Please upload a 30-Second introduction video to tell employers why they should hire you.</p>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Teaching Video</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -937,18 +961,20 @@ Profile
                                             <input type="file" id="teachingVideo" name="teachingVideo" placeholder="" accept="video/mp4" onchange="previewVideo()">
                                         </div>
 
-                                        <button class="delete-btn tran3s " onclick = "deleteFile('video-url')">Delete</button>
                                     </div>
                                     <video id="videoPreview" class = "d-none" width="320" height="240" controls></video>
                                     @if(isset($candidatePreferencesDetails->video_url) && !empty($candidatePreferencesDetails->video_url))
-                                    <div style = "padding-left:20px;" class = "mt-2 video-url">
-                                        <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class = "mt-2 video-url mx-2">
+                                            <a class="btn btn-file" href = "{{asset($candidatePreferencesDetails->video_url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s @if(!$candidatePreferencesDetails || !$candidatePreferencesDetails->video_url) d-none @endif" onclick="deleteFile('video-url' , event.target)">Delete</button>
                                     </div>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Video Thumbnail Image</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -957,23 +983,17 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s " onclick = "deleteFile('thumbnail-image')">Delete</button>
                                     </div>
                                     @if(isset($candidatePreferencesDetails->video_thumbnail) && !empty($candidatePreferencesDetails->video_thumbnail))
-                                    <div style = "padding-left:20px;" class = "thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image mx-2">
+                                            <a class="btn btn-file" href="{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s @if(!$candidatePreferencesDetails || !$candidatePreferencesDetails->video_thumbnail) d-none @endif" onclick = "deleteFile('thumbnail-image' , event.target)">Delete</button>
+
                                     </div>
                                     @endif
                                 </div>
-                                {{-- <div class="dash-input-wrapper mb-30">
-                                    <label for="">Link to VideoAsk</label>
-                                    <input type="text" name="linkToVideoAsk" placeholder="A direct link or button that takes them to the VideoAsk platform to record or upload their video (this is mandatory but can be completed after the sign-up as well)" value = "{{$candidatePreferencesDetails->other_platform_video_url ?? ''}}">
-                                </div> --}}
-                                    {{-- @if(isset($candidatePreferencesDetails->other_platform_video_url) && !empty($candidatePreferencesDetails->other_platform_video_url))
-                                    <div style = "padding-left:20px;">
-                                        <a class="btn btn-primary" href = "{{$candidatePreferencesDetails->other_platform_video_url}}" target = "_blank">Link</a>
-                                    </div>
-                                    @endif --}}
                             </div>
                         </div>
                         <div class="row">
@@ -986,11 +1006,11 @@ Profile
                                             <input type="file" id="videoThumbnail" name="videoThumbnail" placeholder="" accept="image/jpeg,image/png">
                                         </div>
 
-                                        <button class="delete-btn tran3s " onclick = "deleteFile('thumbnail-image')">Delete</button>
+                                        <button class="delete-btn tran3s" onclick="deleteFile('thumbnail-image')">Delete</button>
                                     </div>
                                     @if(isset($candidatePreferencesDetails->video_thumbnail) && !empty($candidatePreferencesDetails->video_thumbnail))
                                     <div style = "padding-left:20px;" class = "thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
+                                        <a class="btn btn-file" href = "{{asset($candidatePreferencesDetails->video_thumbnail)}}" target = "_blank">File</a>
                                     </div>
                                     @endif
                                 </div> --}}
@@ -1023,7 +1043,7 @@ Profile
                         @endphp 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Copy of your Degree</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1032,17 +1052,19 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc" @if(isset($degree)) data-doc-id="{{$degree->id}}" @endif>Delete</button>
                                     </div>
                                     @if(isset($degree))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($degree->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image mx-2">
+                                            <a class="btn btn-file" href = "{{asset($degree->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$degree || !$degree->url) d-none @endif" @if(isset($degree)) data-doc-id="{{$degree->id}}" @endif>Delete</button>
                                     </div>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Copy of your Police Certificate (Within Last 6 Months)</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1051,11 +1073,14 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc" @if(isset($policeCertificate)) data-doc-id="{{$policeCertificate->id}}" @endif>Delete</button>
+                                        
                                     </div>
                                     @if(isset($policeCertificate))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($policeCertificate->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image mx-2">
+                                            <a class="btn btn-file" href = "{{asset($policeCertificate->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$policeCertificate || !$policeCertificate->url) d-none @endif" @if(isset($policeCertificate)) data-doc-id="{{$policeCertificate->id}}" @endif>Delete</button>
                                     </div>
                                     @endif
                                 </div>
@@ -1065,7 +1090,7 @@ Profile
 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Copy of your Degree Apostille</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1074,17 +1099,20 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc"  @if(isset($degreeApostilled)) data-doc-id="{{$degreeApostilled->id}}" @endif>Delete</button>
                                     </div>
                                     @if(isset($degreeApostilled))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($degreeApostilled->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image mx-2">
+                                            <a class="btn btn-file" href = "{{asset($degreeApostilled->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$degreeApostilled || !$degreeApostilled->url) d-none @endif"  @if(isset($degreeApostilled)) data-doc-id="{{$degreeApostilled->id}}" @endif>Delete</button>
+
                                     </div>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Copy of your Police Apostille</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1093,11 +1121,14 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc"  @if(isset($certificateApostilled)) data-doc-id="{{$certificateApostilled->id}}" @endif>Delete</button>
                                     </div>
                                     @if(isset($certificateApostilled))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($certificateApostilled->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image mx-2">
+                                            <a class="btn btn-file" href = "{{asset($certificateApostilled->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$certificateApostilled || !$certificateApostilled->url) d-none @endif"  @if(isset($certificateApostilled)) data-doc-id="{{$certificateApostilled->id}}" @endif>Delete</button>
+
                                     </div>
                                     @endif
                                 </div>
@@ -1107,7 +1138,7 @@ Profile
 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">SAQA Letter (Only For South Africa)</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1116,17 +1147,19 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc"  @if(isset($saqaLetter)) data-doc-id="{{$saqaLetter->id}}" @endif>Delete</button>
                                     </div>
                                     @if(isset($saqaLetter))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($saqaLetter->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                            <a class="btn btn-file" href = "{{asset($saqaLetter->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$saqaLetter || !$saqaLetter->url) d-none @endif"  @if(isset($saqaLetter)) data-doc-id="{{$saqaLetter->id}}" @endif>Delete</button>
                                     </div>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="dash-input-wrapper mb-30">
+                                <div class="dash-input-wrapper mb-30 upload-section">
                                     <label for="">Copy of your Passport</label>
                                     <div class="user-avatar-setting d-flex align-items-center mb-30">
                                         <div class="upload-btn position-relative tran3s ms-4 me-3">
@@ -1135,11 +1168,13 @@ Profile
                                             <p class="docname text-dark"></p>
                                         </div>
 
-                                        <button class="delete-btn tran3s delete-doc"  @if(isset($passport)) data-doc-id="{{$passport->id}}" @endif>Delete</button>
                                     </div>
                                     @if(isset($passport))
-                                    <div style = "padding-left:20px;" class="thumbnail-image">
-                                        <a class="btn btn-primary" href = "{{asset($passport->url)}}" target = "_blank">File</a>
+                                    <div class="d-flex">
+                                        <div style = "padding-left:20px;" class="thumbnail-image">
+                                            <a class="btn btn-file" href = "{{asset($passport->url)}}" target = "_blank">File</a>
+                                        </div>
+                                        <button class="delete-btn tran3s delete-doc @if(!$passport || !$passport->url) d-none @endif"  @if(isset($passport)) data-doc-id="{{$passport->id}}" @endif>Delete</button>
                                     </div>
                                     @endif
                                 </div>
@@ -1150,7 +1185,7 @@ Profile
                         <div class="row">
                             <div class="col-12">
                                     <p>Please note: If all the above documents are uploaded and approved, your account will considered "verified". 
-                                     This means employers can feel confident that they are serious and ready to start.
+                                        This means employers can feel confident that they are serious and ready to start.
                                     </p>
                             </div>
                             <div class="col-12">
@@ -1170,57 +1205,57 @@ Profile
 
 
                         <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" id="teaching-video-details">Save</button>
+                            <button type="button" class="dash-btn-one" id="teaching-video-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none candidate-teaching-video-progress"></i></button>
                         </div>
                     </div>
-
-                    <!-- Step 8 -->
-                    {{-- <div class="card my-3 p-3" id="step-8">
-                        <div class="row">
-                            <div class="col">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Criminal Background Check</label>
-                                    <input type="text" name="criminalBackgroundCheck" value = "{{$candidatePersonalDetails->criminal_background ?? ''}}" placeholder="A note that this will be required later for the E2 visa, so they should be prepared to provide it upon job offer. The document must be apostilled and no older than 6 months">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Apostille Degree</label>
-                                    <label for="">Must be mailed to the employer along with the criminal back
-                                        check upon signing of the final employment contract.</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Health Declaration</label>
-                                    <input type="text" name="healthDeclaration2" value = "{{$candidatePersonalDetails->health_declaration ?? ''}}" placeholder="A short note or checkbox stating they have no health conditions that would impede teaching or living abroad.">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="dash-input-wrapper mb-30">
-                                    <label for="">Terms and Conditions</label>
-                                    <input type="text" name="TermsAndConditions" value = "{{$candidatePersonalDetails->terms_and_conditions ?? ''}}" placeholder="Including a privacy clause about how their data will be used.">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-row justify-content-end gap-3">
-                            <button type="button" class="dash-btn-one" onclick="previousStep(8)">Previous</button>
-                            <button type="submit" class="dash-btn-one" id = "legal-verification-details">Submit</button>
-                        </div>
-                    </div> --}}
-                </form>
+                </div>
             </div>
-        </div>
+
+            <!-- Step 8 -->
+            {{-- <div class="card my-3 p-3" id="step-8">
+                <div class="row">
+                    <div class="col">
+                        <div class="dash-input-wrapper mb-30">
+                            <label for="">Criminal Background Check</label>
+                            <input type="text" name="criminalBackgroundCheck" value = "{{$candidatePersonalDetails->criminal_background ?? ''}}" placeholder="A note that this will be required later for the E2 visa, so they should be prepared to provide it upon job offer. The document must be apostilled and no older than 6 months">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="dash-input-wrapper mb-30">
+                            <label for="">Apostille Degree</label>
+                            <label for="">Must be mailed to the employer along with the criminal back
+                                check upon signing of the final employment contract.</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="dash-input-wrapper mb-30">
+                            <label for="">Health Declaration</label>
+                            <input type="text" name="healthDeclaration2" value = "{{$candidatePersonalDetails->health_declaration ?? ''}}" placeholder="A short note or checkbox stating they have no health conditions that would impede teaching or living abroad.">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="dash-input-wrapper mb-30">
+                            <label for="">Terms and Conditions</label>
+                            <input type="text" name="TermsAndConditions" value = "{{$candidatePersonalDetails->terms_and_conditions ?? ''}}" placeholder="Including a privacy clause about how their data will be used.">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end gap-3">
+                    <button type="button" class="dash-btn-one" onclick="previousStep(8)">Previous</button>
+                    <button type="submit" class="dash-btn-one" id = "legal-verification-details">Submit <i class="fas fa-circle-notch mx-2 fa-spin d-none legal-verification-progress"></i></button>
+                </div>
+            </div> --}}
+        </form>
 
         <!-- <div class="bg-white card-box border-20">
             <div class="user-avatar-setting d-flex align-items-center mb-30">
@@ -1397,6 +1432,7 @@ Profile
         e.preventDefault();
         e.stopImmediatePropagation();
         let docId = e.target.dataset.docId;
+        let element = this;
         if(docId !== undefined)
         {
             $.ajax({
@@ -1409,6 +1445,9 @@ Profile
               success:function(res){
                 if(res.status){
                     toastr.success(res.message);
+                    element.classList.add("d-none");
+                    let uploadSection = element.closest(".upload-section");
+                    uploadSection.querySelector(".btn-file").remove();
                 }else{
                     toastr.error(res.message)
                 }
@@ -1419,6 +1458,8 @@ Profile
 
     $("#visa_eligibility_check").on("click", function(e) {
         e.preventDefault();
+        document.querySelector(".candidate-visa-eligibility-progress").classList.remove("d-none");
+        $("#visa_eligibility_check").attr('disabled',true);
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-1.save')}}",
@@ -1430,7 +1471,7 @@ Profile
                 criminal_record: $("#multi-step-form").find("[name=criminal_record]").val(),
                 graduation: $("#multi-step-form").find("[name=graduation_from_accredited_university]").val(),
                 is_healthy: $("#multi-step-form").find("[name=is_healthy]").val(),
-                health_declaration: document.querySelector("#step-1").querySelector(".note-editable").innerHTML,
+                // health_declaration: document.querySelector("#step-1").querySelector(".note-editable").innerHTML,
                         },
               dataType: 'json',
               success: function (data) {
@@ -1444,7 +1485,11 @@ Profile
                     });
                 }
                
-              }
+              },
+              complete: function(){
+                document.querySelector(".candidate-visa-eligibility-progress").classList.add("d-none");
+                $("#visa_eligibility_check").attr('disabled',false);
+            }
           });
   
           return false;
@@ -1453,6 +1498,7 @@ Profile
       $("#candidate-personal-details").on("click", function(e) {
         e.preventDefault();
         document.querySelector(".candidate-personal-details-progress").classList.remove("d-none")
+        $("#candidate-personal-details").attr('disabled',true);
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
         formData.append("middle_name", $("#multi-step-form").find("[name=middle_name]").val());
@@ -1474,16 +1520,24 @@ Profile
               contentType: false,
               processData: false,
               success: function (data) {
-                document.querySelector(".candidate-personal-details-progress").classList.add("d-none")
                 if (data.status) {
                     toastr.success(data.message);
                 }else{
                     $(".alert").remove();
-                    $.each(data.errors, function (key, val) {
-                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
+                    $.each(data.errors, function(key, value) {
+                        if(key === 0)
+                        {
+                            toastr.error(value); // Display the first error for each field
+                        }
+                      
                     });
                 }
                
+              },
+              complete:function()
+              {
+                document.querySelector(".candidate-personal-details-progress").classList.add("d-none")
+                $("#candidate-personal-details").attr('disabled',false);
               }
           });
   
@@ -1497,8 +1551,7 @@ Profile
       // Canidate Educational and Professional Information
       $("#candidate-educational-details").on("click", function(e) {
         e.preventDefault();
-        var formData = new FormData();
-        formData.append("_token", "{{ csrf_token() }}");
+       
         // var experienceData = [];
     
         //     for (var i = 0; ; i++) {
@@ -1520,32 +1573,39 @@ Profile
         //         description: description
         //     });
         //     }
+        document.querySelector(".candidate-educational-progress").classList.remove("d-none")
+        $("#candidate-educational-details").attr('disabled',true);
                     var educationData = [];
-    
-                    for (var j = 0; ; j++) {
-                    var degree = $("input[name='education[" + j + "][degree]']").val();
-                   
-                    var institution = $("input[name='education[" + j + "][institution]']").val();
-                    var description = $("input[name='education[" + j + "][description]']").val();
-                    if (degree === undefined && institution === undefined && description === undefined ) {
-                            break;
-                        }
-                                educationData.push({
-                        degree: degree,
-                        institution: institution,
-                        description: description,
-                    });
+                    var rowCount = $(".educational-details-row").length;
+                     console.log(rowCount);
+                    for (var j = 0; j < rowCount; j++) {
+                        var degree = $("select[name='education[" + j + "][degree]']").val();
+                        var field_of_study = $("input[name='education[" + j + "][field_of_study]']").val();
+                        var institute_name = $("input[name='education[" + j + "][institute_name]']").val();
+                        var institute_place = $("select[name='education[" + j + "][institute_place]']").val();
+                        var year_of_study = $("input[name='education[" + j + "][year_of_study]']").val();
+
+                        educationData.push({
+                            degree: degree,
+                            field_of_study: field_of_study,
+                            institute_name: institute_name,
+                            institute_place: institute_place,
+                            year_of_study: year_of_study !='' ? year_of_study : null,
+                        });
                     }
+
         var educationData = JSON.stringify(educationData);
 
-        formData.append('educational_details',educationData)
-        formData.append('highest_degree',$("#multi-step-form").find('[name=highestDegreeObtained]').val())
-        formData.append('field_of_study',$("#multi-step-form").find('[name=fieldOfStudy]').val())
-        formData.append('institute_name',$("#multi-step-form").find('[name=universityCollegeNameCountry]').val())
-        formData.append('teaching_experiance',$("#multi-step-form").find('[name=yearsOfTeachingExperience]').val())
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
+        formData.append('educational_details',educationData);
+        // formData.append('highest_degree',$("#multi-step-form").find('[name=highestDegreeObtained]').val())
+        // formData.append('field_of_study',$("#multi-step-form").find('[name=fieldOfStudy]').val())
+        // formData.append('institute_name',$("#multi-step-form").find('[name=universityCollegeNameCountry]').val())
+        // formData.append('teaching_experiance',$("#multi-step-form").find('[name=yearsOfTeachingExperience]').val())
         formData.append('tefl_tesol_clarification',$("#multi-step-form").find('[name=TEFLTESOLCertification]').val())
         formData.append('prevous_teaching_in_korea',$("#multi-step-form").find('[name=previousTeachingInKorea]').val())
-        formData.append('country_id',$("#multi-step-form").find('[name=instituteCountry]').val())
+        // formData.append('country_id',$("#multi-step-form").find('[name=instituteCountry]').val())
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-3.save')}}",
@@ -1564,6 +1624,12 @@ Profile
                     });
                 }
                
+              },
+              
+            complete:function()
+              {
+                document.querySelector(".candidate-educational-progress").classList.add("d-none")
+                $("#candidate-educational-details").attr('disabled',false);
               }
           });
   
@@ -1573,8 +1639,8 @@ Profile
        // Canidate  Professional Information
       $("#candidate-professional-details").on("click", function(e) {
         e.preventDefault();
-        var formData = new FormData();
-        formData.append("_token", "{{ csrf_token() }}");
+        document.querySelector(".candidate-professional-progress").classList.remove("d-none")
+        $("#candidate-professional-details").attr('disabled',true);
         var noteEditable = document.querySelector("#step-4").querySelectorAll(".note-editable");
         var experienceData = [];
     
@@ -1599,6 +1665,8 @@ Profile
             }
     
         var experienceData = JSON.stringify(experienceData);
+        var formData = new FormData();
+        formData.append("_token", "{{ csrf_token() }}");
         formData.append('professional_details',experienceData)
 
           $.ajax({
@@ -1619,6 +1687,11 @@ Profile
                     });
                 }
                
+              },
+            complete:function()
+              {
+                document.querySelector(".candidate-professional-progress").classList.add("d-none")
+                $("#candidate-professional-details").attr('disabled',false);
               }
           });
   
@@ -1627,14 +1700,11 @@ Profile
       // Skills and Preferences save data
       $("#candidate-preferences-details").on("click", function(e) {
         e.preventDefault();
+        document.querySelector(".candidate-preferences-progress").classList.remove("d-none")
+        $("#candidate-preferences-details").attr('disabled',true);
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
-        var skillInput = $('input[name="skill[]"]');
-
-// Loop through each input element and append it to the FormData
-        // skillInput.each(function(index, element) {
-        // formData.append('skills[]', element.value);
-        // });
+       
         formData.append('preferred_city_region',$("#multi-step-form").find('[name=preferredCityRegionInSouthKorea]').val());
         formData.append('school_type',$("#multi-step-form").find('[name=schoolTypePreference]').val());
         formData.append('age_group',$("#multi-step-form").find('[name=ageGroupPreference]').val());
@@ -1658,7 +1728,11 @@ Profile
                         $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
                     });
                 }
-               
+              }, 
+            complete:function()
+              {
+                document.querySelector(".candidate-preferences-progress").classList.add("d-none")
+                $("#candidate-preferences-details").attr('disabled',false);
               }
           });
   
@@ -1668,6 +1742,8 @@ Profile
       // Candidate Introduction Details
       $("#candidate-introduction-details").on("click", function(e) {
         e.preventDefault();
+        document.querySelector(".candidate-introduction-progress").classList.remove("d-none")
+        $("#candidate-introduction-details").attr('disabled',true);
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
         formData.append('introduction',$("#multi-step-form").find('[name=bioIntroduction]').val());
@@ -1691,7 +1767,10 @@ Profile
                         $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
                     });
                 }
-               
+              },
+            complete:function(){
+                document.querySelector(".candidate-introduction-progress").classList.add("d-none")
+                $("#candidate-introduction-details").attr('disabled',false);
               }
           });
   
@@ -1701,6 +1780,8 @@ Profile
       
       $("#teaching-video-details").on("click", function(e) {
         e.preventDefault();
+        document.querySelector(".candidate-teaching-video-progress").classList.remove("d-none")
+        $("#teaching-video-details").attr('disabled',true);
         var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
         formData.append("video_url", $('#teachingVideo')[0].files[0]);
@@ -1712,8 +1793,7 @@ Profile
         formData.append("certificate_apostille", document.getElementById("certificateApostille").files[0]);
         formData.append("saqa_letter", document.getElementById("saqaLetter").files[0]);
         formData.append("passport", document.getElementById("userPassport").files[0]);
-        formData.append('terms_and_conditions' , document.getElementById("preferences_terms_and_conditions").value);
-        formData.append('other_platform_video_url',$("#multi-step-form").find('[name=linkToVideoAsk]').val());
+        formData.append('terms_and_conditions' , document.getElementById("preferences_terms_and_conditions").checked == true ? 1 : 0);
           $.ajax({
             type: "POST",
               url: "{{route('candidate.profile-6.save')}}",
@@ -1724,14 +1804,18 @@ Profile
               success: function (data) {
     
                 if (data.status) {
-                    toastr.success(data.message)
+                    // toastr.success(data.message)
+                    window.location = data.redirect;
                 }else{
                     $(".alert").remove();
                     $.each(data.errors, function (key, val) {
                         $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
                     });
                 }
-               
+              },
+            complete:function(){
+                document.querySelector(".candidate-teaching-video-progress").classList.add("d-none")
+                $("#teaching-video-details").attr('disabled',false);
               }
           });
   
@@ -1864,8 +1948,8 @@ const experienceArrLength = experienceArr.filter(name => /experience\[\d+\]\[rol
         //adding more experience educational fields 
        var k = 0;
        const form = document.getElementById('multi-step-form');
-const inputNames = Array.from(form.getElementsByTagName('input')).map(input => input.name);
-const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.test(name)).length;
+const selectDegrees = Array.from(form.getElementsByTagName('select')).filter(select => select.name.includes('degree'));
+const educationCount = selectDegrees.length;
         k=educationCount-1;
 // console.log(`Number of objects in the 'education' array: ${objectCount}`);
        $("#add-more-education").click(function(){
@@ -1873,34 +1957,63 @@ const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.te
            ++k;
       
         //    $("#add-skill-field").append('<tr><td><input type="text" name="addmore['+i+'][name]" placeholder="Enter your Name" class="form-control" /></td><td><input type="text" name="addmore['+i+'][qty]" placeholder="Enter your Qty" class="form-control" /></td><td><input type="text" name="addmore['+i+'][price]" placeholder="Enter your Price" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
-           $("#candidate-education").append('<div class="educational-details-row"><center><h3>Educational Details</h3></center><div class="row ">'+
+           $("#candidate-education").append('<div class = "educational-details-row">'+
+                            '<div class="row">'+
                                 '<div class="col-md-6">'+
                                     '<div class="dash-input-wrapper mb-30">'+
-                                        '<label for="">Degree</label>'+
-                                        '<input type="text" name="education['+k+'][degree]" placeholder="" value = "">'+
+                                        '<label for="">'+"Education"+'</label>'+
+                                        '<select name="education['+k+'][degree]" id="highestDegreeObtained" class="nice-select">'+
+                                            '<option value="High School Diploma/GED" >'+ "High School Diploma/GED"+'</option>'+
+                                            '<option value="Associate\'s Degree" >'+ "Associate\'s Degree"+'</option>'+
+                                            '<option value="Bachelor\'s Degree" >'+ "Bachelor\'s Degree"+'</option>'+
+                                            '<option value="Master\'s Degree" >'+ "Master\'s Degree"+'</option>'+
+                                            '<option value="Doctorate/Ph.D." >'+ "Doctorate/Ph.D."+'</option>'+
+                                            '<option value="Professional Certification" >'+ "Professional Certification"+'</option>'+
+                                            '<option value="Vocational Training" >'+ "Vocational Training"+'</option>'+
+                                            '<option value="Other (Please Specify)" >'+ "Other (Please Specify)"+'</option>'+
+                                        '</select>'+
                                     '</div>'+
                                 '</div>'+
                                 '<div class="col-md-6">'+
                                     '<div class="dash-input-wrapper mb-30">'+
-                                        '<label for="">Institution</label>'+
-                                        '<input type="text" name="education['+k+'][institution]" placeholder="" value = "">'+
+                                        '<label for="">Qualification Obtained</label>'+
+                                        '<input type="text" name="education['+k+'][field_of_study]" id="fieldOfStudy" value="">'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
                             '<div class="row">'+
-                               ' <div class="col-md-8">'+
+                                '<div class="col-md-4">'+
                                     '<div class="dash-input-wrapper mb-30">'+
-                                        '<label for="">Description</label>'+
-                                        '<input type="text" name="education['+k+'][description]" placeholder="" value = "">'+
+                                        '<label for="">University/College Name</label>'+
+                                        '<input type="text" name="education['+k+'][institute_name]" placeholder="Name of College or Univesity" value = "">'+
+                                    '</div>'+
+                                '</div>'+
+
+                                '<div class="col-md-4">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Country</label>'+
+                                        '<select name="education['+k+'][institute_place]" id="instituteCountry" class="nice-select">'+
+                                            @foreach($countries as $country)
+                                            '<option value="{{$country->id}}">'+"{{$country->name}}"+'</option>'+
+                                            @endforeach
+                                        '</select>'+
+                                    '</div>'+
+                                '</div>'+
+
+
+                                '<div class="col-md-4">'+
+                                    '<div class="dash-input-wrapper mb-30">'+
+                                        '<label for="">Year Graduated</label>'+
+                                        '<input type="number" name="education['+k+'][year_of_study]" class="number-input" placeholder="Year Graduated" value = "">'+
                                     '</div>'+
                                 '</div>'+
                                 ' <div class="col-md-2 pt-4">'+
-                                    '<div class="dash-input-wrapper mb-30">'+
-                                        '<button type="button" class="btn btn-danger remove-tr" >Remove</button>'+
+                                        '<div class="dash-input-wrapper mb-30">'+
+                                            '<button type="button" class="btn btn-danger remove-tr" >Remove</button>'+
+                                        '</div>'+
                                     '</div>'+
-                                '</div>'+
-                                '</div>'+
-                            '</div>'
+                            '</div>'+
+                        '</div>'
                             
                             )
        });
@@ -1955,7 +2068,7 @@ const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.te
 
 
 
- function deleteFile(fileType)
+ function deleteFile(fileType , element = null)
  {
     var formData = new FormData();
         formData.append("_token", "{{ csrf_token() }}");
@@ -1972,8 +2085,12 @@ const educationCount = inputNames.filter(name => /education\[\d+\]\[degree\]/.te
               success: function (data) {
     
                 if (data.status) {
+
                     toastr.success(data.message);
                     document.querySelector('.'+fileType).classList.add('d-none')
+                    if(element){
+                        element.classList.add("d-none");
+                    }
                 }else{
                     toastr.error(data.message);
                     $(".alert").remove();

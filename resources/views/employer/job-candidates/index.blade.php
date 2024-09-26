@@ -61,9 +61,9 @@ Employer Saved Candidate
                     @endif
                     <div class="right-side">
                         <div class="row gx-1 align-items-center">
-                            <div class="col-xl-4">
+                            <div class="col-xl-3">
                                 <div class="position-relative">
-                                    <h4 class="candidate-name mb-0"><a href="#" class="tran3s">{{$jobApplicant->candidatePersonalDetails->full_name ?? ''}}</a></h4>
+                                    <h4 class="candidate-name mb-0"><a href="#" class="tran3s">{{$jobApplicant->candidatePersonalDetails->first_name ?? ''}} {{$jobApplicant->candidatePersonalDetails->middle_name ?? ''}} {{$jobApplicant->candidatePersonalDetails->last_name ?? ''}}</a></h4>
                                     <div class="candidate-post">{{$jobApplicant->candidatePersonalDetails->designation ?? ''}}</div>
                                     <ul class="cadidate-skills style-none d-flex align-items-center">
                                         @if(isset($jobApplicant->candidatePreferences->skills) && !empty($jobApplicant->candidatePreferences->skills))
@@ -90,7 +90,7 @@ Employer Saved Candidate
                                 <!-- /.candidate-info -->
                             </div>
                             
-                            <div class="col-xl-2 col-md-4 col-sm-6">
+                            <div class="col-xl-3 col-md-4 col-sm-6">
                                 <div class="candidate-info">
                                     <span>Location</span>
                                     <div>{{$jobApplicant->candidatePersonalDetails->current_location ?? ''}}</div>
@@ -111,25 +111,27 @@ Employer Saved Candidate
                             </div>
                             <div class="col-xl-2 col-md-4">
                                 <div class="d-flex justify-content-md-end align-items-center">
-                                    <a href="#" class="save-btn text-center rounded-circle tran3s mt-10 fw-normal cover-letter-button" id="{{$index}}" data-bs-toggle="modal" data-bs-target="#coverLetterModal"><i class="bi bi-eye"></i></a>
+                                       {{--<a href="#" class="save-btn text-center rounded-circle tran3s mt-10 fw-normal cover-letter-button" id="{{$index}}" data-bs-toggle="modal" data-bs-target="#coverLetterModal"><i class="bi bi-eye"></i></a>
                                         <div id="cover-letter-{{$index}}" class="d-none">
                                             <p>{{$jobApplicant->pivot->cover_letter}}</p>
-                                        </div>
+                                        </div>--}}
                                     <div class="action-dots float-end mt-10 ms-2">
                                         <button class="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span></span>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
+                                        @if($jobApplicant->pivot->application_status != 1 && $jobApplicant->pivot->application_status != 2)
                                            {{-- <li><a class="dropdown-item" href="{{route('scheduleInterview')}}"><img src="../images/lazy.svg" data-src="images/icon/icon_18.svg" alt="" class="lazy-img"> View</a></li> --}}
-                                            <li><a class="dropdown-item Interview-Modal-Button" href="#" data-bs-toggle="modal" data-bs-target="#InterviewModal" id = "{{$jobApplicant->pivot->employer_job_id ?? ''}}">Interview</a></li>
+                                            <li><a class="dropdown-item Interview-Modal-Button" href="#" data-bs-toggle="modal" data-bs-target="#InterviewModal" id = "{{$jobApplicant->pivot->id ?? ''}}">Interview</a></li>
                                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
                                                 document.getElementById('reject-application-{{$jobApplicant->pivot->employer_job_id}}').submit();"> Reject</a></li>
                                             <form id="reject-application-{{$jobApplicant->pivot->employer_job_id ?? ''}}" action="{{ route('employer.rejectApplication', $jobApplicant->pivot->id) }}" method="POST" style="display: none;">
                                             @csrf
                                             @method('PUT')
                                             </form>
+                                        @endif
                                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault();
-                                                document.getElementById('message-candidate-{{$jobApplicant->pivot->candidate_id}}').submit();"> Messaage</a></li>
+                                                document.getElementById('message-candidate-{{$jobApplicant->pivot->candidate_id}}').submit();"> Chat</a></li>
                                             <form id="message-candidate-{{$jobApplicant->pivot->candidate_id ?? ''}}" action="{{ route('employer.message_candidate', $jobApplicant->pivot->candidate_id) }}" method="POST" style="display: none;">
                                             @csrf
                                             @method('PUT')
@@ -256,7 +258,7 @@ Employer Saved Candidate
                 <div class="form-wrapper m-auto">
                     <form  id = "Interview-Invitation-Form" action = "{{route('employer.interviewInvitation')}}" method = "POST">
                         @csrf
-                        <input type = "hidden" name = "employer_job_id" value = "">
+                        <input type = "hidden" name = "employer_job_application_id" value = "">
                         <div id="interview-request-errors-list"></div>
                         <div class="row">
                             <div class="col-md-6">
@@ -299,10 +301,12 @@ Employer Saved Candidate
 </div>
         @push('page-script')
         <script>
-         document.querySelector('.Interview-Modal-Button').addEventListener('click',function(){
-            document.querySelector('input[name=employer_job_id]').value = this.id;
-        });
-    </script>
+            document.querySelectorAll('.Interview-Modal-Button').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelector('input[name=employer_job_application_id]').value = this.id;
+                });
+            });
+        </script>
         <script>
             
             $(document).ready(function () {

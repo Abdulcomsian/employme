@@ -9,69 +9,46 @@
     </div>
   </div>
   <div class="section">
-    <div class="container inner-padding-medium w-container">
-      <div class="w-layout-grid main-grid">
-        <div id="w-node-e2859498-0993-2f9f-534e-3b34e3fb87e5-e3fb87e4" class="grid-wrapper sticky-faq">
+    <div class="container w-container">
+      <div class="w-layout-grid">
+        <div id="w-node-e2859498-0993-2f9f-534e-3b34e3fb87e5-e3fb87e4" class="grid-wrapper sticky-faq customersupport">
           <h3 class="heading-medium">Frequently asked questions</h3>
         </div>
         <div id="w-node-e2859498-0993-2f9f-534e-3b34e3fb87e8-e3fb87e4" class="content-wrapper">
           <div class="faq-wrapper">
             <a href="#" class="faq-link w-inline-block">
-              <h3 class="heading-regular">How Payments Work</h3>
-              <div class="faq-icon"><img src="{{asset('assets/images/cta-arrow-black.svg')}}" loading="lazy" alt="" class="plus-icon"></div>
+              <h3 class="heading-regular">Account Sharing Policy</h3>
+              <div class="faq-icon"><img src="../images/cta-arrow-black.svg" loading="lazy" alt="" class="plus-icon"></div>
             </a>
-            <div class="faq-container">
-              <p class="main-paragraph"> <strong>Subscription Plans</strong> <br> Every subscription plan incurs a monthly billing cycle and dictates the required payment for continued access to the platform. For example, if you opt for the Basic Candidate Access plan, you will be billed $59 each month for access to the platform. Additionally, upon the successful visa approval of a candidate, a charge of $700 will apply. Please note that you have the flexibility to cancel your subscription at any time. However, we recommend reviewing our cancellation policy for comprehensive details.</p>
-            </div>
-            <br> 
-            <div class="faq-container">
-              <p class="main-paragraph"> <strong>Pay-Per-Hire</strong> <br> The payment corresponding to candidate hiring is contingent on the chosen subscription plan. Crucially, charges are applied upon the successful approval of the final visa.</p>
+            <div class="faq-container" style="display: none;">
+              <p class="main-paragraph">To maintain the integrity of our platform and ensure fair access for all users, we strictly prohibit the sharing of employer accounts between or among different business entities or individuals (including Franchises). Each employer account is intended solely for the use of the registered business entity associated with it.<br><br><strong>Policy Details</strong><br><br><strong>Individual Access: </strong>Each employer account is assigned to a specific franchise or business entity. Only authorized personnel from that business entity are permitted to access the account.<br><br><strong>No Sharing: </strong>Employers are strictly prohibited from sharing their account login details with other business entities, employees, or any third parties.<br><br><strong>Single Account Usage: </strong>Employers must use their designated account for all hiring activities related to their business entity. Using the account for any other purposes or sharing it with others is strictly forbidden.<br><br><strong>Account Monitoring:</strong> We conduct regular audits and checks to monitor account activity and ensure compliance with this policy. Any unauthorized account sharing or misuse will result in immediate account suspension or termination.<br><br><strong>Consequences of Violation</strong><br><br><strong>Account Suspension:</strong> In cases of suspected account sharing or misuse, the account may be temporarily suspended pending investigation.<br><br><strong>Account Termination:</strong> Continued violation of the account sharing policy may result in permanent termination of the employer's account, with no refund of subscription fees. Employme reserves the right to collect any loss incurred as a result of the violation.<br></p>
             </div>
           </div>
           <div class="faq-wrapper">
             <a href="#" class="faq-link w-inline-block">
               <h3 class="heading-regular">Cancellations</h3>
-              <div class="faq-icon"><img src="{{asset('assets/images/cta-arrow-black.svg')}}" loading="lazy" alt="" class="plus-icon"></div>
+              <div class="faq-icon"><img src="../images/cta-arrow-black.svg" loading="lazy" alt="" class="plus-icon"></div>
             </a>
-            <div class="faq-container">
-              <p class="main-paragraph"><strong>Basic Candidate Access</strong> <br> Cancellation Fee (Before Visa Approval): If the employer cancels the subscription after signing the employment contract with a candidate, the employer shall be liable to pay 40% of the pay-per-hire fee as a cancellation penalty. <br> <br> Cancellation Fee (After Visa Approval): If the employer cancels the subscription after visa approval but before the teacher's employment starts, the employer shall be liable to pay the full pay-per-hire fee of $700. </p>
-            </div>
-            <div class="faq-container">
-              <p class="main-paragraph"><strong>Advance Candidate Access</strong> <br> Cancellation Fee (Before Visa Approval): If the employer cancels the subscription after signing the employment contract with a candidate, the employer shall be liable to pay 40% of the pay-per-hire fee as a cancellation penalty. <br> <br> Cancellation Fee (After Visa Approval): If the employer cancels the subscription after visa approval but before the teacher's employment starts, the employer shall be liable to pay the full pay-per-hire fee of $650. </p>
-            </div>
-            <div class="faq-container">
-              <p class="main-paragraph"><strong>Jobs Marketplace Access</strong> <br> Cancellation Fee (Before Visa Approval): If the employer cancels the subscription after signing the employment contract with a candidate, the employer shall be liable to pay 50% of the pay-per-hire fee as a cancellation penalty. <br> <br> Cancellation Fee (After Visa Approval): If the employer cancels the subscription after visa approval but before the teacher's employment starts, the employer shall be liable to pay the full pay-per-hire fee of $800. </p>
-            </div>
-            <div class="faq-container">
-              <p class="main-paragraph"><strong>Combined Marketplace Access</strong> <br> Cancellation Fee (Before Visa Approval): If the employer cancels the subscription after signing the employment contract with a candidate, the employer shall be liable to pay 50% of the pay-per-hire fee as a cancellation penalty. <br> <br> Cancellation Fee (After Visa Approval): If the employer cancels the subscription after visa approval but before the teacher's employment starts, the employer shall be liable to pay the full pay-per-hire fee of $600. </p>
-            </div>
-            <div class="faq-container">
-              <p class="main-paragraph"><strong>Flexi Plan</strong> <br>Cancellation Fee (Before Visa Approval):  If the employer cancels the subscription after signing the employment contract with a candidate, the employer shall be liable to pay 800,000 won as a cancellation penalty. <br> <br>Cancellation Fee (After Visa Approval): If the employer cancels the subscription after visa approval but before the teacher's employment starts, the employer shall be liable to pay 1 million won as a cancellation fee.</p>
+            <div class="faq-container" style="display: none;">
+              <p class="main-paragraph">Within the first 3 days of your initial purchase, there is no cancellation fee, and you will receive a full refund. Please be aware that upon cancellation, your company profile and job postings will no longer be visible to candidates.<br><br>After the initial 3 days, no refunds will be issued, and your service will continue until the end of the current billing period. <br></p>
             </div>
           </div>
           <div class="faq-wrapper">
             <a href="#" class="faq-link w-inline-block">
-              <h3 class="heading-regular">Visa Support</h3>
-              <div class="faq-icon"><img src="{{asset('assets/images/cta-arrow-black.svg')}}" loading="lazy" alt="" class="plus-icon"></div>
+              <h3 class="heading-regular">Platform Visa Support</h3>
+              <div class="faq-icon"><img src="../images/cta-arrow-black.svg" loading="lazy" alt="" class="plus-icon"></div>
             </a>
-            <div class="faq-container">
-              <p class="main-paragraph"><strong>What's included</strong> <br>30-minute visa consultation aimed at educating employers on the visa process <br> <br>Our team will liaise with the candidate to ensure the accurate submission of required documents. <br> <br> Comprehensive guidance to candidates regarding visa-related steps and the specifics of items to be sent to the academy. <br> <br>Visa support becomes accessible upon the formal signing of an employment contract. <br> <br> Thorough validation and background verification of submitted documents. </p>
-            </div>
-            <div class="faq-container">
-              <p class="main-paragraph"> <strong>What's NOT INCLUDED </strong> Employme does not facilitate or manage candidate flight bookings or travel arrangements. <br> <br> Visa assistance services are available exclusively during standard business hours, from Monday to Friday, spanning 9:00 am to 6:00 pm. <br> <br>Each subscription plan outlines a specific quota for the number of teachers eligible to receive visa application support. <br> <br> Our assistance is confined to matters directly pertinent to the visa approval process, and extends no further than the purview of such activities. </p>
+            <div class="faq-container" style="display: none;">
+              <p class="main-paragraph">Employme is a complete hiring marketplace designed to guide employers through the entirety of the recruitment process, covering talent acquisition through to visa finalization. Due to our platform's step-by-step guidance, we do not offer individualized visa assistance. This approach empowers you with greater control and expedites the hiring process.</p>
             </div>
           </div>
-
           <div class="faq-wrapper">
             <a href="#" class="faq-link w-inline-block">
-              <h3 class="heading-regular">Refund & Billing Policy</h3>
-              <div class="faq-icon"><img src="{{asset('assets/images/cta-arrow-black.svg')}}" loading="lazy" alt="" class="plus-icon"></div>
+              <h3 class="heading-regular">Refund &amp; Billing Policy</h3>
+              <div class="faq-icon"><img src="../images/cta-arrow-black.svg" loading="lazy" alt="" class="plus-icon"></div>
             </a>
-            <div class="faq-container">
-              <p class="main-paragraph"><strong>Subscription Refunds </strong> <br> You have a grace period of 15 days for subscription refunds. After this period, refunds for the subscription fee will not be available. </p>
-            </div>
-            <div class="faq-container">
-              <p class="main-paragraph"> <strong>Pay-Per-Hire Fee</strong> <br> The Pay-Per-Hire fee becomes due upon the approval of the candidate's visa. Payment is required within 10 days from this approval date. Failure to meet this payment deadline grants Employme the right to pursue collection in accordance with Korean law. In cases of delayed payment, the employer has a further 15 business days from the initial due date to settle the outstanding amount before any non-payment actions are initiated by Employme. <br> <br> Please refer to our Terms of Service and Agreement for a thorough explanation of our refund and billing policies. </p>
+            <div class="faq-container" style="display: none;">
+              <p class="main-paragraph">You have a grace period of 3 days for subscription refunds. After this period, refunds for the subscription fee will not be available.<br></p>
             </div>
           </div>
         </div>
